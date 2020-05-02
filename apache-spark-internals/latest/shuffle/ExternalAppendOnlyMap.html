@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title> ShuffleStatus :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/scheduler/ShuffleStatus.html">
+    <title> ExternalAppendOnlyMap :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/shuffle/ExternalAppendOnlyMap.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -69,82 +69,82 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Spark Scheduler</a>
+    <a class="nav-link" href="../scheduler/index.html">Spark Scheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="DAGScheduler.html">DAGScheduler</a>
+    <a class="nav-link" href="../scheduler/DAGScheduler.html">DAGScheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="DAGSchedulerEvent.html">DAGScheduler Events</a>
+    <a class="nav-link" href="../scheduler/DAGSchedulerEvent.html">DAGScheduler Events</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="DAGSchedulerEventProcessLoop.html">DAGScheduler Event Bus</a>
+    <a class="nav-link" href="../scheduler/DAGSchedulerEventProcessLoop.html">DAGScheduler Event Bus</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="Stage.html">Stage</a>
+    <a class="nav-link" href="../scheduler/Stage.html">Stage</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ResultStage.html">ResultStage</a>
+    <a class="nav-link" href="../scheduler/ResultStage.html">ResultStage</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ShuffleMapStage.html">ShuffleMapStage</a>
+    <a class="nav-link" href="../scheduler/ShuffleMapStage.html">ShuffleMapStage</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="MapOutputTracker.html">MapOutputTracker</a>
+    <a class="nav-link" href="../scheduler/MapOutputTracker.html">MapOutputTracker</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="MapOutputTrackerMaster.html">MapOutputTrackerMaster</a>
-<ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="4">
-    <a class="nav-link" href="ShuffleStatus.html">ShuffleStatus</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="MapOutputTrackerMasterEndpoint.html">MapOutputTrackerMasterEndpoint</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="MapOutputTrackerWorker.html">MapOutputTrackerWorker</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-StageInfo.html">StageInfo</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-scheduler-JobListener.html">JobListener</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-scheduler-JobWaiter.html">JobWaiter</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="TaskScheduler.html">TaskScheduler</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="TaskSchedulerImpl.html">TaskSchedulerImpl</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="SchedulerBackend.html">SchedulerBackend</a>
+    <a class="nav-link" href="../scheduler/MapOutputTrackerMaster.html">MapOutputTrackerMaster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../scheduler/ShuffleStatus.html">ShuffleStatus</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../scheduler/MapOutputTrackerMasterEndpoint.html">MapOutputTrackerMasterEndpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/MapOutputTrackerWorker.html">MapOutputTrackerWorker</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/spark-scheduler-StageInfo.html">StageInfo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="CoarseGrainedSchedulerBackend.html">CoarseGrainedSchedulerBackend</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-JobListener.html">JobListener</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/spark-scheduler-JobWaiter.html">JobWaiter</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../scheduler/TaskScheduler.html">TaskScheduler</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/TaskSchedulerImpl.html">TaskSchedulerImpl</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../scheduler/SchedulerBackend.html">SchedulerBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../scheduler/CoarseGrainedSchedulerBackend.html">CoarseGrainedSchedulerBackend</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="CoarseGrainedSchedulerBackend-DriverEndpoint.html">DriverEndpoint</a>
+    <a class="nav-link" href="../scheduler/CoarseGrainedSchedulerBackend-DriverEndpoint.html">DriverEndpoint</a>
   </li>
 </ul>
   </li>
@@ -154,84 +154,84 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="Task.html">Task</a>
+    <a class="nav-link" href="../scheduler/Task.html">Task</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ShuffleMapTask.html">ShuffleMapTask</a>
+    <a class="nav-link" href="../scheduler/ShuffleMapTask.html">ShuffleMapTask</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ResultTask.html">ResultTask</a>
+    <a class="nav-link" href="../scheduler/ResultTask.html">ResultTask</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="TaskSet.html">TaskSet</a>
+    <a class="nav-link" href="../scheduler/TaskSet.html">TaskSet</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="TaskSetManager.html">TaskSetManager</a>
+    <a class="nav-link" href="../scheduler/TaskSetManager.html">TaskSetManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-ActiveJob.html">Jobs</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-ActiveJob.html">Jobs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-scheduler-SchedulableBuilder.html">SchedulableBuilder</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-SchedulableBuilder.html">SchedulableBuilder</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-scheduler-FIFOSchedulableBuilder.html">FIFOSchedulableBuilder</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-FIFOSchedulableBuilder.html">FIFOSchedulableBuilder</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-scheduler-FairSchedulableBuilder.html">FairSchedulableBuilder</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-FairSchedulableBuilder.html">FairSchedulableBuilder</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-scheduler-Schedulable.html">Schedulable Entities</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-Schedulable.html">Schedulable Entities</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-scheduler-Pool.html">Schedulable Pool</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-Pool.html">Schedulable Pool</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-SchedulingMode.html">Scheduling Mode</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-SchedulingMode.html">Scheduling Mode</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-TaskInfo.html">TaskInfo</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-TaskInfo.html">TaskInfo</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="MapStatus.html">MapStatus</a>
+    <a class="nav-link" href="../scheduler/MapStatus.html">MapStatus</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-TaskDescription.html">TaskDescription</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-TaskDescription.html">TaskDescription</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-taskschedulerimpl-speculative-execution.html">Speculative Execution of Tasks</a>
+    <a class="nav-link" href="../scheduler/spark-taskschedulerimpl-speculative-execution.html">Speculative Execution of Tasks</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="TaskResultGetter.html">TaskResultGetter</a>
+    <a class="nav-link" href="../scheduler/TaskResultGetter.html">TaskResultGetter</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-TaskContext.html">TaskContext</a>
+    <a class="nav-link" href="../scheduler/spark-TaskContext.html">TaskContext</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-BarrierTaskContext.html">BarrierTaskContext</a>
+    <a class="nav-link" href="../scheduler/spark-BarrierTaskContext.html">BarrierTaskContext</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-TaskContextImpl.html">TaskContextImpl</a>
+    <a class="nav-link" href="../scheduler/spark-TaskContextImpl.html">TaskContextImpl</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-TaskResult.html">TaskResults</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-TaskResult.html">TaskResults</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-TaskSetBlacklist.html">TaskSetBlacklist</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-TaskSetBlacklist.html">TaskSetBlacklist</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="OutputCommitCoordinator.html">OutputCommitCoordinator</a>
+    <a class="nav-link" href="../scheduler/OutputCommitCoordinator.html">OutputCommitCoordinator</a>
   </li>
 </ul>
   </li>
@@ -375,77 +375,77 @@
     <span class="nav-text">Shuffle System</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/SortShuffleManager.html">SortShuffleManager</a>
+    <a class="nav-link" href="SortShuffleManager.html">SortShuffleManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/ShuffleManager.html">ShuffleManager</a>
+    <a class="nav-link" href="ShuffleManager.html">ShuffleManager</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleHandle.html">ShuffleHandle</a>
+    <a class="nav-link" href="spark-shuffle-ShuffleHandle.html">ShuffleHandle</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/spark-shuffle-BaseShuffleHandle.html">BaseShuffleHandle</a>
+    <a class="nav-link" href="spark-shuffle-BaseShuffleHandle.html">BaseShuffleHandle</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/spark-shuffle-BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
+    <a class="nav-link" href="spark-shuffle-BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/spark-shuffle-SerializedShuffleHandle.html">SerializedShuffleHandle</a>
+    <a class="nav-link" href="spark-shuffle-SerializedShuffleHandle.html">SerializedShuffleHandle</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleReader.html">ShuffleReader</a>
+    <a class="nav-link" href="spark-shuffle-ShuffleReader.html">ShuffleReader</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/BlockStoreShuffleReader.html">BlockStoreShuffleReader</a>
+    <a class="nav-link" href="BlockStoreShuffleReader.html">BlockStoreShuffleReader</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/ShuffleWriter.html">ShuffleWriter</a>
+    <a class="nav-link" href="ShuffleWriter.html">ShuffleWriter</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/BypassMergeSortShuffleWriter.html">BypassMergeSortShuffleWriter</a>
+    <a class="nav-link" href="BypassMergeSortShuffleWriter.html">BypassMergeSortShuffleWriter</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/SortShuffleWriter.html">SortShuffleWriter</a>
+    <a class="nav-link" href="SortShuffleWriter.html">SortShuffleWriter</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/spark-shuffle-UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
+    <a class="nav-link" href="spark-shuffle-UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/ShuffleBlockResolver.html">ShuffleBlockResolver</a>
+    <a class="nav-link" href="ShuffleBlockResolver.html">ShuffleBlockResolver</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/IndexShuffleBlockResolver.html">IndexShuffleBlockResolver</a>
+    <a class="nav-link" href="IndexShuffleBlockResolver.html">IndexShuffleBlockResolver</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/ShuffleExternalSorter.html">ShuffleExternalSorter</a>
+    <a class="nav-link" href="ShuffleExternalSorter.html">ShuffleExternalSorter</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
+    <a class="nav-link" href="spark-shuffle-ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/FetchFailedException.html">FetchFailedException</a>
+    <a class="nav-link" href="FetchFailedException.html">FetchFailedException</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/Spillable.html">Spillable</a>
+    <a class="nav-link" href="Spillable.html">Spillable</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/ExternalAppendOnlyMap.html">ExternalAppendOnlyMap</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="ExternalAppendOnlyMap.html">ExternalAppendOnlyMap</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/ExternalSorter.html">ExternalSorter</a>
+    <a class="nav-link" href="ExternalSorter.html">ExternalSorter</a>
   </li>
 </ul>
   </li>
@@ -1842,190 +1842,69 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Spark Scheduler</a></li>
-    <li><a href="MapOutputTracker.html">MapOutputTracker</a></li>
-    <li><a href="MapOutputTrackerMaster.html">MapOutputTrackerMaster</a></li>
-    <li><a href="ShuffleStatus.html">ShuffleStatus</a></li>
+    <li>Shuffle System</li>
+    <li><a href="Spillable.html">Spillable</a></li>
+    <li><a href="ExternalAppendOnlyMap.html">ExternalAppendOnlyMap</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/scheduler/pages/ShuffleStatus.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/shuffle/pages/ExternalAppendOnlyMap.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page"><a id="ShuffleStatus"></a> ShuffleStatus</h1>
+<h1 class="page"><a id="ExternalAppendOnlyMap"></a> ExternalAppendOnlyMap</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>ShuffleStatus</strong> is a registry of shuffle map outputs (of a shuffle stage).</p>
+<p><strong>ExternalAppendOnlyMap</strong> is a <a href="Spillable.html" class="page">Spillable</a> of <code>SizeTrackers</code>.</p>
 </div>
 <div class="paragraph">
-<p>ShuffleStatus is managed by <a href="MapOutputTrackerMaster.html#shuffleStatuses" class="page">MapOutputTrackerMaster</a> to keep track of shuffle map outputs across shuffle stages.</p>
+<p><code>ExternalAppendOnlyMap[K, V, C]</code> is a parameterized type of <code>K</code> keys, <code>V</code> values, and <code>C</code> combiner (partial) values.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a><a id="numPartitions"></a> Creating Instance</a></h2>
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>ShuffleStatus takes a single number of partitions to be created.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="registering-shuffle-map-output"><a class="anchor" href="#registering-shuffle-map-output"></a><a class="link" href="#registering-shuffle-map-output"><a id="addMapOutput"></a> Registering Shuffle Map Output</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">addMapOutput(
-  mapId: Int,
-  status: MapStatus): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>addMapOutput&#8230;&#8203;FIXME</p>
-</div>
-<div class="paragraph">
-<p>addMapOutput is used when MapOutputTrackerMaster is requested to <a href="MapOutputTrackerMaster.html#registerMapOutput" class="page">register a shuffle map output</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="deregistering-shuffle-map-output"><a class="anchor" href="#deregistering-shuffle-map-output"></a><a class="link" href="#deregistering-shuffle-map-output"><a id="removeMapOutput"></a> Deregistering Shuffle Map Output</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">removeMapOutput(
-  mapId: Int,
-  bmAddress: BlockManagerId): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>removeMapOutput&#8230;&#8203;FIXME</p>
-</div>
-<div class="paragraph">
-<p>removeMapOutput is used when MapOutputTrackerMaster is requested to <a href="MapOutputTrackerMaster.html#unregisterMapOutput" class="page">unregister a shuffle map output</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="serializing-shuffle-map-output-statuses"><a class="anchor" href="#serializing-shuffle-map-output-statuses"></a><a class="link" href="#serializing-shuffle-map-output-statuses"><a id="serializedMapStatus"></a> Serializing Shuffle Map Output Statuses</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">serializedMapStatus(
-  broadcastManager: BroadcastManager,
-  isLocal: Boolean,
-  minBroadcastSize: Int): Array[Byte]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>serializedMapStatus&#8230;&#8203;FIXME</p>
-</div>
-<div class="paragraph">
-<p>serializedMapStatus is used when MapOutputTrackerMaster is requested to <a href="MapOutputTrackerMaster.html#run" class="page">send the map output locations of a shuffle</a> (on the MessageLoop dispatcher thread).</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="finding-missing-partitions"><a class="anchor" href="#finding-missing-partitions"></a><a class="link" href="#finding-missing-partitions"><a id="findMissingPartitions"></a> Finding Missing Partitions</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">findMissingPartitions(): Seq[Int]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>findMissingPartitions&#8230;&#8203;FIXME</p>
-</div>
-<div class="paragraph">
-<p>findMissingPartitions is used when MapOutputTrackerMaster is requested for <a href="MapOutputTrackerMaster.html#findMissingPartitions" class="page">missing partitions (that need to be computed)</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="invalidating-serialized-map-output-status-cache"><a class="anchor" href="#invalidating-serialized-map-output-status-cache"></a><a class="link" href="#invalidating-serialized-map-output-status-cache"><a id="invalidateSerializedMapOutputStatusCache"></a> Invalidating Serialized Map Output Status Cache</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">invalidateSerializedMapOutputStatusCache(): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>invalidateSerializedMapOutputStatusCache&#8230;&#8203;FIXME</p>
-</div>
-<div class="paragraph">
-<p>invalidateSerializedMapOutputStatusCache is used when:</p>
+<p>ExternalAppendOnlyMap takes the following to be created:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>ShuffleStatus is requested to <a href="#addMapOutput">addMapOutput</a>, <a href="#removeMapOutput">removeMapOutput</a>, <a href="#removeOutputsByFilter">removeOutputsByFilter</a></p>
+<p><a id="createCombiner"></a> createCombiner function (<code>V &#8658; C</code>)</p>
 </li>
 <li>
-<p>MapOutputTrackerMaster is requested to <a href="MapOutputTrackerMaster.html#unregisterShuffle" class="page">unregister a shuffle</a></p>
+<p><a id="mergeValue"></a> mergeValue function (<code>(C, V) &#8658; C</code>)</p>
+</li>
+<li>
+<p><a id="mergeCombiners"></a> mergeCombiners function (<code>(C, C) &#8658; C</code>)</p>
+</li>
+<li>
+<p><a id="serializer"></a> Optional <a href="../spark-Serializer.html" class="page">Serializer</a> (default: <a href="../spark-SparkEnv.html#serializer" class="page">system Serializer</a>)</p>
+</li>
+<li>
+<p><a id="blockManager"></a> Optional <a href="../storage/BlockManager.html" class="page">BlockManager</a> (default: <a href="../spark-SparkEnv.html#blockManager" class="page">system BlockManager</a>)</p>
+</li>
+<li>
+<p><a id="context"></a> Optional <a href="../scheduler/spark-TaskContext.html" class="page">TaskContext</a> (default: <a href="../scheduler/spark-TaskContext.html#get" class="page">current TaskContext</a>)</p>
+</li>
+<li>
+<p><a id="serializerManager"></a> Optional <a href="../spark-SerializerManager.html" class="page">SerializerManager</a> (default: <a href="../spark-SparkEnv.html#serializerManager" class="page">system SerializerManager</a>)</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="deregistering-shuffle-map-outputs-by-filter"><a class="anchor" href="#deregistering-shuffle-map-outputs-by-filter"></a><a class="link" href="#deregistering-shuffle-map-outputs-by-filter"><a id="removeOutputsByFilter"></a> Deregistering Shuffle Map Outputs by Filter</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">removeOutputsByFilter(
-  f: (BlockManagerId) =&gt; Boolean): Unit</code></pre>
-</div>
-</div>
 <div class="paragraph">
-<p>removeOutputsByFilter&#8230;&#8203;FIXME</p>
-</div>
-<div class="paragraph">
-<p>removeOutputsByFilter is used when:</p>
+<p>ExternalAppendOnlyMap is created when:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>ShuffleStatus is requested to <a href="#removeOutputsOnExecutor">removeOutputsOnExecutor</a>, <a href="#removeOutputsOnHost">removeOutputsOnHost</a></p>
+<p>Aggregator is requested to <a href="../rdd/spark-Aggregator.html#combineValuesByKey" class="page">combineValuesByKey</a> and <a href="../rdd/spark-Aggregator.html#combineCombinersByKey" class="page">combineCombinersByKey</a></p>
 </li>
 <li>
-<p>MapOutputTrackerMaster is requested to <a href="MapOutputTrackerMaster.html#unregisterAllMapOutput" class="page">unregister all map outputs of a given shuffle stage</a></p>
+<p>CoGroupedRDD is requested to <a href="../rdd/spark-rdd-CoGroupedRDD.html#compute" class="page">compute</a></p>
 </li>
 </ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="deregistering-shuffle-map-outputs-associated-with-executor"><a class="anchor" href="#deregistering-shuffle-map-outputs-associated-with-executor"></a><a class="link" href="#deregistering-shuffle-map-outputs-associated-with-executor"><a id="removeOutputsOnExecutor"></a> Deregistering Shuffle Map Outputs Associated with Executor</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">removeOutputsOnExecutor(
-  execId: String): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>removeOutputsOnExecutor&#8230;&#8203;FIXME</p>
-</div>
-<div class="paragraph">
-<p>removeOutputsOnExecutor is used when MapOutputTrackerMaster is requested to <a href="MapOutputTrackerMaster.html#removeOutputsOnExecutor" class="page">delete shuffle outputs associated with an executor</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="deregistering-shuffle-map-outputs-associated-with-host"><a class="anchor" href="#deregistering-shuffle-map-outputs-associated-with-host"></a><a class="link" href="#deregistering-shuffle-map-outputs-associated-with-host"><a id="removeOutputsOnHost"></a> Deregistering Shuffle Map Outputs Associated with Host</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">removeOutputsOnHost(
-  host: String): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>removeOutputsOnHost&#8230;&#8203;FIXME</p>
-</div>
-<div class="paragraph">
-<p>removeOutputsOnHost is used when MapOutputTrackerMaster is requested to <a href="MapOutputTrackerMaster.html#removeOutputsOnHost" class="page">delete shuffle outputs associated with a host</a>.</p>
 </div>
 </div>
 </div>
