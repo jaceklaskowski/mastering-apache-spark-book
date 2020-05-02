@@ -1899,10 +1899,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="in-memory-collections"><a class="anchor" href="#in-memory-collections"></a><a class="link" href="#in-memory-collections"><a id="buffer"></a><a id="map"></a> In-Memory Collections</a></h2>
+<h2 id="in-memory-collections-of-records"><a class="anchor" href="#in-memory-collections-of-records"></a><a class="link" href="#in-memory-collections-of-records"><a id="in-memory-collection"></a><a id="buffer"></a><a id="map"></a> In-Memory Collections of Records</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>ExternalSorter uses PartitionedPairBuffers or PartitionedAppendOnlyMaps to store objects in memory before spilling to disk. ExternalSorter uses PartitionedPairBuffers when created with no <a href="#aggregator">Aggregator</a> specified. With an Aggregator, ExternalSorter uses PartitionedAppendOnlyMaps.</p>
+<p>ExternalSorter uses PartitionedPairBuffers or PartitionedAppendOnlyMaps to store records in memory before spilling to disk. ExternalSorter uses PartitionedPairBuffers when created with no <a href="#aggregator">Aggregator</a> specified. Otherwise, ExternalSorter uses PartitionedAppendOnlyMaps.</p>
 </div>
 <div class="paragraph">
 <p>ExternalSorter creates a PartitionedPairBuffer and a PartitionedAppendOnlyMap when created.</p>
@@ -1911,10 +1911,31 @@
 <p>ExternalSorter inserts records to the collections when <a href="#insertAll">insertAll</a>.</p>
 </div>
 <div class="paragraph">
-<p>ExternalSorter <a href="#maybeSpill">maybeSpill</a> and, if spilled to disk, creates a new collection.</p>
+<p>ExternalSorter <a href="#maybeSpillCollection">tries to spill the in-memory collection to disk</a> and, <a href="Spillable.html#maybeSpill" class="page">if spilled</a>, creates a new collection.</p>
 </div>
 <div class="paragraph">
-<p>ExternalSorter releases the collections (<code>null</code>s them) when requested to <a href="#forceSpill">forceSpill</a> and <a href="#stop">stop</a>. That is whne the JVM garbage collector takes care of evicting them from memory whatsoever.</p>
+<p>ExternalSorter releases the collections (<code>null</code>s them) when requested to <a href="#forceSpill">forceSpill</a> and <a href="#stop">stop</a>. That is when the JVM garbage collector takes care of evicting them from memory completely.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="peak-size-of-in-memory-collection"><a class="anchor" href="#peak-size-of-in-memory-collection"></a><a class="link" href="#peak-size-of-in-memory-collection"><a id="peakMemoryUsedBytes"></a><a id="_peakMemoryUsedBytes"></a> Peak Size of In-Memory Collection</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ExternalSorter tracks the peak size (in bytes) of the <a href="#in-memory-collection">[in-memory-collection]</a> whenever requested to <a href="#maybeSpillCollection">maybeSpillCollection</a>.</p>
+</div>
+<div class="paragraph">
+<p>The peak size is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>BlockStoreShuffleReader is requested to <a href="BlockStoreShuffleReader.html#read" class="page">read combined records for a reduce task</a> (with a sort ordering defined)</p>
+</li>
+<li>
+<p>ExternalSorter is requested to <a href="#writePartitionedFile">write all records into a partitioned file</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1990,7 +2011,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="writing-partitioned-file"><a class="anchor" href="#writing-partitioned-file"></a><a class="link" href="#writing-partitioned-file"><a id="writePartitionedFile"></a> Writing Partitioned File</a></h2>
+<h2 id="writing-all-records-into-partitioned-file"><a class="anchor" href="#writing-all-records-into-partitioned-file"></a><a class="link" href="#writing-all-records-into-partitioned-file"><a id="writePartitionedFile"></a> Writing All Records Into Partitioned File</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2093,7 +2114,13 @@
 </div>
 </div>
 <div class="paragraph">
-<p>maybeSpillCollection&#8230;&#8203;FIXME</p>
+<p>maybeSpillCollection branches per the input usingMap flag (that is to determine which in-memory collection to use, the <a href="#map">PartitionedAppendOnlyMap</a> or the <a href="#buffer">PartitionedPairBuffer</a>).</p>
+</div>
+<div class="paragraph">
+<p>maybeSpillCollection requests the collection to estimate size (in bytes) that is tracked as the <a href="#peakMemoryUsedBytes">peakMemoryUsedBytes</a> metric (for every size bigger than what is currently recorded).</p>
+</div>
+<div class="paragraph">
+<p>maybeSpillCollection <a href="Spillable.html#maybeSpill" class="page">spills the collection to disk if needed</a>. If spilled, maybeSpillCollection creates a new collection (a new PartitionedAppendOnlyMap or a new PartitionedPairBuffer).</p>
 </div>
 <div class="paragraph">
 <p>maybeSpillCollection is used when ExternalSorter is requested to <a href="#insertAll">insertAll</a>.</p>
