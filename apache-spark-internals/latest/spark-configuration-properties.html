@@ -2398,6 +2398,47 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 </div>
 </div>
 <div class="sect1">
+<h2 id="spark-shuffle-spill-initialmemorythreshold"><a class="anchor" href="#spark-shuffle-spill-initialmemorythreshold"></a><a class="link" href="#spark-shuffle-spill-initialmemorythreshold"><a id="spark.shuffle.spill.initialMemoryThreshold"></a> spark.shuffle.spill.initialMemoryThreshold</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Initial threshold for the size of an in-memory collection</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>5 * 1024 * 1024</code></p>
+</div>
+<div class="paragraph">
+<p>Used by <a href="shuffle/Spillable.html" class="page">Spillable</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-spill-numelementsforcespillthreshold"><a class="anchor" href="#spark-shuffle-spill-numelementsforcespillthreshold"></a><a class="link" href="#spark-shuffle-spill-numelementsforcespillthreshold"><a id="spark.shuffle.spill.numElementsForceSpillThreshold"></a><a id="SHUFFLE_SPILL_NUM_ELEMENTS_FORCE_SPILL_THRESHOLD"></a> spark.shuffle.spill.numElementsForceSpillThreshold</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>(internal)</strong> The maximum number of elements in memory before forcing the shuffle sorter to spill. Claimed to be used for testing only</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>Integer.MAX_VALUE</code></p>
+</div>
+<div class="paragraph">
+<p>The default value is to never force the sorter to spill, until we reach some limitations, like the max page size limitation for the pointer array in the sorter.</p>
+</div>
+<div class="paragraph">
+<p>Used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ShuffleExternalSorter is created</p>
+</li>
+<li>
+<p>Spillable is requested to <a href="shuffle/Spillable.html#maybeSpill" class="page">maybeSpill</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="spark-shuffle-manager"><a class="anchor" href="#spark-shuffle-manager"></a><a class="link" href="#spark-shuffle-manager"><a id="spark.shuffle.manager"></a> spark.shuffle.manager</a></h2>
 <div class="sectionbody">
 <div class="paragraph">

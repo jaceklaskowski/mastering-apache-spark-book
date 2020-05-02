@@ -1899,6 +1899,72 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="configuration-properties"><a class="anchor" href="#configuration-properties"></a><a class="link" href="#configuration-properties"><a id="configuration-properties"></a> Configuration Properties</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="spark-shuffle-spill-numelementsforcespillthreshold"><a class="anchor" href="#spark-shuffle-spill-numelementsforcespillthreshold"></a><a class="link" href="#spark-shuffle-spill-numelementsforcespillthreshold"><a id="numElementsForceSpillThreshold"></a> spark.shuffle.spill.numElementsForceSpillThreshold</a></h3>
+<div class="paragraph">
+<p>Spillable uses <a href="../spark-configuration-properties.html#spark.shuffle.spill.numElementsForceSpillThreshold" class="page">spark.shuffle.spill.numElementsForceSpillThreshold</a> configuration property to force spilling in-memory objects to disk when requested to <a href="#maybeSpill">maybeSpill</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="spark-shuffle-spill-initialmemorythreshold"><a class="anchor" href="#spark-shuffle-spill-initialmemorythreshold"></a><a class="link" href="#spark-shuffle-spill-initialmemorythreshold"><a id="initialMemoryThreshold"></a> spark.shuffle.spill.initialMemoryThreshold</a></h3>
+<div class="paragraph">
+<p>Spillable uses <a href="../spark-configuration-properties.html#spark.shuffle.spill.initialMemoryThreshold" class="page">spark.shuffle.spill.initialMemoryThreshold</a> configuration property as the initial threshold for the size of a collection (and the minimum memory required to operate properly).</p>
+</div>
+<div class="paragraph">
+<p>Spillable uses it when requested to <a href="#spill">spill</a> and <a href="#releaseMemory">releaseMemory</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="memory-threshold"><a class="anchor" href="#memory-threshold"></a><a class="link" href="#memory-threshold"><a id="myMemoryThreshold"></a> Memory Threshold</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Spillable uses a threshold for the memory size (in bytes) to know when to <a href="#maybeSpill">spill to disk</a>.</p>
+</div>
+<div class="paragraph">
+<p>When the size of the in-memory collection is above the threshold, Spillable will try to acquire more memory. Unless given all requested memory, Spillable spills to disk.</p>
+</div>
+<div class="paragraph">
+<p>The memory threshold starts as <a href="#initialMemoryThreshold">spark.shuffle.spill.initialMemoryThreshold</a> configuration property and is increased every time Spillable is requested to <a href="#maybeSpill">spill to disk if needed</a>, but managed to acquire required memory. The threshold goes back to the <a href="#initialMemoryThreshold">initial value</a> when requested to <a href="#releaseMemory">release all memory</a>.</p>
+</div>
+<div class="paragraph">
+<p>Used when Spillable is requested to <a href="#spill">spill</a> and <a href="#releaseMemory">releaseMemory</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="releasing-all-memory"><a class="anchor" href="#releasing-all-memory"></a><a class="link" href="#releasing-all-memory"><a id="releaseMemory"></a> Releasing All Memory</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">releaseMemory(): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>releaseMemory&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>releaseMemory is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ExternalAppendOnlyMap is requested to freeCurrentMap</p>
+</li>
+<li>
+<p>ExternalSorter is requested to <a href="ExternalSorter.html#stop" class="page">stop</a></p>
+</li>
+<li>
+<p>Spillable is requested to <a href="#maybeSpill">maybeSpill</a> and <a href="#spill">spill</a> (and spilled to disk in either case)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="spilling-in-memory-collection-to-disk-to-release-memory"><a class="anchor" href="#spilling-in-memory-collection-to-disk-to-release-memory"></a><a class="link" href="#spilling-in-memory-collection-to-disk-to-release-memory"><a id="spill"></a> Spilling In-Memory Collection to Disk (to Release Memory)</a></h2>
 <div class="sectionbody">
 <div class="listingblock">

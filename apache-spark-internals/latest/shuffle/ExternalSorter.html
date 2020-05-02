@@ -1911,7 +1911,7 @@
 <p>ExternalSorter inserts records to the collections when <a href="#insertAll">insertAll</a>.</p>
 </div>
 <div class="paragraph">
-<p>ExternalSorter <a href="#maybeSpillCollection">tries to spill the in-memory collection to disk</a> and, <a href="Spillable.html#maybeSpill" class="page">if spilled</a>, creates a new collection.</p>
+<p>ExternalSorter <a href="#maybeSpillCollection">spills the in-memory collection to disk if needed</a> and, <a href="Spillable.html#maybeSpill" class="page">if so</a>, creates a new collection.</p>
 </div>
 <div class="paragraph">
 <p>ExternalSorter releases the collections (<code>null</code>s them) when requested to <a href="#forceSpill">forceSpill</a> and <a href="#stop">stop</a>. That is when the JVM garbage collector takes care of evicting them from memory completely.</p>
@@ -1922,7 +1922,7 @@
 <h2 id="peak-size-of-in-memory-collection"><a class="anchor" href="#peak-size-of-in-memory-collection"></a><a class="link" href="#peak-size-of-in-memory-collection"><a id="peakMemoryUsedBytes"></a><a id="_peakMemoryUsedBytes"></a> Peak Size of In-Memory Collection</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>ExternalSorter tracks the peak size (in bytes) of the <a href="#in-memory-collection">[in-memory-collection]</a> whenever requested to <a href="#maybeSpillCollection">maybeSpillCollection</a>.</p>
+<p>ExternalSorter tracks the peak size (in bytes) of the <a href="#in-memory-collection">in-memory collection</a> whenever requested to <a href="#maybeSpillCollection">spill the in-memory collection to disk if needed</a>.</p>
 </div>
 <div class="paragraph">
 <p>The peak size is used when:</p>
@@ -1974,7 +1974,7 @@
 <p>insertAll requests the <a href="#map">PartitionedAppendOnlyMap</a> to changeValue for the key (made up of the <a href="#getPartition">partition</a> of the key of the current record and the key itself, i.e. <code>(partition, key)</code>) with the update function.</p>
 </div>
 <div class="paragraph">
-<p>In the end, insertAll <a href="#maybeSpillCollection">maybeSpillCollection</a> (with the usingMap flag on since the <a href="#map">PartitionedAppendOnlyMap</a> was updated).</p>
+<p>In the end, insertAll <a href="#maybeSpillCollection">spills the in-memory collection to disk if needed</a> (with the usingMap flag on since the <a href="#map">PartitionedAppendOnlyMap</a> was updated).</p>
 </div>
 </div>
 <div class="sect2">
@@ -1989,7 +1989,7 @@
 <p>insertAll requests the <a href="#buffer">PartitionedPairBuffer</a> to insert with the <a href="#getPartition">partition</a> of the key of the current record, the key itself and the value of the current record.</p>
 </div>
 <div class="paragraph">
-<p>In the end, insertAll <a href="#maybeSpillCollection">maybeSpillCollection</a> (with the usingMap flag off since this time the <a href="#buffer">PartitionedPairBuffer</a> was updated, not the <a href="#map">PartitionedAppendOnlyMap</a>).</p>
+<p>In the end, insertAll <a href="#maybeSpillCollection">spills the in-memory collection to disk if needed</a> (with the usingMap flag off since this time the <a href="#buffer">PartitionedPairBuffer</a> was updated, not the <a href="#map">PartitionedAppendOnlyMap</a>).</p>
 </div>
 </div>
 <div class="sect2">
