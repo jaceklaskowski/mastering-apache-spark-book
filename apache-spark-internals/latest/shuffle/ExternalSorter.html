@@ -457,7 +457,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/index.html">Resilient Distributed Dataset (RDD)</a>
+    <a class="nav-link" href="../rdd/index.html">Resilient Distributed Dataset</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../rdd/spark-rdd-RDD.html">RDD API</a>
@@ -526,7 +526,7 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-Aggregator.html">Map/Reduce-side Aggregator</a>
+    <a class="nav-link" href="../rdd/Aggregator.html">Aggregator</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1855,7 +1855,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>ExternalSorter</strong> is a <a href="Spillable.html" class="page">Spillable</a> of <code>WritablePartitionedPairCollection</code> of pairs (of K keys and C values).</p>
+<p><strong>ExternalSorter</strong> is a <a href="Spillable.html" class="page">Spillable</a> of WritablePartitionedPairCollection of pairs (of K keys and C values).</p>
 </div>
 <div class="paragraph">
 <p><code>ExternalSorter[K, V, C]</code> is a parameterized type of <code>K</code> keys, <code>V</code> values, and <code>C</code> combiner (partial) values.</p>
@@ -1874,7 +1874,7 @@
 <p><a id="context"></a> <a href="../scheduler/spark-TaskContext.html" class="page">TaskContext</a></p>
 </li>
 <li>
-<p><a id="aggregator"></a> Optional <a href="../rdd/spark-Aggregator.html" class="page">Aggregator</a> (default: undefined)</p>
+<p><a id="aggregator"></a> Optional <a href="../rdd/Aggregator.html" class="page">Aggregator</a> (default: undefined)</p>
 </li>
 <li>
 <p><a id="partitioner"></a> Optional <a href="#rdd:Partitioner">Partitioner</a> (default: undefined)</p>
@@ -1969,7 +1969,7 @@
 <div class="sect2">
 <h3 id="map-side-aggregator-specified"><a class="anchor" href="#map-side-aggregator-specified"></a><a class="link" href="#map-side-aggregator-specified"><a id="insertAll-shouldCombine"></a> Map-Side Aggregator Specified</a></h3>
 <div class="paragraph">
-<p>If there is an Aggregator specified, insertAll creates an update function based on the <a href="../rdd/spark-Aggregator.html#mergeValue" class="page">mergeValue</a> and <a href="../rdd/spark-Aggregator.html#createCombiner" class="page">createCombiner</a> functions of the Aggregator.</p>
+<p>If there is an Aggregator specified, insertAll creates an update function based on the <a href="../rdd/Aggregator.html#mergeValue" class="page">mergeValue</a> and <a href="../rdd/Aggregator.html#createCombiner" class="page">createCombiner</a> functions of the Aggregator.</p>
 </div>
 <div class="paragraph">
 <p>For every record, insertAll <a href="Spillable.html#addElementsRead" class="page">increment internal read counter</a>.</p>

@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/spark-mllib/spark-mllib-ValidatorParams.html">
+    <title> Aggregator :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/rdd/Aggregator.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -457,109 +457,109 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/index.html">Resilient Distributed Dataset</a>
+    <a class="nav-link" href="index.html">Resilient Distributed Dataset</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-rdd-RDD.html">RDD API</a>
+    <a class="nav-link" href="spark-rdd-RDD.html">RDD API</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-operations.html">Operators</a>
+    <a class="nav-link" href="spark-rdd-operations.html">Operators</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-transformations.html">Transformations</a>
+    <a class="nav-link" href="spark-rdd-transformations.html">Transformations</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../rdd/spark-rdd-PairRDDFunctions.html">PairRDDFunctions</a>
+    <a class="nav-link" href="spark-rdd-PairRDDFunctions.html">PairRDDFunctions</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-actions.html">Actions</a>
+    <a class="nav-link" href="spark-rdd-actions.html">Actions</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-rdd-lineage.html">RDD Lineage</a>
+    <a class="nav-link" href="spark-rdd-lineage.html">RDD Lineage</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-rdd-caching.html">Caching and Persistence</a>
+    <a class="nav-link" href="spark-rdd-caching.html">Caching and Persistence</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-checkpointing.html">Checkpointing</a>
+    <a class="nav-link" href="spark-rdd-checkpointing.html">Checkpointing</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-CheckpointRDD.html">CheckpointRDD</a>
+    <a class="nav-link" href="spark-rdd-CheckpointRDD.html">CheckpointRDD</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-partitions.html">Partitions and Partitioning</a>
+    <a class="nav-link" href="spark-rdd-partitions.html">Partitions and Partitioning</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-Partition.html">Partition</a>
+    <a class="nav-link" href="spark-rdd-Partition.html">Partition</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-Partitioner.html">Partitioner</a>
+    <a class="nav-link" href="spark-rdd-Partitioner.html">Partitioner</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-HashPartitioner.html">HashPartitioner</a>
+    <a class="nav-link" href="spark-rdd-HashPartitioner.html">HashPartitioner</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-rdd-shuffle.html">Shuffling</a>
+    <a class="nav-link" href="spark-rdd-shuffle.html">Shuffling</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-Dependency.html">Dependencies</a>
+    <a class="nav-link" href="spark-rdd-Dependency.html">Dependencies</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-NarrowDependency.html">NarrowDependency</a>
+    <a class="nav-link" href="spark-rdd-NarrowDependency.html">NarrowDependency</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/ShuffleDependency.html">ShuffleDependency</a>
+    <a class="nav-link" href="ShuffleDependency.html">ShuffleDependency</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/Aggregator.html">Aggregator</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="Aggregator.html">Aggregator</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Specialized RDDs</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
+    <a class="nav-link" href="spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-HadoopRDD.html">HadoopRDD</a>
+    <a class="nav-link" href="spark-rdd-HadoopRDD.html">HadoopRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
+    <a class="nav-link" href="spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
+    <a class="nav-link" href="spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
+    <a class="nav-link" href="spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
+    <a class="nav-link" href="spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/ShuffledRDD.html">ShuffledRDD</a>
+    <a class="nav-link" href="ShuffledRDD.html">ShuffledRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
+    <a class="nav-link" href="spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-TaskLocation.html">TaskLocation</a>
+    <a class="nav-link" href="spark-TaskLocation.html">TaskLocation</a>
   </li>
 </ul>
   </li>
@@ -1302,76 +1302,76 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Spark MLlib</a>
+    <a class="nav-link" href="../spark-mllib/index.html">Spark MLlib</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-pipelines.html">ML Pipelines (spark.ml)</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines.html">ML Pipelines (spark.ml)</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-mllib-Pipeline.html">Pipeline</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Pipeline.html">Pipeline</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-mllib-PipelineStage.html">PipelineStage</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-PipelineStage.html">PipelineStage</a>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-transformers.html">Transformers</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-transformers.html">Transformers</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-Transformer.html">Transformer</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Transformer.html">Transformer</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-transformers-Tokenizer.html">Tokenizer</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-transformers-Tokenizer.html">Tokenizer</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-estimators.html">Estimators</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-estimators.html">Estimators</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-Estimator.html">Estimator</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Estimator.html">Estimator</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="spark-mllib-StringIndexer.html">StringIndexer</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-StringIndexer.html">StringIndexer</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="spark-mllib-KMeans.html">KMeans</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-KMeans.html">KMeans</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="spark-mllib-TrainValidationSplit.html">TrainValidationSplit</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-TrainValidationSplit.html">TrainValidationSplit</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-Predictor.html">Predictor</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Predictor.html">Predictor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="spark-mllib-RandomForestRegressor.html">RandomForestRegressor</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-RandomForestRegressor.html">RandomForestRegressor</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-Regressor.html">Regressor</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Regressor.html">Regressor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="spark-mllib-LinearRegression.html">LinearRegression</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-LinearRegression.html">LinearRegression</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-Classifier.html">Classifier</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Classifier.html">Classifier</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="spark-mllib-RandomForestClassifier.html">RandomForestClassifier</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-RandomForestClassifier.html">RandomForestClassifier</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="spark-mllib-DecisionTreeClassifier.html">DecisionTreeClassifier</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-DecisionTreeClassifier.html">DecisionTreeClassifier</a>
   </li>
 </ul>
   </li>
@@ -1379,55 +1379,55 @@
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-models.html">Models</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-models.html">Models</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-Model.html">Model</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Model.html">Model</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-Evaluator.html">Evaluator&#8201;&#8212;&#8201;ML Pipeline Component for Model Scoring</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Evaluator.html">Evaluator&#8201;&#8212;&#8201;ML Pipeline Component for Model Scoring</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-BinaryClassificationEvaluator.html">BinaryClassificationEvaluator&#8201;&#8212;&#8201;Evaluator of Binary Classification Models</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-BinaryClassificationEvaluator.html">BinaryClassificationEvaluator&#8201;&#8212;&#8201;Evaluator of Binary Classification Models</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-ClusteringEvaluator.html">ClusteringEvaluator&#8201;&#8212;&#8201;Evaluator of Clustering Models</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ClusteringEvaluator.html">ClusteringEvaluator&#8201;&#8212;&#8201;Evaluator of Clustering Models</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-MulticlassClassificationEvaluator.html">MulticlassClassificationEvaluator&#8201;&#8212;&#8201;Evaluator of Multiclass Classification Models</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MulticlassClassificationEvaluator.html">MulticlassClassificationEvaluator&#8201;&#8212;&#8201;Evaluator of Multiclass Classification Models</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-RegressionEvaluator.html">RegressionEvaluator&#8201;&#8212;&#8201;Evaluator of Regression Models</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-RegressionEvaluator.html">RegressionEvaluator&#8201;&#8212;&#8201;Evaluator of Regression Models</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-CrossValidator.html">CrossValidator&#8201;&#8212;&#8201;Model Tuning / Finding The Best Model</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-CrossValidator.html">CrossValidator&#8201;&#8212;&#8201;Model Tuning / Finding The Best Model</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-CrossValidatorModel.html">CrossValidatorModel</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-CrossValidatorModel.html">CrossValidatorModel</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-ParamGridBuilder.html">ParamGridBuilder</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ParamGridBuilder.html">ParamGridBuilder</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-CrossValidator-example.html">CrossValidator with Pipeline Example</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-CrossValidator-example.html">CrossValidator with Pipeline Example</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-Params.html">Params and ParamMaps</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Params.html">Params and ParamMaps</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="4">
-    <a class="nav-link" href="spark-mllib-ValidatorParams.html">ValidatorParams</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ValidatorParams.html">ValidatorParams</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-HasParallelism.html">HasParallelism</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-HasParallelism.html">HasParallelism</a>
   </li>
 </ul>
   </li>
@@ -1435,66 +1435,66 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-pipelines-persistence.html">ML Persistence&#8201;&#8212;&#8201;Saving and Loading Models and Pipelines</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines-persistence.html">ML Persistence&#8201;&#8212;&#8201;Saving and Loading Models and Pipelines</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-mllib-MLWritable.html">MLWritable</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MLWritable.html">MLWritable</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-mllib-MLReader.html">MLReader</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MLReader.html">MLReader</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mllib-pipelines-example-classification.html">Example&#8201;&#8212;&#8201;Text Classification</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines-example-classification.html">Example&#8201;&#8212;&#8201;Text Classification</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mllib-pipelines-example-regression.html">Example&#8201;&#8212;&#8201;Linear Regression</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines-example-regression.html">Example&#8201;&#8212;&#8201;Linear Regression</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-logistic-regression.html">Logistic Regression</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-logistic-regression.html">Logistic Regression</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-mllib-LogisticRegression.html">LogisticRegression</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-LogisticRegression.html">LogisticRegression</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mllib-latent-dirichlet-allocation.html">Latent Dirichlet Allocation (LDA)</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-latent-dirichlet-allocation.html">Latent Dirichlet Allocation (LDA)</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mllib-vector.html">Vector</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-vector.html">Vector</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mllib-labeledpoint.html">LabeledPoint</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-labeledpoint.html">LabeledPoint</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mllib-streaming.html">Streaming MLlib</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-streaming.html">Streaming MLlib</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mllib-GeneralizedLinearRegression.html">GeneralizedLinearRegression</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-GeneralizedLinearRegression.html">GeneralizedLinearRegression</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-alternating-least-squares.html">Alternating Least Squares (ALS) Matrix Factorization</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-alternating-least-squares.html">Alternating Least Squares (ALS) Matrix Factorization</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-mllib-ALS.html">ALS&#8201;&#8212;&#8201;Estimator for ALSModel</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ALS.html">ALS&#8201;&#8212;&#8201;Estimator for ALSModel</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-mllib-ALSModel.html">ALSModel&#8201;&#8212;&#8201;Model for Predictions</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ALSModel.html">ALSModel&#8201;&#8212;&#8201;Model for Predictions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-mllib-ALSModelReader.html">ALSModelReader</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ALSModelReader.html">ALSModelReader</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mllib-Instrumentation.html">Instrumentation</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Instrumentation.html">Instrumentation</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mllib-MLUtils.html">MLUtils</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MLUtils.html">MLUtils</a>
   </li>
 </ul>
   </li>
@@ -1842,122 +1842,118 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Spark MLlib</a></li>
-    <li><a href="spark-mllib-pipelines.html">ML Pipelines (spark.ml)</a></li>
-    <li><a href="spark-mllib-Params.html">Params and ParamMaps</a></li>
-    <li><a href="spark-mllib-ValidatorParams.html">ValidatorParams</a></li>
+    <li><a href="index.html">Resilient Distributed Dataset</a></li>
+    <li><a href="Aggregator.html">Aggregator</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/spark-mllib/pages/spark-mllib-ValidatorParams.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/rdd/pages/Aggregator.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="validatorparams"><a class="anchor" href="#validatorparams"></a><a class="link" href="#validatorparams"><a id="ValidatorParams"></a> ValidatorParams</a></h2>
+<h1 class="page"><a id="Aggregator"></a> Aggregator</h1>
+<div id="preamble">
 <div class="sectionbody">
-<table id="parameters" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. ValidatorParams' Parameters</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter</th>
-<th class="tableblock halign-left valign-top">Default Value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="estimator"></a> <code>estimator</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">(undefined)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-mllib-Estimator.adoc">Estimator</a> for best model selection</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="estimatorParamMaps"></a> <code>estimatorParamMaps</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">(undefined)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Param maps for the <a href="#estimator">estimator</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="evaluator"></a> <code>evaluator</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">(undefined)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-mllib-Evaluator.adoc">Evaluator</a> to select hyper-parameters that maximize the validated metric</p></td>
-</tr>
-</tbody>
-</table>
-<div class="sect2">
-<h3 id="logtuningparams-method"><a class="anchor" href="#logtuningparams-method"></a><a class="link" href="#logtuningparams-method"><a id="logTuningParams"></a> <code>logTuningParams</code> Method</a></h3>
+<div class="paragraph">
+<p><strong>Aggregator</strong> is a set of aggregation functions used to aggregate data using <a href="spark-rdd-PairRDDFunctions.html#combineByKeyWithClassTag" class="page">PairRDDFunctions.combineByKeyWithClassTag</a> transformation.</p>
+</div>
+<div class="paragraph">
+<p><code>Aggregator[K, V, C]</code> is a parameterized type of <code>K</code> keys, <code>V</code> values, and <code>C</code> combiner (partial) values.</p>
+</div>
+<div id="creating-instance" class="paragraph">
+<p>Aggregator transforms an <code>RDD[(K, V)]</code> into an <code>RDD[(K, C)]</code> (for a "combined type" C) using the functions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="createCombiner"></a> <code>createCombiner: V &#8658; C</code></p>
+</li>
+<li>
+<p><a id="mergeValue"></a> <code>mergeValue: (C, V) &#8658; C</code></p>
+</li>
+<li>
+<p><a id="mergeCombiners"></a> <code>mergeCombiners: (C, C) &#8658; C</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Aggregator is used to create a <a href="ShuffleDependency.html" class="page">ShuffleDependency</a> and <a href="../shuffle/ExternalSorter.html" class="page">ExternalSorter</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="combinevaluesbykey-method"><a class="anchor" href="#combinevaluesbykey-method"></a><a class="link" href="#combinevaluesbykey-method"><a id="combineValuesByKey"></a> combineValuesByKey Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">logTuningParams(instrumentation: Instrumentation[_]): Unit</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">combineValuesByKey(
+  iter: Iterator[_ &lt;: Product2[K, V]],
+  context: TaskContext): Iterator[(K, C)]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>logTuningParams</code>&#8230;&#8203;FIXME</p>
+<p>combineValuesByKey&#8230;&#8203;FIXME</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>logTuningParams</code> is used when&#8230;&#8203;FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>combineValuesByKey is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="spark-rdd-PairRDDFunctions.html#combineByKeyWithClassTag" class="page">PairRDDFunctions.combineByKeyWithClassTag</a> transformation is used (with the same Partitioner as the RDD&#8217;s)</p>
+</li>
+<li>
+<p>BlockStoreShuffleReader is requested to <a href="../shuffle/BlockStoreShuffleReader.html#read" class="page">read combined records for a reduce task</a> (with the <a href="ShuffleDependency.html#mapSideCombine" class="page">Map-Size Partial Aggregation Flag</a> off)</p>
+</li>
+</ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="loadimpl-method"><a class="anchor" href="#loadimpl-method"></a><a class="link" href="#loadimpl-method"><a id="loadImpl"></a> <code>loadImpl</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="combinecombinersbykey-method"><a class="anchor" href="#combinecombinersbykey-method"></a><a class="link" href="#combinecombinersbykey-method"><a id="combineCombinersByKey"></a> combineCombinersByKey Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">loadImpl[M](
-  path: String,
-  sc: SparkContext,
-  expectedClassName: String): (Metadata, Estimator[M], Evaluator, Array[ParamMap])</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">combineCombinersByKey(
+  iter: Iterator[_ &lt;: Product2[K, C]],
+  context: TaskContext): Iterator[(K, C)]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>loadImpl</code>&#8230;&#8203;FIXME</p>
+<p>combineCombinersByKey&#8230;&#8203;FIXME</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>loadImpl</code> is used when&#8230;&#8203;FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>combineCombinersByKey is used when BlockStoreShuffleReader is requested to <a href="../shuffle/BlockStoreShuffleReader.html#read" class="page">read combined records for a reduce task</a> (with the <a href="ShuffleDependency.html#mapSideCombine" class="page">Map-Size Partial Aggregation Flag</a> on).</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="transformschemaimpl-method"><a class="anchor" href="#transformschemaimpl-method"></a><a class="link" href="#transformschemaimpl-method"><a id="transformSchemaImpl"></a> <code>transformSchemaImpl</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="updating-task-metrics"><a class="anchor" href="#updating-task-metrics"></a><a class="link" href="#updating-task-metrics"><a id="updateMetrics"></a> Updating Task Metrics</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">transformSchemaImpl(schema: StructType): StructType</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">updateMetrics(
+  context: TaskContext,
+  map: ExternalAppendOnlyMap[_, _, _]): Unit</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>transformSchemaImpl</code>&#8230;&#8203;FIXME</p>
+<p>updateMetrics requests the input <a href="../scheduler/spark-TaskContext.html" class="page">TaskContext</a> for the <a href="../scheduler/spark-TaskContext.html#taskMetrics" class="page">TaskMetrics</a> to update the metrics based on the metrics of the input <a href="../shuffle/ExternalAppendOnlyMap.html" class="page">ExternalAppendOnlyMap</a>:</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>transformSchemaImpl</code> is used when <a href="spark-mllib-CrossValidator.adoc#transformSchema">CrossValidator</a> and <a href="spark-mllib-TrainValidationSplit.adoc#transformSchema">TrainValidationSplit</a> validate and transform schema.
-</td>
-</tr>
-</table>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../metrics/spark-executor-TaskMetrics.html#incMemoryBytesSpilled" class="page">Increment memory bytes spilled</a></p>
+</li>
+<li>
+<p><a href="../metrics/spark-executor-TaskMetrics.html#incDiskBytesSpilled" class="page">Increment disk bytes spilled</a></p>
+</li>
+<li>
+<p><a href="../metrics/spark-executor-TaskMetrics.html#incPeakExecutionMemory" class="page">Increment peak execution memory</a></p>
+</li>
+</ul>
 </div>
+<div class="paragraph">
+<p>updateMetrics is used when Aggregator is requested to <a href="#combineValuesByKey">combineValuesByKey</a> and <a href="#combineCombinersByKey">combineCombinersByKey</a>.</p>
 </div>
 </div>
 </div>

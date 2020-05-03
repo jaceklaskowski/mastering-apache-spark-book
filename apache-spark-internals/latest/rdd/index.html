@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title> Resilient Distributed Dataset (RDD) :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/rdd/index.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -457,7 +457,7 @@
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Resilient Distributed Dataset (RDD)</a>
+    <a class="nav-link" href="index.html">Resilient Distributed Dataset</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-rdd-RDD.html">RDD API</a>
@@ -526,7 +526,7 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-Aggregator.html">Map/Reduce-side Aggregator</a>
+    <a class="nav-link" href="Aggregator.html">Aggregator</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1842,15 +1842,15 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Resilient Distributed Dataset (RDD)</a></li>
+    <li><a href="index.html">Resilient Distributed Dataset</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/rdd/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="rddresilient-distributed-dataset"><a class="anchor" href="#rddresilient-distributed-dataset"></a><a class="link" href="#rddresilient-distributed-dataset">RDD&#8201;&#8212;&#8201;Resilient Distributed Dataset</a></h2>
+<h1 class="page"><a id="resilient-distributed-dataset"></a> Resilient Distributed Dataset (RDD)</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Resilient Distributed Dataset</strong> (aka <strong>RDD</strong>) is the primary data abstraction in Apache Spark and the core of Spark (that I often refer to as "Spark Core").</p>
@@ -2462,11 +2462,13 @@ You <a href="spark-rdd-caching.adoc">cache</a> it so the computation is not perf
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="creating-rdds-from-input"><a class="anchor" href="#creating-rdds-from-input"></a><a class="link" href="#creating-rdds-from-input"><a id="creating-rdds-from-input"></a> Creating RDDs from Input</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-rdds-from-input"><a class="anchor" href="#creating-rdds-from-input"></a><a class="link" href="#creating-rdds-from-input"><a id="creating-rdds-from-input"></a> Creating RDDs from Input</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Refer to <a href="spark-io.adoc">Using Input and Output (I/O)</a> to learn about the IO API to create RDDs.</p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="transformations-2"><a class="anchor" href="#transformations-2"></a><a class="link" href="#transformations-2">Transformations</a></h3>
