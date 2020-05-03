@@ -471,7 +471,7 @@
     <a class="nav-link" href="spark-rdd-transformations.html">Transformations</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-rdd-PairRDDFunctions.html">PairRDDFunctions</a>
+    <a class="nav-link" href="PairRDDFunctions.html">PairRDDFunctions</a>
   </li>
 </ul>
   </li>
@@ -1854,7 +1854,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Aggregator</strong> is a set of aggregation functions used to aggregate data using <a href="spark-rdd-PairRDDFunctions.html#combineByKeyWithClassTag" class="page">PairRDDFunctions.combineByKeyWithClassTag</a> transformation.</p>
+<p><strong>Aggregator</strong> is a set of aggregation functions used to aggregate data using <a href="PairRDDFunctions.html#combineByKeyWithClassTag" class="page">PairRDDFunctions.combineByKeyWithClassTag</a> transformation.</p>
 </div>
 <div class="paragraph">
 <p><code>Aggregator[K, V, C]</code> is a parameterized type of <code>K</code> keys, <code>V</code> values, and <code>C</code> combiner (partial) values.</p>
@@ -1899,7 +1899,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a href="spark-rdd-PairRDDFunctions.html#combineByKeyWithClassTag" class="page">PairRDDFunctions.combineByKeyWithClassTag</a> transformation is used (with the same Partitioner as the RDD&#8217;s)</p>
+<p><a href="PairRDDFunctions.html#combineByKeyWithClassTag" class="page">PairRDDFunctions.combineByKeyWithClassTag</a> transformation is used (with the same Partitioner as the RDD&#8217;s)</p>
 </li>
 <li>
 <p>BlockStoreShuffleReader is requested to <a href="../shuffle/BlockStoreShuffleReader.html#read" class="page">read combined records for a reduce task</a> (with the <a href="ShuffleDependency.html#mapSideCombine" class="page">Map-Size Partial Aggregation Flag</a> off)</p>

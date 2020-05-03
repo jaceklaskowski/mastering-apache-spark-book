@@ -471,7 +471,7 @@
     <a class="nav-link" href="rdd/spark-rdd-transformations.html">Transformations</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="rdd/spark-rdd-PairRDDFunctions.html">PairRDDFunctions</a>
+    <a class="nav-link" href="rdd/PairRDDFunctions.html">PairRDDFunctions</a>
   </li>
 </ul>
   </li>
@@ -1858,7 +1858,7 @@
 <p><code>FileCommitProtocol</code> is an <a href="#contract">abstraction</a> of <a href="#implementations">committers</a> that can setup, commit or abort a Spark job or task (while writing out a key-value RDD and the partitions).</p>
 </div>
 <div class="paragraph">
-<p><code>FileCommitProtocol</code> is used for <a href="#spark-rdd-PairRDDFunctions.adoc#saveAsNewAPIHadoopDataset" class="page unresolved">RDD.saveAsNewAPIHadoopDataset</a> and <a href="#spark-rdd-PairRDDFunctions.adoc#saveAsHadoopDataset" class="page unresolved">RDD.saveAsHadoopDataset</a> transformations (that use <code>SparkHadoopWriter</code> utility to <a href="spark-internal-io-SparkHadoopWriter.html#write" class="page">write a key-value RDD out</a>).</p>
+<p><code>FileCommitProtocol</code> is used for <a href="rdd/PairRDDFunctions.html#saveAsNewAPIHadoopDataset" class="page">saveAsNewAPIHadoopDataset</a> and <a href="rdd/PairRDDFunctions.html#saveAsHadoopDataset" class="page">saveAsHadoopDataset</a> transformations (that use <code>SparkHadoopWriter</code> utility to <a href="spark-internal-io-SparkHadoopWriter.html#write" class="page">write a key-value RDD out</a>).</p>
 </div>
 <div class="paragraph">
 <p>A concrete <a href="#implementations">FileCommitProtocol</a> is created using <a href="#instantiate">FileCommitProtocol.instantiate</a> utility.</p>

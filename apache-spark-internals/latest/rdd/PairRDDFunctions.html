@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/scheduler/spark-scheduler-Pool.html">
+    <title> PairRDDFunctions :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/rdd/PairRDDFunctions.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -69,82 +69,82 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Spark Scheduler</a>
+    <a class="nav-link" href="../scheduler/index.html">Spark Scheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="DAGScheduler.html">DAGScheduler</a>
+    <a class="nav-link" href="../scheduler/DAGScheduler.html">DAGScheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="DAGSchedulerEvent.html">DAGScheduler Events</a>
+    <a class="nav-link" href="../scheduler/DAGSchedulerEvent.html">DAGScheduler Events</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="DAGSchedulerEventProcessLoop.html">DAGScheduler Event Bus</a>
+    <a class="nav-link" href="../scheduler/DAGSchedulerEventProcessLoop.html">DAGScheduler Event Bus</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="Stage.html">Stage</a>
+    <a class="nav-link" href="../scheduler/Stage.html">Stage</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ResultStage.html">ResultStage</a>
+    <a class="nav-link" href="../scheduler/ResultStage.html">ResultStage</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ShuffleMapStage.html">ShuffleMapStage</a>
+    <a class="nav-link" href="../scheduler/ShuffleMapStage.html">ShuffleMapStage</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="MapOutputTracker.html">MapOutputTracker</a>
+    <a class="nav-link" href="../scheduler/MapOutputTracker.html">MapOutputTracker</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="MapOutputTrackerMaster.html">MapOutputTrackerMaster</a>
+    <a class="nav-link" href="../scheduler/MapOutputTrackerMaster.html">MapOutputTrackerMaster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="ShuffleStatus.html">ShuffleStatus</a>
+    <a class="nav-link" href="../scheduler/ShuffleStatus.html">ShuffleStatus</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="MapOutputTrackerMasterEndpoint.html">MapOutputTrackerMasterEndpoint</a>
+    <a class="nav-link" href="../scheduler/MapOutputTrackerMasterEndpoint.html">MapOutputTrackerMasterEndpoint</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="MapOutputTrackerWorker.html">MapOutputTrackerWorker</a>
+    <a class="nav-link" href="../scheduler/MapOutputTrackerWorker.html">MapOutputTrackerWorker</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-StageInfo.html">StageInfo</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-StageInfo.html">StageInfo</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-scheduler-JobListener.html">JobListener</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-JobListener.html">JobListener</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-scheduler-JobWaiter.html">JobWaiter</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-JobWaiter.html">JobWaiter</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="TaskScheduler.html">TaskScheduler</a>
+    <a class="nav-link" href="../scheduler/TaskScheduler.html">TaskScheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="TaskSchedulerImpl.html">TaskSchedulerImpl</a>
+    <a class="nav-link" href="../scheduler/TaskSchedulerImpl.html">TaskSchedulerImpl</a>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="SchedulerBackend.html">SchedulerBackend</a>
+    <a class="nav-link" href="../scheduler/SchedulerBackend.html">SchedulerBackend</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="CoarseGrainedSchedulerBackend.html">CoarseGrainedSchedulerBackend</a>
+    <a class="nav-link" href="../scheduler/CoarseGrainedSchedulerBackend.html">CoarseGrainedSchedulerBackend</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="CoarseGrainedSchedulerBackend-DriverEndpoint.html">DriverEndpoint</a>
+    <a class="nav-link" href="../scheduler/CoarseGrainedSchedulerBackend-DriverEndpoint.html">DriverEndpoint</a>
   </li>
 </ul>
   </li>
@@ -154,84 +154,84 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="Task.html">Task</a>
+    <a class="nav-link" href="../scheduler/Task.html">Task</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ShuffleMapTask.html">ShuffleMapTask</a>
+    <a class="nav-link" href="../scheduler/ShuffleMapTask.html">ShuffleMapTask</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ResultTask.html">ResultTask</a>
+    <a class="nav-link" href="../scheduler/ResultTask.html">ResultTask</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="TaskSet.html">TaskSet</a>
+    <a class="nav-link" href="../scheduler/TaskSet.html">TaskSet</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="TaskSetManager.html">TaskSetManager</a>
+    <a class="nav-link" href="../scheduler/TaskSetManager.html">TaskSetManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-ActiveJob.html">Jobs</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-ActiveJob.html">Jobs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-scheduler-SchedulableBuilder.html">SchedulableBuilder</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-SchedulableBuilder.html">SchedulableBuilder</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-scheduler-FIFOSchedulableBuilder.html">FIFOSchedulableBuilder</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-FIFOSchedulableBuilder.html">FIFOSchedulableBuilder</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-scheduler-FairSchedulableBuilder.html">FairSchedulableBuilder</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-FairSchedulableBuilder.html">FairSchedulableBuilder</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-scheduler-Schedulable.html">Schedulable Entities</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-Schedulable.html">Schedulable Entities</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="spark-scheduler-Pool.html">Schedulable Pool</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/spark-scheduler-Pool.html">Schedulable Pool</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-SchedulingMode.html">Scheduling Mode</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-SchedulingMode.html">Scheduling Mode</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-TaskInfo.html">TaskInfo</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-TaskInfo.html">TaskInfo</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="MapStatus.html">MapStatus</a>
+    <a class="nav-link" href="../scheduler/MapStatus.html">MapStatus</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-TaskDescription.html">TaskDescription</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-TaskDescription.html">TaskDescription</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-taskschedulerimpl-speculative-execution.html">Speculative Execution of Tasks</a>
+    <a class="nav-link" href="../scheduler/spark-taskschedulerimpl-speculative-execution.html">Speculative Execution of Tasks</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="TaskResultGetter.html">TaskResultGetter</a>
+    <a class="nav-link" href="../scheduler/TaskResultGetter.html">TaskResultGetter</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-TaskContext.html">TaskContext</a>
+    <a class="nav-link" href="../scheduler/spark-TaskContext.html">TaskContext</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-BarrierTaskContext.html">BarrierTaskContext</a>
+    <a class="nav-link" href="../scheduler/spark-BarrierTaskContext.html">BarrierTaskContext</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-TaskContextImpl.html">TaskContextImpl</a>
+    <a class="nav-link" href="../scheduler/spark-TaskContextImpl.html">TaskContextImpl</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-TaskResult.html">TaskResults</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-TaskResult.html">TaskResults</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-TaskSetBlacklist.html">TaskSetBlacklist</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-TaskSetBlacklist.html">TaskSetBlacklist</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="OutputCommitCoordinator.html">OutputCommitCoordinator</a>
+    <a class="nav-link" href="../scheduler/OutputCommitCoordinator.html">OutputCommitCoordinator</a>
   </li>
 </ul>
   </li>
@@ -457,109 +457,109 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/index.html">Resilient Distributed Dataset</a>
+    <a class="nav-link" href="index.html">Resilient Distributed Dataset</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-rdd-RDD.html">RDD API</a>
+    <a class="nav-link" href="spark-rdd-RDD.html">RDD API</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-operations.html">Operators</a>
+    <a class="nav-link" href="spark-rdd-operations.html">Operators</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-transformations.html">Transformations</a>
+    <a class="nav-link" href="spark-rdd-transformations.html">Transformations</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../rdd/PairRDDFunctions.html">PairRDDFunctions</a>
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="PairRDDFunctions.html">PairRDDFunctions</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-actions.html">Actions</a>
+    <a class="nav-link" href="spark-rdd-actions.html">Actions</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-rdd-lineage.html">RDD Lineage</a>
+    <a class="nav-link" href="spark-rdd-lineage.html">RDD Lineage</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-rdd-caching.html">Caching and Persistence</a>
+    <a class="nav-link" href="spark-rdd-caching.html">Caching and Persistence</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-checkpointing.html">Checkpointing</a>
+    <a class="nav-link" href="spark-rdd-checkpointing.html">Checkpointing</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-CheckpointRDD.html">CheckpointRDD</a>
+    <a class="nav-link" href="spark-rdd-CheckpointRDD.html">CheckpointRDD</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-partitions.html">Partitions and Partitioning</a>
+    <a class="nav-link" href="spark-rdd-partitions.html">Partitions and Partitioning</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-Partition.html">Partition</a>
+    <a class="nav-link" href="spark-rdd-Partition.html">Partition</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-Partitioner.html">Partitioner</a>
+    <a class="nav-link" href="spark-rdd-Partitioner.html">Partitioner</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-HashPartitioner.html">HashPartitioner</a>
+    <a class="nav-link" href="spark-rdd-HashPartitioner.html">HashPartitioner</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-rdd-shuffle.html">Shuffling</a>
+    <a class="nav-link" href="spark-rdd-shuffle.html">Shuffling</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-Dependency.html">Dependencies</a>
+    <a class="nav-link" href="spark-rdd-Dependency.html">Dependencies</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-NarrowDependency.html">NarrowDependency</a>
+    <a class="nav-link" href="spark-rdd-NarrowDependency.html">NarrowDependency</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/ShuffleDependency.html">ShuffleDependency</a>
+    <a class="nav-link" href="ShuffleDependency.html">ShuffleDependency</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/Aggregator.html">Aggregator</a>
+    <a class="nav-link" href="Aggregator.html">Aggregator</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Specialized RDDs</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
+    <a class="nav-link" href="spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-HadoopRDD.html">HadoopRDD</a>
+    <a class="nav-link" href="spark-rdd-HadoopRDD.html">HadoopRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
+    <a class="nav-link" href="spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
+    <a class="nav-link" href="spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
+    <a class="nav-link" href="spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
+    <a class="nav-link" href="spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/ShuffledRDD.html">ShuffledRDD</a>
+    <a class="nav-link" href="ShuffledRDD.html">ShuffledRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
+    <a class="nav-link" href="spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-TaskLocation.html">TaskLocation</a>
+    <a class="nav-link" href="spark-TaskLocation.html">TaskLocation</a>
   </li>
 </ul>
   </li>
@@ -1842,324 +1842,405 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Spark Scheduler</a></li>
-    <li><a href="spark-scheduler-Schedulable.html">Schedulable Entities</a></li>
-    <li><a href="spark-scheduler-Pool.html">Schedulable Pool</a></li>
+    <li><a href="index.html">Resilient Distributed Dataset</a></li>
+    <li><a href="spark-rdd-operations.html">Operators</a></li>
+    <li><a href="spark-rdd-transformations.html">Transformations</a></li>
+    <li><a href="PairRDDFunctions.html">PairRDDFunctions</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/scheduler/pages/spark-scheduler-Pool.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/rdd/pages/PairRDDFunctions.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="schedulable-pool"><a class="anchor" href="#schedulable-pool"></a><a class="link" href="#schedulable-pool"><a id="Pool"></a> Schedulable Pool</a></h2>
+<h1 class="page"><a id="PairRDDFunctions"></a> PairRDDFunctions</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>Pool</code> is a <a href="spark-scheduler-Schedulable.html" class="page">Schedulable</a> entity that represents a tree of <a href="TaskSetManager.html" class="page">TaskSetManagers</a>, i.e. it contains a collection of <code>TaskSetManagers</code> or the <code>Pools</code> thereof.</p>
+<p><strong>PairRDDFunctions</strong> is an extension of RDD API to provide additional <a href="#transformations">transformations</a> for RDDs of key-value pairs (<code>RDD[(K, V)]</code>).</p>
 </div>
 <div class="paragraph">
-<p>A <code>Pool</code> has a mandatory name, a <a href="spark-scheduler-SchedulingMode.adoc">scheduling mode</a>, initial <code>minShare</code> and <code>weight</code> that are defined when it is created.</p>
+<p>PairRDDFunctions is available in RDDs of key-value pairs via Scala implicit conversion.</p>
 </div>
-<div class="admonitionblock note">
-<table>
+<table id="transformations" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. PairRDDFunctions' Transformations</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
 <tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-An instance of <code>Pool</code> is created when <a href="TaskSchedulerImpl.html#initialize" class="page">TaskSchedulerImpl is initialized</a>.
-</td>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">Description</th>
 </tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
+</thead>
+<tbody>
 <tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The <a href="TaskScheduler.html#contract" class="page">TaskScheduler Contract</a> and <a href="spark-scheduler-Schedulable.adoc#contract">Schedulable Contract</a> both require that their entities have <code>rootPool</code> of type <code>Pool</code>.
-</td>
-</tr>
-</table>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>aggregateByKey</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="aggregateByKey" class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">aggregateByKey[U: ClassTag](
+  zeroValue: U)(
+    seqOp: (U, V) =&gt; U,
+    combOp: (U, U) =&gt; U): RDD[(K, U)]
+aggregateByKey[U: ClassTag](
+  zeroValue: U, numPartitions: Int)(
+    seqOp: (U, V) =&gt; U,
+    combOp: (U, U) =&gt; U): RDD[(K, U)]
+aggregateByKey[U: ClassTag](
+  zeroValue: U, partitioner: Partitioner)(
+    seqOp: (U, V) =&gt; U,
+    combOp: (U, U) =&gt; U): RDD[(K, U)]</code></pre>
 </div>
-<div class="sect2">
-<h3 id="increaserunningtasks-method"><a class="anchor" href="#increaserunningtasks-method"></a><a class="link" href="#increaserunningtasks-method"><a id="increaseRunningTasks"></a> <code>increaseRunningTasks</code> Method</a></h3>
-<div class="admonitionblock caution">
-<table>
+</div></div></td>
+</tr>
 <tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>combineByKey</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="combineByKey" class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">combineByKey[C](
+  createCombiner: V =&gt; C,
+  mergeValue: (C, V) =&gt; C,
+  mergeCombiners: (C, C) =&gt; C): RDD[(K, C)]
+combineByKey[C](
+  createCombiner: V =&gt; C,
+  mergeValue: (C, V) =&gt; C,
+  mergeCombiners: (C, C) =&gt; C,
+  numPartitions: Int): RDD[(K, C)]
+combineByKey[C](
+  createCombiner: V =&gt; C,
+  mergeValue: (C, V) =&gt; C,
+  mergeCombiners: (C, C) =&gt; C,
+  partitioner: Partitioner,
+  mapSideCombine: Boolean = true,
+  serializer: Serializer = null): RDD[(K, C)]</code></pre>
+</div>
+</div></div></td>
 </tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="decreaserunningtasks-method"><a class="anchor" href="#decreaserunningtasks-method"></a><a class="link" href="#decreaserunningtasks-method"><a id="decreaseRunningTasks"></a> <code>decreaseRunningTasks</code> Method</a></h3>
-<div class="admonitionblock caution">
-<table>
 <tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>countApproxDistinctByKey</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="countApproxDistinctByKey" class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">countApproxDistinctByKey(
+  relativeSD: Double = 0.05): RDD[(K, Long)]
+countApproxDistinctByKey(
+  relativeSD: Double,
+  numPartitions: Int): RDD[(K, Long)]
+countApproxDistinctByKey(
+  relativeSD: Double,
+  partitioner: Partitioner): RDD[(K, Long)]
+countApproxDistinctByKey(
+  p: Int,
+  sp: Int,
+  partitioner: Partitioner): RDD[(K, Long)]</code></pre>
+</div>
+</div></div></td>
 </tr>
-</table>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>flatMapValues</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="flatMapValues" class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">flatMapValues[U](
+  f: V =&gt; TraversableOnce[U]): RDD[(K, U)]</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>foldByKey</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="foldByKey" class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">foldByKey(
+  zeroValue: V)(
+    func: (V, V) =&gt; V): RDD[(K, V)]
+foldByKey(
+  zeroValue: V, numPartitions: Int)(
+    func: (V, V) =&gt; V): RDD[(K, V)]
+foldByKey(
+  zeroValue: V,
+  partitioner: Partitioner)(
+    func: (V, V) =&gt; V): RDD[(K, V)]</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mapValues</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="mapValues" class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">mapValues[U](
+  f: V =&gt; U): RDD[(K, U)]</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>partitionBy</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="partitionBy" class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">partitionBy(
+  partitioner: Partitioner): RDD[(K, V)]</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>saveAsHadoopDataset</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="saveAsHadoopDataset" class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">saveAsHadoopDataset(
+  conf: JobConf): Unit</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="tasksetschedulingalgorithm-attribute"><a class="anchor" href="#tasksetschedulingalgorithm-attribute"></a><a class="link" href="#tasksetschedulingalgorithm-attribute"><a id="taskSetSchedulingAlgorithm"></a> <code>taskSetSchedulingAlgorithm</code> Attribute</a></h3>
 <div class="paragraph">
-<p>Using the <a href="spark-scheduler-SchedulingMode.adoc">scheduling mode</a> (given when a <code>Pool</code> object is created), <code>Pool</code> selects <a href="#SchedulingAlgorithm">SchedulingAlgorithm</a> and sets <code>taskSetSchedulingAlgorithm</code>:</p>
+<p><code>saveAsHadoopDataset</code> uses the <code>SparkHadoopWriter</code> utility to <a href="#spark-internal-io-SparkHadoopWriter.adoc#write" class="page unresolved">write the key-value RDD out</a> with a <a href="#spark-internal-io-HadoopMapRedWriteConfigUtil.adoc" class="page unresolved">HadoopMapRedWriteConfigUtil</a> (for the given Hadoop <a href="https://hadoop.apache.org/docs/r2.7.3/api/org/apache/hadoop/mapred/JobConf.html">JobConf</a>)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>saveAsHadoopFile</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="saveAsHadoopFile" class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">saveAsHadoopFile(
+  path: String,
+  keyClass: Class[_],
+  valueClass: Class[_],
+  outputFormatClass: Class[_ &lt;: OutputFormat[_, _]],
+  codec: Class[_ &lt;: CompressionCodec]): Unit
+saveAsHadoopFile(
+  path: String,
+  keyClass: Class[_],
+  valueClass: Class[_],
+  outputFormatClass: Class[_ &lt;: OutputFormat[_, _]],
+  conf: JobConf = new JobConf(self.context.hadoopConfiguration),
+  codec: Option[Class[_ &lt;: CompressionCodec]] = None): Unit
+saveAsHadoopFile[F &lt;: OutputFormat[K, V]](
+  path: String)(implicit fm: ClassTag[F]): Unit
+saveAsHadoopFile[F &lt;: OutputFormat[K, V]](
+  path: String,
+  codec: Class[_ &lt;: CompressionCodec])(implicit fm: ClassTag[F]): Unit</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>saveAsNewAPIHadoopDataset</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="saveAsNewAPIHadoopDataset" class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">saveAsNewAPIHadoopDataset(
+  conf: Configuration): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Saves this RDD of key-value pairs (<code>RDD[K,V]</code>) to any Hadoop-supported storage system with new Hadoop API (using a Hadoop <a href="https://hadoop.apache.org/docs/r2.7.3/api/org/apache/hadoop/conf/Configuration.html">Configuration</a> object for that storage system).</p>
+</div>
+<div class="paragraph">
+<p>The configuration should set relevant output params (an <a href="https://hadoop.apache.org/docs/r2.7.3/api/org/apache/hadoop/mapreduce/OutputFormat.html">output format</a>, output paths, e.g. a table name to write to) in the same way as it would be configured for a Hadoop MapReduce job.</p>
+</div>
+<div class="paragraph">
+<p><code>saveAsNewAPIHadoopDataset</code> uses the <code>SparkHadoopWriter</code> utility to <a href="#spark-internal-io-SparkHadoopWriter.adoc#write" class="page unresolved">write the key-value RDD out</a> with a <a href="#spark-internal-io-HadoopMapReduceWriteConfigUtil.adoc" class="page unresolved">HadoopMapReduceWriteConfigUtil</a> (for the given Hadoop <a href="https://hadoop.apache.org/docs/r2.7.3/api/org/apache/hadoop/conf/Configuration.html">Configuration</a>)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>saveAsNewAPIHadoopFile</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="saveAsNewAPIHadoopFile" class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">saveAsNewAPIHadoopFile(
+  path: String,
+  keyClass: Class[_],
+  valueClass: Class[_],
+  outputFormatClass: Class[_ &lt;: NewOutputFormat[_, _]],
+  conf: Configuration = self.context.hadoopConfiguration): Unit
+saveAsNewAPIHadoopFile[F &lt;: NewOutputFormat[K, V]](
+  path: String)(implicit fm: ClassTag[F]): Unit</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="groupbykey-and-reducebykey"><a class="anchor" href="#groupbykey-and-reducebykey"></a><a class="link" href="#groupbykey-and-reducebykey"><a id="reduceByKey"></a><a id="groupByKey"></a> groupByKey and reduceByKey</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>reduceByKey</code> is sort of a particular case of <a href="#aggregateByKey">aggregateByKey</a>.</p>
+</div>
+<div class="paragraph">
+<p>You may want to look at the number of partitions from another angle.</p>
+</div>
+<div class="paragraph">
+<p>It may often not be important to have a given number of partitions upfront (at RDD creation time upon <a href="spark-data-sources.adoc">loading data from data sources</a>), so only "regrouping" the data by key after it is an RDD might be&#8230;&#8203;the key (<em>pun not intended</em>).</p>
+</div>
+<div class="paragraph">
+<p>You can use <code>groupByKey</code> or another PairRDDFunctions method to have a key in one processing flow.</p>
+</div>
+<div class="paragraph">
+<p>You could use <code>partitionBy</code> that is available for RDDs to be RDDs of tuples, i.e. <code>PairRDD</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>rdd.keyBy(_.kind)
+  .partitionBy(new HashPartitioner(PARTITIONS))
+  .foreachPartition(...)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Think of situations where <code>kind</code> has low cardinality or highly skewed distribution and using the technique for partitioning might be not an optimal solution.</p>
+</div>
+<div class="paragraph">
+<p>You could do as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>rdd.keyBy(_.kind).reduceByKey(....)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or <code>mapValues</code> or plenty of other solutions. <em>FIXME, man</em>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="combinebykeywithclasstag"><a class="anchor" href="#combinebykeywithclasstag"></a><a class="link" href="#combinebykeywithclasstag"><a id="combineByKeyWithClassTag"></a> combineByKeyWithClassTag</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">combineByKeyWithClassTag[C](
+  createCombiner: V =&gt; C,
+  mergeValue: (C, V) =&gt; C,
+  mergeCombiners: (C, C) =&gt; C)(implicit ct: ClassTag[C]): RDD[(K, C)] <i class="conum" data-value="1"></i><b>(1)</b>
+combineByKeyWithClassTag[C](
+  createCombiner: V =&gt; C,
+  mergeValue: (C, V) =&gt; C,
+  mergeCombiners: (C, C) =&gt; C,
+  numPartitions: Int)(implicit ct: ClassTag[C]): RDD[(K, C)] <i class="conum" data-value="2"></i><b>(2)</b>
+combineByKeyWithClassTag[C](
+  createCombiner: V =&gt; C,
+  mergeValue: (C, V) =&gt; C,
+  mergeCombiners: (C, C) =&gt; C,
+  partitioner: Partitioner,
+  mapSideCombine: Boolean = true,
+  serializer: Serializer = null)(implicit ct: ClassTag[C]): RDD[(K, C)]</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Uses the <a href="spark-rdd-Partitioner.html#defaultPartitioner" class="page">default partitioner</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Uses a <a href="spark-rdd-HashPartitioner.html" class="page">HashPartitioner</a> with the given number of partitions</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>combineByKeyWithClassTag creates an <a href="Aggregator.html" class="page">Aggregator</a> for the given aggregation functions.</p>
+</div>
+<div class="paragraph">
+<p>combineByKeyWithClassTag branches off per the given <a href="spark-rdd-Partitioner.html" class="page">Partitioner</a>.</p>
+</div>
+<div class="paragraph">
+<p>If the input partitioner and the RDD&#8217;s are the same, combineByKeyWithClassTag simply <a href="spark-rdd-transformations.html#mapPartitions" class="page">mapPartitions</a> on the RDD with the following arguments:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#FIFOSchedulingAlgorithm">FIFOSchedulingAlgorithm</a> for FIFO scheduling mode.</p>
+<p>Iterator of the <a href="Aggregator.html#combineValuesByKey" class="page">Aggregator</a></p>
 </li>
 <li>
-<p><a href="#FairSchedulingAlgorithm">FairSchedulingAlgorithm</a> for FAIR scheduling mode.</p>
+<p>preservesPartitioning flag turned on</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>It throws an <code>IllegalArgumentException</code> when unsupported scheduling mode is passed on:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>Unsupported spark.scheduler.mode: [schedulingMode]</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Read about the scheduling modes in <a href="spark-scheduler-SchedulingMode.adoc">SchedulingMode</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>taskSetSchedulingAlgorithm</code> is used in <a href="#getSortedTaskSetQueue">getSortedTaskSetQueue</a>.
-</td>
-</tr>
-</table>
-</div>
+<p>If the input partitioner is different than the RDD&#8217;s, combineByKeyWithClassTag creates a <a href="ShuffledRDD.html" class="page">ShuffledRDD</a> (with the Serializer, the Aggregator, and the mapSideCombine flag).</p>
 </div>
 <div class="sect2">
-<h3 id="getting-tasksetmanagers-sortedgetsortedtasksetqueue-method"><a class="anchor" href="#getting-tasksetmanagers-sortedgetsortedtasksetqueue-method"></a><a class="link" href="#getting-tasksetmanagers-sortedgetsortedtasksetqueue-method"><a id="getSortedTaskSetQueue"></a> Getting TaskSetManagers Sorted&#8201;&#8212;&#8201;<code>getSortedTaskSetQueue</code> Method</a></h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>getSortedTaskSetQueue</code> is part of the <a href="spark-scheduler-Schedulable.adoc#contract">Schedulable Contract</a>.
-</td>
-</tr>
-</table>
-</div>
+<h3 id="usage"><a class="anchor" href="#usage"></a><a class="link" href="#usage"><a id="combineByKeyWithClassTag-usage"></a> Usage</a></h3>
 <div class="paragraph">
-<p><code>getSortedTaskSetQueue</code> sorts all the <a href="spark-scheduler-Schedulable.adoc">Schedulables</a> in <a href="spark-scheduler-Schedulable.adoc#contract">schedulableQueue</a> queue by a <a href="#SchedulingAlgorithm">SchedulingAlgorithm</a> (from the internal <a href="#taskSetSchedulingAlgorithm">taskSetSchedulingAlgorithm</a>).</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-It is called when <a href="TaskSchedulerImpl.html#resourceOffers" class="page"><code>TaskSchedulerImpl</code> processes executor resource offers</a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="schedulables-by-nameschedulablenametoschedulable-registry"><a class="anchor" href="#schedulables-by-nameschedulablenametoschedulable-registry"></a><a class="link" href="#schedulables-by-nameschedulablenametoschedulable-registry"><a id="schedulableNameToSchedulable"></a> Schedulables by Name&#8201;&#8212;&#8201;<code>schedulableNameToSchedulable</code> Registry</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">schedulableNameToSchedulable = new ConcurrentHashMap[String, Schedulable]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>schedulableNameToSchedulable</code> is a lookup table of <a href="spark-scheduler-Schedulable.adoc">Schedulable</a> objects by their names.</p>
-</div>
-<div class="paragraph">
-<p>Beside the obvious usage in the housekeeping methods like <code>addSchedulable</code>, <code>removeSchedulable</code>, <code>getSchedulableByName</code> from the <a href="spark-scheduler-Schedulable.adoc#contract">Schedulable Contract</a>, it is exclusively used in <a href="spark-SparkContext.adoc#getPoolForName">SparkContext.getPoolForName</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="addschedulable-method"><a class="anchor" href="#addschedulable-method"></a><a class="link" href="#addschedulable-method"><a id="addSchedulable"></a> <code>addSchedulable</code> Method</a></h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>addSchedulable</code> is part of the <a href="spark-scheduler-Schedulable.adoc#contract">Schedulable Contract</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><code>addSchedulable</code> adds a <code>Schedulable</code> to the <a href="spark-scheduler-Schedulable.adoc#contract">schedulableQueue</a> and <a href="#schedulableNameToSchedulable">schedulableNameToSchedulable</a>.</p>
-</div>
-<div class="paragraph">
-<p>More importantly, it sets the <code>Schedulable</code> entity&#8217;s <a href="spark-scheduler-Schedulable.adoc#contract">parent</a> to itself.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="removeschedulable-method"><a class="anchor" href="#removeschedulable-method"></a><a class="link" href="#removeschedulable-method"><a id="removeSchedulable"></a> <code>removeSchedulable</code> Method</a></h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>removeSchedulable</code> is part of the <a href="spark-scheduler-Schedulable.adoc#contract">Schedulable Contract</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><code>removeSchedulable</code> removes a <code>Schedulable</code> from the <a href="spark-scheduler-Schedulable.adoc#contract">schedulableQueue</a> and <a href="#schedulableNameToSchedulable">schedulableNameToSchedulable</a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>removeSchedulable</code> is the opposite to <a href="#addSchedulable"><code>addSchedulable</code> method</a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="schedulingalgorithm"><a class="anchor" href="#schedulingalgorithm"></a><a class="link" href="#schedulingalgorithm"><a id="SchedulingAlgorithm"></a> SchedulingAlgorithm</a></h3>
-<div class="paragraph">
-<p><code>SchedulingAlgorithm</code> is the interface for a sorting algorithm to sort <a href="spark-scheduler-Schedulable.adoc">Schedulables</a>.</p>
-</div>
-<div class="paragraph">
-<p>There are currently two <code>SchedulingAlgorithms</code>:</p>
+<p>combineByKeyWithClassTag lays the foundation for the following transformations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#FIFOSchedulingAlgorithm">FIFOSchedulingAlgorithm</a> for FIFO scheduling mode.</p>
+<p><a href="#combineByKey">combineByKey</a></p>
 </li>
 <li>
-<p><a href="#FairSchedulingAlgorithm">FairSchedulingAlgorithm</a> for FAIR scheduling mode.</p>
+<p><a href="#aggregateByKey">aggregateByKey</a></p>
+</li>
+<li>
+<p><a href="#foldByKey">foldByKey</a></p>
+</li>
+<li>
+<p><a href="#reduceByKey">reduceByKey</a></p>
+</li>
+<li>
+<p><a href="#countApproxDistinctByKey">countApproxDistinctByKey</a></p>
+</li>
+<li>
+<p><a href="#groupByKey">groupByKey</a></p>
 </li>
 </ul>
 </div>
-<div class="sect3">
-<h4 id="fifoschedulingalgorithm"><a class="anchor" href="#fifoschedulingalgorithm"></a><a class="link" href="#fifoschedulingalgorithm"><a id="FIFOSchedulingAlgorithm"></a> FIFOSchedulingAlgorithm</a></h4>
+</div>
+<div class="sect2">
+<h3 id="requirements"><a class="anchor" href="#requirements"></a><a class="link" href="#requirements"><a id="combineByKeyWithClassTag-requirements"></a> Requirements</a></h3>
 <div class="paragraph">
-<p><code>FIFOSchedulingAlgorithm</code> is a scheduling algorithm that compares <code>Schedulables</code> by their <code>priority</code> first and, when equal, by their <code>stageId</code>.</p>
+<p>combineByKeyWithClassTag requires that the mergeCombiners is defined (not-<code>null</code>) or throws an IllegalArgumentException:</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>priority</code> and <code>stageId</code> are part of <a href="spark-scheduler-Schedulable.adoc#contract">Schedulable Contract</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME <em>A picture is worth a thousand words.</em> How to picture the algorithm?
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="fairschedulingalgorithm"><a class="anchor" href="#fairschedulingalgorithm"></a><a class="link" href="#fairschedulingalgorithm"><a id="FairSchedulingAlgorithm"></a> FairSchedulingAlgorithm</a></h4>
-<div class="paragraph">
-<p><code>FairSchedulingAlgorithm</code> is a scheduling algorithm that compares <code>Schedulables</code> by their <code>minShare</code>, <code>runningTasks</code>, and <code>weight</code>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>minShare</code>, <code>runningTasks</code>, and <code>weight</code> are part of <a href="spark-scheduler-Schedulable.adoc#contract">Schedulable Contract</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="imageblock text-center">
+<div class="listingblock">
 <div class="content">
-<img src="_images/spark-pool-FairSchedulingAlgorithm.png" alt="spark pool FairSchedulingAlgorithm">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">mergeCombiners must be defined</code></pre>
 </div>
-<div class="title">Figure 1. FairSchedulingAlgorithm</div>
 </div>
 <div class="paragraph">
-<p>For each input <code>Schedulable</code>, <code>minShareRatio</code> is computed as <code>runningTasks</code> by <code>minShare</code> (but at least <code>1</code>) while <code>taskToWeightRatio</code> is <code>runningTasks</code> by <code>weight</code>.</p>
+<p>combineByKeyWithClassTag throws a SparkException for the keys being of type array with the mapSideCombine flag enabled:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Cannot use map-side combining with array keys.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>combineByKeyWithClassTag throws a SparkException for the keys being of type array with the partitioner being a <a href="spark-rdd-HashPartitioner.html" class="page">HashPartitioner</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">HashPartitioner cannot partition array keys.</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="finding-schedulable-by-namegetschedulablebyname-method"><a class="anchor" href="#finding-schedulable-by-namegetschedulablebyname-method"></a><a class="link" href="#finding-schedulable-by-namegetschedulablebyname-method"><a id="getSchedulableByName"></a> Finding Schedulable by Name&#8201;&#8212;&#8201;<code>getSchedulableByName</code> Method</a></h3>
+<h3 id="example"><a class="anchor" href="#example"></a><a class="link" href="#example"><a id="combineByKeyWithClassTag-example"></a> Example</a></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getSchedulableByName(schedulableName: String): Schedulable</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">val nums = sc.parallelize(0 to 9, numSlices = 4)
+val groups = nums.keyBy(_ % 2)
+def createCombiner(n: Int) = {
+  println(s"createCombiner($n)")
+  n
+}
+def mergeValue(n1: Int, n2: Int) = {
+  println(s"mergeValue($n1, $n2)")
+  n1 + n2
+}
+def mergeCombiners(c1: Int, c2: Int) = {
+  println(s"mergeCombiners($c1, $c2)")
+  c1 + c2
+}
+val countByGroup = groups.combineByKeyWithClassTag(
+  createCombiner,
+  mergeValue,
+  mergeCombiners)
+println(countByGroup.toDebugString)
+/*
+(4) ShuffledRDD[3] at combineByKeyWithClassTag at &lt;console&gt;:31 []
+ +-(4) MapPartitionsRDD[1] at keyBy at &lt;console&gt;:25 []
+    |  ParallelCollectionRDD[0] at parallelize at &lt;console&gt;:24 []
+*/</code></pre>
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>getSchedulableByName</code> is part of the <a href="spark-scheduler-Schedulable.html#getSchedulableByName" class="page">Schedulable Contract</a> to find a <a href="spark-scheduler-Schedulable.html" class="page">Schedulable</a> by name.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><code>getSchedulableByName</code>&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>
 </div>
 </article>
-<aside class="toc sidebar" data-title="Contents" data-levels="2">
+<aside class="toc sidebar" data-title="Transformations" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
   </div>
