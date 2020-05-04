@@ -1854,13 +1854,14 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Aggregator</strong> is a set of aggregation functions used to aggregate data using <a href="PairRDDFunctions.html#combineByKeyWithClassTag" class="page">PairRDDFunctions.combineByKeyWithClassTag</a> transformation.</p>
+<p><strong>Aggregator</strong> is a set of <a href="#aggregation-functions">aggregation functions</a> used to aggregate data using <a href="PairRDDFunctions.html#combineByKeyWithClassTag" class="page">PairRDDFunctions.combineByKeyWithClassTag</a> transformation.</p>
 </div>
 <div class="paragraph">
 <p><code>Aggregator[K, V, C]</code> is a parameterized type of <code>K</code> keys, <code>V</code> values, and <code>C</code> combiner (partial) values.</p>
 </div>
-<div id="creating-instance" class="paragraph">
-<p>Aggregator transforms an <code>RDD[(K, V)]</code> into an <code>RDD[(K, C)]</code> (for a "combined type" C) using the functions:</p>
+<div class="paragraph">
+<p><a id="creating-instance"></a><a id="aggregation-functions"></a>
+Aggregator transforms an <code>RDD[(K, V)]</code> into an <code>RDD[(K, C)]</code> (for a "combined type" C) using the functions:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1891,7 +1892,16 @@
 </div>
 </div>
 <div class="paragraph">
-<p>combineValuesByKey&#8230;&#8203;FIXME</p>
+<p>combineValuesByKey creates a new <a href="../shuffle/ExternalAppendOnlyMap.html" class="page">ExternalAppendOnlyMap</a> (with the <a href="#aggregation-functions">aggregation functions</a>).</p>
+</div>
+<div class="paragraph">
+<p>combineValuesByKey requests the ExternalAppendOnlyMap to <a href="../shuffle/ExternalAppendOnlyMap.html#insertAll" class="page">insert all key-value pairs</a> from the given iterator (that is the values of a partition).</p>
+</div>
+<div class="paragraph">
+<p>combineValuesByKey <a href="#updateMetrics">updates the task metrics</a>.</p>
+</div>
+<div class="paragraph">
+<p>In the end, combineValuesByKey requests the ExternalAppendOnlyMap for an <a href="../shuffle/ExternalAppendOnlyMap.html#iterator" class="page">iterator of "combined" pairs</a>.</p>
 </div>
 <div class="paragraph">
 <p>combineValuesByKey is used when:</p>
