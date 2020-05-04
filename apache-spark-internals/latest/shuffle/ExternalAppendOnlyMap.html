@@ -1912,7 +1912,7 @@
 <h2 id="sizetrackingappendonlymap"><a class="anchor" href="#sizetrackingappendonlymap"></a><a class="link" href="#sizetrackingappendonlymap"><a id="currentMap"></a> SizeTrackingAppendOnlyMap</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>ExternalAppendOnlyMap manages SizeTrackingAppendOnlyMaps.</p>
+<p>ExternalAppendOnlyMap manages a SizeTrackingAppendOnlyMap.</p>
 </div>
 <div class="paragraph">
 <p>A SizeTrackingAppendOnlyMap is created immediately when ExternalAppendOnlyMap is and every time when <a href="#insertAll">insertAll</a> and <a href="#forceSpill">forceSpill</a> spilled to disk.</p>
@@ -1943,7 +1943,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Requests the <a href="#currentMap">SizeTrackingAppendOnlyMap</a> for the estimated size and if greater than the <a href="#_peakMemoryUsedBytes">_peakMemoryUsedBytes</a> metric updates it.</p>
+<p>Requests the <a href="#currentMap">SizeTrackingAppendOnlyMap</a> for the estimated size and, if greater than the <a href="#_peakMemoryUsedBytes">_peakMemoryUsedBytes</a> metric, updates it.</p>
 </li>
 <li>
 <p><a href="Spillable.html#maybeSpill" class="page">Spills to a disk if necessary</a> and, if spilled, creates a new <a href="#currentMap">SizeTrackingAppendOnlyMap</a></p>
@@ -2001,6 +2001,67 @@
 </div>
 <div class="paragraph">
 <p>iterator is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spilling-to-disk-if-necessary"><a class="anchor" href="#spilling-to-disk-if-necessary"></a><a class="link" href="#spilling-to-disk-if-necessary"><a id="spill"></a> Spilling to Disk if Necessary</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">spill(
+  collection: SizeTracker): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>spill&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>spill is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="forcing-disk-spilling"><a class="anchor" href="#forcing-disk-spilling"></a><a class="link" href="#forcing-disk-spilling"><a id="forceSpill"></a> Forcing Disk Spilling</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">forceSpill(): Boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>forceSpill returns a flag to indicate whether spilling to disk has really happened (<code>true</code>) or not (<code>false</code>).</p>
+</div>
+<div class="paragraph">
+<p>forceSpill branches off per the current state it is in (and should rather use a state-aware implementation).</p>
+</div>
+<div class="paragraph">
+<p>When a <a href="#readingIterator">SpillableIterator</a> is in use, forceSpill requests it to spill and, if it did, dereferences (<code>null</code>ify) the <a href="#currentMap">SizeTrackingAppendOnlyMap</a>. forceSpill returns whatever the spilling of the <a href="#readingIterator">SpillableIterator</a> returned.</p>
+</div>
+<div class="paragraph">
+<p>When there is at least one element in the <a href="#currentMap">SizeTrackingAppendOnlyMap</a>, forceSpill <a href="#spill">spills</a> it. forceSpill then creates a new <a href="#currentMap">SizeTrackingAppendOnlyMap</a> and always returns <code>true</code>.</p>
+</div>
+<div class="paragraph">
+<p>In other cases, forceSpill simply returns <code>false</code>.</p>
+</div>
+<div class="paragraph">
+<p>forceSpill is part of the <a href="Spillable.html" class="page">Spillable</a> abstraction.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="freeing-up-sizetrackingappendonlymap-and-releasing-memory"><a class="anchor" href="#freeing-up-sizetrackingappendonlymap-and-releasing-memory"></a><a class="link" href="#freeing-up-sizetrackingappendonlymap-and-releasing-memory"><a id="freeCurrentMap"></a> Freeing Up SizeTrackingAppendOnlyMap and Releasing Memory</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">freeCurrentMap(): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>freeCurrentMap dereferences (<code>null</code>ify) the <a href="#currentMap">SizeTrackingAppendOnlyMap</a> (if there still was one) followed by <a href="Spillable.html#releaseMemory" class="page">releasing all memory</a>.</p>
+</div>
+<div class="paragraph">
+<p>freeCurrentMap is used when SpillableIterator is requested to destroy itself.</p>
 </div>
 </div>
 </div>
