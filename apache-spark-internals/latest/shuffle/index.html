@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/spark-on-yarn/spark-yarn-schedulerbackends.html">
+    <title> Shuffle System :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/shuffle/index.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -370,82 +370,82 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/index.html">Shuffle System</a>
+    <a class="nav-link" href="index.html">Shuffle System</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/SortShuffleManager.html">SortShuffleManager</a>
+    <a class="nav-link" href="SortShuffleManager.html">SortShuffleManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/ShuffleManager.html">ShuffleManager</a>
+    <a class="nav-link" href="ShuffleManager.html">ShuffleManager</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleHandle.html">ShuffleHandle</a>
+    <a class="nav-link" href="spark-shuffle-ShuffleHandle.html">ShuffleHandle</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/spark-shuffle-BaseShuffleHandle.html">BaseShuffleHandle</a>
+    <a class="nav-link" href="spark-shuffle-BaseShuffleHandle.html">BaseShuffleHandle</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
+    <a class="nav-link" href="BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/spark-shuffle-SerializedShuffleHandle.html">SerializedShuffleHandle</a>
+    <a class="nav-link" href="spark-shuffle-SerializedShuffleHandle.html">SerializedShuffleHandle</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleReader.html">ShuffleReader</a>
+    <a class="nav-link" href="spark-shuffle-ShuffleReader.html">ShuffleReader</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/BlockStoreShuffleReader.html">BlockStoreShuffleReader</a>
+    <a class="nav-link" href="BlockStoreShuffleReader.html">BlockStoreShuffleReader</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/ShuffleWriter.html">ShuffleWriter</a>
+    <a class="nav-link" href="ShuffleWriter.html">ShuffleWriter</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/BypassMergeSortShuffleWriter.html">BypassMergeSortShuffleWriter</a>
+    <a class="nav-link" href="BypassMergeSortShuffleWriter.html">BypassMergeSortShuffleWriter</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/SortShuffleWriter.html">SortShuffleWriter</a>
+    <a class="nav-link" href="SortShuffleWriter.html">SortShuffleWriter</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/spark-shuffle-UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
+    <a class="nav-link" href="spark-shuffle-UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/ShuffleBlockResolver.html">ShuffleBlockResolver</a>
+    <a class="nav-link" href="ShuffleBlockResolver.html">ShuffleBlockResolver</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/IndexShuffleBlockResolver.html">IndexShuffleBlockResolver</a>
+    <a class="nav-link" href="IndexShuffleBlockResolver.html">IndexShuffleBlockResolver</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/ShuffleExternalSorter.html">ShuffleExternalSorter</a>
+    <a class="nav-link" href="ShuffleExternalSorter.html">ShuffleExternalSorter</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
+    <a class="nav-link" href="spark-shuffle-ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/FetchFailedException.html">FetchFailedException</a>
+    <a class="nav-link" href="FetchFailedException.html">FetchFailedException</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/Spillable.html">Spillable</a>
+    <a class="nav-link" href="Spillable.html">Spillable</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/ExternalAppendOnlyMap.html">ExternalAppendOnlyMap</a>
+    <a class="nav-link" href="ExternalAppendOnlyMap.html">ExternalAppendOnlyMap</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/ExternalSorter.html">ExternalSorter</a>
+    <a class="nav-link" href="ExternalSorter.html">ExternalSorter</a>
   </li>
 </ul>
   </li>
@@ -1563,88 +1563,88 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Spark on YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/index.html">Spark on YARN</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-YarnShuffleService.html">YarnShuffleService&#8201;&#8212;&#8201;ExternalShuffleService on YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnShuffleService.html">YarnShuffleService&#8201;&#8212;&#8201;ExternalShuffleService on YARN</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-ExecutorRunnable.html">ExecutorRunnable</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-ExecutorRunnable.html">ExecutorRunnable</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-client.html">Client</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-client.html">Client</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-yarnrmclient.html">YarnRMClient</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnrmclient.html">YarnRMClient</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-yarn-applicationmaster.html">ApplicationMaster</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-applicationmaster.html">ApplicationMaster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-AMEndpoint.html">AMEndpoint&#8201;&#8212;&#8201;ApplicationMaster RPC Endpoint</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-AMEndpoint.html">AMEndpoint&#8201;&#8212;&#8201;ApplicationMaster RPC Endpoint</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-YarnClusterManager.html">YarnClusterManager&#8201;&#8212;&#8201;ExternalClusterManager for YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnClusterManager.html">YarnClusterManager&#8201;&#8212;&#8201;ExternalClusterManager for YARN</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-yarn-taskschedulers.html">TaskSchedulers for YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-taskschedulers.html">TaskSchedulers for YARN</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-yarnscheduler.html">YarnScheduler</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnscheduler.html">YarnScheduler</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-yarnclusterscheduler.html">YarnClusterScheduler</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-yarn-schedulerbackends.html">SchedulerBackends for YARN</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-yarnschedulerbackend.html">YarnSchedulerBackend</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-client-yarnclientschedulerbackend.html">YarnClientSchedulerBackend</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-cluster-yarnclusterschedulerbackend.html">YarnClusterSchedulerBackend</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-cluster-YarnSchedulerEndpoint.html">YarnSchedulerEndpoint RPC Endpoint</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnclusterscheduler.html">YarnClusterScheduler</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-YarnAllocator.html">YarnAllocator</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-introduction.html">Introduction to Hadoop YARN</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-cluster-setup.html">Setting up YARN Cluster</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-yarn-kerberos.html">Kerberos</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-schedulerbackends.html">SchedulerBackends for YARN</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-ConfigurableCredentialManager.html">ConfigurableCredentialManager</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnschedulerbackend.html">YarnSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-client-yarnclientschedulerbackend.html">YarnClientSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-cluster-yarnclusterschedulerbackend.html">YarnClusterSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-cluster-YarnSchedulerEndpoint.html">YarnSchedulerEndpoint RPC Endpoint</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-ClientDistributedCacheManager.html">ClientDistributedCacheManager</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnAllocator.html">YarnAllocator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-YarnSparkHadoopUtil.html">YarnSparkHadoopUtil</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-introduction.html">Introduction to Hadoop YARN</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-settings.html">Settings</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-cluster-setup.html">Setting up YARN Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-kerberos.html">Kerberos</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-ConfigurableCredentialManager.html">ConfigurableCredentialManager</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-ClientDistributedCacheManager.html">ClientDistributedCacheManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnSparkHadoopUtil.html">YarnSparkHadoopUtil</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-settings.html">Settings</a>
   </li>
 </ul>
   </li>
@@ -1842,32 +1842,30 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Spark on YARN</a></li>
-    <li><a href="spark-yarn-schedulerbackends.html">SchedulerBackends for YARN</a></li>
+    <li><a href="index.html">Shuffle System</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/spark-on-yarn/pages/spark-yarn-schedulerbackends.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/shuffle/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="schedulerbackends-for-yarn"><a class="anchor" href="#schedulerbackends-for-yarn"></a><a class="link" href="#schedulerbackends-for-yarn">SchedulerBackends for YARN</a></h2>
+<h1 class="page"><a id="shuffle-system"></a> Shuffle System</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>There are currently two <a href="../scheduler/SchedulerBackend.html" class="page">SchedulerBackends</a> for <a href="README.adoc">Spark on YARN</a> per <a href="spark-submit.adoc#deploy-mode">deploy mode</a>:</p>
+<p><strong>Shuffle System</strong> is a core component of Apache Spark that is responsible for&#8230;&#8203;FIXME</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="further-reading-or-watching"><a class="anchor" href="#further-reading-or-watching"></a><a class="link" href="#further-reading-or-watching"><a id="i-want-more"></a> Further reading or watching</a></h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><a href="spark-yarn-client-yarnclientschedulerbackend.adoc">YarnClientSchedulerBackend</a> for <strong>client</strong> deploy mode</p>
-</li>
-<li>
-<p><a href="spark-yarn-yarnschedulerbackend.adoc">YarnSchedulerBackend</a> for <strong>cluster</strong> deploy mode</p>
+<p>(video) <a href="https://databricks.com/session_eu19/improving-apache-spark-downscaling">Improving Apache Spark Downscaling</a> by Christopher Crosbie (Google) Ben Sidhom (Google)</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>They are concrete <a href="spark-yarn-yarnschedulerbackend.adoc">YarnSchedulerBackends</a>.</p>
 </div>
 </div>
 </div>
