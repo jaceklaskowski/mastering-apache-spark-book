@@ -388,7 +388,7 @@
     <a class="nav-link" href="shuffle/spark-shuffle-BaseShuffleHandle.html">BaseShuffleHandle</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="shuffle/spark-shuffle-BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
+    <a class="nav-link" href="shuffle/BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="shuffle/spark-shuffle-SerializedShuffleHandle.html">SerializedShuffleHandle</a>
@@ -2091,12 +2091,6 @@ Introduced in <a href="https://issues.apache.org/jira/browse/SPARK-13522">SPARK-
 <td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.file.transferTo</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div id="spark.file.transferTo" class="paragraph">
-<p>Default: <code>true</code></p>
-</div></div></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.launcher.port</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>
@@ -2618,6 +2612,17 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 </div>
 <div class="paragraph">
 <p>Default: <code>30s</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-file-transferto"><a class="anchor" href="#spark-file-transferto"></a><a class="link" href="#spark-file-transferto"><a id="spark.file.transferTo"></a> spark.file.transferTo</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When enabled (<code>true</code>), copying data between two Java FileInputStreams uses Java FileChannels (Java NIO) to improve copy performance.</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>true</code></p>
 </div>
 </div>
 </div>

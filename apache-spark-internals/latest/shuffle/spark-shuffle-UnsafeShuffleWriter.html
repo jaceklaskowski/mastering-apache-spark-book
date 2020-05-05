@@ -388,7 +388,7 @@
     <a class="nav-link" href="spark-shuffle-BaseShuffleHandle.html">BaseShuffleHandle</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-shuffle-BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
+    <a class="nav-link" href="BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="spark-shuffle-SerializedShuffleHandle.html">SerializedShuffleHandle</a>
@@ -1871,7 +1871,7 @@
 <p><code>UnsafeShuffleWriter</code> is <a href="#creating-instance">created</a> when <code>SortShuffleManager</code> is requested for a <a href="SortShuffleManager.html#getWriter" class="page">ShuffleWriter</a> for a <a href="spark-shuffle-SerializedShuffleHandle.html" class="page">SerializedShuffleHandle</a>.</p>
 </div>
 <div id="transferToEnabled" class="paragraph">
-<p><code>UnsafeShuffleWriter</code> can use a <a href="#mergeSpillsWithTransferTo">specialized NIO-based fast merge procedure</a> that avoids extra serialization/deserialization when <a href="#spark-configuration-properties.adoc#spark.file.transferTo" class="page unresolved">spark.file.transferTo</a> configuration property (default: <code>true</code>) is enabled.</p>
+<p><code>UnsafeShuffleWriter</code> can use a <a href="#mergeSpillsWithTransferTo">specialized NIO-based fast merge procedure</a> that avoids extra serialization/deserialization when <a href="../spark-configuration-properties.html#spark.file.transferTo" class="page">spark.file.transferTo</a> configuration property is enabled.</p>
 </div>
 <div id="initialSortBufferSize" class="paragraph">
 <p><code>UnsafeShuffleWriter</code> uses the <a href="#initialSortBufferSize">initial buffer size for sorting</a> (default: <code>4096</code>) when creating a <a href="#sorter">ShuffleExternalSorter</a> (when requested to <a href="#open">open</a>).</p>
@@ -1892,7 +1892,7 @@ Use <a href="#spark-configuration-properties.adoc#spark.shuffle.sort.initialBuff
 <p><code>UnsafeShuffleWriter</code> uses a fixed buffer size for the <a href="#serBuffer">output stream of serialized data written into a byte array</a> (default: <code>1024 * 1024</code>).</p>
 </div>
 <div id="inputBufferSizeInBytes" class="paragraph">
-<p><code>UnsafeShuffleWriter</code> uses the <a href="#spark-configuration-properties.adoc#spark.shuffle.file.buffer" class="page unresolved">spark.shuffle.file.buffer</a> configuration property (default: <code>32k</code>) for&#8230;&#8203;FIXME</p>
+<p><code>UnsafeShuffleWriter</code> uses the <a href="../spark-configuration-properties.html#spark.shuffle.file.buffer" class="page">spark.shuffle.file.buffer</a> configuration property for&#8230;&#8203;FIXME</p>
 </div>
 <div id="outputBufferSizeInBytes" class="paragraph">
 <p><code>UnsafeShuffleWriter</code> uses the <a href="#spark-configuration-properties.adoc#spark.shuffle.unsafe.file.output.buffer" class="page unresolved">spark.shuffle.unsafe.file.output.buffer</a> configuration property (default: <code>32k</code>) for&#8230;&#8203;FIXME</p>

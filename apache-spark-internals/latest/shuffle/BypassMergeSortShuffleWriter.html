@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title> BypassMergeSortShuffleWriter :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/shuffle/BypassMergeSortShuffleWriter.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -388,7 +388,7 @@
     <a class="nav-link" href="spark-shuffle-BaseShuffleHandle.html">BaseShuffleHandle</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-shuffle-BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
+    <a class="nav-link" href="BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="spark-shuffle-SerializedShuffleHandle.html">SerializedShuffleHandle</a>
@@ -1851,369 +1851,223 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="bypassmergesortshufflewritershufflewriter-for-bypassmergesortshufflehandle"><a class="anchor" href="#bypassmergesortshufflewritershufflewriter-for-bypassmergesortshufflehandle"></a><a class="link" href="#bypassmergesortshufflewritershufflewriter-for-bypassmergesortshufflehandle"><a id="BypassMergeSortShuffleWriter"></a> BypassMergeSortShuffleWriter&#8201;&#8212;&#8201;ShuffleWriter for BypassMergeSortShuffleHandle</a></h2>
+<h1 class="page"><a id="BypassMergeSortShuffleWriter"></a> BypassMergeSortShuffleWriter</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>BypassMergeSortShuffleWriter</code> is a concrete <a href="ShuffleWriter.adoc">ShuffleWriter</a> that <a href="../scheduler/ShuffleMapTask.html" class="page">ShuffleMapTask</a> uses to <a href="#write">write records into one single shuffle block data file</a> when the <a href="../scheduler/ShuffleMapTask.html#runTask" class="page">task runs for a <code>ShuffleDependency</code></a>.</p>
+<p><strong>BypassMergeSortShuffleWriter</strong> is a <a href="ShuffleWriter.html" class="page">ShuffleWriter</a> for <a href="../scheduler/ShuffleMapTask.html" class="page">ShuffleMapTasks</a> to <a href="#write">write records into one single shuffle block data file</a>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="_images/BypassMergeSortShuffleWriter-write.png" alt="BypassMergeSortShuffleWriter write">
 </div>
-<div class="title">Figure 1. BypassMergeSortShuffleWriter writing records (for ShuffleMapTask) using DiskBlockObjectWriters</div>
+<div class="title">Figure 1. BypassMergeSortShuffleWriter and DiskBlockObjectWriters</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>BypassMergeSortShuffleWriter takes the following to be created:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="blockManager"></a> <a href="../storage/BlockManager.html" class="page">BlockManager</a></p>
+</li>
+<li>
+<p><a href="#shuffleBlockResolver">IndexShuffleBlockResolver</a></p>
+</li>
+<li>
+<p><a id="handle"></a> <a href="BypassMergeSortShuffleHandle.html" class="page">BypassMergeSortShuffleHandle&lt;K, V&gt;</a></p>
+</li>
+<li>
+<p><a id="mapId"></a> Map ID</p>
+</li>
+<li>
+<p><a id="taskContext"></a> <a href="../scheduler/spark-TaskContext.html" class="page">TaskContext</a></p>
+</li>
+<li>
+<p><a id="conf"></a> <a href="../spark-SparkConf.html" class="page">SparkConf</a></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p><a href="#creating-instance"><code>BypassMergeSortShuffleWriter</code> is created</a> exclusively when <a href="SortShuffleManager.html#getWriter" class="page"><code>SortShuffleManager</code> selects a <code>ShuffleWriter</code></a> (for a <a href="spark-shuffle-BypassMergeSortShuffleHandle.adoc">BypassMergeSortShuffleHandle</a>).</p>
+<p>BypassMergeSortShuffleWriter is <a href="#creating-instance">created</a> when SortShuffleManager is requested for a <a href="SortShuffleManager.html#getWriter" class="page">ShuffleWriter for a BypassMergeSortShuffleHandle</a>.</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Review the <a href="SortShuffleManager.html#shouldBypassMergeSort" class="page">conditions <code>SortShuffleManager</code> uses to select <code>BypassMergeSortShuffleHandle</code> for a <code>ShuffleHandle</code></a>.
-</td>
-</tr>
-</table>
 </div>
-<table id="internal-registries" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. BypassMergeSortShuffleWriter&#8217;s Internal Registries and Counters</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="numPartitions"></a> <code>numPartitions</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">FIXME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="partitionWriters"></a> <code>partitionWriters</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">FIXME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="partitionWriterSegments"></a> <code>partitionWriterSegments</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">FIXME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="shuffleBlockResolver"></a> <code>shuffleBlockResolver</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="IndexShuffleBlockResolver.adoc">IndexShuffleBlockResolver</a>.</p>
-<p class="tableblock">Initialized when <a href="#creating-instance"><code>BypassMergeSortShuffleWriter</code> is created</a>.</p>
-<p class="tableblock">Used when <a href="#write"><code>BypassMergeSortShuffleWriter</code> writes records</a>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="mapStatus"></a> <code>mapStatus</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../scheduler/MapStatus.html" class="page">MapStatus</a> that <a href="#stop"><code>BypassMergeSortShuffleWriter</code> returns when stopped</a></p>
-<p class="tableblock">Initialized every time <code>BypassMergeSortShuffleWriter</code> <a href="#write">writes records</a>.</p>
-<p class="tableblock">Used when <a href="#stop"><code>BypassMergeSortShuffleWriter</code> stops</a> (with <code>success</code> enabled) as a marker if <a href="#write">any records were written</a> and <a href="#stop">returned if they did</a>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="partitionLengths"></a> <code>partitionLengths</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Temporary array of partition lengths after records are <a href="#write">written to a shuffle system</a>.</p>
-<p class="tableblock">Initialized every time <code>BypassMergeSortShuffleWriter</code> <a href="#write">writes records</a> before passing it in to <a href="IndexShuffleBlockResolver.adoc#writeIndexFileAndCommit">IndexShuffleBlockResolver</a>). After <code>IndexShuffleBlockResolver</code> finishes, it is used to initialize <a href="#mapStatus">mapStatus</a> internal property.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="transferToEnabled"></a> <code>transferToEnabled</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Internal flag that controls the use of Java New I/O when <a href="#writePartitionedFile"><code>BypassMergeSortShuffleWriter</code> concatenates per-partition shuffle files into a single shuffle block data file</a>.</p>
-<p class="tableblock">Specified when <a href="#creating-instance"><code>BypassMergeSortShuffleWriter</code> is created</a> and controlled by <a href="#spark-configuration-properties.adoc#spark.file.transferTo" class="page unresolved">spark.file.transferTo</a> Spark property. Enabled by default.</p></td>
-</tr>
-</tbody>
-</table>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
+</div>
+<div class="sect1">
+<h2 id="indexshuffleblockresolver"><a class="anchor" href="#indexshuffleblockresolver"></a><a class="link" href="#indexshuffleblockresolver"><a id="shuffleBlockResolver"></a> IndexShuffleBlockResolver</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Enable <code>ERROR</code> logging level for <code>org.apache.spark.shuffle.sort.BypassMergeSortShuffleWriter</code> logger to see what happens in <code>BypassMergeSortShuffleWriter</code>.</p>
+<p>BypassMergeSortShuffleWriter is given a <a href="IndexShuffleBlockResolver.html" class="page">IndexShuffleBlockResolver</a> to be created.</p>
 </div>
 <div class="paragraph">
-<p>Add the following line to <code>conf/log4j.properties</code>:</p>
+<p>BypassMergeSortShuffleWriter uses the IndexShuffleBlockResolver for <a href="#write">writing records</a> (to <a href="IndexShuffleBlockResolver.html#writeIndexFileAndCommit" class="page">writeIndexFileAndCommit</a> and <a href="IndexShuffleBlockResolver.html#getDataFile" class="page">getDataFile</a>).</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.shuffle.sort.BypassMergeSortShuffleWriter=ERROR</code></pre>
 </div>
+</div>
+<div class="sect1">
+<h2 id="serializer"><a class="anchor" href="#serializer"></a><a class="link" href="#serializer"><a id="serializer"></a> Serializer</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When created, BypassMergeSortShuffleWriter requests the <a href="spark-shuffle-BaseShuffleHandle.html#dependency" class="page">ShuffleDependency</a> (of the given <a href="#handle">BypassMergeSortShuffleHandle</a>) for the <a href="../rdd/ShuffleDependency.html#serializer" class="page">Serializer</a>.</p>
 </div>
 <div class="paragraph">
-<p>Refer to <a href="spark-logging.adoc">Logging</a>.</p>
+<p>BypassMergeSortShuffleWriter creates a new instance of the Serializer for <a href="#write">writing records</a>.</p>
 </div>
-</td>
-</tr>
-</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration-properties"><a class="anchor" href="#configuration-properties"></a><a class="link" href="#configuration-properties"><a id="configuration-properties"></a> Configuration Properties</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="spark-shuffle-file-buffer"><a class="anchor" href="#spark-shuffle-file-buffer"></a><a class="link" href="#spark-shuffle-file-buffer"><a id="fileBufferSize"></a><a id="spark.shuffle.file.buffer"></a> spark.shuffle.file.buffer</a></h3>
+<div class="paragraph">
+<p>BypassMergeSortShuffleWriter uses <a href="../spark-configuration-properties.html#spark.shuffle.file.buffer" class="page">spark.shuffle.file.buffer</a> configuration property for&#8230;&#8203;FIXME</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="creating-bypassmergesortshufflewriter-instance"><a class="anchor" href="#creating-bypassmergesortshufflewriter-instance"></a><a class="link" href="#creating-bypassmergesortshufflewriter-instance"><a id="creating-instance"></a> Creating BypassMergeSortShuffleWriter Instance</a></h3>
+<h3 id="spark-file-transferto"><a class="anchor" href="#spark-file-transferto"></a><a class="link" href="#spark-file-transferto"><a id="transferToEnabled"></a><a id="spark.file.transferTo"></a> spark.file.transferTo</a></h3>
 <div class="paragraph">
-<p><code>BypassMergeSortShuffleWriter</code> takes the following when created:</p>
+<p>BypassMergeSortShuffleWriter uses <a href="../spark-configuration-properties.html#spark.file.transferTo" class="page">spark.file.transferTo</a> configuration property to control whether to use Java New I/O while <a href="#writePartitionedFile">writing to a partitioned file</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="writing-records-to-shuffle-file"><a class="anchor" href="#writing-records-to-shuffle-file"></a><a class="link" href="#writing-records-to-shuffle-file"><a id="write"></a> Writing Records to Shuffle File</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void write(
+  Iterator&lt;Product2&lt;K, V&gt;&gt; records)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>write is part of <a href="ShuffleWriter.html#write" class="page">ShuffleWriter</a> abstraction.</p>
+</div>
+<div class="paragraph">
+<p>write creates a new instance of the <a href="#serializer">Serializer</a>.</p>
+</div>
+<div class="paragraph">
+<p>write initializes the <a href="#partitionWriters">partitionWriters</a> and <a href="#partitionWriterSegments">partitionWriterSegments</a> internal registries (for <a href="../storage/spark-blockmanager-DiskBlockObjectWriter.html" class="page">DiskBlockObjectWriters</a> and FileSegments for <a href="#numPartitions">every partition</a>, respectively).</p>
+</div>
+<div class="paragraph">
+<p>write requests the <a href="#blockManager">BlockManager</a> for the <a href="../storage/BlockManager.html#diskBlockManager" class="page">DiskBlockManager</a> and for <a href="#numPartitions">every partition</a> write requests it for a <a href="../storage/DiskBlockManager.html#createTempShuffleBlock" class="page">shuffle block ID and the file</a>. write creates a <a href="../storage/BlockManager.html#getDiskWriter" class="page">DiskBlockObjectWriter</a> for the shuffle block (using the <a href="#blockManager">BlockManager</a>). write stores the reference to DiskBlockObjectWriters in the <a href="#partitionWriters">partitionWriters</a> internal registry.</p>
+</div>
+<div class="paragraph">
+<p>After all DiskBlockObjectWriters are created, write requests the <a href="#writeMetrics">ShuffleWriteMetrics</a> to <a href="../metrics/spark-executor-ShuffleWriteMetrics.html#incWriteTime" class="page">increment shuffle write time metric</a>.</p>
+</div>
+<div class="paragraph">
+<p>For every record (a key-value pair), write requests the <a href="#partitioner">Partitioner</a> for the <a href="../rdd/spark-rdd-Partitioner.html#getPartition" class="page">partition ID</a> for the key. The partition ID is then used as an index of the partition writer (among the <a href="#partitionWriters">DiskBlockObjectWriters</a>) to <a href="../storage/spark-blockmanager-DiskBlockObjectWriter.html#write" class="page">write the current record out to a block file</a>.</p>
+</div>
+<div class="paragraph">
+<p>Once all records have been writted out to their respective block files, write does the following for every <a href="#partitionWriters">DiskBlockObjectWriter</a>:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><a href="../storage/BlockManager.html" class="page">BlockManager</a></p>
+<p>Requests the DiskBlockObjectWriter to <a href="../storage/spark-blockmanager-DiskBlockObjectWriter.html#commitAndGet" class="page">commit and return a corresponding FileSegment of the shuffle block</a></p>
 </li>
 <li>
-<p><a href="IndexShuffleBlockResolver.adoc">IndexShuffleBlockResolver</a></p>
+<p>Saves the (reference to) FileSegments in the <a href="#partitionWriterSegments">partitionWriterSegments</a> internal registry</p>
 </li>
 <li>
-<p><a href="spark-shuffle-BypassMergeSortShuffleHandle.adoc">BypassMergeSortShuffleHandle</a></p>
-</li>
-<li>
-<p><code>mapId</code></p>
-</li>
-<li>
-<p><a href="spark-TaskContext.adoc">TaskContext</a></p>
-</li>
-<li>
-<p><a href="spark-SparkConf.adoc">SparkConf</a></p>
+<p>Requests the DiskBlockObjectWriter to <a href="../storage/spark-blockmanager-DiskBlockObjectWriter.html#close" class="page">close</a></p>
 </li>
 </ol>
 </div>
-<div id="fileBufferSize" class="paragraph">
-<p><code>BypassMergeSortShuffleWriter</code> uses <a href="ExternalSorter.html#spark_shuffle_file_buffer" class="page">spark.shuffle.file.buffer</a> (for <code>fileBufferSize</code> as <code>32k</code> by default) and <a href="#spark-configuration-properties.adoc#spark.file.transferTo" class="page unresolved">spark.file.transferTo</a> (for <a href="#transferToEnabled">transferToEnabled</a> internal flag which is enabled by default) Spark properties.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+At this point, all the records are in shuffle block files on a local disk. The records are split across block files by key.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p><code>BypassMergeSortShuffleWriter</code> initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
+<p>write requests the <a href="#shuffleBlockResolver">IndexShuffleBlockResolver</a> for the <a href="IndexShuffleBlockResolver.html#getDataFile" class="page">shuffle file</a> for the <a href="#shuffleId">shuffle</a> and the <a href="#mapId">map IDs</a>.</p>
+</div>
+<div class="paragraph">
+<p>write creates a temporary file (based on the name of the shuffle file) and <a href="#writePartitionedFile">writes all the per-partition shuffle files to it</a>. The size of every per-partition shuffle files is saved as the <a href="#partitionLengths">partitionLengths</a> internal registry.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+At this point, all the per-partition shuffle block files are one single map shuffle data file.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>write requests the <a href="#shuffleBlockResolver">IndexShuffleBlockResolver</a> to <a href="IndexShuffleBlockResolver.html#writeIndexFileAndCommit" class="page">write shuffle index and data files</a> for the <a href="#shuffleId">shuffle</a> and the <a href="#mapId">map IDs</a> (with the <a href="#partitionLengths">partitionLengths</a> and the temporary shuffle output file).</p>
+</div>
+<div class="paragraph">
+<p>write returns a <a href="../scheduler/MapStatus.html" class="page">shuffle map output status</a> (with the <a href="../storage/BlockManager.html#shuffleServerId" class="page">shuffle server ID</a> and the <a href="#partitionLengths">partitionLengths</a>).</p>
+</div>
+<div class="sect2">
+<h3 id="no-records"><a class="anchor" href="#no-records"></a><a class="link" href="#no-records"><a id="write-no-records"></a> No Records</a></h3>
+<div class="paragraph">
+<p>When there is no records to write out, write initializes the <a href="#partitionLengths">partitionLengths</a> internal array (of <a href="#numPartitions">numPartitions</a> size) with all elements being 0.</p>
+</div>
+<div class="paragraph">
+<p>write requests the <a href="#shuffleBlockResolver">IndexShuffleBlockResolver</a> to <a href="IndexShuffleBlockResolver.html#writeIndexFileAndCommit" class="page">write shuffle index and data files</a>, but the difference (compared to when there are records to write) is that the <code>dataTmp</code> argument is simply <code>null</code>.</p>
+</div>
+<div class="paragraph">
+<p>write sets the internal <code>mapStatus</code> (with the address of <a href="../storage/BlockManager.html" class="page">BlockManager</a> in use and <a href="#partitionLengths">partitionLengths</a>).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="writing-records-into-one-single-shuffle-block-data-filewrite-method"><a class="anchor" href="#writing-records-into-one-single-shuffle-block-data-filewrite-method"></a><a class="link" href="#writing-records-into-one-single-shuffle-block-data-filewrite-method"><a id="write"></a> Writing Records (Into One Single Shuffle Block Data File)&#8201;&#8212;&#8201;<code>write</code> Method</a></h3>
+<h3 id="requirements"><a class="anchor" href="#requirements"></a><a class="link" href="#requirements"><a id="write-requirements"></a> Requirements</a></h3>
+<div class="paragraph">
+<p>write requires that there are no <a href="#partitionWriters">DiskBlockObjectWriters</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="concatenating-per-partition-files-into-single-file"><a class="anchor" href="#concatenating-per-partition-files-into-single-file"></a><a class="link" href="#concatenating-per-partition-files-into-single-file"><a id="writePartitionedFile"></a> Concatenating Per-Partition Files Into Single File</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void write(Iterator&lt;Product2&lt;K, V&gt;&gt; records)</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>write</code> is part of <a href="ShuffleWriter.adoc#contract"><code>ShuffleWriter</code> contract</a> to write a sequence of records to a shuffle system.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Internally, when the input <code>records</code> iterator has no more records, <code>write</code> creates an empty <a href="#partitionLengths">partitionLengths</a> internal array of <code>numPartitions</code> size.</p>
-</div>
-<div class="paragraph">
-<p><code>write</code> then <a href="IndexShuffleBlockResolver.adoc#writeIndexFileAndCommit">requests the internal <code>IndexShuffleBlockResolver</code> to write shuffle index and data files</a> (with <code>dataTmp</code> as <code>null</code>) and sets the internal <code>mapStatus</code> (with the address of <a href="../storage/BlockManager.html" class="page">BlockManager</a> in use and <a href="#partitionLengths">partitionLengths</a>).</p>
-</div>
-<div class="paragraph">
-<p>However, when there are records to write, <code>write</code> creates a new <a href="spark-Serializer.adoc">Serializer</a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<a href="spark-Serializer.adoc">Serializer</a> was specified when <a href="#creating-instance"><code>BypassMergeSortShuffleWriter</code> was created</a> and is exactly the <code>Serializer</code> of the <a href="#rdd:ShuffleDependency.adoc.adoc#serializer" class="page unresolved">ShuffleDependency</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><code>write</code> initializes <a href="#partitionWriters">partitionWriters</a> internal array of <a href="spark-blockmanager-DiskBlockObjectWriter.adoc">DiskBlockObjectWriters</a> for <a href="#numPartitions">every partition</a>.</p>
-</div>
-<div class="paragraph">
-<p>For <a href="#numPartitions">every partition</a>, <code>write</code> <a href="../storage/DiskBlockManager.html#createTempShuffleBlock" class="page">requests <code>DiskBlockManager</code> for a temporary shuffle block and its file</a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>write</code> uses <a href="../storage/BlockManager.html#diskBlockManager" class="page"><code>BlockManager</code> to access <code>DiskBlockManager</code></a>. <code>BlockManager</code> was specified when <a href="#creating-instance"><code>BypassMergeSortShuffleWriter</code> was created</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><code>write</code> <a href="../storage/BlockManager.html#getDiskWriter" class="page">requests <code>BlockManager</code> for a <code>DiskBlockObjectWriter</code></a> (for the temporary <code>blockId</code> and <code>file</code>, <a href="spark-SerializerInstance.adoc">SerializerInstance</a>, <code>fileBufferSize</code> and <code>writeMetrics</code>).</p>
-</div>
-<div class="paragraph">
-<p>After <a href="spark-blockmanager-DiskBlockObjectWriter.adoc">DiskBlockObjectWriters</a> were created, <code>write</code> <a href="spark-executor-ShuffleWriteMetrics.adoc#incWriteTime">increments shuffle write time</a>.</p>
-</div>
-<div class="paragraph">
-<p><code>write</code> initializes <a href="#partitionWriterSegments">partitionWriterSegments</a> with <code>FileSegment</code> for <a href="#numPartitions">every partition</a>.</p>
-</div>
-<div class="paragraph">
-<p><code>write</code> takes records serially, i.e. record by record, and, after <a href="spark-rdd-Partitioner.adoc#getPartition">computing the partition for a key</a>, <a href="spark-blockmanager-DiskBlockObjectWriter.adoc#write">requests the corresponding <code>DiskBlockObjectWriter</code> to write them</a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>write</code> uses <a href="#partitionWriters">partitionWriters</a> internal array of <code>DiskBlockObjectWriter</code> indexed by partition number.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>write</code> uses the <a href="#rdd:ShuffleDependency.adoc.adoc#partitioner" class="page unresolved"><code>Partitioner</code> from the <code>ShuffleDependency</code></a> for which <a href="#creating-instance"><code>BypassMergeSortShuffleWriter</code> was created</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>write</code> initializes <a href="#partitionWriters">partitionWriters</a> with <a href="#numPartitions">numPartitions</a> number of <code>DiskBlockObjectWriters</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>After all the <code>records</code> have been written, <code>write</code> requests every <code>DiskBlockObjectWriter</code> to <code>commitAndGet</code> and saves the commit results in <a href="#partitionWriterSegments">partitionWriterSegments</a>. <code>write</code> <a href="spark-blockmanager-DiskBlockObjectWriter.adoc#close">closes every <code>DiskBlockObjectWriter</code></a>.</p>
-</div>
-<div class="paragraph">
-<p><code>write</code> <a href="IndexShuffleBlockResolver.adoc#getDataFile">requests <code>IndexShuffleBlockResolver</code> for the shuffle block data file</a> for <code>shuffleId</code> and <code>mapId</code>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>IndexShuffleBlockResolver</code> was defined when <a href="#creating-instance"><code>BypassMergeSortShuffleWriter</code> was created</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><code>write</code> creates a temporary shuffle block data file and <a href="#writePartitionedFile">writes the per-partition shuffle files to it</a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This is the moment when <code>BypassMergeSortShuffleWriter</code> concatenates per-partition shuffle file segments into one single map shuffle data file.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>In the end, <code>write</code> <a href="IndexShuffleBlockResolver.adoc#writeIndexFileAndCommit">requests <code>IndexShuffleBlockResolver</code> to write shuffle index and data files</a> for the <code>shuffleId</code> and <code>mapId</code> (with <code>partitionLengths</code> and the temporary file) and creates a new <a href="#mapStatus">mapStatus</a> (with the <a href="../storage/BlockManager.html#shuffleServerId" class="page">location of the <code>BlockManager</code></a> and <a href="#partitionLengths">partitionLengths</a>).</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="concatenating-per-partition-files-into-single-file-and-tracking-write-timewritepartitionedfile-internal-method"><a class="anchor" href="#concatenating-per-partition-files-into-single-file-and-tracking-write-timewritepartitionedfile-internal-method"></a><a class="link" href="#concatenating-per-partition-files-into-single-file-and-tracking-write-timewritepartitionedfile-internal-method"><a id="writePartitionedFile"></a> Concatenating Per-Partition Files Into Single File (and Tracking Write Time)&#8201;&#8212;&#8201;<code>writePartitionedFile</code> Internal Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">long[] writePartitionedFile(File outputFile) throws IOException</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">long[] writePartitionedFile(
+  File outputFile)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>writePartitionedFile</code> creates a file output stream for the input <code>outputFile</code> in append mode.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>writePartitionedFile</code> uses Java&#8217;s <a href="https://docs.oracle.com/javase/8/docs/api/java/io/FileOutputStream.html">java.io.FileOutputStream</a> to create a file output stream.
-</td>
-</tr>
-</table>
+<p>writePartitionedFile creates a file output stream for the input <code>outputFile</code> in append mode.</p>
 </div>
 <div class="paragraph">
-<p><code>writePartitionedFile</code> starts tracking write time (as <code>writeStartTime</code>).</p>
+<p>writePartitionedFile starts tracking write time (as <code>writeStartTime</code>).</p>
 </div>
 <div class="paragraph">
-<p>For every <a href="#numPartitions">numPartitions</a> partition, <code>writePartitionedFile</code> takes the file from the <code>FileSegment</code> (from <a href="#partitionWriterSegments">partitionWriterSegments</a>) and creates a file input stream to read raw bytes.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>writePartitionedFile</code> uses Java&#8217;s <a href="https://docs.oracle.com/javase/8/docs/api/java/io/FileInputStream.html">java.io.FileInputStream</a> to create a file input stream.
-</td>
-</tr>
-</table>
+<p>For every <a href="#numPartitions">numPartitions</a> partition, writePartitionedFile takes the file from the <code>FileSegment</code> (from <a href="#partitionWriterSegments">partitionWriterSegments</a>) and creates a file input stream to read raw bytes.</p>
 </div>
 <div class="paragraph">
-<p><code>writePartitionedFile</code> then <a href="#copyStream">copies the raw bytes from each partition segment input stream to <code>outputFile</code></a> (possibly using Java New I/O per <a href="#transferToEnabled">transferToEnabled</a> flag set when <a href="#creating-instance"><code>BypassMergeSortShuffleWriter</code> was created</a>) and records the length of the shuffle data file (in <code>lengths</code> internal array).</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>transferToEnabled</code> is controlled by <a href="#spark-configuration-properties.adoc#spark.file.transferTo" class="page unresolved">spark.file.transferTo</a> Spark property and is enabled (i.e. <code>true</code>) by default.
-</td>
-</tr>
-</table>
+<p>writePartitionedFile then <a href="#copyStream">copies the raw bytes from each partition segment input stream to <code>outputFile</code></a> (possibly using Java New I/O per <a href="#transferToEnabled">transferToEnabled</a> flag set when <a href="#creating-instance">BypassMergeSortShuffleWriter was created</a>) and records the length of the shuffle data file (in <code>lengths</code> internal array).</p>
 </div>
 <div class="paragraph">
-<p>In the end, <code>writePartitionedFile</code> <a href="spark-executor-ShuffleWriteMetrics.adoc#incWriteTime">increments shuffle write time</a>, clears <a href="#partitionWriters">partitionWriters</a> array and returns the lengths of the shuffle data files per partition.</p>
+<p>In the end, writePartitionedFile <a href="../metrics/spark-executor-ShuffleWriteMetrics.html#incWriteTime" class="page">increments shuffle write time</a>, clears <a href="#partitionWriters">partitionWriters</a> array and returns the lengths of the shuffle data files per partition.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>writePartitionedFile</code> uses <code>ShuffleWriteMetrics</code> to track shuffle write time that was created when <a href="#creating-instance"><code>BypassMergeSortShuffleWriter</code> was created</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>writePartitionedFile</code> is used exclusively when <code>BypassMergeSortShuffleWriter</code> <a href="#write">writes records</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>writePartitionedFile is used when BypassMergeSortShuffleWriter is requested to <a href="#write">write records</a>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="copying-raw-bytes-between-input-streams-possibly-using-java-new-ioutils-copystream-method"><a class="anchor" href="#copying-raw-bytes-between-input-streams-possibly-using-java-new-ioutils-copystream-method"></a><a class="link" href="#copying-raw-bytes-between-input-streams-possibly-using-java-new-ioutils-copystream-method"><a id="copyStream"></a> Copying Raw Bytes Between Input Streams (Possibly Using Java New I/O)&#8201;&#8212;&#8201;<code>Utils.copyStream</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="copying-raw-bytes-between-input-streams"><a class="anchor" href="#copying-raw-bytes-between-input-streams"></a><a class="link" href="#copying-raw-bytes-between-input-streams"><a id="copyStream"></a> Copying Raw Bytes Between Input Streams</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">copyStream(
@@ -2224,10 +2078,10 @@ This is the moment when <code>BypassMergeSortShuffleWriter</code> concatenates p
 </div>
 </div>
 <div class="paragraph">
-<p><code>copyStream</code> branches off depending on the type of <code>in</code> and <code>out</code> streams, i.e. whether they are both <code>FileInputStream</code> with <code>transferToEnabled</code> input flag is enabled.</p>
+<p>copyStream branches off depending on the type of <code>in</code> and <code>out</code> streams, i.e. whether they are both <code>FileInputStream</code> with <code>transferToEnabled</code> input flag is enabled.</p>
 </div>
 <div class="paragraph">
-<p>If they are both <code>FileInputStream</code> with <code>transferToEnabled</code> enabled, <code>copyStream</code> gets their <code>FileChannels</code> and transfers bytes from the input file to the output file and counts the number of bytes, possibly zero, that were actually transferred.</p>
+<p>If they are both <code>FileInputStream</code> with <code>transferToEnabled</code> enabled, copyStream gets their <code>FileChannels</code> and transfers bytes from the input file to the output file and counts the number of bytes, possibly zero, that were actually transferred.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2236,16 +2090,16 @@ This is the moment when <code>BypassMergeSortShuffleWriter</code> concatenates p
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>copyStream</code> uses Java&#8217;s <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/channels/FileChannel.html">java.nio.channels.FileChannel</a> to manage file channels.
+copyStream uses Java&#8217;s <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/channels/FileChannel.html">java.nio.channels.FileChannel</a> to manage file channels.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>If either <code>in</code> and <code>out</code> input streams are not <code>FileInputStream</code> or <code>transferToEnabled</code> flag is disabled (default), <code>copyStream</code> reads data from <code>in</code> to write to <code>out</code> and counts the number of bytes written.</p>
+<p>If either <code>in</code> and <code>out</code> input streams are not <code>FileInputStream</code> or <code>transferToEnabled</code> flag is disabled (default), copyStream reads data from <code>in</code> to write to <code>out</code> and counts the number of bytes written.</p>
 </div>
 <div class="paragraph">
-<p><code>copyStream</code> can optionally close <code>in</code> and <code>out</code> streams (depending on the input <code>closeStreams</code>&#8201;&#8212;&#8201;disabled by default).</p>
+<p>copyStream can optionally close <code>in</code> and <code>out</code> streams (depending on the input <code>closeStreams</code>&#8201;&#8212;&#8201;disabled by default).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2254,19 +2108,7 @@ This is the moment when <code>BypassMergeSortShuffleWriter</code> concatenates p
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>Utils.copyStream</code> is used when <a href="#writePartitionedFile"><code>BypassMergeSortShuffleWriter</code> writes records into one single shuffle block data file</a> (among other places).
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>Utils.copyStream</code> is here temporarily (until I find a better place).
+<code>Utils.copyStream</code> is used when <a href="#writePartitionedFile">BypassMergeSortShuffleWriter writes records into one single shuffle block data file</a> (among other places).
 </td>
 </tr>
 </table>
@@ -2278,12 +2120,72 @@ This is the moment when <code>BypassMergeSortShuffleWriter</code> concatenates p
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Visit the official web site of <a href="https://jcp.org/jsr/detail/51.jsp">JSR 51: New I/O APIs for the Java Platform</a> and read up on <a href="http://docs.oracle.com/javase/8/docs/api/java/nio/package-summary.html">java.nio package</a>.
+Visit the official web site of <a href="https://jcp.org/jsr/detail/51.jsp">JSR 51: New I/O APIs for the Java Platform</a> and read up on <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/package-summary.html">java.nio package</a>.
 </td>
 </tr>
 </table>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="logging"><a class="anchor" href="#logging"></a><a class="link" href="#logging"><a id="logging"></a> Logging</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Enable <code>ALL</code> logging level for <code>org.apache.spark.shuffle.sort.BypassMergeSortShuffleWriter</code> logger to see what happens inside.</p>
+</div>
+<div class="paragraph">
+<p>Add the following line to <code>conf/log4j.properties</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.shuffle.sort.BypassMergeSortShuffleWriter=ALL</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Refer to <a href="../spark-logging.html" class="page">Logging</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="internal-properties"><a class="anchor" href="#internal-properties"></a><a class="link" href="#internal-properties"><a id="internal-properties"></a> Internal Properties</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>numPartitions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="numPartitions"></a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>partitionWriters</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="partitionWriters"></a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>partitionWriterSegments</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="partitionWriterSegments"></a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mapStatus</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="mapStatus"></a> <a href="../scheduler/MapStatus.html" class="page">MapStatus</a> that <a href="#stop">BypassMergeSortShuffleWriter returns when stopped</a></p>
+<p class="tableblock">Initialized every time BypassMergeSortShuffleWriter <a href="#write">writes records</a>.</p>
+<p class="tableblock">Used when <a href="#stop">BypassMergeSortShuffleWriter stops</a> (with <code>success</code> enabled) as a marker if <a href="#write">any records were written</a> and <a href="#stop">returned if they did</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>partitionLengths</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="partitionLengths"></a> Temporary array of partition lengths after records are <a href="#write">written to a shuffle system</a>.</p>
+<p class="tableblock">Initialized every time BypassMergeSortShuffleWriter <a href="#write">writes records</a> before passing it in to <a href="IndexShuffleBlockResolver.adoc#writeIndexFileAndCommit">IndexShuffleBlockResolver</a>). After IndexShuffleBlockResolver finishes, it is used to initialize <a href="#mapStatus">mapStatus</a> internal property.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </article>
