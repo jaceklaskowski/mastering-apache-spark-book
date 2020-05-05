@@ -341,7 +341,7 @@
     <a class="nav-link" href="../storage/spark-blockmanager-BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-blockmanager-DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
+    <a class="nav-link" href="../storage/DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../storage/spark-BlockManager-BlockManagerSource.html">BlockManagerSource</a>
@@ -1899,6 +1899,14 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="per-partition-diskblockobjectwriters"><a class="anchor" href="#per-partition-diskblockobjectwriters"></a><a class="link" href="#per-partition-diskblockobjectwriters"><a id="partitionWriters"></a> Per-Partition DiskBlockObjectWriters</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>BypassMergeSortShuffleWriter uses <a href="../storage/DiskBlockObjectWriter.html" class="page">DiskBlockObjectWriter</a> when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="indexshuffleblockresolver"><a class="anchor" href="#indexshuffleblockresolver"></a><a class="link" href="#indexshuffleblockresolver"><a id="shuffleBlockResolver"></a> IndexShuffleBlockResolver</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -1953,7 +1961,7 @@
 <p>write creates a new instance of the <a href="#serializer">Serializer</a>.</p>
 </div>
 <div class="paragraph">
-<p>write initializes the <a href="#partitionWriters">partitionWriters</a> and <a href="#partitionWriterSegments">partitionWriterSegments</a> internal registries (for <a href="../storage/spark-blockmanager-DiskBlockObjectWriter.html" class="page">DiskBlockObjectWriters</a> and FileSegments for <a href="#numPartitions">every partition</a>, respectively).</p>
+<p>write initializes the <a href="#partitionWriters">partitionWriters</a> and <a href="#partitionWriterSegments">partitionWriterSegments</a> internal registries (for <a href="../storage/DiskBlockObjectWriter.html" class="page">DiskBlockObjectWriters</a> and FileSegments for <a href="#numPartitions">every partition</a>, respectively).</p>
 </div>
 <div class="paragraph">
 <p>write requests the <a href="#blockManager">BlockManager</a> for the <a href="../storage/BlockManager.html#diskBlockManager" class="page">DiskBlockManager</a> and for <a href="#numPartitions">every partition</a> write requests it for a <a href="../storage/DiskBlockManager.html#createTempShuffleBlock" class="page">shuffle block ID and the file</a>. write creates a <a href="../storage/BlockManager.html#getDiskWriter" class="page">DiskBlockObjectWriter</a> for the shuffle block (using the <a href="#blockManager">BlockManager</a>). write stores the reference to DiskBlockObjectWriters in the <a href="#partitionWriters">partitionWriters</a> internal registry.</p>
@@ -1962,7 +1970,7 @@
 <p>After all DiskBlockObjectWriters are created, write requests the <a href="#writeMetrics">ShuffleWriteMetrics</a> to <a href="../metrics/spark-executor-ShuffleWriteMetrics.html#incWriteTime" class="page">increment shuffle write time metric</a>.</p>
 </div>
 <div class="paragraph">
-<p>For every record (a key-value pair), write requests the <a href="#partitioner">Partitioner</a> for the <a href="../rdd/spark-rdd-Partitioner.html#getPartition" class="page">partition ID</a> for the key. The partition ID is then used as an index of the partition writer (among the <a href="#partitionWriters">DiskBlockObjectWriters</a>) to <a href="../storage/spark-blockmanager-DiskBlockObjectWriter.html#write" class="page">write the current record out to a block file</a>.</p>
+<p>For every record (a key-value pair), write requests the <a href="#partitioner">Partitioner</a> for the <a href="../rdd/spark-rdd-Partitioner.html#getPartition" class="page">partition ID</a> for the key. The partition ID is then used as an index of the partition writer (among the <a href="#partitionWriters">DiskBlockObjectWriters</a>) to <a href="../storage/DiskBlockObjectWriter.html#write" class="page">write the current record out to a block file</a>.</p>
 </div>
 <div class="paragraph">
 <p>Once all records have been writted out to their respective block files, write does the following for every <a href="#partitionWriters">DiskBlockObjectWriter</a>:</p>
@@ -1970,13 +1978,13 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Requests the DiskBlockObjectWriter to <a href="../storage/spark-blockmanager-DiskBlockObjectWriter.html#commitAndGet" class="page">commit and return a corresponding FileSegment of the shuffle block</a></p>
+<p>Requests the DiskBlockObjectWriter to <a href="../storage/DiskBlockObjectWriter.html#commitAndGet" class="page">commit and return a corresponding FileSegment of the shuffle block</a></p>
 </li>
 <li>
 <p>Saves the (reference to) FileSegments in the <a href="#partitionWriterSegments">partitionWriterSegments</a> internal registry</p>
 </li>
 <li>
-<p>Requests the DiskBlockObjectWriter to <a href="../storage/spark-blockmanager-DiskBlockObjectWriter.html#close" class="page">close</a></p>
+<p>Requests the DiskBlockObjectWriter to <a href="../storage/DiskBlockObjectWriter.html#close" class="page">close</a></p>
 </li>
 </ol>
 </div>
@@ -2164,10 +2172,6 @@ Visit the official web site of <a href="https://jcp.org/jsr/detail/51.jsp">JSR 5
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>numPartitions</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="numPartitions"></a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>partitionWriters</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="partitionWriters"></a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>partitionWriterSegments</code></p></td>
