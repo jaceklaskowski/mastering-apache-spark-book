@@ -3666,7 +3666,7 @@ Since <code>TaskSetManager</code> manages execution of the tasks in a single <a 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>executorLost</code> uses <a href="spark-SparkEnv.adoc#blockManager"><code>SparkEnv</code> to access the current <code>BlockManager</code></a> and finds out whether an <a href="../storage/BlockManager.html#externalShuffleServiceEnabled" class="page">external shuffle service is enabled</a> or not (that is controlled using <a href="spark-ExternalShuffleService.adoc#spark.shuffle.service.enabled">spark.shuffle.service.enabled</a> property).
+<code>executorLost</code> uses <a href="spark-SparkEnv.adoc#blockManager"><code>SparkEnv</code> to access the current <code>BlockManager</code></a> and finds out whether an <a href="../storage/BlockManager.html#externalShuffleServiceEnabled" class="page">external shuffle service is enabled</a> or not (based on <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property).
 </td>
 </tr>
 </table>

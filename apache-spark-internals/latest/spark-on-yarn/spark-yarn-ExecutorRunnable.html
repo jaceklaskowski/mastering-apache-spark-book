@@ -1866,7 +1866,7 @@
 <div class="title">Figure 1. ExecutorRunnable and YarnAllocator in YARN Resource Container</div>
 </div>
 <div class="paragraph">
-<p>If <a href="../spark-ExternalShuffleService.adoc#spark.shuffle.service.enabled">external shuffle service is used</a>, it is <a href="#startContainer">set in the <code>ContainerLaunchContext</code> context as a service under the name of <code>spark_shuffle</code></a>.</p>
+<p>If <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">external shuffle service is used</a>, it is <a href="#startContainer">set in the <code>ContainerLaunchContext</code> context as a service under the name of <code>spark_shuffle</code></a>.</p>
 </div>
 <table id="internal-properties" class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. ExecutorRunnable&#8217;s Internal Properties</caption>
@@ -2350,7 +2350,7 @@ YARN <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/
 <p><code>startContainer</code> sets the <a href="spark-yarn-YarnSparkHadoopUtil.adoc#getApplicationAclsForYarn">application ACLs</a> to the <code>ContainerLaunchContext</code>.</p>
 </div>
 <div class="paragraph">
-<p>If <a href="../spark-ExternalShuffleService.adoc#spark.shuffle.service.enabled">spark.shuffle.service.enabled</a> property is enabled, <code>startContainer</code> registers the <code>ContainerLaunchContext</code> with the YARN shuffle service started on the YARN NodeManager under <code>spark_shuffle</code> service name.</p>
+<p>If <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property is enabled, <code>startContainer</code> registers the <code>ContainerLaunchContext</code> with the YARN shuffle service started on the YARN NodeManager under <code>spark_shuffle</code> service name.</p>
 </div>
 <div class="paragraph">
 <p>In the end, <code>startContainer</code> requests the <a href="#nmClient">YARN NodeManager</a> to start the YARN container with the <code>ContainerLaunchContext</code> context.</p>

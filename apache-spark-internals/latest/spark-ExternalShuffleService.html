@@ -1857,7 +1857,7 @@
 <p><code>ExternalShuffleService</code> is an <strong>external shuffle service</strong> that serves shuffle blocks from outside an <a href="spark-Executor.adoc">Executor</a> process. It runs as a standalone application and manages shuffle output files so they are available for executors at all time. As the shuffle output files are managed externally to the executors it offers an uninterrupted access to the shuffle output files regardless of executors being killed or down.</p>
 </div>
 <div class="paragraph">
-<p>You start <code>ExternalShuffleService</code> using <a href="#start-script"><code>start-shuffle-service.sh</code> shell script</a> and enable its use by the driver and executors using <a href="#spark.shuffle.service.enabled">spark.shuffle.service.enabled</a>.</p>
+<p>You start <code>ExternalShuffleService</code> using <a href="#start-script"><code>start-shuffle-service.sh</code> shell script</a> and enable its use by the driver and executors using <a href="spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1963,7 +1963,7 @@ FIXME <code>Utils.initDaemon(log)</code>? See spark-submit.
 <p>It loads default Spark properties and creates a <code>SecurityManager</code>.</p>
 </div>
 <div class="paragraph">
-<p>It sets <a href="#spark.shuffle.service.enabled">spark.shuffle.service.enabled</a> to <code>true</code> (as <a href="#create-instance">later it is checked whether it is enabled or not</a>).</p>
+<p>It sets <a href="spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> to <code>true</code> (as <a href="#create-instance">later it is checked whether it is enabled or not</a>).</p>
 </div>
 <div class="paragraph">
 <p>A <code>ExternalShuffleService</code> is <a href="#create-instance">created</a> and <a href="#start">started</a>.</p>
@@ -2026,7 +2026,7 @@ DEBUG ExternalShuffleBlockResolver: Successfully cleaned up directory: [localDir
 <p><code>ExternalShuffleService</code> requires a <a href="spark-SparkConf.adoc">SparkConf</a> and <a href="spark-security.adoc">SecurityManager</a>.</p>
 </div>
 <div class="paragraph">
-<p>When created, it reads <a href="#spark.shuffle.service.enabled">spark.shuffle.service.enabled</a> (disabled by default) and <a href="#spark.shuffle.service.port">spark.shuffle.service.port</a> (defaults to <code>7337</code>) configuration settings. It also checks whether authentication is enabled.</p>
+<p>When created, it reads <a href="spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property (disabled by default) and <a href="#spark.shuffle.service.port">spark.shuffle.service.port</a> (defaults to <code>7337</code>) configuration settings. It also checks whether authentication is enabled.</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -2309,38 +2309,6 @@ FIXME
 </div>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="settings"><a class="anchor" href="#settings"></a><a class="link" href="#settings"><a id="settings"></a> Settings</a></h3>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Spark Properties</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Spark Property</th>
-<th class="tableblock halign-left valign-top">Default Value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark.shuffle.service.enabled"></a> <code>spark.shuffle.service.enabled</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enables <a href="#ExternalShuffleService">External Shuffle Service</a>. When <code>true</code>, the driver registers itself with the shuffle service.</p>
-<p class="tableblock">Used to enable for <a href="spark-dynamic-allocation.adoc">dynamic allocation of executors</a> and in <a href="spark-mesos/spark-mesos.adoc#CoarseMesosSchedulerBackend">CoarseMesosSchedulerBackend</a> to instantiate <a href="spark-mesos/spark-mesos.adoc#MesosExternalShuffleClient">MesosExternalShuffleClient</a>.</p>
-<p class="tableblock">Explicitly disabled for <code>LocalSparkCluster</code> (and <em>any</em> attempts to set it are ignored).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark.shuffle.service.port"></a> <code>spark.shuffle.service.port</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>7337</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 </div>

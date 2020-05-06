@@ -1957,7 +1957,7 @@ Use <a href="../tools/spark-submit.html" class="page">spark-submit</a>'s command
 <p><a href="#blockTransferService">BlockTransferService</a></p>
 </li>
 <li>
-<p><a id="securityManager"></a> <code>SecurityManager</code></p>
+<p><a id="securityManager"></a> SecurityManager</p>
 </li>
 <li>
 <p><a id="numUsableCores"></a> CPU cores</p>
@@ -1977,7 +1977,7 @@ Use <a href="../tools/spark-submit.html" class="page">spark-submit</a>'s command
 </table>
 </div>
 <div class="paragraph">
-<p>When created, BlockManager sets <a href="#externalShuffleServiceEnabled">externalShuffleServiceEnabled</a> internal flag per <a href="../spark-ExternalShuffleService.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> Spark property.</p>
+<p>When created, BlockManager sets <a href="#externalShuffleServiceEnabled">externalShuffleServiceEnabled</a> internal flag based on <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property.</p>
 </div>
 <div class="paragraph">
 <p>BlockManager then creates an instance of <a href="DiskBlockManager.html" class="page">DiskBlockManager</a> (requesting <code>deleteFilesOnStop</code> when an external shuffle service is not in use).</p>
@@ -2018,10 +2018,30 @@ It is computed specially in Spark on YARN.
 </div>
 </div>
 <div class="sect1">
+<h2 id="blocktransferservice"><a class="anchor" href="#blocktransferservice"></a><a class="link" href="#blocktransferservice"><a id="blockTransferService"></a> BlockTransferService</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>BlockManager is given a <a href="../spark-BlockTransferService.html" class="page">BlockTransferService</a> to be created.</p>
+</div>
+<div class="paragraph">
+<p>BlockTransferService is used as the <a href="#shuffleClient">ShuffleClient</a> when BlockManager is configured to use no external shuffle service (based on <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property).</p>
+</div>
+<div class="paragraph">
+<p>BlockTransferService is <a href="../spark-BlockTransferService.html#init" class="page">initialized</a> when BlockManager <a href="#initialize">is</a>.</p>
+</div>
+<div class="paragraph">
+<p>BlockTransferService is <a href="../spark-BlockTransferService.html#close" class="page">closed</a> when BlockManager is requested to <a href="#stop">stop</a>.</p>
+</div>
+<div class="paragraph">
+<p>BlockTransferService is used when BlockManager is requested to <a href="#getRemoteBytes">fetching a block from</a> or <a href="#replicate">replicate a block to</a> remote block managers.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="memorymanager"><a class="anchor" href="#memorymanager"></a><a class="link" href="#memorymanager"><a id="memoryManager"></a> MemoryManager</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>BlockManager is given a <a href="../memory/MemoryManager.html" class="page">MemoryManager</a> when <a href="#creating-instance">created</a>.</p>
+<p>BlockManager is given a <a href="../memory/MemoryManager.html" class="page">MemoryManager</a> to be <a href="#creating-instance">created</a>.</p>
 </div>
 <div class="paragraph">
 <p>BlockManager uses the MemoryManager for the following:</p>
@@ -2235,7 +2255,7 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="stopping-blockmanagerstop-method"><a class="anchor" href="#stopping-blockmanagerstop-method"></a><a class="link" href="#stopping-blockmanagerstop-method"><a id="stop"></a> Stopping BlockManager&#8201;&#8212;&#8201;<code>stop</code> Method</a></h2>
+<h2 id="stopping-blockmanager"><a class="anchor" href="#stopping-blockmanager"></a><a class="link" href="#stopping-blockmanager"><a id="stop"></a> Stopping BlockManager</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2260,7 +2280,7 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="getting-ids-of-existing-blocks-for-a-given-filtergetmatchingblockids-method"><a class="anchor" href="#getting-ids-of-existing-blocks-for-a-given-filtergetmatchingblockids-method"></a><a class="link" href="#getting-ids-of-existing-blocks-for-a-given-filtergetmatchingblockids-method"><a id="getMatchingBlockIds"></a> Getting IDs of Existing Blocks (For a Given Filter)&#8201;&#8212;&#8201;<code>getMatchingBlockIds</code> Method</a></h2>
+<h2 id="getting-ids-of-existing-blocks-for-a-given-filter"><a class="anchor" href="#getting-ids-of-existing-blocks-for-a-given-filter"></a><a class="link" href="#getting-ids-of-existing-blocks-for-a-given-filter"><a id="getMatchingBlockIds"></a> Getting IDs of Existing Blocks (For a Given Filter)</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2373,7 +2393,7 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="retrieving-block-from-local-or-remote-block-managersget-method"><a class="anchor" href="#retrieving-block-from-local-or-remote-block-managersget-method"></a><a class="link" href="#retrieving-block-from-local-or-remote-block-managersget-method"><a id="get"></a> Retrieving Block from Local or Remote Block Managers&#8201;&#8212;&#8201;<code>get</code> Method</a></h2>
+<h2 id="retrieving-block-from-local-or-remote-block-managers"><a class="anchor" href="#retrieving-block-from-local-or-remote-block-managers"></a><a class="link" href="#retrieving-block-from-local-or-remote-block-managers"><a id="get"></a> Retrieving Block from Local or Remote Block Managers</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2426,7 +2446,7 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="retrieving-block-datagetblockdata-method"><a class="anchor" href="#retrieving-block-datagetblockdata-method"></a><a class="link" href="#retrieving-block-datagetblockdata-method"><a id="getBlockData"></a> Retrieving Block Data&#8201;&#8212;&#8201;<code>getBlockData</code> Method</a></h2>
+<h2 id="retrieving-block-data"><a class="anchor" href="#retrieving-block-data"></a><a class="link" href="#retrieving-block-data"><a id="getBlockData"></a> Retrieving Block Data</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2473,7 +2493,7 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="retrieving-non-shuffle-local-block-datagetlocalbytes-method"><a class="anchor" href="#retrieving-non-shuffle-local-block-datagetlocalbytes-method"></a><a class="link" href="#retrieving-non-shuffle-local-block-datagetlocalbytes-method"><a id="getLocalBytes"></a> Retrieving Non-Shuffle Local Block Data&#8201;&#8212;&#8201;<code>getLocalBytes</code> Method</a></h2>
+<h2 id="retrieving-non-shuffle-local-block-data"><a class="anchor" href="#retrieving-non-shuffle-local-block-data"></a><a class="link" href="#retrieving-non-shuffle-local-block-data"><a id="getLocalBytes"></a> Retrieving Non-Shuffle Local Block Data</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2528,7 +2548,7 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="is-external-shuffle-service-enabledexternalshuffleserviceenabled-flag"><a class="anchor" href="#is-external-shuffle-service-enabledexternalshuffleserviceenabled-flag"></a><a class="link" href="#is-external-shuffle-service-enabledexternalshuffleserviceenabled-flag"><a id="externalShuffleServiceEnabled"></a> Is External Shuffle Service Enabled?&#8201;&#8212;&#8201;<code>externalShuffleServiceEnabled</code> Flag</a></h2>
+<h2 id="is-external-shuffle-service-enabled"><a class="anchor" href="#is-external-shuffle-service-enabled"></a><a class="link" href="#is-external-shuffle-service-enabled"><a id="externalShuffleServiceEnabled"></a> Is External Shuffle Service Enabled?</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>When the <a href="../spark-ExternalShuffleService.html" class="page">External Shuffle Service</a> is enabled for a Spark application, BlockManager uses <a href="../spark-ShuffleClient-ExternalShuffleClient.html" class="page">ExternalShuffleClient</a> to read other executors' shuffle files.</p>
@@ -2572,7 +2592,7 @@ FIXME How is <code>shuffleClient</code> used?
 </div>
 </div>
 <div class="sect1">
-<h2 id="storing-block-data-locallyputblockdata-method"><a class="anchor" href="#storing-block-data-locallyputblockdata-method"></a><a class="link" href="#storing-block-data-locallyputblockdata-method"><a id="putBlockData"></a> Storing Block Data Locally&#8201;&#8212;&#8201;<code>putBlockData</code> Method</a></h2>
+<h2 id="storing-block-data-locally"><a class="anchor" href="#storing-block-data-locally"></a><a class="link" href="#storing-block-data-locally"><a id="putBlockData"></a> Storing Block Data Locally</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2604,7 +2624,7 @@ FIXME How is <code>shuffleClient</code> used?
 </div>
 </div>
 <div class="sect1">
-<h2 id="storing-block-bytes-locallyputbytes-method"><a class="anchor" href="#storing-block-bytes-locallyputbytes-method"></a><a class="link" href="#storing-block-bytes-locallyputbytes-method"><a id="putBytes"></a> Storing Block Bytes Locally&#8201;&#8212;&#8201;<code>putBytes</code> Method</a></h2>
+<h2 id="storing-block-bytes-locally"><a class="anchor" href="#storing-block-bytes-locally"></a><a class="link" href="#storing-block-bytes-locally"><a id="putBytes"></a> Storing Block Bytes Locally</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2803,7 +2823,7 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="removing-block-from-memory-and-diskremoveblock-method"><a class="anchor" href="#removing-block-from-memory-and-diskremoveblock-method"></a><a class="link" href="#removing-block-from-memory-and-diskremoveblock-method"><a id="removeBlock"></a> Removing Block From Memory and Disk&#8201;&#8212;&#8201;<code>removeBlock</code> Method</a></h2>
+<h2 id="removing-block-from-memory-and-disk"><a class="anchor" href="#removing-block-from-memory-and-disk"></a><a class="link" href="#removing-block-from-memory-and-disk"><a id="removeBlock"></a> Removing Block From Memory and Disk</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2861,7 +2881,7 @@ It is used to <a href="#removeRdd">remove RDDs</a> and <a href="#removeBroadcast
 </div>
 </div>
 <div class="sect1">
-<h2 id="removing-rdd-blocksremoverdd-method"><a class="anchor" href="#removing-rdd-blocksremoverdd-method"></a><a class="link" href="#removing-rdd-blocksremoverdd-method"><a id="removeRdd"></a> Removing RDD Blocks&#8201;&#8212;&#8201;<code>removeRdd</code> Method</a></h2>
+<h2 id="removing-rdd-blocks"><a class="anchor" href="#removing-rdd-blocks"></a><a class="link" href="#removing-rdd-blocks"><a id="removeRdd"></a> Removing RDD Blocks</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2900,7 +2920,7 @@ It is used by <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc#RemoveR
 </div>
 </div>
 <div class="sect1">
-<h2 id="removing-all-blocks-of-broadcast-variableremovebroadcast-method"><a class="anchor" href="#removing-all-blocks-of-broadcast-variableremovebroadcast-method"></a><a class="link" href="#removing-all-blocks-of-broadcast-variableremovebroadcast-method"><a id="removeBroadcast"></a> Removing All Blocks of Broadcast Variable&#8201;&#8212;&#8201;<code>removeBroadcast</code> Method</a></h2>
+<h2 id="removing-all-blocks-of-broadcast-variable"><a class="anchor" href="#removing-all-blocks-of-broadcast-variable"></a><a class="link" href="#removing-all-blocks-of-broadcast-variable"><a id="removeBroadcast"></a> Removing All Blocks of Broadcast Variable</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2939,7 +2959,7 @@ It is used by <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc#RemoveB
 </div>
 </div>
 <div class="sect1">
-<h2 id="getting-block-statusgetstatus-method"><a class="anchor" href="#getting-block-statusgetstatus-method"></a><a class="link" href="#getting-block-statusgetstatus-method"><a id="getStatus"></a> Getting Block Status&#8201;&#8212;&#8201;<code>getStatus</code> Method</a></h2>
+<h2 id="getting-block-status"><a class="anchor" href="#getting-block-status"></a><a class="link" href="#getting-block-status"><a id="getStatus"></a> Getting Block Status</a></h2>
 <div class="sectionbody">
 <div class="admonitionblock caution">
 <table>
@@ -2973,7 +2993,7 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="initializing-blockmanagerinitialize-method"><a class="anchor" href="#initializing-blockmanagerinitialize-method"></a><a class="link" href="#initializing-blockmanagerinitialize-method"><a id="initialize"></a> Initializing BlockManager&#8201;&#8212;&#8201;<code>initialize</code> Method</a></h2>
+<h2 id="initializing-blockmanager"><a class="anchor" href="#initializing-blockmanager"></a><a class="link" href="#initializing-blockmanager"><a id="initialize"></a> Initializing BlockManager</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3073,7 +3093,7 @@ FIXME Describe <code>shuffleServerId</code>. Where is it used?
 </div>
 </div>
 <div class="sect1">
-<h2 id="registering-executors-blockmanager-with-external-shuffle-serverregisterwithexternalshuffleserver-method"><a class="anchor" href="#registering-executors-blockmanager-with-external-shuffle-serverregisterwithexternalshuffleserver-method"></a><a class="link" href="#registering-executors-blockmanager-with-external-shuffle-serverregisterwithexternalshuffleserver-method"><a id="registerWithExternalShuffleServer"></a> Registering Executor&#8217;s BlockManager with External Shuffle Server&#8201;&#8212;&#8201;<code>registerWithExternalShuffleServer</code> Method</a></h2>
+<h2 id="registering-executors-blockmanager-with-external-shuffle-server"><a class="anchor" href="#registering-executors-blockmanager-with-external-shuffle-server"></a><a class="link" href="#registering-executors-blockmanager-with-external-shuffle-server"><a id="registerWithExternalShuffleServer"></a> Registering Executor&#8217;s BlockManager with External Shuffle Server</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3156,7 +3176,7 @@ registerWithExternalShuffleServer is used when BlockManager is requested to <a h
 </div>
 </div>
 <div class="sect1">
-<h2 id="re-registering-blockmanager-with-driver-and-reporting-blocksreregister-method"><a class="anchor" href="#re-registering-blockmanager-with-driver-and-reporting-blocksreregister-method"></a><a class="link" href="#re-registering-blockmanager-with-driver-and-reporting-blocksreregister-method"><a id="reregister"></a> Re-registering BlockManager with Driver and Reporting Blocks&#8201;&#8212;&#8201;<code>reregister</code> Method</a></h2>
+<h2 id="re-registering-blockmanager-with-driver-and-reporting-blocks"><a class="anchor" href="#re-registering-blockmanager-with-driver-and-reporting-blocks"></a><a class="link" href="#re-registering-blockmanager-with-driver-and-reporting-blocks"><a id="reregister"></a> Re-registering BlockManager with Driver and Reporting Blocks</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3214,7 +3234,7 @@ registerWithExternalShuffleServer is used when BlockManager is requested to <a h
 </div>
 </div>
 <div class="sect1">
-<h2 id="calculate-current-block-statusgetcurrentblockstatus-method"><a class="anchor" href="#calculate-current-block-statusgetcurrentblockstatus-method"></a><a class="link" href="#calculate-current-block-statusgetcurrentblockstatus-method"><a id="getCurrentBlockStatus"></a> Calculate Current Block Status&#8201;&#8212;&#8201;<code>getCurrentBlockStatus</code> Method</a></h2>
+<h2 id="calculate-current-block-status"><a class="anchor" href="#calculate-current-block-status"></a><a class="link" href="#calculate-current-block-status"><a id="getCurrentBlockStatus"></a> Calculate Current Block Status</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3294,7 +3314,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="sect1">
-<h2 id="reporting-current-storage-status-of-block-to-driverreportblockstatus-internal-method"><a class="anchor" href="#reporting-current-storage-status-of-block-to-driverreportblockstatus-internal-method"></a><a class="link" href="#reporting-current-storage-status-of-block-to-driverreportblockstatus-internal-method"><a id="reportBlockStatus"></a> Reporting Current Storage Status of Block to Driver&#8201;&#8212;&#8201;<code>reportBlockStatus</code> Internal Method</a></h2>
+<h2 id="reporting-current-storage-status-of-block-to-driver"><a class="anchor" href="#reporting-current-storage-status-of-block-to-driver"></a><a class="link" href="#reporting-current-storage-status-of-block-to-driver"><a id="reportBlockStatus"></a> Reporting Current Storage Status of Block to Driver</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3339,7 +3359,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="sect1">
-<h2 id="reporting-block-status-update-to-drivertrytoreportblockstatus-internal-method"><a class="anchor" href="#reporting-block-status-update-to-drivertrytoreportblockstatus-internal-method"></a><a class="link" href="#reporting-block-status-update-to-drivertrytoreportblockstatus-internal-method"><a id="tryToReportBlockStatus"></a> Reporting Block Status Update to Driver&#8201;&#8212;&#8201;<code>tryToReportBlockStatus</code> Internal Method</a></h2>
+<h2 id="reporting-block-status-update-to-driver"><a class="anchor" href="#reporting-block-status-update-to-driver"></a><a class="link" href="#reporting-block-status-update-to-driver"><a id="tryToReportBlockStatus"></a> Reporting Block Status Update to Driver</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3427,7 +3447,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="sect1">
-<h2 id="registering-task-with-blockinfomanagerregistertask-method"><a class="anchor" href="#registering-task-with-blockinfomanagerregistertask-method"></a><a class="link" href="#registering-task-with-blockinfomanagerregistertask-method"><a id="registerTask"></a> Registering Task with BlockInfoManager&#8201;&#8212;&#8201;<code>registerTask</code> Method</a></h2>
+<h2 id="registering-task-with-blockinfomanager"><a class="anchor" href="#registering-task-with-blockinfomanager"></a><a class="link" href="#registering-task-with-blockinfomanager"><a id="registerTask"></a> Registering Task with BlockInfoManager</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3452,7 +3472,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-diskblockobjectwritergetdiskwriter-method"><a class="anchor" href="#creating-diskblockobjectwritergetdiskwriter-method"></a><a class="link" href="#creating-diskblockobjectwritergetdiskwriter-method"><a id="getDiskWriter"></a> Creating DiskBlockObjectWriter&#8201;&#8212;&#8201;<code>getDiskWriter</code> Method</a></h2>
+<h2 id="creating-diskblockobjectwriter"><a class="anchor" href="#creating-diskblockobjectwriter"></a><a class="link" href="#creating-diskblockobjectwriter"><a id="getDiskWriter"></a> Creating DiskBlockObjectWriter</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3465,57 +3485,37 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="paragraph">
-<p><code>getDiskWriter</code> simply creates a <a href="DiskBlockObjectWriter.html" class="page">DiskBlockObjectWriter</a> (with <a href="#spark-configuration-properties.adoc#spark.shuffle.sync" class="page unresolved">spark.shuffle.sync</a> Spark property for <code>syncWrites</code>).</p>
+<p>getDiskWriter creates a <a href="DiskBlockObjectWriter.html" class="page">DiskBlockObjectWriter</a> (with <a href="../spark-configuration-properties.html#spark.shuffle.sync" class="page">spark.shuffle.sync</a> configuration property as syncWrites argument).</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>getDiskWriter</code> uses the same <code>serializerManager</code> that was used to <a href="#creating-instance">create a BlockManager</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
 <div class="paragraph">
-<p><code>getDiskWriter</code> is used when:</p>
+<p>getDiskWriter uses the <a href="#serializerManager">SerializerManager</a> of the BlockManager.</p>
+</div>
+<div class="paragraph">
+<p>getDiskWriter is used when:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>BypassMergeSortShuffleWriter</code> is requested to <a href="../shuffle/BypassMergeSortShuffleWriter.html#write" class="page">write records</a></p>
+<p>BypassMergeSortShuffleWriter is requested to <a href="../shuffle/BypassMergeSortShuffleWriter.html#write" class="page">write records (of a partition)</a></p>
 </li>
 <li>
-<p><code>ShuffleExternalSorter</code> is requested to <a href="../shuffle/ShuffleExternalSorter.html#writeSortedFile" class="page">writeSortedFile</a></p>
+<p>ShuffleExternalSorter is requested to <a href="../shuffle/ShuffleExternalSorter.html#writeSortedFile" class="page">writeSortedFile</a></p>
 </li>
 <li>
 <p>ExternalAppendOnlyMap is requested to <a href="../shuffle/ExternalAppendOnlyMap.html#spillMemoryIteratorToDisk" class="page">spillMemoryIteratorToDisk</a></p>
 </li>
 <li>
-<p><code>ExternalSorter</code> is requested to <a href="../shuffle/ExternalSorter.html#spillMemoryIteratorToDisk" class="page">spillMemoryIteratorToDisk</a> and <a href="../shuffle/ExternalSorter.html#writePartitionedFile" class="page">writePartitionedFile</a></p>
+<p>ExternalSorter is requested to <a href="../shuffle/ExternalSorter.html#spillMemoryIteratorToDisk" class="page">spillMemoryIteratorToDisk</a> and <a href="../shuffle/ExternalSorter.html#writePartitionedFile" class="page">writePartitionedFile</a></p>
 </li>
 <li>
-<p><code>UnsafeSorterSpillWriter</code> is created</p>
+<p><a href="../memory/UnsafeSorterSpillWriter.html" class="page">UnsafeSorterSpillWriter</a> is created</p>
 </li>
 </ul>
-</div>
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="recording-updated-blockstatus-in-current-tasks-taskmetricsaddupdatedblockstatustotaskmetrics-internal-method"><a class="anchor" href="#recording-updated-blockstatus-in-current-tasks-taskmetricsaddupdatedblockstatustotaskmetrics-internal-method"></a><a class="link" href="#recording-updated-blockstatus-in-current-tasks-taskmetricsaddupdatedblockstatustotaskmetrics-internal-method"><a id="addUpdatedBlockStatusToTaskMetrics"></a> Recording Updated BlockStatus In Current Task&#8217;s TaskMetrics&#8201;&#8212;&#8201;<code>addUpdatedBlockStatusToTaskMetrics</code> Internal Method</a></h2>
+<h2 id="recording-updated-blockstatus-in-current-tasks-taskmetrics"><a class="anchor" href="#recording-updated-blockstatus-in-current-tasks-taskmetrics"></a><a class="link" href="#recording-updated-blockstatus-in-current-tasks-taskmetrics"><a id="addUpdatedBlockStatusToTaskMetrics"></a> Recording Updated BlockStatus In Current Task&#8217;s TaskMetrics</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3540,7 +3540,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="sect1">
-<h2 id="requesting-shuffle-related-spark-metrics-sourceshufflemetricssource-method"><a class="anchor" href="#requesting-shuffle-related-spark-metrics-sourceshufflemetricssource-method"></a><a class="link" href="#requesting-shuffle-related-spark-metrics-sourceshufflemetricssource-method"><a id="shuffleMetricsSource"></a> Requesting Shuffle-Related Spark Metrics Source&#8201;&#8212;&#8201;<code>shuffleMetricsSource</code> Method</a></h2>
+<h2 id="requesting-shuffle-related-spark-metrics-source"><a class="anchor" href="#requesting-shuffle-related-spark-metrics-source"></a><a class="link" href="#requesting-shuffle-related-spark-metrics-source"><a id="shuffleMetricsSource"></a> Requesting Shuffle-Related Spark Metrics Source</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3548,29 +3548,17 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="paragraph">
-<p><code>shuffleMetricsSource</code> requests the <a href="#shuffleClient">ShuffleClient</a> for the <a href="spark-ShuffleClient.adoc#shuffleMetrics">shuffle-related metrics</a> and creates a <a href="spark-BlockManager-ShuffleMetricsSource.adoc">ShuffleMetricsSource</a> with the <a href="spark-BlockManager-ShuffleMetricsSource.adoc#sourceName">source name</a> per <a href="spark-ExternalShuffleService.adoc#spark.shuffle.service.enabled">spark.shuffle.service.enabled</a> configuration property:</p>
+<p><code>shuffleMetricsSource</code> requests the <a href="#shuffleClient">ShuffleClient</a> for the <a href="spark-ShuffleClient.adoc#shuffleMetrics">shuffle-related metrics</a> and creates a <a href="spark-BlockManager-ShuffleMetricsSource.adoc">ShuffleMetricsSource</a> with the <a href="spark-BlockManager-ShuffleMetricsSource.adoc#sourceName">source name</a> per <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>ExternalShuffle</strong> when <a href="spark-ExternalShuffleService.adoc#spark.shuffle.service.enabled">spark.shuffle.service.enabled</a> configuration property is on (<code>true</code>)</p>
+<p><strong>ExternalShuffle</strong> when <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property is on (<code>true</code>)</p>
 </li>
 <li>
-<p><strong>NettyBlockTransfer</strong> when <a href="spark-ExternalShuffleService.adoc#spark.shuffle.service.enabled">spark.shuffle.service.enabled</a> configuration property is off (<code>false</code>)</p>
+<p><strong>NettyBlockTransfer</strong> when <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property is off (<code>false</code>)</p>
 </li>
 </ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<a href="spark-ExternalShuffleService.adoc#spark.shuffle.service.enabled">spark.shuffle.service.enabled</a> configuration property is off (<code>false</code>) by default.
-</td>
-</tr>
-</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3587,34 +3575,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="sect1">
-<h2 id="settings"><a class="anchor" href="#settings"></a><a class="link" href="#settings"><a id="settings"></a> Settings</a></h2>
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Spark Properties</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Spark Property</th>
-<th class="tableblock halign-left valign-top">Default Value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark_blockManager_port"></a> <code>spark.blockManager.port</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Port to use for the block manager when a more specific setting for the driver or executors is not provided.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="replicating-block-to-peersreplicate-internal-method"><a class="anchor" href="#replicating-block-to-peersreplicate-internal-method"></a><a class="link" href="#replicating-block-to-peersreplicate-internal-method"><a id="replicate"></a> Replicating Block To Peers&#8201;&#8212;&#8201;<code>replicate</code> Internal Method</a></h2>
+<h2 id="replicating-block-to-peers"><a class="anchor" href="#replicating-block-to-peers"></a><a class="link" href="#replicating-block-to-peers"><a id="replicate"></a> Replicating Block To Peers</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3742,7 +3703,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="sect1">
-<h2 id="fetching-block-from-remote-nodesgetremotebytes-method"><a class="anchor" href="#fetching-block-from-remote-nodesgetremotebytes-method"></a><a class="link" href="#fetching-block-from-remote-nodesgetremotebytes-method"><a id="getRemoteBytes"></a> Fetching Block From Remote Nodes&#8201;&#8212;&#8201;<code>getRemoteBytes</code> Method</a></h2>
+<h2 id="fetching-block-from-remote-nodes"><a class="anchor" href="#fetching-block-from-remote-nodes"></a><a class="link" href="#fetching-block-from-remote-nodes"><a id="getRemoteBytes"></a> Fetching Block From Remote Nodes</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3871,51 +3832,12 @@ FIXME Figure
 </table>
 </div>
 <div id="shuffleClient-externalShuffleServiceEnabled" class="paragraph">
-<p><code>shuffleClient</code> uses <code>spark.shuffle.service.enabled</code> configuration property (default: <code>false</code>) that controls whether to use <a href="spark-ShuffleClient-ExternalShuffleClient.adoc">ExternalShuffleClient</a> (<code>true</code>) or the <a href="#blockTransferService">BlockTransferService</a> (i.e. <a href="spark-NettyBlockTransferService.adoc">NettyBlockTransferService</a>).</p>
+<p><code>shuffleClient</code> uses <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property that controls whether to use <a href="spark-ShuffleClient-ExternalShuffleClient.adoc">ExternalShuffleClient</a> (<code>true</code>) or the <a href="#blockTransferService">BlockTransferService</a> (i.e. <a href="spark-NettyBlockTransferService.adoc">NettyBlockTransferService</a>).</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="blocktransferservice-property"><a class="anchor" href="#blocktransferservice-property"></a><a class="link" href="#blocktransferservice-property"><a id="blockTransferService"></a> <code>blockTransferService</code> Property</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>When <a href="#creating-instance">created</a>, BlockManager is given a <a href="spark-BlockTransferService.adoc">BlockTransferService</a> that is used for the following services:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#getRemoteBytes">Fetching a block from remote nodes</a></p>
-</li>
-<li>
-<p><a href="#replicate">Replicating a block to peers</a></p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Remote nodes, peers, block managers are all synonyms.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The <code>BlockTransferService</code> acts as the <a href="#shuffleClient">ShuffleClient</a> when <a href="#shuffleClient-externalShuffleServiceEnabled">spark.shuffle.service.enabled</a> configuration property is off (which is the default).</p>
-</div>
-<div class="paragraph">
-<p>When <a href="#initialize">initialized</a>, BlockManager requests the <code>BlockTransferService</code> to <a href="spark-BlockTransferService.adoc#init">init</a>. BlockManager also requests the <a href="#shuffleClient">ShuffleClient</a> to <a href="spark-ShuffleClient.adoc#init">init</a> (that does nothing by default).</p>
-</div>
-<div class="paragraph">
-<p>When <a href="#stop">stopped</a>, BlockManager requests the <code>BlockTransferService</code> to <a href="spark-BlockTransferService.adoc#close">close</a>. BlockManager also requests the <a href="#shuffleClient">ShuffleClient</a> to <code>close</code>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="getting-block-from-block-managers-or-computing-and-storing-it-otherwisegetorelseupdate-method"><a class="anchor" href="#getting-block-from-block-managers-or-computing-and-storing-it-otherwisegetorelseupdate-method"></a><a class="link" href="#getting-block-from-block-managers-or-computing-and-storing-it-otherwisegetorelseupdate-method"><a id="getOrElseUpdate"></a> Getting Block From Block Managers Or Computing and Storing It Otherwise&#8201;&#8212;&#8201;<code>getOrElseUpdate</code> Method</a></h2>
+<h2 id="getting-block-from-block-managers-or-computing-and-storing-it-otherwise"><a class="anchor" href="#getting-block-from-block-managers-or-computing-and-storing-it-otherwise"></a><a class="link" href="#getting-block-from-block-managers-or-computing-and-storing-it-otherwise"><a id="getOrElseUpdate"></a> Getting Block From Block Managers Or Computing and Storing It Otherwise</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -4102,7 +4024,7 @@ Remote nodes, peers, block managers are all synonyms.
 </div>
 </div>
 <div class="sect1">
-<h2 id="removing-blocks-from-memory-onlydropfrommemory-method"><a class="anchor" href="#removing-blocks-from-memory-onlydropfrommemory-method"></a><a class="link" href="#removing-blocks-from-memory-onlydropfrommemory-method"><a id="dropFromMemory"></a> Removing Blocks From Memory Only&#8201;&#8212;&#8201;<code>dropFromMemory</code> Method</a></h2>
+<h2 id="removing-blocks-from-memory-only"><a class="anchor" href="#removing-blocks-from-memory-only"></a><a class="link" href="#removing-blocks-from-memory-only"><a id="dropFromMemory"></a> Removing Blocks From Memory Only</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">

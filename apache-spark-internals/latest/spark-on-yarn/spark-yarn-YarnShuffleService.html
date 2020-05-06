@@ -1884,7 +1884,7 @@ FIXME What happens when the <code>spark.shuffle.service.enabled</code> flag is e
 <p><code>YarnShuffleService</code> is <a href="#configuration-file">configured in <code>yarn-site.xml</code> configuration file</a> and <a href="#serviceInit">is initialized on each YARN NodeManager node</a> when the node(s) starts.</p>
 </div>
 <div class="paragraph">
-<p>After the external shuffle service is configured in YARN you enable it in a Spark application using <a href="../spark-ExternalShuffleService.adoc#spark.shuffle.service.enabled">spark.shuffle.service.enabled</a> flag.</p>
+<p>After the external shuffle service is configured in YARN you enable it in a Spark application using <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2260,7 +2260,7 @@ Use <code>yarn classpath</code> command to know YARN&#8217;s CLASSPATH.
 <div class="sect3">
 <h4 id="yarn-site-xmlnodemanager-configuration-file"><a class="anchor" href="#yarn-site-xmlnodemanager-configuration-file"></a><a class="link" href="#yarn-site-xmlnodemanager-configuration-file"><a id="configuration-file"></a> yarn-site.xml&#8201;&#8212;&#8201;NodeManager Configuration File</a></h4>
 <div class="paragraph">
-<p>If <a href="../spark-ExternalShuffleService.adoc#spark.shuffle.service.enabled">external shuffle service is enabled</a>, you need to add <code>spark_shuffle</code> to <code>yarn.nodemanager.aux-services</code> in the <code>yarn-site.xml</code> file on all nodes.</p>
+<p>If <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">external shuffle service is enabled</a>, you need to add <code>spark_shuffle</code> to <code>yarn.nodemanager.aux-services</code> in the <code>yarn-site.xml</code> file on all nodes.</p>
 </div>
 <div class="listingblock">
 <div class="title">yarn-site.xml&#8201;&#8212;&#8201;NodeManager Configuration properties</div>
@@ -2295,7 +2295,7 @@ Use <code>yarn classpath</code> command to know YARN&#8217;s CLASSPATH.
 <div class="sect2">
 <h3 id="exceptionattempting-to-use-external-shuffle-service-in-spark-application-in-spark-on-yarn"><a class="anchor" href="#exceptionattempting-to-use-external-shuffle-service-in-spark-application-in-spark-on-yarn"></a><a class="link" href="#exceptionattempting-to-use-external-shuffle-service-in-spark-application-in-spark-on-yarn">Exception&#8201;&#8212;&#8201;Attempting to Use External Shuffle Service in Spark Application in Spark on YARN</a></h3>
 <div class="paragraph">
-<p>When you <a href="../spark-ExternalShuffleService.adoc#spark.shuffle.service.enabled">enable an external shuffle service in a Spark application</a> when using <a href="README.adoc">Spark on YARN</a> but do not <a href="#installation">install YARN Shuffle Service</a> you will see the following exception in the logs:</p>
+<p>When you <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">enable an external shuffle service in a Spark application</a> when using <a href="README.adoc">Spark on YARN</a> but do not <a href="#installation">install YARN Shuffle Service</a> you will see the following exception in the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">

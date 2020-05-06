@@ -1866,6 +1866,18 @@
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.blockManager.port</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.blockManager.port"></a><a id="BLOCK_MANAGER_PORT"></a> Port to use for block managers to listen on when a more specific setting is not provided (i.e. <a href="#spark.driver.blockManager.port">spark.driver.blockManager.port</a> for the driver).</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>0</code></p>
+</div>
+<div class="paragraph">
+<p>In Spark on Kubernetes the default port is <code>7079</code></p>
+</div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.default.parallelism</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a id="spark.default.parallelism"></a> Number of partitions to use for <a href="#spark-rdd-HashPartitioner.adoc" class="page unresolved">HashPartitioner</a>.</p>
@@ -1891,6 +1903,15 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.diskStore.subDirectories</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div id="spark.diskStore.subDirectories" class="paragraph">
 <p>Default: <code>64</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.driver.blockManager.port</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.driver.blockManager.port"></a><a id="DRIVER_BLOCK_MANAGER_PORT"></a> Port the <a href="storage/BlockManager.html" class="page">block manager</a> on the driver listens on</p>
+</div>
+<div class="paragraph">
+<p>Default: <a href="#spark.blockManager.port">spark.blockManager.port</a></p>
 </div></div></td>
 </tr>
 <tr>
@@ -2623,6 +2644,28 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 </div>
 <div class="paragraph">
 <p>Default: <code>true</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-service-enabled"><a class="anchor" href="#spark-shuffle-service-enabled"></a><a class="link" href="#spark-shuffle-service-enabled"><a id="spark.shuffle.service.enabled"></a><a id="SHUFFLE_SERVICE_ENABLED"></a> spark.shuffle.service.enabled</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Controls whether to use the <a href="spark-ExternalShuffleService.html" class="page">External Shuffle Service</a></p>
+</div>
+<div class="paragraph">
+<p>Default: <code>false</code></p>
+</div>
+<div class="paragraph">
+<p>When enabled (<code>true</code>), the driver registers itself with the shuffle service.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-service-port"><a class="anchor" href="#spark-shuffle-service-port"></a><a class="link" href="#spark-shuffle-service-port"><a id="spark.shuffle.service.port"></a> spark.shuffle.service.port</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Default: <code>7337</code></p>
 </div>
 </div>
 </div>
