@@ -415,7 +415,7 @@
     <a class="nav-link" href="SortShuffleWriter.html">SortShuffleWriter</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-shuffle-UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
+    <a class="nav-link" href="UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
   </li>
 </ul>
   </li>
@@ -1873,7 +1873,7 @@
 <p><a id="blockManager"></a> <a href="../storage/BlockManager.html" class="page">BlockManager</a></p>
 </li>
 <li>
-<p><a id="taskContext"></a> <a href="#ROOT:spark-TaskContext.adoc" class="page unresolved">TaskContext</a></p>
+<p><a id="taskContext"></a> <a href="../scheduler/spark-TaskContext.html" class="page">TaskContext</a></p>
 </li>
 <li>
 <p><a id="initialSize"></a> Initial size</p>
@@ -1896,7 +1896,7 @@
 <p>ShuffleExternalSorter creates a <a href="#inMemSorter">ShuffleInMemorySorter</a> (with <code>spark.shuffle.sort.useRadixSort</code> Spark property enabled by default).</p>
 </div>
 <div class="paragraph">
-<p>ShuffleExternalSorter is created for <a href="spark-shuffle-UnsafeShuffleWriter.html" class="page">UnsafeShuffleWriter</a>.</p>
+<p>ShuffleExternalSorter is created for <a href="UnsafeShuffleWriter.html" class="page">UnsafeShuffleWriter</a>.</p>
 </div>
 </div>
 </div>
@@ -1941,75 +1941,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="closeandgetspills-method"><a class="anchor" href="#closeandgetspills-method"></a><a class="link" href="#closeandgetspills-method"><a id="closeAndGetSpills"></a> closeAndGetSpills Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="insertrecord-method"><a class="anchor" href="#insertrecord-method"></a><a class="link" href="#insertrecord-method"><a id="insertRecord"></a> insertRecord Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="freememory-method"><a class="anchor" href="#freememory-method"></a><a class="link" href="#freememory-method"><a id="freeMemory"></a> freeMemory Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="getpeakmemoryusedbytes-method"><a class="anchor" href="#getpeakmemoryusedbytes-method"></a><a class="link" href="#getpeakmemoryusedbytes-method"><a id="getPeakMemoryUsedBytes"></a> getPeakMemoryUsedBytes Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="writesortedfile-method"><a class="anchor" href="#writesortedfile-method"></a><a class="link" href="#writesortedfile-method"><a id="writeSortedFile"></a> writeSortedFile Method</a></h2>
+<h2 id="writesortedfile-internal-method"><a class="anchor" href="#writesortedfile-internal-method"></a><a class="link" href="#writesortedfile-internal-method"><a id="writeSortedFile"></a> writeSortedFile Internal Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2026,19 +1958,18 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="cleanupresources-method"><a class="anchor" href="#cleanupresources-method"></a><a class="link" href="#cleanupresources-method"><a id="cleanupResources"></a> cleanupResources Method</a></h2>
+<h2 id="cleanupresources-internal-method"><a class="anchor" href="#cleanupresources-internal-method"></a><a class="link" href="#cleanupresources-internal-method"><a id="cleanupResources"></a> cleanupResources Internal Method</a></h2>
 <div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void cleanupResources()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>cleanupResources&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>cleanupResources is used when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>
@@ -2067,7 +1998,7 @@ FIXME
 <p>spill <a href="#freeMemory">frees execution memory</a> (and records the memory bytes spilled as <code>spillSize</code>).</p>
 </div>
 <div class="paragraph">
-<p>spill then requests the <a href="#inMemSorter">ShuffleInMemorySorter</a> to <a href="spark-shuffle-ShuffleInMemorySorter.html#reset" class="page">reset</a> followed by requesting the <a href="#spark-TaskContext.adoc#taskMetrics" class="page unresolved">TaskMetrics</a> (of the <a href="#taskContext">TaskContext</a>) to <a href="#spark-executor-TaskMetrics.adoc#incMemoryBytesSpilled" class="page unresolved">increase the memory bytes spilled</a>.</p>
+<p>spill then requests the <a href="#inMemSorter">ShuffleInMemorySorter</a> to <a href="spark-shuffle-ShuffleInMemorySorter.html#reset" class="page">reset</a> followed by requesting the <a href="../scheduler/spark-TaskContext.html#taskMetrics" class="page">TaskMetrics</a> (of the <a href="#taskContext">TaskContext</a>) to <a href="../metrics/spark-executor-TaskMetrics.html#incMemoryBytesSpilled" class="page">increase the memory bytes spilled</a>.</p>
 </div>
 <div class="paragraph">
 <p>In the end, spill returns the memory bytes spilled (<em>spill size</em>).</p>
@@ -2117,6 +2048,74 @@ FIXME
 </div>
 <div class="paragraph">
 <p>growPointerArrayIfNecessary is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="closeandgetspills-method"><a class="anchor" href="#closeandgetspills-method"></a><a class="link" href="#closeandgetspills-method"><a id="closeAndGetSpills"></a> closeAndGetSpills Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SpillInfo[] closeAndGetSpills()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>closeAndGetSpills&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>closeAndGetSpills is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="insertrecord-method"><a class="anchor" href="#insertrecord-method"></a><a class="link" href="#insertrecord-method"><a id="insertRecord"></a> insertRecord Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void insertRecord(
+  Object recordBase,
+  long recordOffset,
+  int length,
+  int partitionId)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>insertRecord&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>insertRecord is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="freememory-method"><a class="anchor" href="#freememory-method"></a><a class="link" href="#freememory-method"><a id="freeMemory"></a> freeMemory Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">long freeMemory()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>freeMemory&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>freeMemory is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getpeakmemoryusedbytes-method"><a class="anchor" href="#getpeakmemoryusedbytes-method"></a><a class="link" href="#getpeakmemoryusedbytes-method"><a id="getPeakMemoryUsedBytes"></a> getPeakMemoryUsedBytes Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">long getPeakMemoryUsedBytes()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getPeakMemoryUsedBytes&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>getPeakMemoryUsedBytes is used when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>

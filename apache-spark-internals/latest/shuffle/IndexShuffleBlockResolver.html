@@ -415,7 +415,7 @@
     <a class="nav-link" href="SortShuffleWriter.html">SortShuffleWriter</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-shuffle-UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
+    <a class="nav-link" href="UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
   </li>
 </ul>
   </li>
@@ -1967,7 +1967,7 @@ The offsets are the sizes in the input <code>lengths</code> exactly.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>writeIndexFileAndCommit</code> is used when <a href="ShuffleWriter.adoc">ShuffleWriters</a> are requested to write records to a shuffle system, i.e. <a href="SortShuffleWriter.html#write" class="page">SortShuffleWriter</a>, <a href="BypassMergeSortShuffleWriter.html#write" class="page">BypassMergeSortShuffleWriter</a>, and <a href="spark-shuffle-UnsafeShuffleWriter.adoc#closeAndWriteOutput">UnsafeShuffleWriter</a>.
+<code>writeIndexFileAndCommit</code> is used when <a href="ShuffleWriter.adoc">ShuffleWriters</a> are requested to write records to a shuffle system, i.e. <a href="SortShuffleWriter.html#write" class="page">SortShuffleWriter</a>, <a href="BypassMergeSortShuffleWriter.html#write" class="page">BypassMergeSortShuffleWriter</a>, and <a href="UnsafeShuffleWriter.html#closeAndWriteOutput" class="page">UnsafeShuffleWriter</a>.
 </td>
 </tr>
 </table>
@@ -2207,7 +2207,7 @@ The start and end offsets are the offset and the length of the file segment for 
 <p>IndexShuffleBlockResolver is requested to <a href="#getBlockData">get a ManagedBuffer for block data</a>, <a href="#removeDataByMap">removeDataByMap</a>, and <a href="#writeIndexFileAndCommit">write shuffle index and data files</a></p>
 </li>
 <li>
-<p><a href="BypassMergeSortShuffleWriter.html#write" class="page">BypassMergeSortShuffleWriter</a>, <a href="spark-shuffle-UnsafeShuffleWriter.html#closeAndWriteOutput" class="page">UnsafeShuffleWriter</a>, and <a href="SortShuffleWriter.html#write" class="page">SortShuffleWriter</a> are requested to write records to a shuffle system</p>
+<p><a href="BypassMergeSortShuffleWriter.html#write" class="page">BypassMergeSortShuffleWriter</a>, <a href="UnsafeShuffleWriter.html#closeAndWriteOutput" class="page">UnsafeShuffleWriter</a>, and <a href="SortShuffleWriter.html#write" class="page">SortShuffleWriter</a> are requested to write records to a shuffle system</p>
 </li>
 </ul>
 </div>

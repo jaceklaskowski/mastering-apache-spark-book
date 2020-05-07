@@ -415,7 +415,7 @@
     <a class="nav-link" href="SortShuffleWriter.html">SortShuffleWriter</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-shuffle-UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
+    <a class="nav-link" href="UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
   </li>
 </ul>
   </li>
@@ -1894,7 +1894,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>BypassMergeSortShuffleWriter is <a href="#creating-instance">created</a> when SortShuffleManager is requested for a <a href="SortShuffleManager.html#getWriter" class="page">ShuffleWriter for a BypassMergeSortShuffleHandle</a>.</p>
+<p>BypassMergeSortShuffleWriter is created when SortShuffleManager is requested for a <a href="SortShuffleManager.html#getWriter" class="page">ShuffleWriter</a> (for a <a href="#handle">BypassMergeSortShuffleHandle</a>).</p>
 </div>
 </div>
 </div>
@@ -1953,9 +1953,6 @@
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void write(
   Iterator&lt;Product2&lt;K, V&gt;&gt; records)</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>write is part of <a href="ShuffleWriter.html#write" class="page">ShuffleWriter</a> abstraction.</p>
 </div>
 <div class="paragraph">
 <p>write creates a new instance of the <a href="#serializer">Serializer</a>.</p>
@@ -2023,6 +2020,9 @@ At this point, all the per-partition shuffle block files are one single map shuf
 </div>
 <div class="paragraph">
 <p>write returns a <a href="../scheduler/MapStatus.html" class="page">shuffle map output status</a> (with the <a href="../storage/BlockManager.html#shuffleServerId" class="page">shuffle server ID</a> and the <a href="#partitionLengths">partitionLengths</a>).</p>
+</div>
+<div class="paragraph">
+<p>write is part of <a href="ShuffleWriter.html#write" class="page">ShuffleWriter</a> abstraction.</p>
 </div>
 <div class="sect2">
 <h3 id="no-records"><a class="anchor" href="#no-records"></a><a class="link" href="#no-records"><a id="write-no-records"></a> No Records</a></h3>
@@ -2146,7 +2146,7 @@ Visit the official web site of <a href="https://jcp.org/jsr/detail/51.jsp">JSR 5
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.shuffle.sort.BypassMergeSortShuffleWriter=ALL</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">log4j.logger.org.apache.spark.shuffle.sort.BypassMergeSortShuffleWriter=ALL</code></pre>
 </div>
 </div>
 <div class="paragraph">

@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/spark-mllib/spark-mllib-streaming.html">
+    <title> UnsafeShuffleWriter :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/shuffle/UnsafeShuffleWriter.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -372,80 +372,80 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/index.html">Shuffle System</a>
+    <a class="nav-link" href="index.html">Shuffle System</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/SortShuffleManager.html">SortShuffleManager</a>
+    <a class="nav-link" href="SortShuffleManager.html">SortShuffleManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/ShuffleManager.html">ShuffleManager</a>
+    <a class="nav-link" href="ShuffleManager.html">ShuffleManager</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleHandle.html">ShuffleHandle</a>
+    <a class="nav-link" href="spark-shuffle-ShuffleHandle.html">ShuffleHandle</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/spark-shuffle-BaseShuffleHandle.html">BaseShuffleHandle</a>
+    <a class="nav-link" href="spark-shuffle-BaseShuffleHandle.html">BaseShuffleHandle</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
+    <a class="nav-link" href="BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/spark-shuffle-SerializedShuffleHandle.html">SerializedShuffleHandle</a>
+    <a class="nav-link" href="spark-shuffle-SerializedShuffleHandle.html">SerializedShuffleHandle</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleReader.html">ShuffleReader</a>
+    <a class="nav-link" href="spark-shuffle-ShuffleReader.html">ShuffleReader</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/BlockStoreShuffleReader.html">BlockStoreShuffleReader</a>
+    <a class="nav-link" href="BlockStoreShuffleReader.html">BlockStoreShuffleReader</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/ShuffleWriter.html">ShuffleWriter</a>
+    <a class="nav-link" href="ShuffleWriter.html">ShuffleWriter</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/BypassMergeSortShuffleWriter.html">BypassMergeSortShuffleWriter</a>
+    <a class="nav-link" href="BypassMergeSortShuffleWriter.html">BypassMergeSortShuffleWriter</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/SortShuffleWriter.html">SortShuffleWriter</a>
+    <a class="nav-link" href="SortShuffleWriter.html">SortShuffleWriter</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/ShuffleBlockResolver.html">ShuffleBlockResolver</a>
+    <a class="nav-link" href="ShuffleBlockResolver.html">ShuffleBlockResolver</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/IndexShuffleBlockResolver.html">IndexShuffleBlockResolver</a>
+    <a class="nav-link" href="IndexShuffleBlockResolver.html">IndexShuffleBlockResolver</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/ShuffleExternalSorter.html">ShuffleExternalSorter</a>
+    <a class="nav-link" href="ShuffleExternalSorter.html">ShuffleExternalSorter</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
+    <a class="nav-link" href="spark-shuffle-ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/FetchFailedException.html">FetchFailedException</a>
+    <a class="nav-link" href="FetchFailedException.html">FetchFailedException</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/Spillable.html">Spillable</a>
+    <a class="nav-link" href="Spillable.html">Spillable</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/ExternalAppendOnlyMap.html">ExternalAppendOnlyMap</a>
+    <a class="nav-link" href="ExternalAppendOnlyMap.html">ExternalAppendOnlyMap</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/ExternalSorter.html">ExternalSorter</a>
+    <a class="nav-link" href="ExternalSorter.html">ExternalSorter</a>
   </li>
 </ul>
   </li>
@@ -1302,76 +1302,76 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Spark MLlib</a>
+    <a class="nav-link" href="../spark-mllib/index.html">Spark MLlib</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-pipelines.html">ML Pipelines (spark.ml)</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines.html">ML Pipelines (spark.ml)</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-mllib-Pipeline.html">Pipeline</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Pipeline.html">Pipeline</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-mllib-PipelineStage.html">PipelineStage</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-PipelineStage.html">PipelineStage</a>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-transformers.html">Transformers</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-transformers.html">Transformers</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-Transformer.html">Transformer</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Transformer.html">Transformer</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-transformers-Tokenizer.html">Tokenizer</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-transformers-Tokenizer.html">Tokenizer</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-estimators.html">Estimators</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-estimators.html">Estimators</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-Estimator.html">Estimator</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Estimator.html">Estimator</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="spark-mllib-StringIndexer.html">StringIndexer</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-StringIndexer.html">StringIndexer</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="spark-mllib-KMeans.html">KMeans</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-KMeans.html">KMeans</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="spark-mllib-TrainValidationSplit.html">TrainValidationSplit</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-TrainValidationSplit.html">TrainValidationSplit</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-Predictor.html">Predictor</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Predictor.html">Predictor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="spark-mllib-RandomForestRegressor.html">RandomForestRegressor</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-RandomForestRegressor.html">RandomForestRegressor</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-Regressor.html">Regressor</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Regressor.html">Regressor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="spark-mllib-LinearRegression.html">LinearRegression</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-LinearRegression.html">LinearRegression</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-Classifier.html">Classifier</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Classifier.html">Classifier</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="spark-mllib-RandomForestClassifier.html">RandomForestClassifier</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-RandomForestClassifier.html">RandomForestClassifier</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="spark-mllib-DecisionTreeClassifier.html">DecisionTreeClassifier</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-DecisionTreeClassifier.html">DecisionTreeClassifier</a>
   </li>
 </ul>
   </li>
@@ -1379,55 +1379,55 @@
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-models.html">Models</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-models.html">Models</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-Model.html">Model</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Model.html">Model</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-Evaluator.html">Evaluator&#8201;&#8212;&#8201;ML Pipeline Component for Model Scoring</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Evaluator.html">Evaluator&#8201;&#8212;&#8201;ML Pipeline Component for Model Scoring</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-BinaryClassificationEvaluator.html">BinaryClassificationEvaluator&#8201;&#8212;&#8201;Evaluator of Binary Classification Models</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-BinaryClassificationEvaluator.html">BinaryClassificationEvaluator&#8201;&#8212;&#8201;Evaluator of Binary Classification Models</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-ClusteringEvaluator.html">ClusteringEvaluator&#8201;&#8212;&#8201;Evaluator of Clustering Models</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ClusteringEvaluator.html">ClusteringEvaluator&#8201;&#8212;&#8201;Evaluator of Clustering Models</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-MulticlassClassificationEvaluator.html">MulticlassClassificationEvaluator&#8201;&#8212;&#8201;Evaluator of Multiclass Classification Models</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MulticlassClassificationEvaluator.html">MulticlassClassificationEvaluator&#8201;&#8212;&#8201;Evaluator of Multiclass Classification Models</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-RegressionEvaluator.html">RegressionEvaluator&#8201;&#8212;&#8201;Evaluator of Regression Models</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-RegressionEvaluator.html">RegressionEvaluator&#8201;&#8212;&#8201;Evaluator of Regression Models</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-CrossValidator.html">CrossValidator&#8201;&#8212;&#8201;Model Tuning / Finding The Best Model</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-CrossValidator.html">CrossValidator&#8201;&#8212;&#8201;Model Tuning / Finding The Best Model</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-CrossValidatorModel.html">CrossValidatorModel</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-CrossValidatorModel.html">CrossValidatorModel</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-ParamGridBuilder.html">ParamGridBuilder</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ParamGridBuilder.html">ParamGridBuilder</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-CrossValidator-example.html">CrossValidator with Pipeline Example</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-CrossValidator-example.html">CrossValidator with Pipeline Example</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-Params.html">Params and ParamMaps</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Params.html">Params and ParamMaps</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-ValidatorParams.html">ValidatorParams</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ValidatorParams.html">ValidatorParams</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-mllib-HasParallelism.html">HasParallelism</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-HasParallelism.html">HasParallelism</a>
   </li>
 </ul>
   </li>
@@ -1435,66 +1435,66 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-pipelines-persistence.html">ML Persistence&#8201;&#8212;&#8201;Saving and Loading Models and Pipelines</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines-persistence.html">ML Persistence&#8201;&#8212;&#8201;Saving and Loading Models and Pipelines</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-mllib-MLWritable.html">MLWritable</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MLWritable.html">MLWritable</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-mllib-MLReader.html">MLReader</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MLReader.html">MLReader</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mllib-pipelines-example-classification.html">Example&#8201;&#8212;&#8201;Text Classification</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines-example-classification.html">Example&#8201;&#8212;&#8201;Text Classification</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mllib-pipelines-example-regression.html">Example&#8201;&#8212;&#8201;Linear Regression</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines-example-regression.html">Example&#8201;&#8212;&#8201;Linear Regression</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-logistic-regression.html">Logistic Regression</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-logistic-regression.html">Logistic Regression</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-mllib-LogisticRegression.html">LogisticRegression</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-LogisticRegression.html">LogisticRegression</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mllib-latent-dirichlet-allocation.html">Latent Dirichlet Allocation (LDA)</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-latent-dirichlet-allocation.html">Latent Dirichlet Allocation (LDA)</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mllib-vector.html">Vector</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-vector.html">Vector</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mllib-labeledpoint.html">LabeledPoint</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="spark-mllib-streaming.html">Streaming MLlib</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-labeledpoint.html">LabeledPoint</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mllib-GeneralizedLinearRegression.html">GeneralizedLinearRegression</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-streaming.html">Streaming MLlib</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-GeneralizedLinearRegression.html">GeneralizedLinearRegression</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-mllib-alternating-least-squares.html">Alternating Least Squares (ALS) Matrix Factorization</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-alternating-least-squares.html">Alternating Least Squares (ALS) Matrix Factorization</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-mllib-ALS.html">ALS&#8201;&#8212;&#8201;Estimator for ALSModel</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ALS.html">ALS&#8201;&#8212;&#8201;Estimator for ALSModel</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-mllib-ALSModel.html">ALSModel&#8201;&#8212;&#8201;Model for Predictions</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ALSModel.html">ALSModel&#8201;&#8212;&#8201;Model for Predictions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-mllib-ALSModelReader.html">ALSModelReader</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ALSModelReader.html">ALSModelReader</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mllib-Instrumentation.html">Instrumentation</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Instrumentation.html">Instrumentation</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mllib-MLUtils.html">MLUtils</a>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MLUtils.html">MLUtils</a>
   </li>
 </ul>
   </li>
@@ -1842,35 +1842,71 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Spark MLlib</a></li>
-    <li><a href="spark-mllib-streaming.html">Streaming MLlib</a></li>
+    <li><a href="index.html">Shuffle System</a></li>
+    <li><a href="ShuffleWriter.html">ShuffleWriter</a></li>
+    <li><a href="UnsafeShuffleWriter.html">UnsafeShuffleWriter</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/spark-mllib/pages/spark-mllib-streaming.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/shuffle/pages/UnsafeShuffleWriter.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="streaming-mllib"><a class="anchor" href="#streaming-mllib"></a><a class="link" href="#streaming-mllib">Streaming MLlib</a></h2>
+<h1 class="page"><a id="UnsafeShuffleWriter"></a> UnsafeShuffleWriter</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following Machine Learning algorithms have their streaming variants in MLlib:</p>
+<p><strong>UnsafeShuffleWriter</strong> is a <a href="ShuffleWriter.html" class="page">ShuffleWriter</a> for <a href="spark-shuffle-SerializedShuffleHandle.html" class="page">SerializedShuffleHandles</a>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#kmeans">k-means</a></p>
+<p>When requested to <a href="#write">write</a>, UnsafeShuffleWriter simply <a href="#insertRecordIntoSorter">inserts every record into ShuffleExternalSorter</a> followed by <a href="#closeAndWriteOutput">closing the internal resources and writing out merged spill files</a> (that, among other things, creates the <a href="#mapStatus">MapStatus</a>).</p>
 </li>
 <li>
-<p><a href="#linear-regression">Linear Regression</a></p>
+<p>When requested to <a href="#stop">stop</a>, UnsafeShuffleWriter records the peak execution memory metric and returns the <a href="#mapStatus">mapStatus</a> (that was created when requested to <a href="#write">write</a>).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-unsafeshufflewriter-instance"><a class="anchor" href="#creating-unsafeshufflewriter-instance"></a><a class="link" href="#creating-unsafeshufflewriter-instance"><a id="creating-instance"></a> Creating UnsafeShuffleWriter Instance</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>UnsafeShuffleWriter takes the following to be created:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="blockManager"></a> <a href="../storage/BlockManager.html" class="page">BlockManager</a></p>
 </li>
 <li>
-<p><a href="#logistic-regression">Logistic Regression</a></p>
+<p><a href="#shuffleBlockResolver">IndexShuffleBlockResolver</a></p>
+</li>
+<li>
+<p><a id="memoryManager"></a> <a href="../memory/TaskMemoryManager.html" class="page">TaskMemoryManager</a></p>
+</li>
+<li>
+<p><a id="handle"></a> <a href="spark-shuffle-SerializedShuffleHandle.html" class="page">SerializedShuffleHandle</a></p>
+</li>
+<li>
+<p><a id="mapId"></a> Map ID</p>
+</li>
+<li>
+<p><a id="taskContext"></a> <a href="../scheduler/spark-TaskContext.html" class="page">TaskContext</a></p>
+</li>
+<li>
+<p><a id="sparkConf"></a> <a href="../spark-SparkConf.html" class="page">SparkConf</a></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>They can train models and predict on streaming data.</p>
+<p>UnsafeShuffleWriter requests the <a href="#handle">SerializedShuffleHandle</a> for the <a href="spark-shuffle-BaseShuffleHandle.html#dependency" class="page">ShuffleDependency</a> that is then requested for the <a href="../rdd/ShuffleDependency.html#partitioner" class="page">Partitioner</a> and, in the end, for the <a href="../rdd/spark-rdd-Partitioner.html#numPartitions" class="page">number of partitions</a>. UnsafeShuffleWriter makes sure that the number of shuffle output partitions is below <a href="SortShuffleManager.html#MAX_SHUFFLE_OUTPUT_PARTITIONS_FOR_SERIALIZED_MODE" class="page"><code>(1 &lt;&lt; 24)</code> partition identifiers that can be encoded</a> and throws an <code>IllegalArgumentException</code> if not met:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>UnsafeShuffleWriter can only be used for shuffles with at most 16777215 reduce partitions</code></pre>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1879,35 +1915,488 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The streaming algorithms belong to <code>spark.mllib</code> (the older RDD-based API).
+The number of shuffle output partitions is first enforced when <a href="SortShuffleManager.html#canUseSerializedShuffle" class="page"><code>SortShuffleManager</code> checks if <code>SerializedShuffleHandle</code> can be used for <code>ShuffleHandle</code></a> (that eventually leads to UnsafeShuffleWriter).
 </td>
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="streaming-k-means"><a class="anchor" href="#streaming-k-means"></a><a class="link" href="#streaming-k-means"><a id="kmeans"></a> Streaming k-means</a></h3>
 <div class="paragraph">
-<p><code>org.apache.spark.mllib.clustering.StreamingKMeans</code></p>
+<p>In the end, UnsafeShuffleWriter <a href="#open">creates a ShuffleExternalSorter and a SerializationStream</a>.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="streaming-linear-regression"><a class="anchor" href="#streaming-linear-regression"></a><a class="link" href="#streaming-linear-regression"><a id="linear-regression"></a> Streaming Linear Regression</a></h3>
 <div class="paragraph">
-<p><code>org.apache.spark.mllib.regression.StreamingLinearRegressionWithSGD</code></p>
+<p>UnsafeShuffleWriter is created when SortShuffleManager is requested for a <a href="SortShuffleManager.html#getWriter" class="page">ShuffleWriter</a> (for a <a href="#handle">SerializedShuffleHandle</a>).</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="streaming-logistic-regression"><a class="anchor" href="#streaming-logistic-regression"></a><a class="link" href="#streaming-logistic-regression"><a id="logistic-regression"></a> Streaming Logistic Regression</a></h3>
+</div>
+<div class="sect1">
+<h2 id="indexshuffleblockresolver"><a class="anchor" href="#indexshuffleblockresolver"></a><a class="link" href="#indexshuffleblockresolver"><a id="shuffleBlockResolver"></a> IndexShuffleBlockResolver</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p><code>org.apache.spark.mllib.classification.StreamingLogisticRegressionWithSGD</code></p>
+<p>UnsafeShuffleWriter is given a <a href="IndexShuffleBlockResolver.html" class="page">IndexShuffleBlockResolver</a> to be created.</p>
+</div>
+<div class="paragraph">
+<p>UnsafeShuffleWriter uses the IndexShuffleBlockResolver for&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="default_initial_ser_buffer_size"><a class="anchor" href="#default_initial_ser_buffer_size"></a><a class="link" href="#default_initial_ser_buffer_size"><a id="DEFAULT_INITIAL_SER_BUFFER_SIZE"></a> DEFAULT_INITIAL_SER_BUFFER_SIZE</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>UnsafeShuffleWriter uses a fixed buffer size for the <a href="#serBuffer">output stream of serialized data written into a byte array</a> (default: <code>1024 * 1024</code>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="inputbuffersizeinbytes"><a class="anchor" href="#inputbuffersizeinbytes"></a><a class="link" href="#inputbuffersizeinbytes"><a id="inputBufferSizeInBytes"></a> inputBufferSizeInBytes</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>UnsafeShuffleWriter uses the <a href="../configuration-properties.html#spark.shuffle.file.buffer" class="page">spark.shuffle.file.buffer</a> configuration property for&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="outputbuffersizeinbytes"><a class="anchor" href="#outputbuffersizeinbytes"></a><a class="link" href="#outputbuffersizeinbytes"><a id="outputBufferSizeInBytes"></a> outputBufferSizeInBytes</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>UnsafeShuffleWriter uses the <a href="../configuration-properties.html#spark.shuffle.unsafe.file.output.buffer" class="page">spark.shuffle.unsafe.file.output.buffer</a> configuration property (default: <code>32k</code>) for&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="transfertoenabled"><a class="anchor" href="#transfertoenabled"></a><a class="link" href="#transfertoenabled"><a id="transferToEnabled"></a> transferToEnabled</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>UnsafeShuffleWriter can use a <a href="#mergeSpillsWithTransferTo">specialized NIO-based fast merge procedure</a> that avoids extra serialization/deserialization when <a href="../configuration-properties.html#spark.file.transferTo" class="page">spark.file.transferTo</a> configuration property is enabled.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="initialsortbuffersize"><a class="anchor" href="#initialsortbuffersize"></a><a class="link" href="#initialsortbuffersize"><a id="initialSortBufferSize"></a><a id="DEFAULT_INITIAL_SORT_BUFFER_SIZE"></a> initialSortBufferSize</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>UnsafeShuffleWriter uses the <a href="#initialSortBufferSize">initial buffer size for sorting</a> (default: <code>4096</code>) when creating a <a href="#sorter">ShuffleExternalSorter</a> (when requested to <a href="#open">open</a>).</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Use <a href="../configuration-properties.html#spark.shuffle.sort.initialBufferSize" class="page">spark.shuffle.sort.initialBufferSize</a> configuration property to change the default buffer size.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="mergespillswithtransferto-internal-method"><a class="anchor" href="#mergespillswithtransferto-internal-method"></a><a class="link" href="#mergespillswithtransferto-internal-method"><a id="mergeSpillsWithTransferTo"></a> mergeSpillsWithTransferTo Internal Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">long[] mergeSpillsWithTransferTo(
+  SpillInfo[] spills,
+  File outputFile)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>mergeSpillsWithTransferTo&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>mergeSpillsWithTransferTo is used when UnsafeShuffleWriter is requested to <a href="#mergeSpills">mergeSpills</a> (with the <a href="#transferToEnabled">transferToEnabled</a> flag enabled and no encryption).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="mergespills-internal-method"><a class="anchor" href="#mergespills-internal-method"></a><a class="link" href="#mergespills-internal-method"><a id="mergeSpills"></a> mergeSpills Internal Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">long[] mergeSpills(
+  SpillInfo[] spills,
+  File outputFile)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>mergeSpills&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>mergeSpills is used when UnsafeShuffleWriter is requested to <a href="#closeAndWriteOutput">close internal resources and write out merged spill files</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="updatepeakmemoryused-internal-method"><a class="anchor" href="#updatepeakmemoryused-internal-method"></a><a class="link" href="#updatepeakmemoryused-internal-method"><a id="updatePeakMemoryUsed"></a> updatePeakMemoryUsed Internal Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void updatePeakMemoryUsed()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>updatePeakMemoryUsed&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>updatePeakMemoryUsed is used when UnsafeShuffleWriter is requested for the <a href="#getPeakMemoryUsedBytes">peak memory used</a> and to <a href="#closeAndWriteOutput">close internal resources and write out merged spill files</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="writing-records-to-shuffle-system"><a class="anchor" href="#writing-records-to-shuffle-system"></a><a class="link" href="#writing-records-to-shuffle-system"><a id="write"></a> Writing Records to Shuffle System</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void write(
+  Iterator&lt;Product2&lt;K, V&gt;&gt; records)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Internally, write traverses the input sequence of records (for a RDD partition) and <a href="#insertRecordIntoSorter">insertRecordIntoSorter</a> one by one. When all the records have been processed, write <a href="#closeAndWriteOutput">closes internal resources and writes spill files merged</a>.</p>
+</div>
+<div class="paragraph">
+<p>In the end, write <a href="ShuffleExternalSorter.html#cleanupResources" class="page">requests <code>ShuffleExternalSorter</code> to clean after itself</a>.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>write is part of the <a href="ShuffleWriter.html#write" class="page">ShuffleWriter</a> abstraction.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stopping-shufflewriter"><a class="anchor" href="#stopping-shufflewriter"></a><a class="link" href="#stopping-shufflewriter"><a id="stop"></a> Stopping ShuffleWriter</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Option&lt;MapStatus&gt; stop(
+  boolean success)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>stop&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>stop is part of the <a href="ShuffleWriter.html#stop" class="page">ShuffleWriter</a> abstraction.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="opening-unsafeshufflewriter"><a class="anchor" href="#opening-unsafeshufflewriter"></a><a class="link" href="#opening-unsafeshufflewriter"><a id="open"></a> Opening UnsafeShuffleWriter</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void open()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>open makes sure that the internal reference to <a href="ShuffleExternalSorter.html" class="page">ShuffleExternalSorter</a> (as <code>sorter</code>) is not defined and <a href="ShuffleExternalSorter.html#creating-instance" class="page">creates one itself</a>.</p>
+</div>
+<div class="paragraph">
+<p>open creates a new byte array output stream (as <code>serBuffer</code>) with the buffer capacity of <code>1M</code>.</p>
+</div>
+<div class="paragraph">
+<p>open creates a new <a href="spark-SerializationStream.adoc">SerializationStream</a> for the new byte array output stream using <a href="spark-SerializerInstance.adoc">SerializerInstance</a>.</p>
+</div>
+<div class="paragraph">
+<p>open is used when UnsafeShuffleWriter is <a href="#creating-instance">created</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="inserting-record-into-shuffleexternalsorter"><a class="anchor" href="#inserting-record-into-shuffleexternalsorter"></a><a class="link" href="#inserting-record-into-shuffleexternalsorter"><a id="insertRecordIntoSorter"></a> Inserting Record Into ShuffleExternalSorter</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void insertRecordIntoSorter(
+  Product2&lt;K, V&gt; record)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>insertRecordIntoSorter <a href="../rdd/spark-rdd-Partitioner.html#getPartition" class="page">calculates the partition for the key of the input record</a>.</p>
+</div>
+<div class="paragraph">
+<p>insertRecordIntoSorter then writes the key and the value of the input <code>record</code> to <a href="../spark-SerializationStream.html" class="page">SerializationStream</a> and calculates the size of the serialized buffer.</p>
+</div>
+<div class="paragraph">
+<p>In the end, insertRecordIntoSorter <a href="ShuffleExternalSorter.html#insertRecord" class="page">inserts the serialized buffer to <code>ShuffleExternalSorter</code></a> (as <code>Platform.BYTE_ARRAY_OFFSET</code> ).</p>
+</div>
+<div class="paragraph">
+<p>insertRecordIntoSorter is used when UnsafeShuffleWriter is requested to <a href="#write">write records</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="closing-internal-resources-and-writing-out-merged-spill-files"><a class="anchor" href="#closing-internal-resources-and-writing-out-merged-spill-files"></a><a class="link" href="#closing-internal-resources-and-writing-out-merged-spill-files"><a id="closeAndWriteOutput"></a> Closing Internal Resources and Writing Out Merged Spill Files</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void closeAndWriteOutput()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>closeAndWriteOutput first <a href="#updatePeakMemoryUsed">updates peak memory used</a>.</p>
+</div>
+<div class="paragraph">
+<p>closeAndWriteOutput removes the internal <code>ByteArrayOutputStream</code> and <a href="../spark-SerializationStream.html" class="page">SerializationStream</a>.</p>
+</div>
+<div class="paragraph">
+<p>closeAndWriteOutput requests ShuffleExternalSorter to <a href="ShuffleExternalSorter.html#closeAndGetSpills" class="page">close itself and return <code>SpillInfo</code> metadata</a>.</p>
+</div>
+<div class="paragraph">
+<p>closeAndWriteOutput removes the internal <code>ShuffleExternalSorter</code>.</p>
+</div>
+<div class="paragraph">
+<p>closeAndWriteOutput requests <code>IndexShuffleBlockResolver</code> for the data file for the <code>shuffleId</code> and <code>mapId</code>.</p>
+</div>
+<div class="paragraph">
+<p>closeAndWriteOutput creates a temporary file to <a href="#mergeSpills">merge spill files</a>, deletes them afterwards, and requests <code>IndexShuffleBlockResolver</code> to write index file and commit.</p>
+</div>
+<div class="paragraph">
+<p>closeAndWriteOutput creates a <a href="../scheduler/MapStatus.html" class="page">MapStatus</a> with the <a href="../storage/BlockManager.html#shuffleServerId" class="page">location of the executor&#8217;s <code>BlockManager</code></a> and partition lengths in the merged file.</p>
+</div>
+<div class="paragraph">
+<p>If there is an issue with deleting spill files, you should see the following ERROR message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Error while deleting spill file [path]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If there is an issue with deleting the temporary file, you should see the following ERROR message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Error while deleting temp file [path]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>closeAndWriteOutput is used when UnsafeShuffleWriter is requested to <a href="#write">write records</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="mergespillswithfilestream-internal-method"><a class="anchor" href="#mergespillswithfilestream-internal-method"></a><a class="link" href="#mergespillswithfilestream-internal-method"><a id="mergeSpillsWithFileStream"></a> mergeSpillsWithFileStream Internal Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">long[] mergeSpillsWithFileStream(
+  SpillInfo[] spills,
+  File outputFile,
+  CompressionCodec compressionCodec)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>mergeSpillsWithFileStream&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>mergeSpillsWithFileStream is used when UnsafeShuffleWriter is requested to <a href="#mergeSpills">mergeSpills</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-peak-memory-used"><a class="anchor" href="#getting-peak-memory-used"></a><a class="link" href="#getting-peak-memory-used"><a id="getPeakMemoryUsedBytes"></a> Getting Peak Memory Used</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">long getPeakMemoryUsedBytes()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getPeakMemoryUsedBytes simply <a href="#updatePeakMemoryUsed">updatePeakMemoryUsed</a> and returns the internal <a href="#peakMemoryUsedBytes">peakMemoryUsedBytes</a> registry.</p>
+</div>
+<div class="paragraph">
+<p>getPeakMemoryUsedBytes is used when UnsafeShuffleWriter is requested to <a href="#stop">stop</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="logging"><a class="anchor" href="#logging"></a><a class="link" href="#logging"><a id="logging"></a> Logging</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Enable <code>ALL</code> logging level for <code>org.apache.spark.shuffle.sort.UnsafeShuffleWriter</code> logger to see what happens inside.</p>
+</div>
+<div class="paragraph">
+<p>Add the following line to <code>conf/log4j.properties</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">log4j.logger.org.apache.spark.shuffle.sort.UnsafeShuffleWriter=ALL</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Refer to <a href="../spark-logging.html" class="page">Logging</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="internal-properties"><a class="anchor" href="#internal-properties"></a><a class="link" href="#internal-properties"><a id="internal-properties"></a> Internal Properties</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="mapstatus"><a class="anchor" href="#mapstatus"></a><a class="link" href="#mapstatus"><a id="mapStatus"></a> mapStatus</a></h3>
+<div class="paragraph">
+<p><a href="../scheduler/MapStatus.html" class="page">MapStatus</a></p>
+</div>
+<div class="paragraph">
+<p>Created when UnsafeShuffleWriter is requested to <a href="#closeAndWriteOutput">close internal resources and write out merged spill files</a> (with the <a href="../storage/BlockManager.html#shuffleServerId" class="page">BlockManagerId</a> of the <a href="#blockManager">BlockManager</a> and <code>partitionLengths</code>)</p>
+</div>
+<div class="paragraph">
+<p>Returned when UnsafeShuffleWriter is requested to <a href="#stop">stop</a></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="sources"><a class="anchor" href="#sources"></a><a class="link" href="#sources">Sources</a></h3>
+<h3 id="partitioner"><a class="anchor" href="#partitioner"></a><a class="link" href="#partitioner"><a id="partitioner"></a> partitioner</a></h3>
+<div class="paragraph">
+<p><a href="../rdd/spark-rdd-Partitioner.html" class="page">Partitioner</a> (as used by the <a href="spark-shuffle-BaseShuffleHandle.html#dependency" class="page">ShuffleDependency</a> of the <a href="#handle">SerializedShuffleHandle</a>)</p>
+</div>
+<div class="paragraph">
+<p>Used when UnsafeShuffleWriter is requested for the following:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://youtu.be/uUQTSPvD1mc">Streaming Machine Learning in Spark- Jeremy Freeman (HHMI Janelia Research Center)</a></p>
+<p><a href="#open">open</a> (and create a <a href="ShuffleExternalSorter.html" class="page">ShuffleExternalSorter</a> with the given <a href="../rdd/spark-rdd-Partitioner.html#numPartitions" class="page">number of partitions</a>)</p>
+</li>
+<li>
+<p><a href="#insertRecordIntoSorter">insertRecordIntoSorter</a> (and request the <a href="../rdd/spark-rdd-Partitioner.html#getPartition" class="page">partition for the key</a>)</p>
+</li>
+<li>
+<p><a href="#mergeSpills">mergeSpills</a>, <a href="#mergeSpillsWithFileStream">mergeSpillsWithFileStream</a> and <a href="#mergeSpillsWithTransferTo">mergeSpillsWithTransferTo</a> (for the <a href="../rdd/spark-rdd-Partitioner.html#numPartitions" class="page">number of partitions</a> to create partition lengths)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="peakmemoryusedbytes"><a class="anchor" href="#peakmemoryusedbytes"></a><a class="link" href="#peakmemoryusedbytes"><a id="peakMemoryUsedBytes"></a> peakMemoryUsedBytes</a></h3>
+<div class="paragraph">
+<p>Peak memory used (in bytes) that is updated exclusively in <a href="#updatePeakMemoryUsed">updatePeakMemoryUsed</a> (after requesting the <a href="#sorter">ShuffleExternalSorter</a> for <a href="ShuffleExternalSorter.html#getPeakMemoryUsedBytes" class="page">getPeakMemoryUsedBytes</a>)</p>
+</div>
+<div class="paragraph">
+<p>Use <a href="#getPeakMemoryUsedBytes">getPeakMemoryUsedBytes</a> to access the current value</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="serbuffer"><a class="anchor" href="#serbuffer"></a><a class="link" href="#serbuffer"><a id="serBuffer"></a> serBuffer</a></h3>
+<div class="paragraph">
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/io/ByteArrayOutputStream.html">java.io.ByteArrayOutputStream</a> of serialized data (written into a byte array of <a href="#DEFAULT_INITIAL_SER_BUFFER_SIZE">1MB</a> initial size)</p>
+</div>
+<div class="paragraph">
+<p>Used when UnsafeShuffleWriter is requested for the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#open">open</a> (and create the internal <a href="#serOutputStream">SerializationStream</a>)</p>
+</li>
+<li>
+<p><a href="#insertRecordIntoSorter">insertRecordIntoSorter</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Destroyed (<code>null</code>) when requested to <a href="#closeAndWriteOutput">close internal resources and write out merged spill files</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="serializer"><a class="anchor" href="#serializer"></a><a class="link" href="#serializer"><a id="serializer"></a> serializer</a></h3>
+<div class="paragraph">
+<p><a href="../spark-SerializerInstance.html" class="page">SerializerInstance</a> (that is a new instance of the <a href="../rdd/ShuffleDependency.html#serializer" class="page">Serializer</a> of the <a href="spark-shuffle-BaseShuffleHandle.html#dependency" class="page">ShuffleDependency</a> of the <a href="#handle">SerializedShuffleHandle</a>)</p>
+</div>
+<div class="paragraph">
+<p>Used exclusively when UnsafeShuffleWriter is requested to <a href="#open">open</a> (and creates the <a href="#serOutputStream">SerializationStream</a>)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="seroutputstream"><a class="anchor" href="#seroutputstream"></a><a class="link" href="#seroutputstream"><a id="serOutputStream"></a> serOutputStream</a></h3>
+<div class="paragraph">
+<p><a href="../spark-SerializationStream.html" class="page">SerializationStream</a> (that is created when the <a href="#serializer">SerializerInstance</a> is requested to <a href="../spark-SerializerInstance.html#serializeStream" class="page">serializeStream</a> with the <a href="#serBuffer">ByteArrayOutputStream</a>)</p>
+</div>
+<div class="paragraph">
+<p>Used when UnsafeShuffleWriter is requested to <a href="#insertRecordIntoSorter">insertRecordIntoSorter</a></p>
+</div>
+<div class="paragraph">
+<p>Destroyed (<code>null</code>) when requested to <a href="#closeAndWriteOutput">close internal resources and write out merged spill files</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="shuffleid"><a class="anchor" href="#shuffleid"></a><a class="link" href="#shuffleid"><a id="shuffleId"></a> shuffleId</a></h3>
+<div class="paragraph">
+<p><a href="../rdd/ShuffleDependency.html#shuffleId" class="page">Shuffle ID</a> (of the <a href="spark-shuffle-BaseShuffleHandle.html#dependency" class="page">ShuffleDependency</a> of the <a href="#handle">SerializedShuffleHandle</a>)</p>
+</div>
+<div class="paragraph">
+<p>Used exclusively when requested to <a href="#closeAndWriteOutput">close internal resources and write out merged spill files</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sorter"><a class="anchor" href="#sorter"></a><a class="link" href="#sorter"><a id="sorter"></a> sorter</a></h3>
+<div class="paragraph">
+<p><a href="ShuffleExternalSorter.html" class="page">ShuffleExternalSorter</a></p>
+</div>
+<div class="paragraph">
+<p>Initialized when UnsafeShuffleWriter is requested to <a href="#open">open</a> (while being <a href="#creating-instance">created</a>)</p>
+</div>
+<div class="paragraph">
+<p>Used when UnsafeShuffleWriter is requested for the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#updatePeakMemoryUsed">Updating peak memory used</a></p>
+</li>
+<li>
+<p><a href="#write">Writing records</a></p>
+</li>
+<li>
+<p><a href="#closeAndWriteOutput">Closing internal resources and writing out merged spill files</a></p>
+</li>
+<li>
+<p><a href="#insertRecordIntoSorter">Inserting a record into ShuffleExternalSorter</a></p>
+</li>
+<li>
+<p><a href="#forceSorterToSpill">Forcing ShuffleExternalSorter to spill to disk (freeing up execution memory)</a> (for testing)</p>
+</li>
+<li>
+<p><a href="#stop">stop</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Destroyed (<code>null</code>) when requested to <a href="#closeAndWriteOutput">close internal resources and write out merged spill files</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="writemetrics"><a class="anchor" href="#writemetrics"></a><a class="link" href="#writemetrics"><a id="writeMetrics"></a> writeMetrics</a></h3>
+<div class="paragraph">
+<p><a href="../metrics/spark-executor-ShuffleWriteMetrics.html" class="page">ShuffleWriteMetrics</a> (of the <a href="../scheduler/spark-TaskContext.html#taskMetrics" class="page">TaskMetrics</a> of the <a href="#taskContext">TaskContext</a>)</p>
+</div>
+<div class="paragraph">
+<p>Used when UnsafeShuffleWriter is requested for the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#open">open</a> (and creates the <a href="#sorter">ShuffleExternalSorter</a>)</p>
+</li>
+<li>
+<p><a href="#mergeSpills">mergeSpills</a></p>
+</li>
+<li>
+<p><a href="#mergeSpillsWithFileStream">mergeSpillsWithFileStream</a></p>
+</li>
+<li>
+<p><a href="#mergeSpillsWithTransferTo">mergeSpillsWithTransferTo</a></p>
 </li>
 </ul>
 </div>
