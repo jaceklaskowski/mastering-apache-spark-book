@@ -826,7 +826,7 @@
     <a class="nav-link" href="../spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-history-server/configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
@@ -1866,7 +1866,7 @@
 <div class="title">Figure 1. ExecutorRunnable and YarnAllocator in YARN Resource Container</div>
 </div>
 <div class="paragraph">
-<p>If <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">external shuffle service is used</a>, it is <a href="#startContainer">set in the <code>ContainerLaunchContext</code> context as a service under the name of <code>spark_shuffle</code></a>.</p>
+<p>If <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">external shuffle service is used</a>, it is <a href="#startContainer">set in the <code>ContainerLaunchContext</code> context as a service under the name of <code>spark_shuffle</code></a>.</p>
 </div>
 <table id="internal-properties" class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. ExecutorRunnable&#8217;s Internal Properties</caption>
@@ -2177,7 +2177,7 @@ You can see the result of <code>prepareCommand</code> as <code>command</code> in
 <p><code>prepareEnvironment</code> collects environment-related entries.</p>
 </div>
 <div class="paragraph">
-<p><code>prepareEnvironment</code> <a href="spark-yarn-client.adoc#populateClasspath">populates class path</a> (passing in <a href="#conf">YarnConfiguration</a>, <a href="#sparkConf">SparkConf</a>, and <a href="../spark-configuration-properties.adoc#spark.executor.extraClassPath">spark.executor.extraClassPath</a> property)</p>
+<p><code>prepareEnvironment</code> <a href="spark-yarn-client.adoc#populateClasspath">populates class path</a> (passing in <a href="#conf">YarnConfiguration</a>, <a href="#sparkConf">SparkConf</a>, and <a href="../configuration-properties.adoc#spark.executor.extraClassPath">spark.executor.extraClassPath</a> property)</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -2350,7 +2350,7 @@ YARN <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/
 <p><code>startContainer</code> sets the <a href="spark-yarn-YarnSparkHadoopUtil.adoc#getApplicationAclsForYarn">application ACLs</a> to the <code>ContainerLaunchContext</code>.</p>
 </div>
 <div class="paragraph">
-<p>If <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property is enabled, <code>startContainer</code> registers the <code>ContainerLaunchContext</code> with the YARN shuffle service started on the YARN NodeManager under <code>spark_shuffle</code> service name.</p>
+<p>If <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property is enabled, <code>startContainer</code> registers the <code>ContainerLaunchContext</code> with the YARN shuffle service started on the YARN NodeManager under <code>spark_shuffle</code> service name.</p>
 </div>
 <div class="paragraph">
 <p>In the end, <code>startContainer</code> requests the <a href="#nmClient">YARN NodeManager</a> to start the YARN container with the <code>ContainerLaunchContext</code> context.</p>

@@ -826,7 +826,7 @@
     <a class="nav-link" href="../spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-history-server/configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
@@ -1897,10 +1897,10 @@
 <p>When requested for the <a href="#../SchedulerBackend.adoc#maxNumConcurrentTasks" class="page unresolved">maxNumConcurrentTasks</a>, <code>LocalSchedulerBackend</code> simply divides the <a href="#totalCores">total number of CPU cores</a> by <a href="../scheduler/TaskSchedulerImpl.html#CPUS_PER_TASK" class="page">spark.task.cpus</a> configuration (default: <code>1</code>).</p>
 </div>
 <div id="defaultParallelism" class="paragraph">
-<p>When requested for the <a href="#../SchedulerBackend.adoc#defaultParallelism" class="page unresolved">defaultParallelism</a>, <code>LocalSchedulerBackend</code> uses <a href="#../spark-configuration-properties.adoc#spark.default.parallelism" class="page unresolved">spark.default.parallelism</a> configuration (if defined) or the <a href="#totalCores">total number of CPU cores</a>.</p>
+<p>When requested for the <a href="#../SchedulerBackend.adoc#defaultParallelism" class="page unresolved">defaultParallelism</a>, <code>LocalSchedulerBackend</code> uses <a href="#../configuration-properties.adoc#spark.default.parallelism" class="page unresolved">spark.default.parallelism</a> configuration (if defined) or the <a href="#totalCores">total number of CPU cores</a>.</p>
 </div>
 <div id="userClassPath" class="paragraph">
-<p>When <a href="#creating-instance">created</a>, <code>LocalSchedulerBackend</code> <a href="#getUserClasspath">uses</a> the <a href="#../spark-configuration-properties.adoc#spark.executor.extraClassPath" class="page unresolved">spark.executor.extraClassPath</a> configuration property (in the given <a href="#conf">SparkConf</a>) for the <strong>user-defined class path for executors</strong> that is used exclusively when <code>LocalSchedulerBackend</code> is requested to <a href="#start">start</a> (and creates a <a href="spark-LocalEndpoint.html" class="page">LocalEndpoint</a> that in turn uses it to create the one <a href="spark-LocalEndpoint.html#executor" class="page">Executor</a>).</p>
+<p>When <a href="#creating-instance">created</a>, <code>LocalSchedulerBackend</code> <a href="#getUserClasspath">uses</a> the <a href="#../configuration-properties.adoc#spark.executor.extraClassPath" class="page unresolved">spark.executor.extraClassPath</a> configuration property (in the given <a href="#conf">SparkConf</a>) for the <strong>user-defined class path for executors</strong> that is used exclusively when <code>LocalSchedulerBackend</code> is requested to <a href="#start">start</a> (and creates a <a href="spark-LocalEndpoint.html" class="page">LocalEndpoint</a> that in turn uses it to create the one <a href="spark-LocalEndpoint.html#executor" class="page">Executor</a>).</p>
 </div>
 <div id="creating-instance" class="paragraph">
 <p><code>LocalSchedulerBackend</code> takes the following to be created:</p>
@@ -2137,7 +2137,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p><code>getUserClasspath</code> simply requests the given <code>SparkConf</code> for the <a href="#../spark-configuration-properties.adoc#spark.executor.extraClassPath" class="page unresolved">spark.executor.extraClassPath</a> configuration property and converts the entries (separated by the system-dependent path separator) to URLs.</p>
+<p><code>getUserClasspath</code> simply requests the given <code>SparkConf</code> for the <a href="#../configuration-properties.adoc#spark.executor.extraClassPath" class="page unresolved">spark.executor.extraClassPath</a> configuration property and converts the entries (separated by the system-dependent path separator) to URLs.</p>
 </div>
 <div class="admonitionblock note">
 <table>

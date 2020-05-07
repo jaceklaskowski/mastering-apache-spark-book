@@ -826,7 +826,7 @@
     <a class="nav-link" href="../spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-history-server/configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
@@ -2266,7 +2266,7 @@ The <a href="CoarseGrainedSchedulerBackend.html#maxRpcMessageSize" class="page">
 </table>
 </div>
 <div class="paragraph">
-<p>If the size of the encoded task is acceptable, <code>launchTasks</code> finds the <code>ExecutorData</code> of the executor that has been assigned to execute the task (in <a href="CoarseGrainedSchedulerBackend.html#executorDataMap" class="page">executorDataMap</a> internal registry) and decreases the executor&#8217;s <a href="spark-configuration-properties.adoc#spark.task.cpus">available number of cores</a>.</p>
+<p>If the size of the encoded task is acceptable, <code>launchTasks</code> finds the <code>ExecutorData</code> of the executor that has been assigned to execute the task (in <a href="CoarseGrainedSchedulerBackend.html#executorDataMap" class="page">executorDataMap</a> internal registry) and decreases the executor&#8217;s <a href="../configuration-properties.html#spark.task.cpus" class="page">available number of cores</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2287,7 +2287,7 @@ The <a href="CoarseGrainedSchedulerBackend.html#maxRpcMessageSize" class="page">
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The default task scheduler in Spark&#8201;&#8212;&#8201;<a href="TaskSchedulerImpl.html" class="page">TaskSchedulerImpl</a>&#8201;&#8212;&#8201;uses <a href="spark-configuration-properties.adoc#spark.task.cpus">spark.task.cpus</a> Spark property to control the number of tasks that can be scheduled per executor.
+The default task scheduler in Spark&#8201;&#8212;&#8201;<a href="TaskSchedulerImpl.html" class="page">TaskSchedulerImpl</a>&#8201;&#8212;&#8201;uses <a href="../configuration-properties.html#spark.task.cpus" class="page">spark.task.cpus</a> Spark property to control the number of tasks that can be scheduled per executor.
 </td>
 </tr>
 </table>
@@ -2561,7 +2561,7 @@ extends CoarseGrainedClusterMessage</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>DriverEndpoint</code> uses <code>TaskSchedulerImpl</code>'s <a href="spark-configuration-properties.adoc#spark.task.cpus">spark.task.cpus</a> as the number of cores that became available after the task has finished.
+<code>DriverEndpoint</code> uses <code>TaskSchedulerImpl</code>'s <a href="../configuration-properties.html#spark.task.cpus" class="page">spark.task.cpus</a> as the number of cores that became available after the task has finished.
 </td>
 </tr>
 </table>

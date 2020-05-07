@@ -826,7 +826,7 @@
     <a class="nav-link" href="../spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-history-server/configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
@@ -1855,7 +1855,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>UnifiedMemoryManager</strong> is the default <a href="MemoryManager.html" class="page">MemoryManager</a> (based on <a href="../spark-configuration-properties.html#spark.memory.useLegacyMode" class="page">spark.memory.useLegacyMode</a> configuration property).</p>
+<p><strong>UnifiedMemoryManager</strong> is the default <a href="MemoryManager.html" class="page">MemoryManager</a> (based on <a href="../configuration-properties.html#spark.memory.useLegacyMode" class="page">spark.memory.useLegacyMode</a> configuration property).</p>
 </div>
 </div>
 </div>
@@ -1890,7 +1890,7 @@
 <p>Sum of the pool size of the <a href="MemoryManager.html#onHeapExecutionMemoryPool" class="page">on-heap ExecutionMemoryPool</a> and <a href="MemoryManager.html#onHeapStorageMemoryPool" class="page">on-heap StorageMemoryPool</a> is exactly the <a href="#maxHeapMemory">maximum heap memory</a></p>
 </li>
 <li>
-<p>Sum of the pool size of the <a href="MemoryManager.html#offHeapExecutionMemoryPool" class="page">off-heap ExecutionMemoryPool</a> and <a href="MemoryManager.html#offHeapStorageMemoryPool" class="page">off-heap StorageMemoryPool</a> is exactly the maximum off-heap memory (based on <a href="../spark-configuration-properties.html#spark.memory.offHeap.size" class="page">spark.memory.offHeap.size</a> configuration property)</p>
+<p>Sum of the pool size of the <a href="MemoryManager.html#offHeapExecutionMemoryPool" class="page">off-heap ExecutionMemoryPool</a> and <a href="MemoryManager.html#offHeapStorageMemoryPool" class="page">off-heap StorageMemoryPool</a> is exactly the maximum off-heap memory (based on <a href="../configuration-properties.html#spark.memory.offHeap.size" class="page">spark.memory.offHeap.size</a> configuration property)</p>
 </li>
 </ul>
 </div>
@@ -1910,7 +1910,7 @@
 <p><code>apply</code> computes the <a href="#getMaxMemory">maximum heap memory</a> (using the input <a href="../spark-SparkConf.html" class="page">SparkConf</a>).</p>
 </div>
 <div class="paragraph">
-<p><code>apply</code> computes the size of the on-heap storage region which is a fraction of the maximum heap memory based on <a href="../spark-configuration-properties.html#spark.memory.storageFraction" class="page">spark.memory.storageFraction</a> configuration property (default: <code>0.5</code>).</p>
+<p><code>apply</code> computes the size of the on-heap storage region which is a fraction of the maximum heap memory based on <a href="../configuration-properties.html#spark.memory.storageFraction" class="page">spark.memory.storageFraction</a> configuration property (default: <code>0.5</code>).</p>
 </div>
 <div class="paragraph">
 <p>In the end, <code>apply</code> creates a <a href="#creating-instance">UnifiedMemoryManager</a> (with the given and computed values).</p>

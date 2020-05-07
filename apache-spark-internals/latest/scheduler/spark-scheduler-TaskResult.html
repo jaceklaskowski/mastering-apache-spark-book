@@ -826,7 +826,7 @@
     <a class="nav-link" href="../spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-history-server/configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
@@ -1892,7 +1892,7 @@ extends TaskResult[T] with Externalizable</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>DirectTaskResult</code> is the <a href="#TaskResult">TaskResult</a> of <a href="Task.html#run" class="page">running a task</a> (that is later <a href="spark-Executor-TaskRunner.adoc#run">returned serialized to the driver</a>) when the size of the task&#8217;s result is smaller than <a href="spark-configuration-properties.adoc#spark.driver.maxResultSize">spark.driver.maxResultSize</a> and <a href="spark-Executor.adoc#spark.task.maxDirectResultSize">spark.task.maxDirectResultSize</a> (or <a href="CoarseGrainedSchedulerBackend.html#spark.rpc.message.maxSize" class="page">spark.rpc.message.maxSize</a> whatever is smaller).</p>
+<p><code>DirectTaskResult</code> is the <a href="#TaskResult">TaskResult</a> of <a href="Task.html#run" class="page">running a task</a> (that is later <a href="spark-Executor-TaskRunner.adoc#run">returned serialized to the driver</a>) when the size of the task&#8217;s result is smaller than <a href="../configuration-properties.html#spark.driver.maxResultSize" class="page">spark.driver.maxResultSize</a> and <a href="spark-Executor.adoc#spark.task.maxDirectResultSize">spark.task.maxDirectResultSize</a> (or <a href="CoarseGrainedSchedulerBackend.html#spark.rpc.message.maxSize" class="page">spark.rpc.message.maxSize</a> whatever is smaller).</p>
 </div>
 <div class="admonitionblock note">
 <table>

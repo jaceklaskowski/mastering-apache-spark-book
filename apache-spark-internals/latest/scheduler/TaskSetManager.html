@@ -826,7 +826,7 @@
     <a class="nav-link" href="../spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-history-server/configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
@@ -1895,12 +1895,12 @@ A <a href="TaskSet.html" class="page">TaskSet</a> represents a set of <a href="T
 <p><code>maxFailures</code> in <a href="local/spark-local.adoc#local-with-retries">Spark local-with-retries</a> (i.e. <code>local[N, maxFailures]</code>)</p>
 </li>
 <li>
-<p><a href="#spark-configuration-properties.adoc#spark.task.maxFailures" class="page unresolved">spark.task.maxFailures</a> property for <a href="local/spark-local.adoc">Spark local-cluster</a> and <a href="spark-cluster.adoc">Spark clustered</a> (using Spark Standalone, Mesos and YARN)</p>
+<p><a href="../configuration-properties.html#spark.task.maxFailures" class="page">spark.task.maxFailures</a> configuration property for <a href="local/spark-local.adoc">Spark local-cluster</a> and <a href="spark-cluster.adoc">Spark clustered</a> (using Spark Standalone, Mesos and YARN)</p>
 </li>
 </ul>
 </div>
 <div id="maxResultSize" class="paragraph">
-<p><code>TaskSetManager</code> uses <a href="#spark-configuration-properties.adoc#MAX_RESULT_SIZE" class="page unresolved">spark.driver.maxResultSize</a> configuration property (default: <code>1g</code>) to <a href="#canFetchMoreResults">check available memory for task results</a>.</p>
+<p><code>TaskSetManager</code> uses <a href="../configuration-properties.html#MAX_RESULT_SIZE" class="page">spark.driver.maxResultSize</a> configuration property (default: <code>1g</code>) to <a href="#canFetchMoreResults">check available memory for task results</a>.</p>
 </div>
 <div class="paragraph">
 <p>The responsibilities of a <code>TaskSetManager</code> include:</p>
@@ -3051,13 +3051,13 @@ FIXME
 </table>
 </div>
 <div class="paragraph">
-<p>Up to <a href="#spark-configuration-properties.adoc#spark.task.maxFailures" class="page unresolved">spark.task.maxFailures</a> attempts</p>
+<p>Up to <a href="../configuration-properties.html#spark.task.maxFailures" class="page">spark.task.maxFailures</a> attempts</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="task-retries-and-spark-task-maxfailures"><a class="anchor" href="#task-retries-and-spark-task-maxfailures"></a><a class="link" href="#task-retries-and-spark-task-maxfailures">Task retries and <code>spark.task.maxFailures</code></a></h3>
 <div class="paragraph">
-<p>When you start Spark program you set up <a href="#spark-configuration-properties.adoc#spark.task.maxFailures" class="page unresolved">spark.task.maxFailures</a> for the number of failures that are acceptable until <code>TaskSetManager</code> gives up and marks a job failed.</p>
+<p>When you start Spark program you set up <a href="../configuration-properties.html#spark.task.maxFailures" class="page">spark.task.maxFailures</a> for the number of failures that are acceptable until <code>TaskSetManager</code> gives up and marks a job failed.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -3066,7 +3066,7 @@ FIXME
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-In Spark shell with local master, <a href="#spark-configuration-properties.adoc#spark.task.maxFailures" class="page unresolved">spark.task.maxFailures</a> is fixed to <code>1</code> and you need to use <a href="local/spark-local.adoc">local-with-retries master</a> to change it to some other value.
+In Spark shell with local master, <a href="../configuration-properties.html#spark.task.maxFailures" class="page">spark.task.maxFailures</a> is fixed to <code>1</code> and you need to use <a href="local/spark-local.adoc">local-with-retries master</a> to change it to some other value.
 </td>
 </tr>
 </table>
@@ -3218,7 +3218,7 @@ FIXME image with DAGScheduler call
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>maxTaskFailures</code> is <code>1</code> for <code>local</code> run mode, <code>maxFailures</code> for Spark local-with-retries, and <a href="#spark-configuration-properties.adoc#spark.task.maxFailures" class="page unresolved">spark.task.maxFailures</a> property for Spark local-cluster and Spark with cluster managers (Spark Standalone, Mesos and YARN).
+<code>maxTaskFailures</code> is <code>1</code> for <code>local</code> run mode, <code>maxFailures</code> for Spark local-with-retries, and <a href="../configuration-properties.html#spark.task.maxFailures" class="page">spark.task.maxFailures</a> configuration property for Spark local-cluster and Spark with cluster managers (Spark Standalone, Mesos and YARN).
 </td>
 </tr>
 </table>
@@ -3495,7 +3495,7 @@ Read up on <a href="spark-taskschedulerimpl-speculative-execution.adoc">Speculat
 <p>Otherwise, if the exception is not of type <code>NotSerializableException</code>, <code>handleFailedTask</code> accesses accumulators and calculates whether to print the WARN message (with the failure reason) or the INFO message.</p>
 </div>
 <div class="paragraph">
-<p>If the failure has already been reported (and is therefore a duplication), <a href="#spark-configuration-properties.adoc#spark.logging.exceptionPrintInterval" class="page unresolved">spark.logging.exceptionPrintInterval</a> is checked before reprinting the duplicate exception in its entirety.</p>
+<p>If the failure has already been reported (and is therefore a duplication), <a href="../configuration-properties.html#spark.logging.exceptionPrintInterval" class="page">spark.logging.exceptionPrintInterval</a> is checked before reprinting the duplicate exception in its entirety.</p>
 </div>
 <div class="paragraph">
 <p>For full printout of the <code>ExceptionFailure</code>, the following WARN appears in the logs:</p>
@@ -3666,7 +3666,7 @@ Since <code>TaskSetManager</code> manages execution of the tasks in a single <a 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>executorLost</code> uses <a href="spark-SparkEnv.adoc#blockManager"><code>SparkEnv</code> to access the current <code>BlockManager</code></a> and finds out whether an <a href="../storage/BlockManager.html#externalShuffleServiceEnabled" class="page">external shuffle service is enabled</a> or not (based on <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property).
+<code>executorLost</code> uses <a href="spark-SparkEnv.adoc#blockManager"><code>SparkEnv</code> to access the current <code>BlockManager</code></a> and finds out whether an <a href="../storage/BlockManager.html#externalShuffleServiceEnabled" class="page">external shuffle service is enabled</a> or not (based on <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property).
 </td>
 </tr>
 </table>
@@ -3885,7 +3885,7 @@ FIXME But <strong>why</strong> are the caches important (and have to be recomput
 <p><code>getLocalityWait</code> finds <strong>locality wait</strong> (in milliseconds) for a given <a href="TaskSchedulerImpl.html#TaskLocality" class="page">TaskLocality</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>getLocalityWait</code> uses <a href="#spark-configuration-properties.adoc#spark.locality.wait" class="page unresolved">spark.locality.wait</a> (default: <code>3s</code>) when the <code>TaskLocality</code>-specific property is not defined or <code>0</code> for <code>NO_PREF</code> and <code>ANY</code>.</p>
+<p><code>getLocalityWait</code> uses <a href="../configuration-properties.html#spark.locality.wait" class="page">spark.locality.wait</a> (default: <code>3s</code>) when the <code>TaskLocality</code>-specific property is not defined or <code>0</code> for <code>NO_PREF</code> and <code>ANY</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3914,15 +3914,15 @@ FIXME But <strong>why</strong> are the caches important (and have to be recomput
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PROCESS_LOCAL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#spark-configuration-properties.adoc#spark.locality.wait.process" class="page unresolved">spark.locality.wait.process</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../configuration-properties.html#spark.locality.wait.process" class="page">spark.locality.wait.process</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NODE_LOCAL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#spark-configuration-properties.adoc#spark.locality.wait.node" class="page unresolved">spark.locality.wait.node</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../configuration-properties.html#spark.locality.wait.node" class="page">spark.locality.wait.node</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">RACK_LOCAL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#spark-configuration-properties.adoc#spark.locality.wait.rack" class="page unresolved">spark.locality.wait.rack</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../configuration-properties.html#spark.locality.wait.rack" class="page">spark.locality.wait.rack</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -3953,7 +3953,7 @@ FIXME But <strong>why</strong> are the caches important (and have to be recomput
 <p>Internally, <code>canFetchMoreResults</code> increments the internal <a href="#totalResultSize">totalResultSize</a> with the input <code>size</code> (which is the size of the result of a task) and increments the internal <a href="#calculatedTasks">calculatedTasks</a>.</p>
 </div>
 <div class="paragraph">
-<p>If the current internal <a href="#totalResultSize">totalResultSize</a> is bigger than the <a href="#spark-configuration-properties.adoc#maxResultSize" class="page unresolved">maximum result size</a>, <code>canFetchMoreResults</code> prints out the following ERROR message to the logs:</p>
+<p>If the current internal <a href="#totalResultSize">totalResultSize</a> is bigger than the <a href="../configuration-properties.html#maxResultSize" class="page">maximum result size</a>, <code>canFetchMoreResults</code> prints out the following ERROR message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3967,7 +3967,7 @@ FIXME But <strong>why</strong> are the caches important (and have to be recomput
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>canFetchMoreResults</code> uses <a href="#spark-configuration-properties.adoc#spark.driver.maxResultSize" class="page unresolved">spark.driver.maxResultSize</a> configuration property to control the maximum result size. The default value is <code>1g</code>.
+<code>canFetchMoreResults</code> uses <a href="../configuration-properties.html#spark.driver.maxResultSize" class="page">spark.driver.maxResultSize</a> configuration property to control the maximum result size. The default value is <code>1g</code>.
 </td>
 </tr>
 </table>

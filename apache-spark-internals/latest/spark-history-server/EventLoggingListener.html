@@ -826,7 +826,7 @@
     <a class="nav-link" href="../spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="HistoryServer.html">HistoryServer</a>
@@ -1854,13 +1854,13 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>EventLoggingListener</code> is a <a href="../spark-scheduler-SparkListener.html" class="page">SparkListener</a> that <a href="#logEvent">writes out JSON-encoded events</a> of a Spark application with event logging enabled (based on <a href="configuration-properties.html#spark.eventLog.enabled" class="page">spark.eventLog.enabled</a> configuration property).</p>
+<p><code>EventLoggingListener</code> is a <a href="../spark-scheduler-SparkListener.html" class="page">SparkListener</a> that <a href="#logEvent">writes out JSON-encoded events</a> of a Spark application with event logging enabled (based on <a href="../configuration-properties.html#spark.eventLog.enabled" class="page">spark.eventLog.enabled</a> configuration property).</p>
 </div>
 <div class="paragraph">
 <p><code>EventLoggingListener</code> supports custom <a href="configuration-properties.html#EventLoggingListener" class="page">configuration properties</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>EventLoggingListener</code> writes out log files to a directory (based on <a href="configuration-properties.html#spark.eventLog.dir" class="page">spark.eventLog.dir</a> configuration property). All <a href="../spark-scheduler-SparkListener.html" class="page">Spark events</a> are logged (but <a href="../spark-scheduler-SparkListener.html#SparkListenerBlockUpdated" class="page">SparkListenerBlockUpdated</a> and <a href="../spark-scheduler-SparkListener.html#SparkListenerExecutorMetricsUpdate" class="page">SparkListenerExecutorMetricsUpdate</a>).</p>
+<p><code>EventLoggingListener</code> writes out log files to a directory (based on <a href="../configuration-properties.html#spark.eventLog.dir" class="page">spark.eventLog.dir</a> configuration property). All <a href="../spark-scheduler-SparkListener.html" class="page">Spark events</a> are logged (but <a href="../spark-scheduler-SparkListener.html#SparkListenerBlockUpdated" class="page">SparkListenerBlockUpdated</a> and <a href="../spark-scheduler-SparkListener.html#SparkListenerExecutorMetricsUpdate" class="page">SparkListenerExecutorMetricsUpdate</a>).</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1879,7 +1879,7 @@ Use <a href="index.html" class="page">Spark History Server</a> to view the event
 <code>EventLoggingListener</code> uses <strong>.inprogress</strong> file extension for in-flight event log files of active Spark applications.</p>
 </div>
 <div class="paragraph">
-<p><code>EventLoggingListener</code> can compress events (based on <a href="configuration-properties.html#spark.eventLog.compress" class="page">spark.eventLog.compress</a> configuration property).</p>
+<p><code>EventLoggingListener</code> can compress events (based on <a href="../configuration-properties.html#spark.eventLog.compress" class="page">spark.eventLog.compress</a> configuration property).</p>
 </div>
 <div id="logging" class="admonitionblock tip">
 <table>

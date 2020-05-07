@@ -826,7 +826,7 @@
     <a class="nav-link" href="../spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-history-server/configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
@@ -1873,13 +1873,13 @@
 <p>TaskSchedulerImpl can <a href="#getRackForHost">track racks per host and port</a> (that however is <a href="../spark-on-yarn/spark-yarn-yarnscheduler.html" class="page">only used with Hadoop YARN cluster manager</a>).</p>
 </div>
 <div class="paragraph">
-<p>Using <a href="../spark-configuration-properties.html#spark.scheduler.mode" class="page">spark.scheduler.mode</a> configuration property you can select the <a href="spark-scheduler-SchedulingMode.html" class="page">scheduling policy</a>.</p>
+<p>Using <a href="../configuration-properties.html#spark.scheduler.mode" class="page">spark.scheduler.mode</a> configuration property you can select the <a href="spark-scheduler-SchedulingMode.html" class="page">scheduling policy</a>.</p>
 </div>
 <div class="paragraph">
 <p>TaskSchedulerImpl <a href="#submitTasks">submits tasks</a> using <a href="spark-scheduler-SchedulableBuilder.html" class="page">SchedulableBuilders</a>.</p>
 </div>
 <div id="CPUS_PER_TASK" class="paragraph">
-<p>TaskSchedulerImpl uses <a href="../spark-configuration-properties.html#spark.task.cpus" class="page">spark.task.cpus</a> configuration property for&#8230;&#8203;FIXME</p>
+<p>TaskSchedulerImpl uses <a href="../configuration-properties.html#spark.task.cpus" class="page">spark.task.cpus</a> configuration property for&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>
@@ -1906,7 +1906,7 @@
 <p>TaskSchedulerImpl initializes the <a href="#internal-properties">internal properties</a>.</p>
 </div>
 <div class="paragraph">
-<p>TaskSchedulerImpl sets <a href="TaskScheduler.html#schedulingMode" class="page">schedulingMode</a> to the value of <a href="../spark-configuration-properties.html#spark.scheduler.mode" class="page">spark.scheduler.mode</a> configuration property.</p>
+<p>TaskSchedulerImpl sets <a href="TaskScheduler.html#schedulingMode" class="page">schedulingMode</a> to the value of <a href="../configuration-properties.html#spark.scheduler.mode" class="page">spark.scheduler.mode</a> configuration property.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2590,7 +2590,7 @@ FIXME image with scheduler backends calling <code>TaskSchedulerImpl.statusUpdate
 <h2 id="acceptable-number-of-task-failures"><a class="anchor" href="#acceptable-number-of-task-failures"></a><a class="link" href="#acceptable-number-of-task-failures"><a id="maxTaskFailures"></a> Acceptable Number of Task Failures</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TaskSchedulerImpl can be given the acceptable number of task failures when created or defaults to <a href="../spark-configuration-properties.html#spark.task.maxFailures" class="page">spark.task.maxFailures</a> configuration property.</p>
+<p>TaskSchedulerImpl can be given the acceptable number of task failures when created or defaults to <a href="../configuration-properties.html#spark.task.maxFailures" class="page">spark.task.maxFailures</a> configuration property.</p>
 </div>
 <div class="paragraph">
 <p>The number of task failures is used when <a href="#submitTasks">submitting tasks</a> through <a href="TaskSetManager.html" class="page">TaskSetManager</a>.</p>
@@ -2812,7 +2812,7 @@ The <a href="TaskScheduler.html#rootPool" class="page">schedulable pool</a> can 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The very first time (<a href="#hasReceivedTask">hasReceivedTask</a> flag is <code>false</code>) in cluster mode only (i.e. <code>isLocal</code> of the TaskSchedulerImpl is <code>false</code>), <code>starvationTimer</code> is scheduled to execute after <a href="../spark-configuration-properties.html#spark.starvation.timeout" class="page">spark.starvation.timeout</a>  to ensure that the requested resources, i.e. CPUs and memory, were assigned by a cluster manager.
+The very first time (<a href="#hasReceivedTask">hasReceivedTask</a> flag is <code>false</code>) in cluster mode only (i.e. <code>isLocal</code> of the TaskSchedulerImpl is <code>false</code>), <code>starvationTimer</code> is scheduled to execute after <a href="../configuration-properties.html#spark.starvation.timeout" class="page">spark.starvation.timeout</a>  to ensure that the requested resources, i.e. CPUs and memory, were assigned by a cluster manager.
 </td>
 </tr>
 </table>
@@ -2824,7 +2824,7 @@ The very first time (<a href="#hasReceivedTask">hasReceivedTask</a> flag is <cod
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-After the first <a href="../spark-configuration-properties.html#spark.starvation.timeout" class="page">spark.starvation.timeout</a> passes, the <a href="#hasReceivedTask">hasReceivedTask</a> internal flag is <code>true</code>.
+After the first <a href="../configuration-properties.html#spark.starvation.timeout" class="page">spark.starvation.timeout</a> passes, the <a href="#hasReceivedTask">hasReceivedTask</a> internal flag is <code>true</code>.
 </td>
 </tr>
 </table>
@@ -3264,7 +3264,7 @@ A <code>TaskSetManager</code> <a href="TaskSetManager.html##computeValidLocality
 </div>
 </div>
 <div class="paragraph">
-<p><code>resourceOfferSingleTaskSet</code> takes every <code>WorkerOffer</code> (from the input <code>shuffledOffers</code>) and (only if the number of available CPU cores (using the input <code>availableCpus</code>) is at least <a href="#spark-configuration-properties.adoc#spark.task.cpus" class="page unresolved">spark.task.cpus</a>) <a href="TaskSetManager.html#resourceOffer" class="page">requests <code>TaskSetManager</code> (as the input <code>taskSet</code>) to find a <code>Task</code> to execute (given the resource offer)</a> (as an executor, a host, and the input <code>maxLocality</code>).</p>
+<p><code>resourceOfferSingleTaskSet</code> takes every <code>WorkerOffer</code> (from the input <code>shuffledOffers</code>) and (only if the number of available CPU cores (using the input <code>availableCpus</code>) is at least <a href="../configuration-properties.html#spark.task.cpus" class="page">spark.task.cpus</a>) <a href="TaskSetManager.html#resourceOffer" class="page">requests <code>TaskSetManager</code> (as the input <code>taskSet</code>) to find a <code>Task</code> to execute (given the resource offer)</a> (as an executor, a host, and the input <code>maxLocality</code>).</p>
 </div>
 <div class="paragraph">
 <p><code>resourceOfferSingleTaskSet</code> adds the task to the input <code>tasks</code> collection.</p>
@@ -3286,7 +3286,7 @@ A <code>TaskSetManager</code> <a href="TaskSetManager.html##computeValidLocality
 </ul>
 </div>
 <div class="paragraph">
-<p><code>resourceOfferSingleTaskSet</code> decreases <a href="../spark-configuration-properties.html#spark.task.cpus" class="page">spark.task.cpus</a> from the input <code>availableCpus</code> (for the <code>WorkerOffer</code>).</p>
+<p><code>resourceOfferSingleTaskSet</code> decreases <a href="../configuration-properties.html#spark.task.cpus" class="page">spark.task.cpus</a> from the input <code>availableCpus</code> (for the <code>WorkerOffer</code>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3535,7 +3535,7 @@ A <code>TaskSetManager</code> <a href="TaskSetManager.html##computeValidLocality
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Use <a href="../spark-configuration-properties.html#spark.scheduler.mode" class="page">spark.scheduler.mode</a> configuration property to select the scheduling policy.
+Use <a href="../configuration-properties.html#spark.scheduler.mode" class="page">spark.scheduler.mode</a> configuration property to select the scheduling policy.
 </td>
 </tr>
 </table>

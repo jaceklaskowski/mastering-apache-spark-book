@@ -826,7 +826,7 @@
     <a class="nav-link" href="../spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-history-server/configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
@@ -1977,7 +1977,7 @@ Use <a href="../tools/spark-submit.html" class="page">spark-submit</a>'s command
 </table>
 </div>
 <div class="paragraph">
-<p>When created, BlockManager sets <a href="#externalShuffleServiceEnabled">externalShuffleServiceEnabled</a> internal flag based on <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property.</p>
+<p>When created, BlockManager sets <a href="#externalShuffleServiceEnabled">externalShuffleServiceEnabled</a> internal flag based on <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property.</p>
 </div>
 <div class="paragraph">
 <p>BlockManager then creates an instance of <a href="DiskBlockManager.html" class="page">DiskBlockManager</a> (requesting <code>deleteFilesOnStop</code> when an external shuffle service is not in use).</p>
@@ -2024,7 +2024,7 @@ It is computed specially in Spark on YARN.
 <p>BlockManager is given a <a href="../spark-BlockTransferService.html" class="page">BlockTransferService</a> to be created.</p>
 </div>
 <div class="paragraph">
-<p>BlockTransferService is used as the <a href="#shuffleClient">ShuffleClient</a> when BlockManager is configured to use no external shuffle service (based on <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property).</p>
+<p>BlockTransferService is used as the <a href="#shuffleClient">ShuffleClient</a> when BlockManager is configured to use no external shuffle service (based on <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property).</p>
 </div>
 <div class="paragraph">
 <p>BlockTransferService is <a href="../spark-BlockTransferService.html#init" class="page">initialized</a> when BlockManager <a href="#initialize">is</a>.</p>
@@ -3485,7 +3485,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="paragraph">
-<p>getDiskWriter creates a <a href="DiskBlockObjectWriter.html" class="page">DiskBlockObjectWriter</a> (with <a href="../spark-configuration-properties.html#spark.shuffle.sync" class="page">spark.shuffle.sync</a> configuration property for syncWrites argument).</p>
+<p>getDiskWriter creates a <a href="DiskBlockObjectWriter.html" class="page">DiskBlockObjectWriter</a> (with <a href="../configuration-properties.html#spark.shuffle.sync" class="page">spark.shuffle.sync</a> configuration property for syncWrites argument).</p>
 </div>
 <div class="paragraph">
 <p>getDiskWriter uses the <a href="#serializerManager">SerializerManager</a> of the BlockManager.</p>
@@ -3548,15 +3548,15 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="paragraph">
-<p><code>shuffleMetricsSource</code> requests the <a href="#shuffleClient">ShuffleClient</a> for the <a href="spark-ShuffleClient.adoc#shuffleMetrics">shuffle-related metrics</a> and creates a <a href="spark-BlockManager-ShuffleMetricsSource.adoc">ShuffleMetricsSource</a> with the <a href="spark-BlockManager-ShuffleMetricsSource.adoc#sourceName">source name</a> per <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property:</p>
+<p><code>shuffleMetricsSource</code> requests the <a href="#shuffleClient">ShuffleClient</a> for the <a href="spark-ShuffleClient.adoc#shuffleMetrics">shuffle-related metrics</a> and creates a <a href="spark-BlockManager-ShuffleMetricsSource.adoc">ShuffleMetricsSource</a> with the <a href="spark-BlockManager-ShuffleMetricsSource.adoc#sourceName">source name</a> per <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>ExternalShuffle</strong> when <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property is on (<code>true</code>)</p>
+<p><strong>ExternalShuffle</strong> when <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property is on (<code>true</code>)</p>
 </li>
 <li>
-<p><strong>NettyBlockTransfer</strong> when <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property is off (<code>false</code>)</p>
+<p><strong>NettyBlockTransfer</strong> when <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property is off (<code>false</code>)</p>
 </li>
 </ul>
 </div>
@@ -3832,7 +3832,7 @@ FIXME Figure
 </table>
 </div>
 <div id="shuffleClient-externalShuffleServiceEnabled" class="paragraph">
-<p><code>shuffleClient</code> uses <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property that controls whether to use <a href="spark-ShuffleClient-ExternalShuffleClient.adoc">ExternalShuffleClient</a> (<code>true</code>) or the <a href="#blockTransferService">BlockTransferService</a> (i.e. <a href="spark-NettyBlockTransferService.adoc">NettyBlockTransferService</a>).</p>
+<p><code>shuffleClient</code> uses <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property that controls whether to use <a href="spark-ShuffleClient-ExternalShuffleClient.adoc">ExternalShuffleClient</a> (<code>true</code>) or the <a href="#blockTransferService">BlockTransferService</a> (i.e. <a href="spark-NettyBlockTransferService.adoc">NettyBlockTransferService</a>).</p>
 </div>
 </div>
 </div>

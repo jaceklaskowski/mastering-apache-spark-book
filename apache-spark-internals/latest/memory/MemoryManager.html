@@ -826,7 +826,7 @@
     <a class="nav-link" href="../spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-history-server/configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
@@ -1888,7 +1888,7 @@ val mm = SparkEnv.get.memoryManager</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A <a href="#implementations">concrete MemoryManager</a> is chosen based on <a href="../spark-configuration-properties.html#spark.memory.useLegacyMode" class="page">spark.memory.useLegacyMode</a> configuration property (for <a href="../spark-SparkEnv.html#memoryManager" class="page">SparkEnv</a> for the driver and executors).</p>
+<p>A <a href="#implementations">concrete MemoryManager</a> is chosen based on <a href="../configuration-properties.html#spark.memory.useLegacyMode" class="page">spark.memory.useLegacyMode</a> configuration property (for <a href="../spark-SparkEnv.html#memoryManager" class="page">SparkEnv</a> for the driver and executors).</p>
 </div>
 </div>
 </div>
@@ -2147,10 +2147,10 @@ val mm = SparkEnv.get.memoryManager</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="../spark-configuration-properties.html#spark.memory.offHeap.enabled" class="page">spark.memory.offHeap.enabled</a> configuration property is enabled (it is not by default)</p>
+<p><a href="../configuration-properties.html#spark.memory.offHeap.enabled" class="page">spark.memory.offHeap.enabled</a> configuration property is enabled (it is not by default)</p>
 </li>
 <li>
-<p><a href="../spark-configuration-properties.html#spark.memory.offHeap.size" class="page">spark.memory.offHeap.size</a> configuration property is greater than <code>0</code> (it is <code>0</code> by default)</p>
+<p><a href="../configuration-properties.html#spark.memory.offHeap.size" class="page">spark.memory.offHeap.size</a> configuration property is greater than <code>0</code> (it is <code>0</code> by default)</p>
 </li>
 <li>
 <p>JVM supports unaligned memory access (aka <strong>unaligned Unsafe</strong>, i.e. <code>sun.misc.Unsafe</code> package is available and the underlying system has unaligned-access capability)</p>
@@ -2167,7 +2167,7 @@ val mm = SparkEnv.get.memoryManager</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Given that <a href="../spark-configuration-properties.html#spark.memory.offHeap.enabled" class="page">spark.memory.offHeap.enabled</a> configuration property is disabled (<code>false</code>) by default and <a href="../spark-configuration-properties.html#spark.memory.offHeap.size" class="page">spark.memory.offHeap.size</a> configuration property is <code>0</code> by default, Spark seems to encourage using Tungsten memory allocated on the JVM heap (<code>ON_HEAP</code>).
+Given that <a href="../configuration-properties.html#spark.memory.offHeap.enabled" class="page">spark.memory.offHeap.enabled</a> configuration property is disabled (<code>false</code>) by default and <a href="../configuration-properties.html#spark.memory.offHeap.size" class="page">spark.memory.offHeap.size</a> configuration property is <code>0</code> by default, Spark seems to encourage using Tungsten memory allocated on the JVM heap (<code>ON_HEAP</code>).
 </td>
 </tr>
 </table>

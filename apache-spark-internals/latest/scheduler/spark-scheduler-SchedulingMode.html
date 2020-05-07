@@ -826,7 +826,7 @@
     <a class="nav-link" href="../spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-history-server/configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
@@ -1860,7 +1860,7 @@
 <p>The scheduling mode <code>schedulingMode</code> attribute is part of the <a href="TaskScheduler.html#schedulingMode" class="page">TaskScheduler Contract</a>.</p>
 </div>
 <div class="paragraph">
-<p>The only implementation of the <code>TaskScheduler</code> contract in Spark&#8201;&#8212;&#8201;<a href="TaskSchedulerImpl.html" class="page">TaskSchedulerImpl</a>&#8201;&#8212;&#8201;uses <a href="spark-configuration-properties.adoc#spark.scheduler.mode">spark.scheduler.mode</a> setting to configure <code>schedulingMode</code> that is <em>merely</em> used to set up the <a href="TaskScheduler.html#rootPool" class="page">rootPool</a> attribute (with <code>FIFO</code> being the default). It happens when <a href="TaskSchedulerImpl.html#initialize" class="page"><code>TaskSchedulerImpl</code> is initialized</a>.</p>
+<p>The only implementation of the <code>TaskScheduler</code> contract in Spark&#8201;&#8212;&#8201;<a href="TaskSchedulerImpl.html" class="page">TaskSchedulerImpl</a>&#8201;&#8212;&#8201;uses <a href="../configuration-properties.html#spark.scheduler.mode" class="page">spark.scheduler.mode</a> setting to configure <code>schedulingMode</code> that is <em>merely</em> used to set up the <a href="TaskScheduler.html#rootPool" class="page">rootPool</a> attribute (with <code>FIFO</code> being the default). It happens when <a href="TaskSchedulerImpl.html#initialize" class="page"><code>TaskSchedulerImpl</code> is initialized</a>.</p>
 </div>
 <div class="paragraph">
 <p>There are three acceptable scheduling modes:</p>

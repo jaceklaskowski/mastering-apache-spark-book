@@ -826,7 +826,7 @@
     <a class="nav-link" href="../spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-history-server/configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
@@ -1952,7 +1952,7 @@ Consult <a href="demo-diskblockmanager-and-block-data.html" class="page">Demo: D
 <p><code>subDirs</code> is a lookup table for file locks of every <a href="#localDirs">local block directory</a> (with the first dimension for local directories and the second for locks).</p>
 </div>
 <div class="paragraph">
-<p>The number of block subdirectories is controlled by <a href="../spark-configuration-properties.html#spark.diskStore.subDirectories" class="page">spark.diskStore.subDirectories</a> configuration property (default: <code>64</code>).</p>
+<p>The number of block subdirectories is controlled by <a href="../configuration-properties.html#spark.diskStore.subDirectories" class="page">spark.diskStore.subDirectories</a> configuration property (default: <code>64</code>).</p>
 </div>
 <div class="paragraph">
 <p><code>subDirs(dirId)(subDirId)</code> is used to access <code>subDirId</code> subdirectory in <code>dirId</code> local directory.</p>
@@ -2157,7 +2157,7 @@ FIXME
 <p><code>getConfiguredLocalDirs</code> returns the local directories where Spark can write files.</p>
 </div>
 <div class="paragraph">
-<p>Internally, <code>getConfiguredLocalDirs</code> uses <code>conf</code> <a href="spark-SparkConf.adoc">SparkConf</a> to know if <a href="spark-ExternalShuffleService.adoc">External Shuffle Service</a> is enabled (based on <a href="../spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property).</p>
+<p>Internally, <code>getConfiguredLocalDirs</code> uses <code>conf</code> <a href="spark-SparkConf.adoc">SparkConf</a> to know if <a href="spark-ExternalShuffleService.adoc">External Shuffle Service</a> is enabled (based on <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property).</p>
 </div>
 <div class="paragraph">
 <p><code>getConfiguredLocalDirs</code> checks if <a href="#isRunningInYarnContainer">Spark runs on YARN</a> and if so, returns <a href="#getYarnLocalDirs"><code>LOCAL_DIRS</code>-controlled local directories</a>.</p>

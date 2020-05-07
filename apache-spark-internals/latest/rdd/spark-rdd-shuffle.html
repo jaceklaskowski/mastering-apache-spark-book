@@ -826,7 +826,7 @@
     <a class="nav-link" href="../spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-history-server/configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
@@ -1972,7 +1972,7 @@ FIXME Just learnt about sc.range(0, 5) as a shorter version of sc.parallelize(0 
 </table>
 </div>
 <div class="paragraph">
-<p><code>join</code> operation is one of the <strong>cogroup operations</strong> that uses <code>defaultPartitioner</code>, i.e. walks through <a href="spark-rdd-lineage.adoc">the RDD lineage graph</a> (sorted by the number of partitions decreasing) and picks the partitioner with positive number of output partitions. Otherwise, it checks <a href="#spark-configuration-properties.adoc#spark.default.parallelism" class="page unresolved">spark.default.parallelism</a> configuration and if defined picks <a href="spark-rdd-HashPartitioner.adoc">HashPartitioner</a> with the default parallelism of the <a href="../scheduler/SchedulerBackend.html" class="page">SchedulerBackend</a>.</p>
+<p><code>join</code> operation is one of the <strong>cogroup operations</strong> that uses <code>defaultPartitioner</code>, i.e. walks through <a href="spark-rdd-lineage.adoc">the RDD lineage graph</a> (sorted by the number of partitions decreasing) and picks the partitioner with positive number of output partitions. Otherwise, it checks <a href="../configuration-properties.html#spark.default.parallelism" class="page">spark.default.parallelism</a> configuration and if defined picks <a href="spark-rdd-HashPartitioner.adoc">HashPartitioner</a> with the default parallelism of the <a href="../scheduler/SchedulerBackend.html" class="page">SchedulerBackend</a>.</p>
 </div>
 <div class="paragraph">
 <p><code>join</code> is almost <code>CoGroupedRDD.mapValues</code>.</p>

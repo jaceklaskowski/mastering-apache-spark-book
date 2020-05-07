@@ -826,7 +826,7 @@
     <a class="nav-link" href="spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-history-server/configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-history-server/HistoryServer.html">HistoryServer</a>
@@ -1860,7 +1860,7 @@
 <p>Unlike the "traditional" static allocation where a Spark application reserves CPU and memory resources upfront (irrespective of how much it may eventually use), in dynamic allocation you get as much as needed and no more. It scales the number of executors up and down based on workload, i.e. idle executors are removed, and when there are pending tasks waiting for executors to be launched on, dynamic allocation requests them.</p>
 </div>
 <div class="paragraph">
-<p>Dynamic allocation is enabled using <a href="#spark.dynamicAllocation.enabled">spark.dynamicAllocation.enabled</a> setting. When enabled, it is assumed that the <a href="spark-ExternalShuffleService.adoc">External Shuffle Service</a> is also used (it is not by default as controlled by <a href="spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> property).</p>
+<p>Dynamic allocation is enabled using <a href="#spark.dynamicAllocation.enabled">spark.dynamicAllocation.enabled</a> setting. When enabled, it is assumed that the <a href="spark-ExternalShuffleService.adoc">External Shuffle Service</a> is also used (it is not by default as controlled by <a href="configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> property).</p>
 </div>
 <div class="paragraph">
 <p><a href="spark-ExecutorAllocationManager.adoc">ExecutorAllocationManager</a> is responsible for dynamic allocation of executors. With <a href="#isDynamicAllocationEnabled">dynamic allocation enabled</a>, it is <a href="spark-SparkContext-creating-instance-internals.adoc#ExecutorAllocationManager">started when <code>SparkContext</code> is initialized</a>.</p>
@@ -1924,7 +1924,7 @@ Review the excellent slide deck <a href="http://www.slideshare.net/databricks/dy
 <p><a href="#spark.dynamicAllocation.enabled">spark.dynamicAllocation.enabled</a> is enabled (i.e. <code>true</code>)</p>
 </li>
 <li>
-<p><a href="spark-cluster.adoc">Spark on cluster</a> is used (i.e. <a href="spark-configuration-properties.adoc#spark.master">spark.master</a> is non-<code>local</code>)</p>
+<p><a href="spark-cluster.adoc">Spark on cluster</a> is used (i.e. <a href="configuration-properties.html#spark.master" class="page">spark.master</a> is non-<code>local</code>)</p>
 </li>
 <li>
 <p><a href="#spark.dynamicAllocation.testing">spark.dynamicAllocation.testing</a> is enabled (i.e. <code>true</code>)</p>

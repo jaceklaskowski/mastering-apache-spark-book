@@ -826,7 +826,7 @@
     <a class="nav-link" href="spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-history-server/configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-history-server/HistoryServer.html">HistoryServer</a>
@@ -1857,7 +1857,7 @@
 <p><code>ExternalShuffleService</code> is an <strong>external shuffle service</strong> that serves shuffle blocks from outside an <a href="spark-Executor.adoc">Executor</a> process. It runs as a standalone application and manages shuffle output files so they are available for executors at all time. As the shuffle output files are managed externally to the executors it offers an uninterrupted access to the shuffle output files regardless of executors being killed or down.</p>
 </div>
 <div class="paragraph">
-<p>You start <code>ExternalShuffleService</code> using <a href="#start-script"><code>start-shuffle-service.sh</code> shell script</a> and enable its use by the driver and executors using <a href="spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a>.</p>
+<p>You start <code>ExternalShuffleService</code> using <a href="#start-script"><code>start-shuffle-service.sh</code> shell script</a> and enable its use by the driver and executors using <a href="configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1963,7 +1963,7 @@ FIXME <code>Utils.initDaemon(log)</code>? See spark-submit.
 <p>It loads default Spark properties and creates a <code>SecurityManager</code>.</p>
 </div>
 <div class="paragraph">
-<p>It sets <a href="spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> to <code>true</code> (as <a href="#create-instance">later it is checked whether it is enabled or not</a>).</p>
+<p>It sets <a href="configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> to <code>true</code> (as <a href="#create-instance">later it is checked whether it is enabled or not</a>).</p>
 </div>
 <div class="paragraph">
 <p>A <code>ExternalShuffleService</code> is <a href="#create-instance">created</a> and <a href="#start">started</a>.</p>
@@ -2026,7 +2026,7 @@ DEBUG ExternalShuffleBlockResolver: Successfully cleaned up directory: [localDir
 <p><code>ExternalShuffleService</code> requires a <a href="spark-SparkConf.adoc">SparkConf</a> and <a href="spark-security.adoc">SecurityManager</a>.</p>
 </div>
 <div class="paragraph">
-<p>When created, it reads <a href="spark-configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property (disabled by default) and <a href="#spark.shuffle.service.port">spark.shuffle.service.port</a> (defaults to <code>7337</code>) configuration settings. It also checks whether authentication is enabled.</p>
+<p>When created, it reads <a href="configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property (disabled by default) and <a href="#spark.shuffle.service.port">spark.shuffle.service.port</a> (defaults to <code>7337</code>) configuration settings. It also checks whether authentication is enabled.</p>
 </div>
 <div class="admonitionblock caution">
 <table>

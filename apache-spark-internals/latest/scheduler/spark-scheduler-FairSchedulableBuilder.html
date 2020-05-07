@@ -826,7 +826,7 @@
     <a class="nav-link" href="../spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-history-server/configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
@@ -1855,7 +1855,7 @@
 <h2 id="fairschedulablebuilderschedulablebuilder-for-fair-scheduling-mode"><a class="anchor" href="#fairschedulablebuilderschedulablebuilder-for-fair-scheduling-mode"></a><a class="link" href="#fairschedulablebuilderschedulablebuilder-for-fair-scheduling-mode"><a id="FairSchedulableBuilder"></a> FairSchedulableBuilder&#8201;&#8212;&#8201;SchedulableBuilder for FAIR Scheduling Mode</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>FairSchedulableBuilder</code> is a <a href="spark-scheduler-SchedulableBuilder.html" class="page">SchedulableBuilder</a> that is <a href="#creating-instance">created</a> exclusively for <a href="TaskSchedulerImpl.html" class="page">TaskSchedulerImpl</a> for <strong>FAIR scheduling mode</strong> (when <a href="#spark-configuration-properties.adoc#spark.scheduler.mode" class="page unresolved">spark.scheduler.mode</a> configuration property is <code>FAIR</code>).</p>
+<p><code>FairSchedulableBuilder</code> is a <a href="spark-scheduler-SchedulableBuilder.html" class="page">SchedulableBuilder</a> that is <a href="#creating-instance">created</a> exclusively for <a href="TaskSchedulerImpl.html" class="page">TaskSchedulerImpl</a> for <strong>FAIR scheduling mode</strong> (when <a href="../configuration-properties.html#spark.scheduler.mode" class="page">spark.scheduler.mode</a> configuration property is <code>FAIR</code>).</p>
 </div>
 <div id="creating-instance" class="paragraph">
 <p><code>FairSchedulableBuilder</code> takes the following to be created:</p>
@@ -1874,7 +1874,7 @@
 <p>Once <a href="#creating-instance">created</a>, <code>TaskSchedulerImpl</code> requests the <code>FairSchedulableBuilder</code> to <a href="#buildPools">build the pools</a>.</p>
 </div>
 <div id="DEFAULT_SCHEDULER_FILE" class="paragraph">
-<p><code>FairSchedulableBuilder</code> uses the pools defined in an <a href="#allocations-file">allocation pools configuration file</a> that is assumed to be the value of the <a href="#spark-configuration-properties.adoc#spark.scheduler.allocation.file" class="page unresolved">spark.scheduler.allocation.file</a> configuration property or the default <strong>fairscheduler.xml</strong> (that is <a href="#buildPools">expected to be available on a Spark application&#8217;s class path</a>).</p>
+<p><code>FairSchedulableBuilder</code> uses the pools defined in an <a href="#allocations-file">allocation pools configuration file</a> that is assumed to be the value of the <a href="../configuration-properties.html#spark.scheduler.allocation.file" class="page">spark.scheduler.allocation.file</a> configuration property or the default <strong>fairscheduler.xml</strong> (that is <a href="#buildPools">expected to be available on a Spark application&#8217;s class path</a>).</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -2002,7 +2002,7 @@ The top-level element&#8217;s name <code>allocations</code> can be anything. Spa
 <p><code>buildPools</code> <a href="#buildFairSchedulerPool">creates Fair Scheduler pools from a configuration file</a> if available and then <a href="#buildDefaultPool">builds the default pool</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>buildPools</code> prints out the following INFO message to the logs when the configuration file (per the <a href="#spark-configuration-properties.adoc#spark.scheduler.allocation.file" class="page unresolved">spark.scheduler.allocation.file</a> configuration property) could be read:</p>
+<p><code>buildPools</code> prints out the following INFO message to the logs when the configuration file (per the <a href="../configuration-properties.html#spark.scheduler.allocation.file" class="page">spark.scheduler.allocation.file</a> configuration property) could be read:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2010,7 +2010,7 @@ The top-level element&#8217;s name <code>allocations</code> can be anything. Spa
 </div>
 </div>
 <div class="paragraph">
-<p><code>buildPools</code> prints out the following INFO message to the logs when the <a href="#spark-configuration-properties.adoc#spark.scheduler.allocation.file" class="page unresolved">spark.scheduler.allocation.file</a> configuration property was not used to define the configuration file and the <a href="#DEFAULT_SCHEDULER_FILE">default configuration file</a> is used instead:</p>
+<p><code>buildPools</code> prints out the following INFO message to the logs when the <a href="../configuration-properties.html#spark.scheduler.allocation.file" class="page">spark.scheduler.allocation.file</a> configuration property was not used to define the configuration file and the <a href="#DEFAULT_SCHEDULER_FILE">default configuration file</a> is used instead:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2018,7 +2018,7 @@ The top-level element&#8217;s name <code>allocations</code> can be anything. Spa
 </div>
 </div>
 <div class="paragraph">
-<p>When neither <a href="#spark-configuration-properties.adoc#spark.scheduler.allocation.file" class="page unresolved">spark.scheduler.allocation.file</a> configuration property nor the <a href="#DEFAULT_SCHEDULER_FILE">default configuration file</a> could be used, <code>buildPools</code> prints out the following WARN message to the logs:</p>
+<p>When neither <a href="../configuration-properties.html#spark.scheduler.allocation.file" class="page">spark.scheduler.allocation.file</a> configuration property nor the <a href="#DEFAULT_SCHEDULER_FILE">default configuration file</a> could be used, <code>buildPools</code> prints out the following WARN message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">

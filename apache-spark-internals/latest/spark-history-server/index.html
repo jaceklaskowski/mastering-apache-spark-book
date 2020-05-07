@@ -826,7 +826,7 @@
     <a class="nav-link" href="../spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="HistoryServer.html">HistoryServer</a>
@@ -1853,7 +1853,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Spark History Server</strong> is the web UI of Spark applications with event log collection enabled (based on <a href="configuration-properties.html#spark.eventLog.enabled" class="page">spark.eventLog.enabled</a> configuration property).</p>
+<p><strong>Spark History Server</strong> is the web UI of Spark applications with event log collection enabled (based on <a href="../configuration-properties.html#spark.eventLog.enabled" class="page">spark.eventLog.enabled</a> configuration property).</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1957,7 +1957,7 @@ Using the more explicit approach with <code>spark-class</code> to start Spark Hi
 </div>
 </div>
 <div class="paragraph">
-<p><code>start-history-server.sh</code> inits security if enabled (based on <a href="configuration-properties.html#spark.history.kerberos.enabled" class="page">spark.history.kerberos.enabled</a> configuration property).</p>
+<p><code>start-history-server.sh</code> inits security if enabled (based on <a href="../configuration-properties.html#spark.history.kerberos.enabled" class="page">spark.history.kerberos.enabled</a> configuration property).</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -1975,10 +1975,10 @@ FIXME Describe <code>initSecurity</code>
 <p><code>start-history-server.sh</code> creates a <code>SecurityManager</code>.</p>
 </div>
 <div class="paragraph">
-<p><code>start-history-server.sh</code> creates a <a href="ApplicationHistoryProvider.html" class="page">ApplicationHistoryProvider</a> (based on <a href="configuration-properties.html#spark.history.provider" class="page">spark.history.provider</a> configuration property).</p>
+<p><code>start-history-server.sh</code> creates a <a href="ApplicationHistoryProvider.html" class="page">ApplicationHistoryProvider</a> (based on <a href="../configuration-properties.html#spark.history.provider" class="page">spark.history.provider</a> configuration property).</p>
 </div>
 <div class="paragraph">
-<p>In the end, <code>start-history-server.sh</code> creates a <a href="HistoryServer.html" class="page">HistoryServer</a> and requests it to bind to the port (based on <a href="configuration-properties.html#spark.history.ui.port" class="page">spark.history.ui.port</a> configuration property).</p>
+<p>In the end, <code>start-history-server.sh</code> creates a <a href="HistoryServer.html" class="page">HistoryServer</a> and requests it to bind to the port (based on <a href="../configuration-properties.html#spark.history.ui.port" class="page">spark.history.ui.port</a> configuration property).</p>
 </div>
 <div class="admonitionblock tip">
 <table>

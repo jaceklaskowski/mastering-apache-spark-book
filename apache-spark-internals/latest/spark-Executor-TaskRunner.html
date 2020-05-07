@@ -826,7 +826,7 @@
     <a class="nav-link" href="spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-history-server/configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-history-server/HistoryServer.html">HistoryServer</a>
@@ -2113,7 +2113,7 @@ The task runs inside a "monitored" block (i.e. <code>try-finally</code> block) t
 <p><code>run</code> then <a href="memory/TaskMemoryManager.html#cleanUpAllAllocatedMemory" class="page">requests <code>TaskMemoryManager</code> to clean up allocated memory</a> (that helps finding memory leaks).</p>
 </div>
 <div class="paragraph">
-<p>If <code>run</code> detects memory leak of the managed memory (i.e. the memory freed is greater than <code>0</code>) and <a href="spark-configuration-properties.html#spark.unsafe.exceptionOnMemoryLeak" class="page">spark.unsafe.exceptionOnMemoryLeak</a> Spark property is enabled (it is not by default) and no exception was reported while the task ran, <code>run</code> reports a <code>SparkException</code>:</p>
+<p>If <code>run</code> detects memory leak of the managed memory (i.e. the memory freed is greater than <code>0</code>) and <a href="configuration-properties.html#spark.unsafe.exceptionOnMemoryLeak" class="page">spark.unsafe.exceptionOnMemoryLeak</a> Spark property is enabled (it is not by default) and no exception was reported while the task ran, <code>run</code> reports a <code>SparkException</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2121,7 +2121,7 @@ The task runs inside a "monitored" block (i.e. <code>try-finally</code> block) t
 </div>
 </div>
 <div class="paragraph">
-<p>Otherwise, if <a href="spark-configuration-properties.html#spark.unsafe.exceptionOnMemoryLeak" class="page">spark.unsafe.exceptionOnMemoryLeak</a> is disabled, you should see the following ERROR message in the logs instead:</p>
+<p>Otherwise, if <a href="configuration-properties.html#spark.unsafe.exceptionOnMemoryLeak" class="page">spark.unsafe.exceptionOnMemoryLeak</a> is disabled, you should see the following ERROR message in the logs instead:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2141,7 +2141,7 @@ If <code>run</code> detects a memory leak, it leads to a <code>SparkException</c
 </table>
 </div>
 <div class="paragraph">
-<p>If <code>run</code> detects lock leaking (i.e. the number of locks released) and <a href="spark-configuration-properties.html#spark.storage.exceptionOnPinLeak" class="page">spark.storage.exceptionOnPinLeak</a> Spark property is enabled (it is not by default) and no exception was reported while the task ran, <code>run</code> reports a <code>SparkException</code>:</p>
+<p>If <code>run</code> detects lock leaking (i.e. the number of locks released) and <a href="configuration-properties.html#spark.storage.exceptionOnPinLeak" class="page">spark.storage.exceptionOnPinLeak</a> configuration property is enabled (it is not by default) and no exception was reported while the task ran, <code>run</code> reports a <code>SparkException</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2150,7 +2150,7 @@ If <code>run</code> detects a memory leak, it leads to a <code>SparkException</c
 </div>
 </div>
 <div class="paragraph">
-<p>Otherwise, if <a href="spark-configuration-properties.html#spark.storage.exceptionOnPinLeak" class="page">spark.storage.exceptionOnPinLeak</a> is disabled or the task reported an exception, you should see the following INFO message in the logs instead:</p>
+<p>Otherwise, if <a href="configuration-properties.html#spark.storage.exceptionOnPinLeak" class="page">spark.storage.exceptionOnPinLeak</a> is disabled or the task reported an exception, you should see the following INFO message in the logs instead:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2270,7 +2270,7 @@ A serialized <code>DirectTaskResult</code> is Java&#8217;s <a href="https://docs
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Read about <a href="spark-configuration-properties.html#spark.driver.maxResultSize" class="page">spark.driver.maxResultSize</a>.
+Read about <a href="configuration-properties.html#spark.driver.maxResultSize" class="page">spark.driver.maxResultSize</a>.
 </td>
 </tr>
 </table>

@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/spark-InterruptibleIterator.html">
+    <title>Spark Configuration Properties :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/configuration-properties.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -825,7 +825,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="spark-execution-model.html">Execution Model</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -895,7 +895,7 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-InterruptibleIterator.html">InterruptibleIterator</a>
   </li>
 </ul>
@@ -1506,7 +1506,7 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1842,131 +1842,830 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Apache Spark</a></li>
-    <li>Misc</li>
-    <li><a href="spark-InterruptibleIterator.html">InterruptibleIterator</a></li>
+    <li><a href="configuration-properties.html">Configuration Properties</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/ROOT/pages/spark-InterruptibleIterator.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/ROOT/pages/configuration-properties.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
+<h1 class="page">Spark Configuration Properties</h1>
 <div class="sect1">
-<h2 id="interruptibleiteratoriterator-with-support-for-task-cancellation"><a class="anchor" href="#interruptibleiteratoriterator-with-support-for-task-cancellation"></a><a class="link" href="#interruptibleiteratoriterator-with-support-for-task-cancellation"><a id="InterruptibleIterator"></a> InterruptibleIterator&#8201;&#8212;&#8201;Iterator With Support For Task Cancellation</a></h2>
+<h2 id="properties"><a class="anchor" href="#properties"></a><a class="link" href="#properties"><a id="properties"></a> Properties</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.blockManager.port</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.blockManager.port"></a><a id="BLOCK_MANAGER_PORT"></a> Port to use for block managers to listen on when a more specific setting is not provided (i.e. <a href="#spark.driver.blockManager.port">spark.driver.blockManager.port</a> for the driver).</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>0</code></p>
+</div>
+<div class="paragraph">
+<p>In Spark on Kubernetes the default port is <code>7079</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.default.parallelism</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.default.parallelism"></a> Number of partitions to use for <a href="#spark-rdd-HashPartitioner.adoc" class="page unresolved">HashPartitioner</a>.</p>
+</div>
+<div class="paragraph">
+<p><code>spark.default.parallelism</code> corresponds to <a href="scheduler/SchedulerBackend.html#defaultParallelism" class="page">default parallelism</a> of a scheduler backend and is as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The number of threads for <a href="local/spark-LocalSchedulerBackend.adoc">LocalSchedulerBackend</a>.</p>
+</li>
+<li>
+<p>the number of CPU cores in <a href="spark-mesos.adoc#defaultParallelism">Spark on Mesos</a> and defaults to <code>8</code>.</p>
+</li>
+<li>
+<p>Maximum of <code>totalCoreCount</code> and <code>2</code> in <a href="scheduler/CoarseGrainedSchedulerBackend.html#defaultParallelism" class="page">CoarseGrainedSchedulerBackend</a>.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.diskStore.subDirectories</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="spark.diskStore.subDirectories" class="paragraph">
+<p>Default: <code>64</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.driver.blockManager.port</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.driver.blockManager.port"></a><a id="DRIVER_BLOCK_MANAGER_PORT"></a> Port the <a href="storage/BlockManager.html" class="page">block manager</a> on the driver listens on</p>
+</div>
+<div class="paragraph">
+<p>Default: <a href="#spark.blockManager.port">spark.blockManager.port</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.driver.maxResultSize</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="maxResultSize"></a><a id="spark.driver.maxResultSize"></a><a id="MAX_RESULT_SIZE"></a> The maximum size of all results of the tasks in a <code>TaskSet</code></p>
+</div>
+<div class="paragraph">
+<p>Default: <code>1g</code></p>
+</div>
+<div class="paragraph">
+<p>Used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Executor</code> is <a href="spark-Executor.html#maxResultSize" class="page">created</a> (and later for a <a href="spark-Executor-TaskRunner.html" class="page">TaskRunner</a>)</p>
+</li>
+<li>
+<p><code>TaskSetManager</code> is <a href="scheduler/TaskSetManager.html#maxResultSize" class="page">created</a> (and later requested to <a href="scheduler/TaskSetManager.html#canFetchMoreResults" class="page">check available memory for task results</a>)</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.extraClassPath</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.executor.extraClassPath"></a><a id="EXECUTOR_CLASS_PATH"></a> <strong>User-defined class path for executors</strong>, i.e. URLs representing user-defined class path entries that are added to an executor&#8217;s class path. URLs are separated by system-dependent path separator, i.e. <code>:</code> on Unix-like systems and <code>;</code> on Microsoft Windows.</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>(empty)</code></p>
+</div>
+<div class="paragraph">
+<p>Used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Spark Standalone&#8217;s <code>StandaloneSchedulerBackend</code> is requested to <a href="spark-standalone/spark-standalone-StandaloneSchedulerBackend.html#start" class="page">start</a> (and creates a command for <a href="spark-CoarseGrainedExecutorBackend.html" class="page">CoarseGrainedExecutorBackend</a>)</p>
+</li>
+<li>
+<p>Spark local&#8217;s <code>LocalSchedulerBackend</code> is requested for the <a href="spark-local/spark-LocalSchedulerBackend.html#getUserClasspath" class="page">user-defined class path for executors</a></p>
+</li>
+<li>
+<p>Spark on Mesos' <code>MesosCoarseGrainedSchedulerBackend</code> is requested to <a href="spark-on-mesos/spark-mesos-MesosCoarseGrainedSchedulerBackend.html#createCommand" class="page">create a command for CoarseGrainedExecutorBackend</a></p>
+</li>
+<li>
+<p>Spark on Mesos' <code>MesosFineGrainedSchedulerBackend</code> is requested to create a command for <code>MesosExecutorBackend</code></p>
+</li>
+<li>
+<p>Spark on Kubernetes' <code>BasicExecutorFeatureStep</code> is requested to <code>configurePod</code></p>
+</li>
+<li>
+<p>Spark on YARN&#8217;s <code>ExecutorRunnable</code> is requested to <a href="spark-on-yarn/spark-yarn-ExecutorRunnable.html#prepareEnvironment" class="page">prepareEnvironment</a> (for <code>CoarseGrainedExecutorBackend</code>)</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.cores</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.executor.cores"></a> Number of cores of an <a href="spark-Executor.html" class="page">executor</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.extraJavaOptions</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.executor.extraJavaOptions"></a> Extra Java options of an <a href="spark-Executor.html" class="page">executor</a></p>
+</div>
+<div class="paragraph">
+<p>Used when Spark on YARN&#8217;s <code>ExecutorRunnable</code> is requested to <a href="spark-on-yarn/spark-yarn-ExecutorRunnable.html#prepareCommand" class="page">prepare the command to launch CoarseGrainedExecutorBackend in a YARN container</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.extraLibraryPath</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.executor.extraLibraryPath"></a> Extra library paths separated by system-dependent path separator, i.e. <code>:</code> on Unix/MacOS systems and <code>;</code> on Microsoft Windows</p>
+</div>
+<div class="paragraph">
+<p>Used when Spark on YARN&#8217;s <code>ExecutorRunnable</code> is requested to <a href="spark-on-yarn/spark-yarn-ExecutorRunnable.html#prepareCommand" class="page">prepare the command to launch CoarseGrainedExecutorBackend in a YARN container</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.uri</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.executor.uri"></a> Equivalent to <code>SPARK_EXECUTOR_URI</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.logs.rolling.time.interval</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.logs.rolling.strategy</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.logs.rolling.maxRetainedFiles</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.logs.rolling.maxSize</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.id</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.heartbeatInterval</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.executor.heartbeatInterval"></a> Interval after which an <a href="spark-Executor.html" class="page">executor</a> reports heartbeat and metrics for active tasks to the driver</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>10s</code></p>
+</div>
+<div class="paragraph">
+<p>Refer to <a href="spark-Executor.html#heartbeats-and-active-task-metrics" class="page">Sending heartbeats and partial metrics for active tasks</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.heartbeat.maxFailures</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.executor.heartbeat.maxFailures"></a> Number of times an <a href="spark-Executor.html" class="page">executor</a> will try to send heartbeats to the driver before it gives up and exits (with exit code <code>56</code>).</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>60</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Introduced in <a href="https://issues.apache.org/jira/browse/SPARK-13522">SPARK-13522 Executor should kill itself when it&#8217;s unable to heartbeat to the driver more than N times</a>.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.instances</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.executor.instances"></a> Number of <a href="spark-Executor.html" class="page">executors</a> to use</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>0</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.storage.unrollMemoryThreshold</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.storage.unrollMemoryThreshold"></a> Initial per-task memory size needed to store a block in memory.</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>1024 * 1024</code></p>
+</div>
+<div class="paragraph">
+<p>Should be at most the <a href="storage/MemoryStore.html#maxMemory" class="page">total amount of memory available for storage</a></p>
+</div>
+<div class="paragraph">
+<p>Used when MemoryStore is requested to <a href="storage/MemoryStore.html#putIteratorAsValues" class="page">putIteratorAsValues</a> and <a href="storage/MemoryStore.html#putIteratorAsBytes" class="page">putIteratorAsBytes</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.task.maxDirectResultSize</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="spark.task.maxDirectResultSize" class="paragraph">
+<p>Default: <code>1048576B</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.userClassPathFirst</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.executor.userClassPathFirst"></a> Flag to control whether to load classes in user jars before those in Spark jars</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>false</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.memory</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.executor.memory"></a> Amount of memory to use for an <a href="spark-Executor.html" class="page">executor</a></p>
+</div>
+<div class="paragraph">
+<p>Default: <code>1g</code></p>
+</div>
+<div class="paragraph">
+<p>Equivalent to <a href="spark-SparkContext.html#environment-variables" class="page">SPARK_EXECUTOR_MEMORY</a> environment variable.</p>
+</div>
+<div class="paragraph">
+<p>Refer to <a href="spark-Executor.html#memory" class="page">Executor Memory&#8201;&#8212;&#8201;spark.executor.memory or SPARK_EXECUTOR_MEMORY settings</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.port</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.launcher.port</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.launcher.secret</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.locality.wait</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.locality.wait"></a> For locality-aware delay scheduling for <code>PROCESS_LOCAL</code>, <code>NODE_LOCAL</code>, and <code>RACK_LOCAL</code> <a href="scheduler/TaskSchedulerImpl.html#TaskLocality" class="page">TaskLocalities</a> when locality-specific setting is not set.</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>3s</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.locality.wait.node</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.locality.wait.node"></a> Scheduling delay for <code>NODE_LOCAL</code> <a href="scheduler/TaskSchedulerImpl.html#TaskLocality" class="page">TaskLocality</a></p>
+</div>
+<div class="paragraph">
+<p>Default: The value of <a href="#spark.locality.wait">spark.locality.wait</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.locality.wait.process</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.locality.wait.process"></a> Scheduling delay for <code>PROCESS_LOCAL</code> <a href="scheduler/TaskSchedulerImpl.html#TaskLocality" class="page">TaskLocality</a></p>
+</div>
+<div class="paragraph">
+<p>Default: The value of <a href="#spark.locality.wait">spark.locality.wait</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.locality.wait.rack</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.locality.wait.rack"></a> Scheduling delay for <code>RACK_LOCAL</code> <a href="scheduler/TaskSchedulerImpl.html#TaskLocality" class="page">TaskLocality</a></p>
+</div>
+<div class="paragraph">
+<p>Default: The value of <a href="#spark.locality.wait">spark.locality.wait</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.logging.exceptionPrintInterval</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.logging.exceptionPrintInterval"></a> How frequently to reprint duplicate exceptions in full (in millis).</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>10000</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.master</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.master"></a> <strong>Master URL</strong> to connect a Spark application to</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.scheduler.allocation.file</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.scheduler.allocation.file"></a> Path to the configuration file of <a href="#spark-scheduler-FairSchedulableBuilder.adoc" class="page unresolved">FairSchedulableBuilder</a></p>
+</div>
+<div class="paragraph">
+<p>Default: <code>fairscheduler.xml</code> (on a Spark application&#8217;s class path)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.scheduler.executorTaskBlacklistTime</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.scheduler.executorTaskBlacklistTime"></a> How long to wait before a task can be re-launched on the executor where it once failed. It is to prevent repeated task failures due to executor failures.</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>0L</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.scheduler.mode</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.scheduler.mode"></a><a id="SCHEDULER_MODE_PROPERTY"></a> <strong>Scheduling Mode</strong> of the <a href="scheduler/TaskSchedulerImpl.html" class="page">TaskSchedulerImpl</a>, i.e. case-insensitive name of the <a href="#spark-scheduler-SchedulingMode.adoc" class="page unresolved">scheduling mode</a> that <code>TaskSchedulerImpl</code> uses to choose between the <a href="#spark-scheduler-SchedulableBuilder.adoc#implementations" class="page unresolved">available SchedulableBuilders</a> for task scheduling (of tasks of jobs submitted for execution to the same <code>SparkContext</code>)</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>FIFO</code></p>
+</div>
+<div class="paragraph">
+<p>Supported values:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>FAIR</strong> for fair sharing (of cluster resources)</p>
+</li>
+<li>
+<p><strong>FIFO</strong> (default) for queueing jobs one after another</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Task scheduling</strong> is an algorithm that is used to assign cluster resources (CPU cores and memory) to tasks (that are part of jobs with one or more stages). Fair sharing allows for executing tasks of different jobs at the same time (that were all submitted to the same <code>SparkContext</code>). In FIFO scheduling mode a single <code>SparkContext</code> can submit a single job for execution only (regardless of how many cluster resources the job really use which could lead to a inefficient utilization of cluster resources and a longer execution of the Spark application overall).</p>
+</div>
+<div class="paragraph">
+<p>Scheduling mode is particularly useful in multi-tenant environments in which a single <code>SparkContext</code> could be shared across different users (to make a cluster resource utilization more efficient).</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-environment.adoc" class="page unresolved">Environment</a> tab as part of <strong>Spark Properties</strong> and <a href="#spark-webui-jobs.adoc" class="page unresolved">Jobs</a> tab as <strong>Scheduling Mode</strong>).
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.closure.serializer</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.closure.serializer"></a> <a href="spark-Serializer.html" class="page">Serializer</a></p>
+</div>
+<div class="paragraph">
+<p>Default: org.apache.spark.serializer.JavaSerializer</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.serializer</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.serializer"></a> <a href="spark-Serializer.html" class="page">Serializer</a></p>
+</div>
+<div class="paragraph">
+<p>Default: org.apache.spark.serializer.JavaSerializer</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.starvation.timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.starvation.timeout"></a> Threshold above which Spark warns a user that an initial TaskSet may be starved</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>15s</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.storage.exceptionOnPinLeak</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.task.cpus</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.task.cpus"></a><a id="CPUS_PER_TASK"></a> The number of CPU cores used to schedule (<em>allocate for</em>) a task</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>1</code></p>
+</div>
+<div class="paragraph">
+<p>Used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ExecutorAllocationManager</code> is <a href="spark-ExecutorAllocationManager.html#tasksPerExecutorForFullParallelism" class="page">created</a></p>
+</li>
+<li>
+<p><code>TaskSchedulerImpl</code> is <a href="scheduler/TaskSchedulerImpl.html#CPUS_PER_TASK" class="page">created</a></p>
+</li>
+<li>
+<p><code>AppStatusListener</code> is requested to <a href="spark-SparkListener-AppStatusListener.html#onEnvironmentUpdate" class="page">handle an SparkListenerEnvironmentUpdate event</a></p>
+</li>
+<li>
+<p><code>LocalityPreferredContainerPlacementStrategy</code> is requested to <code>numExecutorsPending</code></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.task.maxFailures</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="spark.task.maxFailures"></a> The number of individual task failures before giving up on the entire <a href="scheduler/TaskSet.html" class="page">TaskSet</a> and the job afterwards</p>
+</div>
+<div class="paragraph">
+<p>Default:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>1</code> in <a href="#spark-local:spark-local.adoc" class="page unresolved">local</a></p>
+</li>
+<li>
+<p><code>maxFailures</code> in <a href="#spark-local:spark-local.adoc#masterURL" class="page unresolved">local-with-retries</a></p>
+</li>
+<li>
+<p><code>4</code> in <a href="spark-cluster.html" class="page">cluster mode</a></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.unsafe.exceptionOnMemoryLeak</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-memory-offheap-size"><a class="anchor" href="#spark-memory-offheap-size"></a><a class="link" href="#spark-memory-offheap-size"><a id="spark.memory.offHeap.size"></a><a id="MEMORY_OFFHEAP_SIZE"></a> spark.memory.offHeap.size</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>InterruptibleIterator</code> is a custom Scala <a href="https://www.scala-lang.org/api/2.11.x/index.html#scala.collection.Iterator">Iterator</a> that supports task cancellation, i.e. <a href="#hasNext">stops iteration when a task was interrupted (cancelled)</a>.</p>
+<p><code>spark.memory.offHeap.size</code> is the absolute amount of memory in bytes which can be used for off-heap allocation. This setting has no impact on heap memory usage, so if your executors' total memory consumption must fit within some hard limit then be sure to shrink your JVM heap size accordingly.</p>
 </div>
 <div class="paragraph">
-<p>Quoting the official Scala <a href="https://www.scala-lang.org/api/2.11.x/index.html#scala.collection.Iterator">Iterator</a> documentation:</p>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p><strong>Iterators</strong> are data structures that allow to iterate over a sequence of elements. They have a <code>hasNext</code> method for checking if there is a next element available, and a <code>next</code> method which returns the next element and discards it from the iterator.</p>
-</div>
-</blockquote>
+<p>Default: <code>0</code></p>
 </div>
 <div class="paragraph">
-<p><code>InterruptibleIterator</code> is <a href="#creating-instance">created</a> when:</p>
+<p>Must be set to a positive value when <a href="#spark.memory.offHeap.enabled">spark.memory.offHeap.enabled</a> is enabled (<code>true</code>).</p>
+</div>
+<div class="paragraph">
+<p>Must not be negative</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-memory-storagefraction"><a class="anchor" href="#spark-memory-storagefraction"></a><a class="link" href="#spark-memory-storagefraction"><a id="spark.memory.storageFraction"></a> spark.memory.storageFraction</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>spark.memory.storageFraction</code> controls the fraction of the memory to use for storage region.</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>0.5</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-memory-fraction"><a class="anchor" href="#spark-memory-fraction"></a><a class="link" href="#spark-memory-fraction"><a id="spark.memory.fraction"></a> spark.memory.fraction</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>spark.memory.fraction</code> is the fraction of JVM heap space used for execution and storage.</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>0.6</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-memory-uselegacymode"><a class="anchor" href="#spark-memory-uselegacymode"></a><a class="link" href="#spark-memory-uselegacymode"><a id="spark.memory.useLegacyMode"></a> spark.memory.useLegacyMode</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>spark.memory.useLegacyMode</code> controls the type of the <a href="memory/MemoryManager.html" class="page">MemoryManager</a> to use. When enabled (i.e. <code>true</code>) it is the legacy <a href="memory/StaticMemoryManager.html" class="page">StaticMemoryManager</a> while <a href="memory/UnifiedMemoryManager.html" class="page">UnifiedMemoryManager</a> otherwise (i.e. <code>false</code>).</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>false</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-memory-offheap-enabled"><a class="anchor" href="#spark-memory-offheap-enabled"></a><a class="link" href="#spark-memory-offheap-enabled"><a id="spark.memory.offHeap.enabled"></a> spark.memory.offHeap.enabled</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>spark.memory.offHeap.enabled</code> controls whether Spark will attempt to use off-heap memory for certain operations (<code>true</code>) or not (<code>false</code>).</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>false</code></p>
+</div>
+<div class="paragraph">
+<p>Tracks whether Tungsten memory will be allocated on the JVM heap or off-heap (using <code>sun.misc.Unsafe</code>).</p>
+</div>
+<div class="paragraph">
+<p>If enabled, <a href="#spark.memory.offHeap.size">spark.memory.offHeap.size</a> has to be <a href="memory/MemoryManager.html#tungstenMemoryMode" class="page">greater than 0</a>.</p>
+</div>
+<div class="paragraph">
+<p>Used when MemoryManager is requested for <a href="memory/MemoryManager.html#tungstenMemoryMode" class="page">tungstenMemoryMode</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-file-buffer"><a class="anchor" href="#spark-shuffle-file-buffer"></a><a class="link" href="#spark-shuffle-file-buffer"><a id="spark.shuffle.file.buffer"></a> spark.shuffle.file.buffer</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Size of the in-memory buffer for each shuffle file output stream, in KiB unless otherwise specified. These buffers reduce the number of disk seeks and system calls made in creating intermediate shuffle files.</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>32k</code></p>
+</div>
+<div class="paragraph">
+<p>Must be greater than <code>0</code> and less than or equal to <code>2097151</code> (<code>(Integer.MAX_VALUE - 15) / 1024</code>)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-spill-batchsize"><a class="anchor" href="#spark-shuffle-spill-batchsize"></a><a class="link" href="#spark-shuffle-spill-batchsize"><a id="spark.shuffle.spill.batchSize"></a> spark.shuffle.spill.batchSize</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Size of object batches when reading or writing from serializers.</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>10000</code></p>
+</div>
+<div class="paragraph">
+<p>Used by <a href="shuffle/ExternalAppendOnlyMap.html" class="page">ExternalAppendOnlyMap</a> and <a href="shuffle/ExternalSorter.html" class="page">ExternalSorter</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-spill-initialmemorythreshold"><a class="anchor" href="#spark-shuffle-spill-initialmemorythreshold"></a><a class="link" href="#spark-shuffle-spill-initialmemorythreshold"><a id="spark.shuffle.spill.initialMemoryThreshold"></a> spark.shuffle.spill.initialMemoryThreshold</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Initial threshold for the size of an in-memory collection</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>5 * 1024 * 1024</code></p>
+</div>
+<div class="paragraph">
+<p>Used by <a href="shuffle/Spillable.html" class="page">Spillable</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-spill-numelementsforcespillthreshold"><a class="anchor" href="#spark-shuffle-spill-numelementsforcespillthreshold"></a><a class="link" href="#spark-shuffle-spill-numelementsforcespillthreshold"><a id="spark.shuffle.spill.numElementsForceSpillThreshold"></a><a id="SHUFFLE_SPILL_NUM_ELEMENTS_FORCE_SPILL_THRESHOLD"></a> spark.shuffle.spill.numElementsForceSpillThreshold</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>(internal)</strong> The maximum number of elements in memory before forcing the shuffle sorter to spill. Claimed to be used for testing only</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>Integer.MAX_VALUE</code></p>
+</div>
+<div class="paragraph">
+<p>The default value is to never force the sorter to spill, until we reach some limitations, like the max page size limitation for the pointer array in the sorter.</p>
+</div>
+<div class="paragraph">
+<p>Used when:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>RDD</code> is requested to <a href="spark-rdd-RDD.adoc#getOrCompute">get or compute a RDD partition</a></p>
+<p>ShuffleExternalSorter is created</p>
 </li>
 <li>
-<p><a href="spark-rdd-CoGroupedRDD.adoc#compute">CoGroupedRDD</a>, <a href="spark-rdd-HadoopRDD.adoc#compute">HadoopRDD</a>, <a href="spark-rdd-NewHadoopRDD.adoc#compute">NewHadoopRDD</a>, <a href="spark-rdd-ParallelCollectionRDD.adoc#compute">ParallelCollectionRDD</a> are requested to <code>compute</code> a partition</p>
-</li>
-<li>
-<p><code>BlockStoreShuffleReader</code> is requested to <a href="shuffle/BlockStoreShuffleReader.html#read" class="page">read combined key-value records for a reduce task</a></p>
-</li>
-<li>
-<p><code>PairRDDFunctions</code> is requested to <a href="rdd/PairRDDFunctions.html#combineByKeyWithClassTag" class="page">combineByKeyWithClassTag</a></p>
-</li>
-<li>
-<p>Spark SQL&#8217;s <code>DataSourceRDD</code> and <code>JDBCRDD</code> are requested to <code>compute</code> a partition</p>
-</li>
-<li>
-<p>Spark SQL&#8217;s <code>RangeExec</code> physical operator is requested to <code>doExecute</code></p>
-</li>
-<li>
-<p>PySpark&#8217;s <code>BasePythonRunner</code> is requested to <code>compute</code></p>
+<p>Spillable is requested to <a href="shuffle/Spillable.html#maybeSpill" class="page">maybeSpill</a></p>
 </li>
 </ul>
 </div>
-<div id="creating-instance" class="paragraph">
-<p><code>InterruptibleIterator</code> takes the following when created:</p>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-manager"><a class="anchor" href="#spark-shuffle-manager"></a><a class="link" href="#spark-shuffle-manager"><a id="spark.shuffle.manager"></a> spark.shuffle.manager</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Specifies the fully-qualified class name or the <a href="#spark.shuffle.manager-aliases">alias</a> of the <a href="shuffle/ShuffleManager.html" class="page">ShuffleManager</a> in a Spark application</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>sort</code></p>
+</div>
+<div id="spark.shuffle.manager-aliases" class="paragraph">
+<p>The supported aliases:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a id="context"></a> <a href="spark-TaskContext.adoc">TaskContext</a></p>
+<p><a id="spark.shuffle.manager-sort"></a> <code>sort</code></p>
 </li>
 <li>
-<p><a id="delegate"></a> Scala <code>Iterator[T]</code></p>
+<p><a id="spark.shuffle.manager-tungsten-sort"></a> <code>tungsten-sort</code></p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>InterruptibleIterator</code> is a Developer API which is a lower-level, unstable API intended for Spark developers that may change or be removed in minor versions of Apache Spark.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="hasnext-method"><a class="anchor" href="#hasnext-method"></a><a class="link" href="#hasnext-method"><a id="hasNext"></a> <code>hasNext</code> Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">hasNext: Boolean</code></pre>
+<div class="paragraph">
+<p>Used when <code>SparkEnv</code> object is requested to <a href="spark-SparkEnv.html#create" class="page">create a "base" SparkEnv for a driver or an executor</a></p>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>hasNext</code> is part of <a href="https://www.scala-lang.org/api/2.11.x/index.html#scala.collection.Iterator@hasNext:Boolean">Iterator Contract</a> to test whether this iterator can provide another element.
-</td>
-</tr>
-</table>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-mapoutput-dispatcher-numthreads"><a class="anchor" href="#spark-shuffle-mapoutput-dispatcher-numthreads"></a><a class="link" href="#spark-shuffle-mapoutput-dispatcher-numthreads"><a id="spark.shuffle.mapOutput.dispatcher.numThreads"></a> spark.shuffle.mapOutput.dispatcher.numThreads</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Default: <code>8</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-mapoutput-minsizeforbroadcast"><a class="anchor" href="#spark-shuffle-mapoutput-minsizeforbroadcast"></a><a class="link" href="#spark-shuffle-mapoutput-minsizeforbroadcast"><a id="spark.shuffle.mapOutput.minSizeForBroadcast"></a> spark.shuffle.mapOutput.minSizeForBroadcast</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Size of serialized shuffle map output statuses when <a href="scheduler/MapOutputTrackerMaster.html#MessageLoop" class="page">MapOutputTrackerMaster</a> uses to determine whether to use a broadcast variable to send them to executors</p>
 </div>
 <div class="paragraph">
-<p><code>hasNext</code> requests the <a href="#context">TaskContext</a> to <a href="spark-TaskContext.adoc#killTaskIfInterrupted">kill the task if interrupted</a> (that simply throws a <code>TaskKilledException</code> that in turn breaks the task execution).</p>
+<p>Default: <code>512k</code></p>
 </div>
 <div class="paragraph">
-<p>In the end, <code>hasNext</code> requests the <a href="#delegate">delegate Iterator</a> to <code>hasNext</code>.</p>
+<p>Must be below <a href="#spark.rpc.message.maxSize">spark.rpc.message.maxSize</a> (to prevent sending an RPC message that is too large)</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="next-method"><a class="anchor" href="#next-method"></a><a class="link" href="#next-method"><a id="next"></a> <code>next</code> Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">next(): T</code></pre>
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>next</code> is part of <a href="https://www.scala-lang.org/api/2.11.x/index.html#scala.collection.Iterator@next():A">Iterator Contract</a> to produce the next element of this iterator.
-</td>
-</tr>
-</table>
+<div class="sect1">
+<h2 id="spark-rpc-message-maxsize"><a class="anchor" href="#spark-rpc-message-maxsize"></a><a class="link" href="#spark-rpc-message-maxsize"><a id="spark.rpc.message.maxSize"></a> spark.rpc.message.maxSize</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Maximum allowed message size for RPC communication (in <code>MB</code> unless specified)</p>
 </div>
 <div class="paragraph">
-<p><code>next</code> simply requests the <a href="#delegate">delegate Iterator</a> to <code>next</code>.</p>
+<p>Default: <code>128</code></p>
 </div>
+<div class="paragraph">
+<p>Generally only applies to map output size (serialized) information sent between executors and the driver.</p>
+</div>
+<div class="paragraph">
+<p>Increase this if you are running jobs with many thousands of map and reduce tasks and see messages about the RPC message size.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-minnumpartitionstohighlycompress"><a class="anchor" href="#spark-shuffle-minnumpartitionstohighlycompress"></a><a class="link" href="#spark-shuffle-minnumpartitionstohighlycompress"><a id="spark.shuffle.minNumPartitionsToHighlyCompress"></a> spark.shuffle.minNumPartitionsToHighlyCompress</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>(internal)</strong> Minimum number of partitions (threshold) when <code>MapStatus</code> object creates a <a href="scheduler/MapStatus.html#HighlyCompressedMapStatus" class="page">HighlyCompressedMapStatus</a> (over <a href="scheduler/MapStatus.html#CompressedMapStatus" class="page">CompressedMapStatus</a>) when requested for <a href="scheduler/MapStatus.html#apply" class="page">one</a> (for <a href="shuffle/ShuffleWriter.html" class="page">ShuffleWriters</a>).</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>2000</code></p>
+</div>
+<div class="paragraph">
+<p>Must be a positive integer (above <code>0</code>)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-reducelocality-enabled"><a class="anchor" href="#spark-shuffle-reducelocality-enabled"></a><a class="link" href="#spark-shuffle-reducelocality-enabled"><a id="spark.shuffle.reduceLocality.enabled"></a> spark.shuffle.reduceLocality.enabled</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Enables locality preferences for reduce tasks</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>true</code></p>
+</div>
+<div class="paragraph">
+<p>When enabled (<code>true</code>), MapOutputTrackerMaster will <a href="scheduler/MapOutputTrackerMaster.html#getPreferredLocationsForShuffle" class="page">compute the preferred hosts</a> on which to run a given map output partition in a given shuffle, i.e. the nodes that the most outputs for that partition are on.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-sort-bypassmergethreshold"><a class="anchor" href="#spark-shuffle-sort-bypassmergethreshold"></a><a class="link" href="#spark-shuffle-sort-bypassmergethreshold"><a id="spark.shuffle.sort.bypassMergeThreshold"></a> spark.shuffle.sort.bypassMergeThreshold</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Maximum number of reduce partitions below which <a href="shuffle/SortShuffleManager.html" class="page">SortShuffleManager</a> avoids merge-sorting data for no map-side aggregation</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>200</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-sort-initialbuffersize"><a class="anchor" href="#spark-shuffle-sort-initialbuffersize"></a><a class="link" href="#spark-shuffle-sort-initialbuffersize"><a id="spark.shuffle.sort.initialBufferSize"></a> spark.shuffle.sort.initialBufferSize</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Initial buffer size for sorting</p>
+</div>
+<div class="paragraph">
+<p>Default: <a href="shuffle/spark-shuffle-UnsafeShuffleWriter.html#DEFAULT_INITIAL_SORT_BUFFER_SIZE" class="page">4096</a></p>
+</div>
+<div class="paragraph">
+<p>Used exclusively when <code>UnsafeShuffleWriter</code> is requested to <a href="shuffle/spark-shuffle-UnsafeShuffleWriter.html#open" class="page">open</a> (and creates a <a href="shuffle/ShuffleExternalSorter.html" class="page">ShuffleExternalSorter</a>)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-sync"><a class="anchor" href="#spark-shuffle-sync"></a><a class="link" href="#spark-shuffle-sync"><a id="spark.shuffle.sync"></a> spark.shuffle.sync</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Controls whether DiskBlockObjectWriter should force outstanding writes to disk while <a href="storage/DiskBlockObjectWriter.html#commitAndGet" class="page">committing a single atomic block</a>, i.e. all operating system buffers should synchronize with the disk to ensure that all changes to a file are in fact recorded in the storage.</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>false</code></p>
+</div>
+<div class="paragraph">
+<p>Used when BlockManager is requested for a <a href="storage/BlockManager.html#getDiskWriter" class="page">DiskBlockObjectWriter</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-unsafe-file-output-buffer"><a class="anchor" href="#spark-shuffle-unsafe-file-output-buffer"></a><a class="link" href="#spark-shuffle-unsafe-file-output-buffer"><a id="spark.shuffle.unsafe.file.output.buffer"></a> spark.shuffle.unsafe.file.output.buffer</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The file system for this buffer size after each partition is written in unsafe shuffle writer. In KiB unless otherwise specified.</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>32k</code></p>
+</div>
+<div class="paragraph">
+<p>Must be greater than <code>0</code> and less than or equal to <code>2097151</code> (<code>(Integer.MAX_VALUE - 15) / 1024</code>)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-scheduler-revive-interval"><a class="anchor" href="#spark-scheduler-revive-interval"></a><a class="link" href="#spark-scheduler-revive-interval"><a id="spark.scheduler.revive.interval"></a> spark.scheduler.revive.interval</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Time (in ms) between resource offers revives</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>1s</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-scheduler-minregisteredresourcesratio"><a class="anchor" href="#spark-scheduler-minregisteredresourcesratio"></a><a class="link" href="#spark-scheduler-minregisteredresourcesratio"><a id="spark.scheduler.minRegisteredResourcesRatio"></a> spark.scheduler.minRegisteredResourcesRatio</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Minimum ratio of (registered resources / total expected resources) before submitting tasks</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>0</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-scheduler-maxregisteredresourceswaitingtime"><a class="anchor" href="#spark-scheduler-maxregisteredresourceswaitingtime"></a><a class="link" href="#spark-scheduler-maxregisteredresourceswaitingtime"><a id="spark.scheduler.maxRegisteredResourcesWaitingTime"></a> spark.scheduler.maxRegisteredResourcesWaitingTime</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Time to wait for sufficient resources available</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>30s</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-file-transferto"><a class="anchor" href="#spark-file-transferto"></a><a class="link" href="#spark-file-transferto"><a id="spark.file.transferTo"></a> spark.file.transferTo</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When enabled (<code>true</code>), copying data between two Java FileInputStreams uses Java FileChannels (Java NIO) to improve copy performance.</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>true</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-service-enabled"><a class="anchor" href="#spark-shuffle-service-enabled"></a><a class="link" href="#spark-shuffle-service-enabled"><a id="spark.shuffle.service.enabled"></a><a id="SHUFFLE_SERVICE_ENABLED"></a> spark.shuffle.service.enabled</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Controls whether to use the <a href="spark-ExternalShuffleService.html" class="page">External Shuffle Service</a></p>
+</div>
+<div class="paragraph">
+<p>Default: <code>false</code></p>
+</div>
+<div class="paragraph">
+<p>When enabled (<code>true</code>), the driver registers itself with the shuffle service.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-service-port"><a class="anchor" href="#spark-shuffle-service-port"></a><a class="link" href="#spark-shuffle-service-port"><a id="spark.shuffle.service.port"></a> spark.shuffle.service.port</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Default: <code>7337</code></p>
 </div>
 </div>
 </div>

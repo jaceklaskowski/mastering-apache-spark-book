@@ -826,7 +826,7 @@
     <a class="nav-link" href="../spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
@@ -1507,7 +1507,7 @@
     <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-history-server/configuration-properties.html">Configuration Properties</a>
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
@@ -1857,7 +1857,7 @@
 <p><code>SchedulableBuilder</code> is the <a href="#contract">abstraction</a> of <a href="#implementations">schedulable builders</a> that manage a <a href="#rootPool">root pool (of Schedulables)</a>, which is to <a href="#buildPools">build a pool</a> and <a href="#addTaskSetManager">register a new Schedulable (with the pool)</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>SchedulableBuilder</code> is a <code>private[spark]</code> Scala trait that is used exclusively by <a href="TaskSchedulerImpl.html" class="page">TaskSchedulerImpl</a> (the default Spark scheduler). When requested to <a href="TaskSchedulerImpl.html#initialize" class="page">initialize</a>, <code>TaskSchedulerImpl</code> uses the <a href="#spark-configuration-properties.adoc#spark.scheduler.mode" class="page unresolved">spark.scheduler.mode</a> configuration property (default: <code>FIFO</code>) to select one of the <a href="#implementations">available schedulable builders</a>.</p>
+<p><code>SchedulableBuilder</code> is a <code>private[spark]</code> Scala trait that is used exclusively by <a href="TaskSchedulerImpl.html" class="page">TaskSchedulerImpl</a> (the default Spark scheduler). When requested to <a href="TaskSchedulerImpl.html#initialize" class="page">initialize</a>, <code>TaskSchedulerImpl</code> uses the <a href="../configuration-properties.html#spark.scheduler.mode" class="page">spark.scheduler.mode</a> configuration property (default: <code>FIFO</code>) to select one of the <a href="#implementations">available schedulable builders</a>.</p>
 </div>
 <table id="contract" class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. SchedulableBuilder Contract</caption>
@@ -1897,7 +1897,7 @@
 <p>Builds a tree of <a href="spark-scheduler-Pool.html" class="page">pools (of Schedulables)</a></p>
 </div>
 <div class="paragraph">
-<p>Used exclusively when <code>TaskSchedulerImpl</code> is requested to <a href="TaskSchedulerImpl.html#initialize" class="page">initialize</a> (and creates a <a href="TaskSchedulerImpl.html#schedulableBuilder" class="page">SchedulableBuilder</a> per <a href="#spark-configuration-properties.adoc#spark.scheduler.mode" class="page unresolved">spark.scheduler.mode</a> configuration property)</p>
+<p>Used exclusively when <code>TaskSchedulerImpl</code> is requested to <a href="TaskSchedulerImpl.html#initialize" class="page">initialize</a> (and creates a <a href="TaskSchedulerImpl.html#schedulableBuilder" class="page">SchedulableBuilder</a> per <a href="../configuration-properties.html#spark.scheduler.mode" class="page">spark.scheduler.mode</a> configuration property)</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1941,11 +1941,11 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-scheduler-FairSchedulableBuilder.html" class="page">FairSchedulableBuilder</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="FairSchedulableBuilder"></a> Used when the <a href="#spark-configuration-properties.adoc#spark.scheduler.mode" class="page unresolved">spark.scheduler.mode</a> configuration property is <code>FAIR</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="FairSchedulableBuilder"></a> Used when the <a href="../configuration-properties.html#spark.scheduler.mode" class="page">spark.scheduler.mode</a> configuration property is <code>FAIR</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-scheduler-FIFOSchedulableBuilder.html" class="page">FIFOSchedulableBuilder</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="FIFOSchedulableBuilder"></a> Default <code>SchedulableBuilder</code> that is used when the <a href="#spark-configuration-properties.adoc#spark.scheduler.mode" class="page unresolved">spark.scheduler.mode</a> configuration property is <code>FIFO</code> (default)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="FIFOSchedulableBuilder"></a> Default <code>SchedulableBuilder</code> that is used when the <a href="../configuration-properties.html#spark.scheduler.mode" class="page">spark.scheduler.mode</a> configuration property is <code>FIFO</code> (default)</p></td>
 </tr>
 </tbody>
 </table>
