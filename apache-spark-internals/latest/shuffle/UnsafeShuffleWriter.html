@@ -391,7 +391,7 @@
     <a class="nav-link" href="BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-shuffle-SerializedShuffleHandle.html">SerializedShuffleHandle</a>
+    <a class="nav-link" href="SerializedShuffleHandle.html">SerializedShuffleHandle</a>
   </li>
 </ul>
   </li>
@@ -1855,17 +1855,22 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>UnsafeShuffleWriter</strong> is a <a href="ShuffleWriter.html" class="page">ShuffleWriter</a> for <a href="spark-shuffle-SerializedShuffleHandle.html" class="page">SerializedShuffleHandles</a>:</p>
+<p><strong>UnsafeShuffleWriter</strong> is a <a href="ShuffleWriter.html" class="page">ShuffleWriter</a> for <a href="SerializedShuffleHandle.html" class="page">SerializedShuffleHandles</a>.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>When requested to <a href="#write">write</a>, UnsafeShuffleWriter simply <a href="#insertRecordIntoSorter">inserts every record into ShuffleExternalSorter</a> followed by <a href="#closeAndWriteOutput">closing the internal resources and writing out merged spill files</a> (that, among other things, creates the <a href="#mapStatus">MapStatus</a>).</p>
-</li>
-<li>
+<div class="paragraph">
+<p>UnsafeShuffleWriter is <a href="#creating-instance">created</a> when SortShuffleManager is requested for a <a href="SortShuffleManager.html#getWriter" class="page">ShuffleWriter</a> for a <a href="#handle">SerializedShuffleHandle</a>.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/UnsafeShuffleWriter.png" alt="UnsafeShuffleWriter">
+</div>
+<div class="title">Figure 1. UnsafeShuffleWriter, SortShuffleManager and SerializedShuffleHandle</div>
+</div>
+<div class="paragraph">
+<p>When requested to <a href="#write">write key-value records of a partition</a>, UnsafeShuffleWriter simply <a href="#insertRecordIntoSorter">inserts every record into ShuffleExternalSorter</a> followed by <a href="#closeAndWriteOutput">closing the internal resources and writing out merged spill files</a> (that, among other things, creates the <a href="#mapStatus">MapStatus</a>).</p>
+</div>
+<div class="paragraph">
 <p>When requested to <a href="#stop">stop</a>, UnsafeShuffleWriter records the peak execution memory metric and returns the <a href="#mapStatus">mapStatus</a> (that was created when requested to <a href="#write">write</a>).</p>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -1887,7 +1892,7 @@
 <p><a id="memoryManager"></a> <a href="../memory/TaskMemoryManager.html" class="page">TaskMemoryManager</a></p>
 </li>
 <li>
-<p><a id="handle"></a> <a href="spark-shuffle-SerializedShuffleHandle.html" class="page">SerializedShuffleHandle</a></p>
+<p><a id="handle"></a> <a href="SerializedShuffleHandle.html" class="page">SerializedShuffleHandle</a></p>
 </li>
 <li>
 <p><a id="mapId"></a> Map ID</p>
@@ -1905,7 +1910,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>UnsafeShuffleWriter can only be used for shuffles with at most 16777215 reduce partitions</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">UnsafeShuffleWriter can only be used for shuffles with at most 16777215 reduce partitions</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1922,9 +1927,6 @@ The number of shuffle output partitions is first enforced when <a href="SortShuf
 </div>
 <div class="paragraph">
 <p>In the end, UnsafeShuffleWriter <a href="#open">creates a ShuffleExternalSorter and a SerializationStream</a>.</p>
-</div>
-<div class="paragraph">
-<p>UnsafeShuffleWriter is created when SortShuffleManager is requested for a <a href="SortShuffleManager.html#getWriter" class="page">ShuffleWriter</a> (for a <a href="#handle">SerializedShuffleHandle</a>).</p>
 </div>
 </div>
 </div>
@@ -2044,7 +2046,7 @@ Use <a href="../configuration-properties.html#spark.shuffle.sort.initialBufferSi
 </div>
 </div>
 <div class="sect1">
-<h2 id="writing-records-to-shuffle-system"><a class="anchor" href="#writing-records-to-shuffle-system"></a><a class="link" href="#writing-records-to-shuffle-system"><a id="write"></a> Writing Records to Shuffle System</a></h2>
+<h2 id="writing-key-value-records-of-partition"><a class="anchor" href="#writing-key-value-records-of-partition"></a><a class="link" href="#writing-key-value-records-of-partition"><a id="write"></a> Writing Key-Value Records of Partition</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2053,7 +2055,7 @@ Use <a href="../configuration-properties.html#spark.shuffle.sort.initialBufferSi
 </div>
 </div>
 <div class="paragraph">
-<p>Internally, write traverses the input sequence of records (for a RDD partition) and <a href="#insertRecordIntoSorter">insertRecordIntoSorter</a> one by one. When all the records have been processed, write <a href="#closeAndWriteOutput">closes internal resources and writes spill files merged</a>.</p>
+<p>write traverses the input sequence of records (for a RDD partition) and <a href="#insertRecordIntoSorter">insertRecordIntoSorter</a> one by one. When all the records have been processed, write <a href="#closeAndWriteOutput">closes internal resources and writes spill files merged</a>.</p>
 </div>
 <div class="paragraph">
 <p>In the end, write <a href="ShuffleExternalSorter.html#cleanupResources" class="page">requests <code>ShuffleExternalSorter</code> to clean after itself</a>.</p>

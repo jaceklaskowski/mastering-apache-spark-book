@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/spark-local/spark-LauncherBackend.html">
+    <title> SerializedShuffleHandle :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/shuffle/SerializedShuffleHandle.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -372,80 +372,80 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/index.html">Shuffle System</a>
+    <a class="nav-link" href="index.html">Shuffle System</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/SortShuffleManager.html">SortShuffleManager</a>
+    <a class="nav-link" href="SortShuffleManager.html">SortShuffleManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/ShuffleManager.html">ShuffleManager</a>
+    <a class="nav-link" href="ShuffleManager.html">ShuffleManager</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleHandle.html">ShuffleHandle</a>
+    <a class="nav-link" href="spark-shuffle-ShuffleHandle.html">ShuffleHandle</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/spark-shuffle-BaseShuffleHandle.html">BaseShuffleHandle</a>
+    <a class="nav-link" href="spark-shuffle-BaseShuffleHandle.html">BaseShuffleHandle</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
+    <a class="nav-link" href="BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/SerializedShuffleHandle.html">SerializedShuffleHandle</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="SerializedShuffleHandle.html">SerializedShuffleHandle</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleReader.html">ShuffleReader</a>
+    <a class="nav-link" href="spark-shuffle-ShuffleReader.html">ShuffleReader</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/BlockStoreShuffleReader.html">BlockStoreShuffleReader</a>
+    <a class="nav-link" href="BlockStoreShuffleReader.html">BlockStoreShuffleReader</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/ShuffleWriter.html">ShuffleWriter</a>
+    <a class="nav-link" href="ShuffleWriter.html">ShuffleWriter</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/BypassMergeSortShuffleWriter.html">BypassMergeSortShuffleWriter</a>
+    <a class="nav-link" href="BypassMergeSortShuffleWriter.html">BypassMergeSortShuffleWriter</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/SortShuffleWriter.html">SortShuffleWriter</a>
+    <a class="nav-link" href="SortShuffleWriter.html">SortShuffleWriter</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
+    <a class="nav-link" href="UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/ShuffleBlockResolver.html">ShuffleBlockResolver</a>
+    <a class="nav-link" href="ShuffleBlockResolver.html">ShuffleBlockResolver</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/IndexShuffleBlockResolver.html">IndexShuffleBlockResolver</a>
+    <a class="nav-link" href="IndexShuffleBlockResolver.html">IndexShuffleBlockResolver</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/ShuffleExternalSorter.html">ShuffleExternalSorter</a>
+    <a class="nav-link" href="ShuffleExternalSorter.html">ShuffleExternalSorter</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
+    <a class="nav-link" href="spark-shuffle-ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/FetchFailedException.html">FetchFailedException</a>
+    <a class="nav-link" href="FetchFailedException.html">FetchFailedException</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../shuffle/Spillable.html">Spillable</a>
+    <a class="nav-link" href="Spillable.html">Spillable</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/ExternalAppendOnlyMap.html">ExternalAppendOnlyMap</a>
+    <a class="nav-link" href="ExternalAppendOnlyMap.html">ExternalAppendOnlyMap</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shuffle/ExternalSorter.html">ExternalSorter</a>
+    <a class="nav-link" href="ExternalSorter.html">ExternalSorter</a>
   </li>
 </ul>
   </li>
@@ -1544,16 +1544,16 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Spark local</a>
+    <a class="nav-link" href="../spark-local/index.html">Spark local</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-LocalSchedulerBackend.html">LocalSchedulerBackend</a>
+    <a class="nav-link" href="../spark-local/spark-LocalSchedulerBackend.html">LocalSchedulerBackend</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-LocalEndpoint.html">LocalEndpoint&#8201;&#8212;&#8201;RPC Endpoint for LocalSchedulerBackend</a>
+    <a class="nav-link" href="../spark-local/spark-LocalEndpoint.html">LocalEndpoint&#8201;&#8212;&#8201;RPC Endpoint for LocalSchedulerBackend</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="spark-LauncherBackend.html">LauncherBackend</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-local/spark-LauncherBackend.html">LauncherBackend</a>
   </li>
 </ul>
   </li>
@@ -1842,306 +1842,47 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Spark local</a></li>
-    <li><a href="spark-LauncherBackend.html">LauncherBackend</a></li>
+    <li><a href="index.html">Shuffle System</a></li>
+    <li><a href="spark-shuffle-ShuffleHandle.html">ShuffleHandle</a></li>
+    <li><a href="SerializedShuffleHandle.html">SerializedShuffleHandle</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/spark-local/pages/spark-LauncherBackend.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/shuffle/pages/SerializedShuffleHandle.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="launcherbackend"><a class="anchor" href="#launcherbackend"></a><a class="link" href="#launcherbackend"><a id="LauncherBackend"></a> LauncherBackend</a></h2>
+<h1 class="page"><a id="SerializedShuffleHandle"></a> SerializedShuffleHandle</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>LauncherBackend</code> is the <a href="#contract">abstraction</a> of <a href="#implementations">launcher backends</a> that can <a href="#FIXME">FIXME</a>.</p>
-</div>
-<table id="contract" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. LauncherBackend Contract (Abstract Methods Only)</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 75%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Method</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>conf</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div id="conf" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">conf: SparkConf</code></pre>
-</div>
+<p><strong>SerializedShuffleHandle</strong> is a <a href="spark-shuffle-BaseShuffleHandle.html" class="page">ShuffleHandle</a> to identify the choice of a <strong>serialized shuffle</strong>.</p>
 </div>
 <div class="paragraph">
-<p><a href="#spark-SparkConf.adoc" class="page unresolved">SparkConf</a></p>
+<p>SerializedShuffleHandle is <a href="#creating-instance">created</a> when SortShuffleManager is requested for a <a href="SortShuffleManager.html#registerShuffle" class="page">ShuffleHandle</a> (for a <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>). SortShuffleManager determines what shuffle handle to use by first checking out the requirements of <a href="SortShuffleWriter.html#shouldBypassMergeSort" class="page">BypassMergeSortShuffleHandle</a> before <a href="SortShuffleManager.html#canUseSerializedShuffle" class="page">SerializedShuffleHandle</a>'s.</p>
 </div>
 <div class="paragraph">
-<p>Used exclusively when <code>LauncherBackend</code> is requested to <a href="#connect">connect</a> (to access <a href="../configuration-properties.html#spark.launcher.port" class="page">spark.launcher.port</a> and <a href="../configuration-properties.html#spark.launcher.secret" class="page">spark.launcher.secret</a> configuration properties)</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>onStopRequest</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div id="onStopRequest" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">onStopRequest(): Unit</code></pre>
+<p>SerializedShuffleHandle is used to create a <a href="UnsafeShuffleWriter.html#handle" class="page">UnsafeShuffleWriter</a>.</p>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Handles stop requests (to stop the Spark application as gracefully as possible)</p>
-</div>
-<div class="paragraph">
-<p>Used exclusively when <code>LauncherBackend</code> is requested to <a href="#fireStopRequest">fireStopRequest</a></p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div id="creating-instance" class="paragraph">
-<p><code>LauncherBackend</code> takes no arguments to be created.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>LauncherBackend</code> is a Scala abstract class and cannot be <a href="#creating-instance">created</a> directly. It is created indirectly for the <a href="#implementations">concrete LauncherBackends</a>.
-</td>
-</tr>
-</table>
-</div>
-<table id="internal-registries" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. LauncherBackend&#8217;s Internal Properties (e.g. Registries, Counters and Flags)</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 75%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_isConnected</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="_isConnected"></a><a id="isConnected"></a> Flag that says whether&#8230;&#8203;FIXME (<code>true</code>) or not (<code>false</code>)</p>
-</div>
-<div class="paragraph">
-<p>Default: <code>false</code></p>
-</div>
-<div class="paragraph">
-<p>Used when&#8230;&#8203;FIXME</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clientThread</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="clientThread"></a> Java&#8217;s <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html">java.lang.Thread</a></p>
-</div>
-<div class="paragraph">
-<p>Used when&#8230;&#8203;FIXME</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>connection</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="connection"></a> <code>BackendConnection</code></p>
-</div>
-<div class="paragraph">
-<p>Used when&#8230;&#8203;FIXME</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lastState</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="lastState"></a> <code>SparkAppHandle.State</code></p>
-</div>
-<div class="paragraph">
-<p>Used when&#8230;&#8203;FIXME</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div id="implementations" class="paragraph">
-<p><code>LauncherBackend</code> is <a href="#creating-instance">created</a> (as an anonymous class) for the following:</p>
+<p>SerializedShuffleHandle takes the following to be created:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Spark on YARN&#8217;s <a href="#yarn/spark-yarn-client.adoc#launcherBackend" class="page unresolved">Client</a></p>
+<p><a id="shuffleId"></a> Shuffle ID</p>
 </li>
 <li>
-<p>Spark local&#8217;s <a href="#local/spark-LocalSchedulerBackend.adoc#launcherBackend" class="page unresolved">LocalSchedulerBackend</a></p>
+<p><a id="numMaps"></a> Number of mappers</p>
 </li>
 <li>
-<p>Spark on Mesos' <a href="#spark-mesos/spark-mesos-MesosCoarseGrainedSchedulerBackend.adoc#launcherBackend" class="page unresolved">MesosCoarseGrainedSchedulerBackend</a></p>
-</li>
-<li>
-<p>Spark Standalone&#8217;s <a href="#spark-standalone-StandaloneSchedulerBackend.adoc#launcherBackend" class="page unresolved">StandaloneSchedulerBackend</a></p>
+<p><a id="dependency"></a> <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a> (<code>ShuffleDependency[K, V, V]</code>)</p>
 </li>
 </ul>
-</div>
-<div class="sect2">
-<h3 id="closingclose-method"><a class="anchor" href="#closingclose-method"></a><a class="link" href="#closingclose-method"><a id="close"></a> Closing&#8201;&#8212;&#8201;<code>close</code> Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">close(): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>close</code>&#8230;&#8203;FIXME</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>close</code> is used when&#8230;&#8203;FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="connectingconnect-method"><a class="anchor" href="#connectingconnect-method"></a><a class="link" href="#connectingconnect-method"><a id="connect"></a> Connecting&#8201;&#8212;&#8201;<code>connect</code> Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">connect(): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>connect</code>&#8230;&#8203;FIXME</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p><code>connect</code> is used when:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Spark Standalone&#8217;s <code>StandaloneSchedulerBackend</code> is requested to <a href="#spark-standalone-StandaloneSchedulerBackend.adoc#start" class="page unresolved">start</a> (in <code>client</code> deploy mode)</p>
-</li>
-<li>
-<p>Spark local&#8217;s <code>LocalSchedulerBackend</code> is <a href="#local/spark-LocalSchedulerBackend.adoc" class="page unresolved">created</a></p>
-</li>
-<li>
-<p>Spark on Mesos' <code>MesosCoarseGrainedSchedulerBackend</code> is requested to <a href="#spark-mesos/spark-mesos-MesosCoarseGrainedSchedulerBackend.adoc#start" class="page unresolved">start</a> (in <code>client</code> deploy mode)</p>
-</li>
-<li>
-<p>Spark on YARN&#8217;s <code>Client</code> is requested to <a href="#yarn/spark-yarn-client.adoc#submitApplication" class="page unresolved">submit a Spark application</a></p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="firestoprequest-internal-method"><a class="anchor" href="#firestoprequest-internal-method"></a><a class="link" href="#firestoprequest-internal-method"><a id="fireStopRequest"></a> <code>fireStopRequest</code> Internal Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">fireStopRequest(): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>fireStopRequest</code>&#8230;&#8203;FIXME</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>fireStopRequest</code> is used exclusively when <code>BackendConnection</code> is requested to handle a <code>Stop</code> message.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="handling-disconnects-from-scheduling-backendondisconnected-method"><a class="anchor" href="#handling-disconnects-from-scheduling-backendondisconnected-method"></a><a class="link" href="#handling-disconnects-from-scheduling-backendondisconnected-method"><a id="onDisconnected"></a> Handling Disconnects From Scheduling Backend&#8201;&#8212;&#8201;<code>onDisconnected</code> Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">onDisconnected(): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>onDisconnected</code> does nothing by default and is expected to be overriden by <a href="#implementations">implementations</a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>onDisconnected</code> is used when&#8230;&#8203;FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="setappid-method"><a class="anchor" href="#setappid-method"></a><a class="link" href="#setappid-method"><a id="setAppId"></a> <code>setAppId</code> Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">setAppId(appId: String): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>setAppId</code>&#8230;&#8203;FIXME</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>setAppId</code> is used when&#8230;&#8203;FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="setstate-method"><a class="anchor" href="#setstate-method"></a><a class="link" href="#setstate-method"><a id="setState"></a> <code>setState</code> Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">setState(state: SparkAppHandle.State): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>setState</code>&#8230;&#8203;FIXME</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>setState</code> is used when&#8230;&#8203;FIXME
-</td>
-</tr>
-</table>
-</div>
 </div>
 </div>
 </div>

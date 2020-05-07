@@ -391,7 +391,7 @@
     <a class="nav-link" href="BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-shuffle-SerializedShuffleHandle.html">SerializedShuffleHandle</a>
+    <a class="nav-link" href="SerializedShuffleHandle.html">SerializedShuffleHandle</a>
   </li>
 </ul>
   </li>
@@ -1966,6 +1966,37 @@
 </div>
 <div class="paragraph">
 <p>stop is part of the <a href="ShuffleWriter.html#contract" class="page">ShuffleWriter</a> abstraction.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="requirements-of-bypassmergesortshufflehandle-as-shufflehandle"><a class="anchor" href="#requirements-of-bypassmergesortshufflehandle-as-shufflehandle"></a><a class="link" href="#requirements-of-bypassmergesortshufflehandle-as-shufflehandle"><a id="shouldBypassMergeSort"></a> Requirements of BypassMergeSortShuffleHandle (as ShuffleHandle)</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">shouldBypassMergeSort(
+  conf: SparkConf,
+  dep: ShuffleDependency[_, _, _]): Boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>shouldBypassMergeSort returns <code>true</code> when all of the following hold:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>No map-side aggregation (the <a href="../rdd/ShuffleDependency.html#mapSideCombine" class="page">mapSideCombine</a> flag of the given <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a> is off)</p>
+</li>
+<li>
+<p><a href="../rdd/spark-rdd-Partitioner.html#numPartitions" class="page">Number of partitions</a> (of the <a href="../rdd/ShuffleDependency.html#partitioner" class="page">Partitioner</a> of the given <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>) is not greater than <a href="../configuration-properties.html#spark.shuffle.sort.bypassMergeThreshold" class="page">spark.shuffle.sort.bypassMergeThreshold</a> configuration property</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Otherwise, shouldBypassMergeSort does not hold (i.e. <code>false</code>).</p>
+</div>
+<div class="paragraph">
+<p>shouldBypassMergeSort is used when SortShuffleManager is requested to <a href="SortShuffleManager.html#registerShuffle" class="page">register a shuffle (and creates a ShuffleHandle)</a>.</p>
 </div>
 </div>
 </div>
