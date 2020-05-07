@@ -2579,13 +2579,13 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 <h2 id="spark-shuffle-sync"><a class="anchor" href="#spark-shuffle-sync"></a><a class="link" href="#spark-shuffle-sync"><a id="spark.shuffle.sync"></a> spark.shuffle.sync</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Controls whether <a href="storage/DiskBlockObjectWriter.html#commitAndGet" class="page"><code>DiskBlockObjectWriter</code> should force outstanding writes to disk when committing a single atomic block</a>, i.e. all operating system buffers should synchronize with the disk to ensure that all changes to a file are in fact recorded in the storage.</p>
+<p>Controls whether DiskBlockObjectWriter should force outstanding writes to disk while <a href="storage/DiskBlockObjectWriter.html#commitAndGet" class="page">committing a single atomic block</a>, i.e. all operating system buffers should synchronize with the disk to ensure that all changes to a file are in fact recorded in the storage.</p>
 </div>
 <div class="paragraph">
 <p>Default: <code>false</code></p>
 </div>
 <div class="paragraph">
-<p>Used exclusively when <code>BlockManager</code> is requested to <a href="storage/BlockManager.html#getDiskWriter" class="page">get a DiskBlockObjectWriter</a></p>
+<p>Used when BlockManager is requested for a <a href="storage/BlockManager.html#getDiskWriter" class="page">DiskBlockObjectWriter</a></p>
 </div>
 </div>
 </div>
