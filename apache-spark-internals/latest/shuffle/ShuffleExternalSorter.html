@@ -1856,15 +1856,6 @@
 <div class="paragraph">
 <p><strong>ShuffleExternalSorter</strong> is a specialized cache-efficient sorter that sorts arrays of compressed record pointers and partition ids. By using only 8 bytes of space per record in the sorting array, ShuffleExternalSorter can fit more of the array into cache.</p>
 </div>
-<div class="paragraph">
-<p>ShuffleExternalSorter is <a href="#creating-instance">created</a> exclusively when <code>UnsafeShuffleWriter</code> is <a href="spark-shuffle-UnsafeShuffleWriter.html#creating-instance" class="page">created</a> (and requested to <a href="spark-shuffle-UnsafeShuffleWriter.html#open" class="page">open</a>).</p>
-</div>
-<div class="paragraph">
-<p>ShuffleExternalSorter is a concrete <a href="../memory/MemoryConsumer.html" class="page">MemoryConsumer</a> that can <a href="#spill">spill to disk to free up execution memory</a>.</p>
-</div>
-<div id="pageSize" class="paragraph">
-<p>ShuffleExternalSorter uses the <a href="../memory/MemoryConsumer.html#pageSize" class="page">page size</a> to be the minimum of <code>PackedRecordPointer.MAXIMUM_PAGE_SIZE_BYTES</code> and <a href="../memory/TaskMemoryManager.html#pageSizeBytes" class="page">pageSizeBytes</a>, and Tungsten memory mode).</p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -1905,12 +1896,36 @@
 <p>ShuffleExternalSorter creates a <a href="#inMemSorter">ShuffleInMemorySorter</a> (with <code>spark.shuffle.sort.useRadixSort</code> Spark property enabled by default).</p>
 </div>
 <div class="paragraph">
-<p>ShuffleExternalSorter initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
+<p>ShuffleExternalSorter is created for <a href="spark-shuffle-UnsafeShuffleWriter.html" class="page">UnsafeShuffleWriter</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="getmemoryusage-internal-method"><a class="anchor" href="#getmemoryusage-internal-method"></a><a class="link" href="#getmemoryusage-internal-method"><a id="getMemoryUsage"></a> <code>getMemoryUsage</code> Internal Method</a></h2>
+<h2 id="shuffleexternalsorter-as-memoryconsumer"><a class="anchor" href="#shuffleexternalsorter-as-memoryconsumer"></a><a class="link" href="#shuffleexternalsorter-as-memoryconsumer"><a id="MemoryConsumer"></a> ShuffleExternalSorter as MemoryConsumer</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ShuffleExternalSorter is a <a href="../memory/MemoryConsumer.html" class="page">MemoryConsumer</a> that can <a href="#spill">spill to disk to free up execution memory</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="page-size"><a class="anchor" href="#page-size"></a><a class="link" href="#page-size"><a id="pageSize"></a> Page Size</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ShuffleExternalSorter uses the <a href="../memory/MemoryConsumer.html#pageSize" class="page">page size</a> to be the minimum of <code>PackedRecordPointer.MAXIMUM_PAGE_SIZE_BYTES</code> and <a href="../memory/TaskMemoryManager.html#pageSizeBytes" class="page">pageSizeBytes</a>, and Tungsten memory mode).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="allocatedpages"><a class="anchor" href="#allocatedpages"></a><a class="link" href="#allocatedpages"><a id="allocatedPages"></a> allocatedPages</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ShuffleExternalSorter uses&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getmemoryusage-internal-method"><a class="anchor" href="#getmemoryusage-internal-method"></a><a class="link" href="#getmemoryusage-internal-method"><a id="getMemoryUsage"></a> getMemoryUsage Internal Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -1918,24 +1933,15 @@
 </div>
 </div>
 <div class="paragraph">
-<p><code>getMemoryUsage</code>&#8230;&#8203;FIXME</p>
+<p>getMemoryUsage&#8230;&#8203;FIXME</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>getMemoryUsage</code> is used when&#8230;&#8203;FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>getMemoryUsage is used when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="closeandgetspills-method"><a class="anchor" href="#closeandgetspills-method"></a><a class="link" href="#closeandgetspills-method"><a id="closeAndGetSpills"></a> <code>closeAndGetSpills</code> Method</a></h2>
+<h2 id="closeandgetspills-method"><a class="anchor" href="#closeandgetspills-method"></a><a class="link" href="#closeandgetspills-method"><a id="closeAndGetSpills"></a> closeAndGetSpills Method</a></h2>
 <div class="sectionbody">
 <div class="admonitionblock caution">
 <table>
@@ -1952,7 +1958,7 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="insertrecord-method"><a class="anchor" href="#insertrecord-method"></a><a class="link" href="#insertrecord-method"><a id="insertRecord"></a> <code>insertRecord</code> Method</a></h2>
+<h2 id="insertrecord-method"><a class="anchor" href="#insertrecord-method"></a><a class="link" href="#insertrecord-method"><a id="insertRecord"></a> insertRecord Method</a></h2>
 <div class="sectionbody">
 <div class="admonitionblock caution">
 <table>
@@ -1969,7 +1975,7 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="freememory-method"><a class="anchor" href="#freememory-method"></a><a class="link" href="#freememory-method"><a id="freeMemory"></a> <code>freeMemory</code> Method</a></h2>
+<h2 id="freememory-method"><a class="anchor" href="#freememory-method"></a><a class="link" href="#freememory-method"><a id="freeMemory"></a> freeMemory Method</a></h2>
 <div class="sectionbody">
 <div class="admonitionblock caution">
 <table>
@@ -1986,7 +1992,7 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="getpeakmemoryusedbytes-method"><a class="anchor" href="#getpeakmemoryusedbytes-method"></a><a class="link" href="#getpeakmemoryusedbytes-method"><a id="getPeakMemoryUsedBytes"></a> <code>getPeakMemoryUsedBytes</code> Method</a></h2>
+<h2 id="getpeakmemoryusedbytes-method"><a class="anchor" href="#getpeakmemoryusedbytes-method"></a><a class="link" href="#getpeakmemoryusedbytes-method"><a id="getPeakMemoryUsedBytes"></a> getPeakMemoryUsedBytes Method</a></h2>
 <div class="sectionbody">
 <div class="admonitionblock caution">
 <table>
@@ -2020,7 +2026,7 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="cleanupresources-method"><a class="anchor" href="#cleanupresources-method"></a><a class="link" href="#cleanupresources-method"><a id="cleanupResources"></a> <code>cleanupResources</code> Method</a></h2>
+<h2 id="cleanupresources-method"><a class="anchor" href="#cleanupresources-method"></a><a class="link" href="#cleanupresources-method"><a id="cleanupResources"></a> cleanupResources Method</a></h2>
 <div class="sectionbody">
 <div class="admonitionblock caution">
 <table>
@@ -2037,7 +2043,7 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="spilling-to-disk-freeing-up-execution-memoryspill-method"><a class="anchor" href="#spilling-to-disk-freeing-up-execution-memoryspill-method"></a><a class="link" href="#spilling-to-disk-freeing-up-execution-memoryspill-method"><a id="spill"></a> Spilling To Disk (Freeing Up Execution Memory)&#8201;&#8212;&#8201;<code>spill</code> Method</a></h2>
+<h2 id="spilling-to-disk"><a class="anchor" href="#spilling-to-disk"></a><a class="link" href="#spilling-to-disk"><a id="spill"></a> Spilling To Disk</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2046,20 +2052,8 @@ FIXME
   MemoryConsumer trigger)</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>spill</code> is part of the <a href="../memory/MemoryConsumer.html#spill" class="page">MemoryConsumer</a> contract.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
-<p><code>spill</code> prints out the following INFO message to the logs:</p>
+<p>spill prints out the following INFO message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2067,16 +2061,16 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p><code>spill</code> <a href="#writeSortedFile">writeSortedFile</a> (with the <code>isLastFile</code> flag disabled).</p>
+<p>spill <a href="#writeSortedFile">writeSortedFile</a> (with the <code>isLastFile</code> flag disabled).</p>
 </div>
 <div class="paragraph">
-<p><code>spill</code> <a href="#freeMemory">frees execution memory</a> (and records the memory bytes spilled as <code>spillSize</code>).</p>
+<p>spill <a href="#freeMemory">frees execution memory</a> (and records the memory bytes spilled as <code>spillSize</code>).</p>
 </div>
 <div class="paragraph">
-<p><code>spill</code> then requests the <a href="#inMemSorter">ShuffleInMemorySorter</a> to <a href="spark-shuffle-ShuffleInMemorySorter.html#reset" class="page">reset</a> followed by requesting the <a href="#spark-TaskContext.adoc#taskMetrics" class="page unresolved">TaskMetrics</a> (of the <a href="#taskContext">TaskContext</a>) to <a href="#spark-executor-TaskMetrics.adoc#incMemoryBytesSpilled" class="page unresolved">increase the memory bytes spilled</a>.</p>
+<p>spill then requests the <a href="#inMemSorter">ShuffleInMemorySorter</a> to <a href="spark-shuffle-ShuffleInMemorySorter.html#reset" class="page">reset</a> followed by requesting the <a href="#spark-TaskContext.adoc#taskMetrics" class="page unresolved">TaskMetrics</a> (of the <a href="#taskContext">TaskContext</a>) to <a href="#spark-executor-TaskMetrics.adoc#incMemoryBytesSpilled" class="page unresolved">increase the memory bytes spilled</a>.</p>
 </div>
 <div class="paragraph">
-<p>In the end, <code>spill</code> returns the memory bytes spilled (<em>spill size</em>).</p>
+<p>In the end, spill returns the memory bytes spilled (<em>spill size</em>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2086,7 +2080,7 @@ FIXME
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>spill</code> returns <code>0</code> when one of the following holds:</p>
+<p>spill returns <code>0</code> when one of the following holds:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2105,10 +2099,13 @@ FIXME
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>spill is part of the <a href="../memory/MemoryConsumer.html#spill" class="page">MemoryConsumer</a> contract.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="growpointerarrayifnecessary-method"><a class="anchor" href="#growpointerarrayifnecessary-method"></a><a class="link" href="#growpointerarrayifnecessary-method"><a id="growPointerArrayIfNecessary"></a> <code>growPointerArrayIfNecessary</code> Method</a></h2>
+<h2 id="growpointerarrayifnecessary-method"><a class="anchor" href="#growpointerarrayifnecessary-method"></a><a class="link" href="#growpointerarrayifnecessary-method"><a id="growPointerArrayIfNecessary"></a> growPointerArrayIfNecessary Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2134,40 +2131,12 @@ FIXME
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.shuffle.sort.ShuffleExternalSorter=ALL</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">log4j.logger.org.apache.spark.shuffle.sort.ShuffleExternalSorter=ALL</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Refer to <a href="../spark-logging.html" class="page">Logging</a>.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="internal-properties"><a class="anchor" href="#internal-properties"></a><a class="link" href="#internal-properties"><a id="internal-registries"></a> Internal Properties</a></h2>
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 30%;">
-<col style="width: 70%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>allocatedPages</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="allocatedPages"></a> (<code>LinkedList&lt;MemoryBlock&gt;</code>)</p>
-</div>
-<div class="paragraph">
-<p>Used when&#8230;&#8203;FIXME</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 </article>
