@@ -415,7 +415,16 @@
     <a class="nav-link" href="SortShuffleWriter.html">SortShuffleWriter</a>
   </li>
   <li class="nav-item is-current-page" data-depth="3">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ShuffleExternalSorter.html">ShuffleExternalSorter</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -427,12 +436,6 @@
     <a class="nav-link" href="IndexShuffleBlockResolver.html">IndexShuffleBlockResolver</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ShuffleExternalSorter.html">ShuffleExternalSorter</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-shuffle-ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="FetchFailedException.html">FetchFailedException</a>
@@ -1867,7 +1870,7 @@
 <div class="title">Figure 1. UnsafeShuffleWriter, SortShuffleManager and SerializedShuffleHandle</div>
 </div>
 <div class="paragraph">
-<p>UnsafeShuffleWriter <a href="#open">opens a ShuffleExternalSorter and the buffers</a> immediately while being <a href="#creating-instance">created</a>.</p>
+<p>UnsafeShuffleWriter <a href="#open">opens resources</a> (a <a href="#sorter">ShuffleExternalSorter</a> and the buffers) immediately while being <a href="#creating-instance">created</a>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -2104,28 +2107,6 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="opening-unsafeshufflewriter"><a class="anchor" href="#opening-unsafeshufflewriter"></a><a class="link" href="#opening-unsafeshufflewriter"><a id="open"></a> Opening UnsafeShuffleWriter</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void open()</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>open makes sure that the internal reference to <a href="ShuffleExternalSorter.html" class="page">ShuffleExternalSorter</a> (as <code>sorter</code>) is not defined and <a href="ShuffleExternalSorter.html#creating-instance" class="page">creates one itself</a>.</p>
-</div>
-<div class="paragraph">
-<p>open creates a new byte array output stream (as <code>serBuffer</code>) with the buffer capacity of <code>1M</code>.</p>
-</div>
-<div class="paragraph">
-<p>open creates a new <a href="spark-SerializationStream.adoc">SerializationStream</a> for the new byte array output stream using <a href="spark-SerializerInstance.adoc">SerializerInstance</a>.</p>
-</div>
-<div class="paragraph">
-<p>open is used when UnsafeShuffleWriter is <a href="#creating-instance">created</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="inserting-record-into-shuffleexternalsorter"><a class="anchor" href="#inserting-record-into-shuffleexternalsorter"></a><a class="link" href="#inserting-record-into-shuffleexternalsorter"><a id="insertRecordIntoSorter"></a> Inserting Record Into ShuffleExternalSorter</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
@@ -2239,6 +2220,31 @@ FIXME
 </div>
 <div class="paragraph">
 <p>getPeakMemoryUsedBytes is used when UnsafeShuffleWriter is requested to <a href="#stop">stop</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="opening-unsafeshufflewriter-and-buffers"><a class="anchor" href="#opening-unsafeshufflewriter-and-buffers"></a><a class="link" href="#opening-unsafeshufflewriter-and-buffers"><a id="open"></a> Opening UnsafeShuffleWriter and Buffers</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void open()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>open requires that there is no <a href="#sorter">ShuffleExternalSorter</a> available.</p>
+</div>
+<div class="paragraph">
+<p>open creates a <a href="ShuffleExternalSorter.html" class="page">ShuffleExternalSorter</a>.</p>
+</div>
+<div class="paragraph">
+<p>open creates a <a href="#serBuffer">serialized buffer</a> with the capacity of <a href="#DEFAULT_INITIAL_SER_BUFFER_SIZE">1M</a>.</p>
+</div>
+<div class="paragraph">
+<p>open requests the <a href="#serializer">SerializerInstance</a> for a <a href="../spark-SerializerInstance.html#serializeStream" class="page">SerializationStream</a> to the <a href="#serBuffer">serBuffer</a> (available internally as the <a href="#serOutputStream">serOutputStream</a> reference).</p>
+</div>
+<div class="paragraph">
+<p>open is used when UnsafeShuffleWriter is <a href="#creating-instance">created</a>.</p>
 </div>
 </div>
 </div>

@@ -415,7 +415,16 @@
     <a class="nav-link" href="../shuffle/SortShuffleWriter.html">SortShuffleWriter</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../shuffle/UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../shuffle/ShuffleExternalSorter.html">ShuffleExternalSorter</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../shuffle/ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -427,12 +436,6 @@
     <a class="nav-link" href="../shuffle/IndexShuffleBlockResolver.html">IndexShuffleBlockResolver</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/ShuffleExternalSorter.html">ShuffleExternalSorter</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../shuffle/FetchFailedException.html">FetchFailedException</a>
@@ -4165,7 +4168,7 @@ FIXME When would <code>info.tellMaster</code> be <code>true</code>?
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.storage.BlockManager=ALL</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">log4j.logger.org.apache.spark.storage.BlockManager=ALL</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4176,37 +4179,29 @@ FIXME When would <code>info.tellMaster</code> be <code>true</code>?
 <div class="sect1">
 <h2 id="internal-properties"><a class="anchor" href="#internal-properties"></a><a class="link" href="#internal-properties"><a id="internal-properties"></a> Internal Properties</a></h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 30%;">
-<col style="width: 70%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>blockInfoManager</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="blockInfoManager"></a> <a href="spark-BlockInfoManager.adoc">BlockInfoManager</a> for&#8230;&#8203;FIXME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>maxMemory</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="maxMemory"></a> Total maximum value that BlockManager can ever possibly use (that depends on <a href="#memoryManager">MemoryManager</a> and may vary over time).</p>
-<p class="tableblock">Total available <a href="../memory/MemoryManager.html#maxOnHeapStorageMemory" class="page">on-heap</a> and <a href="../memory/MemoryManager.html#maxOffHeapStorageMemory" class="page">off-heap</a> memory for storage (in bytes)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>maxOffHeapMemory</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="maxOffHeapMemory"></a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>maxOnHeapMemory</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="maxOnHeapMemory"></a></p></td>
-</tr>
-</tbody>
-</table>
+<div class="sect2">
+<h3 id="blockinfomanager"><a class="anchor" href="#blockinfomanager"></a><a class="link" href="#blockinfomanager"><a id="blockInfoManager"></a> BlockInfoManager</a></h3>
+<div class="paragraph">
+<p><a href="spark-BlockInfoManager.adoc">BlockInfoManager</a> for&#8230;&#8203;FIXME</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="maximum-memory"><a class="anchor" href="#maximum-memory"></a><a class="link" href="#maximum-memory"><a id="maxMemory"></a> Maximum Memory</a></h3>
+<div class="paragraph">
+<p>Total maximum value that BlockManager can ever possibly use (that depends on <a href="#memoryManager">MemoryManager</a> and may vary over time).</p>
+</div>
+<div class="paragraph">
+<p>Total available <a href="../memory/MemoryManager.html#maxOnHeapStorageMemory" class="page">on-heap</a> and <a href="../memory/MemoryManager.html#maxOffHeapStorageMemory" class="page">off-heap</a> memory for storage (in bytes)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="maximum-off-heap-memory"><a class="anchor" href="#maximum-off-heap-memory"></a><a class="link" href="#maximum-off-heap-memory"><a id="maxOffHeapMemory"></a> Maximum Off-Heap Memory</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="maximum-on-heap-memory"><a class="anchor" href="#maximum-on-heap-memory"></a><a class="link" href="#maximum-on-heap-memory"><a id="maxOnHeapMemory"></a> Maximum On-Heap Memory</a></h3>
+
+</div>
 </div>
 </div>
 </article>

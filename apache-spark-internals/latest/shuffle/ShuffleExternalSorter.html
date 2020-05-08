@@ -415,7 +415,16 @@
     <a class="nav-link" href="SortShuffleWriter.html">SortShuffleWriter</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="ShuffleExternalSorter.html">ShuffleExternalSorter</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -427,12 +436,6 @@
     <a class="nav-link" href="IndexShuffleBlockResolver.html">IndexShuffleBlockResolver</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="ShuffleExternalSorter.html">ShuffleExternalSorter</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-shuffle-ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="FetchFailedException.html">FetchFailedException</a>
@@ -1843,6 +1846,8 @@
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
     <li><a href="index.html">Shuffle System</a></li>
+    <li><a href="ShuffleWriter.html">ShuffleWriter</a></li>
+    <li><a href="UnsafeShuffleWriter.html">UnsafeShuffleWriter</a></li>
     <li><a href="ShuffleExternalSorter.html">ShuffleExternalSorter</a></li>
   </ul>
 </nav>
@@ -1855,6 +1860,12 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>ShuffleExternalSorter</strong> is a specialized cache-efficient sorter that sorts arrays of compressed record pointers and partition ids. By using only 8 bytes of space per record in the sorting array, ShuffleExternalSorter can fit more of the array into cache.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/ShuffleExternalSorter.png" alt="ShuffleExternalSorter">
+</div>
+<div class="title">Figure 1. ShuffleExternalSorter and UnsafeShuffleWriter</div>
 </div>
 </div>
 </div>
@@ -1901,6 +1912,46 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="shuffleinmemorysorter"><a class="anchor" href="#shuffleinmemorysorter"></a><a class="link" href="#shuffleinmemorysorter"><a id="inMemSorter"></a> ShuffleInMemorySorter</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ShuffleExternalSorter manages a <a href="ShuffleInMemorySorter.html" class="page">ShuffleInMemorySorter</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ShuffleInMemorySorter is created immediately when ShuffleExternalSorter is</p>
+</li>
+<li>
+<p>ShuffleInMemorySorter is requested to <a href="ShuffleInMemorySorter.html#free" class="page">free up memory</a> and dereferenced (<code>null</code>ed) when ShuffleExternalSorter is requested to <a href="#cleanupResources">cleanupResources</a> and <a href="#closeAndGetSpills">closeAndGetSpills</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>ShuffleExternalSorter uses the ShuffleInMemorySorter when requested for the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#writeSortedFile">writeSortedFile</a></p>
+</li>
+<li>
+<p><a href="#spill">spill</a></p>
+</li>
+<li>
+<p><a href="#getMemoryUsage">getMemoryUsage</a></p>
+</li>
+<li>
+<p><a href="#growPointerArrayIfNecessary">growPointerArrayIfNecessary</a></p>
+</li>
+<li>
+<p><a href="#insertRecord">insertRecord</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="shuffleexternalsorter-as-memoryconsumer"><a class="anchor" href="#shuffleexternalsorter-as-memoryconsumer"></a><a class="link" href="#shuffleexternalsorter-as-memoryconsumer"><a id="MemoryConsumer"></a> ShuffleExternalSorter as MemoryConsumer</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -1941,7 +1992,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="writesortedfile-internal-method"><a class="anchor" href="#writesortedfile-internal-method"></a><a class="link" href="#writesortedfile-internal-method"><a id="writeSortedFile"></a> writeSortedFile Internal Method</a></h2>
+<h2 id="writesortedfile-method"><a class="anchor" href="#writesortedfile-method"></a><a class="link" href="#writesortedfile-method"><a id="writeSortedFile"></a> writeSortedFile Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -1953,7 +2004,7 @@
 <p>writeSortedFile&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p>writeSortedFile is used when&#8230;&#8203;FIXME</p>
+<p>writeSortedFile is used when ShuffleExternalSorter is requested to <a href="#spill">spill</a> and <a href="#closeAndGetSpills">closeAndGetSpills</a>.</p>
 </div>
 </div>
 </div>
@@ -1998,7 +2049,7 @@
 <p>spill <a href="#freeMemory">frees execution memory</a> (and records the memory bytes spilled as <code>spillSize</code>).</p>
 </div>
 <div class="paragraph">
-<p>spill then requests the <a href="#inMemSorter">ShuffleInMemorySorter</a> to <a href="spark-shuffle-ShuffleInMemorySorter.html#reset" class="page">reset</a> followed by requesting the <a href="../scheduler/spark-TaskContext.html#taskMetrics" class="page">TaskMetrics</a> (of the <a href="#taskContext">TaskContext</a>) to <a href="../metrics/spark-executor-TaskMetrics.html#incMemoryBytesSpilled" class="page">increase the memory bytes spilled</a>.</p>
+<p>spill then requests the <a href="#inMemSorter">ShuffleInMemorySorter</a> to <a href="ShuffleInMemorySorter.html#reset" class="page">reset</a> followed by requesting the <a href="../scheduler/spark-TaskContext.html#taskMetrics" class="page">TaskMetrics</a> (of the <a href="#taskContext">TaskContext</a>) to <a href="../metrics/spark-executor-TaskMetrics.html#incMemoryBytesSpilled" class="page">increase the memory bytes spilled</a>.</p>
 </div>
 <div class="paragraph">
 <p>In the end, spill returns the memory bytes spilled (<em>spill size</em>).</p>
@@ -2022,7 +2073,7 @@
 <p><a href="#inMemSorter">ShuffleInMemorySorter</a> is not assigned</p>
 </li>
 <li>
-<p><a href="#inMemSorter">ShuffleInMemorySorter</a> manages no <a href="spark-shuffle-ShuffleInMemorySorter.html#numRecords" class="page">records</a></p>
+<p><a href="#inMemSorter">ShuffleInMemorySorter</a> manages no <a href="ShuffleInMemorySorter.html#numRecords" class="page">records</a></p>
 </li>
 </ul>
 </div>
