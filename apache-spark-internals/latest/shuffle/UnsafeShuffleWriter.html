@@ -1867,6 +1867,15 @@
 <div class="title">Figure 1. UnsafeShuffleWriter, SortShuffleManager and SerializedShuffleHandle</div>
 </div>
 <div class="paragraph">
+<p>UnsafeShuffleWriter <a href="#open">opens a ShuffleExternalSorter and the buffers</a> immediately while being <a href="#creating-instance">created</a>.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/UnsafeShuffleWriter-ShuffleExternalSorter.png" alt="UnsafeShuffleWriter ShuffleExternalSorter">
+</div>
+<div class="title">Figure 2. UnsafeShuffleWriter and ShuffleExternalSorter</div>
+</div>
+<div class="paragraph">
 <p>When requested to <a href="#write">write key-value records of a partition</a>, UnsafeShuffleWriter simply <a href="#insertRecordIntoSorter">inserts every record into ShuffleExternalSorter</a> followed by <a href="#closeAndWriteOutput">closing the internal resources and writing out merged spill files</a> (that, among other things, creates the <a href="#mapStatus">MapStatus</a>).</p>
 </div>
 <div class="paragraph">
@@ -2126,13 +2135,22 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p>insertRecordIntoSorter <a href="../rdd/spark-rdd-Partitioner.html#getPartition" class="page">calculates the partition for the key of the input record</a>.</p>
+<p>insertRecordIntoSorter requires that the <a href="#sorter">ShuffleExternalSorter</a> is available.</p>
 </div>
 <div class="paragraph">
-<p>insertRecordIntoSorter then writes the key and the value of the input <code>record</code> to <a href="../spark-SerializationStream.html" class="page">SerializationStream</a> and calculates the size of the serialized buffer.</p>
+<p>insertRecordIntoSorter requests the <a href="#serBuffer">MyByteArrayOutputStream</a> to reset (so that all currently accumulated output in the output stream is discarded and reusing the already allocated buffer space).</p>
 </div>
 <div class="paragraph">
-<p>In the end, insertRecordIntoSorter <a href="ShuffleExternalSorter.html#insertRecord" class="page">inserts the serialized buffer to <code>ShuffleExternalSorter</code></a> (as <code>Platform.BYTE_ARRAY_OFFSET</code> ).</p>
+<p>insertRecordIntoSorter requests the <a href="#serOutputStream">SerializationStream</a> to write out the record (write the <a href="../spark-SerializationStream.html#writeKey" class="page">key</a> and the <a href="../spark-SerializationStream.html#writeValue" class="page">value</a>) and to <a href="../spark-SerializationStream.html#flush" class="page">flush</a>.</p>
+</div>
+<div id="insertRecordIntoSorter-serializedRecordSize" class="paragraph">
+<p>insertRecordIntoSorter requests the <a href="#serBuffer">MyByteArrayOutputStream</a> for the length of the buffer.</p>
+</div>
+<div id="insertRecordIntoSorter-partitionId" class="paragraph">
+<p>insertRecordIntoSorter requests the <a href="#partitioner">Partitioner</a> for the <a href="../rdd/spark-rdd-Partitioner.html#getPartition" class="page">partition</a> for the given record (by the key).</p>
+</div>
+<div class="paragraph">
+<p>In the end, insertRecordIntoSorter requests the <a href="#sorter">ShuffleExternalSorter</a> to <a href="ShuffleExternalSorter.html#insertRecord" class="page">insert</a> the <a href="#serBuffer">MyByteArrayOutputStream</a> as a byte array (with the <a href="#insertRecordIntoSorter-serializedRecordSize">length</a> and the <a href="#insertRecordIntoSorter-partitionId">partition</a>).</p>
 </div>
 <div class="paragraph">
 <p>insertRecordIntoSorter is used when UnsafeShuffleWriter is requested to <a href="#write">write records</a>.</p>
@@ -2342,12 +2360,12 @@ FIXME
 </div>
 </div>
 <div class="sect2">
-<h3 id="sorter"><a class="anchor" href="#sorter"></a><a class="link" href="#sorter"><a id="sorter"></a> sorter</a></h3>
+<h3 id="shuffleexternalsorter"><a class="anchor" href="#shuffleexternalsorter"></a><a class="link" href="#shuffleexternalsorter"><a id="sorter"></a> ShuffleExternalSorter</a></h3>
 <div class="paragraph">
-<p><a href="ShuffleExternalSorter.html" class="page">ShuffleExternalSorter</a></p>
+<p>UnsafeShuffleWriter uses a <a href="ShuffleExternalSorter.html" class="page">ShuffleExternalSorter</a>.</p>
 </div>
 <div class="paragraph">
-<p>Initialized when UnsafeShuffleWriter is requested to <a href="#open">open</a> (while being <a href="#creating-instance">created</a>)</p>
+<p>ShuffleExternalSorter is created when UnsafeShuffleWriter is requested to <a href="#open">open</a> (while being <a href="#creating-instance">created</a>) and dereferenced (<code>null</code>ed) when requested to <a href="#closeAndWriteOutput">close internal resources and write out merged spill files</a>.</p>
 </div>
 <div class="paragraph">
 <p>Used when UnsafeShuffleWriter is requested for the following:</p>
@@ -2364,18 +2382,12 @@ FIXME
 <p><a href="#closeAndWriteOutput">Closing internal resources and writing out merged spill files</a></p>
 </li>
 <li>
-<p><a href="#insertRecordIntoSorter">Inserting a record into ShuffleExternalSorter</a></p>
+<p><a href="#insertRecordIntoSorter">Inserting a record</a></p>
 </li>
 <li>
-<p><a href="#forceSorterToSpill">Forcing ShuffleExternalSorter to spill to disk (freeing up execution memory)</a> (for testing)</p>
-</li>
-<li>
-<p><a href="#stop">stop</a></p>
+<p><a href="#stop">Stopping</a></p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>Destroyed (<code>null</code>) when requested to <a href="#closeAndWriteOutput">close internal resources and write out merged spill files</a></p>
 </div>
 </div>
 <div class="sect2">
