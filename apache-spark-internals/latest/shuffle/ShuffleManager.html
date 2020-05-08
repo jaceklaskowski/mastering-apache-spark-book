@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title> ShuffleManager :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/shuffle/ShuffleManager.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -374,11 +374,14 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="index.html">Shuffle System</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="ShuffleManager.html">ShuffleManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="SortShuffleManager.html">SortShuffleManager</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="ShuffleManager.html">ShuffleManager</a>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1853,48 +1856,32 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="shufflemanager-contractpluggable-shuffle-systems"><a class="anchor" href="#shufflemanager-contractpluggable-shuffle-systems"></a><a class="link" href="#shufflemanager-contractpluggable-shuffle-systems"><a id="ShuffleManager"></a> ShuffleManager Contract&#8201;&#8212;&#8201;Pluggable Shuffle Systems</a></h2>
+<h1 class="page"><a id="ShuffleManager"></a> ShuffleManager</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>ShuffleManager</strong> is a <a href="#contract">contract</a> of <a href="#implementations">shuffle systems</a> that manage shuffle metadata on the driver (using shuffle IDs or <a href="spark-shuffle-ShuffleHandle.html" class="page">ShuffleHandle</a>) and allow running tasks on executors to access the metadata.</p>
-</div>
-<div id="implementations" class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p><a href="SortShuffleManager.html" class="page">SortShuffleManager</a> (short name: <code>sort</code> or <code>tungsten-sort</code>) is the default implementation of the <a href="#contract">ShuffleManager Contract</a> in Apache Spark.</p>
+<p><strong>ShuffleManager</strong> is an abstraction of <a href="#implementations">shuffle systems</a> that manage shuffle data.</p>
 </div>
 <div class="paragraph">
-<p>Use <a href="../configuration-properties.html#spark.shuffle.manager" class="page">spark.shuffle.manager</a> configuration property to set up a custom <code>ShuffleManager</code>.</p>
-</div>
-</td>
-</tr>
-</table>
+<p>ShuffleManager is selected using <a href="../configuration-properties.html#spark.shuffle.manager" class="page">spark.shuffle.manager</a> configuration property.</p>
 </div>
 <div class="paragraph">
 <p>ShuffleManager is used to create a <a href="../storage/BlockManager.html#shuffleManager" class="page">BlockManager</a>.</p>
 </div>
-<table id="contract" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. ShuffleManager Contract</caption>
-<colgroup>
-<col style="width: 30%;">
-<col style="width: 70%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Method</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>getReader</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div id="getReader" class="listingblock">
+</div>
+</div>
+<div class="sect1">
+<h2 id="available-shufflemanagers"><a class="anchor" href="#available-shufflemanagers"></a><a class="link" href="#available-shufflemanagers"><a id="implementations"></a> Available ShuffleManagers</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="SortShuffleManager.html" class="page">SortShuffleManager</a> is the default and only known ShuffleManager in Apache Spark.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-shufflereader-for-shufflehandle"><a class="anchor" href="#getting-shufflereader-for-shufflehandle"></a><a class="link" href="#getting-shufflereader-for-shufflehandle"><a id="getReader"></a> Getting ShuffleReader for ShuffleHandle</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getReader[K, C](
   handle: ShuffleHandle,
@@ -1924,11 +1911,13 @@
 <p><code>ShuffledRowRDD</code> (Spark SQL)</p>
 </li>
 </ul>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>getWriter</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div id="getWriter" class="listingblock">
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-shufflewriter-for-shufflehandle"><a class="anchor" href="#getting-shufflewriter-for-shufflehandle"></a><a class="link" href="#getting-shufflewriter-for-shufflehandle"><a id="getWriter"></a> Getting ShuffleWriter for ShuffleHandle</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getWriter[K, V](
   handle: ShuffleHandle,
@@ -1941,11 +1930,13 @@
 </div>
 <div class="paragraph">
 <p>Used exclusively when <code>ShuffleMapTask</code> is requested to <a href="../scheduler/ShuffleMapTask.html#runTask" class="page">run</a> (and requests the <a href="ShuffleWriter.html" class="page">ShuffleWriter</a> to write records for a partition)</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>registerShuffle</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div id="registerShuffle" class="listingblock">
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="registering-shuffle-of-shuffledependency-and-getting-shufflehandle"><a class="anchor" href="#registering-shuffle-of-shuffledependency-and-getting-shufflehandle"></a><a class="link" href="#registering-shuffle-of-shuffledependency-and-getting-shufflehandle"><a id="registerShuffle"></a> Registering Shuffle of ShuffleDependency (and Getting ShuffleHandle)</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">registerShuffle[K, V, C](
   shuffleId: Int,
@@ -1958,11 +1949,13 @@
 </div>
 <div class="paragraph">
 <p>Used exclusively when <code>ShuffleDependency</code> is <a href="../rdd/ShuffleDependency.html#shuffleHandle" class="page">created</a> (and registers itself with the shuffle system)</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shuffleBlockResolver</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div id="shuffleBlockResolver" class="listingblock">
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-shuffleblockresolver"><a class="anchor" href="#getting-shuffleblockresolver"></a><a class="link" href="#getting-shuffleblockresolver"><a id="shuffleBlockResolver"></a> Getting ShuffleBlockResolver</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">shuffleBlockResolver: ShuffleBlockResolver</code></pre>
 </div>
@@ -1982,11 +1975,13 @@
 <p><code>BlockManager</code> is requested to <a href="../storage/BlockManager.html#getBlockData" class="page">get shuffle data</a> and <a href="../storage/BlockManager.html#getLocalBytes" class="page">getLocalBytes</a></p>
 </li>
 </ul>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>stop</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div id="stop" class="listingblock">
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stopping-shufflemanager"><a class="anchor" href="#stopping-shufflemanager"></a><a class="link" href="#stopping-shufflemanager"><a id="stop"></a> Stopping ShuffleManager</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">stop(): Unit</code></pre>
 </div>
@@ -1996,11 +1991,13 @@
 </div>
 <div class="paragraph">
 <p>Used when <code>SparkEnv</code> is requested to <a href="../spark-SparkEnv.html#stop" class="page">stop</a></p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unregisterShuffle</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div id="unregisterShuffle" class="listingblock">
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="unregistering-shuffle"><a class="anchor" href="#unregistering-shuffle"></a><a class="link" href="#unregistering-shuffle"><a id="unregisterShuffle"></a> Unregistering Shuffle</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">unregisterShuffle(
   shuffleId: Int): Boolean</code></pre>
@@ -2011,29 +2008,18 @@
 </div>
 <div class="paragraph">
 <p>Used when <code>BlockManagerSlaveEndpoint</code> is requested to <a href="#ROOT:spark-blockmanager-BlockManagerSlaveEndpoint.adoc#RemoveShuffle" class="page unresolved">receives a RemoveShuffle message</a></p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="sect2">
-<h3 id="accessing-shufflemanager-using-sparkenv"><a class="anchor" href="#accessing-shufflemanager-using-sparkenv"></a><a class="link" href="#accessing-shufflemanager-using-sparkenv"><a id="SparkEnv"></a> Accessing ShuffleManager using SparkEnv</a></h3>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="accessing-shufflemanager-using-sparkenv"><a class="anchor" href="#accessing-shufflemanager-using-sparkenv"></a><a class="link" href="#accessing-shufflemanager-using-sparkenv"><a id="SparkEnv"></a> Accessing ShuffleManager using SparkEnv</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The driver and executor access the <code>ShuffleManager</code> instance using <a href="spark-SparkEnv.adoc#shuffleManager">SparkEnv.shuffleManager</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">val shuffleManager = SparkEnv.get.shuffleManager</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="further-reading-or-watching"><a class="anchor" href="#further-reading-or-watching"></a><a class="link" href="#further-reading-or-watching"><a id="i-want-more"></a> Further Reading or Watching</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>(slides) <a href="http://www.slideshare.net/colorant/spark-shuffle-introduction">Spark shuffle introduction</a> by <a href="http://blog.csdn.net/colorant/">Raymond Liu</a> (aka <em>colorant</em>).</p>
-</li>
-</ol>
 </div>
 </div>
 </div>

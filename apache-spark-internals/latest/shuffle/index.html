@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title> Shuffle System :: The Internals Of Apache Spark</title>
+    <title>Shuffle System :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/shuffle/index.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -375,10 +375,13 @@
     <a class="nav-link" href="index.html">Shuffle System</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="ShuffleManager.html">ShuffleManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="SortShuffleManager.html">SortShuffleManager</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ShuffleManager.html">ShuffleManager</a>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1852,11 +1855,14 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page"><a id="shuffle-system"></a> Shuffle System</h1>
+<h1 class="page">Shuffle System</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Shuffle System</strong> is a core component of Apache Spark that is responsible for&#8230;&#8203;FIXME</p>
+<p><strong>Shuffle System</strong> is a core component of Apache Spark that is responsible for shuffle block management.</p>
+</div>
+<div class="paragraph">
+<p>The core abstraction is <a href="ShuffleManager.html" class="page">ShuffleManager</a> with the default and only known implementation being <a href="SortShuffleManager.html" class="page">SortShuffleManager</a>.</p>
 </div>
 </div>
 </div>
@@ -1868,12 +1874,15 @@
 <li>
 <p>(video) <a href="https://databricks.com/session_eu19/improving-apache-spark-downscaling">Improving Apache Spark Downscaling</a> by Christopher Crosbie (Google) Ben Sidhom (Google)</p>
 </li>
+<li>
+<p>(slides) <a href="http://www.slideshare.net/colorant/spark-shuffle-introduction">Spark shuffle introduction</a> by Raymond Liu (aka <em>colorant</em>)</p>
+</li>
 </ul>
 </div>
 </div>
 </div>
 </article>
-<aside class="toc sidebar" data-title="Contents" data-levels="2">
+<aside class="toc sidebar" data-title="Contents" data-levels="-1">
   <div class="toc-menu"></div>
 </aside>
   </div>
