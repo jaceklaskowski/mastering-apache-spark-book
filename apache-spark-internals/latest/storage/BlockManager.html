@@ -1869,15 +1869,6 @@
 <div id="futureExecutionContext" class="paragraph">
 <p>BlockManager uses a Scala <a href="https://www.scala-lang.org/api/current/scala/concurrent/ExecutionContextExecutorService.html">ExecutionContextExecutorService</a> to execute <strong>FIXME</strong> asynchronously (on a thread pool with <strong>block-manager-future</strong> prefix and maximum of 128 threads).</p>
 </div>
-<div class="paragraph">
-<p>BlockManager is available as <a href="../spark-SparkEnv.html#blockManager" class="page">SparkEnv.blockManager</a> on the driver and executors.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">import org.apache.spark.SparkEnv
-val bm = SparkEnv.get.blockManager</code></pre>
-</div>
-</div>
 <div id="BlockEvictionHandler" class="paragraph">
 <p>BlockManager is a <a href="spark-BlockEvictionHandler.adoc">BlockEvictionHandler</a> that can <a href="#dropFromMemory">drop a block from memory and store it on a disk</a> if required.</p>
 </div>
@@ -2005,10 +1996,24 @@ It is computed specially in Spark on YARN.
 <p>BlockManager creates a client to read other executors' shuffle files (as <code>shuffleClient</code>). If the external shuffle service is used an <a href="../spark-ShuffleClient-ExternalShuffleClient.html" class="page">ExternalShuffleClient</a> is created or the input <a href="../spark-BlockTransferService.html" class="page">BlockTransferService</a> is used.</p>
 </div>
 <div class="paragraph">
-<p>BlockManager sets <a href="#spark.block.failures.beforeLocationRefresh">the maximum number of failures before this block manager refreshes the block locations from the driver</a> (as <code>maxFailuresBeforeLocationRefresh</code>).</p>
+<p>BlockManager sets the <a href="../configuration-properties.html#spark.block.failures.beforeLocationRefresh" class="page">maximum number of failures</a> before this block manager refreshes the block locations from the driver (as <code>maxFailuresBeforeLocationRefresh</code>).</p>
 </div>
 <div class="paragraph">
 <p>BlockManager registers <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc">BlockManagerSlaveEndpoint</a> with the input <a href="../spark-rpc.html" class="page">RpcEnv</a>, itself, and <a href="../scheduler/MapOutputTracker.html" class="page">MapOutputTracker</a> (as <code>slaveEndpoint</code>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="accessing-blockmanager-using-sparkenv"><a class="anchor" href="#accessing-blockmanager-using-sparkenv"></a><a class="link" href="#accessing-blockmanager-using-sparkenv"><a id="SparkEnv"></a> Accessing BlockManager Using SparkEnv</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>BlockManager is available using <a href="../spark-SparkEnv.html#blockManager" class="page">SparkEnv</a> on the driver and executors.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">import org.apache.spark.SparkEnv
+SparkEnv.get.blockManager</code></pre>
+</div>
 </div>
 </div>
 </div>

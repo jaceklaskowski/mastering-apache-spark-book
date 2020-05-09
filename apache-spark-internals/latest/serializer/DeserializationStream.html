@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>DeserializationStream :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/serializer/DeserializationStream.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -1845,20 +1845,91 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="deserializationstream"><a class="anchor" href="#deserializationstream"></a><a class="link" href="#deserializationstream"><a id="DeserializationStream"></a> DeserializationStream</a></h2>
+<h1 class="page">DeserializationStream</h1>
+<div id="preamble">
 <div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p><strong>DeserializationStream</strong> is an abstraction of streams for reading serialized objects.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="readobject-method"><a class="anchor" href="#readobject-method"></a><a class="link" href="#readobject-method"><a id="readObject"></a> readObject Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">readObject[T: ClassTag](): T</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>readObject&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>readObject is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="readkey-method"><a class="anchor" href="#readkey-method"></a><a class="link" href="#readkey-method"><a id="readKey"></a> readKey Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">readKey[T: ClassTag](): T</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>readKey <a href="#readObject">reads the object</a> representing the key of a key-value record.</p>
+</div>
+<div class="paragraph">
+<p>readKey is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="readvalue-method"><a class="anchor" href="#readvalue-method"></a><a class="link" href="#readvalue-method"><a id="readValue"></a> readValue Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">readValue[T: ClassTag](): T</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>readValue <a href="#readObject">reads the object</a> representing the value of a key-value record.</p>
+</div>
+<div class="paragraph">
+<p>readValue is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="asiterator-method"><a class="anchor" href="#asiterator-method"></a><a class="link" href="#asiterator-method"><a id="asIterator"></a> asIterator Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">asIterator: Iterator[Any]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>asIterator&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>asIterator is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="askeyvalueiterator-method"><a class="anchor" href="#askeyvalueiterator-method"></a><a class="link" href="#askeyvalueiterator-method"><a id="asKeyValueIterator"></a> asKeyValueIterator Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">asKeyValueIterator: Iterator[Any]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>asKeyValueIterator&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>asKeyValueIterator is used when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>

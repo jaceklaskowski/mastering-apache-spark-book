@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>SerializerInstance :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/serializer/SerializerInstance.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -1845,35 +1845,82 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="serializerinstance"><a class="anchor" href="#serializerinstance"></a><a class="link" href="#serializerinstance"><a id="SerializerInstance"></a> SerializerInstance</a></h2>
+<h1 class="page">SerializerInstance</h1>
+<div id="preamble">
 <div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p><strong>SerializerInstance</strong> is an abstraction of instances of a serializer, for use by one thread at a time.</p>
 </div>
-<div class="sect2">
-<h3 id="serializestream-method"><a class="anchor" href="#serializestream-method"></a><a class="link" href="#serializestream-method"><a id="serializeStream"></a> <code>serializeStream</code> Method</a></h3>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
 </div>
+</div>
+<div class="sect1">
+<h2 id="serialize-method"><a class="anchor" href="#serialize-method"></a><a class="link" href="#serialize-method"><a id="serialize"></a> serialize Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">serialize[T: ClassTag](
+  t: T): ByteBuffer</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>serialize&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>serialize is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deserialize-method"><a class="anchor" href="#deserialize-method"></a><a class="link" href="#deserialize-method"><a id="deserialize"></a> deserialize Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">deserialize[T: ClassTag](
+  bytes: ByteBuffer): T
+deserialize[T: ClassTag](
+  bytes: ByteBuffer,
+  loader: ClassLoader): T</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>deserialize&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>deserialize is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="serializestream-method"><a class="anchor" href="#serializestream-method"></a><a class="link" href="#serializestream-method"><a id="serializeStream"></a> serializeStream Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">serializeStream(
+  s: OutputStream): SerializationStream</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>serializeStream&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>serializeStream is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deserializestream-method"><a class="anchor" href="#deserializestream-method"></a><a class="link" href="#deserializestream-method"><a id="deserializeStream"></a> deserializeStream Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">deserializeStream(
+  s: InputStream): DeserializationStream</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>deserializeStream&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>deserializeStream is used when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>

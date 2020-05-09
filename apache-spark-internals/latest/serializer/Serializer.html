@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title> Serializer :: The Internals Of Apache Spark</title>
+    <title>Serializer :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/serializer/Serializer.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -1845,66 +1845,87 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page"><a id="Serializer"></a> Serializer</h1>
+<h1 class="page">Serializer</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Serializer</strong> is an abstraction of <a href="#implementations">serializers</a> that are intended to be used to serialize/de-serialize data in a single Spark application.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="available-serializers"><a class="anchor" href="#available-serializers"></a><a class="link" href="#available-serializers"><a id="implementations"></a> Available Serializers</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Serializer</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JavaSerializer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="JavaSerializer"></a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">KryoSerializer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="KryoSerializer"></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div class="sect1">
 <h2 id="newinstance-method"><a class="anchor" href="#newinstance-method"></a><a class="link" href="#newinstance-method"><a id="newInstance"></a> newInstance Method</a></h2>
 <div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">newInstance(): SerializerInstance</code></pre>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="serialize-method"><a class="anchor" href="#serialize-method"></a><a class="link" href="#serialize-method"><a id="serialize"></a> serialize Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="deserialize-method"><a class="anchor" href="#deserialize-method"></a><a class="link" href="#deserialize-method"><a id="deserialize"></a> deserialize Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="supportsrelocationofserializedobjects-property"><a class="anchor" href="#supportsrelocationofserializedobjects-property"></a><a class="link" href="#supportsrelocationofserializedobjects-property"><a id="supportsRelocationOfSerializedObjects"></a> <code>supportsRelocationOfSerializedObjects</code> Property</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><code>supportsRelocationOfSerializedObjects</code> should be enabled (i.e. true) only when reordering the bytes of serialized objects in serialization stream output is equivalent to having re-ordered those elements prior to serializing them.</p>
 </div>
 <div class="paragraph">
-<p><code>supportsRelocationOfSerializedObjects</code> is disabled (i.e. <code>false</code>) by default.</p>
+<p>newInstance&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>newInstance is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setdefaultclassloader-method"><a class="anchor" href="#setdefaultclassloader-method"></a><a class="link" href="#setdefaultclassloader-method"><a id="setDefaultClassLoader"></a> setDefaultClassLoader Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">setDefaultClassLoader(
+  classLoader: ClassLoader): Serializer</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>setDefaultClassLoader&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>setDefaultClassLoader is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="supportsrelocationofserializedobjects-property"><a class="anchor" href="#supportsrelocationofserializedobjects-property"></a><a class="link" href="#supportsrelocationofserializedobjects-property"><a id="supportsRelocationOfSerializedObjects"></a> supportsRelocationOfSerializedObjects Property</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">supportsRelocationOfSerializedObjects: Boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>supportsRelocationOfSerializedObjects should be enabled (i.e. true) only when reordering the bytes of serialized objects in serialization stream output is equivalent to having re-ordered those elements prior to serializing them.</p>
+</div>
+<div class="paragraph">
+<p>supportsRelocationOfSerializedObjects is disabled (<code>false</code>) by default.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1913,7 +1934,7 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>KryoSerializer</code> uses <code>autoReset</code> for <code>supportsRelocationOfSerializedObjects</code>.
+<code>KryoSerializer</code> uses <code>autoReset</code> for supportsRelocationOfSerializedObjects.
 </td>
 </tr>
 </table>
@@ -1925,7 +1946,7 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>supportsRelocationOfSerializedObjects</code> is enabled in <code>UnsafeRowSerializer</code>.
+supportsRelocationOfSerializedObjects is enabled in <code>UnsafeRowSerializer</code>.
 </td>
 </tr>
 </table>

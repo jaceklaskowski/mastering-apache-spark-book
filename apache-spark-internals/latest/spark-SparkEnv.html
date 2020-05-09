@@ -1965,7 +1965,7 @@ res0: org.apache.spark.SparkEnv = org.apache.spark.SparkEnv@49322d04</code></pre
 </div>
 </div>
 <div class="paragraph">
-<p><code>create</code> is an utility to create a "base" SparkEnv (for the driver and executors).</p>
+<p>create is an utility to create a "base" SparkEnv (for the driver and executors).</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. create&#8217;s Input Arguments and Their Usage</caption>
@@ -1996,7 +1996,7 @@ res0: org.apache.spark.SparkEnv = org.apache.spark.SparkEnv@49322d04</code></pre
 </tbody>
 </table>
 <div id="create-Serializer" class="paragraph">
-<p>When executed, <code>create</code> creates a <code>Serializer</code> (based on <a href="#spark_serializer">spark.serializer</a> setting). You should see the following <code>DEBUG</code> message in the logs:</p>
+<p>When executed, create creates a <code>Serializer</code> (based on <a href="#spark_serializer">spark.serializer</a> setting). You should see the following <code>DEBUG</code> message in the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2004,19 +2004,19 @@ res0: org.apache.spark.SparkEnv = org.apache.spark.SparkEnv@49322d04</code></pre
 </div>
 </div>
 <div id="create-closure-Serializer" class="paragraph">
-<p><code>create</code> creates a closure <code>Serializer</code> (based on <a href="#spark_closure_serializer">spark.closure.serializer</a>).</p>
+<p>create creates a closure <code>Serializer</code> (based on <a href="#spark_closure_serializer">spark.closure.serializer</a>).</p>
 </div>
 <div class="paragraph">
 <p><a id="ShuffleManager"></a><a id="create-ShuffleManager"></a>
-<code>create</code> creates a <a href="shuffle/ShuffleManager.html" class="page">ShuffleManager</a> given the value of <a href="configuration-properties.html#spark.shuffle.manager" class="page">spark.shuffle.manager</a> configuration property.</p>
+create creates a <a href="shuffle/ShuffleManager.html" class="page">ShuffleManager</a> given the value of <a href="configuration-properties.html#spark.shuffle.manager" class="page">spark.shuffle.manager</a> configuration property.</p>
 </div>
 <div class="paragraph">
 <p><a id="MemoryManager"></a><a id="create-MemoryManager"></a>
-<code>create</code> creates a <a href="memory/MemoryManager.html" class="page">MemoryManager</a> based on <a href="configuration-properties.html#spark.memory.useLegacyMode" class="page">spark.memory.useLegacyMode</a> setting (with <a href="memory/UnifiedMemoryManager.html" class="page">UnifiedMemoryManager</a> being the default and <code>numCores</code> the input <code>numUsableCores</code>).</p>
+create creates a <a href="memory/MemoryManager.html" class="page">MemoryManager</a> based on <a href="configuration-properties.html#spark.memory.useLegacyMode" class="page">spark.memory.useLegacyMode</a> setting (with <a href="memory/UnifiedMemoryManager.html" class="page">UnifiedMemoryManager</a> being the default and <code>numCores</code> the input <code>numUsableCores</code>).</p>
 </div>
 <div class="paragraph">
 <p><a id="NettyBlockTransferService"></a><a id="create-NettyBlockTransferService"></a>
-<code>create</code> creates a <a href="spark-NettyBlockTransferService.adoc#creating-instance">NettyBlockTransferService</a> with the following ports:</p>
+create creates a <a href="spark-NettyBlockTransferService.adoc#creating-instance">NettyBlockTransferService</a> with the following ports:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2035,7 +2035,7 @@ res0: org.apache.spark.SparkEnv = org.apache.spark.SparkEnv@49322d04</code></pre
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>create</code> uses the <code>NettyBlockTransferService</code> to <a href="#create-BlockManager">create a BlockManager</a>.
+create uses the <code>NettyBlockTransferService</code> to <a href="#create-BlockManager">create a BlockManager</a>.
 </td>
 </tr>
 </table>
@@ -2054,7 +2054,7 @@ FIXME A picture with SparkEnv, <code>NettyBlockTransferService</code> and the po
 </div>
 <div class="paragraph">
 <p><a id="BlockManagerMaster"></a><a id="create-BlockManagerMaster"></a>
-<code>create</code> creates a <a href="storage/BlockManagerMaster.html#creating-instance" class="page">BlockManagerMaster</a> object with the <code>BlockManagerMaster</code> RPC endpoint reference (by <a href="#registerOrLookupEndpoint">registering or looking it up by name</a> and <a href="spark-blockmanager-BlockManagerMasterEndpoint.adoc">BlockManagerMasterEndpoint</a>), the input <a href="spark-SparkConf.adoc">SparkConf</a>, and the input <code>isDriver</code> flag.</p>
+create creates a <a href="storage/BlockManagerMaster.html#creating-instance" class="page">BlockManagerMaster</a> object with the <code>BlockManagerMaster</code> RPC endpoint reference (by <a href="#registerOrLookupEndpoint">registering or looking it up by name</a> and <a href="spark-blockmanager-BlockManagerMasterEndpoint.adoc">BlockManagerMasterEndpoint</a>), the input <a href="spark-SparkConf.adoc">SparkConf</a>, and the input <code>isDriver</code> flag.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -2069,7 +2069,7 @@ FIXME A picture with SparkEnv, <code>NettyBlockTransferService</code> and the po
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>create</code> registers the <strong>BlockManagerMaster</strong> RPC endpoint for the driver and looks it up for executors.
+create registers the <strong>BlockManagerMaster</strong> RPC endpoint for the driver and looks it up for executors.
 </td>
 </tr>
 </table>
@@ -2082,14 +2082,14 @@ FIXME A picture with SparkEnv, <code>NettyBlockTransferService</code> and the po
 </div>
 <div class="paragraph">
 <p><a id="BlockManager"></a><a id="create-BlockManager"></a>
-<code>create</code> creates a <a href="storage/BlockManager.html#creating-instance" class="page">BlockManager</a> (using the above <a href="#BlockManagerMaster">BlockManagerMaster</a>, <a href="#create-NettyBlockTransferService">NettyBlockTransferService</a> and other services).</p>
+create creates a <a href="storage/BlockManager.html#creating-instance" class="page">BlockManager</a> (using the above <a href="#BlockManagerMaster">BlockManagerMaster</a>, <a href="#create-NettyBlockTransferService">NettyBlockTransferService</a> and other services).</p>
 </div>
 <div class="paragraph">
-<p><code>create</code> creates a <a href="spark-service-broadcastmanager.adoc">BroadcastManager</a>.</p>
+<p>create creates a <a href="spark-service-broadcastmanager.adoc">BroadcastManager</a>.</p>
 </div>
 <div class="paragraph">
 <p><a id="MapOutputTracker"></a><a id="create-MapOutputTracker"></a>
-<code>create</code> creates a <a href="scheduler/MapOutputTrackerMaster.html" class="page">MapOutputTrackerMaster</a> or <a href="scheduler/MapOutputTrackerWorker.html" class="page">MapOutputTrackerWorker</a> for the driver and executors, respectively.</p>
+create creates a <a href="scheduler/MapOutputTrackerMaster.html" class="page">MapOutputTrackerMaster</a> or <a href="scheduler/MapOutputTrackerWorker.html" class="page">MapOutputTrackerWorker</a> for the driver and executors, respectively.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2105,7 +2105,7 @@ The choice of the real implementation of <a href="scheduler/MapOutputTracker.htm
 </div>
 <div class="paragraph">
 <p><a id="MapOutputTrackerMasterEndpoint"></a><a id="create-MapOutputTrackerMasterEndpoint"></a>
-<code>create</code> <a href="#registerOrLookupEndpoint">registers or looks up <code>RpcEndpoint</code></a> as <strong>MapOutputTracker</strong>. It registers <a href="scheduler/MapOutputTrackerMasterEndpoint.html" class="page">MapOutputTrackerMasterEndpoint</a> on the driver and creates a RPC endpoint reference on executors. The RPC endpoint reference gets assigned as the <a href="scheduler/MapOutputTracker.html#trackerEndpoint" class="page">MapOutputTracker RPC endpoint</a>.</p>
+create <a href="#registerOrLookupEndpoint">registers or looks up <code>RpcEndpoint</code></a> as <strong>MapOutputTracker</strong>. It registers <a href="scheduler/MapOutputTrackerMasterEndpoint.html" class="page">MapOutputTrackerMasterEndpoint</a> on the driver and creates a RPC endpoint reference on executors. The RPC endpoint reference gets assigned as the <a href="scheduler/MapOutputTracker.html#trackerEndpoint" class="page">MapOutputTracker RPC endpoint</a>.</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -2131,17 +2131,8 @@ FIXME
 <div id="create-OutputCommitCoordinator" class="paragraph">
 <p>An OutputCommitCoordinator is created.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>create</code> is used when SparkEnv is requested for the SparkEnv for the <a href="#createDriverEnv">driver</a> and <a href="#createExecutorEnv">executors</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>create is used when SparkEnv is requested for the SparkEnv for the <a href="#createDriverEnv">driver</a> and <a href="#createExecutorEnv">executors</a>.</p>
 </div>
 </div>
 </div>

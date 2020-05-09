@@ -2224,24 +2224,6 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.closure.serializer</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="spark.closure.serializer"></a> <a href="serializer/Serializer.html" class="page">Serializer</a></p>
-</div>
-<div class="paragraph">
-<p>Default: org.apache.spark.serializer.JavaSerializer</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.serializer</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="spark.serializer"></a> <a href="serializer/Serializer.html" class="page">Serializer</a></p>
-</div>
-<div class="paragraph">
-<p>Default: org.apache.spark.serializer.JavaSerializer</p>
-</div></div></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.starvation.timeout</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a id="spark.starvation.timeout"></a> Threshold above which Spark warns a user that an initial TaskSet may be starved</p>
@@ -2661,6 +2643,80 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 <div class="sectionbody">
 <div class="paragraph">
 <p>Default: <code>7337</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-compress"><a class="anchor" href="#spark-shuffle-compress"></a><a class="link" href="#spark-shuffle-compress"><a id="spark.shuffle.compress"></a> spark.shuffle.compress</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Controls whether to compress shuffle output when stored</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>true</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-rdd-compress"><a class="anchor" href="#spark-rdd-compress"></a><a class="link" href="#spark-rdd-compress"><a id="spark.rdd.compress"></a> spark.rdd.compress</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Controls whether to compress RDD partitions when stored serialized.</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>false</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-shuffle-spill-compress"><a class="anchor" href="#spark-shuffle-spill-compress"></a><a class="link" href="#spark-shuffle-spill-compress"><a id="spark.shuffle.spill.compress"></a> spark.shuffle.spill.compress</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Controls whether to compress shuffle output temporarily spilled to disk.</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>true</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-block-failures-beforelocationrefresh"><a class="anchor" href="#spark-block-failures-beforelocationrefresh"></a><a class="link" href="#spark-block-failures-beforelocationrefresh"><a id="spark.block.failures.beforeLocationRefresh"></a> spark.block.failures.beforeLocationRefresh</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Default: <code>5</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-io-encryption-enabled"><a class="anchor" href="#spark-io-encryption-enabled"></a><a class="link" href="#spark-io-encryption-enabled"><a id="spark.io.encryption.enabled"></a> spark.io.encryption.enabled</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Controls whether to use IO encryption</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>false</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-closure-serializer"><a class="anchor" href="#spark-closure-serializer"></a><a class="link" href="#spark-closure-serializer"><a id="spark.closure.serializer"></a> spark.closure.serializer</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="serializer/Serializer.html" class="page">Serializer</a></p>
+</div>
+<div class="paragraph">
+<p>Default: <code>org.apache.spark.serializer.JavaSerializer</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-serializer"><a class="anchor" href="#spark-serializer"></a><a class="link" href="#spark-serializer"><a id="spark.serializer"></a> spark.serializer</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="serializer/Serializer.html" class="page">Serializer</a></p>
+</div>
+<div class="paragraph">
+<p>Default: <code>org.apache.spark.serializer.JavaSerializer</code></p>
 </div>
 </div>
 </div>

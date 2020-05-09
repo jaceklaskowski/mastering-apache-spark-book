@@ -1849,214 +1849,206 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>When <a href="spark-SparkEnv.adoc#create"><code>SparkEnv</code> is created</a> (either for the driver or executors), it instantiates <code>SerializerManager</code> that is then used to create a <a href="../storage/BlockManager.html" class="page">BlockManager</a>.</p>
+<p><strong>SerializerManager</strong> is used to <a href="#getSerializer">select a serializer</a> for shuffle blocks (either the default <a href="#defaultSerializer">JavaSerializer</a> or <a href="#kryoSerializer">KryoSerializer</a> based on the key and value of a record).</p>
 </div>
 <div class="paragraph">
-<p><code>SerializerManager</code> <a href="#getSerializer">automatically selects the "best" serializer for shuffle blocks</a> that could either be <code>KryoSerializer</code> <a href="#canUseKryo">when a RDD&#8217;s types are known to be compatible with Kryo</a> or the <a href="#creating-instance">default <code>Serializer</code></a>.</p>
+<p>SerializerManager is used to create a <a href="../storage/BlockManager.html" class="page">BlockManager</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>SerializerManager takes the following to be created:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="defaultSerializer"></a> <a href="Serializer.html" class="page">Serializer</a></p>
+</li>
+<li>
+<p><a id="conf"></a> <a href="../spark-SparkConf.html" class="page">SparkConf</a></p>
+</li>
+<li>
+<p><a id="encryptionKey"></a> Optional encryption key (<code>[Array[Byte]]</code>)</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>The common idiom in Spark&#8217;s code is to access the current <code>SerializerManager</code> using <a href="spark-SparkEnv.adoc#get">SparkEnv</a>.</p>
+<p>SerializerManager is created when SparkEnv utility is used to <a href="../spark-SparkEnv.html#create" class="page">create a SparkEnv for the driver and executors</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="accessing-serializermanager-using-sparkenv"><a class="anchor" href="#accessing-serializermanager-using-sparkenv"></a><a class="link" href="#accessing-serializermanager-using-sparkenv"><a id="SparkEnv"></a> Accessing SerializerManager Using SparkEnv</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>SerializerManager is available using <a href="../spark-SparkEnv.html#serializerManager" class="page">SparkEnv</a> on the driver and executors.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">SparkEnv.get.serializerManager</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">import org.apache.spark.SparkEnv
+SparkEnv.get.serializerManager</code></pre>
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>SerializerManager</code> was introduced in <a href="https://github.com/apache/spark/commit/de1a84e56e81347cb0d1ec67cc86944ea98bb9a9">SPARK-13926</a>.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-serializermanager-instance"><a class="anchor" href="#creating-serializermanager-instance"></a><a class="link" href="#creating-serializermanager-instance"><a id="creating-instance"></a> Creating <code>SerializerManager</code> Instance</a></h2>
+<h2 id="kryoserializer"><a class="anchor" href="#kryoserializer"></a><a class="link" href="#kryoserializer"><a id="kryoSerializer"></a> KryoSerializer</a></h2>
 <div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="wrapstream-method"><a class="anchor" href="#wrapstream-method"></a><a class="link" href="#wrapstream-method"><a id="wrapStream"></a> <code>wrapStream</code> Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="datadeserializestream-method"><a class="anchor" href="#datadeserializestream-method"></a><a class="link" href="#datadeserializestream-method"><a id="dataDeserializeStream"></a> <code>dataDeserializeStream</code> Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="automatic-selection-of-best-serializer"><a class="anchor" href="#automatic-selection-of-best-serializer"></a><a class="link" href="#automatic-selection-of-best-serializer"><a id="canUseKryo"></a><a id="selecting-serializer"></a> Automatic Selection of Best Serializer</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>SerializerManager creates a KryoSerializer when created.</p>
 </div>
 <div class="paragraph">
-<p><code>SerializerManager</code> will automatically pick a Kryo serializer for ShuffledRDDs whose key, value, and/or combiner types are primitives, arrays of primitives, or strings.</p>
+<p>KryoSerializer is used as a <a href="#getSerializer">serializer</a> when the type of a given key and value is <a href="#canUseKryo">compatible with Kryo</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="selecting-best-serializergetserializer-method"><a class="anchor" href="#selecting-best-serializergetserializer-method"></a><a class="link" href="#selecting-best-serializergetserializer-method"><a id="getSerializer"></a> Selecting "Best" <code>Serializer</code>&#8201;&#8212;&#8201;<code>getSerializer</code> Method</a></h2>
+<h2 id="wrapping-input-or-output-stream-for-block"><a class="anchor" href="#wrapping-input-or-output-stream-for-block"></a><a class="link" href="#wrapping-input-or-output-stream-for-block"><a id="wrapStream"></a> Wrapping Input or Output Stream for Block</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getSerializer(keyClassTag: ClassTag[_], valueClassTag: ClassTag[_]): Serializer</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">wrapStream(
+  blockId: BlockId,
+  s: InputStream): InputStream
+wrapStream(
+  blockId: BlockId,
+  s: OutputStream): OutputStream</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>getSerializer</code> selects the "best" <a href="Serializer.html" class="page">Serializer</a> given the input types for keys and values (in a RDD).</p>
+<p>wrapStream&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p><code>getSerializer</code> returns <code>KryoSerializer</code> when the <a href="#canUseKryo">types of keys and values are compatible with Kryo</a> or the default <code>Serializer</code>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The default <code>Serializer</code> is defined when <a href="#creating-instance"><code>SerializerManager</code> is created</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>getSerializer</code> is used when <code>ShuffledRDD</code> is requested for <a href="../rdd/ShuffledRDD.html#getDependencies" class="page">dependencies</a>.
-</td>
-</tr>
-</table>
+<p>wrapStream is used when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="shouldcompress-internal-method"><a class="anchor" href="#shouldcompress-internal-method"></a><a class="link" href="#shouldcompress-internal-method"><a id="shouldCompress"></a> <code>shouldCompress</code> Internal Method</a></h2>
+<h2 id="dataserializestream-method"><a class="anchor" href="#dataserializestream-method"></a><a class="link" href="#dataserializestream-method"><a id="dataSerializeStream"></a> dataSerializeStream Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">shouldCompress(blockId: BlockId): Boolean</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">dataSerializeStream[T: ClassTag](
+  blockId: BlockId,
+  outputStream: OutputStream,
+  values: Iterator[T]): Unit</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>shouldCompress</code>&#8230;&#8203;FIXME</p>
+<p>dataSerializeStream&#8230;&#8203;FIXME</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>shouldCompress</code> is used when&#8230;&#8203;FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>dataSerializeStream is used when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="settings"><a class="anchor" href="#settings"></a><a class="link" href="#settings"><a id="settings"></a> Settings</a></h2>
+<h2 id="dataserializewithexplicitclasstag-method"><a class="anchor" href="#dataserializewithexplicitclasstag-method"></a><a class="link" href="#dataserializewithexplicitclasstag-method"><a id="dataSerializeWithExplicitClassTag"></a> dataSerializeWithExplicitClassTag Method</a></h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Spark Properties</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark.shuffle.compress"></a> <code>spark.shuffle.compress</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The flag to control whether to compress shuffle output when stored</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark.rdd.compress"></a> <code>spark.rdd.compress</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The flag to control whether to compress RDD partitions when stored serialized.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.shuffle.spill.compress</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The flag to control whether to compress shuffle output temporarily spilled to disk.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark.block.failures.beforeLocationRefresh"></a> <code>spark.block.failures.beforeLocationRefresh</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark.io.encryption.enabled"></a> <code>spark.io.encryption.enabled</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The flag to enable IO encryption</p></td>
-</tr>
-</tbody>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">dataSerializeWithExplicitClassTag(
+  blockId: BlockId,
+  values: Iterator[_],
+  classTag: ClassTag[_]): ChunkedByteBuffer</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>dataSerializeWithExplicitClassTag&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>dataSerializeWithExplicitClassTag is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="datadeserializestream-method"><a class="anchor" href="#datadeserializestream-method"></a><a class="link" href="#datadeserializestream-method"><a id="dataDeserializeStream"></a> dataDeserializeStream Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">dataDeserializeStream[T](
+  blockId: BlockId,
+  inputStream: InputStream)
+  (classTag: ClassTag[T]): Iterator[T]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>dataDeserializeStream&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>dataDeserializeStream is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="selecting-serializer"><a class="anchor" href="#selecting-serializer"></a><a class="link" href="#selecting-serializer"><a id="getSerializer"></a> Selecting Serializer</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getSerializer(
+  ct: ClassTag[_],
+  autoPick: Boolean): Serializer
+getSerializer(
+  keyClassTag: ClassTag[_],
+  valueClassTag: ClassTag[_]): Serializer</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getSerializer returns the <a href="#kryoSerializer">KryoSerializer</a> when the given arguments are <a href="#canUseKryo">compatible with Kryo</a>. Otherwise, getSerializer returns the <a href="#defaultSerializer">Serializer</a>.</p>
+</div>
+<div class="paragraph">
+<p>getSerializer is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ShuffledRDD is requested for <a href="../rdd/ShuffledRDD.html#getDependencies" class="page">dependencies</a>.</p>
+</li>
+<li>
+<p>SerializerManager is requested to <a href="#dataSerializeStream">dataSerializeStream</a>, <a href="#dataSerializeWithExplicitClassTag">dataSerializeWithExplicitClassTag</a> and <a href="#dataDeserializeStream">dataDeserializeStream</a></p>
+</li>
+<li>
+<p>SerializedValuesHolder (of <a href="../storage/MemoryStore.html" class="page">MemoryStore</a>) is requested for a SerializationStream</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="checking-whether-kryo-serializer-could-be-used"><a class="anchor" href="#checking-whether-kryo-serializer-could-be-used"></a><a class="link" href="#checking-whether-kryo-serializer-could-be-used"><a id="canUseKryo"></a> Checking Whether Kryo Serializer Could Be Used</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">canUseKryo(
+  ct: ClassTag[_]): Boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>canUseKryo is <code>true</code> when the given ClassTag is a primitive, an array of primitives or a String. Otherwise, canUseKryo is <code>false</code>.</p>
+</div>
+<div class="paragraph">
+<p>canUseKryo is used when SerializerManager is requested for a <a href="#getSerializer">Serializer</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="shouldcompress-method"><a class="anchor" href="#shouldcompress-method"></a><a class="link" href="#shouldcompress-method"><a id="shouldCompress"></a> shouldCompress Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">shouldCompress(
+  blockId: BlockId): Boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>shouldCompress&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>shouldCompress is used when&#8230;&#8203;FIXME</p>
+</div>
 </div>
 </div>
 </article>
