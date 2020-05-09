@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="serializer/index.html">Serialization System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="serializer/SerializerManager.html">SerializerManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="serializer/Serializer.html">Serializer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="serializer/SerializerInstance.html">SerializerInstance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="serializer/SerializationStream.html">SerializationStream</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="serializer/DeserializationStream.html">DeserializationStream</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="scheduler/index.html">Spark Scheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -581,9 +606,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-SerializerManager.html">SerializerManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-SparkEnv.html">SparkEnv</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -600,24 +622,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-OneForOneStreamManager.html">OneForOneStreamManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-serialization.html">Serialization</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-Serializer.html">Serializer</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-SerializerInstance.html">SerializerInstance</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="SerializationStream.html">SerializationStream</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-DeserializationStream.html">DeserializationStream</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-ExternalClusterManager.html">ExternalClusterManager</a>
@@ -2038,7 +2042,7 @@ User-defined JARs are defined using <a href="spark-CoarseGrainedExecutorBackend.
 </table>
 </div>
 <div class="paragraph">
-<p><code>Executor</code> <a href="#createClassLoader">creates a task class loader</a> (optionally with <a href="#addReplClassLoaderIfNeeded">REPL support</a>) that the <a href="spark-Serializer.html#setDefaultClassLoader" class="page">current <code>Serializer</code> is requested to use</a> (when deserializing task later).</p>
+<p><code>Executor</code> <a href="#createClassLoader">creates a task class loader</a> (optionally with <a href="#addReplClassLoaderIfNeeded">REPL support</a>) that the <a href="serializer/Serializer.html#setDefaultClassLoader" class="page">current <code>Serializer</code> is requested to use</a> (when deserializing task later).</p>
 </div>
 <div class="admonitionblock note">
 <table>

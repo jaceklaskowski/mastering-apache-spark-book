@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../serializer/index.html">Serialization System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerManager.html">SerializerManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/Serializer.html">Serializer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerInstance.html">SerializerInstance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializationStream.html">SerializationStream</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/DeserializationStream.html">DeserializationStream</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../scheduler/index.html">Spark Scheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -581,9 +606,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SerializerManager.html">SerializerManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -600,24 +622,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-OneForOneStreamManager.html">OneForOneStreamManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-serialization.html">Serialization</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-Serializer.html">Serializer</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SerializerInstance.html">SerializerInstance</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../SerializationStream.html">SerializationStream</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-DeserializationStream.html">DeserializationStream</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
@@ -1930,7 +1934,7 @@ Use <a href="../tools/spark-submit.html" class="page">spark-submit</a>'s command
 <p><a id="master"></a> <a href="BlockManagerMaster.html" class="page">BlockManagerMaster</a></p>
 </li>
 <li>
-<p><a id="serializerManager"></a> <a href="../spark-SerializerManager.html" class="page">SerializerManager</a></p>
+<p><a id="serializerManager"></a> <a href="../serializer/SerializerManager.html" class="page">SerializerManager</a></p>
 </li>
 <li>
 <p><a id="conf"></a> <a href="../spark-SparkConf.html" class="page">SparkConf</a></p>
@@ -2340,7 +2344,7 @@ FIXME
 <p><a href="MemoryStore.html#getValues" class="page">Values iterator from <code>MemoryStore</code> for <code>blockId</code></a> for "deserialized" persistence levels.</p>
 </li>
 <li>
-<p>Iterator from <a href="spark-SerializerManager.adoc#dataDeserializeStream"><code>SerializerManager</code> after the data stream has been deserialized</a> for the <code>blockId</code> block and <a href="MemoryStore.html#getBytes" class="page">the bytes for <code>blockId</code> block</a> for "serialized" persistence levels.</p>
+<p>Iterator from <a href="../serializer/SerializerManager.html#dataDeserializeStream" class="page"><code>SerializerManager</code> after the data stream has been deserialized</a> for the <code>blockId</code> block and <a href="MemoryStore.html#getBytes" class="page">the bytes for <code>blockId</code> block</a> for "serialized" persistence levels.</p>
 </li>
 </ol>
 </div>
@@ -2676,7 +2680,7 @@ FIXME How is <code>shuffleClient</code> used?
 <p>Inside the function, if the <a href="StorageLevel.html" class="page">storage <code>level</code></a>'s replication is greater than 1, it immediately starts <a href="#replicate">replication</a> of the <code>blockId</code> block on a separate thread (from <code>futureExecutionContext</code> thread pool). The replication uses the input <code>bytes</code> and <code>level</code> storage level.</p>
 </div>
 <div class="paragraph">
-<p>For a memory storage level, the function checks whether the storage <code>level</code> is deserialized or not. For a deserialized storage <code>level</code>, <code>BlockManager</code>'s <a href="../spark-SerializerManager.html#dataDeserializeStream" class="page"><code>SerializerManager</code> deserializes <code>bytes</code> into an iterator of values</a> that <a href="MemoryStore.html#putIteratorAsValues" class="page"><code>MemoryStore</code> stores</a>. If however the storage <code>level</code> is not deserialized, the function requests <a href="MemoryStore.html#putBytes" class="page"><code>MemoryStore</code> to store the bytes</a></p>
+<p>For a memory storage level, the function checks whether the storage <code>level</code> is deserialized or not. For a deserialized storage <code>level</code>, <code>BlockManager</code>'s <a href="../serializer/SerializerManager.html#dataDeserializeStream" class="page"><code>SerializerManager</code> deserializes <code>bytes</code> into an iterator of values</a> that <a href="MemoryStore.html#putIteratorAsValues" class="page"><code>MemoryStore</code> stores</a>. If however the storage <code>level</code> is not deserialized, the function requests <a href="MemoryStore.html#putBytes" class="page"><code>MemoryStore</code> to store the bytes</a></p>
 </div>
 <div class="paragraph">
 <p>If the put did not succeed and the storage level is to use disk, you should see the following WARN message in the logs:</p>

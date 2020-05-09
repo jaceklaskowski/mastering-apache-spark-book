@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../serializer/index.html">Serialization System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerManager.html">SerializerManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/Serializer.html">Serializer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerInstance.html">SerializerInstance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializationStream.html">SerializationStream</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/DeserializationStream.html">DeserializationStream</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="index.html">Spark Scheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -581,9 +606,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SerializerManager.html">SerializerManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -600,24 +622,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-OneForOneStreamManager.html">OneForOneStreamManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-serialization.html">Serialization</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-Serializer.html">Serializer</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SerializerInstance.html">SerializerInstance</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../SerializationStream.html">SerializationStream</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-DeserializationStream.html">DeserializationStream</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
@@ -1956,7 +1960,7 @@ Read up on <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurre
 </div>
 </div>
 <div class="paragraph">
-<p><code>serializer</code> is a thread-local <a href="spark-SerializerInstance.adoc">SerializerInstance</a> that <code>TaskResultGetter</code> uses to deserialize byte buffers (with <code>TaskResult</code>s or a <code>TaskEndReason</code>).</p>
+<p><code>serializer</code> is a thread-local <a href="../serializer/SerializerInstance.html" class="page">SerializerInstance</a> that <code>TaskResultGetter</code> uses to deserialize byte buffers (with <code>TaskResult</code>s or a <code>TaskEndReason</code>).</p>
 </div>
 <div class="paragraph">
 <p>When created for a new thread, <code>serializer</code> is initialized with a new instance of <code>Serializer</code> (using <a href="spark-SparkEnv.adoc#closureSerializer">SparkEnv.closureSerializer</a>).</p>
@@ -1982,7 +1986,7 @@ Read up on <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurre
 </div>
 </div>
 <div class="paragraph">
-<p><code>taskResultSerializer</code> is a thread-local <a href="spark-SerializerInstance.adoc">SerializerInstance</a> that <code>TaskResultGetter</code> uses to&#8230;&#8203;</p>
+<p><code>taskResultSerializer</code> is a thread-local <a href="../serializer/SerializerInstance.html" class="page">SerializerInstance</a> that <code>TaskResultGetter</code> uses to&#8230;&#8203;</p>
 </div>
 <div class="paragraph">
 <p>When created for a new thread, <code>taskResultSerializer</code> is initialized with a new instance of <code>Serializer</code> (using <a href="spark-SparkEnv.adoc#serializer">SparkEnv.serializer</a>).</p>

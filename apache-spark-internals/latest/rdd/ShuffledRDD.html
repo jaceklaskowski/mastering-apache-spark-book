@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../serializer/index.html">Serialization System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerManager.html">SerializerManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/Serializer.html">Serializer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerInstance.html">SerializerInstance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializationStream.html">SerializationStream</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/DeserializationStream.html">DeserializationStream</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../scheduler/index.html">Spark Scheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -581,9 +606,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SerializerManager.html">SerializerManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -600,24 +622,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-OneForOneStreamManager.html">OneForOneStreamManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-serialization.html">Serialization</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-Serializer.html">Serializer</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SerializerInstance.html">SerializerInstance</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../SerializationStream.html">SerializationStream</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-DeserializationStream.html">DeserializationStream</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
@@ -1969,7 +1973,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>getDependencies uses the <a href="#userSpecifiedSerializer">user-specified Serializer</a> if defined or requests the current <a href="../spark-SerializerManager.html" class="page">SerializerManager</a> for <a href="../spark-SerializerManager.html#getSerializer" class="page">one</a>.</p>
+<p>getDependencies uses the <a href="#userSpecifiedSerializer">user-specified Serializer</a> if defined or requests the current <a href="../serializer/SerializerManager.html" class="page">SerializerManager</a> for <a href="../serializer/SerializerManager.html#getSerializer" class="page">one</a>.</p>
 </div>
 <div class="paragraph">
 <p>getDependencies uses the <a href="#mapSideCombine">mapSideCombine</a> internal flag for the types of the keys and values (i.e. <code>K</code> and <code>C</code> or <code>K</code> and <code>V</code> when the flag is enabled or not, respectively).</p>
@@ -2047,7 +2051,7 @@ scala&gt; println(sorted.toDebugString)
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>userSpecifiedSerializer</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="userSpecifiedSerializer"></a> User-specified <a href="../spark-Serializer.html" class="page">Serializer</a> for the single <a href="ShuffleDependency.html" class="page">ShuffleDependency</a> dependency</p>
+<p><a id="userSpecifiedSerializer"></a> User-specified <a href="../serializer/Serializer.html" class="page">Serializer</a> for the single <a href="ShuffleDependency.html" class="page">ShuffleDependency</a> dependency</p>
 </div>
 <div class="listingblock">
 <div class="content">

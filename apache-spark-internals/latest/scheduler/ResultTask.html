@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../serializer/index.html">Serialization System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerManager.html">SerializerManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/Serializer.html">Serializer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerInstance.html">SerializerInstance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializationStream.html">SerializationStream</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/DeserializationStream.html">DeserializationStream</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="index.html">Spark Scheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -581,9 +606,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SerializerManager.html">SerializerManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -600,24 +622,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-OneForOneStreamManager.html">OneForOneStreamManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-serialization.html">Serialization</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-Serializer.html">Serializer</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SerializerInstance.html">SerializerInstance</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../SerializationStream.html">SerializationStream</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-DeserializationStream.html">DeserializationStream</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
@@ -1983,7 +1987,7 @@
 <p>Internally, <code>runTask</code> starts by tracking the time required to deserialize a RDD and a function to execute.</p>
 </div>
 <div class="paragraph">
-<p><code>runTask</code> <a href="spark-Serializer.adoc#newInstance">creates a new closure <code>Serializer</code></a>.</p>
+<p><code>runTask</code> <a href="../serializer/Serializer.html#newInstance" class="page">creates a new closure <code>Serializer</code></a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1998,7 +2002,7 @@
 </table>
 </div>
 <div class="paragraph">
-<p><code>runTask</code> <a href="spark-Serializer.adoc#deserialize">requests the closure <code>Serializer</code> to deserialize an <code>RDD</code> and the function to execute</a> (from <a href="#taskBinary">taskBinary</a> broadcast).</p>
+<p><code>runTask</code> <a href="../serializer/Serializer.html#deserialize" class="page">requests the closure <code>Serializer</code> to deserialize an <code>RDD</code> and the function to execute</a> (from <a href="#taskBinary">taskBinary</a> broadcast).</p>
 </div>
 <div class="admonitionblock note">
 <table>

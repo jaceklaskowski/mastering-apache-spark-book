@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../serializer/index.html">Serialization System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerManager.html">SerializerManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/Serializer.html">Serializer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerInstance.html">SerializerInstance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializationStream.html">SerializationStream</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/DeserializationStream.html">DeserializationStream</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="index.html">Spark Scheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -581,9 +606,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SerializerManager.html">SerializerManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -600,24 +622,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-OneForOneStreamManager.html">OneForOneStreamManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-serialization.html">Serialization</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-Serializer.html">Serializer</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SerializerInstance.html">SerializerInstance</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../SerializationStream.html">SerializationStream</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-DeserializationStream.html">DeserializationStream</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
@@ -1977,7 +1981,7 @@
 <p><code>runTask</code> writes the result (<em>records</em>) of executing the <a href="#taskBinary">serialized task code</a> over the records (in the <a href="#partition">RDD partition</a>) to the <a href="../shuffle/ShuffleManager.html" class="page">shuffle system</a> and returns a <a href="MapStatus.html" class="page">MapStatus</a> (with the <a href="../storage/BlockManager.html" class="page">BlockManager</a> and an estimated size of the result shuffle blocks).</p>
 </div>
 <div class="paragraph">
-<p>Internally, <code>runTask</code> requests the <a href="#spark-SparkEnv.adoc" class="page unresolved">SparkEnv</a> for the new instance of <a href="#spark-SparkEnv.adoc#closureSerializer" class="page unresolved">closure serializer</a> and requests it to <a href="#spark-Serializer.adoc#deserialize" class="page unresolved">deserialize</a> the <a href="#taskBinary">taskBinary</a> (into a tuple of a <a href="#spark-rdd-RDD.adoc" class="page unresolved">RDD</a> and a <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>).</p>
+<p>Internally, <code>runTask</code> requests the <a href="#spark-SparkEnv.adoc" class="page unresolved">SparkEnv</a> for the new instance of <a href="#spark-SparkEnv.adoc#closureSerializer" class="page unresolved">closure serializer</a> and requests it to <a href="../serializer/Serializer.html#deserialize" class="page">deserialize</a> the <a href="#taskBinary">taskBinary</a> (into a tuple of a <a href="#spark-rdd-RDD.adoc" class="page unresolved">RDD</a> and a <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>).</p>
 </div>
 <div class="paragraph">
 <p><code>runTask</code> measures the <a href="Task.html#_executorDeserializeTime" class="page">thread</a> and <a href="Task.html#_executorDeserializeCpuTime" class="page">CPU</a> deserialization times.</p>

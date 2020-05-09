@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="serializer/index.html">Serialization System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="serializer/SerializerManager.html">SerializerManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="serializer/Serializer.html">Serializer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="serializer/SerializerInstance.html">SerializerInstance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="serializer/SerializationStream.html">SerializationStream</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="serializer/DeserializationStream.html">DeserializationStream</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="scheduler/index.html">Spark Scheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -581,9 +606,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-SerializerManager.html">SerializerManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-SparkEnv.html">SparkEnv</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -600,24 +622,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-OneForOneStreamManager.html">OneForOneStreamManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-serialization.html">Serialization</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-Serializer.html">Serializer</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-SerializerInstance.html">SerializerInstance</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="SerializationStream.html">SerializationStream</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-DeserializationStream.html">DeserializationStream</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-ExternalClusterManager.html">ExternalClusterManager</a>
@@ -1971,7 +1975,7 @@
 <p><code>run</code> sets the current thread&#8217;s context classloader (with <a href="#replClassLoader">replClassLoader</a>).</p>
 </div>
 <div class="paragraph">
-<p><code>run</code> <a href="spark-Serializer.html#newInstance" class="page">creates a closure <code>Serializer</code></a>.</p>
+<p><code>run</code> <a href="serializer/Serializer.html#newInstance" class="page">creates a closure <code>Serializer</code></a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2027,7 +2031,7 @@
 </table>
 </div>
 <div class="paragraph">
-<p><code>run</code> <a href="spark-SerializerInstance.html#deserialize" class="page">deserializes the task</a> (using the context class loader) and sets its <code>localProperties</code> and <code>TaskMemoryManager</code>. <code>run</code> sets the <a href="#task">task</a> internal reference to hold the deserialized task.</p>
+<p><code>run</code> <a href="serializer/SerializerInstance.html#deserialize" class="page">deserializes the task</a> (using the context class loader) and sets its <code>localProperties</code> and <code>TaskMemoryManager</code>. <code>run</code> sets the <a href="#task">task</a> internal reference to hold the deserialized task.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2168,7 +2172,7 @@ If <code>run</code> detects any lock leak, it leads to a <code>SparkException</c
 <p>If the <a href="scheduler/Task.html#kill" class="page">task was killed</a> (while it was running), <code>run</code> reports a <code>TaskKilledException</code> (and the <code>TaskRunner</code> exits).</p>
 </div>
 <div class="paragraph">
-<p><code>run</code> <a href="spark-Serializer.html#newInstance" class="page">creates a <code>Serializer</code></a> and <a href="spark-Serializer.html#serialize" class="page">serializes the task&#8217;s result</a>. <code>run</code> measures the time to serialize the result.</p>
+<p><code>run</code> <a href="serializer/Serializer.html#newInstance" class="page">creates a <code>Serializer</code></a> and <a href="serializer/Serializer.html#serialize" class="page">serializes the task&#8217;s result</a>. <code>run</code> measures the time to serialize the result.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2226,7 +2230,7 @@ This is when <code>TaskExecutor</code> serializes the computed value of a task t
 <p><code>run</code> creates a <a href="#spark-scheduler-TaskResult.adoc#DirectTaskResult" class="page unresolved">DirectTaskResult</a> (with the serialized result and the latest values of accumulators).</p>
 </div>
 <div class="paragraph">
-<p><code>run</code> <a href="spark-Serializer.html#serialize" class="page">serializes the <code>DirectTaskResult</code></a> and gets the byte buffer&#8217;s limit.</p>
+<p><code>run</code> <a href="serializer/Serializer.html#serialize" class="page">serializes the <code>DirectTaskResult</code></a> and gets the byte buffer&#8217;s limit.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2287,7 +2291,7 @@ org.apache.spark.SparkException: Job aborted due to stage failure: Total size of
 </div>
 </div>
 <div class="paragraph">
-<p>In this case, <code>run</code> creates a <a href="#spark-scheduler-TaskResult.adoc#IndirectTaskResult" class="page unresolved">IndirectTaskResult</a> (with a <code>TaskResultBlockId</code> for the task&#8217;s <a href="#taskId">taskId</a> and <code>resultSize</code>) and <a href="spark-Serializer.html#serialize" class="page">serializes it</a>.</p>
+<p>In this case, <code>run</code> creates a <a href="#spark-scheduler-TaskResult.adoc#IndirectTaskResult" class="page unresolved">IndirectTaskResult</a> (with a <code>TaskResultBlockId</code> for the task&#8217;s <a href="#taskId">taskId</a> and <code>resultSize</code>) and <a href="serializer/Serializer.html#serialize" class="page">serializes it</a>.</p>
 </div>
 <div id="run-result-sent-via-blockmanager" class="paragraph">
 <p>When <code>maxResultSize</code> is not positive or <code>resultSize</code> is smaller than <code>maxResultSize</code> but greater than <a href="spark-Executor.html#maxDirectResultSize" class="page">maxDirectResultSize</a>, <code>run</code> creates a <code>TaskResultBlockId</code> for the task&#8217;s <a href="#taskId">taskId</a> and <a href="#BlockManager.adoc#putBytes" class="page unresolved">stores the serialized <code>DirectTaskResult</code> in <code>BlockManager</code></a> (as the <code>TaskResultBlockId</code> with <code>MEMORY_AND_DISK_SER</code> storage level).</p>
@@ -2301,7 +2305,7 @@ org.apache.spark.SparkException: Job aborted due to stage failure: Total size of
 </div>
 </div>
 <div class="paragraph">
-<p>In this case, <code>run</code> creates a <a href="#spark-scheduler-TaskResult.adoc#IndirectTaskResult" class="page unresolved">IndirectTaskResult</a> (with a <code>TaskResultBlockId</code> for the task&#8217;s <a href="#taskId">taskId</a> and <code>resultSize</code>) and <a href="spark-Serializer.html#serialize" class="page">serializes it</a>.</p>
+<p>In this case, <code>run</code> creates a <a href="#spark-scheduler-TaskResult.adoc#IndirectTaskResult" class="page unresolved">IndirectTaskResult</a> (with a <code>TaskResultBlockId</code> for the task&#8217;s <a href="#taskId">taskId</a> and <code>resultSize</code>) and <a href="serializer/Serializer.html#serialize" class="page">serializes it</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2437,7 +2441,7 @@ The final <code>serializedResult</code> is either a <a href="#spark-scheduler-Ta
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>run</code> uses a closure <a href="spark-Serializer.html" class="page">Serializer</a> to serialize the failure reason. The <code>Serializer</code> was created before <code>run</code> ran the task.
+<code>run</code> uses a closure <a href="serializer/Serializer.html" class="page">Serializer</a> to serialize the failure reason. The <code>Serializer</code> was created before <code>run</code> ran the task.
 </td>
 </tr>
 </table>
@@ -2531,7 +2535,7 @@ The difference between this <code>CommitDeniedException</code> and <a href="#run
 <p>Otherwise, when <a href="#task">Task</a> is not available, the accumulator collection is empty.</p>
 </div>
 <div class="paragraph">
-<p><code>run</code> converts the task accumulators to collection of <code>AccumulableInfo</code>, creates a <code>ExceptionFailure</code> (with the accumulators), and <a href="spark-Serializer.html#serialize" class="page">serializes them</a>.</p>
+<p><code>run</code> converts the task accumulators to collection of <code>AccumulableInfo</code>, creates a <code>ExceptionFailure</code> (with the accumulators), and <a href="serializer/Serializer.html#serialize" class="page">serializes them</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2540,7 +2544,7 @@ The difference between this <code>CommitDeniedException</code> and <a href="#run
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>run</code> uses a closure <a href="spark-Serializer.html" class="page">Serializer</a> to serialize the <code>ExceptionFailure</code>.
+<code>run</code> uses a closure <a href="serializer/Serializer.html" class="page">Serializer</a> to serialize the <code>ExceptionFailure</code>.
 </td>
 </tr>
 </table>

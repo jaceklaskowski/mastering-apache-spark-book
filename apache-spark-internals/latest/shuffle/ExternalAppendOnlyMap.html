@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../serializer/index.html">Serialization System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerManager.html">SerializerManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/Serializer.html">Serializer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerInstance.html">SerializerInstance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializationStream.html">SerializationStream</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/DeserializationStream.html">DeserializationStream</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../scheduler/index.html">Spark Scheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -581,9 +606,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SerializerManager.html">SerializerManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -600,24 +622,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-OneForOneStreamManager.html">OneForOneStreamManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-serialization.html">Serialization</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-Serializer.html">Serializer</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SerializerInstance.html">SerializerInstance</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../SerializationStream.html">SerializationStream</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-DeserializationStream.html">DeserializationStream</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
@@ -1871,7 +1875,7 @@
 <p><a id="mergeCombiners"></a> mergeCombiners function (<code>(C, C) &#8658; C</code>)</p>
 </li>
 <li>
-<p><a id="serializer"></a> Optional <a href="../spark-Serializer.html" class="page">Serializer</a> (default: <a href="../spark-SparkEnv.html#serializer" class="page">system Serializer</a>)</p>
+<p><a id="serializer"></a> Optional <a href="../serializer/Serializer.html" class="page">Serializer</a> (default: <a href="../spark-SparkEnv.html#serializer" class="page">system Serializer</a>)</p>
 </li>
 <li>
 <p><a id="blockManager"></a> Optional <a href="../storage/BlockManager.html" class="page">BlockManager</a> (default: <a href="../spark-SparkEnv.html#blockManager" class="page">system BlockManager</a>)</p>
@@ -1880,7 +1884,7 @@
 <p><a id="context"></a> Optional <a href="../scheduler/spark-TaskContext.html" class="page">TaskContext</a> (default: <a href="../scheduler/spark-TaskContext.html#get" class="page">current TaskContext</a>)</p>
 </li>
 <li>
-<p><a id="serializerManager"></a> Optional <a href="../spark-SerializerManager.html" class="page">SerializerManager</a> (default: <a href="../spark-SparkEnv.html#serializerManager" class="page">system SerializerManager</a>)</p>
+<p><a id="serializerManager"></a> Optional <a href="../serializer/SerializerManager.html" class="page">SerializerManager</a> (default: <a href="../spark-SparkEnv.html#serializerManager" class="page">system SerializerManager</a>)</p>
 </li>
 </ul>
 </div>

@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../serializer/index.html">Serialization System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerManager.html">SerializerManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/Serializer.html">Serializer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerInstance.html">SerializerInstance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializationStream.html">SerializationStream</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/DeserializationStream.html">DeserializationStream</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../scheduler/index.html">Spark Scheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -581,9 +606,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SerializerManager.html">SerializerManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -600,24 +622,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-OneForOneStreamManager.html">OneForOneStreamManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-serialization.html">Serialization</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-Serializer.html">Serializer</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SerializerInstance.html">SerializerInstance</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../SerializationStream.html">SerializationStream</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-DeserializationStream.html">DeserializationStream</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
@@ -1880,10 +1884,10 @@
 <p><a id="file"></a> Java <a href="https://docs.oracle.com/javase/8/docs/api/java/io/File.html">File</a></p>
 </li>
 <li>
-<p><a id="serializerManager"></a> <a href="../spark-SerializerManager.html" class="page">SerializerManager</a></p>
+<p><a id="serializerManager"></a> <a href="../serializer/SerializerManager.html" class="page">SerializerManager</a></p>
 </li>
 <li>
-<p><a id="serializerInstance"></a> <a href="../spark-SerializerInstance.html" class="page">SerializerInstance</a></p>
+<p><a id="serializerInstance"></a> <a href="../serializer/SerializerInstance.html" class="page">SerializerInstance</a></p>
 </li>
 <li>
 <p><a id="bufferSize"></a> Buffer size</p>
@@ -1918,7 +1922,7 @@
 <h2 id="serializationstream"><a class="anchor" href="#serializationstream"></a><a class="link" href="#serializationstream"><a id="objOut"></a> SerializationStream</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>DiskBlockObjectWriter manages a <a href="../SerializationStream.html" class="page">SerializationStream</a> for <a href="#write">writing a key-value record</a>:</p>
+<p>DiskBlockObjectWriter manages a <a href="../serializer/SerializationStream.html" class="page">SerializationStream</a> for <a href="#write">writing a key-value record</a>:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1970,7 +1974,7 @@
 <p>write <a href="#open">opens the underlying stream</a> unless <a href="#streamOpen">open</a> already.</p>
 </div>
 <div class="paragraph">
-<p>write requests the <a href="#objOut">SerializationStream</a> to <a href="../SerializationStream.html#writeKey" class="page">write the key</a> and then the <a href="../SerializationStream.html#writeValue" class="page">value</a>.</p>
+<p>write requests the <a href="#objOut">SerializationStream</a> to <a href="../serializer/SerializationStream.html#writeKey" class="page">write the key</a> and then the <a href="../serializer/SerializationStream.html#writeValue" class="page">value</a>.</p>
 </div>
 <div class="paragraph">
 <p>In the end, write <a href="#recordWritten">updates the write metrics</a>.</p>
@@ -2150,22 +2154,10 @@ FIXME
 <p>Unless DiskBlockObjectWriter has already been initialized (i.e. <a href="#initialized">initialized</a> flag is enabled), <code>open</code> <a href="#initialize">initializes</a> it (and turns <a href="#initialized">initialized</a> flag on).</p>
 </div>
 <div class="paragraph">
-<p>Regardless of whether DiskBlockObjectWriter was already initialized or not, <code>open</code> <a href="spark-SerializerManager.adoc#wrapStream">requests <code>SerializerManager</code> to wrap <code>mcs</code> output stream for encryption and compression</a> (for <a href="#blockId">blockId</a>) and sets it as <a href="#bs">bs</a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>open</code> uses <code>SerializerManager</code> that was specified when <a href="#creating-instance">DiskBlockObjectWriter was created</a>
-</td>
-</tr>
-</table>
+<p>Regardless of whether DiskBlockObjectWriter was already initialized or not, <code>open</code> <a href="../serializer/SerializerManager.html#wrapStream" class="page">requests <code>SerializerManager</code> to wrap <code>mcs</code> output stream for encryption and compression</a> (for <a href="#blockId">blockId</a>) and sets it as <a href="#bs">bs</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>open</code> <a href="spark-SerializerInstance.adoc#serializeStream">requests <code>SerializerInstance</code> to serialize <code>bs</code> output stream</a> and sets it as <a href="#objOut">objOut</a>.</p>
+<p><code>open</code> requests the <a href="#serializerInstance">SerializerInstance</a> to <a href="../serializer/SerializerInstance.html#serializeStream" class="page">serialize <code>bs</code> output stream</a> and sets it as <a href="#objOut">objOut</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
