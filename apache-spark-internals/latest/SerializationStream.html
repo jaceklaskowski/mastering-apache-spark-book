@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/spark-RpcResponseCallback.html">
+    <title>SerializationStream :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/SerializationStream.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -611,7 +611,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="spark-SerializerInstance.html">SerializerInstance</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="SerializationStream.html">SerializationStream</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -748,7 +748,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-RpcHandler.html">RpcHandler</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-RpcResponseCallback.html">RpcResponseCallback</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1833,120 +1833,169 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Apache Spark</a></li>
-    <li>Transferring Data Blocks (between Nodes in Spark Application)</li>
-    <li><a href="spark-RpcResponseCallback.html">RpcResponseCallback</a></li>
+    <li>Core Services</li>
+    <li><a href="spark-serialization.html">Serialization</a></li>
+    <li><a href="SerializationStream.html">SerializationStream</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/ROOT/pages/spark-RpcResponseCallback.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/ROOT/pages/SerializationStream.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="rpcresponsecallback"><a class="anchor" href="#rpcresponsecallback"></a><a class="link" href="#rpcresponsecallback"><a id="RpcResponseCallback"></a> RpcResponseCallback</a></h2>
+<h1 class="page">SerializationStream</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>RpcResponseCallback</code> is the <a href="#contract">contract</a> of&#8230;&#8203;FIXME</p>
-</div>
-<div id="contract" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.apache.spark.network.client;
-
-interface RpcResponseCallback {
-  void onSuccess(ByteBuffer response);
-  void onFailure(Throwable e);
-}</code></pre>
+<p>SerializationStream is an abstraction of <a href="#implementations">streams</a> for writing serialized key-value records.</p>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="available-serializationstreams"><a class="anchor" href="#available-serializationstreams"></a><a class="link" href="#available-serializationstreams"><a id="implementations"></a> Available SerializationStreams</a></h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. RpcResponseCallback Contract</caption>
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
+<col style="width: 30%;">
+<col style="width: 70%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">SerializationStream</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>onSuccess</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="onSuccess"></a> Used when:</p>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JavaSerializationStream</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="JavaSerializationStream"></a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">KryoSerializationStream</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="KryoSerializationStream"></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="writing-all-records"><a class="anchor" href="#writing-all-records"></a><a class="link" href="#writing-all-records"><a id="writeAll"></a> Writing All Records</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">writeAll[T: ClassTag](
+  iter: Iterator[T]): SerializationStream</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>writeAll <a href="#writeObject">writes all records</a> of the given iterator.</p>
+</div>
+<div class="paragraph">
+<p>writeAll is used when:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>NettyBlockRpcServer</code> is requested to <a href="spark-NettyBlockRpcServer.adoc#receive">receive RPC messages</a> (i.e. <code>OpenBlocks</code> and <code>UploadBlock</code> messages)</p>
+<p>ReliableCheckpointRDD utility is requested to writePartitionToCheckpointFile</p>
 </li>
 <li>
-<p><code>RemoteNettyRpcCallContext</code> is requested to <code>send</code></p>
-</li>
-<li>
-<p><code>TransportResponseHandler</code> is requested to handle a <code>RpcResponse</code> message</p>
-</li>
-<li>
-<p><code>ExternalShuffleBlockHandler</code> is requested to <code>handleMessage</code> (i.e. <code>OpenBlocks</code> and <code>RegisterExecutor</code> messages)</p>
-</li>
-<li>
-<p><code>AuthRpcHandler</code> and <code>SaslRpcHandler</code> are requested to <code>receive</code></p>
-</li>
-<li>
-<p>Spark on Mesos' <code>MesosExternalShuffleBlockHandler</code> is requested to <code>handleMessage</code> (i.e. <code>RegisterDriverParam</code> message)</p>
+<p>SerializerManager is requested to <a href="spark-SerializerManager.html#dataSerializeStream" class="page">dataSerializeStream</a> and <a href="spark-SerializerManager.html#dataSerializeWithExplicitClassTag" class="page">dataSerializeWithExplicitClassTag</a></p>
 </li>
 </ul>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>onFailure</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="onFailure"></a> Used when&#8230;&#8203;FIXME</p></td>
-</tr>
-</tbody>
-</table>
-<table id="implementations" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. RpcResponseCallbacks</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">RpcResponseCallback</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Unnamed" in NettyBlockTransferService</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Unnamed" in TransportRequestHandler</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Unnamed" in TransportClient</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Unnamed" in OneForOneBlockFetcher</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>OneWayRpcCallback</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="OneWayRpcCallback"></a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>RegisterDriverCallback</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="RegisterDriverCallback"></a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>RpcOutboxMessage</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="RpcOutboxMessage"></a></p></td>
-</tr>
-</tbody>
-</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="writing-object"><a class="anchor" href="#writing-object"></a><a class="link" href="#writing-object"><a id="writeObject"></a> Writing Object</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">writeObject[T: ClassTag](
+  t: T): SerializationStream</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>writeObject is the most general-purpose method to write an object.</p>
+</div>
+<div class="paragraph">
+<p>writeObject is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="writing-key-of-key-value-record"><a class="anchor" href="#writing-key-of-key-value-record"></a><a class="link" href="#writing-key-of-key-value-record"><a id="writeKey"></a> Writing Key (of Key-Value Record)</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">writeKey[T: ClassTag](
+  key: T): SerializationStream</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>writeKey <a href="#writeObject">writes the object</a> representing the key of a key-value record.</p>
+</div>
+<div class="paragraph">
+<p>writeKey is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>UnsafeShuffleWriter is requested to <a href="shuffle/UnsafeShuffleWriter.html#insertRecordIntoSorter" class="page">insert a record into a ShuffleExternalSorter</a></p>
+</li>
+<li>
+<p>DiskBlockObjectWriter is requested to <a href="storage/DiskBlockObjectWriter.html#write" class="page">write the key and value of a record</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="writing-value-of-key-value-record"><a class="anchor" href="#writing-value-of-key-value-record"></a><a class="link" href="#writing-value-of-key-value-record"><a id="writeValue"></a> Writing Value (of Key-Value Record)</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">writeValue[T: ClassTag](
+  value: T): SerializationStream</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>writeValue <a href="#writeObject">writes the object</a> representing the value of a key-value record.</p>
+</div>
+<div class="paragraph">
+<p>writeValue is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>UnsafeShuffleWriter is requested to <a href="shuffle/UnsafeShuffleWriter.html#insertRecordIntoSorter" class="page">insert a record into a ShuffleExternalSorter</a></p>
+</li>
+<li>
+<p>DiskBlockObjectWriter is requested to <a href="storage/DiskBlockObjectWriter.html#write" class="page">write the key and value of a record</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="flushing-stream"><a class="anchor" href="#flushing-stream"></a><a class="link" href="#flushing-stream"><a id="flush"></a> Flushing Stream</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">flush(): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>flush is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>UnsafeShuffleWriter is requested to <a href="shuffle/UnsafeShuffleWriter.html#insertRecordIntoSorter" class="page">insert a record into a ShuffleExternalSorter</a></p>
+</li>
+<li>
+<p>DiskBlockObjectWriter is requested to <a href="storage/DiskBlockObjectWriter.html#commitAndGet" class="page">commitAndGet</a></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </article>

@@ -612,7 +612,7 @@
     <a class="nav-link" href="../spark-SerializerInstance.html">SerializerInstance</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SerializationStream.html">SerializationStream</a>
+    <a class="nav-link" href="../SerializationStream.html">SerializationStream</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../spark-DeserializationStream.html">DeserializationStream</a>
@@ -2110,7 +2110,7 @@ FIXME
 <p>insertRecordIntoSorter requests the <a href="#serBuffer">MyByteArrayOutputStream</a> to reset (so that all currently accumulated output in the output stream is discarded and reusing the already allocated buffer space).</p>
 </div>
 <div class="paragraph">
-<p>insertRecordIntoSorter requests the <a href="#serOutputStream">SerializationStream</a> to write out the record (write the <a href="../spark-SerializationStream.html#writeKey" class="page">key</a> and the <a href="../spark-SerializationStream.html#writeValue" class="page">value</a>) and to <a href="../spark-SerializationStream.html#flush" class="page">flush</a>.</p>
+<p>insertRecordIntoSorter requests the <a href="#serOutputStream">SerializationStream</a> to write out the record (write the <a href="../SerializationStream.html#writeKey" class="page">key</a> and the <a href="../SerializationStream.html#writeValue" class="page">value</a>) and to <a href="../SerializationStream.html#flush" class="page">flush</a>.</p>
 </div>
 <div id="insertRecordIntoSorter-serializedRecordSize" class="paragraph">
 <p>insertRecordIntoSorter requests the <a href="#serBuffer">MyByteArrayOutputStream</a> for the length of the buffer.</p>
@@ -2138,7 +2138,7 @@ FIXME
 <p>closeAndWriteOutput first <a href="#updatePeakMemoryUsed">updates peak memory used</a>.</p>
 </div>
 <div class="paragraph">
-<p>closeAndWriteOutput removes the internal <code>ByteArrayOutputStream</code> and <a href="../spark-SerializationStream.html" class="page">SerializationStream</a>.</p>
+<p>closeAndWriteOutput removes the internal <code>ByteArrayOutputStream</code> and <a href="../SerializationStream.html" class="page">SerializationStream</a>.</p>
 </div>
 <div class="paragraph">
 <p>closeAndWriteOutput requests ShuffleExternalSorter to <a href="ShuffleExternalSorter.html#closeAndGetSpills" class="page">close itself and return <code>SpillInfo</code> metadata</a>.</p>
@@ -2335,7 +2335,7 @@ FIXME
 <div class="sect2">
 <h3 id="seroutputstream"><a class="anchor" href="#seroutputstream"></a><a class="link" href="#seroutputstream"><a id="serOutputStream"></a> serOutputStream</a></h3>
 <div class="paragraph">
-<p><a href="../spark-SerializationStream.html" class="page">SerializationStream</a> (that is created when the <a href="#serializer">SerializerInstance</a> is requested to <a href="../spark-SerializerInstance.html#serializeStream" class="page">serializeStream</a> with the <a href="#serBuffer">ByteArrayOutputStream</a>)</p>
+<p><a href="../SerializationStream.html" class="page">SerializationStream</a> (that is created when the <a href="#serializer">SerializerInstance</a> is requested to <a href="../spark-SerializerInstance.html#serializeStream" class="page">serializeStream</a> with the <a href="#serBuffer">ByteArrayOutputStream</a>)</p>
 </div>
 <div class="paragraph">
 <p>Used when UnsafeShuffleWriter is requested to <a href="#insertRecordIntoSorter">insertRecordIntoSorter</a></p>
