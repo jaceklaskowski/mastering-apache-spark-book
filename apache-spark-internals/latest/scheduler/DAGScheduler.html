@@ -94,7 +94,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Spark Scheduler</a>
+    <a class="nav-link" href="index.html">Scheduler</a>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1840,7 +1840,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Spark Scheduler</a></li>
+    <li><a href="index.html">Scheduler</a></li>
     <li><a href="DAGScheduler.html">DAGScheduler</a></li>
   </ul>
 </nav>
@@ -2797,15 +2797,15 @@ A stage itself tracks the jobs (their ids) it belongs to (using the internal <co
 <p>If however there are missing parent stages for the <code>stage</code>, submitStage <a href="#submitStage">submits all the parent stages</a>, and the <code>stage</code> is recorded in the internal <a href="#waitingStages">waitingStages</a> registry.</p>
 </div>
 <div class="paragraph">
-<p>submitStage is used recursively for missing parents of the stage and when DAGScheduler is requested for the following:</p>
+<p>submitStage is used recursively for missing parents of the given stage and when DAGScheduler is requested for the following:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#resubmitFailedStages">resubmitFailedStages</a></p>
+<p><a href="#resubmitFailedStages">resubmitFailedStages</a> (ResubmitFailedStages event)</p>
 </li>
 <li>
-<p><a href="#submitWaitingChildStages">submitWaitingChildStages</a></p>
+<p><a href="#submitWaitingChildStages">submitWaitingChildStages</a> (CompletionEvent event)</p>
 </li>
 <li>
 <p>Handle <a href="#handleJobSubmitted">JobSubmitted</a>, <a href="#handleMapStageSubmitted">MapStageSubmitted</a> and <a href="#handleTaskCompletion">TaskCompletion</a> events</p>

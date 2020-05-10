@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>ShuffleMapTask :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/scheduler/ShuffleMapTask.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -94,7 +94,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Spark Scheduler</a>
+    <a class="nav-link" href="index.html">Scheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1840,7 +1840,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Spark Scheduler</a></li>
+    <li><a href="index.html">Scheduler</a></li>
     <li><a href="Task.html">Task</a></li>
     <li><a href="ShuffleMapTask.html">ShuffleMapTask</a></li>
   </ul>
@@ -1849,61 +1849,25 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="shufflemaptasktask-to-compute-mapstatus-for-shufflemapstage"><a class="anchor" href="#shufflemaptasktask-to-compute-mapstatus-for-shufflemapstage"></a><a class="link" href="#shufflemaptasktask-to-compute-mapstatus-for-shufflemapstage"><a id="ShuffleMapTask"></a> ShuffleMapTask&#8201;&#8212;&#8201;Task to Compute MapStatus for ShuffleMapStage</a></h2>
+<h1 class="page">ShuffleMapTask</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>ShuffleMapTask</code> is a concrete <a href="Task.html" class="page">Task</a> that <a href="#runTask">computes a MapStatus</a>, i.e. writes the result of executing a <a href="#taskBinary">serialized task code</a> over the records (in a <a href="#partition">RDD partition</a>) to the <a href="../shuffle/ShuffleManager.html" class="page">shuffle system</a> and returns information about the <a href="../storage/BlockManager.html" class="page">BlockManager</a> and estimated size of the result shuffle blocks.</p>
+<p>ShuffleMapTask is one of the two types of <a href="Task.html" class="page">tasks</a> that, when <a href="#runTask">executed</a>, writes the result of executing a <a href="#taskBinary">serialized task code</a> over the records (of a <a href="#partition">RDD partition</a>) to the <a href="../shuffle/ShuffleManager.html" class="page">shuffle system</a> and returns a <a href="MapStatus.html" class="page">MapStatus</a> (information about the <a href="../storage/BlockManager.html" class="page">BlockManager</a> and estimated size of the result shuffle blocks).</p>
 </div>
-<div class="paragraph">
-<p><code>ShuffleMapTask</code> is created exclusively when <code>DAGScheduler</code> is requested to <a href="DAGScheduler.html#submitMissingTasks" class="page">submitting missing tasks of a ShuffleMapStage</a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Spark uses <a href="#spark-broadcast.adoc" class="page unresolved">broadcast variables</a> to send (serialized) tasks to executors.</p>
-</div>
-<div class="paragraph">
-<p><a href="#runTask">runTask</a> expects that the <a href="#taskBinary">serialized task binary</a> should be a tuple of a <a href="../rdd/RDD.html" class="page">RDD</a> and a <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a></p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div id="logging" class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Enable <code>ALL</code> logging level for <code>org.apache.spark.scheduler.ShuffleMapTask</code> logger to see what happens inside.</p>
-</div>
-<div class="paragraph">
-<p>Add the following line to <code>conf/log4j.properties</code>:</p>
-</div>
-<div class="listingblock">
+<div class="imageblock text-center">
 <div class="content">
-<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.scheduler.ShuffleMapTask=ALL</code></pre>
+<img src="_images/ShuffleMapTask.png" alt="ShuffleMapTask">
+</div>
+<div class="title">Figure 1. ShuffleMapTask and DAGScheduler</div>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Refer to <a href="#spark-logging.adoc" class="page unresolved">Logging</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="creating-shufflemaptask-instance"><a class="anchor" href="#creating-shufflemaptask-instance"></a><a class="link" href="#creating-shufflemaptask-instance"><a id="creating-instance"></a> Creating ShuffleMapTask Instance</a></h3>
-<div class="paragraph">
-<p><code>ShuffleMapTask</code> takes the following to be created:</p>
+<p>ShuffleMapTask takes the following to be created:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1914,13 +1878,13 @@
 <p><a id="stageAttemptId"></a> Stage attempt ID</p>
 </li>
 <li>
-<p><a id="taskBinary"></a> <a href="#spark-broadcast.adoc" class="page unresolved">Broadcast variable</a> with the serialized code to execute (<code>Broadcast[Array[Byte]]</code>)</p>
+<p><a href="#taskBinary">Broadcast variable with a serialized task binary</a></p>
 </li>
 <li>
-<p><a id="partition"></a> <a href="#spark-rdd-Partition.adoc" class="page unresolved">RDD partition</a></p>
+<p><a id="partition"></a> <a href="../rdd/spark-rdd-Partition.html" class="page">Partition</a></p>
 </li>
 <li>
-<p><a id="locs"></a> <a href="spark-TaskLocation.adoc">TaskLocations</a> (<code>Seq[TaskLocation]</code>)</p>
+<p><a id="locs"></a> <a href="../rdd/spark-TaskLocation.html" class="page">TaskLocations</a></p>
 </li>
 <li>
 <p><a id="localProperties"></a> Task-specific local properties</p>
@@ -1929,7 +1893,7 @@
 <p><a id="serializedTaskMetrics"></a> Serialized task metrics (<code>Array[Byte]</code>)</p>
 </li>
 <li>
-<p><a id="jobId"></a> Optional <a href="spark-scheduler-ActiveJob.html" class="page">job</a> ID (default: <code>None</code>)</p>
+<p><a id="jobId"></a> Optional <a href="spark-scheduler-ActiveJob.html" class="page">job ID</a> (default: <code>None</code>)</p>
 </li>
 <li>
 <p><a id="appId"></a> Optional application ID (default: <code>None</code>)</p>
@@ -1938,65 +1902,52 @@
 <p><a id="appAttemptId"></a> Optional application attempt ID (default: <code>None</code>)</p>
 </li>
 <li>
-<p><a id="isBarrier"></a> <code>isBarrier</code> flag (default: <code>false</code>)</p>
+<p><a id="isBarrier"></a> isBarrier flag (default: <code>false</code>)</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><code>ShuffleMapTask</code> calculates <a href="#preferredLocs">preferredLocs</a> internal attribute that is the input <code>locs</code> if defined. Otherwise, it is empty.</p>
+<p>ShuffleMapTask is created when DAGScheduler is requested to <a href="DAGScheduler.html#submitMissingTasks" class="page">submit tasks for all missing partitions of a ShuffleMapStage</a>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<a href="#preferredLocs">preferredLocs</a> and <a href="#locs">locs</a> are transient values and so they are not sent over the wire with the task.
-</td>
-</tr>
-</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="broadcast-variable-and-serialized-task-binary"><a class="anchor" href="#broadcast-variable-and-serialized-task-binary"></a><a class="link" href="#broadcast-variable-and-serialized-task-binary"><a id="taskBinary"></a> Broadcast Variable and Serialized Task Binary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ShuffleMapTask is given a <a href="../spark-broadcast.html" class="page">broadcast variable</a> with a reference to a serialized task binary (<code>Broadcast[Array[Byte]]</code>).</p>
 </div>
 <div class="paragraph">
-<p><code>ShuffleMapTask</code> initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
+<p><a href="#runTask">runTask</a> expects that the serialized task binary is a tuple of an <a href="../rdd/RDD.html" class="page">RDD</a> and a <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="running-taskruntask-method"><a class="anchor" href="#running-taskruntask-method"></a><a class="link" href="#running-taskruntask-method"><a id="runTask"></a> Running Task&#8201;&#8212;&#8201;<code>runTask</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="running-task"><a class="anchor" href="#running-task"></a><a class="link" href="#running-task"><a id="runTask"></a> Running Task</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">runTask(context: TaskContext): MapStatus</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">runTask(
+  context: TaskContext): MapStatus</code></pre>
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>runTask</code> is part of <a href="Task.html#runTask" class="page">Task contract</a> to run a task.
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
-<p><code>runTask</code> writes the result (<em>records</em>) of executing the <a href="#taskBinary">serialized task code</a> over the records (in the <a href="#partition">RDD partition</a>) to the <a href="../shuffle/ShuffleManager.html" class="page">shuffle system</a> and returns a <a href="MapStatus.html" class="page">MapStatus</a> (with the <a href="../storage/BlockManager.html" class="page">BlockManager</a> and an estimated size of the result shuffle blocks).</p>
+<p>runTask writes the result (<em>records</em>) of executing the <a href="#taskBinary">serialized task code</a> over the records (in the <a href="#partition">RDD partition</a>) to the <a href="../shuffle/ShuffleManager.html" class="page">shuffle system</a> and returns a <a href="MapStatus.html" class="page">MapStatus</a> (with the <a href="../storage/BlockManager.html" class="page">BlockManager</a> and an estimated size of the result shuffle blocks).</p>
 </div>
 <div class="paragraph">
-<p>Internally, <code>runTask</code> requests the <a href="#spark-SparkEnv.adoc" class="page unresolved">SparkEnv</a> for the new instance of <a href="#spark-SparkEnv.adoc#closureSerializer" class="page unresolved">closure serializer</a> and requests it to <a href="../serializer/Serializer.html#deserialize" class="page">deserialize</a> the <a href="#taskBinary">taskBinary</a> (into a tuple of a <a href="../rdd/RDD.html" class="page">RDD</a> and a <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>).</p>
+<p>Internally, runTask requests the <a href="../spark-SparkEnv.html" class="page">SparkEnv</a> for the new instance of <a href="../spark-SparkEnv.html#closureSerializer" class="page">closure serializer</a> and requests it to <a href="../serializer/Serializer.html#deserialize" class="page">deserialize</a> the <a href="#taskBinary">taskBinary</a> (into a tuple of a <a href="../rdd/RDD.html" class="page">RDD</a> and a <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>).</p>
 </div>
 <div class="paragraph">
-<p><code>runTask</code> measures the <a href="Task.html#_executorDeserializeTime" class="page">thread</a> and <a href="Task.html#_executorDeserializeCpuTime" class="page">CPU</a> deserialization times.</p>
+<p>runTask measures the <a href="Task.html#_executorDeserializeTime" class="page">thread</a> and <a href="Task.html#_executorDeserializeCpuTime" class="page">CPU</a> deserialization times.</p>
 </div>
 <div class="paragraph">
-<p><code>runTask</code> requests the <a href="#spark-SparkEnv.adoc" class="page unresolved">SparkEnv</a> for the <a href="#spark-SparkEnv.adoc#shuffleManager" class="page unresolved">ShuffleManager</a> and requests it for a <a href="../shuffle/ShuffleManager.html#getWriter" class="page">ShuffleWriter</a> (for the <a href="../rdd/ShuffleDependency.html#shuffleHandle" class="page">ShuffleHandle</a>, the <a href="Task.html#partitionId" class="page">RDD partition</a>, and the <a href="spark-TaskContext.html" class="page">TaskContext</a>).</p>
+<p>runTask requests the <a href="../spark-SparkEnv.html" class="page">SparkEnv</a> for the <a href="../spark-SparkEnv.html#shuffleManager" class="page">ShuffleManager</a> and requests it for a <a href="../shuffle/ShuffleManager.html#getWriter" class="page">ShuffleWriter</a> (for the <a href="../rdd/ShuffleDependency.html#shuffleHandle" class="page">ShuffleHandle</a>, the <a href="Task.html#partitionId" class="page">RDD partition</a>, and the <a href="spark-TaskContext.html" class="page">TaskContext</a>).</p>
 </div>
 <div class="paragraph">
-<p><code>runTask</code> then requests the <a href="#rdd">RDD</a> for the <a href="../rdd/RDD.html#iterator" class="page">records</a> (of the <a href="#partition">partition</a>) that the <code>ShuffleWriter</code> is requested to <a href="../shuffle/ShuffleWriter.html#write" class="page">write out</a> (to the shuffle system).</p>
+<p>runTask then requests the <a href="#rdd">RDD</a> for the <a href="../rdd/RDD.html#iterator" class="page">records</a> (of the <a href="#partition">partition</a>) that the <code>ShuffleWriter</code> is requested to <a href="../shuffle/ShuffleWriter.html#write" class="page">write out</a> (to the shuffle system).</p>
 </div>
 <div class="paragraph">
-<p>In the end, <code>runTask</code> requests the <code>ShuffleWriter</code> to <a href="../shuffle/ShuffleWriter.html#stop" class="page">stop</a> (with the <code>success</code> flag on) and returns the <a href="MapStatus.html" class="page">shuffle map output status</a>.</p>
+<p>In the end, runTask requests the <code>ShuffleWriter</code> to <a href="../shuffle/ShuffleWriter.html#stop" class="page">stop</a> (with the <code>success</code> flag on) and returns the <a href="MapStatus.html" class="page">shuffle map output status</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2011,63 +1962,67 @@ This is the moment in <code>Task</code>'s lifecycle (and its corresponding RDD) 
 </table>
 </div>
 <div class="paragraph">
-<p>In case of any exceptions, <code>runTask</code> requests the <code>ShuffleWriter</code> to <a href="../shuffle/ShuffleWriter.html#stop" class="page">stop</a> (with the <code>success</code> flag off) and (re)throws the exception.</p>
+<p>In case of any exceptions, runTask requests the <code>ShuffleWriter</code> to <a href="../shuffle/ShuffleWriter.html#stop" class="page">stop</a> (with the <code>success</code> flag off) and (re)throws the exception.</p>
 </div>
 <div class="paragraph">
-<p><code>runTask</code> may also print out the following DEBUG message to the logs when the <code>ShuffleWriter</code> could not be <a href="../shuffle/ShuffleWriter.html#stop" class="page">stopped</a>.</p>
+<p>runTask may also print out the following DEBUG message to the logs when the <code>ShuffleWriter</code> could not be <a href="../shuffle/ShuffleWriter.html#stop" class="page">stopped</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>DEBUG Could not stop writer</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Could not stop writer</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>runTask is part of <a href="Task.html#runTask" class="page">Task</a> abstraction.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="preferredlocations-method"><a class="anchor" href="#preferredlocations-method"></a><a class="link" href="#preferredlocations-method"><a id="preferredLocations"></a> <code>preferredLocations</code> Method</a></h3>
+<div class="sect1">
+<h2 id="preferredlocations-method"><a class="anchor" href="#preferredlocations-method"></a><a class="link" href="#preferredlocations-method"><a id="preferredLocations"></a> preferredLocations Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">preferredLocations: Seq[TaskLocation]</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>preferredLocations</code> is part of <a href="Task.html#preferredLocations" class="page">Task contract</a> to&#8230;&#8203;FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>preferredLocations simply returns the <a href="#preferredLocs">preferredLocs</a> internal property.</p>
 </div>
 <div class="paragraph">
-<p><code>preferredLocations</code> simply returns <a href="#preferredLocs">preferredLocs</a> internal property.</p>
+<p>preferredLocations is part of <a href="Task.html#preferredLocations" class="page">Task</a> abstraction.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="internal-properties"><a class="anchor" href="#internal-properties"></a><a class="link" href="#internal-properties"><a id="internal-registries"></a> Internal Properties</a></h3>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. ShuffleMapTask&#8217;s Internal Properties (e.g. Registries, Counters and Flags)</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 75%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>preferredLocs</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="preferredLocs"></a> <a href="spark-TaskLocation.adoc">TaskLocations</a> that are the unique entries in the given <a href="#locs">locs</a> with the only rule that when <code>locs</code> is not defined, it is empty, and no task location preferences are defined.</p>
-<p class="tableblock">Initialized when <code>ShuffleMapTask</code> is <a href="#creating-instance">created</a></p>
-<p class="tableblock">Used exclusively when <code>ShuffleMapTask</code> is requested for the <a href="#preferredLocations">preferred locations</a></p></td>
-</tr>
-</tbody>
-</table>
+</div>
+<div class="sect1">
+<h2 id="logging"><a class="anchor" href="#logging"></a><a class="link" href="#logging"><a id="logging"></a> Logging</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Enable <code>ALL</code> logging level for <code>org.apache.spark.scheduler.ShuffleMapTask</code> logger to see what happens inside.</p>
+</div>
+<div class="paragraph">
+<p>Add the following line to <code>conf/log4j.properties</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">log4j.logger.org.apache.spark.scheduler.ShuffleMapTask=ALL</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Refer to <a href="../spark-logging.html" class="page">Logging</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="preferred-locations"><a class="anchor" href="#preferred-locations"></a><a class="link" href="#preferred-locations"><a id="preferredLocs"></a> Preferred Locations</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="../rdd/spark-TaskLocation.html" class="page">TaskLocations</a> that are the unique entries in the given <a href="#locs">locs</a> with the only rule that when <code>locs</code> is not defined, it is empty, and no task location preferences are defined.</p>
+</div>
+<div class="paragraph">
+<p>Initialized when ShuffleMapTask is <a href="#creating-instance">created</a></p>
+</div>
+<div class="paragraph">
+<p>Used exclusively when ShuffleMapTask is requested for the <a href="#preferredLocations">preferred locations</a></p>
 </div>
 </div>
 </div>
