@@ -258,6 +258,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="OutputCommitCoordinator.html">OutputCommitCoordinator</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="TaskLocation.html">TaskLocation</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -591,9 +594,6 @@
     <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-TaskLocation.html">TaskLocation</a>
   </li>
 </ul>
   </li>
@@ -1884,7 +1884,7 @@
 <p><a id="partition"></a> <a href="../rdd/spark-rdd-Partition.html" class="page">Partition</a></p>
 </li>
 <li>
-<p><a id="locs"></a> <a href="../rdd/spark-TaskLocation.html" class="page">TaskLocations</a></p>
+<p><a id="locs"></a> <a href="TaskLocation.html" class="page">TaskLocations</a></p>
 </li>
 <li>
 <p><a id="localProperties"></a> Task-specific local properties</p>
@@ -2016,7 +2016,7 @@ This is the moment in <code>Task</code>'s lifecycle (and its corresponding RDD) 
 <h2 id="preferred-locations"><a class="anchor" href="#preferred-locations"></a><a class="link" href="#preferred-locations"><a id="preferredLocs"></a> Preferred Locations</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="../rdd/spark-TaskLocation.html" class="page">TaskLocations</a> that are the unique entries in the given <a href="#locs">locs</a> with the only rule that when <code>locs</code> is not defined, it is empty, and no task location preferences are defined.</p>
+<p><a href="TaskLocation.html" class="page">TaskLocations</a> that are the unique entries in the given <a href="#locs">locs</a> with the only rule that when <code>locs</code> is not defined, it is empty, and no task location preferences are defined.</p>
 </div>
 <div class="paragraph">
 <p>Initialized when ShuffleMapTask is <a href="#creating-instance">created</a></p>

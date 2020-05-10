@@ -258,6 +258,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="OutputCommitCoordinator.html">OutputCommitCoordinator</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="TaskLocation.html">TaskLocation</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -591,9 +594,6 @@
     <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-TaskLocation.html">TaskLocation</a>
   </li>
 </ul>
   </li>
@@ -2177,13 +2177,13 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="cachelocs-registry"><a class="anchor" href="#cachelocs-registry"></a><a class="link" href="#cachelocs-registry"><a id="cacheLocs"></a><a id="clearCacheLocs"></a> cacheLocs Registry</a></h2>
+<h2 id="partition-placement-preferences"><a class="anchor" href="#partition-placement-preferences"></a><a class="link" href="#partition-placement-preferences"><a id="cacheLocs"></a><a id="clearCacheLocs"></a> Partition Placement Preferences</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>DAGScheduler keeps track of block locations per RDD and partition.</p>
 </div>
 <div class="paragraph">
-<p>DAGScheduler uses <a href="../rdd/spark-TaskLocation.html" class="page">TaskLocation</a> that includes a host name and an executor id on that host (as <code>ExecutorCacheTaskLocation</code>).</p>
+<p>DAGScheduler uses <a href="TaskLocation.html" class="page">TaskLocation</a> that includes a host name and an executor id on that host (as <code>ExecutorCacheTaskLocation</code>).</p>
 </div>
 <div class="paragraph">
 <p>The keys are RDDs (their ids) and the values are arrays indexed by partition numbers.</p>
@@ -3123,7 +3123,7 @@ That shows how important <a href="../spark-broadcast.html" class="page">broadcas
 </div>
 </div>
 <div class="paragraph">
-<p>getCacheLocs gives <a href="../rdd/spark-TaskLocation.html" class="page">TaskLocations</a> (block locations) for the partitions of the input <code>rdd</code>. getCacheLocs caches lookup results in <a href="#cacheLocs">cacheLocs</a> internal registry.</p>
+<p>getCacheLocs gives <a href="TaskLocation.html" class="page">TaskLocations</a> (block locations) for the partitions of the input <code>rdd</code>. getCacheLocs caches lookup results in <a href="#cacheLocs">cacheLocs</a> internal registry.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3144,7 +3144,7 @@ The size of the collection from getCacheLocs is exactly the number of partitions
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The size of every <a href="../rdd/spark-TaskLocation.html" class="page">TaskLocation</a> collection (i.e. every entry in the result of getCacheLocs) is exactly the number of blocks managed using <a href="../storage/BlockManager.html" class="page">BlockManagers</a> on executors.
+The size of every <a href="TaskLocation.html" class="page">TaskLocation</a> collection (i.e. every entry in the result of getCacheLocs) is exactly the number of blocks managed using <a href="../storage/BlockManager.html" class="page">BlockManagers</a> on executors.
 </td>
 </tr>
 </table>
@@ -3159,7 +3159,7 @@ The size of every <a href="../rdd/spark-TaskLocation.html" class="page">TaskLoca
 <p>For <code>NONE</code> storage level (i.e. no caching), the result is an empty locations (i.e. no location preference).</p>
 </div>
 <div class="paragraph">
-<p>For other non-<code>NONE</code> storage levels, getCacheLocs <a href="../storage/BlockManagerMaster.html#getLocations-block-array" class="page">requests <code>BlockManagerMaster</code> for block locations</a> that are then mapped to <a href="../rdd/spark-TaskLocation.html" class="page">TaskLocations</a> with the hostname of the owning <code>BlockManager</code> for a block (of a partition) and the executor id.</p>
+<p>For other non-<code>NONE</code> storage levels, getCacheLocs <a href="../storage/BlockManagerMaster.html#getLocations-block-array" class="page">requests <code>BlockManagerMaster</code> for block locations</a> that are then mapped to <a href="TaskLocation.html" class="page">TaskLocations</a> with the hostname of the owning <code>BlockManager</code> for a block (of a partition) and the executor id.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3174,7 +3174,7 @@ getCacheLocs uses <a href="#blockManagerMaster">BlockManagerMaster</a> that was 
 </table>
 </div>
 <div class="paragraph">
-<p>getCacheLocs records the computed block locations per partition (as <a href="../rdd/spark-TaskLocation.html" class="page">TaskLocation</a>) in <a href="#cacheLocs">cacheLocs</a> internal registry.</p>
+<p>getCacheLocs records the computed block locations per partition (as <a href="TaskLocation.html" class="page">TaskLocation</a>) in <a href="#cacheLocs">cacheLocs</a> internal registry.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3195,7 +3195,7 @@ getCacheLocs requests locations from <code>BlockManagerMaster</code> using <a hr
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-DAGScheduler uses <a href="../rdd/spark-TaskLocation.html" class="page">TaskLocations</a> (with host and executor) while <a href="../storage/BlockManagerMaster.html" class="page">BlockManagerMaster</a> uses <a href="../storage/BlockManager.html#BlockManagerId" class="page">BlockManagerId</a> (to track similar information, i.e. block locations).
+DAGScheduler uses <a href="TaskLocation.html" class="page">TaskLocations</a> (with host and executor) while <a href="../storage/BlockManagerMaster.html" class="page">BlockManagerMaster</a> uses <a href="../storage/BlockManager.html#BlockManagerId" class="page">BlockManagerId</a> (to track similar information, i.e. block locations).
 </td>
 </tr>
 </table>
@@ -3238,7 +3238,7 @@ Preferred locations of the partitions of a RDD are also called <strong>placement
 <p>Otherwise, if not found, getPreferredLocsInternal finds the first parent <a href="../rdd/spark-rdd-NarrowDependency.html" class="page">NarrowDependency</a> and (recursively) <a href="#getPreferredLocsInternal">finds <code>TaskLocations</code></a>.</p>
 </div>
 <div class="paragraph">
-<p>If all the attempts fail to yield any non-empty result, getPreferredLocsInternal returns an empty collection of <a href="../rdd/spark-TaskLocation.html" class="page">TaskLocations</a>.</p>
+<p>If all the attempts fail to yield any non-empty result, getPreferredLocsInternal returns an empty collection of <a href="TaskLocation.html" class="page">TaskLocations</a>.</p>
 </div>
 <div class="paragraph">
 <p>getPreferredLocsInternal is used when DAGScheduler is requested for the <a href="#getPreferredLocs">preferred locations for missing partitions</a>.</p>

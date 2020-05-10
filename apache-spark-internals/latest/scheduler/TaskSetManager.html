@@ -258,6 +258,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="OutputCommitCoordinator.html">OutputCommitCoordinator</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="TaskLocation.html">TaskLocation</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -591,9 +594,6 @@
     <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-TaskLocation.html">TaskLocation</a>
   </li>
 </ul>
   </li>
@@ -3560,18 +3560,18 @@ Read up on <a href="spark-taskschedulerimpl-speculative-execution.adoc">Speculat
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#pendingTasksForExecutor">pendingTasksForExecutor</a> when the <a href="spark-TaskLocation.adoc">TaskLocation</a> is <code>ExecutorCacheTaskLocation</code>.</p>
+<p><a href="#pendingTasksForExecutor">pendingTasksForExecutor</a> when the <a href="TaskLocation.html" class="page">TaskLocation</a> is <code>ExecutorCacheTaskLocation</code>.</p>
 </li>
 <li>
-<p><a href="#pendingTasksForHost">pendingTasksForHost</a> for the hosts of a <a href="spark-TaskLocation.adoc">TaskLocation</a>.</p>
+<p><a href="#pendingTasksForHost">pendingTasksForHost</a> for the hosts of a <a href="TaskLocation.html" class="page">TaskLocation</a>.</p>
 </li>
 <li>
-<p><a href="#pendingTasksForRack">pendingTasksForRack</a> for the <a href="TaskSchedulerImpl.html#getRackForHost" class="page">racks from  <code>TaskSchedulerImpl</code> per the host</a> (of a <a href="spark-TaskLocation.adoc">TaskLocation</a>).</p>
+<p><a href="#pendingTasksForRack">pendingTasksForRack</a> for the <a href="TaskSchedulerImpl.html#getRackForHost" class="page">racks from  <code>TaskSchedulerImpl</code> per the host</a> (of a <a href="TaskLocation.html" class="page">TaskLocation</a>).</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For a <a href="spark-TaskLocation.adoc">TaskLocation</a> being <code>HDFSCacheTaskLocation</code>, <code>addPendingTask</code> <a href="TaskSchedulerImpl.html#getExecutorsAliveOnHost" class="page">requests <code>TaskSchedulerImpl</code> for the executors on the host</a> (of a preferred location) and registers the task in <a href="#pendingTasksForExecutor">pendingTasksForExecutor</a> for every executor (if available).</p>
+<p>For a <a href="TaskLocation.html" class="page">TaskLocation</a> being <code>HDFSCacheTaskLocation</code>, <code>addPendingTask</code> <a href="TaskSchedulerImpl.html#getExecutorsAliveOnHost" class="page">requests <code>TaskSchedulerImpl</code> for the executors on the host</a> (of a preferred location) and registers the task in <a href="#pendingTasksForExecutor">pendingTasksForExecutor</a> for every executor (if available).</p>
 </div>
 <div class="paragraph">
 <p>You should see the following INFO message in the logs:</p>

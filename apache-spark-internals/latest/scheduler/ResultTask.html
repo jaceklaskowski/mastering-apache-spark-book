@@ -258,6 +258,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="OutputCommitCoordinator.html">OutputCommitCoordinator</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="TaskLocation.html">TaskLocation</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -591,9 +594,6 @@
     <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-TaskLocation.html">TaskLocation</a>
   </li>
 </ul>
   </li>
@@ -1876,7 +1876,7 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="preferredLocs"></a> <code>preferredLocs</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Collection of <a href="spark-TaskLocation.adoc">TaskLocations</a>.</p>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Collection of <a href="TaskLocation.html" class="page">TaskLocations</a>.</p>
 <p class="tableblock">Corresponds directly to unique entries in <a href="#locs">locs</a> with the only rule that when <code>locs</code> is not defined, it is empty, and no task location preferences are defined.</p>
 <p class="tableblock">Initialized when <a href="#creating-instance"><code>ResultTask</code> is created</a>.</p>
 <p class="tableblock">Used exclusively when <code>ResultTask</code> is requested for <a href="#preferredLocations">preferred locations</a>.</p></td>
@@ -1903,7 +1903,7 @@
 <p><a id="partition"></a> <a href="spark-rdd-Partition.adoc">Partition</a> to compute</p>
 </li>
 <li>
-<p><a id="locs"></a> Collection of <a href="spark-TaskLocation.adoc">TaskLocations</a>, i.e. preferred locations (executors) to execute the task on</p>
+<p><a id="locs"></a> Collection of <a href="TaskLocation.html" class="page">TaskLocations</a>, i.e. preferred locations (executors) to execute the task on</p>
 </li>
 <li>
 <p><a id="outputId"></a> <code>outputId</code></p>

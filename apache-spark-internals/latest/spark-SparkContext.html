@@ -258,6 +258,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="scheduler/OutputCommitCoordinator.html">OutputCommitCoordinator</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="scheduler/TaskLocation.html">TaskLocation</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -591,9 +594,6 @@
     <a class="nav-link" href="rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="rdd/spark-TaskLocation.html">TaskLocation</a>
   </li>
 </ul>
   </li>
@@ -3948,15 +3948,17 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="finding-preferred-locations-placement-preferences-for-rdd-partitiongetpreferredlocs-method"><a class="anchor" href="#finding-preferred-locations-placement-preferences-for-rdd-partitiongetpreferredlocs-method"></a><a class="link" href="#finding-preferred-locations-placement-preferences-for-rdd-partitiongetpreferredlocs-method"><a id="getPreferredLocs"></a> Finding Preferred Locations (Placement Preferences) for RDD Partition&#8201;&#8212;&#8201;<code>getPreferredLocs</code> Method</a></h2>
+<h2 id="finding-preferred-locations-placement-preferences-for-rdd-partition"><a class="anchor" href="#finding-preferred-locations-placement-preferences-for-rdd-partition"></a><a class="link" href="#finding-preferred-locations-placement-preferences-for-rdd-partition"><a id="getPreferredLocs"></a> Finding Preferred Locations (Placement Preferences) for RDD Partition</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getPreferredLocs(rdd: RDD[_], partition: Int): Seq[TaskLocation]</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getPreferredLocs(
+  rdd: RDD[_],
+  partition: Int): Seq[TaskLocation]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>getPreferredLocs</code> simply <a href="scheduler/DAGScheduler.html#getPreferredLocs" class="page">requests <code>DAGScheduler</code> for the preferred locations for <code>partition</code></a>.</p>
+<p>getPreferredLocs simply <a href="scheduler/DAGScheduler.html#getPreferredLocs" class="page">requests <code>DAGScheduler</code> for the preferred locations for <code>partition</code></a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3970,17 +3972,8 @@ Preferred locations of a partition of a RDD are also called <strong>placement pr
 </tr>
 </table>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>getPreferredLocs</code> is used in <code>CoalescedRDDPartition</code>, <code>DefaultPartitionCoalescer</code> and <code>PartitionerAwareUnionRDD</code>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>getPreferredLocs is used in CoalescedRDDPartition, DefaultPartitionCoalescer and PartitionerAwareUnionRDD.</p>
 </div>
 </div>
 </div>

@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/shuffle/FetchFailedException.html">
+    <title>TaskLocation :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/scheduler/TaskLocation.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -94,82 +94,82 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/index.html">Scheduler</a>
+    <a class="nav-link" href="index.html">Scheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/DAGScheduler.html">DAGScheduler</a>
+    <a class="nav-link" href="DAGScheduler.html">DAGScheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/DAGSchedulerEvent.html">DAGScheduler Events</a>
+    <a class="nav-link" href="DAGSchedulerEvent.html">DAGScheduler Events</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/DAGSchedulerEventProcessLoop.html">DAGScheduler Event Bus</a>
+    <a class="nav-link" href="DAGSchedulerEventProcessLoop.html">DAGScheduler Event Bus</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/Stage.html">Stage</a>
+    <a class="nav-link" href="Stage.html">Stage</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/ResultStage.html">ResultStage</a>
+    <a class="nav-link" href="ResultStage.html">ResultStage</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/ShuffleMapStage.html">ShuffleMapStage</a>
+    <a class="nav-link" href="ShuffleMapStage.html">ShuffleMapStage</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/MapOutputTracker.html">MapOutputTracker</a>
+    <a class="nav-link" href="MapOutputTracker.html">MapOutputTracker</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/MapOutputTrackerMaster.html">MapOutputTrackerMaster</a>
+    <a class="nav-link" href="MapOutputTrackerMaster.html">MapOutputTrackerMaster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../scheduler/ShuffleStatus.html">ShuffleStatus</a>
+    <a class="nav-link" href="ShuffleStatus.html">ShuffleStatus</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../scheduler/MapOutputTrackerMasterEndpoint.html">MapOutputTrackerMasterEndpoint</a>
+    <a class="nav-link" href="MapOutputTrackerMasterEndpoint.html">MapOutputTrackerMasterEndpoint</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/MapOutputTrackerWorker.html">MapOutputTrackerWorker</a>
+    <a class="nav-link" href="MapOutputTrackerWorker.html">MapOutputTrackerWorker</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/spark-scheduler-StageInfo.html">StageInfo</a>
+    <a class="nav-link" href="spark-scheduler-StageInfo.html">StageInfo</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/spark-scheduler-JobListener.html">JobListener</a>
+    <a class="nav-link" href="spark-scheduler-JobListener.html">JobListener</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/spark-scheduler-JobWaiter.html">JobWaiter</a>
+    <a class="nav-link" href="spark-scheduler-JobWaiter.html">JobWaiter</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/TaskScheduler.html">TaskScheduler</a>
+    <a class="nav-link" href="TaskScheduler.html">TaskScheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/TaskSchedulerImpl.html">TaskSchedulerImpl</a>
+    <a class="nav-link" href="TaskSchedulerImpl.html">TaskSchedulerImpl</a>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/SchedulerBackend.html">SchedulerBackend</a>
+    <a class="nav-link" href="SchedulerBackend.html">SchedulerBackend</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/CoarseGrainedSchedulerBackend.html">CoarseGrainedSchedulerBackend</a>
+    <a class="nav-link" href="CoarseGrainedSchedulerBackend.html">CoarseGrainedSchedulerBackend</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../scheduler/CoarseGrainedSchedulerBackend-DriverEndpoint.html">DriverEndpoint</a>
+    <a class="nav-link" href="CoarseGrainedSchedulerBackend-DriverEndpoint.html">DriverEndpoint</a>
   </li>
 </ul>
   </li>
@@ -179,87 +179,87 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/Task.html">Task</a>
+    <a class="nav-link" href="Task.html">Task</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/ShuffleMapTask.html">ShuffleMapTask</a>
+    <a class="nav-link" href="ShuffleMapTask.html">ShuffleMapTask</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/ResultTask.html">ResultTask</a>
+    <a class="nav-link" href="ResultTask.html">ResultTask</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/TaskSet.html">TaskSet</a>
+    <a class="nav-link" href="TaskSet.html">TaskSet</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/TaskSetManager.html">TaskSetManager</a>
+    <a class="nav-link" href="TaskSetManager.html">TaskSetManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/spark-scheduler-ActiveJob.html">Jobs</a>
+    <a class="nav-link" href="spark-scheduler-ActiveJob.html">Jobs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/spark-scheduler-SchedulableBuilder.html">SchedulableBuilder</a>
+    <a class="nav-link" href="spark-scheduler-SchedulableBuilder.html">SchedulableBuilder</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/spark-scheduler-FIFOSchedulableBuilder.html">FIFOSchedulableBuilder</a>
+    <a class="nav-link" href="spark-scheduler-FIFOSchedulableBuilder.html">FIFOSchedulableBuilder</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/spark-scheduler-FairSchedulableBuilder.html">FairSchedulableBuilder</a>
+    <a class="nav-link" href="spark-scheduler-FairSchedulableBuilder.html">FairSchedulableBuilder</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/spark-scheduler-Schedulable.html">Schedulable Entities</a>
+    <a class="nav-link" href="spark-scheduler-Schedulable.html">Schedulable Entities</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/spark-scheduler-Pool.html">Schedulable Pool</a>
+    <a class="nav-link" href="spark-scheduler-Pool.html">Schedulable Pool</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/spark-scheduler-SchedulingMode.html">Scheduling Mode</a>
+    <a class="nav-link" href="spark-scheduler-SchedulingMode.html">Scheduling Mode</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/spark-scheduler-TaskInfo.html">TaskInfo</a>
+    <a class="nav-link" href="spark-scheduler-TaskInfo.html">TaskInfo</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/MapStatus.html">MapStatus</a>
+    <a class="nav-link" href="MapStatus.html">MapStatus</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/spark-scheduler-TaskDescription.html">TaskDescription</a>
+    <a class="nav-link" href="spark-scheduler-TaskDescription.html">TaskDescription</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/spark-taskschedulerimpl-speculative-execution.html">Speculative Execution of Tasks</a>
+    <a class="nav-link" href="spark-taskschedulerimpl-speculative-execution.html">Speculative Execution of Tasks</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/TaskResultGetter.html">TaskResultGetter</a>
+    <a class="nav-link" href="TaskResultGetter.html">TaskResultGetter</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/spark-TaskContext.html">TaskContext</a>
+    <a class="nav-link" href="spark-TaskContext.html">TaskContext</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/spark-BarrierTaskContext.html">BarrierTaskContext</a>
+    <a class="nav-link" href="spark-BarrierTaskContext.html">BarrierTaskContext</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/spark-TaskContextImpl.html">TaskContextImpl</a>
+    <a class="nav-link" href="spark-TaskContextImpl.html">TaskContextImpl</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/spark-scheduler-TaskResult.html">TaskResults</a>
+    <a class="nav-link" href="spark-scheduler-TaskResult.html">TaskResults</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/spark-scheduler-TaskSetBlacklist.html">TaskSetBlacklist</a>
+    <a class="nav-link" href="spark-scheduler-TaskSetBlacklist.html">TaskSetBlacklist</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/OutputCommitCoordinator.html">OutputCommitCoordinator</a>
+    <a class="nav-link" href="OutputCommitCoordinator.html">OutputCommitCoordinator</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/TaskLocation.html">TaskLocation</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="TaskLocation.html">TaskLocation</a>
   </li>
 </ul>
   </li>
@@ -403,60 +403,60 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Shuffle System</a>
+    <a class="nav-link" href="../shuffle/index.html">Shuffle System</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="ShuffleManager.html">ShuffleManager</a>
+    <a class="nav-link" href="../shuffle/ShuffleManager.html">ShuffleManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="SortShuffleManager.html">SortShuffleManager</a>
+    <a class="nav-link" href="../shuffle/SortShuffleManager.html">SortShuffleManager</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-shuffle-ShuffleHandle.html">ShuffleHandle</a>
+    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleHandle.html">ShuffleHandle</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-shuffle-BaseShuffleHandle.html">BaseShuffleHandle</a>
+    <a class="nav-link" href="../shuffle/spark-shuffle-BaseShuffleHandle.html">BaseShuffleHandle</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
+    <a class="nav-link" href="../shuffle/BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="SerializedShuffleHandle.html">SerializedShuffleHandle</a>
+    <a class="nav-link" href="../shuffle/SerializedShuffleHandle.html">SerializedShuffleHandle</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-shuffle-ShuffleReader.html">ShuffleReader</a>
+    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleReader.html">ShuffleReader</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="BlockStoreShuffleReader.html">BlockStoreShuffleReader</a>
+    <a class="nav-link" href="../shuffle/BlockStoreShuffleReader.html">BlockStoreShuffleReader</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="ShuffleWriter.html">ShuffleWriter</a>
+    <a class="nav-link" href="../shuffle/ShuffleWriter.html">ShuffleWriter</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="BypassMergeSortShuffleWriter.html">BypassMergeSortShuffleWriter</a>
+    <a class="nav-link" href="../shuffle/BypassMergeSortShuffleWriter.html">BypassMergeSortShuffleWriter</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="SortShuffleWriter.html">SortShuffleWriter</a>
+    <a class="nav-link" href="../shuffle/SortShuffleWriter.html">SortShuffleWriter</a>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
+    <a class="nav-link" href="../shuffle/UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="ShuffleExternalSorter.html">ShuffleExternalSorter</a>
+    <a class="nav-link" href="../shuffle/ShuffleExternalSorter.html">ShuffleExternalSorter</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
+    <a class="nav-link" href="../shuffle/ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
   </li>
 </ul>
   </li>
@@ -464,25 +464,25 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="ShuffleBlockResolver.html">ShuffleBlockResolver</a>
+    <a class="nav-link" href="../shuffle/ShuffleBlockResolver.html">ShuffleBlockResolver</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="IndexShuffleBlockResolver.html">IndexShuffleBlockResolver</a>
+    <a class="nav-link" href="../shuffle/IndexShuffleBlockResolver.html">IndexShuffleBlockResolver</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="FetchFailedException.html">FetchFailedException</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../shuffle/FetchFailedException.html">FetchFailedException</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="Spillable.html">Spillable</a>
+    <a class="nav-link" href="../shuffle/Spillable.html">Spillable</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ExternalAppendOnlyMap.html">ExternalAppendOnlyMap</a>
+    <a class="nav-link" href="../shuffle/ExternalAppendOnlyMap.html">ExternalAppendOnlyMap</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ExternalSorter.html">ExternalSorter</a>
+    <a class="nav-link" href="../shuffle/ExternalSorter.html">ExternalSorter</a>
   </li>
 </ul>
   </li>
@@ -1840,93 +1840,64 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Shuffle System</a></li>
-    <li><a href="FetchFailedException.html">FetchFailedException</a></li>
+    <li><a href="index.html">Scheduler</a></li>
+    <li><a href="TaskLocation.html">TaskLocation</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/shuffle/pages/FetchFailedException.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/scheduler/pages/TaskLocation.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="fetchfailedexception"><a class="anchor" href="#fetchfailedexception"></a><a class="link" href="#fetchfailedexception"><a id="FetchFailedException"></a> FetchFailedException</a></h2>
+<h1 class="page">TaskLocation</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>FetchFailedException</code> exception <a href="../spark-Executor-TaskRunner.html#run-FetchFailedException" class="page">may be thrown when a task runs</a> (and <a href="../storage/ShuffleBlockFetcherIterator.html#throwFetchFailedException" class="page"><code>ShuffleBlockFetcherIterator</code> did not manage to fetch shuffle blocks</a>).</p>
+<p>TaskLocation represents a placement preference of an RDD partition, i.e. a hint of the location to submit <a href="Task.html" class="page">tasks</a> for execution.</p>
 </div>
 <div class="paragraph">
-<p><code>FetchFailedException</code> contains the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>the unique identifier for a <a href="../storage/BlockManager.html" class="page">BlockManager</a> (as <a href="../storage/BlockManager.html#BlockManagerId" class="page">BlockManagerId</a>)</p>
-</li>
-<li>
-<p><code>shuffleId</code></p>
-</li>
-<li>
-<p><code>mapId</code></p>
-</li>
-<li>
-<p><code>reduceId</code></p>
-</li>
-<li>
-<p>A short exception <code>message</code></p>
-</li>
-<li>
-<p><code>cause</code> - the root <code>Throwable</code> object</p>
-</li>
-</ul>
+<p>TaskLocations are tracked by <a href="DAGScheduler.html#cacheLocs" class="page">DAGScheduler</a> for <a href="DAGScheduler.html#submitMissingTasks" class="page">submitting missing tasks of a stage</a>.</p>
 </div>
 <div class="paragraph">
-<p>When <code>FetchFailedException</code> is reported, <a href="../spark-Executor-TaskRunner.html#run-FetchFailedException" class="page"><code>TaskRunner</code> catches it and notifies <code>ExecutorBackend</code></a> (with <code>TaskState.FAILED</code> task state).</p>
+<p>TaskLocation is available as <a href="Task.html#preferredLocations" class="page">preferredLocations</a> of a task.</p>
+</div>
+<div id="host" class="paragraph">
+<p>Every TaskLocation describes the location by host name, but could also use other location-related metadata.</p>
 </div>
 <div class="paragraph">
-<p>The root <code>cause</code> of the <code>FetchFailedException</code> is usually because the <a href="../spark-Executor.html" class="page">executor</a> (with the <a href="../storage/BlockManager.html" class="page">BlockManager</a> for the shuffle blocks) is lost (i.e. no longer available) due to:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>OutOfMemoryError</code> could be thrown (aka <em>OOMed</em>) or some other unhandled exception.</p>
-</li>
-<li>
-<p>The cluster manager that manages the workers with the executors of your Spark application, e.g. YARN, enforces the container memory limits and eventually decided to kill the executor due to excessive memory usage.</p>
-</li>
-</ol>
+<p>TaskLocations of an RDD and a partition is available using <a href="../spark-SparkContext.html#getPreferredLocs" class="page">SparkContext.getPreferredLocs</a> method.</p>
 </div>
 <div class="paragraph">
-<p>You should review the logs of the Spark application using <a href="../webui/index.html" class="page">web UI</a>, <a href="../spark-history-server/index.html" class="page">Spark History Server</a> or cluster-specific tools like <a href="https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/YarnCommands.html#logs">yarn logs -applicationId</a> for Hadoop YARN.</p>
+<p>TaskLocation is a Scala <code>private[spark] sealed</code> trait so all the available implementations of TaskLocation trait are in a single Scala file.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="executorcachetasklocation"><a class="anchor" href="#executorcachetasklocation"></a><a class="link" href="#executorcachetasklocation"><a id="ExecutorCacheTaskLocation"></a> ExecutorCacheTaskLocation</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ExecutorCacheTaskLocation describes a <a href="#host">host</a> and an executor.</p>
 </div>
 <div class="paragraph">
-<p>A solution is usually to tune the memory of your Spark application.</p>
+<p>ExecutorCacheTaskLocation informs the Scheduler to prefer a given executor, but the next level of preference is any executor on the same host if this is not possible.</p>
 </div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME Image with the call to ExecutorBackend.
-</td>
-</tr>
-</table>
 </div>
-<div class="sect2">
-<h3 id="totaskfailedreason-method"><a class="anchor" href="#totaskfailedreason-method"></a><a class="link" href="#totaskfailedreason-method"><a id="toTaskFailedReason"></a> <code>toTaskFailedReason</code> Method</a></h3>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
 </div>
+<div class="sect1">
+<h2 id="hdfscachetasklocation"><a class="anchor" href="#hdfscachetasklocation"></a><a class="link" href="#hdfscachetasklocation"><a id="HDFSCacheTaskLocation"></a> HDFSCacheTaskLocation</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>HDFSCacheTaskLocation describes a <a href="#host">host</a> that is cached by HDFS.</p>
+</div>
+<div class="paragraph">
+<p>Used exclusively when <a href="../rdd/spark-rdd-HadoopRDD.html#getPreferredLocations" class="page">HadoopRDD</a> and <a href="../rdd/spark-rdd-NewHadoopRDD.html#getPreferredLocations" class="page">NewHadoopRDD</a> are requested for their placement preferences (aka <em>preferred locations</em>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="hosttasklocation"><a class="anchor" href="#hosttasklocation"></a><a class="link" href="#hosttasklocation"><a id="HostTaskLocation"></a> HostTaskLocation</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>HostTaskLocation describes a <a href="#host">host</a> only.</p>
 </div>
 </div>
 </div>
