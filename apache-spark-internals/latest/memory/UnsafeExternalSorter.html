@@ -302,6 +302,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="BytesToBytesMap.html">BytesToBytesMap</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="UnsafeSorterSpillReader.html">UnsafeSorterSpillReader</a>
+  </li>
   <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="UnsafeExternalSorter.html">UnsafeExternalSorter</a>
   </li>
@@ -1847,8 +1850,68 @@
   <div class="content">
 <article class="doc">
 <h1 class="page"><a id="UnsafeExternalSorter"></a> UnsafeExternalSorter</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p><strong>UnsafeExternalSorter</strong> is&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>UnsafeExternalSorter takes the following to be created:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="taskMemoryManager"></a> <a href="TaskMemoryManager.html" class="page">TaskMemoryManager</a></p>
+</li>
+<li>
+<p><a id="blockManager"></a> <a href="../storage/BlockManager.html" class="page">BlockManager</a></p>
+</li>
+<li>
+<p><a href="#serializerManager">SerializerManager</a></p>
+</li>
+<li>
+<p><a id="taskContext"></a> <a href="../scheduler/spark-TaskContext.html" class="page">TaskContext</a></p>
+</li>
+<li>
+<p><a id="recordComparatorSupplier"></a> Supplier&lt;RecordComparator&gt;</p>
+</li>
+<li>
+<p><a id="prefixComparator"></a> PrefixComparator</p>
+</li>
+<li>
+<p><a id="initialSize"></a> Initial size</p>
+</li>
+<li>
+<p><a id="pageSizeBytes"></a> Page size (in bytes)</p>
+</li>
+<li>
+<p><a id="numElementsForSpillThreshold"></a> numElementsForSpillThreshold</p>
+</li>
+<li>
+<p><a id="existingInMemorySorter"></a> <a href="UnsafeInMemorySorter.html" class="page">UnsafeInMemorySorter</a></p>
+</li>
+<li>
+<p><a id="canUseRadixSort"></a> canUseRadixSort flag</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="serializermanager"><a class="anchor" href="#serializermanager"></a><a class="link" href="#serializermanager"><a id="serializerManager"></a> SerializerManager</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>UnsafeExternalSorter is given a <a href="../serializer/SerializerManager.html" class="page">SerializerManager</a> when <a href="#creating-instance">created</a>.</p>
+</div>
+<div class="paragraph">
+<p>UnsafeExternalSorter uses the SerializerManager for <a href="#getSortedIterator">getSortedIterator</a>, <a href="#getIterator">getIterator</a>, and (SpillableIterator) <a href="#spill">spill</a> (to request UnsafeSorterSpillWriter for a <a href="UnsafeSorterSpillWriter.html#getReader" class="page">UnsafeSorterSpillReader</a>).</p>
+</div>
+</div>
 </div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

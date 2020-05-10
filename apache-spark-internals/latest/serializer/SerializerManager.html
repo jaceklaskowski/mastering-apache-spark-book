@@ -303,6 +303,9 @@
     <a class="nav-link" href="../memory/BytesToBytesMap.html">BytesToBytesMap</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/UnsafeSorterSpillReader.html">UnsafeSorterSpillReader</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../memory/UnsafeExternalSorter.html">UnsafeExternalSorter</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -1851,9 +1854,6 @@
 <div class="paragraph">
 <p><strong>SerializerManager</strong> is used to <a href="#getSerializer">select a serializer</a> for shuffle blocks (either the default <a href="#defaultSerializer">JavaSerializer</a> or <a href="#kryoSerializer">KryoSerializer</a> based on the key and value of a record).</p>
 </div>
-<div class="paragraph">
-<p>SerializerManager is used to create a <a href="../storage/BlockManager.html" class="page">BlockManager</a>.</p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -1906,7 +1906,38 @@ SparkEnv.get.serializerManager</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="wrapping-input-or-output-stream-for-block"><a class="anchor" href="#wrapping-input-or-output-stream-for-block"></a><a class="link" href="#wrapping-input-or-output-stream-for-block"><a id="wrapStream"></a> Wrapping Input or Output Stream for Block</a></h2>
+<h2 id="wrapping-input-or-output-stream-for-block"><a class="anchor" href="#wrapping-input-or-output-stream-for-block"></a><a class="link" href="#wrapping-input-or-output-stream-for-block"><a id="wrapForCompression"></a> Wrapping Input or Output Stream for Block</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">wrapForCompression(
+  blockId: BlockId,
+  s: OutputStream): OutputStream
+wrapForCompression(
+  blockId: BlockId,
+  s: InputStream): InputStream</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>wrapForCompression&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>wrapForCompression is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>SerializerManager is requested to <a href="#wrapStream">wrapStream</a>, <a href="#dataSerializeStream">dataSerializeStream</a>, <a href="#dataDeserializeStream">dataDeserializeStream</a> and <a href="#dataSerializeWithExplicitClassTag">dataSerializeWithExplicitClassTag</a></p>
+</li>
+<li>
+<p>SerializedValuesHolder (of <a href="../storage/MemoryStore.html" class="page">MemoryStore</a>) is requested for a SerializationStream</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="wrapping-input-or-output-stream-for-block-2"><a class="anchor" href="#wrapping-input-or-output-stream-for-block-2"></a><a class="link" href="#wrapping-input-or-output-stream-for-block-2"><a id="wrapStream"></a> Wrapping Input or Output Stream for Block</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -1922,7 +1953,26 @@ wrapStream(
 <p>wrapStream&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p>wrapStream is used when&#8230;&#8203;FIXME</p>
+<p>wrapStream is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>BlockStoreShuffleReader is requested to <a href="../shuffle/BlockStoreShuffleReader.html#read" class="page">read combined records for a reduce task</a></p>
+</li>
+<li>
+<p>DiskMapIterator (of <a href="../shuffle/ExternalAppendOnlyMap.html" class="page">ExternalAppendOnlyMap</a>) is requested for nextBatchStream</p>
+</li>
+<li>
+<p>SpillReader (of <a href="../shuffle/ExternalSorter.html" class="page">ExternalSorter</a>) is requested for nextBatchStream</p>
+</li>
+<li>
+<p><a href="../memory/UnsafeSorterSpillReader.html" class="page">UnsafeSorterSpillReader</a> is created</p>
+</li>
+<li>
+<p>DiskBlockObjectWriter is requested to <a href="../storage/DiskBlockObjectWriter.html#open" class="page">open</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1941,7 +1991,7 @@ wrapStream(
 <p>dataSerializeStream&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p>dataSerializeStream is used when&#8230;&#8203;FIXME</p>
+<p>dataSerializeStream is used when BlockManager is requested to <a href="../storage/BlockManager.html#doPutIterator" class="page">doPutIterator</a> and <a href="../storage/BlockManager.html#dropFromMemory" class="page">dropFromMemory</a>.</p>
 </div>
 </div>
 </div>
@@ -1960,7 +2010,7 @@ wrapStream(
 <p>dataSerializeWithExplicitClassTag&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p>dataSerializeWithExplicitClassTag is used when&#8230;&#8203;FIXME</p>
+<p>dataSerializeWithExplicitClassTag is used when BlockManager is requested to <a href="../storage/BlockManager.html#doGetLocalBytes" class="page">doGetLocalBytes</a>.</p>
 </div>
 </div>
 </div>
@@ -1979,7 +2029,17 @@ wrapStream(
 <p>dataDeserializeStream&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p>dataDeserializeStream is used when&#8230;&#8203;FIXME</p>
+<p>dataDeserializeStream is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>BlockManager is requested to <a href="../storage/BlockManager.html#getLocalValues" class="page">getLocalValues</a>, <a href="../storage/BlockManager.html#getRemoteValues" class="page">getRemoteValues</a> and <a href="../storage/BlockManager.html#doPutBytes" class="page">doPutBytes</a></p>
+</li>
+<li>
+<p>MemoryStore is requested to <a href="../storage/MemoryStore.html#putIteratorAsBytes" class="page">putIteratorAsBytes</a> (when PartiallySerializedBlock is requested for a PartiallyUnrolledIterator)</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2047,7 +2107,7 @@ getSerializer(
 <p>shouldCompress&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p>shouldCompress is used when&#8230;&#8203;FIXME</p>
+<p>shouldCompress is used when SerializerManager is requested to <a href="#wrapForCompression">wrapForCompression</a>.</p>
 </div>
 </div>
 </div>

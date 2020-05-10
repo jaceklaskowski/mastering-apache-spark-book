@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title> DAGSchedulerSource :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/metrics/spark-scheduler-DAGSchedulerSource.html">
+    <title>UnsafeSorterSpillReader :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/memory/UnsafeSorterSpillReader.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -266,55 +266,55 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../memory/index.html">Memory System</a>
+    <a class="nav-link" href="index.html">Memory System</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../memory/MemoryManager.html">MemoryManager</a>
+    <a class="nav-link" href="MemoryManager.html">MemoryManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../memory/StaticMemoryManager.html">StaticMemoryManager</a>
+    <a class="nav-link" href="StaticMemoryManager.html">StaticMemoryManager</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../memory/UnifiedMemoryManager.html">UnifiedMemoryManager</a>
+    <a class="nav-link" href="UnifiedMemoryManager.html">UnifiedMemoryManager</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../memory/MemoryPool.html">MemoryPool</a>
+    <a class="nav-link" href="MemoryPool.html">MemoryPool</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../memory/ExecutionMemoryPool.html">ExecutionMemoryPool</a>
+    <a class="nav-link" href="ExecutionMemoryPool.html">ExecutionMemoryPool</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../memory/StorageMemoryPool.html">StorageMemoryPool</a>
+    <a class="nav-link" href="StorageMemoryPool.html">StorageMemoryPool</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../memory/TaskMemoryManager.html">TaskMemoryManager</a>
+    <a class="nav-link" href="TaskMemoryManager.html">TaskMemoryManager</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../memory/MemoryConsumer.html">MemoryConsumer</a>
+    <a class="nav-link" href="MemoryConsumer.html">MemoryConsumer</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../memory/BytesToBytesMap.html">BytesToBytesMap</a>
+    <a class="nav-link" href="BytesToBytesMap.html">BytesToBytesMap</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="UnsafeSorterSpillReader.html">UnsafeSorterSpillReader</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../memory/UnsafeSorterSpillReader.html">UnsafeSorterSpillReader</a>
+    <a class="nav-link" href="UnsafeExternalSorter.html">UnsafeExternalSorter</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../memory/UnsafeExternalSorter.html">UnsafeExternalSorter</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../memory/UnsafeInMemorySorter.html">UnsafeInMemorySorter</a>
+    <a class="nav-link" href="UnsafeInMemorySorter.html">UnsafeInMemorySorter</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../memory/UnsafeSorterSpillWriter.html">UnsafeSorterSpillWriter</a>
+    <a class="nav-link" href="UnsafeSorterSpillWriter.html">UnsafeSorterSpillWriter</a>
   </li>
 </ul>
   </li>
@@ -1257,41 +1257,41 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Spark Metrics</a>
+    <a class="nav-link" href="../metrics/index.html">Spark Metrics</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-metrics-MetricsSystem.html">MetricsSystem</a>
+    <a class="nav-link" href="../metrics/spark-metrics-MetricsSystem.html">MetricsSystem</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-metrics-MetricsConfig.html">MetricsConfig</a>
+    <a class="nav-link" href="../metrics/spark-metrics-MetricsConfig.html">MetricsConfig</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-metrics-Source.html">Source</a>
+    <a class="nav-link" href="../metrics/spark-metrics-Source.html">Source</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="spark-scheduler-DAGSchedulerSource.html">DAGSchedulerSourcer</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/spark-scheduler-DAGSchedulerSource.html">DAGSchedulerSourcer</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-metrics-Sink.html">Sink</a>
+    <a class="nav-link" href="../metrics/spark-metrics-Sink.html">Sink</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-metrics-MetricsServlet.html">MetricsServlet JSON Metrics Sink</a>
+    <a class="nav-link" href="../metrics/spark-metrics-MetricsServlet.html">MetricsServlet JSON Metrics Sink</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-metrics-properties.html">Metrics Configuration Properties</a>
+    <a class="nav-link" href="../metrics/spark-metrics-properties.html">Metrics Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-executor-TaskMetrics.html">TaskMetrics</a>
+    <a class="nav-link" href="../metrics/spark-executor-TaskMetrics.html">TaskMetrics</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-executor-ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+    <a class="nav-link" href="../metrics/spark-executor-ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
   </li>
 </ul>
   </li>
@@ -1840,46 +1840,18 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Spark Metrics</a></li>
-    <li><a href="spark-metrics-Source.html">Source</a></li>
-    <li><a href="spark-scheduler-DAGSchedulerSource.html">DAGSchedulerSourcer</a></li>
+    <li><a href="index.html">Memory System</a></li>
+    <li><a href="MemoryConsumer.html">MemoryConsumer</a></li>
+    <li><a href="UnsafeSorterSpillReader.html">UnsafeSorterSpillReader</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/metrics/pages/spark-scheduler-DAGSchedulerSource.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/memory/pages/UnsafeSorterSpillReader.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page"><a id="DAGSchedulerSource"></a> DAGSchedulerSource</h1>
+<h1 class="page">UnsafeSorterSpillReader</h1>
 <div class="paragraph">
-<p><code>DAGSchedulerSource</code> is the <a href="spark-metrics-Source.html" class="page">metrics source</a> of <a href="../scheduler/DAGScheduler.html" class="page">DAGScheduler</a>.</p>
-</div>
-<div class="paragraph">
-<p><code>DAGScheduler</code> uses <a href="spark-metrics-MetricsSystem.html" class="page">Spark Metrics System</a> to report metrics about internal status.</p>
-</div>
-<div class="paragraph">
-<p>The name of the source is <strong>DAGScheduler</strong>.</p>
-</div>
-<div class="paragraph">
-<p>It emits the following numbers:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>stage.failedStages</strong> - the number of failed stages</p>
-</li>
-<li>
-<p><strong>stage.runningStages</strong> - the number of running stages</p>
-</li>
-<li>
-<p><strong>stage.waitingStages</strong> - the number of waiting stages</p>
-</li>
-<li>
-<p><strong>job.allJobs</strong> - the number of all jobs</p>
-</li>
-<li>
-<p><a id="job.activeJobs"></a> <strong>job.activeJobs</strong> - the number of active jobs</p>
-</li>
-</ul>
+<p><strong>UnsafeSorterSpillReader</strong> is&#8230;&#8203;FIXME</p>
 </div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

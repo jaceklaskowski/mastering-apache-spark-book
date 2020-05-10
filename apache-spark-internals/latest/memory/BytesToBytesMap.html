@@ -303,6 +303,9 @@
     <a class="nav-link" href="BytesToBytesMap.html">BytesToBytesMap</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="UnsafeSorterSpillReader.html">UnsafeSorterSpillReader</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="UnsafeExternalSorter.html">UnsafeExternalSorter</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -1853,9 +1856,6 @@
 <p><strong>BytesToBytesMap</strong> is a <a href="MemoryConsumer.html" class="page">MemoryConsumer</a>.</p>
 </div>
 <div class="paragraph">
-<p>BytesToBytesMap is created for Spark SQL&#8217;s UnsafeFixedWidthAggregationMap and UnsafeHashedRelation.</p>
-</div>
-<div class="paragraph">
 <p>BytesToBytesMap is used to create Spark SQL&#8217;s UnsafeKVExternalSorter and UnsafeHashedRelation.</p>
 </div>
 </div>
@@ -1875,7 +1875,7 @@
 <p><a id="blockManager"></a> <a href="../storage/BlockManager.html" class="page">BlockManager</a></p>
 </li>
 <li>
-<p><a id="serializerManager"></a> <a href="../serializer/SerializerManager.html" class="page">SerializerManager</a></p>
+<p><a href="#serializerManager">SerializerManager</a></p>
 </li>
 <li>
 <p><a id="initialCapacity"></a> Initial capacity</p>
@@ -1892,7 +1892,18 @@
 </ul>
 </div>
 <div class="paragraph">
-<p><code>BytesToBytesMap</code> initializes the <a href="#internal-properties">internal properties</a>.</p>
+<p>BytesToBytesMap is created for Spark SQL&#8217;s UnsafeFixedWidthAggregationMap and UnsafeHashedRelation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="serializermanager"><a class="anchor" href="#serializermanager"></a><a class="link" href="#serializermanager"><a id="serializerManager"></a> SerializerManager</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>BytesToBytesMap is given a <a href="../serializer/SerializerManager.html" class="page">SerializerManager</a> when <a href="#creating-instance">created</a>.</p>
+</div>
+<div class="paragraph">
+<p>BytesToBytesMap uses the SerializerManager when (MapIterator is) requested to advanceToNextPage (to request UnsafeSorterSpillWriter for a <a href="UnsafeSorterSpillWriter.html#getReader" class="page">UnsafeSorterSpillReader</a>).</p>
 </div>
 </div>
 </div>
