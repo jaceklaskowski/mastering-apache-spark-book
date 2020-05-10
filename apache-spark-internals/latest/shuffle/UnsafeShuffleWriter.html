@@ -497,7 +497,34 @@
     <a class="nav-link" href="../rdd/index.html">Resilient Distributed Dataset</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../rdd/RDD.html">RDD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-HadoopRDD.html">HadoopRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/ShuffledRDD.html">ShuffledRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -539,11 +566,17 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../rdd/spark-rdd-Partition.html">Partition</a>
   </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/Partitioner.html">Partitioner</a>
+<ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-Partitioner.html">Partitioner</a>
+    <a class="nav-link" href="../rdd/HashPartitioner.html">HashPartitioner</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-HashPartitioner.html">HashPartitioner</a>
+    <a class="nav-link" href="../rdd/RangePartitioner.html">RangePartitioner</a>
   </li>
 </ul>
   </li>
@@ -564,36 +597,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../rdd/Aggregator.html">Aggregator</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Specialized RDDs</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-HadoopRDD.html">HadoopRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/ShuffledRDD.html">ShuffledRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1913,7 +1916,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>UnsafeShuffleWriter requests the <a href="#handle">SerializedShuffleHandle</a> for the <a href="spark-shuffle-BaseShuffleHandle.html#dependency" class="page">ShuffleDependency</a> that is then requested for the <a href="../rdd/ShuffleDependency.html#partitioner" class="page">Partitioner</a> and, in the end, for the <a href="../rdd/spark-rdd-Partitioner.html#numPartitions" class="page">number of partitions</a>. UnsafeShuffleWriter makes sure that the number of shuffle output partitions is below <a href="SortShuffleManager.html#MAX_SHUFFLE_OUTPUT_PARTITIONS_FOR_SERIALIZED_MODE" class="page"><code>(1 &lt;&lt; 24)</code> partition identifiers that can be encoded</a> and throws an <code>IllegalArgumentException</code> if not met:</p>
+<p>UnsafeShuffleWriter requests the <a href="#handle">SerializedShuffleHandle</a> for the <a href="spark-shuffle-BaseShuffleHandle.html#dependency" class="page">ShuffleDependency</a> that is then requested for the <a href="../rdd/ShuffleDependency.html#partitioner" class="page">Partitioner</a> and, in the end, for the <a href="../rdd/Partitioner.html#numPartitions" class="page">number of partitions</a>. UnsafeShuffleWriter makes sure that the number of shuffle output partitions is below <a href="SortShuffleManager.html#MAX_SHUFFLE_OUTPUT_PARTITIONS_FOR_SERIALIZED_MODE" class="page"><code>(1 &lt;&lt; 24)</code> partition identifiers that can be encoded</a> and throws an <code>IllegalArgumentException</code> if not met:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2123,7 +2126,7 @@ FIXME
 <p>insertRecordIntoSorter requests the <a href="#serBuffer">MyByteArrayOutputStream</a> for the length of the buffer.</p>
 </div>
 <div id="insertRecordIntoSorter-partitionId" class="paragraph">
-<p>insertRecordIntoSorter requests the <a href="#partitioner">Partitioner</a> for the <a href="../rdd/spark-rdd-Partitioner.html#getPartition" class="page">partition</a> for the given record (by the key).</p>
+<p>insertRecordIntoSorter requests the <a href="#partitioner">Partitioner</a> for the <a href="../rdd/Partitioner.html#getPartition" class="page">partition</a> for the given record (by the key).</p>
 </div>
 <div class="paragraph">
 <p>In the end, insertRecordIntoSorter requests the <a href="#sorter">ShuffleExternalSorter</a> to <a href="ShuffleExternalSorter.html#insertRecord" class="page">insert</a> the <a href="#serBuffer">MyByteArrayOutputStream</a> as a byte array (with the <a href="#insertRecordIntoSorter-serializedRecordSize">length</a> and the <a href="#insertRecordIntoSorter-partitionId">partition</a>).</p>
@@ -2280,7 +2283,7 @@ FIXME
 <div class="sect2">
 <h3 id="partitioner"><a class="anchor" href="#partitioner"></a><a class="link" href="#partitioner"><a id="partitioner"></a> partitioner</a></h3>
 <div class="paragraph">
-<p><a href="../rdd/spark-rdd-Partitioner.html" class="page">Partitioner</a> (as used by the <a href="spark-shuffle-BaseShuffleHandle.html#dependency" class="page">ShuffleDependency</a> of the <a href="#handle">SerializedShuffleHandle</a>)</p>
+<p><a href="../rdd/Partitioner.html" class="page">Partitioner</a> (as used by the <a href="spark-shuffle-BaseShuffleHandle.html#dependency" class="page">ShuffleDependency</a> of the <a href="#handle">SerializedShuffleHandle</a>)</p>
 </div>
 <div class="paragraph">
 <p>Used when UnsafeShuffleWriter is requested for the following:</p>
@@ -2288,13 +2291,13 @@ FIXME
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#open">open</a> (and create a <a href="ShuffleExternalSorter.html" class="page">ShuffleExternalSorter</a> with the given <a href="../rdd/spark-rdd-Partitioner.html#numPartitions" class="page">number of partitions</a>)</p>
+<p><a href="#open">open</a> (and create a <a href="ShuffleExternalSorter.html" class="page">ShuffleExternalSorter</a> with the given <a href="../rdd/Partitioner.html#numPartitions" class="page">number of partitions</a>)</p>
 </li>
 <li>
-<p><a href="#insertRecordIntoSorter">insertRecordIntoSorter</a> (and request the <a href="../rdd/spark-rdd-Partitioner.html#getPartition" class="page">partition for the key</a>)</p>
+<p><a href="#insertRecordIntoSorter">insertRecordIntoSorter</a> (and request the <a href="../rdd/Partitioner.html#getPartition" class="page">partition for the key</a>)</p>
 </li>
 <li>
-<p><a href="#mergeSpills">mergeSpills</a>, <a href="#mergeSpillsWithFileStream">mergeSpillsWithFileStream</a> and <a href="#mergeSpillsWithTransferTo">mergeSpillsWithTransferTo</a> (for the <a href="../rdd/spark-rdd-Partitioner.html#numPartitions" class="page">number of partitions</a> to create partition lengths)</p>
+<p><a href="#mergeSpills">mergeSpills</a>, <a href="#mergeSpillsWithFileStream">mergeSpillsWithFileStream</a> and <a href="#mergeSpillsWithTransferTo">mergeSpillsWithTransferTo</a> (for the <a href="../rdd/Partitioner.html#numPartitions" class="page">number of partitions</a> to create partition lengths)</p>
 </li>
 </ul>
 </div>

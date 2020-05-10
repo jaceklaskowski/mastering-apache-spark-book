@@ -497,7 +497,34 @@
     <a class="nav-link" href="../rdd/index.html">Resilient Distributed Dataset</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../rdd/RDD.html">RDD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-HadoopRDD.html">HadoopRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/ShuffledRDD.html">ShuffledRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -539,11 +566,17 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../rdd/spark-rdd-Partition.html">Partition</a>
   </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/Partitioner.html">Partitioner</a>
+<ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-Partitioner.html">Partitioner</a>
+    <a class="nav-link" href="../rdd/HashPartitioner.html">HashPartitioner</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-HashPartitioner.html">HashPartitioner</a>
+    <a class="nav-link" href="../rdd/RangePartitioner.html">RangePartitioner</a>
   </li>
 </ul>
   </li>
@@ -564,36 +597,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../rdd/Aggregator.html">Aggregator</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Specialized RDDs</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-HadoopRDD.html">HadoopRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/ShuffledRDD.html">ShuffledRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1986,7 +1989,7 @@
 <p>No map-side aggregation (the <a href="../rdd/ShuffleDependency.html#mapSideCombine" class="page">mapSideCombine</a> flag of the given <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a> is off)</p>
 </li>
 <li>
-<p><a href="../rdd/spark-rdd-Partitioner.html#numPartitions" class="page">Number of partitions</a> (of the <a href="../rdd/ShuffleDependency.html#partitioner" class="page">Partitioner</a> of the given <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>) is not greater than <a href="../configuration-properties.html#spark.shuffle.sort.bypassMergeThreshold" class="page">spark.shuffle.sort.bypassMergeThreshold</a> configuration property</p>
+<p><a href="../rdd/Partitioner.html#numPartitions" class="page">Number of partitions</a> (of the <a href="../rdd/ShuffleDependency.html#partitioner" class="page">Partitioner</a> of the given <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>) is not greater than <a href="../configuration-properties.html#spark.shuffle.sort.bypassMergeThreshold" class="page">spark.shuffle.sort.bypassMergeThreshold</a> configuration property</p>
 </li>
 </ol>
 </div>

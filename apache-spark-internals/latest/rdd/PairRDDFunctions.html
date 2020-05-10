@@ -497,7 +497,34 @@
     <a class="nav-link" href="index.html">Resilient Distributed Dataset</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="RDD.html">RDD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-rdd-HadoopRDD.html">HadoopRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ShuffledRDD.html">ShuffledRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -539,11 +566,17 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="spark-rdd-Partition.html">Partition</a>
   </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="Partitioner.html">Partitioner</a>
+<ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-Partitioner.html">Partitioner</a>
+    <a class="nav-link" href="HashPartitioner.html">HashPartitioner</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-HashPartitioner.html">HashPartitioner</a>
+    <a class="nav-link" href="RangePartitioner.html">RangePartitioner</a>
   </li>
 </ul>
   </li>
@@ -564,36 +597,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="Aggregator.html">Aggregator</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Specialized RDDs</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-HadoopRDD.html">HadoopRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ShuffledRDD.html">ShuffledRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -2119,11 +2122,11 @@ combineByKeyWithClassTag[C](
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Uses the <a href="spark-rdd-Partitioner.html#defaultPartitioner" class="page">default partitioner</a></td>
+<td>Uses the <a href="Partitioner.html#defaultPartitioner" class="page">default partitioner</a></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Uses a <a href="spark-rdd-HashPartitioner.html" class="page">HashPartitioner</a> with the given number of partitions</td>
+<td>Uses a <a href="HashPartitioner.html" class="page">HashPartitioner</a> with the given number of partitions</td>
 </tr>
 </table>
 </div>
@@ -2131,7 +2134,7 @@ combineByKeyWithClassTag[C](
 <p>combineByKeyWithClassTag creates an <a href="Aggregator.html" class="page">Aggregator</a> for the given aggregation functions.</p>
 </div>
 <div class="paragraph">
-<p>combineByKeyWithClassTag branches off per the given <a href="spark-rdd-Partitioner.html" class="page">Partitioner</a>.</p>
+<p>combineByKeyWithClassTag branches off per the given <a href="Partitioner.html" class="page">Partitioner</a>.</p>
 </div>
 <div class="paragraph">
 <p>If the input partitioner and the RDD&#8217;s are the same, combineByKeyWithClassTag simply <a href="spark-rdd-transformations.html#mapPartitions" class="page">mapPartitions</a> on the RDD with the following arguments:</p>
@@ -2196,7 +2199,7 @@ combineByKeyWithClassTag[C](
 </div>
 </div>
 <div class="paragraph">
-<p>combineByKeyWithClassTag throws a SparkException for the keys being of type array with the partitioner being a <a href="spark-rdd-HashPartitioner.html" class="page">HashPartitioner</a>:</p>
+<p>combineByKeyWithClassTag throws a SparkException for the keys being of type array with the partitioner being a <a href="HashPartitioner.html" class="page">HashPartitioner</a>:</p>
 </div>
 <div class="listingblock">
 <div class="content">

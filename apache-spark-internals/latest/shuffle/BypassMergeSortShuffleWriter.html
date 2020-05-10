@@ -497,7 +497,34 @@
     <a class="nav-link" href="../rdd/index.html">Resilient Distributed Dataset</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../rdd/RDD.html">RDD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-HadoopRDD.html">HadoopRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/ShuffledRDD.html">ShuffledRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -539,11 +566,17 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../rdd/spark-rdd-Partition.html">Partition</a>
   </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/Partitioner.html">Partitioner</a>
+<ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-Partitioner.html">Partitioner</a>
+    <a class="nav-link" href="../rdd/HashPartitioner.html">HashPartitioner</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-HashPartitioner.html">HashPartitioner</a>
+    <a class="nav-link" href="../rdd/RangePartitioner.html">RangePartitioner</a>
   </li>
 </ul>
   </li>
@@ -564,36 +597,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../rdd/Aggregator.html">Aggregator</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Specialized RDDs</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-HadoopRDD.html">HadoopRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/ShuffledRDD.html">ShuffledRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1965,7 +1968,7 @@
 <p>After all DiskBlockObjectWriters are created, write requests the <a href="#writeMetrics">ShuffleWriteMetrics</a> to <a href="../metrics/spark-executor-ShuffleWriteMetrics.html#incWriteTime" class="page">increment shuffle write time metric</a>.</p>
 </div>
 <div class="paragraph">
-<p>For every record (a key-value pair), write requests the <a href="#partitioner">Partitioner</a> for the <a href="../rdd/spark-rdd-Partitioner.html#getPartition" class="page">partition ID</a> for the key. The partition ID is then used as an index of the partition writer (among the <a href="#partitionWriters">DiskBlockObjectWriters</a>) to <a href="../storage/DiskBlockObjectWriter.html#write" class="page">write the current record out to a block file</a>.</p>
+<p>For every record (a key-value pair), write requests the <a href="#partitioner">Partitioner</a> for the <a href="../rdd/Partitioner.html#getPartition" class="page">partition ID</a> for the key. The partition ID is then used as an index of the partition writer (among the <a href="#partitionWriters">DiskBlockObjectWriters</a>) to <a href="../storage/DiskBlockObjectWriter.html#write" class="page">write the current record out to a block file</a>.</p>
 </div>
 <div class="paragraph">
 <p>Once all records have been writted out to their respective block files, write does the following for every <a href="#partitionWriters">DiskBlockObjectWriter</a>:</p>

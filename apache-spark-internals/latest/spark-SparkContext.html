@@ -497,7 +497,34 @@
     <a class="nav-link" href="rdd/index.html">Resilient Distributed Dataset</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="rdd/RDD.html">RDD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="rdd/spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="rdd/spark-rdd-HadoopRDD.html">HadoopRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="rdd/spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="rdd/spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="rdd/spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="rdd/spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="rdd/ShuffledRDD.html">ShuffledRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -539,11 +566,17 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="rdd/spark-rdd-Partition.html">Partition</a>
   </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="rdd/Partitioner.html">Partitioner</a>
+<ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="rdd/spark-rdd-Partitioner.html">Partitioner</a>
+    <a class="nav-link" href="rdd/HashPartitioner.html">HashPartitioner</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="rdd/spark-rdd-HashPartitioner.html">HashPartitioner</a>
+    <a class="nav-link" href="rdd/RangePartitioner.html">RangePartitioner</a>
   </li>
 </ul>
   </li>
@@ -564,36 +597,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="rdd/Aggregator.html">Aggregator</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Specialized RDDs</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="rdd/spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="rdd/spark-rdd-HadoopRDD.html">HadoopRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="rdd/spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="rdd/spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="rdd/spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="rdd/spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="rdd/ShuffledRDD.html">ShuffledRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -2808,7 +2811,7 @@ FIXME Where is the method used?
 <p><code>defaultParallelism</code> is used in <a href="#parallelize">SparkContext.parallelize</a>, <code>SparkContext.range</code> and <a href="#makeRDD">SparkContext.makeRDD</a> (as well as Spark Streaming&#8217;s <code>DStream.countByValue</code> and <code>DStream.countByValueAndWindow</code> et al.).</p>
 </div>
 <div class="paragraph">
-<p><code>defaultParallelism</code> is also used to instantiate <a href="spark-rdd-HashPartitioner.adoc">HashPartitioner</a> and for the minimum number of partitions in <a href="rdd/spark-rdd-HadoopRDD.html" class="page">HadoopRDDs</a>.</p>
+<p><code>defaultParallelism</code> is also used to instantiate <a href="rdd/HashPartitioner.html" class="page">HashPartitioner</a> and for the minimum number of partitions in <a href="rdd/spark-rdd-HadoopRDD.html" class="page">HadoopRDDs</a>.</p>
 </div>
 </td>
 </tr>
