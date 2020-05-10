@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title> StageInfo :: The Internals Of Apache Spark</title>
+    <title>StageInfo :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/scheduler/spark-scheduler-StageInfo.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -494,7 +494,7 @@
     <a class="nav-link" href="../rdd/index.html">Resilient Distributed Dataset</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-rdd-RDD.html">RDD API</a>
+    <a class="nav-link" href="../rdd/spark-rdd-RDD.html">RDD</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1848,37 +1848,25 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page"><a id="StageInfo"></a> StageInfo</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
+<h1 class="page">StageInfo</h1>
 <div class="sect1">
-<h2 id="fromstage-method"><a class="anchor" href="#fromstage-method"></a><a class="link" href="#fromstage-method"><a id="fromStage"></a> <code>fromStage</code> Method</a></h2>
+<h2 id="fromstage-method"><a class="anchor" href="#fromstage-method"></a><a class="link" href="#fromstage-method"><a id="fromStage"></a> fromStage Method</a></h2>
 <div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">fromStage(
+  stage: Stage,
+  attemptId: Int,
+  numTasks: Option[Int] = None,
+  taskMetrics: TaskMetrics = null,
+  taskLocalityPreferences: Seq[Seq[TaskLocation]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>fromStage&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>fromStage is used when Stage is created (and initializes the <a href="Stage.html#_latestInfo" class="page">StageInfo</a>) and <a href="Stage.html#makeNewStageAttempt" class="page">makeNewStageAttempt</a>.</p>
 </div>
 </div>
 </div>
