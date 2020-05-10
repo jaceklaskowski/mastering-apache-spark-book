@@ -494,7 +494,7 @@
     <a class="nav-link" href="../rdd/index.html">Resilient Distributed Dataset</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-rdd-RDD.html">RDD</a>
+    <a class="nav-link" href="../rdd/RDD.html">RDD</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1869,7 +1869,7 @@
 <p>Spark uses <a href="#spark-broadcast.adoc" class="page unresolved">broadcast variables</a> to send (serialized) tasks to executors.</p>
 </div>
 <div class="paragraph">
-<p><a href="#runTask">runTask</a> expects that the <a href="#taskBinary">serialized task binary</a> should be a tuple of a <a href="#spark-rdd-RDD.adoc" class="page unresolved">RDD</a> and a <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a></p>
+<p><a href="#runTask">runTask</a> expects that the <a href="#taskBinary">serialized task binary</a> should be a tuple of a <a href="../rdd/RDD.html" class="page">RDD</a> and a <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a></p>
 </div>
 </td>
 </tr>
@@ -1984,7 +1984,7 @@
 <p><code>runTask</code> writes the result (<em>records</em>) of executing the <a href="#taskBinary">serialized task code</a> over the records (in the <a href="#partition">RDD partition</a>) to the <a href="../shuffle/ShuffleManager.html" class="page">shuffle system</a> and returns a <a href="MapStatus.html" class="page">MapStatus</a> (with the <a href="../storage/BlockManager.html" class="page">BlockManager</a> and an estimated size of the result shuffle blocks).</p>
 </div>
 <div class="paragraph">
-<p>Internally, <code>runTask</code> requests the <a href="#spark-SparkEnv.adoc" class="page unresolved">SparkEnv</a> for the new instance of <a href="#spark-SparkEnv.adoc#closureSerializer" class="page unresolved">closure serializer</a> and requests it to <a href="../serializer/Serializer.html#deserialize" class="page">deserialize</a> the <a href="#taskBinary">taskBinary</a> (into a tuple of a <a href="#spark-rdd-RDD.adoc" class="page unresolved">RDD</a> and a <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>).</p>
+<p>Internally, <code>runTask</code> requests the <a href="#spark-SparkEnv.adoc" class="page unresolved">SparkEnv</a> for the new instance of <a href="#spark-SparkEnv.adoc#closureSerializer" class="page unresolved">closure serializer</a> and requests it to <a href="../serializer/Serializer.html#deserialize" class="page">deserialize</a> the <a href="#taskBinary">taskBinary</a> (into a tuple of a <a href="../rdd/RDD.html" class="page">RDD</a> and a <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>).</p>
 </div>
 <div class="paragraph">
 <p><code>runTask</code> measures the <a href="Task.html#_executorDeserializeTime" class="page">thread</a> and <a href="Task.html#_executorDeserializeCpuTime" class="page">CPU</a> deserialization times.</p>
@@ -1993,7 +1993,7 @@
 <p><code>runTask</code> requests the <a href="#spark-SparkEnv.adoc" class="page unresolved">SparkEnv</a> for the <a href="#spark-SparkEnv.adoc#shuffleManager" class="page unresolved">ShuffleManager</a> and requests it for a <a href="../shuffle/ShuffleManager.html#getWriter" class="page">ShuffleWriter</a> (for the <a href="../rdd/ShuffleDependency.html#shuffleHandle" class="page">ShuffleHandle</a>, the <a href="Task.html#partitionId" class="page">RDD partition</a>, and the <a href="spark-TaskContext.html" class="page">TaskContext</a>).</p>
 </div>
 <div class="paragraph">
-<p><code>runTask</code> then requests the <a href="#rdd">RDD</a> for the <a href="#spark-rdd-RDD.adoc#iterator" class="page unresolved">records</a> (of the <a href="#partition">partition</a>) that the <code>ShuffleWriter</code> is requested to <a href="../shuffle/ShuffleWriter.html#write" class="page">write out</a> (to the shuffle system).</p>
+<p><code>runTask</code> then requests the <a href="#rdd">RDD</a> for the <a href="../rdd/RDD.html#iterator" class="page">records</a> (of the <a href="#partition">partition</a>) that the <code>ShuffleWriter</code> is requested to <a href="../shuffle/ShuffleWriter.html#write" class="page">write out</a> (to the shuffle system).</p>
 </div>
 <div class="paragraph">
 <p>In the end, <code>runTask</code> requests the <code>ShuffleWriter</code> to <a href="../shuffle/ShuffleWriter.html#stop" class="page">stop</a> (with the <code>success</code> flag on) and returns the <a href="MapStatus.html" class="page">shuffle map output status</a>.</p>

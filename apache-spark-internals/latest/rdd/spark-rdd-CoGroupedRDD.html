@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>CoGroupedRDD :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/rdd/spark-rdd-CoGroupedRDD.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -494,7 +494,7 @@
     <a class="nav-link" href="index.html">Resilient Distributed Dataset</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-rdd-RDD.html">RDD</a>
+    <a class="nav-link" href="RDD.html">RDD</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1849,8 +1849,8 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="cogroupedrdd"><a class="anchor" href="#cogroupedrdd"></a><a class="link" href="#cogroupedrdd"><a id="CoGroupedRDD"></a> CoGroupedRDD</a></h2>
+<h1 class="page">CoGroupedRDD</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>A RDD that cogroups its pair RDD parents. For each key k in parent RDDs, the resulting RDD contains a tuple with the list of values for that key.</p>
@@ -1858,8 +1858,11 @@
 <div class="paragraph">
 <p>Use <code>RDD.cogroup(&#8230;&#8203;)</code> to create one.</p>
 </div>
-<div class="sect2">
-<h3 id="getdependencies-method"><a class="anchor" href="#getdependencies-method"></a><a class="link" href="#getdependencies-method"><a id="getDependencies"></a> <code>getDependencies</code> Method</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getdependencies-method"><a class="anchor" href="#getdependencies-method"></a><a class="link" href="#getdependencies-method"><a id="getDependencies"></a> getDependencies Method</a></h2>
+<div class="sectionbody">
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -1873,28 +1876,20 @@ FIXME
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="computing-partition-in-taskcontextcompute-method"><a class="anchor" href="#computing-partition-in-taskcontextcompute-method"></a><a class="link" href="#computing-partition-in-taskcontextcompute-method"><a id="compute"></a> Computing Partition (in TaskContext)&#8201;&#8212;&#8201;<code>compute</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="computing-partition-in-taskcontext"><a class="anchor" href="#computing-partition-in-taskcontext"></a><a class="link" href="#computing-partition-in-taskcontext"><a id="compute"></a> Computing Partition (in TaskContext)</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">compute(s: Partition, context: TaskContext): Iterator[(K, Array[Iterable[_]])]</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>compute</code> is part of <a href="spark-rdd-RDD.adoc#compute">RDD Contract</a> to compute a <a href="spark-rdd-Partition.adoc">partition</a> (in a <a href="spark-TaskContext.adoc">TaskContext</a>).
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>compute&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p><code>compute</code>&#8230;&#8203;FIXME</p>
-</div>
+<p>compute is part of <a href="RDD.html#compute" class="page">RDD</a> abstraction.</p>
 </div>
 </div>
 </div>

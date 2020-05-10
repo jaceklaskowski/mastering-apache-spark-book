@@ -494,7 +494,7 @@
     <a class="nav-link" href="index.html">Resilient Distributed Dataset</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-rdd-RDD.html">RDD</a>
+    <a class="nav-link" href="RDD.html">RDD</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1853,7 +1853,7 @@
 <h2 id="mappartitionsrdd"><a class="anchor" href="#mappartitionsrdd"></a><a class="link" href="#mappartitionsrdd"><a id="MapPartitionsRDD"></a> MapPartitionsRDD</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>MapPartitionsRDD</code> is an <a href="spark-rdd-RDD.html" class="page">RDD</a> that has exactly <a href="spark-rdd-NarrowDependency.html#OneToOneDependency" class="page">one-to-one narrow dependency</a> on the <a href="#prev">parent RDD</a> and "describes" a distributed computation of the given <a href="#f">function</a> to every RDD partition.</p>
+<p><code>MapPartitionsRDD</code> is an <a href="RDD.html" class="page">RDD</a> that has exactly <a href="spark-rdd-NarrowDependency.html#OneToOneDependency" class="page">one-to-one narrow dependency</a> on the <a href="#prev">parent RDD</a> and "describes" a distributed computation of the given <a href="#f">function</a> to every RDD partition.</p>
 </div>
 <div class="paragraph">
 <p><code>MapPartitionsRDD</code> is <a href="#creating-instance">created</a> when:</p>
@@ -1900,7 +1900,7 @@
 </ul>
 </div>
 <div id="isBarrier_" class="paragraph">
-<p>When requested for the <a href="spark-rdd-RDD.html#isBarrier_" class="page">isBarrier_</a> flag, <code>MapPartitionsRDD</code> gives the <a href="#isFromBarrier">isFromBarrier</a> flag or check whether any of the RDDs of the <a href="spark-rdd-RDD.html#dependencies" class="page">RDD dependencies</a> are <a href="spark-rdd-RDD.html#isBarrier" class="page">barrier-enabled</a>.</p>
+<p>When requested for the <a href="RDD.html#isBarrier_" class="page">isBarrier_</a> flag, <code>MapPartitionsRDD</code> gives the <a href="#isFromBarrier">isFromBarrier</a> flag or check whether any of the RDDs of the <a href="RDD.html#dependencies" class="page">RDD dependencies</a> are <a href="RDD.html#isBarrier" class="page">barrier-enabled</a>.</p>
 </div>
 <div class="sect2">
 <h3 id="creating-mappartitionsrdd-instance"><a class="anchor" href="#creating-mappartitionsrdd-instance"></a><a class="link" href="#creating-mappartitionsrdd-instance"><a id="creating-instance"></a> Creating MapPartitionsRDD Instance</a></h3>
@@ -1910,7 +1910,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a id="prev"></a> Parent <a href="spark-rdd-RDD.html" class="page">RDD</a> (<code>RDD[T]</code>)</p>
+<p><a id="prev"></a> Parent <a href="RDD.html" class="page">RDD</a> (<code>RDD[T]</code>)</p>
 </li>
 <li>
 <p><a id="f"></a> Function to execute on partitions</p>

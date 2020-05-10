@@ -494,7 +494,7 @@
     <a class="nav-link" href="index.html">Resilient Distributed Dataset</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-rdd-RDD.html">RDD</a>
+    <a class="nav-link" href="RDD.html">RDD</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1853,7 +1853,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>ShuffledRDD</strong> is an <a href="spark-rdd-RDD.html" class="page">RDD</a> of key-value pairs that represents a <strong>shuffle step</strong> in a <a href="spark-rdd-lineage.html" class="page">RDD lineage</a>.</p>
+<p><strong>ShuffledRDD</strong> is an <a href="RDD.html" class="page">RDD</a> of key-value pairs that represents a <strong>shuffle step</strong> in a <a href="spark-rdd-lineage.html" class="page">RDD lineage</a>.</p>
 </div>
 <div class="paragraph">
 <p>ShuffledRDD is given an <a href="#prev">RDD</a> of key-value pairs of K and V types, respectively, when <a href="#creating-instance">created</a> and <a href="#compute">computes</a> key-value pairs of K and C types, respectively.</p>
@@ -1878,7 +1878,7 @@
 <p>ShuffledRDD uses custom <a href="#ShuffledRDDPartition">ShuffledRDDPartition</a> partitions.</p>
 </div>
 <div id="isBarrier" class="paragraph">
-<p>ShuffledRDD has <a href="spark-rdd-RDD.html#isBarrier" class="page">isBarrier</a> flag always disabled (<code>false</code>).</p>
+<p>ShuffledRDD has <a href="RDD.html#isBarrier" class="page">isBarrier</a> flag always disabled (<code>false</code>).</p>
 </div>
 </div>
 </div>
@@ -1891,7 +1891,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a id="prev"></a> Previous <a href="spark-rdd-RDD.html" class="page">RDD</a> of key-value pairs (<code>RDD[_ &lt;: Product2[K, V]]</code>)</p>
+<p><a id="prev"></a> Previous <a href="RDD.html" class="page">RDD</a> of key-value pairs (<code>RDD[_ &lt;: Product2[K, V]]</code>)</p>
 </li>
 <li>
 <p><a id="part"></a> <a href="spark-rdd-Partitioner.html" class="page">Partitioner</a></p>
@@ -1931,7 +1931,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>compute requests the only <a href="spark-rdd-RDD.html#dependencies" class="page">dependency</a> (that is assumed a <a href="ShuffleDependency.html" class="page">ShuffleDependency</a>) for the <a href="ShuffleDependency.html#shuffleHandle" class="page">ShuffleHandle</a>.</p>
+<p>compute requests the only <a href="RDD.html#dependencies" class="page">dependency</a> (that is assumed a <a href="ShuffleDependency.html" class="page">ShuffleDependency</a>) for the <a href="ShuffleDependency.html#shuffleHandle" class="page">ShuffleHandle</a>.</p>
 </div>
 <div class="paragraph">
 <p>compute uses the <a href="../spark-SparkEnv.html" class="page">SparkEnv</a> to access the <a href="../spark-SparkEnv.html#shuffleManager" class="page">ShuffleManager</a>.</p>
@@ -1943,7 +1943,7 @@
 <p>In the end, compute requests the ShuffleReader to <a href="../shuffle/spark-shuffle-ShuffleReader.html#read" class="page">read</a> the combined key-value pairs (of type <code>(K, C)</code>).</p>
 </div>
 <div class="paragraph">
-<p>compute is part of the <a href="spark-rdd-RDD.html#compute" class="page">RDD</a> abstraction.</p>
+<p>compute is part of the <a href="RDD.html#compute" class="page">RDD</a> abstraction.</p>
 </div>
 </div>
 </div>
@@ -1963,7 +1963,7 @@
 <p>getPreferredLocations uses SparkEnv to access the current <a href="../spark-SparkEnv.html#mapOutputTracker" class="page">MapOutputTrackerMaster</a>.</p>
 </div>
 <div class="paragraph">
-<p>getPreferredLocations is part of the <a href="spark-rdd-RDD.html#compute" class="page">RDD</a> abstraction.</p>
+<p>getPreferredLocations is part of the <a href="RDD.html#compute" class="page">RDD</a> abstraction.</p>
 </div>
 </div>
 </div>
@@ -1985,7 +1985,7 @@
 <p>In the end, getDependencies returns a single <a href="ShuffleDependency.html" class="page">ShuffleDependency</a> (with the <a href="#prev">previous RDD</a>, the <a href="#part">Partitioner</a>, and the Serializer).</p>
 </div>
 <div class="paragraph">
-<p>getDependencies is part of the <a href="spark-rdd-RDD.html#getDependencies" class="page">RDD</a> abstraction.</p>
+<p>getDependencies is part of the <a href="RDD.html#getDependencies" class="page">RDD</a> abstraction.</p>
 </div>
 </div>
 </div>

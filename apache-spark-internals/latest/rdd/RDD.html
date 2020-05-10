@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title> EventLoggingListener&#8201;&#8212;&#8201;Spark Listener For Persisting Events :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/spark-history-server/EventLoggingListener.html">
+    <title> RDD&#8201;&#8212;&#8201;Description of Distributed Computation :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/rdd/RDD.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -491,109 +491,109 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/index.html">Resilient Distributed Dataset</a>
+    <a class="nav-link" href="index.html">Resilient Distributed Dataset</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/RDD.html">RDD</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="RDD.html">RDD</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-operations.html">Operators</a>
+    <a class="nav-link" href="spark-rdd-operations.html">Operators</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-transformations.html">Transformations</a>
+    <a class="nav-link" href="spark-rdd-transformations.html">Transformations</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../rdd/PairRDDFunctions.html">PairRDDFunctions</a>
+    <a class="nav-link" href="PairRDDFunctions.html">PairRDDFunctions</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-actions.html">Actions</a>
+    <a class="nav-link" href="spark-rdd-actions.html">Actions</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-rdd-lineage.html">RDD Lineage</a>
+    <a class="nav-link" href="spark-rdd-lineage.html">RDD Lineage</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-rdd-caching.html">Caching and Persistence</a>
+    <a class="nav-link" href="spark-rdd-caching.html">Caching and Persistence</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-checkpointing.html">Checkpointing</a>
+    <a class="nav-link" href="spark-rdd-checkpointing.html">Checkpointing</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-CheckpointRDD.html">CheckpointRDD</a>
+    <a class="nav-link" href="spark-rdd-CheckpointRDD.html">CheckpointRDD</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-partitions.html">Partitions and Partitioning</a>
+    <a class="nav-link" href="spark-rdd-partitions.html">Partitions and Partitioning</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-Partition.html">Partition</a>
+    <a class="nav-link" href="spark-rdd-Partition.html">Partition</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-Partitioner.html">Partitioner</a>
+    <a class="nav-link" href="spark-rdd-Partitioner.html">Partitioner</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-HashPartitioner.html">HashPartitioner</a>
+    <a class="nav-link" href="spark-rdd-HashPartitioner.html">HashPartitioner</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-rdd-shuffle.html">Shuffling</a>
+    <a class="nav-link" href="spark-rdd-shuffle.html">Shuffling</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-Dependency.html">Dependencies</a>
+    <a class="nav-link" href="spark-rdd-Dependency.html">Dependencies</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-NarrowDependency.html">NarrowDependency</a>
+    <a class="nav-link" href="spark-rdd-NarrowDependency.html">NarrowDependency</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/ShuffleDependency.html">ShuffleDependency</a>
+    <a class="nav-link" href="ShuffleDependency.html">ShuffleDependency</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/Aggregator.html">Aggregator</a>
+    <a class="nav-link" href="Aggregator.html">Aggregator</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Specialized RDDs</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
+    <a class="nav-link" href="spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-HadoopRDD.html">HadoopRDD</a>
+    <a class="nav-link" href="spark-rdd-HadoopRDD.html">HadoopRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
+    <a class="nav-link" href="spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
+    <a class="nav-link" href="spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
+    <a class="nav-link" href="spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
+    <a class="nav-link" href="spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/ShuffledRDD.html">ShuffledRDD</a>
+    <a class="nav-link" href="ShuffledRDD.html">ShuffledRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
+    <a class="nav-link" href="spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-TaskLocation.html">TaskLocation</a>
+    <a class="nav-link" href="spark-TaskLocation.html">TaskLocation</a>
   </li>
 </ul>
   </li>
@@ -1505,37 +1505,37 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Spark History Server</a>
+    <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="HistoryServer.html">HistoryServer</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="EventLoggingListener.html">EventLoggingListener</a>
+    <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="SQLHistoryListener.html">SQLHistoryListener</a>
+    <a class="nav-link" href="../spark-history-server/EventLoggingListener.html">EventLoggingListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/SQLHistoryListener.html">SQLHistoryListener</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="ApplicationHistoryProvider.html">ApplicationHistoryProvider</a>
+    <a class="nav-link" href="../spark-history-server/ApplicationHistoryProvider.html">ApplicationHistoryProvider</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="FsHistoryProvider.html">FsHistoryProvider</a>
+    <a class="nav-link" href="../spark-history-server/FsHistoryProvider.html">FsHistoryProvider</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="HistoryServerArguments.html">HistoryServerArguments</a>
+    <a class="nav-link" href="../spark-history-server/HistoryServerArguments.html">HistoryServerArguments</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ApplicationCacheOperations.html">ApplicationCacheOperations</a>
+    <a class="nav-link" href="../spark-history-server/ApplicationCacheOperations.html">ApplicationCacheOperations</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ApplicationCache.html">ApplicationCache</a>
+    <a class="nav-link" href="../spark-history-server/ApplicationCache.html">ApplicationCache</a>
   </li>
 </ul>
   </li>
@@ -1840,306 +1840,99 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Spark History Server</a></li>
-    <li><a href="EventLoggingListener.html">EventLoggingListener</a></li>
+    <li><a href="index.html">Resilient Distributed Dataset</a></li>
+    <li><a href="RDD.html">RDD</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/spark-history-server/pages/EventLoggingListener.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/rdd/pages/RDD.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page"><a id="EventLoggingListener"></a> EventLoggingListener&#8201;&#8212;&#8201;Spark Listener For Persisting Events</h1>
+<h1 class="page"><a id="RDD"></a> RDD&#8201;&#8212;&#8201;Description of Distributed Computation</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p><code>EventLoggingListener</code> is a <a href="../spark-scheduler-SparkListener.html" class="page">SparkListener</a> that <a href="#logEvent">writes out JSON-encoded events</a> of a Spark application with event logging enabled (based on <a href="../configuration-properties.html#spark.eventLog.enabled" class="page">spark.eventLog.enabled</a> configuration property).</p>
-</div>
-<div class="paragraph">
-<p><code>EventLoggingListener</code> supports custom <a href="configuration-properties.html#EventLoggingListener" class="page">configuration properties</a>.</p>
-</div>
-<div class="paragraph">
-<p><code>EventLoggingListener</code> writes out log files to a directory (based on <a href="../configuration-properties.html#spark.eventLog.dir" class="page">spark.eventLog.dir</a> configuration property). All <a href="../spark-scheduler-SparkListener.html" class="page">Spark events</a> are logged (but <a href="../spark-scheduler-SparkListener.html#SparkListenerBlockUpdated" class="page">SparkListenerBlockUpdated</a> and <a href="../spark-scheduler-SparkListener.html#SparkListenerExecutorMetricsUpdate" class="page">SparkListenerExecutorMetricsUpdate</a>).</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Use <a href="index.html" class="page">Spark History Server</a> to view the event logs in a browser (similarly to <a href="../webui/index.html" class="page">web UI</a> of a Spark application).
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><a id="inprogress-extension"></a><a id="IN_PROGRESS"></a>
-<code>EventLoggingListener</code> uses <strong>.inprogress</strong> file extension for in-flight event log files of active Spark applications.</p>
-</div>
-<div class="paragraph">
-<p><code>EventLoggingListener</code> can compress events (based on <a href="../configuration-properties.html#spark.eventLog.compress" class="page">spark.eventLog.compress</a> configuration property).</p>
-</div>
-<div id="logging" class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Enable <code>ALL</code> logging level for <code>org.apache.spark.scheduler.EventLoggingListener</code> logger to see what happens inside.</p>
-</div>
-<div class="paragraph">
-<p>Add the following line to <code>conf/log4j.properties</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.scheduler.EventLoggingListener=ALL</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Refer to <a href="../spark-logging.html" class="page">Logging</a>.</p>
-</div>
-</td>
-</tr>
-</table>
+<div id="T" class="paragraph">
+<p>RDD is a description of a fault-tolerant and resilient computation over a possibly distributed collection of records (of type <code>T</code>).</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-eventlogginglistener-instance"><a class="anchor" href="#creating-eventlogginglistener-instance"></a><a class="link" href="#creating-eventlogginglistener-instance"><a id="creating-instance"></a> Creating EventLoggingListener Instance</a></h2>
+<h2 id="rdd-contract"><a class="anchor" href="#rdd-contract"></a><a class="link" href="#rdd-contract"><a id="contract"></a> RDD Contract</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p><code>EventLoggingListener</code> takes the following to be created:</p>
+<div class="sect2">
+<h3 id="computing-partition-in-taskcontext"><a class="anchor" href="#computing-partition-in-taskcontext"></a><a class="link" href="#computing-partition-in-taskcontext"><a id="compute"></a> Computing Partition (in TaskContext)</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">compute(
+  split: Partition,
+  context: TaskContext): Iterator[T]</code></pre>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a id="appId"></a> Application ID</p>
-</li>
-<li>
-<p><a id="appAttemptId"></a> Application Attempt ID (optional)</p>
-</li>
-<li>
-<p><a id="logBaseDir"></a> Log Directory</p>
-</li>
-<li>
-<p><a id="sparkConf"></a> <a href="../spark-SparkConf.html" class="page">SparkConf</a></p>
-</li>
-<li>
-<p><a id="hadoopConf"></a> Hadoop <a href="https://hadoop.apache.org/docs/r2.7.3/api/org/apache/hadoop/conf/Configuration.html">Configuration</a></p>
-</li>
-</ul>
 </div>
 <div class="paragraph">
-<p><code>EventLoggingListener</code> initializes the <a href="#internal-properties">internal properties</a>.</p>
+<p>compute computes the input <code>split</code> <a href="spark-rdd-partitions.html" class="page">partition</a> in the <a href="../scheduler/spark-TaskContext.html" class="page">TaskContext</a> to produce a collection of values (of type <code>T</code>).</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-When initialized with no <a href="#hadoopConf">Hadoop Configuration</a>, <code>EventLoggingListener</code> uses <code>SparkHadoopUtil</code> utility to <a href="../spark-SparkHadoopUtil.html#newConfiguration" class="page">create a new one</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>compute is implemented by any type of RDD in Spark and is called every time the records are requested unless RDD is <a href="spark-rdd-caching.html" class="page">cached</a> or <a href="spark-rdd-checkpointing.html" class="page">checkpointed</a> (and the records can be read from an external storage, but this time closer to the compute node).</p>
+</div>
+<div class="paragraph">
+<p>When an RDD is <a href="spark-rdd-caching.html" class="page">cached</a>, for specified <a href="../storage/StorageLevel.html" class="page">storage levels</a> (i.e. all but <code>NONE</code>) <a href="../spark-cachemanager.html" class="page"><code>CacheManager</code> is requested to get or compute partitions</a>.</p>
+</div>
+<div class="paragraph">
+<p>compute runs on the <a href="../spark-driver.html" class="page">driver</a>.</p>
+</div>
+<div class="paragraph">
+<p>compute is used when RDD is requested to <a href="#computeOrReadCheckpoint">computeOrReadCheckpoint</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="partitions"><a class="anchor" href="#partitions"></a><a class="link" href="#partitions"><a id="getPartitions"></a> Partitions</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getPartitions: Array[Partition]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getPartitions is used when RDD is requested for the <a href="#partitions">partitions</a> (called only once as the value is cached afterwards).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dependencies"><a class="anchor" href="#dependencies"></a><a class="link" href="#dependencies"><a id="getDependencies"></a> Dependencies</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getDependencies: Seq[Dependency[_]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getDependencies is used when RDD is requested for the <a href="#dependencies">dependencies</a> (called only once as the value is cached afterwards).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="preferred-locations-placement-preferences"><a class="anchor" href="#preferred-locations-placement-preferences"></a><a class="link" href="#preferred-locations-placement-preferences"><a id="getPreferredLocations"></a> Preferred Locations (Placement Preferences)</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getPreferredLocations(
+  split: Partition): Seq[String] = Nil</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getPreferredLocations is used when RDD is requested for the <a href="#preferredLocations">preferred locations</a> of a given <a href="spark-rdd-Partition.html" class="page">partition</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="partitioner"><a class="anchor" href="#partitioner"></a><a class="link" href="#partitioner"><a id="partitioner"></a> Partitioner</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">partitioner: Option[Partitioner] = None</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>partitioner is an optional <a href="spark-rdd-Partitioner.html" class="page">Partitioner</a>.</p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="event-log-filelogpath-property"><a class="anchor" href="#event-log-filelogpath-property"></a><a class="link" href="#event-log-filelogpath-property"><a id="logPath"></a> Event Log File&#8201;&#8212;&#8201;<code>logPath</code> Property</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">logPath: String</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>logPath</code> is&#8230;&#8203;FIXME</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>logPath</code> is used when <code>EventLoggingListener</code> is requested to <a href="#start">start</a> and <a href="#stop">stop</a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="starting-eventlogginglistenerstart-method"><a class="anchor" href="#starting-eventlogginglistenerstart-method"></a><a class="link" href="#starting-eventlogginglistenerstart-method"><a id="start"></a> Starting EventLoggingListener&#8201;&#8212;&#8201;<code>start</code> Method</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">start(): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>start</code> deletes the <a href="#logPath">logPath</a> with the <a href="#IN_PROGRESS">.inprogress</a> extension.</p>
-</div>
-<div class="paragraph">
-<p>The log file&#8217;s working name is created based on <code>appId</code> with or without the compression codec used and <code>appAttemptId</code>, i.e. <code>local-1461696754069</code>. It also uses <code>.inprogress</code> extension.</p>
-</div>
-<div class="paragraph">
-<p>If <a href="#spark_eventLog_overwrite">overwrite is enabled</a>, you should see the WARN message:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>Event log [path] already exists. Overwriting...</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The working log <code>.inprogress</code> is attempted to be deleted. In case it could not be deleted, the following WARN message is printed out to the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>Error deleting [path]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The buffered output stream is created with metadata with Spark&#8217;s version and <code>SparkListenerLogStart</code> class' name as the first line.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>{"Event":"SparkListenerLogStart","Spark Version":"2.0.0-SNAPSHOT"}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>At this point, <code>EventLoggingListener</code> is ready for event logging and you should see the following INFO message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>Logging events to [logPath]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>start</code> throws an <code>IllegalArgumentException</code> when the <a href="#logBaseDir">logBaseDir</a> is not a directory:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>Log directory [logBaseDir] is not a directory.</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>start</code> is executed while <code>SparkContext</code> is <a href="../spark-SparkContext-creating-instance-internals.html#_eventLogger" class="page">created</a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="logging-event-in-json-formatlogevent-method"><a class="anchor" href="#logging-event-in-json-formatlogevent-method"></a><a class="link" href="#logging-event-in-json-formatlogevent-method"><a id="logEvent"></a> Logging Event (In JSON Format)&#8201;&#8212;&#8201;<code>logEvent</code> Method</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">logEvent(
-  event: SparkListenerEvent,
-  flushLogger: Boolean = false): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>logEvent</code> logs the given <code>event</code> as JSON.</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="stopping-eventlogginglistenerstop-method"><a class="anchor" href="#stopping-eventlogginglistenerstop-method"></a><a class="link" href="#stopping-eventlogginglistenerstop-method"><a id="stop"></a> Stopping EventLoggingListener&#8201;&#8212;&#8201;<code>stop</code> Method</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">stop(): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>stop</code> closes <code>PrintWriter</code> for the log file and renames the file to be without <code>.inprogress</code> extension.</p>
-</div>
-<div class="paragraph">
-<p>If the target log file exists (one without <code>.inprogress</code> extension), it overwrites the file if <a href="#spark_eventLog_overwrite">spark.eventLog.overwrite</a> is enabled. You should see the following WARN message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>Event log [target] already exists. Overwriting...</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If the target log file exists and overwrite is disabled, an <code>java.io.IOException</code> is thrown with the following message:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>Target log file already exists ([logPath])</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>stop</code> is executed while <code>SparkContext</code> is requested to <a href="../spark-SparkContext.html#stop" class="page">stop</a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="getlogpath-utility"><a class="anchor" href="#getlogpath-utility"></a><a class="link" href="#getlogpath-utility"><a id="getLogPath"></a> <code>getLogPath</code> Utility</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getLogPath(
-  logBaseDir: URI,
-  appId: String,
-  appAttemptId: Option[String],
-  compressionCodecName: Option[String] = None): String</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>getLogPath</code>&#8230;&#8203;FIXME</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>getLogPath</code> is used when <code>EventLoggingListener</code> is <a href="#creating-instance">created</a> (for the <a href="#logPath">logPath</a>).
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="internal-properties"><a class="anchor" href="#internal-properties"></a><a class="link" href="#internal-properties"><a id="internal-properties"></a> Internal Properties</a></h2>
+<h2 id="subset-of-available-rdds"><a class="anchor" href="#subset-of-available-rdds"></a><a class="link" href="#subset-of-available-rdds"><a id="extensions"></a><a id="implementations"></a> (Subset of) Available RDDs</a></h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -2148,37 +1941,484 @@ FIXME
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">RDD</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hadoopDataStream</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="hadoopDataStream"></a> Hadoop <a href="http://hadoop.apache.org/docs/r2.7.3/api/org/apache/hadoop/fs/FSDataOutputStream.html">FSDataOutputStream</a> (default: <code>None</code>)</p>
-</div>
-<div class="paragraph">
-<p>Used when&#8230;&#8203;FIXME</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-rdd-CoGroupedRDD.html" class="page">CoGroupedRDD</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="CoGroupedRDD"></a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>writer</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="writer"></a> <a href="https://docs.oracle.com/javase/8/docs/api/java/io/PrintWriter.html">java.io.PrintWriter</a> for <a href="#logEvent">writing out events</a> to the <a href="#logPath">event log file</a>.</p>
-</div>
-<div class="paragraph">
-<p>Initialized when <code>EventLoggingListener</code> is requested to <a href="#start">start</a></p>
-</div>
-<div class="paragraph">
-<p>Used when <code>EventLoggingListener</code> is requested to <a href="#logEvent">logEvent</a></p>
-</div>
-<div class="paragraph">
-<p>Closed when <code>EventLoggingListener</code> is requested to <a href="#stop">stop</a></p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CoalescedRDD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="CoalescedRDD"></a> Result of <a href="spark-rdd-partitions.html#repartition" class="page">repartition</a> or <a href="spark-rdd-partitions.html#coalesce" class="page">coalesce</a> transformations</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-rdd-HadoopRDD.html" class="page">HadoopRDD</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="HadoopRDD"></a> Allows for reading data stored in HDFS using the older MapReduce API. The most notable use case is the return RDD of <code>SparkContext.textFile</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-rdd-MapPartitionsRDD.html" class="page">MapPartitionsRDD</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="MapPartitionsRDD"></a> Result of calling map-like operations (e.g. <code>map</code>, <code>flatMap</code>, <code>filter</code>, <a href="spark-rdd-transformations.html#mapPartitions" class="page">mapPartitions</a>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-rdd-ParallelCollectionRDD.html" class="page">ParallelCollectionRDD</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="ParallelCollectionRDD"></a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="ShuffledRDD.html" class="page">ShuffledRDD</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="ShuffledRDD"></a> Result of "shuffle" operators (e.g. <a href="spark-rdd-partitions.html#repartition" class="page">repartition</a> or <a href="spark-rdd-partitions.html#coalesce" class="page">coalesce</a>)</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RDD takes the following to be created:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="_sc"></a> <a href="../spark-SparkContext.html" class="page">SparkContext</a></p>
+</li>
+<li>
+<p><a id="deps"></a> <strong>Parent RDDs</strong>, i.e. <a href="spark-rdd-Dependency.html" class="page">Dependencies</a> (that have to be all computed successfully before this RDD)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>RDD is an abstract class and cannot be created directly. It is created indirectly for the <a href="#implementations">concrete RDDs</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="storagelevel"><a class="anchor" href="#storagelevel"></a><a class="link" href="#storagelevel"><a id="storageLevel"></a><a id="getStorageLevel"></a> StorageLevel</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RDD can have a <a href="../storage/StorageLevel.html" class="page">StorageLevel</a> specified. The default StorageLevel is <a href="../storage/StorageLevel.html#NONE" class="page">NONE</a>.</p>
+</div>
+<div class="paragraph">
+<p>storageLevel can be specified using <a href="#persist">persist</a> method.</p>
+</div>
+<div class="paragraph">
+<p>storageLevel becomes NONE again after <a href="#unpersist">unpersisting</a>.</p>
+</div>
+<div class="paragraph">
+<p>The current StorageLevel is available using <code>getStorageLevel</code> method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getStorageLevel: StorageLevel</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="unique-identifier"><a class="anchor" href="#unique-identifier"></a><a class="link" href="#unique-identifier"><a id="id"></a> Unique Identifier</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">id: Int</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>id is an <strong>unique identifier</strong> (aka <strong>RDD ID</strong>) in the given <a href="#_sc">SparkContext</a>.</p>
+</div>
+<div class="paragraph">
+<p>id requests the <a href="#sc">SparkContext</a> for <a href="../spark-SparkContext.html#newRddId" class="page">newRddId</a> right when RDD is created.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="barrier-stage"><a class="anchor" href="#barrier-stage"></a><a class="link" href="#barrier-stage"><a id="isBarrier_"></a><a id="isBarrier"></a> Barrier Stage</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>An RDD can be part of a <a href="../spark-barrier-execution-mode.html#barrier-stage" class="page">barrier stage</a>. By default, <code>isBarrier</code> flag is enabled (<code>true</code>) when:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>There are no <a href="ShuffleDependency.html" class="page">ShuffleDependencies</a> among the <a href="#dependencies">RDD dependencies</a></p>
+</li>
+<li>
+<p>There is at least one <a href="spark-rdd-Dependency.html#rdd" class="page">parent RDD</a> that has the flag enabled</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><a href="ShuffledRDD.html" class="page">ShuffledRDD</a> has the flag always disabled.</p>
+</div>
+<div class="paragraph">
+<p><a href="spark-rdd-MapPartitionsRDD.html" class="page">MapPartitionsRDD</a> is the only one RDD that can have the flag enabled.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-or-computing-rdd-partition"><a class="anchor" href="#getting-or-computing-rdd-partition"></a><a class="link" href="#getting-or-computing-rdd-partition"><a id="getOrCompute"></a> Getting Or Computing RDD Partition</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getOrCompute(
+  partition: Partition,
+  context: TaskContext): Iterator[T]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>getOrCompute</code> creates a <a href="spark-BlockDataManager.adoc#RDDBlockId">RDDBlockId</a> for the <a href="#id">RDD id</a> and the <a href="spark-rdd-Partition.adoc#index">partition index</a>.</p>
+</div>
+<div class="paragraph">
+<p><code>getOrCompute</code> requests the <code>BlockManager</code> to <a href="../storage/BlockManager.html#getOrElseUpdate" class="page">getOrElseUpdate</a> for the block ID (with the <a href="#storageLevel">storage level</a> and the <code>makeIterator</code> function).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>getOrCompute</code> uses <a href="spark-SparkEnv.adoc#get">SparkEnv</a> to access the current <a href="spark-SparkEnv.adoc#blockManager">BlockManager</a>.
+</td>
+</tr>
+</table>
+</div>
+<div id="getOrCompute-readCachedBlock" class="paragraph">
+<p><code>getOrCompute</code> records whether&#8230;&#8203;FIXME (readCachedBlock)</p>
+</div>
+<div class="paragraph">
+<p><code>getOrCompute</code> branches off per the response from the <a href="../storage/BlockManager.html#getOrElseUpdate" class="page">BlockManager</a> and whether the internal <code>readCachedBlock</code> flag is now on or still off. In either case, <code>getOrCompute</code> creates an <a href="spark-InterruptibleIterator.adoc">InterruptibleIterator</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<a href="spark-InterruptibleIterator.adoc">InterruptibleIterator</a> simply delegates to a wrapped internal <code>Iterator</code>, but allows for <a href="spark-TaskContext.adoc#isInterrupted">task killing functionality</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For a <code>BlockResult</code> available and <code>readCachedBlock</code> flag on, <code>getOrCompute</code>&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>For a <code>BlockResult</code> available and <code>readCachedBlock</code> flag off, <code>getOrCompute</code>&#8230;&#8203;FIXME</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>BlockResult</code> could be found in a local block manager or fetched from a remote block manager. It may also have been stored (persisted) just now. In either case, the <code>BlockResult</code> is available (and <a href="../storage/BlockManager.html#getOrElseUpdate" class="page">BlockManager.getOrElseUpdate</a> gives a <code>Left</code> value with the <code>BlockResult</code>).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For <code>Right(iter)</code> (regardless of the value of <code>readCachedBlock</code> flag since&#8230;&#8203;FIXME), <code>getOrCompute</code>&#8230;&#8203;FIXME</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<a href="../storage/BlockManager.html#getOrElseUpdate" class="page">BlockManager.getOrElseUpdate</a> gives a <code>Right(iter)</code> value to indicate an error with a block.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>getOrCompute</code> is used on Spark executors.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>getOrCompute</code> is used exclusively when RDD is requested for the <a href="#iterator">iterator over values in a partition</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rdd-dependencies"><a class="anchor" href="#rdd-dependencies"></a><a class="link" href="#rdd-dependencies"><a id="dependencies"></a> RDD Dependencies</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">dependencies: Seq[Dependency[_]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>dependencies</code> returns the <a href="spark-rdd-Dependency.adoc">dependencies of a RDD</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>dependencies</code> is a final method that no class in Spark can ever override.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Internally, <code>dependencies</code> checks out whether the RDD is <a href="spark-rdd-checkpointing.adoc">checkpointed</a> and acts accordingly.</p>
+</div>
+<div class="paragraph">
+<p>For a RDD being checkpointed, <code>dependencies</code> returns a single-element collection with a <a href="spark-rdd-NarrowDependency.adoc#OneToOneDependency">OneToOneDependency</a>.</p>
+</div>
+<div class="paragraph">
+<p>For a non-checkpointed RDD, <code>dependencies</code> collection is computed using <a href="#contract"><code>getDependencies</code> method</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>getDependencies</code> method is an abstract method that custom RDDs are required to provide.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="accessing-records-for-partition-lazily"><a class="anchor" href="#accessing-records-for-partition-lazily"></a><a class="link" href="#accessing-records-for-partition-lazily"><a id="iterator"></a> Accessing Records For Partition Lazily</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">iterator(
+  split: Partition,
+  context: TaskContext): Iterator[T]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>iterator <a href="#getOrCompute">gets or computes the <code>split</code> partition</a> when <a href="spark-rdd-caching.html" class="page">cached</a> or <a href="#computeOrReadCheckpoint">computes it (possibly by reading from checkpoint)</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-checkpointrdd"><a class="anchor" href="#getting-checkpointrdd"></a><a class="link" href="#getting-checkpointrdd"><a id="checkpointRDD"></a> Getting CheckpointRDD</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">checkpointRDD: Option[CheckpointRDD[T]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>checkpointRDD gives the CheckpointRDD from the <a href="#checkpointData">checkpointData</a> internal registry if available (if the RDD was checkpointed).</p>
+</div>
+<div class="paragraph">
+<p>checkpointRDD is used when RDD is requested for the <a href="#dependencies">dependencies</a>, <a href="#partitions">partitions</a> and <a href="#preferredLocations">preferredLocations</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ischeckpointedandmaterialized-method"><a class="anchor" href="#ischeckpointedandmaterialized-method"></a><a class="link" href="#ischeckpointedandmaterialized-method"><a id="isCheckpointedAndMaterialized"></a> isCheckpointedAndMaterialized Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">isCheckpointedAndMaterialized: Boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>isCheckpointedAndMaterialized&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>isCheckpointedAndMaterialized is used when RDD is requested to <a href="#computeOrReadCheckpoint">computeOrReadCheckpoint</a>, <a href="#localCheckpoint">localCheckpoint</a> and <a href="#isCheckpointed">isCheckpointed</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getnarrowancestors-method"><a class="anchor" href="#getnarrowancestors-method"></a><a class="link" href="#getnarrowancestors-method"><a id="getNarrowAncestors"></a> getNarrowAncestors Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getNarrowAncestors: Seq[RDD[_]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getNarrowAncestors&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>getNarrowAncestors is used when StageInfo is requested to <a href="../scheduler/spark-scheduler-StageInfo.html#fromStage" class="page">fromStage</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="tolocaliterator-method"><a class="anchor" href="#tolocaliterator-method"></a><a class="link" href="#tolocaliterator-method"><a id="toLocalIterator"></a> toLocalIterator Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">toLocalIterator: Iterator[T]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>toLocalIterator&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="persisting-rdd"><a class="anchor" href="#persisting-rdd"></a><a class="link" href="#persisting-rdd"><a id="persist"></a> Persisting RDD</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">persist(): this.type
+persist(newLevel: StorageLevel): this.type</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Refer to <a href="spark-rdd-caching.html#persist" class="page">Persisting RDD</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="persist-internal-method"><a class="anchor" href="#persist-internal-method"></a><a class="link" href="#persist-internal-method"><a id="persist-internal"></a> persist Internal Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">persist(
+  newLevel: StorageLevel,
+  allowOverride: Boolean): this.type</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>persist&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>persist (private) is used when RDD is requested to <a href="#persist">persist</a> and <a href="#localCheckpoint">localCheckpoint</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="unpersist-method"><a class="anchor" href="#unpersist-method"></a><a class="link" href="#unpersist-method"><a id="unpersist"></a> unpersist Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">unpersist(blocking: Boolean = true): this.type</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>unpersist&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="localcheckpoint-method"><a class="anchor" href="#localcheckpoint-method"></a><a class="link" href="#localcheckpoint-method"><a id="localCheckpoint"></a> localCheckpoint Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">localCheckpoint(): this.type</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Refer to <a href="spark-rdd-checkpointing.html#localCheckpoint" class="page">Marking RDD for Local Checkpointing</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="computing-partition-or-reading-from-checkpoint"><a class="anchor" href="#computing-partition-or-reading-from-checkpoint"></a><a class="link" href="#computing-partition-or-reading-from-checkpoint"><a id="computeOrReadCheckpoint"></a> Computing Partition or Reading From Checkpoint</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">computeOrReadCheckpoint(
+  split: Partition,
+  context: TaskContext): Iterator[T]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>computeOrReadCheckpoint reads <code>split</code> partition from a checkpoint (<a href="#isCheckpointedAndMaterialized">if available already</a>) or <a href="#compute">computes it</a> yourself.</p>
+</div>
+<div class="paragraph">
+<p>computeOrReadCheckpoint is used when RDD is requested to <a href="#iterator">compute records for a partition</a> or <a href="#getOrCompute">getOrCompute</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-number-of-partitions"><a class="anchor" href="#getting-number-of-partitions"></a><a class="link" href="#getting-number-of-partitions"><a id="getNumPartitions"></a> Getting Number of Partitions</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getNumPartitions: Int</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getNumPartitions gives the number of partitions of a RDD.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">scala&gt; sc.textFile("README.md").getNumPartitions
+res0: Int = 2
+
+scala&gt; sc.textFile("README.md", 5).getNumPartitions
+res1: Int = 5</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="defining-placement-preferences-of-rdd-partition"><a class="anchor" href="#defining-placement-preferences-of-rdd-partition"></a><a class="link" href="#defining-placement-preferences-of-rdd-partition"><a id="preferredLocations"></a> Defining Placement Preferences of RDD Partition</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">preferredLocations(
+  split: Partition): Seq[String]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>preferredLocations requests the CheckpointRDD for <a href="#checkpointRDD">placement preferences</a> (if the RDD is checkpointed) or <a href="#getPreferredLocations">calculates them itself</a>.</p>
+</div>
+<div class="paragraph">
+<p>preferredLocations is a template method that uses  <a href="#getPreferredLocations">getPreferredLocations</a> that custom RDDs can override to specify placement preferences for a partition. getPreferredLocations defines no placement preferences by default.</p>
+</div>
+<div class="paragraph">
+<p>preferredLocations is mainly used when DAGScheduler is requested to <a href="../scheduler/DAGScheduler.html#getPreferredLocs" class="page">compute the preferred locations for missing partitions</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="accessing-rdd-partitions"><a class="anchor" href="#accessing-rdd-partitions"></a><a class="link" href="#accessing-rdd-partitions"><a id="partitions"></a> Accessing RDD Partitions</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">partitions: Array[Partition]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>partitions returns the <a href="spark-rdd-partitions.html" class="page">Partitions</a> of a <code>RDD</code>.</p>
+</div>
+<div class="paragraph">
+<p>partitions requests CheckpointRDD for the <a href="#checkpointRDD">partitions</a> (if the RDD is checkpointed) or <a href="#getPartitions">finds them itself</a> and cache (in <a href="#partitions_">partitions_</a> internal registry that is used next time).</p>
+</div>
+<div class="paragraph">
+<p>Partitions have the property that their internal index should be equal to their position in the owning RDD.</p>
+</div>
 </div>
 </div>
 </article>
