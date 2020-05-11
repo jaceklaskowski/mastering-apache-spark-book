@@ -1874,6 +1874,19 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="accessing-shufflemanager-using-sparkenv"><a class="anchor" href="#accessing-shufflemanager-using-sparkenv"></a><a class="link" href="#accessing-shufflemanager-using-sparkenv"><a id="SparkEnv"></a> Accessing ShuffleManager using SparkEnv</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The driver and executor access the ShuffleManager instance using <a href="../spark-SparkEnv.html#shuffleManager" class="page">SparkEnv.shuffleManager</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">val shuffleManager = SparkEnv.get.shuffleManager</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="getting-shufflereader-for-shufflehandle"><a class="anchor" href="#getting-shufflereader-for-shufflehandle"></a><a class="link" href="#getting-shufflereader-for-shufflehandle"><a id="getReader"></a> Getting ShuffleReader for ShuffleHandle</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
@@ -1902,9 +1915,6 @@
 <li>
 <p><a href="../rdd/spark-rdd-SubtractedRDD.html" class="page">SubtractedRDD</a></p>
 </li>
-<li>
-<p><code>ShuffledRowRDD</code> (Spark SQL)</p>
-</li>
 </ul>
 </div>
 </div>
@@ -1924,7 +1934,7 @@
 <p>Gives <a href="ShuffleWriter.html" class="page">ShuffleWriter</a> to write shuffle data in the <a href="spark-shuffle-ShuffleHandle.html" class="page">ShuffleHandle</a></p>
 </div>
 <div class="paragraph">
-<p>Used exclusively when <code>ShuffleMapTask</code> is requested to <a href="../scheduler/ShuffleMapTask.html#runTask" class="page">run</a> (and requests the <a href="ShuffleWriter.html" class="page">ShuffleWriter</a> to write records for a partition)</p>
+<p>Used exclusively when ShuffleMapTask is requested to <a href="../scheduler/ShuffleMapTask.html#runTask" class="page">run</a> (and requests the <a href="ShuffleWriter.html" class="page">ShuffleWriter</a> to write records for a partition)</p>
 </div>
 </div>
 </div>
@@ -1940,10 +1950,10 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Registers a shuffle (by the given <code>shuffleId</code> and <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>) and returns a <a href="spark-shuffle-ShuffleHandle.html" class="page">ShuffleHandle</a></p>
+<p>Registers a shuffle (by the given shuffleId and <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>) and returns a <a href="spark-shuffle-ShuffleHandle.html" class="page">ShuffleHandle</a></p>
 </div>
 <div class="paragraph">
-<p>Used exclusively when <code>ShuffleDependency</code> is <a href="../rdd/ShuffleDependency.html#shuffleHandle" class="page">created</a> (and registers itself with the shuffle system)</p>
+<p>Used when ShuffleDependency is <a href="../rdd/ShuffleDependency.html#shuffleHandle" class="page">created</a> (and registers with the shuffle system)</p>
 </div>
 </div>
 </div>
@@ -1964,10 +1974,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>SortShuffleManager</code> is requested for a <a href="SortShuffleManager.html#getWriter" class="page">ShuffleWriter for a ShuffleHandle</a>, to <a href="SortShuffleManager.html#unregisterShuffle" class="page">unregister a shuffle</a> and <a href="SortShuffleManager.html#stop" class="page">stop</a></p>
+<p>SortShuffleManager is requested for a <a href="SortShuffleManager.html#getWriter" class="page">ShuffleWriter for a ShuffleHandle</a>, to <a href="SortShuffleManager.html#unregisterShuffle" class="page">unregister a shuffle</a> and <a href="SortShuffleManager.html#stop" class="page">stop</a></p>
 </li>
 <li>
-<p><code>BlockManager</code> is requested to <a href="../storage/BlockManager.html#getBlockData" class="page">get shuffle data</a> and <a href="../storage/BlockManager.html#getLocalBytes" class="page">getLocalBytes</a></p>
+<p>BlockManager is requested to <a href="../storage/BlockManager.html#getBlockData" class="page">get shuffle data</a> and <a href="../storage/BlockManager.html#getLocalBytes" class="page">getLocalBytes</a></p>
 </li>
 </ul>
 </div>
@@ -1985,7 +1995,7 @@
 <p>Stops the shuffle system</p>
 </div>
 <div class="paragraph">
-<p>Used when <code>SparkEnv</code> is requested to <a href="../spark-SparkEnv.html#stop" class="page">stop</a></p>
+<p>Used when SparkEnv is requested to <a href="../spark-SparkEnv.html#stop" class="page">stop</a></p>
 </div>
 </div>
 </div>
@@ -1999,23 +2009,10 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Unregisters a shuffle (given <code>shuffleId</code>)</p>
+<p>Unregisters a given shuffle</p>
 </div>
 <div class="paragraph">
-<p>Used when <code>BlockManagerSlaveEndpoint</code> is requested to <a href="#ROOT:spark-blockmanager-BlockManagerSlaveEndpoint.adoc#RemoveShuffle" class="page unresolved">receives a RemoveShuffle message</a></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="accessing-shufflemanager-using-sparkenv"><a class="anchor" href="#accessing-shufflemanager-using-sparkenv"></a><a class="link" href="#accessing-shufflemanager-using-sparkenv"><a id="SparkEnv"></a> Accessing ShuffleManager using SparkEnv</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The driver and executor access the <code>ShuffleManager</code> instance using <a href="spark-SparkEnv.adoc#shuffleManager">SparkEnv.shuffleManager</a>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">val shuffleManager = SparkEnv.get.shuffleManager</code></pre>
-</div>
+<p>Used when BlockManagerSlaveEndpoint is requested to <a href="../storage/spark-blockmanager-BlockManagerSlaveEndpoint.html#RemoveShuffle" class="page">handle a RemoveShuffle message</a></p>
 </div>
 </div>
 </div>
