@@ -1877,7 +1877,7 @@
 <div class="title">Figure 2. UnsafeShuffleWriter and ShuffleExternalSorter</div>
 </div>
 <div class="paragraph">
-<p>When requested to <a href="#write">write key-value records of a partition</a>, UnsafeShuffleWriter simply <a href="#insertRecordIntoSorter">inserts every record into ShuffleExternalSorter</a> followed by <a href="#closeAndWriteOutput">closing the internal resources and writing out merged spill files</a> (that, among other things, creates the <a href="#mapStatus">MapStatus</a>).</p>
+<p>When requested to <a href="#write">write key-value records of a partition</a>, UnsafeShuffleWriter simply <a href="#insertRecordIntoSorter">inserts every record into ShuffleExternalSorter</a> followed by <a href="#closeAndWriteOutput">close internal resources and merge spill files</a> (that, among other things, creates the <a href="#mapStatus">MapStatus</a>).</p>
 </div>
 <div class="paragraph">
 <p>When requested to <a href="#stop">stop</a>, UnsafeShuffleWriter records the peak execution memory metric and returns the <a href="#mapStatus">mapStatus</a> (that was created when requested to <a href="#write">write</a>).</p>
@@ -2088,7 +2088,7 @@ Use <a href="../configuration-properties.html#spark.shuffle.sort.initialBufferSi
 <div class="sect2">
 <h3 id="usage"><a class="anchor" href="#usage"></a><a class="link" href="#usage"><a id="mergeSpills-usage"></a> Usage</a></h3>
 <div class="paragraph">
-<p>mergeSpills is used when UnsafeShuffleWriter is requested to <a href="#closeAndWriteOutput">close internal resources and write out merged spill files</a>.</p>
+<p>mergeSpills is used when UnsafeShuffleWriter is requested to <a href="#closeAndWriteOutput">close internal resources and merge spill files</a>.</p>
 </div>
 </div>
 </div>
@@ -2105,7 +2105,7 @@ Use <a href="../configuration-properties.html#spark.shuffle.sort.initialBufferSi
 <p>updatePeakMemoryUsed&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p>updatePeakMemoryUsed is used when UnsafeShuffleWriter is requested for the <a href="#getPeakMemoryUsedBytes">peak memory used</a> and to <a href="#closeAndWriteOutput">close internal resources and write out merged spill files</a></p>
+<p>updatePeakMemoryUsed is used when UnsafeShuffleWriter is requested for the <a href="#getPeakMemoryUsedBytes">peak memory used</a> and to <a href="#closeAndWriteOutput">close internal resources and merge spill files</a>.</p>
 </div>
 </div>
 </div>
@@ -2119,7 +2119,7 @@ Use <a href="../configuration-properties.html#spark.shuffle.sort.initialBufferSi
 </div>
 </div>
 <div class="paragraph">
-<p>write traverses the input sequence of records (for a RDD partition) and <a href="#insertRecordIntoSorter">insertRecordIntoSorter</a> one by one. When all the records have been processed, write <a href="#closeAndWriteOutput">closes internal resources and writes spill files merged</a>.</p>
+<p>write traverses the input sequence of records (for a RDD partition) and <a href="#insertRecordIntoSorter">insertRecordIntoSorter</a> one by one. When all the records have been processed, write <a href="#closeAndWriteOutput">closes internal resources and merges spill files</a>.</p>
 </div>
 <div class="paragraph">
 <p>In the end, write <a href="ShuffleExternalSorter.html#cleanupResources" class="page">requests <code>ShuffleExternalSorter</code> to clean after itself</a>.</p>
@@ -2191,7 +2191,7 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="closing-internal-resources-and-writing-out-merged-spill-files"><a class="anchor" href="#closing-internal-resources-and-writing-out-merged-spill-files"></a><a class="link" href="#closing-internal-resources-and-writing-out-merged-spill-files"><a id="closeAndWriteOutput"></a> Closing Internal Resources and Writing Out Merged Spill Files</a></h2>
+<h2 id="closing-internal-resources-and-merging-spill-files"><a class="anchor" href="#closing-internal-resources-and-merging-spill-files"></a><a class="link" href="#closing-internal-resources-and-merging-spill-files"><a id="closeAndWriteOutput"></a> Closing Internal Resources and Merging Spill Files</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2199,28 +2199,35 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p>closeAndWriteOutput first <a href="#updatePeakMemoryUsed">updates peak memory used</a>.</p>
+<p>closeAndWriteOutput asserts that the <a href="#sorter">ShuffleExternalSorter</a> is available (non-<code>null</code>).</p>
 </div>
 <div class="paragraph">
-<p>closeAndWriteOutput removes the internal <code>ByteArrayOutputStream</code> and <a href="../serializer/SerializationStream.html" class="page">SerializationStream</a>.</p>
+<p>closeAndWriteOutput <a href="#updatePeakMemoryUsed">updates peak memory used</a>.</p>
 </div>
 <div class="paragraph">
-<p>closeAndWriteOutput requests ShuffleExternalSorter to <a href="ShuffleExternalSorter.html#closeAndGetSpills" class="page">close itself and return <code>SpillInfo</code> metadata</a>.</p>
+<p>closeAndWriteOutput removes the references to the <a href="#serBuffer">ByteArrayOutputStream</a> and <a href="#serOutputStream">SerializationStream</a> output streams (<code>null</code>s them).</p>
 </div>
 <div class="paragraph">
-<p>closeAndWriteOutput removes the internal <code>ShuffleExternalSorter</code>.</p>
+<p>closeAndWriteOutput requests the <a href="#sorter">ShuffleExternalSorter</a> to <a href="ShuffleExternalSorter.html#closeAndGetSpills" class="page">close and return spill metadata</a>.</p>
 </div>
 <div class="paragraph">
-<p>closeAndWriteOutput requests <code>IndexShuffleBlockResolver</code> for the data file for the <code>shuffleId</code> and <code>mapId</code>.</p>
+<p>closeAndWriteOutput removes the reference to the <a href="#sorter">ShuffleExternalSorter</a> (<code>null</code>s it).</p>
 </div>
 <div class="paragraph">
-<p>closeAndWriteOutput creates a temporary file to <a href="#mergeSpills">merge spill files</a>, deletes them afterwards, and requests <code>IndexShuffleBlockResolver</code> to write index file and commit.</p>
+<p>closeAndWriteOutput requests the <a href="#shuffleBlockResolver">IndexShuffleBlockResolver</a> for the <a href="IndexShuffleBlockResolver.html#getDataFile" class="page">output data file</a> for the <a href="#shuffleId">shuffle</a> and <a href="#mapId">map</a> IDs.</p>
 </div>
 <div class="paragraph">
-<p>closeAndWriteOutput creates a <a href="../scheduler/MapStatus.html" class="page">MapStatus</a> with the <a href="../storage/BlockManager.html#shuffleServerId" class="page">location of the executor&#8217;s <code>BlockManager</code></a> and partition lengths in the merged file.</p>
+<p><a id="closeAndWriteOutput-partitionLengths"></a><a id="closeAndWriteOutput-tmp"></a>
+closeAndWriteOutput creates a temporary file (along the data output file) and uses it to <a href="#mergeSpills">merge spill files</a> (that gives a partition length array). All spill files are then deleted.</p>
 </div>
 <div class="paragraph">
-<p>If there is an issue with deleting spill files, you should see the following ERROR message in the logs:</p>
+<p>closeAndWriteOutput requests the <a href="#shuffleBlockResolver">IndexShuffleBlockResolver</a> to <a href="IndexShuffleBlockResolver.html#writeIndexFileAndCommit" class="page">write shuffle index and data files</a> (for the <a href="#shuffleId">shuffle</a> and <a href="#mapId">map</a> IDs, the <a href="#closeAndWriteOutput-partitionLengths">partition length array</a> and the <a href="#closeAndWriteOutput-tmp">temporary output data file</a>).</p>
+</div>
+<div class="paragraph">
+<p>In the end, closeAndWriteOutput creates a <a href="../scheduler/MapStatus.html" class="page">MapStatus</a> with the <a href="../storage/BlockManager.html#shuffleServerId" class="page">location of the local BlockManager</a> and the <a href="#closeAndWriteOutput-partitionLengths">partition length array</a>.</p>
+</div>
+<div class="paragraph">
+<p>closeAndWriteOutput prints out the following ERROR message to the logs if there is an issue with deleting spill files:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2228,7 +2235,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p>If there is an issue with deleting the temporary file, you should see the following ERROR message in the logs:</p>
+<p>closeAndWriteOutput prints out the following ERROR message to the logs if there is an issue with deleting the <a href="#closeAndWriteOutput-tmp">temporary output data file</a>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2334,7 +2341,7 @@ FIXME
 <p><a href="../scheduler/MapStatus.html" class="page">MapStatus</a></p>
 </div>
 <div class="paragraph">
-<p>Created when UnsafeShuffleWriter is requested to <a href="#closeAndWriteOutput">close internal resources and write out merged spill files</a> (with the <a href="../storage/BlockManager.html#shuffleServerId" class="page">BlockManagerId</a> of the <a href="#blockManager">BlockManager</a> and <code>partitionLengths</code>)</p>
+<p>Created when UnsafeShuffleWriter is requested to <a href="#closeAndWriteOutput">close internal resources and merge spill files</a> (with the <a href="../storage/BlockManager.html#shuffleServerId" class="page">BlockManagerId</a> of the <a href="#blockManager">BlockManager</a> and <code>partitionLengths</code>)</p>
 </div>
 <div class="paragraph">
 <p>Returned when UnsafeShuffleWriter is requested to <a href="#stop">stop</a></p>
@@ -2372,7 +2379,7 @@ FIXME
 </div>
 </div>
 <div class="sect2">
-<h3 id="serbuffer"><a class="anchor" href="#serbuffer"></a><a class="link" href="#serbuffer"><a id="serBuffer"></a> serBuffer</a></h3>
+<h3 id="bytearrayoutputstream-for-serialized-data"><a class="anchor" href="#bytearrayoutputstream-for-serialized-data"></a><a class="link" href="#bytearrayoutputstream-for-serialized-data"><a id="serBuffer"></a> ByteArrayOutputStream for Serialized Data</a></h3>
 <div class="paragraph">
 <p><a href="https://docs.oracle.com/javase/8/docs/api/java/io/ByteArrayOutputStream.html">java.io.ByteArrayOutputStream</a> of serialized data (written into a byte array of <a href="#DEFAULT_INITIAL_SER_BUFFER_SIZE">1MB</a> initial size)</p>
 </div>
@@ -2390,7 +2397,7 @@ FIXME
 </ul>
 </div>
 <div class="paragraph">
-<p>Destroyed (<code>null</code>) when requested to <a href="#closeAndWriteOutput">close internal resources and write out merged spill files</a></p>
+<p>Destroyed (<code>null</code>) when requested to <a href="#closeAndWriteOutput">close internal resources and merge spill files</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2411,7 +2418,7 @@ FIXME
 <p>Used when UnsafeShuffleWriter is requested to <a href="#insertRecordIntoSorter">insertRecordIntoSorter</a></p>
 </div>
 <div class="paragraph">
-<p>Destroyed (<code>null</code>) when requested to <a href="#closeAndWriteOutput">close internal resources and write out merged spill files</a></p>
+<p>Destroyed (<code>null</code>) when requested to <a href="#closeAndWriteOutput">close internal resources and merge spill files</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2420,7 +2427,7 @@ FIXME
 <p><a href="../rdd/ShuffleDependency.html#shuffleId" class="page">Shuffle ID</a> (of the <a href="spark-shuffle-BaseShuffleHandle.html#dependency" class="page">ShuffleDependency</a> of the <a href="#handle">SerializedShuffleHandle</a>)</p>
 </div>
 <div class="paragraph">
-<p>Used exclusively when requested to <a href="#closeAndWriteOutput">close internal resources and write out merged spill files</a></p>
+<p>Used exclusively when requested to <a href="#closeAndWriteOutput">close internal resources and merge spill files</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -2429,7 +2436,7 @@ FIXME
 <p>UnsafeShuffleWriter uses a <a href="ShuffleExternalSorter.html" class="page">ShuffleExternalSorter</a>.</p>
 </div>
 <div class="paragraph">
-<p>ShuffleExternalSorter is created when UnsafeShuffleWriter is requested to <a href="#open">open</a> (while being <a href="#creating-instance">created</a>) and dereferenced (<code>null</code>ed) when requested to <a href="#closeAndWriteOutput">close internal resources and write out merged spill files</a>.</p>
+<p>ShuffleExternalSorter is created when UnsafeShuffleWriter is requested to <a href="#open">open</a> (while being <a href="#creating-instance">created</a>) and dereferenced (<code>null</code>ed) when requested to <a href="#closeAndWriteOutput">close internal resources and merge spill files</a>.</p>
 </div>
 <div class="paragraph">
 <p>Used when UnsafeShuffleWriter is requested for the following:</p>
@@ -2443,7 +2450,7 @@ FIXME
 <p><a href="#write">Writing records</a></p>
 </li>
 <li>
-<p><a href="#closeAndWriteOutput">Closing internal resources and writing out merged spill files</a></p>
+<p><a href="#closeAndWriteOutput">Closing internal resources and merging spill files</a></p>
 </li>
 <li>
 <p><a href="#insertRecordIntoSorter">Inserting a record</a></p>
