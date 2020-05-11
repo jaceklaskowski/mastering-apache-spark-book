@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>HashPartitioner :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/rdd/HashPartitioner.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -1852,57 +1852,70 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="hashpartitioner"><a class="anchor" href="#hashpartitioner"></a><a class="link" href="#hashpartitioner"><a id="HashPartitioner"></a> HashPartitioner</a></h2>
+<h1 class="page">HashPartitioner</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>HashPartitioner</code> is a <code>Partitioner</code> that uses <code>partitions</code> configurable number of partitions to shuffle data around.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. <code>HashPartitioner</code> Attributes and Method</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 75%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Property</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>numPartitions</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Exactly <code>partitions</code> number of partitions</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>getPartition</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0</code> for <code>null</code> keys and Java&#8217;s <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#hashCode--">Object.hashCode</a> for non-<code>null</code> keys (modulo <code>partitions</code> number of partitions or <code>0</code> for negative hashes).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>equals</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code> for <code>HashPartitioner</code>s with <code>partitions</code> number of partitions. Otherwise, <code>false</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hashCode</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Exactly <code>partitions</code> number of partitions</p></td>
-</tr>
-</tbody>
-</table>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>HashPartitioner</code> is the default <code>Partitioner</code> for <a href="spark-rdd-partitions.adoc#coalesce">coalesce</a> transformation with <code>shuffle</code> enabled, e.g. calling <a href="spark-rdd-partitions.adoc#repartition">repartition</a>.
-</td>
-</tr>
-</table>
+<p><strong>HashPartitioner</strong> is a <a href="Partitioner.html" class="page">Partitioner</a> for hash-based partitioning.</p>
 </div>
 <div class="paragraph">
-<p>It is possible to re-shuffle data despite all the records for the key <code>k</code> being already on a single Spark executor (i.e. <a href="../storage/BlockManager.html" class="page">BlockManager</a> to be precise). When <code>HashPartitioner</code>'s result for <code>k1</code> is <code>3</code> the key <code>k1</code> will go to the third executor.</p>
+<p>HashPartitioner is used as the default Partitioner.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="number-of-partitions"><a class="anchor" href="#number-of-partitions"></a><a class="link" href="#number-of-partitions"><a id="partitions"></a><a id="numPartitions"></a> Number of Partitions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>HashPartitioner takes a number of partitions to be created.</p>
+</div>
+<div class="paragraph">
+<p>HashPartitioner uses the number of partitions to find the <a href="#getPartition">partition ID for a given key</a> (of a key-value record).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="finding-partition-id-for-key"><a class="anchor" href="#finding-partition-id-for-key"></a><a class="link" href="#finding-partition-id-for-key"><a id="getPartition"></a> Finding Partition ID for Key</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getPartition(key: Any): Int</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getPartition returns 0 as the partition ID for <code>null</code> keys.</p>
+</div>
+<div class="paragraph">
+<p>For non-<code>null</code> keys, getPartition uses the key&#8217;s <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#hashCode--">Object.hashCode</a> modulo the configured <a href="#numPartitions">number of partitions</a>. For a negative result, getPartition adds the <a href="#numPartitions">number of partitions</a> (used for the modulo operator) to make it positive.</p>
+</div>
+<div class="paragraph">
+<p>getPartition is part of the <a href="Partitioner.html#getPartition" class="page">Partitioner</a> abstraction.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="equals-method"><a class="anchor" href="#equals-method"></a><a class="link" href="#equals-method"><a id="equals"></a> equals Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">equals(other: Any): Boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Two HashPartitioners are considered equal when the <a href="#numPartitions">number of partitions</a> are the same.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="hashcode-method"><a class="anchor" href="#hashcode-method"></a><a class="link" href="#hashcode-method"><a id="hashCode"></a> hashCode Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">hashCode: Int</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>hashCode is the <a href="#numPartitions">number of partitions</a>.</p>
 </div>
 </div>
 </div>
