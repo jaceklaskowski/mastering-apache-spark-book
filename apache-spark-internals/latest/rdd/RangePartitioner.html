@@ -1853,8 +1853,82 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">RangePartitioner</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>RangePartitioner is&#8230;&#8203;FIXME</p>
+<p>RangePartitioner is a <a href="Partitioner.html" class="page">Partitioner</a> for&#8230;&#8203;FIXME</p>
+</div>
+<div id="ordering" class="paragraph">
+<p><code>RangePartitioner[K : Ordering : ClassTag, V]</code> is a parameterized type of <code>K</code> keys that can be sorted (<em>ordered</em>) and <code>V</code> values.</p>
+</div>
+<div class="paragraph">
+<p>RangePartitioner is used for <a href="spark-rdd-OrderedRDDFunctions.html#sortByKey" class="page">sortByKey</a> operator.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RangePartitioner takes the following to be created:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="partitions"></a> Number of partitions</p>
+</li>
+<li>
+<p><a id="rdd"></a> <a href="RDD.html" class="page">RDD</a> (<code>RDD[_ &lt;: Product2[K, V]]</code>)</p>
+</li>
+<li>
+<p><a id="ascending"></a> ascending flag (default: <code>true</code>)</p>
+</li>
+<li>
+<p><a id="samplePointsPerPartitionHint"></a> samplePointsPerPartitionHint (default: 20)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rangebounds-array"><a class="anchor" href="#rangebounds-array"></a><a class="link" href="#rangebounds-array"><a id="rangeBounds"></a> rangeBounds Array</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RangePartitioner uses rangeBounds registry (of type <code>Array[K]</code>) when requested for <a href="#getPartition">getPartition</a> and <a href="#hashCode">hashCode</a>, <a href="#numPartitions">number of partitions</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="number-of-partitions"><a class="anchor" href="#number-of-partitions"></a><a class="link" href="#number-of-partitions"><a id="numPartitions"></a> Number of Partitions</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">numPartitions: Int</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>numPartitions is simply one more than the length of the <a href="#rangeBounds">rangeBounds</a> array.</p>
+</div>
+<div class="paragraph">
+<p>numPartitions is part of the <a href="Partitioner.html#numPartitions" class="page">Partitioner</a> abstraction.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="finding-partition-id-for-key"><a class="anchor" href="#finding-partition-id-for-key"></a><a class="link" href="#finding-partition-id-for-key"><a id="getPartition"></a> Finding Partition ID for Key</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getPartition(key: Any): Int</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getPartition&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>getPartition is part of the <a href="Partitioner.html#getPartition" class="page">Partitioner</a> abstraction.</p>
+</div>
+</div>
 </div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
