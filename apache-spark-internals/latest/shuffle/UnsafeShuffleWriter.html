@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title> UnsafeShuffleWriter :: The Internals Of Apache Spark</title>
+    <title>UnsafeShuffleWriter :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/shuffle/UnsafeShuffleWriter.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -1852,7 +1852,7 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page"><a id="UnsafeShuffleWriter"></a> UnsafeShuffleWriter</h1>
+<h1 class="page">UnsafeShuffleWriter</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
@@ -1885,7 +1885,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-unsafeshufflewriter-instance"><a class="anchor" href="#creating-unsafeshufflewriter-instance"></a><a class="link" href="#creating-unsafeshufflewriter-instance"><a id="creating-instance"></a> Creating UnsafeShuffleWriter Instance</a></h2>
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>UnsafeShuffleWriter takes the following to be created:</p>
@@ -2022,7 +2022,7 @@ Use <a href="../configuration-properties.html#spark.shuffle.sort.initialBufferSi
 </div>
 </div>
 <div class="sect1">
-<h2 id="mergespills-internal-method"><a class="anchor" href="#mergespills-internal-method"></a><a class="link" href="#mergespills-internal-method"><a id="mergeSpills"></a> mergeSpills Internal Method</a></h2>
+<h2 id="merging-spills"><a class="anchor" href="#merging-spills"></a><a class="link" href="#merging-spills"><a id="mergeSpills"></a> Merging Spills</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2031,11 +2031,65 @@ Use <a href="../configuration-properties.html#spark.shuffle.sort.initialBufferSi
   File outputFile)</code></pre>
 </div>
 </div>
+<div class="sect2">
+<h3 id="many-spills"><a class="anchor" href="#many-spills"></a><a class="link" href="#many-spills"><a id="mergeSpills-many-spills"></a> Many Spills</a></h3>
 <div class="paragraph">
-<p>mergeSpills&#8230;&#8203;FIXME</p>
+<p>With multiple SpillInfos to merge, mergeSpills selects between fast and <a href="#mergeSpillsWithFileStream">slow merge strategies</a>. The fast merge strategy can be <a href="#mergeSpillsWithTransferTo">transferTo</a>- or <a href="#mergeSpillsWithFileStream">fileStream</a>-based.</p>
 </div>
 <div class="paragraph">
+<p>mergeSpills uses the <a href="../configuration-properties.html#spark.shuffle.unsafe.fastMergeEnabled" class="page">spark.shuffle.unsafe.fastMergeEnabled</a> configuration property to consider one of the fast merge strategies.</p>
+</div>
+<div class="paragraph">
+<p>A fast merge strategy is supported when <a href="../configuration-properties.html#spark.shuffle.compress" class="page">spark.shuffle.compress</a> configuration property is disabled or the IO compression codec <a href="../spark-CompressionCodec.html#supportsConcatenationOfSerializedStreams" class="page">supports decompression of concatenated compressed streams</a>.</p>
+</div>
+<div class="paragraph">
+<p>With <a href="../configuration-properties.html#spark.shuffle.compress" class="page">spark.shuffle.compress</a> configuration property enabled, mergeSpills will always use the slow merge strategy.</p>
+</div>
+<div class="paragraph">
+<p>With fast merge strategy enabled and supported, <a href="#transferToEnabled">transferToEnabled</a> enabled and encryption disabled, mergeSpills prints out the following DEBUG message to the logs and <a href="#mergeSpillsWithTransferTo">mergeSpillsWithTransferTo</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Using transferTo-based fast merge</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With fast merge strategy enabled and supported, no <a href="#transferToEnabled">transferToEnabled</a> or encryption enabled, mergeSpills prints out the following DEBUG message to the logs and <a href="#mergeSpillsWithFileStream">mergeSpillsWithFileStream</a> (with no compression codec).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Using fileStream-based fast merge</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For slow merge, mergeSpills prints out the following DEBUG message to the logs and <a href="#mergeSpillsWithFileStream">mergeSpillsWithFileStream</a> (with the compression codec).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Using slow merge</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the end, mergeSpills requests the <a href="#writeMetrics">ShuffleWriteMetrics</a> to <a href="../metrics/spark-executor-ShuffleWriteMetrics.html#decBytesWritten" class="page">decBytesWritten</a> and <a href="../metrics/spark-executor-ShuffleWriteMetrics.html#incBytesWritten" class="page">incBytesWritten</a>, and returns the partition length array.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="one-spill"><a class="anchor" href="#one-spill"></a><a class="link" href="#one-spill"><a id="mergeSpills-one-spill"></a> One Spill</a></h3>
+<div class="paragraph">
+<p>With one SpillInfo to merge, mergeSpills simply renames the spill file to be the output file and returns the partition length array of the one spill.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="no-spills"><a class="anchor" href="#no-spills"></a><a class="link" href="#no-spills"><a id="mergeSpills-no-spills"></a> No Spills</a></h3>
+<div class="paragraph">
+<p>With no SpillInfos to merge, mergeSpills creates an empty output file and returns an array of <code>0</code>s of size of the <a href="../rdd/Partitioner.html#numPartitions" class="page">numPartitions</a> of the <a href="#partitioner">Partitioner</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="usage"><a class="anchor" href="#usage"></a><a class="link" href="#usage"><a id="mergeSpills-usage"></a> Usage</a></h3>
+<div class="paragraph">
 <p>mergeSpills is used when UnsafeShuffleWriter is requested to <a href="#closeAndWriteOutput">close internal resources and write out merged spill files</a>.</p>
+</div>
 </div>
 </div>
 </div>
@@ -2187,7 +2241,7 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="mergespillswithfilestream-internal-method"><a class="anchor" href="#mergespillswithfilestream-internal-method"></a><a class="link" href="#mergespillswithfilestream-internal-method"><a id="mergeSpillsWithFileStream"></a> mergeSpillsWithFileStream Internal Method</a></h2>
+<h2 id="mergespillswithfilestream-method"><a class="anchor" href="#mergespillswithfilestream-method"></a><a class="link" href="#mergespillswithfilestream-method"><a id="mergeSpillsWithFileStream"></a> mergeSpillsWithFileStream Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2198,10 +2252,16 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
+<p>mergeSpillsWithFileStream will be given an <a href="../spark-CompressionCodec.html" class="page">IO compression codec</a> when shuffle compression is enabled.</p>
+</div>
+<div class="paragraph">
 <p>mergeSpillsWithFileStream&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p>mergeSpillsWithFileStream is used when UnsafeShuffleWriter is requested to <a href="#mergeSpills">mergeSpills</a>.</p>
+<p>mergeSpillsWithFileStream requires that there are at least two spills to merge.</p>
+</div>
+<div class="paragraph">
+<p>mergeSpillsWithFileStream is used when UnsafeShuffleWriter is requested to <a href="#mergeSpills">merge spills</a>.</p>
 </div>
 </div>
 </div>

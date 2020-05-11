@@ -1856,6 +1856,9 @@
 <h2 id="compressioncodec"><a class="anchor" href="#compressioncodec"></a><a class="link" href="#compressioncodec"><a id="CompressionCodec"></a> CompressionCodec</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p><strong>CompressionCodec</strong> is an IO compression codec.</p>
+</div>
+<div class="paragraph">
 <p>With <a href="spark-service-broadcastmanager.html#spark.broadcast.compress" class="page">spark.broadcast.compress</a> enabled (which is the default), <a href="spark-TorrentBroadcast.adoc">TorrentBroadcast</a> uses compression for broadcast blocks.</p>
 </div>
 <div class="admonitionblock caution">
@@ -1952,6 +1955,21 @@ createCodec(conf: SparkConf, codecName: String): CompressionCodec <i class="conu
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="supportsconcatenationofserializedstreams-method"><a class="anchor" href="#supportsconcatenationofserializedstreams-method"></a><a class="link" href="#supportsconcatenationofserializedstreams-method"><a id="supportsConcatenationOfSerializedStreams"></a> supportsConcatenationOfSerializedStreams Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">supportsConcatenationOfSerializedStreams(
+  codec: CompressionCodec): Boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>supportsConcatenationOfSerializedStreams&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>supportsConcatenationOfSerializedStreams is used when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 <div class="sect2">
