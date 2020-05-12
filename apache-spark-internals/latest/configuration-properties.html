@@ -2752,6 +2752,56 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="spark-io-compression-lz4-blocksize"><a class="anchor" href="#spark-io-compression-lz4-blocksize"></a><a class="link" href="#spark-io-compression-lz4-blocksize"><a id="spark.io.compression.lz4.blockSize"></a> spark.io.compression.lz4.blockSize</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The block size of the <a href="io/CompressionCodec.html#LZ4CompressionCodec" class="page">LZ4CompressionCodec</a></p>
+</div>
+<div class="paragraph">
+<p>Default: <code>32k</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-io-compression-snappy-blocksize"><a class="anchor" href="#spark-io-compression-snappy-blocksize"></a><a class="link" href="#spark-io-compression-snappy-blocksize"><a id="spark.io.compression.snappy.blockSize"></a> spark.io.compression.snappy.blockSize</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The block size of the <a href="io/CompressionCodec.html#SnappyCompressionCodec" class="page">SnappyCompressionCodec</a></p>
+</div>
+<div class="paragraph">
+<p>Default: <code>32k</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-io-compression-zstd-buffersize"><a class="anchor" href="#spark-io-compression-zstd-buffersize"></a><a class="link" href="#spark-io-compression-zstd-buffersize"><a id="spark.io.compression.zstd.bufferSize"></a> spark.io.compression.zstd.bufferSize</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The buffer size of the BufferedOutputStream of the <a href="io/CompressionCodec.html#ZStdCompressionCodec" class="page">ZStdCompressionCodec</a></p>
+</div>
+<div class="paragraph">
+<p>Default: <code>32k</code></p>
+</div>
+<div class="paragraph">
+<p>The buffer is used to avoid the overhead of excessive JNI calls while compressing or uncompressing small amount of data</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-io-compression-zstd-level"><a class="anchor" href="#spark-io-compression-zstd-level"></a><a class="link" href="#spark-io-compression-zstd-level"><a id="spark.io.compression.zstd.level"></a> spark.io.compression.zstd.level</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The compression level of the <a href="io/CompressionCodec.html#ZStdCompressionCodec" class="page">ZStdCompressionCodec</a></p>
+</div>
+<div class="paragraph">
+<p>Default: <code>1</code></p>
+</div>
+<div class="paragraph">
+<p>The default level is the fastest of all with reasonably high compression ratio</p>
+</div>
+</div>
+</div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>

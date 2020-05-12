@@ -1874,8 +1874,8 @@
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 30%;">
-<col style="width: 20%;">
-<col style="width: 50%;">
+<col style="width: 10%;">
+<col style="width: 60%;">
 </colgroup>
 <thead>
 <tr>
@@ -1888,29 +1888,62 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">LZ4CompressionCodec</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>lz4</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="LZ4CompressionCodec"></a> The default compression codec based on <a href="../configuration-properties.html#spark.io.compression.codec" class="page">spark.io.compression.codec</a> configuration property</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="LZ4CompressionCodec"></a> <a href="https://github.com/lz4/lz4-java">LZ4 compression</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The default compression codec based on <a href="../configuration-properties.html#spark.io.compression.codec" class="page">spark.io.compression.codec</a> configuration property</p>
+</li>
+<li>
+<p>Uses <a href="../configuration-properties.html#spark.io.compression.lz4.blockSize" class="page">spark.io.compression.lz4.blockSize</a> configuration property for the block size</p>
+</li>
+</ul>
+</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">LZFCompressionCodec</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>lzf</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="LZFCompressionCodec"></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="LZFCompressionCodec"></a> <a href="https://github.com/ning/compress">LZF compression</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SnappyCompressionCodec</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>snappy</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="SnappyCompressionCodec"></a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="SnappyCompressionCodec"></a> <a href="https://google.github.io/snappy/">Snappy compression</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Uses <a href="../configuration-properties.html#spark.io.compression.snappy.blockSize" class="page">spark.io.compression.snappy.blockSize</a> configuration property for the block size</p>
+</li>
+</ul>
+</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ZStdCompressionCodec</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>zstd</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="ZStdCompressionCodec"></a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="ZStdCompressionCodec"></a> <a href="https://facebook.github.io/zstd/">ZStandard compression</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../configuration-properties.html#spark.io.compression.zstd.bufferSize" class="page">spark.io.compression.zstd.bufferSize</a> for the buffer size</p>
+</li>
+<li>
+<p><a href="../configuration-properties.html#spark.io.compression.zstd.level" class="page">spark.io.compression.zstd.level</a> for the compression level</p>
+</li>
+</ul>
+</div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="applying-compression-to-output-stream"><a class="anchor" href="#applying-compression-to-output-stream"></a><a class="link" href="#applying-compression-to-output-stream"><a id="compressedOutputStream"></a> Applying Compression to Output Stream</a></h2>
+<h2 id="compressing-output-stream"><a class="anchor" href="#compressing-output-stream"></a><a class="link" href="#compressing-output-stream"><a id="compressedOutputStream"></a> Compressing Output Stream</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -1946,7 +1979,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="applying-compression-to-input-stream"><a class="anchor" href="#applying-compression-to-input-stream"></a><a class="link" href="#applying-compression-to-input-stream"><a id="compressedInputStream"></a> Applying Compression to Input Stream</a></h2>
+<h2 id="compressing-input-stream"><a class="anchor" href="#compressing-input-stream"></a><a class="link" href="#compressing-input-stream"><a id="compressedInputStream"></a> Compressing Input Stream</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2074,7 +2107,7 @@ createCodec(
 </div>
 </div>
 <div class="paragraph">
-<p>supportsConcatenationOfSerializedStreams&#8230;&#8203;FIXME</p>
+<p>supportsConcatenationOfSerializedStreams returns <code>true</code> when the given CompressionCodec is one of the <a href="#implementations">build-in ones</a>.</p>
 </div>
 <div class="paragraph">
 <p>supportsConcatenationOfSerializedStreams is used when UnsafeShuffleWriter is requested to <a href="../shuffle/UnsafeShuffleWriter.html#mergeSpills" class="page">merge spills</a>.</p>
