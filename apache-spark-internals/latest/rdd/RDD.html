@@ -526,6 +526,15 @@
     <a class="nav-link" href="spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="CheckpointRDD.html">CheckpointRDD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ReliableCheckpointRDD.html">ReliableCheckpointRDD</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="ShuffledRDD.html">ShuffledRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -559,15 +568,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-rdd-checkpointing.html">Checkpointing</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-CheckpointRDD.html">CheckpointRDD</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="spark-rdd-partitions.html">Partitions and Partitioning</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
@@ -584,6 +584,18 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="RangePartitioner.html">RangePartitioner</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="RDDCheckpointData.html">RDDCheckpointData</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="LocalRDDCheckpointData.html">LocalRDDCheckpointData</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ReliableRDDCheckpointData.html">ReliableRDDCheckpointData</a>
   </li>
 </ul>
   </li>
@@ -613,6 +625,9 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../spark-overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../rdd-checkpointing.html">RDD Checkpointing</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
@@ -1879,7 +1894,7 @@
 <p>compute computes the input <code>split</code> <a href="spark-rdd-partitions.html" class="page">partition</a> in the <a href="../scheduler/spark-TaskContext.html" class="page">TaskContext</a> to produce a collection of values (of type <code>T</code>).</p>
 </div>
 <div class="paragraph">
-<p>compute is implemented by any type of RDD in Spark and is called every time the records are requested unless RDD is <a href="spark-rdd-caching.html" class="page">cached</a> or <a href="spark-rdd-checkpointing.html" class="page">checkpointed</a> (and the records can be read from an external storage, but this time closer to the compute node).</p>
+<p>compute is implemented by any type of RDD in Spark and is called every time the records are requested unless RDD is <a href="spark-rdd-caching.html" class="page">cached</a> or <a href="../rdd-checkpointing.html" class="page">checkpointed</a> (and the records can be read from an external storage, but this time closer to the compute node).</p>
 </div>
 <div class="paragraph">
 <p>When an RDD is <a href="spark-rdd-caching.html" class="page">cached</a>, for specified <a href="../storage/StorageLevel.html" class="page">storage levels</a> (i.e. all but <code>NONE</code>) <a href="../spark-cachemanager.html" class="page"><code>CacheManager</code> is requested to get or compute partitions</a>.</p>
@@ -2193,7 +2208,7 @@ The <code>BlockResult</code> could be found in a local block manager or fetched 
 </table>
 </div>
 <div class="paragraph">
-<p>Internally, <code>dependencies</code> checks out whether the RDD is <a href="spark-rdd-checkpointing.adoc">checkpointed</a> and acts accordingly.</p>
+<p>Internally, <code>dependencies</code> checks out whether the RDD is <a href="../rdd-checkpointing.html" class="page">checkpointed</a> and acts accordingly.</p>
 </div>
 <div class="paragraph">
 <p>For a RDD being checkpointed, <code>dependencies</code> returns a single-element collection with a <a href="spark-rdd-NarrowDependency.adoc#OneToOneDependency">OneToOneDependency</a>.</p>
@@ -2345,7 +2360,7 @@ persist(newLevel: StorageLevel): this.type</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Refer to <a href="spark-rdd-checkpointing.html#localCheckpoint" class="page">Marking RDD for Local Checkpointing</a>.</p>
+<p>localCheckpoint marks this RDD for <a href="../rdd-checkpointing.html" class="page">local checkpointing</a> using Spark&#8217;s caching layer.</p>
 </div>
 </div>
 </div>
@@ -2425,6 +2440,38 @@ res1: Int = 5</code></pre>
 </div>
 <div class="paragraph">
 <p>Partitions have the property that their internal index should be equal to their position in the owning RDD.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="markcheckpointed-method"><a class="anchor" href="#markcheckpointed-method"></a><a class="link" href="#markcheckpointed-method"><a id="markCheckpointed"></a> markCheckpointed Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">markCheckpointed(): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>markCheckpointed&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>markCheckpointed is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="docheckpoint-method"><a class="anchor" href="#docheckpoint-method"></a><a class="link" href="#docheckpoint-method"><a id="doCheckpoint"></a> doCheckpoint Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">doCheckpoint(): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>doCheckpoint&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>doCheckpoint is used when SparkContext is requested to <a href="../spark-SparkContext.html#runJob" class="page">run a job (synchronously)</a>.</p>
 </div>
 </div>
 </div>

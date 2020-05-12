@@ -526,6 +526,15 @@
     <a class="nav-link" href="rdd/spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="rdd/CheckpointRDD.html">CheckpointRDD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="rdd/ReliableCheckpointRDD.html">ReliableCheckpointRDD</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="rdd/ShuffledRDD.html">ShuffledRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -559,15 +568,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="rdd/spark-rdd-checkpointing.html">Checkpointing</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="rdd/spark-rdd-CheckpointRDD.html">CheckpointRDD</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="rdd/spark-rdd-partitions.html">Partitions and Partitioning</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
@@ -584,6 +584,18 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="rdd/RangePartitioner.html">RangePartitioner</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="rdd/RDDCheckpointData.html">RDDCheckpointData</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="rdd/LocalRDDCheckpointData.html">LocalRDDCheckpointData</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="rdd/ReliableRDDCheckpointData.html">ReliableRDDCheckpointData</a>
   </li>
 </ul>
   </li>
@@ -613,6 +625,9 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="spark-overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rdd-checkpointing.html">RDD Checkpointing</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
@@ -3243,7 +3258,7 @@ FIXME Why is HttpFileServer used for addJar?
 </div>
 </div>
 <div class="sect1">
-<h2 id="running-job-synchronouslyrunjob-methods"><a class="anchor" href="#running-job-synchronouslyrunjob-methods"></a><a class="link" href="#running-job-synchronouslyrunjob-methods"><a id="runJob"></a> Running Job Synchronously&#8201;&#8212;&#8201;<code>runJob</code> Methods</a></h2>
+<h2 id="running-job-synchronously"><a class="anchor" href="#running-job-synchronously"></a><a class="link" href="#running-job-synchronously"><a id="runJob"></a> Running Job Synchronously</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="rdd/index.html#actions" class="page">RDD actions</a> run <a href="spark-scheduler-ActiveJob.adoc">jobs</a> using one of <code>runJob</code> methods.</p>
@@ -3338,7 +3353,7 @@ runJob[T, U: ClassTag](
 </table>
 </div>
 <div class="paragraph">
-<p>After <code>DAGScheduler</code> is done and the job has finished, <code>runJob</code> <a href="spark-sparkcontext-ConsoleProgressBar.adoc#finishAll">stops <code>ConsoleProgressBar</code></a> and <a href="spark-rdd-checkpointing.adoc#doCheckpoint">performs RDD checkpointing of <code>rdd</code></a>.</p>
+<p>After <code>DAGScheduler</code> is done and the job has finished, <code>runJob</code> <a href="spark-sparkcontext-ConsoleProgressBar.adoc#finishAll">stops <code>ConsoleProgressBar</code></a> and <a href="rdd-checkpointing.html#doCheckpoint" class="page">performs RDD checkpointing of <code>rdd</code></a>.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -4368,6 +4383,20 @@ FIXME
 </div>
 <div class="paragraph">
 <p>killTaskAttempt requests the <a href="#dagScheduler">DAGScheduler</a> to <a href="scheduler/DAGScheduler.html#killTaskAttempt" class="page">kill a task</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="checkpointfile-internal-method"><a class="anchor" href="#checkpointfile-internal-method"></a><a class="link" href="#checkpointfile-internal-method"><a id="checkpointFile"></a> checkpointFile Internal Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">checkpointFile[T: ClassTag](
+  path: String): RDD[T]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>checkpointFile&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>
