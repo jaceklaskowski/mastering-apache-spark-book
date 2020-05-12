@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Resilient Distributed Dataset (RDD) :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/rdd/index.html">
+    <title>CompressionCodec :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/io/CompressionCodec.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -67,8 +67,8 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../io/CompressionCodec.html">CompressionCodec</a>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="CompressionCodec.html">CompressionCodec</a>
   </li>
 </ul>
   </li>
@@ -499,111 +499,111 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Resilient Distributed Dataset</a>
+    <a class="nav-link" href="../rdd/index.html">Resilient Distributed Dataset</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="RDD.html">RDD</a>
+    <a class="nav-link" href="../rdd/RDD.html">RDD</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
+    <a class="nav-link" href="../rdd/spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-HadoopRDD.html">HadoopRDD</a>
+    <a class="nav-link" href="../rdd/spark-rdd-HadoopRDD.html">HadoopRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
+    <a class="nav-link" href="../rdd/spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
+    <a class="nav-link" href="../rdd/spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
+    <a class="nav-link" href="../rdd/spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
+    <a class="nav-link" href="../rdd/spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ShuffledRDD.html">ShuffledRDD</a>
+    <a class="nav-link" href="../rdd/ShuffledRDD.html">ShuffledRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
+    <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-rdd-operations.html">Operators</a>
+    <a class="nav-link" href="../rdd/spark-rdd-operations.html">Operators</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-rdd-transformations.html">Transformations</a>
+    <a class="nav-link" href="../rdd/spark-rdd-transformations.html">Transformations</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="PairRDDFunctions.html">PairRDDFunctions</a>
+    <a class="nav-link" href="../rdd/PairRDDFunctions.html">PairRDDFunctions</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-actions.html">Actions</a>
+    <a class="nav-link" href="../rdd/spark-rdd-actions.html">Actions</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-rdd-lineage.html">RDD Lineage</a>
+    <a class="nav-link" href="../rdd/spark-rdd-lineage.html">RDD Lineage</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-rdd-caching.html">Caching and Persistence</a>
+    <a class="nav-link" href="../rdd/spark-rdd-caching.html">Caching and Persistence</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-rdd-checkpointing.html">Checkpointing</a>
+    <a class="nav-link" href="../rdd/spark-rdd-checkpointing.html">Checkpointing</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-CheckpointRDD.html">CheckpointRDD</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-rdd-partitions.html">Partitions and Partitioning</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-Partition.html">Partition</a>
+    <a class="nav-link" href="../rdd/spark-rdd-CheckpointRDD.html">CheckpointRDD</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="Partitioner.html">Partitioner</a>
+    <a class="nav-link" href="../rdd/spark-rdd-partitions.html">Partitions and Partitioning</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="HashPartitioner.html">HashPartitioner</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="RangePartitioner.html">RangePartitioner</a>
+    <a class="nav-link" href="../rdd/spark-rdd-Partition.html">Partition</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-rdd-shuffle.html">Shuffling</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-rdd-Dependency.html">Dependencies</a>
+    <a class="nav-link" href="../rdd/Partitioner.html">Partitioner</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rdd-NarrowDependency.html">NarrowDependency</a>
+    <a class="nav-link" href="../rdd/HashPartitioner.html">HashPartitioner</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ShuffleDependency.html">ShuffleDependency</a>
+    <a class="nav-link" href="../rdd/RangePartitioner.html">RangePartitioner</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Aggregator.html">Aggregator</a>
+    <a class="nav-link" href="../rdd/spark-rdd-shuffle.html">Shuffling</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/spark-rdd-Dependency.html">Dependencies</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-NarrowDependency.html">NarrowDependency</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/ShuffleDependency.html">ShuffleDependency</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rdd/Aggregator.html">Aggregator</a>
   </li>
 </ul>
   </li>
@@ -1847,449 +1847,237 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Resilient Distributed Dataset</a></li>
+    <li><a href="CompressionCodec.html">CompressionCodec</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/rdd/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/io/pages/CompressionCodec.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Resilient Distributed Dataset (RDD)</h1>
+<h1 class="page">CompressionCodec</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Resilient Distributed Dataset</strong> (aka <strong>RDD</strong>) is the primary data abstraction in Apache Spark and the core of Spark (that I often refer to as "Spark Core").</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">The origins of RDD</div>
-<div class="paragraph">
-<p>The original paper that gave birth to the concept of RDD is <a href="https://cs.stanford.edu/~matei/papers/2012/nsdi_spark.pdf">Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing</a> by Matei Zaharia, et al.</p>
-</div>
-</div>
+<p><strong>CompressionCodec</strong> is an abstraction of <a href="#implementations">IO compression codecs</a>.</p>
 </div>
 <div class="paragraph">
-<p>An RDD is a description of a fault-tolerant and resilient computation over a distributed collection of records (spread over <a href="#getPartitions">one or many partitions</a>).</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-One could compare RDDs to collections in Scala, i.e. a RDD is computed on many JVMs while a Scala collection lives on a single JVM.
-</td>
-</tr>
-</table>
+<p>A concrete CompressionCodec is supposed to <a href="#createCodec">come with a constructor that accepts a single argument being SparkConf</a>.</p>
 </div>
 <div class="paragraph">
-<p>Using RDD Spark hides data partitioning and so distribution that in turn allowed them to design parallel computational framework with a higher-level programming interface (API) for four mainstream programming languages.</p>
-</div>
-<div class="paragraph">
-<p>The features of RDDs (decomposing the name):</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Resilient</strong>, i.e. fault-tolerant with the help of <a href="#lineage">RDD lineage graph</a> and so able to recompute missing or damaged partitions due to node failures.</p>
-</li>
-<li>
-<p><strong>Distributed</strong> with data residing on multiple nodes in a <a href="spark-cluster.adoc">cluster</a>.</p>
-</li>
-<li>
-<p><strong>Dataset</strong> is a collection of <a href="spark-rdd-partitions.adoc">partitioned data</a> with primitive values or values of values, e.g. tuples or other objects (that represent records of the data you work with).</p>
-</li>
-</ul>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/spark-rdds.png" alt="spark rdds">
-</div>
-<div class="title">Figure 1. RDDs</div>
-</div>
-<div class="paragraph">
-<p>From the scaladoc of <a href="http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.rdd.RDD">org.apache.spark.rdd.RDD</a>:</p>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>A Resilient Distributed Dataset (RDD), the basic abstraction in Spark. Represents an immutable, partitioned collection of elements that can be operated on in parallel.</p>
-</div>
-</blockquote>
-</div>
-<div class="paragraph">
-<p>From the original paper about RDD - <a href="https://cs.stanford.edu/~matei/papers/2012/nsdi_spark.pdf">Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing</a>:</p>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>Resilient Distributed Datasets (RDDs) are a distributed memory abstraction that lets programmers perform in-memory computations on large clusters in a fault-tolerant manner.</p>
-</div>
-</blockquote>
-</div>
-<div class="paragraph">
-<p>Beside the above traits (that are directly embedded in the name of the data abstraction - RDD) it has the following additional traits:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>In-Memory</strong>, i.e. data inside RDD is stored in memory as much (size) and long (time) as possible.</p>
-</li>
-<li>
-<p><strong>Immutable</strong> or <strong>Read-Only</strong>, i.e. it does not change once created and can only be transformed using transformations to new RDDs.</p>
-</li>
-<li>
-<p><strong>Lazy evaluated</strong>, i.e. the data inside RDD is not available or transformed until an action is executed that triggers the execution.</p>
-</li>
-<li>
-<p><strong>Cacheable</strong>, i.e. you can hold all the data in a persistent "storage" like memory (default and the most preferred) or disk (the least preferred due to access speed).</p>
-</li>
-<li>
-<p><strong>Parallel</strong>, i.e. process data in parallel.</p>
-</li>
-<li>
-<p><strong>Typed</strong>&#8201;&#8212;&#8201;RDD records have types, e.g. <code>Long</code> in <code>RDD[Long]</code> or <code>(Int, String)</code> in <code>RDD[(Int, String)]</code>.</p>
-</li>
-<li>
-<p><strong>Partitioned</strong>&#8201;&#8212;&#8201;records are partitioned (split into logical partitions) and distributed across nodes in a cluster.</p>
-</li>
-<li>
-<p><strong>Location-Stickiness</strong>&#8201;&#8212;&#8201;<code>RDD</code> can define <a href="#preferredLocations">placement preferences</a> to compute partitions (as close to the records as possible).</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<strong>Preferred location</strong> (aka <em>locality preferences</em> or <em>placement preferences</em> or <em>locality info</em>) is information about the locations of RDD records (that Spark&#8217;s <a href="../scheduler/DAGScheduler.html#preferred-locations" class="page">DAGScheduler</a> uses to place computing partitions on to have the tasks as close to the data as possible).
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Computing partitions in a RDD is a distributed process by design and to achieve even <strong>data distribution</strong> as well as leverage <a href="spark-data-locality.adoc">data locality</a> (in distributed systems like HDFS or Cassandra in which data is partitioned by default), they are <strong>partitioned</strong> to a fixed number of <a href="spark-rdd-partitions.adoc">partitions</a> - logical chunks (parts) of data. The logical division is for processing only and internally it is not divided whatsoever. Each partition comprises of <strong>records</strong>.</p>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/spark-rdd-partitioned-distributed.png" alt="spark rdd partitioned distributed">
-</div>
-<div class="title">Figure 2. RDDs</div>
-</div>
-<div class="paragraph">
-<p><a href="spark-rdd-partitions.adoc">Partitions are the units of parallelism</a>. You can control the number of partitions of a RDD using <a href="spark-rdd-partitions.adoc#repartition">repartition</a> or <a href="spark-rdd-partitions.adoc#coalesce">coalesce</a> transformations. Spark tries to be as close to data as possible without wasting time to send data across network by means of <a href="spark-rdd-shuffle.adoc">RDD shuffling</a>, and creates as many partitions as required to follow the storage layout and thus optimize data access. It leads to a one-to-one mapping between (physical) data in distributed data storage, e.g. HDFS or Cassandra, and partitions.</p>
-</div>
-<div class="paragraph">
-<p>RDDs support two kinds of operations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#transformations">transformations</a> - lazy operations that return another RDD.</p>
-</li>
-<li>
-<p><a href="#actions">actions</a> - operations that trigger computation and return values.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The motivation to create RDD were (<a href="https://www.cs.berkeley.edu/~matei/papers/2012/nsdi_spark.pdf">after the authors</a>) two types of applications that current computing frameworks handle inefficiently:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>iterative algorithms</strong> in machine learning and graph computations.</p>
-</li>
-<li>
-<p><strong>interactive data mining tools</strong> as ad-hoc queries on the same dataset.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The goal is to reuse intermediate in-memory results across multiple data-intensive workloads with no need for copying large amounts of data over the
-network.</p>
-</div>
-<div class="paragraph">
-<p>Technically, RDDs follow the <a href="#contract">contract</a> defined by the five main intrinsic properties:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a id="dependencies"></a> <strong>Parent RDDs</strong> (aka <a href="RDD.html#dependencies" class="page">RDD dependencies</a>)</p>
-</li>
-<li>
-<p>An array of <a href="spark-rdd-partitions.adoc">partitions</a> that a dataset is divided to.</p>
-</li>
-<li>
-<p>A <a href="RDD.html#compute" class="page">compute</a> function to do a computation on partitions.</p>
-</li>
-<li>
-<p>An optional <a href="Partitioner.html" class="page">Partitioner</a> that defines how keys are hashed, and the pairs partitioned (for key-value RDDs)</p>
-</li>
-<li>
-<p>Optional <a href="#getPreferredLocations">preferred locations</a> (aka <strong>locality info</strong>), i.e. hosts for a partition where the records live or are the closest to read from.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>This RDD abstraction supports an expressive set of operations without having to modify scheduler for each one.</p>
-</div>
-<div id="context" class="paragraph">
-<p>An RDD is a named (by <code>name</code>) and uniquely identified (by <code>id</code>) entity in a <a href="spark-SparkContext.adoc">SparkContext</a> (available as <code>context</code> property).</p>
-</div>
-<div class="paragraph">
-<p>RDDs live in one and only one <a href="spark-SparkContext.adoc">SparkContext</a> that creates a logical boundary.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-RDDs cannot be shared between <code>SparkContexts</code> (see <a href="spark-SparkContext.adoc#sparkcontext-and-rdd">SparkContext and RDDs</a>).
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>An RDD can optionally have a friendly name accessible using <code>name</code> that can be changed using <code>=</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>scala&gt; val ns = sc.parallelize(0 to 10)
-ns: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[2] at parallelize at &lt;console&gt;:24
-
-scala&gt; ns.id
-res0: Int = 2
-
-scala&gt; ns.name
-res1: String = null
-
-scala&gt; ns.name = "Friendly name"
-ns.name: String = Friendly name
-
-scala&gt; ns.name
-res2: String = Friendly name
-
-scala&gt; ns.toDebugString
-res3: String = (8) Friendly name ParallelCollectionRDD[2] at parallelize at &lt;console&gt;:24 []</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>RDDs are a container of instructions on how to materialize big (arrays of) distributed data, and how to split it into partitions so Spark (using <a href="spark-Executor.adoc">executors</a>) can hold some of them.</p>
-</div>
-<div class="paragraph">
-<p>In general data distribution can help executing processing in parallel so a task processes a chunk of data that it could eventually keep in memory.</p>
-</div>
-<div class="paragraph">
-<p>Spark does jobs in parallel, and RDDs are split into partitions to be processed and written in parallel. Inside a partition, data is processed sequentially.</p>
-</div>
-<div class="paragraph">
-<p>Saving partitions results in part-files instead of one single file (unless there is a single partition).</p>
+<p>The default compression codec is configured using <a href="../configuration-properties.html#spark.io.compression.codec" class="page">spark.io.compression.codec</a> configuration property.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="transformations"><a class="anchor" href="#transformations"></a><a class="link" href="#transformations"><a id="transformations"></a> Transformations</a></h2>
+<h2 id="available-compressioncodecs"><a class="anchor" href="#available-compressioncodecs"></a><a class="link" href="#available-compressioncodecs"><a id="implementations"></a><a id="shortCompressionCodecNames"></a> Available CompressionCodecs</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>A <strong>transformation</strong> is a lazy operation on a RDD that returns another RDD, e.g. <code>map</code>, <code>flatMap</code>, <code>filter</code>, <code>reduceByKey</code>, <code>join</code>, <code>cogroup</code>, etc.</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 20%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">CompressionCodec</th>
+<th class="tableblock halign-left valign-top">Alias</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LZ4CompressionCodec</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lz4</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="LZ4CompressionCodec"></a> The default compression codec based on <a href="../configuration-properties.html#spark.io.compression.codec" class="page">spark.io.compression.codec</a> configuration property</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LZFCompressionCodec</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lzf</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="LZFCompressionCodec"></a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SnappyCompressionCodec</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>snappy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="SnappyCompressionCodec"></a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ZStdCompressionCodec</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>zstd</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="ZStdCompressionCodec"></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="applying-compression-to-output-stream"><a class="anchor" href="#applying-compression-to-output-stream"></a><a class="link" href="#applying-compression-to-output-stream"><a id="compressedOutputStream"></a> Applying Compression to Output Stream</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">compressedOutputStream(
+  s: OutputStream): OutputStream</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Find out more in <a href="spark-rdd-transformations.html" class="page">Transformations</a>.</p>
+<p>compressedOutputStream is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>TorrentBroadcast is requested to <a href="../spark-TorrentBroadcast.html#blockifyObject" class="page">blockifyObject</a></p>
+</li>
+<li>
+<p>ReliableCheckpointRDD is requested to writePartitionToCheckpointFile</p>
+</li>
+<li>
+<p>EventLoggingListener is requested to <a href="../spark-history-server/EventLoggingListener.html#start" class="page">start</a></p>
+</li>
+<li>
+<p>GenericAvroSerializer is requested to compress a schema</p>
+</li>
+<li>
+<p>SerializerManager is requested to <a href="../serializer/SerializerManager.html#wrapForCompression" class="page">wrap an output stream of a block for compression</a></p>
+</li>
+<li>
+<p>UnsafeShuffleWriter is requested to <a href="../shuffle/UnsafeShuffleWriter.html#mergeSpillsWithFileStream" class="page">mergeSpillsWithFileStream</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="actions"><a class="anchor" href="#actions"></a><a class="link" href="#actions"><a id="actions"></a> Actions</a></h2>
+<h2 id="applying-compression-to-input-stream"><a class="anchor" href="#applying-compression-to-input-stream"></a><a class="link" href="#applying-compression-to-input-stream"><a id="compressedInputStream"></a> Applying Compression to Input Stream</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>An <strong>action</strong> is an operation that triggers execution of <a href="#transformations">RDD transformations</a> and returns a value (to a Spark driver - the user program).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">compressedInputStream(
+  s: InputStream): InputStream</code></pre>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Go in-depth in the section <a href="spark-rdd-actions.adoc">Actions</a>.
-</td>
-</tr>
-</table>
+</div>
+<div class="paragraph">
+<p>compressedInputStream is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>TorrentBroadcast is requested to <a href="../spark-TorrentBroadcast.html#unBlockifyObject" class="page">unBlockifyObject</a></p>
+</li>
+<li>
+<p>ReliableCheckpointRDD is requested to readCheckpointFile</p>
+</li>
+<li>
+<p>EventLoggingListener is requested to <a href="../spark-history-server/EventLoggingListener.html#openEventLog" class="page">openEventLog</a></p>
+</li>
+<li>
+<p>GenericAvroSerializer is requested to decompress a schema</p>
+</li>
+<li>
+<p>SerializerManager is requested to <a href="../serializer/SerializerManager.html#wrapForCompression" class="page">wrap an input stream of a block for compression</a></p>
+</li>
+<li>
+<p>UnsafeShuffleWriter is requested to <a href="../shuffle/UnsafeShuffleWriter.html#mergeSpillsWithFileStream" class="page">mergeSpillsWithFileStream</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-rdds"><a class="anchor" href="#creating-rdds"></a><a class="link" href="#creating-rdds"><a id="creating-rdds"></a> Creating RDDs</a></h2>
+<h2 id="creating-compressioncodec"><a class="anchor" href="#creating-compressioncodec"></a><a class="link" href="#creating-compressioncodec"><a id="createCodec"></a> Creating CompressionCodec</a></h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="sparkcontext-parallelize"><a class="anchor" href="#sparkcontext-parallelize"></a><a class="link" href="#sparkcontext-parallelize">SparkContext.parallelize</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">createCodec(
+  conf: SparkConf): CompressionCodec
+createCodec(
+  conf: SparkConf,
+  codecName: String): CompressionCodec</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>One way to create a RDD is with <code>SparkContext.parallelize</code> method. It accepts a collection of elements as shown below (<code>sc</code> is a SparkContext instance):</p>
+<p>createCodec creates an instance of the compression codec by the given name (using a constructor that accepts a <a href="../spark-SparkConf.html" class="page">SparkConf</a>).</p>
+</div>
+<div class="paragraph">
+<p>createCodec uses <a href="#getCodecName">getCodecName</a> utility to find the codec name unless specified explicitly.</p>
+</div>
+<div class="paragraph">
+<p>createCodec finds the class name in the <a href="#shortCompressionCodecNames">shortCompressionCodecNames</a> internal lookup table or assumes that the codec name is already a fully-qualified class name.</p>
+</div>
+<div class="paragraph">
+<p>createCodec throws an IllegalArgumentException exception if a compression codec could not be found:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>scala&gt; val rdd = sc.parallelize(1 to 1000)
-rdd: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[0] at parallelize at &lt;console&gt;:25</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Codec [codecName] is not available. Consider setting spark.io.compression.codec=snappy</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You may also want to randomize the sample data:</p>
+<p>createCodec is used when:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>scala&gt; val data = Seq.fill(10)(util.Random.nextInt)
-data: Seq[Int] = List(-964985204, 1662791, -1820544313, -383666422, -111039198, 310967683, 1114081267, 1244509086, 1797452433, 124035586)
-
-scala&gt; val rdd = sc.parallelize(data)
-rdd: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[0] at parallelize at &lt;console&gt;:29</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Given the reason to use Spark to process more data than your own laptop could handle, <code>SparkContext.parallelize</code> is mainly used to learn Spark in the Spark shell. <code>SparkContext.parallelize</code> requires all the data to be available on a single machine - the Spark driver - that eventually hits the limits of your laptop.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="sparkcontext-makerdd"><a class="anchor" href="#sparkcontext-makerdd"></a><a class="link" href="#sparkcontext-makerdd">SparkContext.makeRDD</a></h3>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME What&#8217;s the use case for <code>makeRDD</code>?
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>scala&gt; sc.makeRDD(0 to 1000)
-res0: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[1] at makeRDD at &lt;console&gt;:25</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="sparkcontext-textfile"><a class="anchor" href="#sparkcontext-textfile"></a><a class="link" href="#sparkcontext-textfile">SparkContext.textFile</a></h3>
-<div class="paragraph">
-<p>One of the easiest ways to create an RDD is to use <code>SparkContext.textFile</code> to read files.</p>
-</div>
-<div class="paragraph">
-<p>You can use the local <code>README.md</code> file (and then <code>flatMap</code> over the lines inside to have an RDD of words):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>scala&gt; val words = sc.textFile("README.md").flatMap(_.split("\\W+")).cache
-words: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[27] at flatMap at &lt;console&gt;:24</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-You <a href="spark-rdd-caching.adoc">cache</a> it so the computation is not performed every time you work with <code>words</code>.
-</td>
-</tr>
-</table>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p>TorrentBroadcast is requested to <a href="../spark-TorrentBroadcast.html#setConf" class="page">setConf</a></p>
+</li>
+<li>
+<p>ReliableCheckpointRDD is requested to writePartitionToCheckpointFile and readCheckpointFile</p>
+</li>
+<li>
+<p><a href="../spark-history-server/EventLoggingListener.html" class="page">EventLoggingListener</a> is created and requested to <a href="../spark-history-server/EventLoggingListener.html#openEventLog" class="page">openEventLog</a></p>
+</li>
+<li>
+<p>GenericAvroSerializer is created</p>
+</li>
+<li>
+<p>SerializerManager is created</p>
+</li>
+<li>
+<p>UnsafeShuffleWriter is requested to <a href="../shuffle/UnsafeShuffleWriter.html#mergeSpills" class="page">merge spills</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-rdds-from-input"><a class="anchor" href="#creating-rdds-from-input"></a><a class="link" href="#creating-rdds-from-input"><a id="creating-rdds-from-input"></a> Creating RDDs from Input</a></h2>
+<h2 id="finding-compression-codec-name"><a class="anchor" href="#finding-compression-codec-name"></a><a class="link" href="#finding-compression-codec-name"><a id="getCodecName"></a> Finding Compression Codec Name</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Refer to <a href="spark-io.adoc">Using Input and Output (I/O)</a> to learn about the IO API to create RDDs.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getCodecName(
+  conf: SparkConf): String</code></pre>
 </div>
-<div class="sect2">
-<h3 id="transformations-2"><a class="anchor" href="#transformations-2"></a><a class="link" href="#transformations-2">Transformations</a></h3>
-<div class="paragraph">
-<p>RDD transformations by definition transform an RDD into another RDD and hence are the way to create new ones.</p>
 </div>
 <div class="paragraph">
-<p>Refer to <a href="#transformations">Transformations</a> section to learn more.</p>
+<p>getCodecName takes the name of a compression codec based on <a href="../configuration-properties.html#spark.io.compression.codec" class="page">spark.io.compression.codec</a> configuration property (using the <a href="../spark-SparkConf.html" class="page">SparkConf</a>) if available or defaults to <code>lz4</code>.</p>
 </div>
+<div class="paragraph">
+<p>getCodecName is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>SparkContext is created (and <a href="../spark-SparkContext-creating-instance-internals.html#_eventLogCodec" class="page">initializes event logging</a>)</p>
+</li>
+<li>
+<p>CompressionCodec utility is used to <a href="#createCodec">creating a CompressionCodec</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="rdds-in-web-ui"><a class="anchor" href="#rdds-in-web-ui"></a><a class="link" href="#rdds-in-web-ui">RDDs in Web UI</a></h2>
+<h2 id="supportsconcatenationofserializedstreams-method"><a class="anchor" href="#supportsconcatenationofserializedstreams-method"></a><a class="link" href="#supportsconcatenationofserializedstreams-method"><a id="supportsConcatenationOfSerializedStreams"></a> supportsConcatenationOfSerializedStreams Method</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>It is quite informative to look at RDDs in the Web UI that is at <a href="http://localhost:4040" class="bare">http://localhost:4040</a> for <a href="spark-shell.adoc">Spark shell</a>.</p>
-</div>
-<div class="paragraph">
-<p>Execute the following Spark application (type all the lines in <code>spark-shell</code>):</p>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">val ints = sc.parallelize(1 to 100) <i class="conum" data-value="1"></i><b>(1)</b>
-ints.setName("Hundred ints")        <i class="conum" data-value="2"></i><b>(2)</b>
-ints.cache                          <i class="conum" data-value="3"></i><b>(3)</b>
-ints.count                          <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">supportsConcatenationOfSerializedStreams(
+  codec: CompressionCodec): Boolean</code></pre>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Creates an RDD with hundred of numbers (with as many partitions as possible)</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Sets the name of the RDD</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Caches the RDD for performance reasons that also makes it visible in Storage tab in the web UI</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Executes action (and materializes the RDD)</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
-<p>With the above executed, you should see the following in the Web UI:</p>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/spark-ui-rdd-name.png" alt="spark ui rdd name">
-</div>
-<div class="title">Figure 3. RDD with custom name</div>
+<p>supportsConcatenationOfSerializedStreams&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p>Click the name of the RDD (under <strong>RDD Name</strong>) and you will get the details of how the RDD is cached.</p>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/spark-ui-storage-hundred-ints.png" alt="spark ui storage hundred ints">
-</div>
-<div class="title">Figure 4. RDD Storage Info</div>
-</div>
-<div class="paragraph">
-<p>Execute the following Spark job and you will see how the number of partitions decreases.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>ints.repartition(2).count</code></pre>
-</div>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/spark-ui-repartition-2.png" alt="spark ui repartition 2">
-</div>
-<div class="title">Figure 5. Number of tasks after <code>repartition</code></div>
+<p>supportsConcatenationOfSerializedStreams is used when UnsafeShuffleWriter is requested to <a href="../shuffle/UnsafeShuffleWriter.html#mergeSpills" class="page">merge spills</a>.</p>
 </div>
 </div>
 </div>

@@ -68,6 +68,13 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="io/CompressionCodec.html">CompressionCodec</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="serializer/index.html">Serialization System</a>
 <ul class="nav-list">
@@ -647,9 +654,6 @@
     <a class="nav-link" href="spark-TorrentBroadcast.html">TorrentBroadcast</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-CompressionCodec.html">CompressionCodec</a>
   </li>
 </ul>
   </li>
@@ -2056,7 +2060,7 @@ Use <code>sc.getConf.get("spark.executor.id")</code> to know where the code is e
 <p>If <a href="spark-history-server/EventLoggingListener.html" class="page">event logging</a> is enabled, i.e. <a href="EventLoggingListener.adoc#spark_eventLog_enabled">spark.eventLog.enabled</a> flag is <code>true</code>, the internal field <code>_eventLogDir</code> is set to the value of <a href="EventLoggingListener.adoc#spark_eventLog_dir">spark.eventLog.dir</a> setting or the default value <code>/tmp/spark-events</code>.</p>
 </div>
 <div id="_eventLogCodec" class="paragraph">
-<p>Also, if <a href="spark-history-server/EventLoggingListener.html#spark_eventLog_compress" class="page">spark.eventLog.compress</a> is enabled (it is not by default), the short name of the <a href="spark-CompressionCodec.adoc">CompressionCodec</a> is assigned to <code>_eventLogCodec</code>. The config key is <a href="spark-service-broadcastmanager.adoc#spark_io_compression_codec">spark.io.compression.codec</a> (default: <code>lz4</code>).</p>
+<p>Also, if <a href="spark-history-server/EventLoggingListener.html#spark_eventLog_compress" class="page">spark.eventLog.compress</a> is enabled (it is not by default), the short name of the <a href="io/CompressionCodec.html" class="page">CompressionCodec</a> is assigned to <code>_eventLogCodec</code>. The config key is <a href="spark-service-broadcastmanager.adoc#spark_io_compression_codec">spark.io.compression.codec</a> (default: <code>lz4</code>).</p>
 </div>
 <div class="admonitionblock tip">
 <table>

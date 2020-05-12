@@ -68,6 +68,13 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../io/CompressionCodec.html">CompressionCodec</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../serializer/index.html">Serialization System</a>
 <ul class="nav-list">
@@ -647,9 +654,6 @@
     <a class="nav-link" href="../spark-TorrentBroadcast.html">TorrentBroadcast</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-CompressionCodec.html">CompressionCodec</a>
   </li>
 </ul>
   </li>
@@ -2040,7 +2044,7 @@ Use <a href="../configuration-properties.html#spark.shuffle.sort.initialBufferSi
 <p>mergeSpills uses the <a href="../configuration-properties.html#spark.shuffle.unsafe.fastMergeEnabled" class="page">spark.shuffle.unsafe.fastMergeEnabled</a> configuration property to consider one of the fast merge strategies.</p>
 </div>
 <div class="paragraph">
-<p>A fast merge strategy is supported when <a href="../configuration-properties.html#spark.shuffle.compress" class="page">spark.shuffle.compress</a> configuration property is disabled or the IO compression codec <a href="../spark-CompressionCodec.html#supportsConcatenationOfSerializedStreams" class="page">supports decompression of concatenated compressed streams</a>.</p>
+<p>A fast merge strategy is supported when <a href="../configuration-properties.html#spark.shuffle.compress" class="page">spark.shuffle.compress</a> configuration property is disabled or the IO compression codec <a href="../io/CompressionCodec.html#supportsConcatenationOfSerializedStreams" class="page">supports decompression of concatenated compressed streams</a>.</p>
 </div>
 <div class="paragraph">
 <p>With <a href="../configuration-properties.html#spark.shuffle.compress" class="page">spark.shuffle.compress</a> configuration property enabled, mergeSpills will always use the slow merge strategy.</p>
@@ -2259,7 +2263,7 @@ closeAndWriteOutput creates a temporary file (along the data output file) and us
 </div>
 </div>
 <div class="paragraph">
-<p>mergeSpillsWithFileStream will be given an <a href="../spark-CompressionCodec.html" class="page">IO compression codec</a> when shuffle compression is enabled.</p>
+<p>mergeSpillsWithFileStream will be given an <a href="../io/CompressionCodec.html" class="page">IO compression codec</a> when shuffle compression is enabled.</p>
 </div>
 <div class="paragraph">
 <p>mergeSpillsWithFileStream&#8230;&#8203;FIXME</p>
