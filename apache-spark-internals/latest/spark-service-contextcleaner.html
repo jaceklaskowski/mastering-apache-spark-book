@@ -2280,53 +2280,6 @@ Despite the widest-possible <code>AnyRef</code> type of the input <code>objectFo
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="settings"><a class="anchor" href="#settings"></a><a class="link" href="#settings"><a id="settings"></a> Settings</a></h3>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. Spark Properties</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Spark Property</th>
-<th class="tableblock halign-left valign-top">Default Value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark_cleaner_periodicGC_interval"></a> <code>spark.cleaner.periodicGC.interval</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>30min</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Controls how often to trigger a garbage collection.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark_cleaner_referenceTracking"></a> <code>spark.cleaner.referenceTracking</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Controls whether a <a href="#creating-instance"><code>ContextCleaner</code> should be created</a> when a <a href="spark-SparkContext.adoc#creating-instance"><code>SparkContext</code> initializes</a>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark_cleaner_referenceTracking_blocking"></a> <code>spark.cleaner.referenceTracking.blocking</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Controls whether the cleaning thread should block on cleanup tasks (other than shuffle, which is controlled by <a href="#spark_cleaner_referenceTracking_blocking_shuffle">spark.cleaner.referenceTracking.blocking.shuffle</a> Spark property).</p>
-<p class="tableblock">It is <code>true</code> as a workaround to <a href="https://issues.apache.org/jira/browse/SPARK-3015">SPARK-3015 Removing broadcast in quick successions causes Akka timeout</a>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark_cleaner_referenceTracking_blocking_shuffle"></a> <code>spark.cleaner.referenceTracking.blocking.shuffle</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Controls whether the cleaning thread should block on shuffle cleanup tasks.</p>
-<p class="tableblock">It is <code>false</code> as a workaround to <a href="https://issues.apache.org/jira/browse/SPARK-3139">SPARK-3139 Akka timeouts from ContextCleaner when cleaning shuffles</a>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark_cleaner_referenceTracking_cleanCheckpoints"></a> <code>spark.cleaner.referenceTracking.cleanCheckpoints</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Controls whether to clean checkpoint files if the reference is out of scope.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
 </div>
 </div>
 </article>

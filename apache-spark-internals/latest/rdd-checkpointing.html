@@ -1953,6 +1953,47 @@ The checkpoint directory set through <code>SparkContext.setCheckpointDir</code> 
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="demo"><a class="anchor" href="#demo"></a><a class="link" href="#demo"><a id="demo"></a> Demo</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">val rdd = sc.parallelize(0 to 9)
+
+scala&gt; rdd.checkpoint
+org.apache.spark.SparkException: Checkpoint directory has not been set in the SparkContext
+  at org.apache.spark.rdd.RDD.checkpoint(RDD.scala:1599)
+  ... 49 elided
+
+sc.setCheckpointDir("/tmp/rdd-checkpoint")
+
+// Creates a subdirectory for this SparkContext
+$ ls /tmp/rdd-checkpoint/
+fc21e1d1-3cd9-4d51-880f-58d1dd07f783
+
+// Mark the RDD to checkpoint at the earliest action
+rdd.checkpoint
+
+scala&gt; println(rdd.getCheckpointFile)
+Some(file:/tmp/rdd-checkpoint/fc21e1d1-3cd9-4d51-880f-58d1dd07f783/rdd-2)
+
+scala&gt; println(ns.id)
+2
+
+scala&gt; println(rdd.getNumPartitions)
+16
+
+rdd.count
+
+// Check out the checkpoint directory
+// You should find a directory for the checkpointed RDD, e.g. rdd-2
+// The number of part-000* files is exactly the number of partitions
+$ ls -ltra /tmp/rdd-checkpoint/fc21e1d1-3cd9-4d51-880f-58d1dd07f783/rdd-2/part-000* | wc -l
+      16</code></pre>
+</div>
+</div>
+</div>
+</div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>

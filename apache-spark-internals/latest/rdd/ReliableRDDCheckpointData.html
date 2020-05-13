@@ -1875,12 +1875,46 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>ReliableRDDCheckpointData</strong> is&#8230;&#8203;FIXME</p>
+<p><strong>ReliableRDDCheckpointData</strong> is a <a href="RDDCheckpointData.html" class="page">RDDCheckpointData</a> for <a href="../rdd-checkpointing.html#reliable-checkpointing" class="page">Reliable Checkpointing</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="docheckpoint-method"><a class="anchor" href="#docheckpoint-method"></a><a class="link" href="#docheckpoint-method"><a id="doCheckpoint"></a> doCheckpoint Method</a></h2>
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ReliableRDDCheckpointData takes the following to be created:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="rdd"></a> <a href="RDD.html" class="page">RDD[T]</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>ReliableRDDCheckpointData is created for <a href="RDD.html#checkpoint" class="page">RDD.checkpoint</a> operator.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="checkpoint-directory"><a class="anchor" href="#checkpoint-directory"></a><a class="link" href="#checkpoint-directory"><a id="cpDir"></a><a id="checkpointPath"></a> Checkpoint Directory</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ReliableRDDCheckpointData creates a subdirectory of the <a href="../spark-SparkContext.html#checkpointDir" class="page">application-wide checkpoint directory</a> for <a href="#doCheckpoint">checkpointing</a> the given <a href="#rdd">RDD</a>.</p>
+</div>
+<div class="paragraph">
+<p>The name of the subdirectory uses the <a href="RDD.html#id" class="page">unique identifier</a> of the <a href="#rdd">RDD</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">rdd-[id]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="checkpointing-rdd"><a class="anchor" href="#checkpointing-rdd"></a><a class="link" href="#checkpointing-rdd"><a id="doCheckpoint"></a> Checkpointing RDD</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -1888,7 +1922,18 @@
 </div>
 </div>
 <div class="paragraph">
-<p>doCheckpoint&#8230;&#8203;FIXME</p>
+<p>doCheckpoint <a href="ReliableCheckpointRDD.html#writeRDDToCheckpointDirectory" class="page">writes</a> the <a href="#rdd">RDD</a> to the <a href="#cpDir">checkpoint directory</a> (that creates a new RDD).</p>
+</div>
+<div class="paragraph">
+<p>With <a href="../configuration-properties.html#spark.cleaner.referenceTracking.cleanCheckpoints" class="page">spark.cleaner.referenceTracking.cleanCheckpoints</a> configuration property enabled, doCheckpoint requests the <a href="../spark-SparkContext.html#cleaner" class="page">ContextCleaner</a> to <a href="../spark-service-contextcleaner.html#registerRDDCheckpointDataForCleanup" class="page">registerRDDCheckpointDataForCleanup</a> for the new RDD.</p>
+</div>
+<div class="paragraph">
+<p>In the end, doCheckpoint prints out the following INFO message to the logs and returns the new RDD.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Done checkpointing RDD [id] to [cpDir], new parent is RDD [id]</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>doCheckpoint is part of the <a href="RDDCheckpointData.html#doCheckpoint" class="page">RDDCheckpointData</a> abstraction.</p>

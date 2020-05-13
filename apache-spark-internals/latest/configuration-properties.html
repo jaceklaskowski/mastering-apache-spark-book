@@ -2825,6 +2825,61 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="spark-cleaner-referencetracking-cleancheckpoints"><a class="anchor" href="#spark-cleaner-referencetracking-cleancheckpoints"></a><a class="link" href="#spark-cleaner-referencetracking-cleancheckpoints"><a id="spark.cleaner.referenceTracking.cleanCheckpoints"></a> spark.cleaner.referenceTracking.cleanCheckpoints</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Enables cleaning checkpoint files when a checkpointed reference is out of scope</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>false</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-cleaner-periodicgc-interval"><a class="anchor" href="#spark-cleaner-periodicgc-interval"></a><a class="link" href="#spark-cleaner-periodicgc-interval"><a id="spark.cleaner.periodicGC.interval"></a> spark.cleaner.periodicGC.interval</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Controls how often to trigger a garbage collection</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>30min</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-cleaner-referencetracking"><a class="anchor" href="#spark-cleaner-referencetracking"></a><a class="link" href="#spark-cleaner-referencetracking"><a id="spark.cleaner.referenceTracking"></a> spark.cleaner.referenceTracking</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Controls whether to enable ContextCleaner</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>true</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-cleaner-referencetracking-blocking"><a class="anchor" href="#spark-cleaner-referencetracking-blocking"></a><a class="link" href="#spark-cleaner-referencetracking-blocking"><a id="spark.cleaner.referenceTracking.blocking"></a> spark.cleaner.referenceTracking.blocking</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Controls whether the cleaning thread should block on cleanup tasks (other than shuffle, which is controlled by <a href="#spark.cleaner.referenceTracking.blocking.shuffle">spark.cleaner.referenceTracking.blocking.shuffle</a>)</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>true</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-cleaner-referencetracking-blocking-shuffle"><a class="anchor" href="#spark-cleaner-referencetracking-blocking-shuffle"></a><a class="link" href="#spark-cleaner-referencetracking-blocking-shuffle"><a id="spark.cleaner.referenceTracking.blocking.shuffle"></a> spark.cleaner.referenceTracking.blocking.shuffle</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Controls whether the cleaning thread should block on shuffle cleanup tasks.</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>false</code></p>
+</div>
+</div>
+</div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>

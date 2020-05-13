@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title> SparkContext :: The Internals Of Apache Spark</title>
+    <title>SparkContext :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/spark-SparkContext.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -1870,7 +1870,7 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page"><a id="SparkContext"></a> SparkContext</h1>
+<h1 class="page">SparkContext</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
@@ -3945,7 +3945,7 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="cleaner-method"><a class="anchor" href="#cleaner-method"></a><a class="link" href="#cleaner-method"><a id="cleaner"></a> <code>cleaner</code> Method</a></h2>
+<h2 id="contextcleaner"><a class="anchor" href="#contextcleaner"></a><a class="link" href="#contextcleaner"><a id="cleaner"></a> ContextCleaner</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3953,19 +3953,10 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p><code>cleaner</code> is a <code>private[spark]</code> method to get the optional application-wide <a href="spark-service-contextcleaner.adoc">ContextCleaner</a>.</p>
+<p>SparkContext may have a <a href="spark-service-contextcleaner.html" class="page">ContextCleaner</a> defined.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<a href="spark-service-contextcleaner.adoc#creating-instance"><code>ContextCleaner</code> is created</a> when <a href="spark-SparkContext-creating-instance-internals.adoc#_cleaner">SparkContext is created with <code>spark.cleaner.referenceTracking</code> Spark property enabled</a> (which it is by default).
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>ContextCleaner is created when <a href="spark-SparkContext-creating-instance-internals.html#_cleaner" class="page">SparkContext is created</a> with <a href="configuration-properties.html#spark.cleaner.referenceTracking" class="page">spark.cleaner.referenceTracking</a> configuration property enabled.</p>
 </div>
 </div>
 </div>
@@ -4411,7 +4402,7 @@ FIXME
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.SparkContext=ALL</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">log4j.logger.org.apache.spark.SparkContext=ALL</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4422,22 +4413,21 @@ FIXME
 <div class="sect1">
 <h2 id="internal-properties"><a class="anchor" href="#internal-properties"></a><a class="link" href="#internal-properties"><a id="internal-properties"></a> Internal Properties</a></h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 30%;">
-<col style="width: 70%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>persistentRdds</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="persistentRdds"></a> Lookup table of persistent/cached RDDs per their ids.</p>
+<div class="sect2">
+<h3 id="checkpoint-directory"><a class="anchor" href="#checkpoint-directory"></a><a class="link" href="#checkpoint-directory"><a id="checkpointDir"></a> Checkpoint Directory</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">checkpointDir: Option[String] = None</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>checkpointDir is&#8230;&#8203;FIXME</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="persistentrdds-lookup-table"><a class="anchor" href="#persistentrdds-lookup-table"></a><a class="link" href="#persistentrdds-lookup-table"><a id="persistentRdds"></a> persistentRdds Lookup Table</a></h3>
+<div class="paragraph">
+<p>Lookup table of persistent/cached RDDs per their ids.</p>
 </div>
 <div class="paragraph">
 <p>Used when SparkContext is requested to:</p>
@@ -4457,20 +4447,20 @@ FIXME
 <p><a href="#unpersistRDD">unpersistRDD</a></p>
 </li>
 </ul>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>stopped</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="stopped"></a> Flag that says whether&#8230;&#8203;FIXME (<code>true</code>) or not (<code>false</code>)</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_taskScheduler</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_taskScheduler"></a> <a href="scheduler/TaskScheduler.html" class="page">TaskScheduler</a></p></td>
-</tr>
-</tbody>
-</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stopped-flag"><a class="anchor" href="#stopped-flag"></a><a class="link" href="#stopped-flag"><a id="stopped"></a> stopped Flag</a></h3>
+<div class="paragraph">
+<p>Flag that says whether&#8230;&#8203;FIXME (<code>true</code>) or not (<code>false</code>)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="taskscheduler"><a class="anchor" href="#taskscheduler"></a><a class="link" href="#taskscheduler"><a id="_taskScheduler"></a> TaskScheduler</a></h3>
+<div class="paragraph">
+<p><a href="scheduler/TaskScheduler.html" class="page">TaskScheduler</a></p>
+</div>
+</div>
 </div>
 </div>
 </article>
