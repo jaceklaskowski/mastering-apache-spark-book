@@ -1892,10 +1892,10 @@
 <p><a id="sc"></a> <a href="../spark-SparkContext.html" class="page">SparkContext</a></p>
 </li>
 <li>
-<p><a id="checkpointPath"></a> Checkpoint directory</p>
+<p><a id="checkpointPath"></a> Checkpoint Directory (on a Hadoop DFS-compatible file system)</p>
 </li>
 <li>
-<p><a id="_partitioner"></a> Optional <a href="Partitioner.html" class="page">Partitioner</a> (default: undefined)</p>
+<p><a href="#_partitioner">Partitioner</a></p>
 </li>
 </ul>
 </div>
@@ -1915,6 +1915,25 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="checkpointed-partitioner-file"><a class="anchor" href="#checkpointed-partitioner-file"></a><a class="link" href="#checkpointed-partitioner-file"><a id="checkpointPartitionerFileName"></a> Checkpointed Partitioner File</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ReliableCheckpointRDD uses <strong>_partitioner</strong> as the name of the file in the <a href="#checkpointPath">checkpoint directory</a> with the <a href="#partitioner">Partitioner</a> serialized to.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="partitioner"><a class="anchor" href="#partitioner"></a><a class="link" href="#partitioner"><a id="partitioner"></a> Partitioner</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ReliableCheckpointRDD can be given a <a href="Partitioner.html" class="page">Partitioner</a> to be created.</p>
+</div>
+<div class="paragraph">
+<p>When <a href="RDD.html#partitioner" class="page">requested for the Partitioner</a> (as an RDD), ReliableCheckpointRDD returns the one it was created with or <a href="#readCheckpointedPartitionerFile">reads the partitioner from the given RDD checkpoint directory, if exists</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="writing-rdd-to-checkpoint-directory"><a class="anchor" href="#writing-rdd-to-checkpoint-directory"></a><a class="link" href="#writing-rdd-to-checkpoint-directory"><a id="writeRDDToCheckpointDirectory"></a> Writing RDD to Checkpoint Directory</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
@@ -1930,6 +1949,101 @@
 </div>
 <div class="paragraph">
 <p>writeRDDToCheckpointDirectory is used when ReliableRDDCheckpointData is requested to <a href="ReliableRDDCheckpointData.html#doCheckpoint" class="page">doCheckpoint</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="writing-partitioner-to-checkpoint-directory"><a class="anchor" href="#writing-partitioner-to-checkpoint-directory"></a><a class="link" href="#writing-partitioner-to-checkpoint-directory"><a id="writePartitionerToCheckpointDir"></a> Writing Partitioner to Checkpoint Directory</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">writePartitionerToCheckpointDir(
+  sc: SparkContext,
+  partitioner: Partitioner,
+  checkpointDirPath: Path): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>writePartitionerToCheckpointDir creates the <a href="#checkpointPartitionerFileName">partitioner file</a> with the buffer size based on <a href="../configuration-properties.html#spark.buffer.size" class="page">spark.buffer.size</a> configuration property.</p>
+</div>
+<div class="paragraph">
+<p>writePartitionerToCheckpointDir requests the <a href="../spark-SparkEnv.html#serializer" class="page">default Serializer</a> for a new <a href="../serializer/Serializer.html#newInstance" class="page">SerializerInstance</a>.</p>
+</div>
+<div class="paragraph">
+<p>writePartitionerToCheckpointDir requests the SerializerInstance to <a href="../serializer/SerializerInstance.html#serializeStream" class="page">serialize the output stream</a> and <a href="../serializer/DeserializationStream.html#writeObject" class="page">writes</a> the given Partitioner.</p>
+</div>
+<div class="paragraph">
+<p>In the end, writePartitionerToCheckpointDir prints out the following DEBUG message to the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Written partitioner to [partitionerFilePath]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In case of any non-fatal exception, writePartitionerToCheckpointDir prints out the following DEBUG message to the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Error writing partitioner [partitioner] to [checkpointDirPath]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>writePartitionerToCheckpointDir is used when ReliableCheckpointRDD is requested to <a href="#writeRDDToCheckpointDirectory">write the RDD to the checkpoint directory</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="reading-partitioner-from-checkpointed-directory"><a class="anchor" href="#reading-partitioner-from-checkpointed-directory"></a><a class="link" href="#reading-partitioner-from-checkpointed-directory"><a id="readCheckpointedPartitionerFile"></a> Reading Partitioner from Checkpointed Directory</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">readCheckpointedPartitionerFile(
+  sc: SparkContext,
+  checkpointDirPath: String): Option[Partitioner]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>readCheckpointedPartitionerFile opens the <a href="#checkpointPartitionerFileName">partitioner file</a> with the buffer size based on <a href="../configuration-properties.html#spark.buffer.size" class="page">spark.buffer.size</a> configuration property.</p>
+</div>
+<div class="paragraph">
+<p>readCheckpointedPartitionerFile requests the <a href="../spark-SparkEnv.html#serializer" class="page">default Serializer</a> for a new <a href="../serializer/Serializer.html#newInstance" class="page">SerializerInstance</a>.</p>
+</div>
+<div class="paragraph">
+<p>readCheckpointedPartitionerFile requests the SerializerInstance to <a href="../serializer/SerializerInstance.html#deserializeStream" class="page">deserialize the input stream</a> and <a href="../serializer/DeserializationStream.html#readObject" class="page">read the Partitioner</a> from the partitioner file.</p>
+</div>
+<div class="paragraph">
+<p>readCheckpointedPartitionerFile prints out the following DEBUG message to the logs and returns the partitioner.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Read partitioner from [partitionerFilePath]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In case of FileNotFoundException or any non-fatal exceptions, readCheckpointedPartitionerFile prints out a corresponding message to the logs and returns None.</p>
+</div>
+<div class="paragraph">
+<p>readCheckpointedPartitionerFile is used when ReliableCheckpointRDD is requested for the <a href="#partitioner">Partitioner</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="logging"><a class="anchor" href="#logging"></a><a class="link" href="#logging"><a id="logging"></a> Logging</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Enable <code>ALL</code> logging level for <code>org.apache.spark.rdd.ReliableCheckpointRDD$</code> logger to see what happens inside.</p>
+</div>
+<div class="paragraph">
+<p>Add the following line to <code>conf/log4j.properties</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">log4j.logger.org.apache.spark.rdd.ReliableCheckpointRDD$=ALL</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Refer to <a href="../spark-logging.html" class="page">Logging</a>.</p>
 </div>
 </div>
 </div>
