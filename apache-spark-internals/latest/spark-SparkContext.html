@@ -68,6 +68,19 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="io/CompressionCodec.html">CompressionCodec</a>
   </li>
 </ul>
@@ -669,15 +682,6 @@
     <a class="nav-link" href="spark-TorrentBroadcast.html">TorrentBroadcast</a>
   </li>
 </ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-service-contextcleaner.html">ContextCleaner</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-CleanerListener.html">CleanerListener</a>
   </li>
 </ul>
   </li>
@@ -2143,7 +2147,7 @@ addFile(path: String, recursive: Boolean): Unit</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>ContextCleaner</code> does <a href="spark-service-contextcleaner.adoc#doCleanupRDD">doCleanupRDD</a></p>
+<p><code>ContextCleaner</code> does <a href="core/ContextCleaner.html#doCleanupRDD" class="page">doCleanupRDD</a></p>
 </li>
 <li>
 <p>SparkContext <a href="#unpersist">unpersists an RDD</a> (i.e. marks an RDD as non-persistent)</p>
@@ -3129,19 +3133,20 @@ You can register custom accumulators using <a href="#register">register</a> meth
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-broadcast-variablebroadcast-method"><a class="anchor" href="#creating-broadcast-variablebroadcast-method"></a><a class="link" href="#creating-broadcast-variablebroadcast-method"><a id="broadcast"></a> Creating Broadcast Variable&#8201;&#8212;&#8201;<code>broadcast</code> Method</a></h2>
+<h2 id="creating-broadcast-variablebroadcast-method"><a class="anchor" href="#creating-broadcast-variablebroadcast-method"></a><a class="link" href="#creating-broadcast-variablebroadcast-method"><a id="broadcast"></a> Creating Broadcast Variable&#8201;&#8212;&#8201;broadcast Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">broadcast[T](value: T): Broadcast[T]</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">broadcast[T](
+  value: T): Broadcast[T]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>broadcast</code> method creates a <a href="spark-broadcast.adoc">broadcast variable</a>. It is a shared memory with <code>value</code> (as broadcast blocks) on the driver and later on all Spark executors.</p>
+<p>broadcast method creates a <a href="spark-broadcast.html" class="page">broadcast variable</a>. It is a shared memory with <code>value</code> (as broadcast blocks) on the driver and later on all Spark executors.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>val sc: SparkContext = ???
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">val sc: SparkContext = ???
 scala&gt; val hello = sc.broadcast("hello")
 hello: org.apache.spark.broadcast.Broadcast[String] = Broadcast(0)</code></pre>
 </div>
@@ -3156,7 +3161,7 @@ hello: org.apache.spark.broadcast.Broadcast[String] = Broadcast(0)</code></pre>
 <div class="title">Figure 4. Broadcasting a value to executors</div>
 </div>
 <div class="paragraph">
-<p>Internally, <code>broadcast</code> requests the <a href="spark-service-broadcastmanager.adoc#newBroadcast">current <code>BroadcastManager</code> to create a new broadcast variable</a>.</p>
+<p>Internally, broadcast requests BroadcastManager for a <a href="spark-service-broadcastmanager.html#newBroadcast" class="page">new broadcast variable</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3175,11 +3180,11 @@ The current <code>BroadcastManager</code> is available using <a href="spark-Spar
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>INFO SparkContext: Created broadcast [id] from [callSite]</code></pre>
+<pre class="highlightjs highlight"><code>Created broadcast [id] from [callSite]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If <code>ContextCleaner</code> is defined, the <a href="spark-service-contextcleaner.adoc#">new broadcast variable is registered for cleanup</a>.</p>
+<p>If <code>ContextCleaner</code> is defined, the <a href="core/ContextCleaner.html" class="page">new broadcast variable is registered for cleanup</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3449,7 +3454,7 @@ Read <a href="spark-TaskContext.adoc">TaskContext</a>.
 <p><a href="spark-metrics-MetricsSystem.adoc#report">Requests <code>MetricSystem</code> to report metrics</a> (from all registered sinks)</p>
 </li>
 <li>
-<p><a href="spark-service-contextcleaner.adoc#stop">Stops <code>ContextCleaner</code></a></p>
+<p><a href="core/ContextCleaner.html#stop" class="page">Stops <code>ContextCleaner</code></a></p>
 </li>
 <li>
 <p><a href="spark-ExecutorAllocationManager.adoc#stop">Requests <code>ExecutorAllocationManager</code> to stop</a></p>
@@ -3953,7 +3958,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p>SparkContext may have a <a href="spark-service-contextcleaner.html" class="page">ContextCleaner</a> defined.</p>
+<p>SparkContext may have a <a href="core/ContextCleaner.html" class="page">ContextCleaner</a> defined.</p>
 </div>
 <div class="paragraph">
 <p>ContextCleaner is created when <a href="spark-SparkContext-creating-instance-internals.html#_cleaner" class="page">SparkContext is created</a> with <a href="configuration-properties.html#spark.cleaner.referenceTracking" class="page">spark.cleaner.referenceTracking</a> configuration property enabled.</p>

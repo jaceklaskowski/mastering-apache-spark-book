@@ -68,6 +68,19 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="io/CompressionCodec.html">CompressionCodec</a>
   </li>
 </ul>
@@ -669,15 +682,6 @@
     <a class="nav-link" href="spark-TorrentBroadcast.html">TorrentBroadcast</a>
   </li>
 </ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-service-contextcleaner.html">ContextCleaner</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-CleanerListener.html">CleanerListener</a>
   </li>
 </ul>
   </li>
@@ -1903,7 +1907,7 @@
 <p>To use a broadcast value in a Spark transformation you have to create it first using <a href="spark-SparkContext.adoc#broadcast">SparkContext.broadcast</a> and then use <code>value</code> method to access the shared value. Learn it in <a href="#introductory-example">Introductory Example</a> section.</p>
 </div>
 <div class="paragraph">
-<p>The Broadcast feature in Spark uses SparkContext to create broadcast values and <a href="spark-service-broadcastmanager.adoc">BroadcastManager</a> and <a href="spark-service-contextcleaner.adoc">ContextCleaner</a> to manage their lifecycle.</p>
+<p>The Broadcast feature in Spark uses SparkContext to create broadcast values and <a href="spark-service-broadcastmanager.adoc">BroadcastManager</a> and <a href="core/ContextCleaner.html" class="page">ContextCleaner</a> to manage their lifecycle.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">

@@ -68,6 +68,19 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../io/CompressionCodec.html">CompressionCodec</a>
   </li>
 </ul>
@@ -669,15 +682,6 @@
     <a class="nav-link" href="../spark-TorrentBroadcast.html">TorrentBroadcast</a>
   </li>
 </ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-service-contextcleaner.html">ContextCleaner</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-CleanerListener.html">CleanerListener</a>
   </li>
 </ul>
   </li>
@@ -1982,7 +1986,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">Posted to inform DAGScheduler that <a href="spark-SparkContext.adoc#submitMapStage"><code>SparkContext</code> submitted a <code>MapStage</code> for execution</a> (through <a href="DAGScheduler.html#submitMapStage" class="page">submitMapStage</a>).</p>
 <p class="tableblock"><code>MapStageSubmitted</code> conveys the following information:</p>
 <p class="tableblock">1. A job identifier (as <code>jobId</code>)</p>
-<p class="tableblock">2. The <a href="#rdd:ShuffleDependency.adoc.adoc" class="page unresolved">ShuffleDependency</a></p>
+<p class="tableblock">2. The <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a></p>
 <p class="tableblock">3. A <code>CallSite</code> (as <code>callSite</code>)</p>
 <p class="tableblock">4. The <a href="spark-scheduler-JobListener.html" class="page">JobListener</a> to inform about the status of the stage.</p>
 <p class="tableblock">5. <code>Properties</code> of the execution</p></td>
@@ -2129,7 +2133,7 @@
 <div class="title">Figure 1. <code>MapStageSubmitted</code> Event Handling</div>
 </div>
 <div class="paragraph">
-<p>handleMapStageSubmitted <a href="DAGScheduler.html#getOrCreateShuffleMapStage" class="page">finds or creates a new <code>ShuffleMapStage</code></a> for the input <a href="#rdd:ShuffleDependency.adoc.adoc" class="page unresolved">ShuffleDependency</a> and <code>jobId</code>.</p>
+<p>handleMapStageSubmitted <a href="DAGScheduler.html#getOrCreateShuffleMapStage" class="page">finds or creates a new <code>ShuffleMapStage</code></a> for the input <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a> and <code>jobId</code>.</p>
 </div>
 <div class="paragraph">
 <p>handleMapStageSubmitted creates an <a href="spark-scheduler-ActiveJob.adoc">ActiveJob</a> (with the input <code>jobId</code>, <code>callSite</code>, <code>listener</code> and <code>properties</code>, and the <code>ShuffleMapStage</code>).</p>
@@ -2244,7 +2248,7 @@ DAGScheduler <a href="MapOutputTracker.html#getStatistics" class="page">requests
 <div class="ulist">
 <ul>
 <li>
-<p>handleMapStageSubmitted has a <a href="#rdd:ShuffleDependency.adoc.adoc" class="page unresolved">ShuffleDependency</a> among the input parameters while handleJobSubmitted has <code>finalRDD</code>, <code>func</code>, and <code>partitions</code>.</p>
+<p>handleMapStageSubmitted has a <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a> among the input parameters while handleJobSubmitted has <code>finalRDD</code>, <code>func</code>, and <code>partitions</code>.</p>
 </li>
 <li>
 <p>handleMapStageSubmitted initializes <code>finalStage</code> as <code>getShuffleMapStage(dependency, jobId)</code> while handleJobSubmitted as <code>finalStage = newResultStage(finalRDD, func, partitions, jobId, callSite)</code></p>

@@ -68,6 +68,19 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="io/CompressionCodec.html">CompressionCodec</a>
   </li>
 </ul>
@@ -669,15 +682,6 @@
     <a class="nav-link" href="spark-TorrentBroadcast.html">TorrentBroadcast</a>
   </li>
 </ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-service-contextcleaner.html">ContextCleaner</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-CleanerListener.html">CleanerListener</a>
   </li>
 </ul>
   </li>
@@ -2058,7 +2062,7 @@ Developing a custom SparkListener is an excellent introduction to low-level deta
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="onUnpersistRDD"></a> <code>onUnpersistRDD</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="SparkListenerUnpersistRDD"></a> <code>SparkListenerUnpersistRDD</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SparkContext</code> <a href="spark-SparkContext.adoc#unpersistRDD">unpersists an RDD</a>, i.e. removes RDD blocks from <code>BlockManagerMaster</code> (that can be triggered <a href="spark-SparkContext.adoc#unpersist">explicitly</a> or <a href="spark-service-contextcleaner.adoc#doCleanupRDD">implicitly</a>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SparkContext</code> <a href="spark-SparkContext.adoc#unpersistRDD">unpersists an RDD</a>, i.e. removes RDD blocks from <code>BlockManagerMaster</code> (that can be triggered <a href="spark-SparkContext.adoc#unpersist">explicitly</a> or <a href="core/ContextCleaner.html#doCleanupRDD" class="page">implicitly</a>).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="onOtherEvent"></a> <code>onOtherEvent</code></p></td>

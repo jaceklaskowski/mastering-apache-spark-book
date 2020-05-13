@@ -68,6 +68,19 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../io/CompressionCodec.html">CompressionCodec</a>
   </li>
 </ul>
@@ -669,15 +682,6 @@
     <a class="nav-link" href="../spark-TorrentBroadcast.html">TorrentBroadcast</a>
   </li>
 </ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-service-contextcleaner.html">ContextCleaner</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-CleanerListener.html">CleanerListener</a>
   </li>
 </ul>
   </li>
@@ -1925,7 +1929,7 @@
 <p>doCheckpoint <a href="ReliableCheckpointRDD.html#writeRDDToCheckpointDirectory" class="page">writes</a> the <a href="#rdd">RDD</a> to the <a href="#cpDir">checkpoint directory</a> (that creates a new RDD).</p>
 </div>
 <div class="paragraph">
-<p>With <a href="../configuration-properties.html#spark.cleaner.referenceTracking.cleanCheckpoints" class="page">spark.cleaner.referenceTracking.cleanCheckpoints</a> configuration property enabled, doCheckpoint requests the <a href="../spark-SparkContext.html#cleaner" class="page">ContextCleaner</a> to <a href="../spark-service-contextcleaner.html#registerRDDCheckpointDataForCleanup" class="page">registerRDDCheckpointDataForCleanup</a> for the new RDD.</p>
+<p>With <a href="../configuration-properties.html#spark.cleaner.referenceTracking.cleanCheckpoints" class="page">spark.cleaner.referenceTracking.cleanCheckpoints</a> configuration property enabled, doCheckpoint requests the <a href="../spark-SparkContext.html#cleaner" class="page">ContextCleaner</a> to <a href="../core/ContextCleaner.html#registerRDDCheckpointDataForCleanup" class="page">registerRDDCheckpointDataForCleanup</a> for the new RDD.</p>
 </div>
 <div class="paragraph">
 <p>In the end, doCheckpoint prints out the following INFO message to the logs and returns the new RDD.</p>

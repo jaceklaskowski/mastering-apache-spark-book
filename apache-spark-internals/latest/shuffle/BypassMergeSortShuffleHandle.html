@@ -68,6 +68,19 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../io/CompressionCodec.html">CompressionCodec</a>
   </li>
 </ul>
@@ -669,15 +682,6 @@
     <a class="nav-link" href="../spark-TorrentBroadcast.html">TorrentBroadcast</a>
   </li>
 </ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-service-contextcleaner.html">ContextCleaner</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-CleanerListener.html">CleanerListener</a>
   </li>
 </ul>
   </li>
@@ -1878,7 +1882,7 @@
 <p><code>BypassMergeSortShuffleHandles</code> is a <a href="spark-shuffle-BaseShuffleHandle.adoc">BaseShuffleHandle</a> with no additional methods or fields and serves only to identify the choice of <strong>bypass merge sort shuffle</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Like <a href="spark-shuffle-BaseShuffleHandle.adoc">BaseShuffleHandle</a>, <code>BypassMergeSortShuffleHandles</code> takes <code>shuffleId</code>, <code>numMaps</code>, and a <a href="#rdd:ShuffleDependency.adoc.adoc" class="page unresolved">ShuffleDependency</a>.</p>
+<p>Like <a href="spark-shuffle-BaseShuffleHandle.adoc">BaseShuffleHandle</a>, <code>BypassMergeSortShuffleHandles</code> takes <code>shuffleId</code>, <code>numMaps</code>, and a <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>.</p>
 </div>
 <div class="paragraph">
 <p><code>BypassMergeSortShuffleHandle</code> is created when <a href="SortShuffleManager.html#registerShuffle" class="page"><code>SortShuffleManager</code> is requested for a <code>ShuffleHandle</code></a> (for a <code>ShuffleDependency</code>).</p>

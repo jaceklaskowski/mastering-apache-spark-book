@@ -68,6 +68,19 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../io/CompressionCodec.html">CompressionCodec</a>
   </li>
 </ul>
@@ -669,15 +682,6 @@
     <a class="nav-link" href="../spark-TorrentBroadcast.html">TorrentBroadcast</a>
   </li>
 </ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-service-contextcleaner.html">ContextCleaner</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-CleanerListener.html">CleanerListener</a>
   </li>
 </ul>
   </li>
@@ -1927,7 +1931,7 @@
 </table>
 </div>
 <div class="paragraph">
-<p><code>read</code> creates a new <a href="../serializer/SerializerInstance.html" class="page">SerializerInstance</a> (using <a href="#rdd:ShuffleDependency.adoc.adoc#serializer" class="page unresolved"><code>Serializer</code> from ShuffleDependency</a>).</p>
+<p><code>read</code> creates a new <a href="../serializer/SerializerInstance.html" class="page">SerializerInstance</a> (using <a href="../rdd/ShuffleDependency.html#serializer" class="page"><code>Serializer</code> from ShuffleDependency</a>).</p>
 </div>
 <div class="paragraph">
 <p><code>read</code> creates a key/value iterator by <code>deserializeStream</code> every shuffle block stream.</p>
@@ -1948,7 +1952,7 @@
 </table>
 </div>
 <div class="paragraph">
-<p>If the <a href="#rdd:ShuffleDependency.adoc.adoc#aggregator" class="page unresolved"><code>ShuffleDependency</code> has an <code>Aggregator</code> defined</a>, <code>read</code> wraps the current iterator inside an iterator defined by <a href="../rdd/Aggregator.html#combineCombinersByKey" class="page">Aggregator.combineCombinersByKey</a> (for <a href="#rdd:ShuffleDependency.adoc.adoc#mapSideCombine" class="page unresolved"><code>mapSideCombine</code> enabled</a>) or <a href="../rdd/Aggregator.html#combineValuesByKey" class="page">Aggregator.combineValuesByKey</a> otherwise.</p>
+<p>If the <a href="../rdd/ShuffleDependency.html#aggregator" class="page"><code>ShuffleDependency</code> has an <code>Aggregator</code> defined</a>, <code>read</code> wraps the current iterator inside an iterator defined by <a href="../rdd/Aggregator.html#combineCombinersByKey" class="page">Aggregator.combineCombinersByKey</a> (for <a href="../rdd/ShuffleDependency.html#mapSideCombine" class="page"><code>mapSideCombine</code> enabled</a>) or <a href="../rdd/Aggregator.html#combineValuesByKey" class="page">Aggregator.combineValuesByKey</a> otherwise.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1957,13 +1961,13 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>run</code> reports an exception when <a href="#rdd:ShuffleDependency.adoc.adoc#aggregator" class="page unresolved"><code>ShuffleDependency</code> has no <code>Aggregator</code> defined</a> with <a href="#rdd:ShuffleDependency.adoc.adoc#mapSideCombine" class="page unresolved"><code>mapSideCombine</code> flag enabled</a>.
+<code>run</code> reports an exception when <a href="../rdd/ShuffleDependency.html#aggregator" class="page"><code>ShuffleDependency</code> has no <code>Aggregator</code> defined</a> with <a href="../rdd/ShuffleDependency.html#mapSideCombine" class="page"><code>mapSideCombine</code> flag enabled</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>For <a href="#rdd:ShuffleDependency.adoc.adoc#keyOrdering" class="page unresolved"><code>keyOrdering</code> defined in <code>ShuffleDependency</code></a>, <code>run</code> does the following:</p>
+<p>For <a href="../rdd/ShuffleDependency.html#keyOrdering" class="page"><code>keyOrdering</code> defined in <code>ShuffleDependency</code></a>, <code>run</code> does the following:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">

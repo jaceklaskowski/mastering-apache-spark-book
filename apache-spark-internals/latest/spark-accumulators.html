@@ -68,6 +68,19 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="io/CompressionCodec.html">CompressionCodec</a>
   </li>
 </ul>
@@ -669,15 +682,6 @@
     <a class="nav-link" href="spark-TorrentBroadcast.html">TorrentBroadcast</a>
   </li>
 </ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-service-contextcleaner.html">ContextCleaner</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-CleanerListener.html">CleanerListener</a>
   </li>
 </ul>
   </li>
@@ -1987,7 +1991,7 @@ FIXME
 <p><code>register</code> creates a <a href="#metadata">AccumulatorMetadata</a> metadata object for the accumulator (with a <a href="spark-AccumulatorContext.adoc#newId">new unique identifier</a>) that is then used to <a href="spark-AccumulatorContext.adoc#register">register the accumulator with</a>.</p>
 </div>
 <div class="paragraph">
-<p>In the end, <code>register</code> <a href="spark-service-contextcleaner.adoc#registerAccumulatorForCleanup">registers the accumulator for cleanup</a> (only when <a href="spark-SparkContext.adoc#cleaner"><code>ContextCleaner</code> is defined in the <code>SparkContext</code></a>).</p>
+<p>In the end, <code>register</code> <a href="core/ContextCleaner.html#registerAccumulatorForCleanup" class="page">registers the accumulator for cleanup</a> (only when <a href="spark-SparkContext.adoc#cleaner"><code>ContextCleaner</code> is defined in the <code>SparkContext</code></a>).</p>
 </div>
 <div class="paragraph">
 <p><code>register</code> reports a <code>IllegalStateException</code> if <a href="#metadata">metadata</a> is already defined (which means that <code>register</code> was called already).</p>
