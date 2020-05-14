@@ -69,6 +69,22 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../deploy/ExternalShuffleService.html">External Shuffle Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockHandler.html">ExternalShuffleBlockHandler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockResolver.html">ExternalShuffleBlockResolver</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../rpc/index.html">RPC System</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -736,9 +752,6 @@
     <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-ExternalShuffleService.html">ExternalShuffleService</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-OneForOneStreamManager.html">OneForOneStreamManager</a>
@@ -3649,7 +3662,7 @@ Read up on <a href="spark-taskschedulerimpl-speculative-execution.adoc">Speculat
 </div>
 </div>
 <div class="paragraph">
-<p><code>executorLost</code> re-enqueues all the <a href="ShuffleMapTask.html" class="page">ShuffleMapTasks</a> that have completed already on the lost executor (when <a href="spark-ExternalShuffleService.adoc">external shuffle service</a> is not in use) and <a href="#handleFailedTask">reports all currently-running tasks on the lost executor as failed</a>.</p>
+<p><code>executorLost</code> re-enqueues all the <a href="ShuffleMapTask.html" class="page">ShuffleMapTasks</a> that have completed already on the lost executor (when <a href="../deploy/ExternalShuffleService.html" class="page">external shuffle service</a> is not in use) and <a href="#handleFailedTask">reports all currently-running tasks on the lost executor as failed</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3676,7 +3689,7 @@ Since <code>TaskSetManager</code> manages execution of the tasks in a single <a 
 </table>
 </div>
 <div class="paragraph">
-<p>Internally, <code>executorLost</code> first checks whether the <a href="#tasks">tasks</a> are <a href="ShuffleMapTask.html" class="page">ShuffleMapTasks</a> and whether an <a href="spark-ExternalShuffleService.adoc">external shuffle service</a> is enabled (that could serve the map shuffle outputs in case of failure).</p>
+<p>Internally, <code>executorLost</code> first checks whether the <a href="#tasks">tasks</a> are <a href="ShuffleMapTask.html" class="page">ShuffleMapTasks</a> and whether an <a href="../deploy/ExternalShuffleService.html" class="page">external shuffle service</a> is enabled (that could serve the map shuffle outputs in case of failure).</p>
 </div>
 <div class="admonitionblock note">
 <table>

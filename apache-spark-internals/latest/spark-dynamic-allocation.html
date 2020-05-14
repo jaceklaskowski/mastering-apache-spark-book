@@ -69,6 +69,22 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="deploy/ExternalShuffleService.html">External Shuffle Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="deploy/ExternalShuffleBlockHandler.html">ExternalShuffleBlockHandler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="deploy/ExternalShuffleBlockResolver.html">ExternalShuffleBlockResolver</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="rpc/index.html">RPC System</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -736,9 +752,6 @@
     <a class="nav-link" href="spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-ExternalShuffleService.html">ExternalShuffleService</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-OneForOneStreamManager.html">OneForOneStreamManager</a>
@@ -1891,7 +1904,7 @@
 <p>Unlike the "traditional" static allocation where a Spark application reserves CPU and memory resources upfront (irrespective of how much it may eventually use), in dynamic allocation you get as much as needed and no more. It scales the number of executors up and down based on workload, i.e. idle executors are removed, and when there are pending tasks waiting for executors to be launched on, dynamic allocation requests them.</p>
 </div>
 <div class="paragraph">
-<p>Dynamic allocation is enabled using <a href="#spark.dynamicAllocation.enabled">spark.dynamicAllocation.enabled</a> setting. When enabled, it is assumed that the <a href="spark-ExternalShuffleService.adoc">External Shuffle Service</a> is also used (it is not by default as controlled by <a href="configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> property).</p>
+<p>Dynamic allocation is enabled using <a href="#spark.dynamicAllocation.enabled">spark.dynamicAllocation.enabled</a> setting. When enabled, it is assumed that the <a href="deploy/ExternalShuffleService.html" class="page">External Shuffle Service</a> is also used (it is not by default as controlled by <a href="configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> property).</p>
 </div>
 <div class="paragraph">
 <p><a href="spark-ExecutorAllocationManager.adoc">ExecutorAllocationManager</a> is responsible for dynamic allocation of executors. With <a href="#isDynamicAllocationEnabled">dynamic allocation enabled</a>, it is <a href="spark-SparkContext-creating-instance-internals.adoc#ExecutorAllocationManager">started when <code>SparkContext</code> is initialized</a>.</p>
@@ -1922,7 +1935,7 @@
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Read about <a href="spark-ExternalShuffleService.adoc">Dynamic Allocation on Hadoop YARN</a>.
+Read about <a href="deploy/ExternalShuffleService.html" class="page">Dynamic Allocation on Hadoop YARN</a>.
 </td>
 </tr>
 </table>

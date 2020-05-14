@@ -69,6 +69,22 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../deploy/ExternalShuffleService.html">External Shuffle Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockHandler.html">ExternalShuffleBlockHandler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockResolver.html">ExternalShuffleBlockResolver</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../rpc/index.html">RPC System</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -736,9 +752,6 @@
     <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-ExternalShuffleService.html">ExternalShuffleService</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-OneForOneStreamManager.html">OneForOneStreamManager</a>
@@ -2441,7 +2454,7 @@ FIXME Review what&#8217;s <code>filesLost</code>.
 </table>
 </div>
 <div class="paragraph">
-<p><code>handleExecutorLost</code> exits unless the <code>ExecutorLost</code> event was for a map output fetch operation (and the input <code>filesLost</code> is <code>true</code>) or <a href="spark-ExternalShuffleService.adoc">external shuffle service</a> is <em>not</em> used.</p>
+<p><code>handleExecutorLost</code> exits unless the <code>ExecutorLost</code> event was for a map output fetch operation (and the input <code>filesLost</code> is <code>true</code>) or <a href="../deploy/ExternalShuffleService.html" class="page">external shuffle service</a> is <em>not</em> used.</p>
 </div>
 <div class="paragraph">
 <p>In such a case, you should see the following INFO message in the logs:</p>

@@ -69,6 +69,22 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../deploy/ExternalShuffleService.html">External Shuffle Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockHandler.html">ExternalShuffleBlockHandler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockResolver.html">ExternalShuffleBlockResolver</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../rpc/index.html">RPC System</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -736,9 +752,6 @@
     <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-ExternalShuffleService.html">ExternalShuffleService</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-OneForOneStreamManager.html">OneForOneStreamManager</a>
@@ -1940,7 +1953,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>shuffleService</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ExternalShuffleService</code> is <a href="spark-ExternalShuffleService.adoc#creating-instance">created</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ExternalShuffleService</code> is <a href="../deploy/ExternalShuffleService.html#creating-instance" class="page">created</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>worker</code></p></td>
@@ -2123,7 +2136,7 @@ FIXME
 <p><code>Executor</code> <a href="spark-Executor.adoc#creating-instance">is created</a> (and registers a <a href="spark-executor-ExecutorSource.adoc">ExecutorSource</a>)</p>
 </li>
 <li>
-<p><code>ExternalShuffleService</code> <a href="spark-ExternalShuffleService.adoc#start">is started</a> (and registers <code>ExternalShuffleServiceSource</code>)</p>
+<p><code>ExternalShuffleService</code> <a href="../deploy/ExternalShuffleService.html#start" class="page">is started</a> (and registers <code>ExternalShuffleServiceSource</code>)</p>
 </li>
 <li>
 <p>Spark Structured Streaming&#8217;s <code>StreamExecution</code> runs batches as data arrives (when metrics are enabled).</p>
@@ -2566,7 +2579,7 @@ FIXME Finish for the other components.
 <p><code>SparkEnv</code> is <a href="../core/SparkEnv.html#create" class="page">created</a> (on executors)</p>
 </li>
 <li>
-<p><code>ExternalShuffleService</code> is requested to <a href="spark-ExternalShuffleService.adoc#start">start</a></p>
+<p><code>ExternalShuffleService</code> is requested to <a href="../deploy/ExternalShuffleService.html#start" class="page">start</a></p>
 </li>
 <li>
 <p>Spark Standalone&#8217;s <code>Master</code> and <code>Worker</code>, and Spark on Mesos' <code>MesosClusterScheduler</code> are requested to start</p>

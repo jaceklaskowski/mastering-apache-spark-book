@@ -69,6 +69,22 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../deploy/ExternalShuffleService.html">External Shuffle Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockHandler.html">ExternalShuffleBlockHandler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockResolver.html">ExternalShuffleBlockResolver</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../rpc/index.html">RPC System</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -736,9 +752,6 @@
     <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-ExternalShuffleService.html">ExternalShuffleService</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-OneForOneStreamManager.html">OneForOneStreamManager</a>
@@ -1894,7 +1907,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-There is the <a href="spark-ExternalShuffleService.adoc">ExternalShuffleService</a> for Spark and despite their names they don&#8217;t share code.
+There is the <a href="../deploy/ExternalShuffleService.html" class="page">ExternalShuffleService</a> for Spark and despite their names they don&#8217;t share code.
 </td>
 </tr>
 </table>
@@ -2153,18 +2166,6 @@ FIXME The contract
 <div class="paragraph">
 <p>It requests <code>ExternalShuffleBlockHandler</code> to <code>applicationRemoved</code> (with <code>cleanupLocalDirs</code> flag disabled).</p>
 </div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME What does <code>ExternalShuffleBlockHandler#applicationRemoved</code> do?
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
 <p>When an exception occurs, you should see the following ERROR message in the logs:</p>
 </div>
@@ -2251,7 +2252,7 @@ FIXME
 <p>It checks <code>spark.authenticate</code> key in the configuration (defaults to <code>false</code>) and if only authentication is enabled, it sets up a <code>SaslServerBootstrap</code> with a <code>ShuffleSecretManager</code> and adds it to a collection of <code>TransportServerBootstraps</code>.</p>
 </div>
 <div class="paragraph">
-<p>It creates a <code>TransportServer</code> as <code>shuffleServer</code> to listen to <a href="../spark-ExternalShuffleService.adoc#spark.shuffle.service.port">spark.shuffle.service.port</a> (default: <code>7337</code>). It reads <code>spark.shuffle.service.port</code> key in the configuration.</p>
+<p>It creates a <code>TransportServer</code> as <code>shuffleServer</code> to listen to <a href="../deploy/ExternalShuffleService.html#spark.shuffle.service.port" class="page">spark.shuffle.service.port</a> (default: <code>7337</code>). It reads <code>spark.shuffle.service.port</code> key in the configuration.</p>
 </div>
 <div class="paragraph">
 <p>You should see the following INFO message in the logs:</p>

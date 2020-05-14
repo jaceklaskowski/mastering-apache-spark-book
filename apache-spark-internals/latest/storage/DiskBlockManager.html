@@ -69,6 +69,22 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../deploy/ExternalShuffleService.html">External Shuffle Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockHandler.html">ExternalShuffleBlockHandler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockResolver.html">ExternalShuffleBlockResolver</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../rpc/index.html">RPC System</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -736,9 +752,6 @@
     <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-ExternalShuffleService.html">ExternalShuffleService</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-OneForOneStreamManager.html">OneForOneStreamManager</a>
@@ -2188,7 +2201,7 @@ FIXME
 <p><code>getConfiguredLocalDirs</code> returns the local directories where Spark can write files.</p>
 </div>
 <div class="paragraph">
-<p>Internally, <code>getConfiguredLocalDirs</code> uses <code>conf</code> <a href="../SparkConf.html" class="page">SparkConf</a> to know if <a href="spark-ExternalShuffleService.adoc">External Shuffle Service</a> is enabled (based on <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property).</p>
+<p>Internally, <code>getConfiguredLocalDirs</code> uses <code>conf</code> <a href="../SparkConf.html" class="page">SparkConf</a> to know if <a href="../deploy/ExternalShuffleService.html" class="page">External Shuffle Service</a> is enabled (based on <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property).</p>
 </div>
 <div class="paragraph">
 <p><code>getConfiguredLocalDirs</code> checks if <a href="#isRunningInYarnContainer">Spark runs on YARN</a> and if so, returns <a href="#getYarnLocalDirs"><code>LOCAL_DIRS</code>-controlled local directories</a>.</p>

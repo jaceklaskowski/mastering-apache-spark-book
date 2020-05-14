@@ -69,6 +69,22 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../deploy/ExternalShuffleService.html">External Shuffle Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockHandler.html">ExternalShuffleBlockHandler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockResolver.html">ExternalShuffleBlockResolver</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../rpc/index.html">RPC System</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -736,9 +752,6 @@
     <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-ExternalShuffleService.html">ExternalShuffleService</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-OneForOneStreamManager.html">OneForOneStreamManager</a>
@@ -2587,7 +2600,7 @@ FIXME
 <h2 id="is-external-shuffle-service-enabled"><a class="anchor" href="#is-external-shuffle-service-enabled"></a><a class="link" href="#is-external-shuffle-service-enabled"><a id="externalShuffleServiceEnabled"></a> Is External Shuffle Service Enabled?</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When the <a href="../spark-ExternalShuffleService.html" class="page">External Shuffle Service</a> is enabled for a Spark application, BlockManager uses <a href="../spark-ShuffleClient-ExternalShuffleClient.html" class="page">ExternalShuffleClient</a> to read other executors' shuffle files.</p>
+<p>When the <a href="#ROOT:ExternalShuffleService.adoc" class="page unresolved">External Shuffle Service</a> is enabled for a Spark application, BlockManager uses <a href="../spark-ShuffleClient-ExternalShuffleClient.html" class="page">ExternalShuffleClient</a> to read other executors' shuffle files.</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -3137,7 +3150,7 @@ FIXME Describe <code>shuffleServerId</code>. Where is it used?
 </div>
 </div>
 <div class="paragraph">
-<p><code>registerWithExternalShuffleServer</code> is an internal helper method to register the BlockManager for an executor with an <a href="spark-ExternalShuffleService.adoc">external shuffle server</a>.</p>
+<p><code>registerWithExternalShuffleServer</code> is an internal helper method to register the BlockManager for an executor with an <a href="../deploy/ExternalShuffleService.html" class="page">external shuffle server</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
