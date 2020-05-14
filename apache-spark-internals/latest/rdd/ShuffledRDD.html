@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -1960,7 +1966,7 @@
 <p>compute requests the only <a href="RDD.html#dependencies" class="page">dependency</a> (that is assumed a <a href="ShuffleDependency.html" class="page">ShuffleDependency</a>) for the <a href="ShuffleDependency.html#shuffleHandle" class="page">ShuffleHandle</a>.</p>
 </div>
 <div class="paragraph">
-<p>compute uses the <a href="../spark-SparkEnv.html" class="page">SparkEnv</a> to access the <a href="../spark-SparkEnv.html#shuffleManager" class="page">ShuffleManager</a>.</p>
+<p>compute uses the <a href="../core/SparkEnv.html" class="page">SparkEnv</a> to access the <a href="../core/SparkEnv.html#shuffleManager" class="page">ShuffleManager</a>.</p>
 </div>
 <div class="paragraph">
 <p>compute requests the <a href="../shuffle/ShuffleManager.html#shuffleManager" class="page">ShuffleManager</a> for the <a href="../shuffle/ShuffleManager.html#getReader" class="page">ShuffleReader</a> (for the ShuffleHandle, the <a href="spark-rdd-Partition.html" class="page">partition</a>).</p>
@@ -1986,7 +1992,7 @@
 <p>getPreferredLocations requests <code>MapOutputTrackerMaster</code> for the <a href="../scheduler/MapOutputTrackerMaster.html#getPreferredLocationsForShuffle" class="page">preferred locations</a> of the given <a href="spark-rdd-Partition.html" class="page">partition</a> (<a href="../storage/BlockManager.html" class="page">BlockManagers</a> with the most map outputs).</p>
 </div>
 <div class="paragraph">
-<p>getPreferredLocations uses SparkEnv to access the current <a href="../spark-SparkEnv.html#mapOutputTracker" class="page">MapOutputTrackerMaster</a>.</p>
+<p>getPreferredLocations uses SparkEnv to access the current <a href="../core/SparkEnv.html#mapOutputTracker" class="page">MapOutputTrackerMaster</a>.</p>
 </div>
 <div class="paragraph">
 <p>getPreferredLocations is part of the <a href="RDD.html#compute" class="page">RDD</a> abstraction.</p>

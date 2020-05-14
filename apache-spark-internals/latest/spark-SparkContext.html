@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -2123,7 +2129,7 @@ addFile(path: String, recursive: Boolean): Unit</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>unpersistRDD</code> uses <code>SparkEnv</code> <a href="spark-SparkEnv.adoc#blockManager">to access the current <code>BlockManager</code></a> that is in turn used to <a href="storage/BlockManager.html#master" class="page">access the current <code>BlockManagerMaster</code></a>.
+<code>unpersistRDD</code> uses <code>SparkEnv</code> <a href="core/SparkEnv.html#blockManager" class="page">to access the current <code>BlockManager</code></a> that is in turn used to <a href="storage/BlockManager.html#master" class="page">access the current <code>BlockManagerMaster</code></a>.
 </td>
 </tr>
 </table>
@@ -3170,7 +3176,7 @@ hello: org.apache.spark.broadcast.Broadcast[String] = Broadcast(0)</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The current <code>BroadcastManager</code> is available using <a href="spark-SparkEnv.adoc#broadcastManager"><code>SparkEnv.broadcastManager</code></a> attribute and is always <a href="spark-service-broadcastmanager.adoc">BroadcastManager</a> (with few internal configuration changes to reflect where it runs, i.e. inside the driver or executors).
+The current <code>BroadcastManager</code> is available using <a href="core/SparkEnv.html#broadcastManager" class="page"><code>SparkEnv.broadcastManager</code></a> attribute and is always <a href="spark-service-broadcastmanager.adoc">BroadcastManager</a> (with few internal configuration changes to reflect where it runs, i.e. inside the driver or executors).
 </td>
 </tr>
 </table>
@@ -3478,7 +3484,7 @@ Read <a href="spark-TaskContext.adoc">TaskContext</a>.
 <p>Clears the reference to <code>TaskScheduler</code>, i.e. <code>_taskScheduler</code> is <code>null</code></p>
 </li>
 <li>
-<p>Requests <a href="spark-SparkEnv.adoc#stop"><code>SparkEnv</code> to stop</a> and clears <code>SparkEnv</code></p>
+<p>Requests <a href="core/SparkEnv.html#stop" class="page"><code>SparkEnv</code> to stop</a> and clears <code>SparkEnv</code></p>
 </li>
 <li>
 <p>Clears <a href="yarn/spark-yarn-client.adoc#SPARK_YARN_MODE"><code>SPARK_YARN_MODE</code> flag</a></p>
@@ -3650,7 +3656,7 @@ FIXME Make it an advanced exercise.
 </div>
 </div>
 <div class="paragraph">
-<p>Serialization is verified using a new instance of <code>Serializer</code> (as <a href="spark-SparkEnv.adoc#closureSerializer">closure Serializer</a>). Refer to <a href="spark-serialization.adoc">Serialization</a>.</p>
+<p>Serialization is verified using a new instance of <code>Serializer</code> (as <a href="core/SparkEnv.html#closureSerializer" class="page">closure Serializer</a>). Refer to <a href="spark-serialization.adoc">Serialization</a>.</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -4287,7 +4293,7 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="posting-sparklistenerenvironmentupdate-event-to-livelistenerbuspostenvironmentupdate-internal-method"><a class="anchor" href="#posting-sparklistenerenvironmentupdate-event-to-livelistenerbuspostenvironmentupdate-internal-method"></a><a class="link" href="#posting-sparklistenerenvironmentupdate-event-to-livelistenerbuspostenvironmentupdate-internal-method"><a id="postEnvironmentUpdate"></a> Posting SparkListenerEnvironmentUpdate Event to LiveListenerBus&#8201;&#8212;&#8201;<code>postEnvironmentUpdate</code> Internal Method</a></h2>
+<h2 id="posting-sparklistenerenvironmentupdate-event"><a class="anchor" href="#posting-sparklistenerenvironmentupdate-event"></a><a class="link" href="#posting-sparklistenerenvironmentupdate-event"><a id="postEnvironmentUpdate"></a> Posting SparkListenerEnvironmentUpdate Event</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">

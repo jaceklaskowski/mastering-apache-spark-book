@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -1971,7 +1977,7 @@
 <p>writePartitionerToCheckpointDir creates the <a href="#checkpointPartitionerFileName">partitioner file</a> with the buffer size based on <a href="../configuration-properties.html#spark.buffer.size" class="page">spark.buffer.size</a> configuration property.</p>
 </div>
 <div class="paragraph">
-<p>writePartitionerToCheckpointDir requests the <a href="../spark-SparkEnv.html#serializer" class="page">default Serializer</a> for a new <a href="../serializer/Serializer.html#newInstance" class="page">SerializerInstance</a>.</p>
+<p>writePartitionerToCheckpointDir requests the <a href="../core/SparkEnv.html#serializer" class="page">default Serializer</a> for a new <a href="../serializer/Serializer.html#newInstance" class="page">SerializerInstance</a>.</p>
 </div>
 <div class="paragraph">
 <p>writePartitionerToCheckpointDir requests the SerializerInstance to <a href="../serializer/SerializerInstance.html#serializeStream" class="page">serialize the output stream</a> and <a href="../serializer/DeserializationStream.html#writeObject" class="page">writes</a> the given Partitioner.</p>
@@ -2011,7 +2017,7 @@
 <p>readCheckpointedPartitionerFile opens the <a href="#checkpointPartitionerFileName">partitioner file</a> with the buffer size based on <a href="../configuration-properties.html#spark.buffer.size" class="page">spark.buffer.size</a> configuration property.</p>
 </div>
 <div class="paragraph">
-<p>readCheckpointedPartitionerFile requests the <a href="../spark-SparkEnv.html#serializer" class="page">default Serializer</a> for a new <a href="../serializer/Serializer.html#newInstance" class="page">SerializerInstance</a>.</p>
+<p>readCheckpointedPartitionerFile requests the <a href="../core/SparkEnv.html#serializer" class="page">default Serializer</a> for a new <a href="../serializer/Serializer.html#newInstance" class="page">SerializerInstance</a>.</p>
 </div>
 <div class="paragraph">
 <p>readCheckpointedPartitionerFile requests the SerializerInstance to <a href="../serializer/SerializerInstance.html#deserializeStream" class="page">deserialize the input stream</a> and <a href="../serializer/DeserializationStream.html#readObject" class="page">read the Partitioner</a> from the partitioner file.</p>

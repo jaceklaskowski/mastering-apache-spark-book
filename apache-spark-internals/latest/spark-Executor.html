@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -1992,7 +1998,7 @@ Executors are managed exclusively by <a href="spark-ExecutorBackend.html" class=
 <p><a id="executorHostname"></a> Host name</p>
 </li>
 <li>
-<p><a id="env"></a> <a href="spark-SparkEnv.html" class="page">SparkEnv</a></p>
+<p><a id="env"></a> <a href="core/SparkEnv.html" class="page">SparkEnv</a></p>
 </li>
 <li>
 <p><a id="userClassPath"></a> User-defined jars (<code>Seq[URL]</code> / default: <code>Nil</code>)</p>
@@ -2041,7 +2047,7 @@ User-defined JARs are defined using <a href="spark-CoarseGrainedExecutorBackend.
 <p>(only for <a href="#isLocal">non-local modes</a>) <code>Executor</code> sets <code>SparkUncaughtExceptionHandler</code> as the default handler invoked when a thread abruptly terminates due to an uncaught exception.</p>
 </div>
 <div class="paragraph">
-<p>(only for <a href="#isLocal">non-local modes</a>) <code>Executor</code> requests the <a href="spark-SparkEnv.html#blockManager" class="page">BlockManager</a> to <a href="#BlockManager.adoc#initialize" class="page unresolved">initialize</a> (with the <a href="spark-SparkConf.html#getAppId" class="page">Spark application id</a> of the <a href="spark-SparkEnv.html#conf" class="page">SparkConf</a>).</p>
+<p>(only for <a href="#isLocal">non-local modes</a>) <code>Executor</code> requests the <a href="core/SparkEnv.html#blockManager" class="page">BlockManager</a> to <a href="#BlockManager.adoc#initialize" class="page unresolved">initialize</a> (with the <a href="spark-SparkConf.html#getAppId" class="page">Spark application id</a> of the <a href="core/SparkEnv.html#conf" class="page">SparkConf</a>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2056,7 +2062,7 @@ User-defined JARs are defined using <a href="spark-CoarseGrainedExecutorBackend.
 </table>
 </div>
 <div id="creating-instance-BlockManager-shuffleMetricsSource" class="paragraph">
-<p>(only for <a href="#isLocal">non-local modes</a>) <code>Executor</code> requests the <a href="spark-SparkEnv.html#metricsSystem" class="page">MetricsSystem</a> to <a href="metrics/spark-metrics-MetricsSystem.html#registerSource" class="page">register</a> the <a href="#executorSource">ExecutorSource</a> and <a href="#BlockManager.adoc#shuffleMetricsSource" class="page unresolved">shuffleMetricsSource</a> of the <a href="spark-SparkEnv.html#blockManager" class="page">BlockManager</a>.</p>
+<p>(only for <a href="#isLocal">non-local modes</a>) <code>Executor</code> requests the <a href="core/SparkEnv.html#metricsSystem" class="page">MetricsSystem</a> to <a href="metrics/spark-metrics-MetricsSystem.html#registerSource" class="page">register</a> the <a href="#executorSource">ExecutorSource</a> and <a href="#BlockManager.adoc#shuffleMetricsSource" class="page unresolved">shuffleMetricsSource</a> of the <a href="core/SparkEnv.html#blockManager" class="page">BlockManager</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2065,7 +2071,7 @@ User-defined JARs are defined using <a href="spark-CoarseGrainedExecutorBackend.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>Executor</code> uses <code>SparkEnv</code> to access the local <a href="spark-SparkEnv.html#metricsSystem" class="page">MetricsSystem</a> and <a href="spark-SparkEnv.html#blockManager" class="page">BlockManager</a>.
+<code>Executor</code> uses <code>SparkEnv</code> to access the local <a href="core/SparkEnv.html#metricsSystem" class="page">MetricsSystem</a> and <a href="core/SparkEnv.html#blockManager" class="page">BlockManager</a>.
 </td>
 </tr>
 </table>
@@ -2080,7 +2086,7 @@ User-defined JARs are defined using <a href="spark-CoarseGrainedExecutorBackend.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>Executor</code> uses <code>SparkEnv</code> <a href="spark-SparkEnv.html#serializer" class="page">to access the local <code>Serializer</code></a>.
+<code>Executor</code> uses <code>SparkEnv</code> <a href="core/SparkEnv.html#serializer" class="page">to access the local <code>Serializer</code></a>.
 </td>
 </tr>
 </table>
@@ -2275,7 +2281,7 @@ The amount of memory per executor is looked up when <a href="spark-SparkContext.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>stop</code> uses <code>SparkEnv</code> <a href="spark-SparkEnv.html#metricsSystem" class="page">to access the current <code>MetricsSystem</code></a>.
+<code>stop</code> uses <code>SparkEnv</code> <a href="core/SparkEnv.html#metricsSystem" class="page">to access the current <code>MetricsSystem</code></a>.
 </td>
 </tr>
 </table>
@@ -2287,7 +2293,7 @@ The amount of memory per executor is looked up when <a href="spark-SparkContext.
 <p><code>stop</code> shuts <a href="#threadPool">Executor task launch worker thread pool</a> down.</p>
 </div>
 <div class="paragraph">
-<p>(only when <a href="#isLocal">not local</a>) <code>stop</code> <a href="spark-SparkEnv.html#stop" class="page">requests <code>SparkEnv</code> to stop</a>.</p>
+<p>(only when <a href="#isLocal">not local</a>) <code>stop</code> <a href="core/SparkEnv.html#stop" class="page">requests <code>SparkEnv</code> to stop</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2463,7 +2469,7 @@ A <code>Heartbeat</code> message contains the executor identifier, the accumulat
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>reportHeartBeat</code> uses <code>SparkEnv</code> <a href="spark-SparkEnv.html#blockManager" class="page">to access the current <code>BlockManager</code></a>.
+<code>reportHeartBeat</code> uses <code>SparkEnv</code> <a href="core/SparkEnv.html#blockManager" class="page">to access the current <code>BlockManager</code></a>.
 </td>
 </tr>
 </table>

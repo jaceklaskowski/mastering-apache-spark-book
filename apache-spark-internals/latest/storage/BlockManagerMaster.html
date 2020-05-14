@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -1878,7 +1884,7 @@
 <h2 id="blockmanagermasterblockmanager-for-driver"><a class="anchor" href="#blockmanagermasterblockmanager-for-driver"></a><a class="link" href="#blockmanagermasterblockmanager-for-driver"><a id="BlockManagerMaster"></a> BlockManagerMaster&#8201;&#8212;&#8201;BlockManager for Driver</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>BlockManagerMaster</code> <a href="spark-SparkEnv.adoc#BlockManagerMaster">runs on the driver</a>.</p>
+<p><code>BlockManagerMaster</code> <a href="../core/SparkEnv.html#BlockManagerMaster" class="page">runs on the driver</a>.</p>
 </div>
 <div class="paragraph">
 <p><code>BlockManagerMaster</code> uses <a href="spark-blockmanager-BlockManagerMasterEndpoint.adoc">BlockManagerMasterEndpoint</a> registered under <strong>BlockManagerMaster</strong> RPC endpoint name on the driver (with the endpoint references on executors) to allow executors for sending block status updates to it and hence keep track of block statuses.</p>
@@ -1890,7 +1896,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>BlockManagerMaster</code> is created in <a href="spark-SparkEnv.adoc#BlockManagerMaster"><code>SparkEnv</code> (for the driver and executors)</a>, and immediately used to create their <a href="BlockManager.html" class="page">BlockManagers</a>.
+<code>BlockManagerMaster</code> is created in <a href="../core/SparkEnv.html#BlockManagerMaster" class="page"><code>SparkEnv</code> (for the driver and executors)</a>, and immediately used to create their <a href="BlockManager.html" class="page">BlockManagers</a>.
 </td>
 </tr>
 </table>

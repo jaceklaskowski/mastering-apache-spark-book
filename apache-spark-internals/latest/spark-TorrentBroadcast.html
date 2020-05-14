@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -2068,7 +2074,7 @@ The internal <code>_value</code> is <em>transient</em> and <em>lazy</em>, i.e. i
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The current <a href="spark-SparkConf.adoc">SparkConf</a> is available using <a href="spark-SparkEnv.adoc#conf">SparkEnv.get.conf</a>.
+The current <a href="spark-SparkConf.adoc">SparkConf</a> is available using <a href="core/SparkEnv.html#conf" class="page">SparkEnv.get.conf</a>.
 </td>
 </tr>
 </table>
@@ -2083,7 +2089,7 @@ The current <a href="spark-SparkConf.adoc">SparkConf</a> is available using <a h
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The current <a href="storage/BlockManager.html" class="page">BlockManager</a> is available using <a href="spark-SparkEnv.adoc#blockManager">SparkEnv.get.blockManager</a>.
+The current <a href="storage/BlockManager.html" class="page">BlockManager</a> is available using <a href="core/SparkEnv.html#blockManager" class="page">SparkEnv.get.blockManager</a>.
 </td>
 </tr>
 </table>
@@ -2120,7 +2126,7 @@ The current <a href="storage/BlockManager.html" class="page">BlockManager</a> is
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>readBroadcastBlock</code> uses the <a href="spark-SparkEnv.adoc#serializer">current <code>Serializer</code></a> and the internal <a href="io/CompressionCodec.html" class="page">CompressionCodec</a> to bring all the blocks together as one single broadcast variable.
+<code>readBroadcastBlock</code> uses the <a href="core/SparkEnv.html#serializer" class="page">current <code>Serializer</code></a> and the internal <a href="io/CompressionCodec.html" class="page">CompressionCodec</a> to bring all the blocks together as one single broadcast variable.
 </td>
 </tr>
 </table>
@@ -2200,7 +2206,7 @@ The current <a href="storage/BlockManager.html" class="page">BlockManager</a> is
 </div>
 </div>
 <div class="paragraph">
-<p><code>writeBlocks</code> divides <code>value</code> into blocks (of <a href="spark-service-broadcastmanager.adoc#spark_broadcast_blockSize">spark.broadcast.blockSize</a> size) using the <a href="spark-SparkEnv.adoc#serializer">Serializer</a> and an optional <a href="io/CompressionCodec.html" class="page">CompressionCodec</a> (enabled by <a href="spark-service-broadcastmanager.html#spark.broadcast.compress" class="page">spark.broadcast.compress</a>). Every block gets its own <code>BroadcastBlockId</code> (with <code>piece</code> and an index) that is wrapped inside a <code>ChunkedByteBuffer</code>. <a href="storage/BlockManager.html#putBytes" class="page">Blocks are stored in the local <code>BlockManager</code></a> (using the <code>piece</code> block id, <code>MEMORY_AND_DISK_SER</code> storage level and informing the driver).</p>
+<p><code>writeBlocks</code> divides <code>value</code> into blocks (of <a href="spark-service-broadcastmanager.adoc#spark_broadcast_blockSize">spark.broadcast.blockSize</a> size) using the <a href="core/SparkEnv.html#serializer" class="page">Serializer</a> and an optional <a href="io/CompressionCodec.html" class="page">CompressionCodec</a> (enabled by <a href="spark-service-broadcastmanager.html#spark.broadcast.compress" class="page">spark.broadcast.compress</a>). Every block gets its own <code>BroadcastBlockId</code> (with <code>piece</code> and an index) that is wrapped inside a <code>ChunkedByteBuffer</code>. <a href="storage/BlockManager.html#putBytes" class="page">Blocks are stored in the local <code>BlockManager</code></a> (using the <code>piece</code> block id, <code>MEMORY_AND_DISK_SER</code> storage level and informing the driver).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2351,7 +2357,7 @@ The entire broadcast value is stored in the local <code>BlockManager</code> with
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>unpersist</code> uses <a href="spark-SparkEnv.adoc#blockManager"><code>SparkEnv</code> to get the <code>BlockManagerMaster</code></a> (through <code>blockManager</code> property).
+<code>unpersist</code> uses <a href="core/SparkEnv.html#blockManager" class="page"><code>SparkEnv</code> to get the <code>BlockManagerMaster</code></a> (through <code>blockManager</code> property).
 </td>
 </tr>
 </table>

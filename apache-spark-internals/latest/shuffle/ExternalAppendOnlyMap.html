@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -1904,16 +1910,16 @@
 <p><a id="mergeCombiners"></a> mergeCombiners function (<code>(C, C) &#8658; C</code>)</p>
 </li>
 <li>
-<p><a id="serializer"></a> Optional <a href="../serializer/Serializer.html" class="page">Serializer</a> (default: <a href="../spark-SparkEnv.html#serializer" class="page">system Serializer</a>)</p>
+<p><a id="serializer"></a> Optional <a href="../serializer/Serializer.html" class="page">Serializer</a> (default: <a href="../core/SparkEnv.html#serializer" class="page">system Serializer</a>)</p>
 </li>
 <li>
-<p><a id="blockManager"></a> Optional <a href="../storage/BlockManager.html" class="page">BlockManager</a> (default: <a href="../spark-SparkEnv.html#blockManager" class="page">system BlockManager</a>)</p>
+<p><a id="blockManager"></a> Optional <a href="../storage/BlockManager.html" class="page">BlockManager</a> (default: <a href="../core/SparkEnv.html#blockManager" class="page">system BlockManager</a>)</p>
 </li>
 <li>
 <p><a id="context"></a> Optional <a href="../scheduler/spark-TaskContext.html" class="page">TaskContext</a> (default: <a href="../scheduler/spark-TaskContext.html#get" class="page">current TaskContext</a>)</p>
 </li>
 <li>
-<p><a id="serializerManager"></a> Optional <a href="../serializer/SerializerManager.html" class="page">SerializerManager</a> (default: <a href="../spark-SparkEnv.html#serializerManager" class="page">system SerializerManager</a>)</p>
+<p><a id="serializerManager"></a> Optional <a href="../serializer/SerializerManager.html" class="page">SerializerManager</a> (default: <a href="../core/SparkEnv.html#serializerManager" class="page">system SerializerManager</a>)</p>
 </li>
 </ul>
 </div>

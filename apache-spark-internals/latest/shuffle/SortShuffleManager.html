@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -1894,7 +1900,7 @@ Use <a href="../configuration-properties.html#spark.shuffle.manager" class="page
 </table>
 </div>
 <div class="paragraph">
-<p>SortShuffleManager is <a href="#creating-instance">created</a> when SparkEnv is <a href="../spark-SparkEnv.html#ShuffleManager" class="page">created</a> (on the driver and executors at the very beginning of a Spark application&#8217;s lifecycle).</p>
+<p>SortShuffleManager is <a href="#creating-instance">created</a> when SparkEnv is <a href="../core/SparkEnv.html#ShuffleManager" class="page">created</a> (on the driver and executors at the very beginning of a Spark application&#8217;s lifecycle).</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">

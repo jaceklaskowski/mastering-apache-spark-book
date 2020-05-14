@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -2052,7 +2058,7 @@ FIXME How to "trigger" the exception? What are the steps?
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<a href="spark-driver.adoc#spark_driver_host">spark.driver.host</a> and <a href="spark-driver.adoc#spark_driver_port">spark.driver.port</a> are expected to be set on the driver. It is later asserted by <a href="spark-SparkEnv.adoc#createDriverEnv">SparkEnv</a>.
+<a href="spark-driver.adoc#spark_driver_host">spark.driver.host</a> and <a href="spark-driver.adoc#spark_driver_port">spark.driver.port</a> are expected to be set on the driver. It is later asserted by <a href="core/SparkEnv.html#createDriverEnv" class="page">SparkEnv</a>.
 </td>
 </tr>
 </table>
@@ -2067,7 +2073,7 @@ FIXME How to "trigger" the exception? What are the steps?
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Use <code>sc.getConf.get("spark.executor.id")</code> to know where the code is executed&#8201;&#8212;&#8201;<a href="spark-SparkEnv.adoc">driver or executors</a>.
+Use <code>sc.getConf.get("spark.executor.id")</code> to know where the code is executed&#8201;&#8212;&#8201;<a href="core/SparkEnv.html" class="page">driver or executors</a>.
 </td>
 </tr>
 </table>
@@ -2120,7 +2126,7 @@ The current <code>AppStatusStore</code> is available as <a href="spark-SparkCont
 <div class="sect2">
 <h3 id="creating-sparkenv"><a class="anchor" href="#creating-sparkenv"></a><a class="link" href="#creating-sparkenv"><a id="_env"></a> Creating SparkEnv</a></h3>
 <div class="paragraph">
-<p><code>SparkContext</code> creates a <a href="#createSparkEnv">SparkEnv</a> and requests <code>SparkEnv</code> to <a href="spark-SparkEnv.adoc#set">use the instance as the default SparkEnv</a>.</p>
+<p><code>SparkContext</code> creates a <a href="#createSparkEnv">SparkEnv</a> and requests <code>SparkEnv</code> to <a href="core/SparkEnv.html#set" class="page">use the instance as the default SparkEnv</a>.</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -2654,7 +2660,7 @@ FIXME Where are <code>nextShuffleId</code> and <code>nextRddId</code> used?
 </div>
 </div>
 <div class="paragraph">
-<p><code>createSparkEnv</code> simply delegates the call to <a href="spark-SparkEnv.adoc#createDriverEnv">SparkEnv to create a <code>SparkEnv</code> for the driver</a>.</p>
+<p><code>createSparkEnv</code> simply delegates the call to <a href="core/SparkEnv.html#createDriverEnv" class="page">SparkEnv to create a <code>SparkEnv</code> for the driver</a>.</p>
 </div>
 <div class="paragraph">
 <p>It calculates the number of cores to <code>1</code> for <code>local</code> master URL, the number of processors available for JVM for <code>*</code> or the exact number in the master URL, or <code>0</code> for the cluster master URLs.</p>

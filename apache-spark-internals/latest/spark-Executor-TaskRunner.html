@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -1992,7 +1998,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>run</code> uses <a href="spark-SparkEnv.html#memoryManager" class="page"><code>SparkEnv</code> to access the current <code>MemoryManager</code></a>.
+<code>run</code> uses <a href="core/SparkEnv.html#memoryManager" class="page"><code>SparkEnv</code> to access the current <code>MemoryManager</code></a>.
 </td>
 </tr>
 </table>
@@ -2013,7 +2019,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>run</code> uses <code>SparkEnv</code> <a href="spark-SparkEnv.html#closureSerializer" class="page">to access the current closure <code>Serializer</code></a>.
+<code>run</code> uses <code>SparkEnv</code> <a href="core/SparkEnv.html#closureSerializer" class="page">to access the current closure <code>Serializer</code></a>.
 </td>
 </tr>
 </table>
@@ -2095,7 +2101,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>run</code> uses <a href="spark-SparkEnv.html#mapOutputTracker" class="page"><code>SparkEnv</code> to access the current <code>MapOutputTracker</code></a>.
+<code>run</code> uses <a href="core/SparkEnv.html#mapOutputTracker" class="page"><code>SparkEnv</code> to access the current <code>MapOutputTracker</code></a>.
 </td>
 </tr>
 </table>
@@ -2113,7 +2119,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>run</code> uses <a href="spark-SparkEnv.html#metricsSystem" class="page"><code>SparkEnv</code> to access the current <code>MetricsSystem</code></a>.
+<code>run</code> uses <a href="core/SparkEnv.html#metricsSystem" class="page"><code>SparkEnv</code> to access the current <code>MetricsSystem</code></a>.
 </td>
 </tr>
 </table>
@@ -2210,7 +2216,7 @@ If <code>run</code> detects any lock leak, it leads to a <code>SparkException</c
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>run</code> uses <code>SparkEnv</code> <a href="spark-SparkEnv.html#serializer" class="page">to access the current <code>Serializer</code></a>. <code>SparkEnv</code> was specified when <a href="spark-Executor.html#creating-instance" class="page">the owning <code>Executor</code> was created</a>.
+<code>run</code> uses <code>SparkEnv</code> <a href="core/SparkEnv.html#serializer" class="page">to access the current <code>Serializer</code></a>. <code>SparkEnv</code> was specified when <a href="spark-Executor.html#creating-instance" class="page">the owning <code>Executor</code> was created</a>.
 </td>
 </tr>
 </table>

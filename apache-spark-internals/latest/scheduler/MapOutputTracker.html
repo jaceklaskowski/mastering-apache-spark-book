@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -1881,7 +1887,7 @@
 <p><strong>MapOutputTracker</strong> is a base abstraction of <a href="#extensions">shuffle map output location registries</a> that can <a href="#getMapSizesByExecutorId">find shuffle blocks by executor</a> and <a href="#unregisterShuffle">deregister map output status information of a shuffle stage</a>.</p>
 </div>
 <div class="paragraph">
-<p>MapOutputTracker is available using <a href="../spark-SparkEnv.html#get" class="page">SparkEnv</a> (on the driver and executors).</p>
+<p>MapOutputTracker is available using <a href="../core/SparkEnv.html#get" class="page">SparkEnv</a> (on the driver and executors).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1932,7 +1938,7 @@
 <p>trackerEndpoint is a <a href="../spark-RpcEndpointRef.html" class="page">RpcEndpointRef</a> of the <strong>MapOutputTracker</strong> RPC endpoint.</p>
 </div>
 <div class="paragraph">
-<p>trackerEndpoint is initialized (registered or looked up) when SparkEnv is <a href="../spark-SparkEnv.html#create" class="page">created</a> for the driver and executors.</p>
+<p>trackerEndpoint is initialized (registered or looked up) when SparkEnv is <a href="../core/SparkEnv.html#create" class="page">created</a> for the driver and executors.</p>
 </div>
 <div class="paragraph">
 <p>trackerEndpoint is used to <a href="#askTracker">communicate (synchronously)</a>.</p>
@@ -2112,7 +2118,7 @@ getMapSizesByExecutorId gets the map outputs for all the partitions (despite the
 <p>stop does nothing at all.</p>
 </div>
 <div class="paragraph">
-<p>stop is used when SparkEnv is requested to <a href="../spark-SparkEnv.html#stop" class="page">stop</a> (and stops all the services, incl. MapOutputTracker).</p>
+<p>stop is used when SparkEnv is requested to <a href="../core/SparkEnv.html#stop" class="page">stop</a> (and stops all the services, incl. MapOutputTracker).</p>
 </div>
 </div>
 </div>

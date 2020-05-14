@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -2042,7 +2048,7 @@
 </table>
 </div>
 <div class="paragraph">
-<p><code>start</code> requests the <code>SparkEnv</code> object for the current <a href="#spark-SparkEnv.adoc#rpcEnv" class="page unresolved">RpcEnv</a>.</p>
+<p><code>start</code> requests the <code>SparkEnv</code> object for the current <a href="../core/SparkEnv.html#rpcEnv" class="page">RpcEnv</a>.</p>
 </div>
 <div class="paragraph">
 <p><code>start</code> then creates a <a href="spark-LocalEndpoint.html" class="page">LocalEndpoint</a> and requests the <code>RpcEnv</code> to <a href="#../spark-rpc-RpcEnv.adoc#setupEndpoint" class="page unresolved">register it</a> as <strong>LocalSchedulerBackendEndpoint</strong> RPC endpoint.</p>

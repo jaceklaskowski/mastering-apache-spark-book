@@ -67,12 +67,21 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="ContextCleaner.html">ContextCleaner</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -1866,6 +1872,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
+    <li>Core Services</li>
     <li><a href="ContextCleaner.html">ContextCleaner</a></li>
   </ul>
 </nav>
@@ -2150,10 +2157,10 @@
 </div>
 </div>
 <div class="paragraph">
-<p>doCleanupShuffle uses <a href="../spark-SparkEnv.html" class="page">SparkEnv</a> to access the <a href="../spark-SparkEnv.html#mapOutputTracker" class="page">MapOutputTracker</a> to <a href="../scheduler/MapOutputTracker.html#unregisterShuffle" class="page">unregister the given shuffle</a>.</p>
+<p>doCleanupShuffle uses <a href="SparkEnv.html" class="page">SparkEnv</a> to access the <a href="SparkEnv.html#mapOutputTracker" class="page">MapOutputTracker</a> to <a href="../scheduler/MapOutputTracker.html#unregisterShuffle" class="page">unregister the given shuffle</a>.</p>
 </div>
 <div class="paragraph">
-<p>doCleanupShuffle uses <a href="../spark-SparkEnv.html" class="page">SparkEnv</a> to access the <a href="../spark-SparkEnv.html#blockManager" class="page">BlockManagerMaster</a> to <a href="../storage/BlockManagerMaster.html#removeShuffle" class="page">remove the shuffle blocks</a> (for the given shuffleId).</p>
+<p>doCleanupShuffle uses <a href="SparkEnv.html" class="page">SparkEnv</a> to access the <a href="SparkEnv.html#blockManager" class="page">BlockManagerMaster</a> to <a href="../storage/BlockManagerMaster.html#removeShuffle" class="page">remove the shuffle blocks</a> (for the given shuffleId).</p>
 </div>
 <div class="paragraph">
 <p>doCleanupShuffle informs all registered <a href="#listeners">CleanerListeners</a> that <a href="CleanerListener.html#shuffleCleaned" class="page">shuffle was cleaned</a>.</p>

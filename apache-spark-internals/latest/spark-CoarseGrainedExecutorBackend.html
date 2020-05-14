@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -1977,7 +1983,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="ser"></a> <code>ser</code></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><a href="serializer/SerializerInstance.html" class="page">SerializerInstance</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Initialized when <a href="#creating-instance"><code>CoarseGrainedExecutorBackend</code> is created</a>.</p>
-<p class="tableblock">NOTE: <code>CoarseGrainedExecutorBackend</code> uses the input <code>env</code> to <a href="spark-SparkEnv.adoc#closureSerializer">access <code>closureSerializer</code></a>.</p></td>
+<p class="tableblock">NOTE: <code>CoarseGrainedExecutorBackend</code> uses the input <code>env</code> to <a href="core/SparkEnv.html#closureSerializer" class="page">access <code>closureSerializer</code></a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="driver"></a> <code>driver</code></p></td>
@@ -2116,7 +2122,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="launching-coarsegrainedexecutorbackend-standalone-application-in-resource-containermain-method"><a class="anchor" href="#launching-coarsegrainedexecutorbackend-standalone-application-in-resource-containermain-method"></a><a class="link" href="#launching-coarsegrainedexecutorbackend-standalone-application-in-resource-containermain-method"><a id="main"></a> Launching CoarseGrainedExecutorBackend Standalone Application (in Resource Container)&#8201;&#8212;&#8201;<code>main</code> Method</a></h3>
+<h3 id="launching-coarsegrainedexecutorbackend-standalone-application-in-resource-container"><a class="anchor" href="#launching-coarsegrainedexecutorbackend-standalone-application-in-resource-container"></a><a class="link" href="#launching-coarsegrainedexecutorbackend-standalone-application-in-resource-container"><a id="main"></a> Launching CoarseGrainedExecutorBackend Standalone Application (in Resource Container)</a></h3>
 <div class="paragraph">
 <p><code>CoarseGrainedExecutorBackend</code> is a standalone application (i.e. comes with <code>main</code> entry method) that parses <a href="#command-line-arguments">command-line arguments</a> and <a href="#run">runs CoarseGrainedExecutorBackend&#8217;s Executor RPC endpoint</a> to communicate with the driver.</p>
 </div>
@@ -2221,7 +2227,7 @@ Usage: CoarseGrainedExecutorBackend [options]
 </div>
 </div>
 <div class="sect2">
-<h3 id="running-coarsegrainedexecutorbackend-and-registering-executor-rpc-endpointrun-internal-method"><a class="anchor" href="#running-coarsegrainedexecutorbackend-and-registering-executor-rpc-endpointrun-internal-method"></a><a class="link" href="#running-coarsegrainedexecutorbackend-and-registering-executor-rpc-endpointrun-internal-method"><a id="run"></a> Running CoarseGrainedExecutorBackend (and Registering Executor RPC Endpoint)&#8201;&#8212;&#8201;<code>run</code> Internal Method</a></h3>
+<h3 id="starting-coarsegrainedexecutorbackend"><a class="anchor" href="#starting-coarsegrainedexecutorbackend"></a><a class="link" href="#starting-coarsegrainedexecutorbackend"><a id="run"></a> Starting CoarseGrainedExecutorBackend</a></h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">run(
@@ -2324,7 +2330,7 @@ This is the first moment when <code>CoarseGrainedExecutorBackend</code> initiate
 </table>
 </div>
 <div class="paragraph">
-<p><code>run</code> <a href="spark-SparkEnv.adoc#createExecutorEnv">creates <code>SparkEnv</code> for executors</a> (with the input <code>executorId</code>, <code>hostname</code> and <code>cores</code>, and <code>isLocal</code> disabled).</p>
+<p><code>run</code> <a href="core/SparkEnv.html#createExecutorEnv" class="page">creates <code>SparkEnv</code> for executors</a> (with the input <code>executorId</code>, <code>hostname</code> and <code>cores</code>, and <code>isLocal</code> disabled).</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -2379,17 +2385,8 @@ FIXME Think of the place for <code>Utils.initDaemon</code>, <code>Utils.getProce
 </tr>
 </table>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>run</code> is used exclusively when <a href="#main"><code>CoarseGrainedExecutorBackend</code> standalone application is launched</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>run is used when CoarseGrainedExecutorBackend standalone application is <a href="#main">launched</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2418,7 +2415,7 @@ FIXME Think of the place for <code>Utils.initDaemon</code>, <code>Utils.getProce
 <p><code>userClassPath</code></p>
 </li>
 <li>
-<p><a href="spark-SparkEnv.adoc">SparkEnv</a></p>
+<p><a href="core/SparkEnv.html" class="page">SparkEnv</a></p>
 </li>
 </ol>
 </div>

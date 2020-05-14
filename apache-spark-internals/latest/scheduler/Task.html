@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -2087,7 +2093,7 @@ Defined by the <a href="#implementations">concrete tasks</a>, i.e. <a href="Shuf
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>run</code> uses <a href="spark-SparkEnv.adoc#blockManager"><code>SparkEnv</code> to access the current <code>BlockManager</code></a>.
+<code>run</code> uses <a href="../core/SparkEnv.html#blockManager" class="page"><code>SparkEnv</code> to access the current <code>BlockManager</code></a>.
 </td>
 </tr>
 </table>
@@ -2141,7 +2147,7 @@ This is the moment when the custom <code>Task</code>'s <a href="#runTask">runTas
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>run</code> uses <a href="spark-SparkEnv.adoc#blockManager"><code>SparkEnv</code> to access the current <code>BlockManager</code></a> that it uses to access <a href="../storage/BlockManager.html#memoryStore" class="page">MemoryStore</a>.
+<code>run</code> uses <a href="../core/SparkEnv.html#blockManager" class="page"><code>SparkEnv</code> to access the current <code>BlockManager</code></a> that it uses to access <a href="../storage/BlockManager.html#memoryStore" class="page">MemoryStore</a>.
 </td>
 </tr>
 </table>
@@ -2159,7 +2165,7 @@ This is the moment when the custom <code>Task</code>'s <a href="#runTask">runTas
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>run</code> uses <a href="spark-SparkEnv.adoc#memoryManager"><code>SparkEnv</code> to access the current <code>MemoryManager</code></a>.
+<code>run</code> uses <a href="../core/SparkEnv.html#memoryManager" class="page"><code>SparkEnv</code> to access the current <code>MemoryManager</code></a>.
 </td>
 </tr>
 </table>

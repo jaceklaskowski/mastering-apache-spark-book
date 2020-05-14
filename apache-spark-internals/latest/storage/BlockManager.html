@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -1893,7 +1899,7 @@
 <p>BlockManager provides interface for uploading and fetching blocks both locally and remotely using various stores, i.e. <a href="#stores">memory, disk, and off-heap</a>.</p>
 </div>
 <div class="paragraph">
-<p>BlockManager is <a href="#creating-instance">created</a> exclusively when <code>SparkEnv</code> is <a href="../spark-SparkEnv.html#create-BlockManager" class="page">created</a> (for the driver and executors). BlockManager gets a <a href="#diskBlockManager">DiskBlockManager</a>, a <a href="#blockInfoManager">BlockInfoManager</a>, a <a href="#memoryStore">MemoryStore</a> and a <a href="#diskStore">DiskStore</a> (and wires them up together).</p>
+<p>BlockManager is <a href="#creating-instance">created</a> exclusively when <code>SparkEnv</code> is <a href="../core/SparkEnv.html#create-BlockManager" class="page">created</a> (for the driver and executors). BlockManager gets a <a href="#diskBlockManager">DiskBlockManager</a>, a <a href="#blockInfoManager">BlockInfoManager</a>, a <a href="#memoryStore">MemoryStore</a> and a <a href="#diskStore">DiskStore</a> (and wires them up together).</p>
 </div>
 <div id="futureExecutionContext" class="paragraph">
 <p>BlockManager uses a Scala <a href="https://www.scala-lang.org/api/current/scala/concurrent/ExecutionContextExecutorService.html">ExecutionContextExecutorService</a> to execute <strong>FIXME</strong> asynchronously (on a thread pool with <strong>block-manager-future</strong> prefix and maximum of 128 threads).</p>
@@ -1929,7 +1935,7 @@ Use <a href="../tools/spark-submit.html" class="page">spark-submit</a>'s command
 </table>
 </div>
 <div class="paragraph">
-<p>A <a href="#creating-instance">BlockManager is created</a> when a <a href="../spark-SparkEnv.html#create" class="page">Spark application starts</a> and must be <a href="#initialize">initialized</a> before it is fully operable.</p>
+<p>A <a href="#creating-instance">BlockManager is created</a> when a <a href="../core/SparkEnv.html#create" class="page">Spark application starts</a> and must be <a href="#initialize">initialized</a> before it is fully operable.</p>
 </div>
 <div class="paragraph">
 <p>When <a href="#externalShuffleServiceEnabled">External Shuffle Service is enabled</a>, BlockManager uses <a href="../spark-ShuffleClient-ExternalShuffleClient.html" class="page">ExternalShuffleClient</a> to read other executors' shuffle files.</p>
@@ -2036,7 +2042,7 @@ It is computed specially in Spark on YARN.
 <h2 id="accessing-blockmanager-using-sparkenv"><a class="anchor" href="#accessing-blockmanager-using-sparkenv"></a><a class="link" href="#accessing-blockmanager-using-sparkenv"><a id="SparkEnv"></a> Accessing BlockManager Using SparkEnv</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>BlockManager is available using <a href="../spark-SparkEnv.html#blockManager" class="page">SparkEnv</a> on the driver and executors.</p>
+<p>BlockManager is available using <a href="../core/SparkEnv.html#blockManager" class="page">SparkEnv</a> on the driver and executors.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2301,7 +2307,7 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>stop</code> is used exclusively when <code>SparkEnv</code> is requested to <a href="../spark-SparkEnv.html#stop" class="page">stop</a>.
+<code>stop</code> is used exclusively when <code>SparkEnv</code> is requested to <a href="../core/SparkEnv.html#stop" class="page">stop</a>.
 </td>
 </tr>
 </table>
@@ -3846,7 +3852,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 <p><code>shuffleClient</code> is also used when <code>BlockStoreShuffleReader</code> is requested to <a href="../shuffle/BlockStoreShuffleReader.html#read" class="page">read combined key-value records for a reduce task</a> (and creates a <a href="ShuffleBlockFetcherIterator.html#shuffleClient" class="page">ShuffleBlockFetcherIterator</a>).</p>
 </div>
 <div class="paragraph">
-<p><code>shuffleClient</code> can be either a <a href="spark-ShuffleClient-ExternalShuffleClient.adoc">ExternalShuffleClient</a> or the <a href="#blockTransferService">BlockTransferService</a> (that is the <a href="spark-NettyBlockTransferService.adoc">NettyBlockTransferService</a> given by <a href="spark-SparkEnv.adoc#create-BlockManager">SparkEnv</a>).</p>
+<p><code>shuffleClient</code> can be either a <a href="spark-ShuffleClient-ExternalShuffleClient.adoc">ExternalShuffleClient</a> or the <a href="#blockTransferService">BlockTransferService</a> (that is the <a href="spark-NettyBlockTransferService.adoc">NettyBlockTransferService</a> given by <a href="../core/SparkEnv.html#create-BlockManager" class="page">SparkEnv</a>).</p>
 </div>
 <div class="admonitionblock caution">
 <table>

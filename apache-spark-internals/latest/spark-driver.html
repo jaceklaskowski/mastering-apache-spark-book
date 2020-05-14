@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -2042,7 +2048,7 @@ It is printed out to the standard error output in <a href="spark-submit.adoc#ver
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark_driver_blockManager_port"></a> <code>spark.driver.blockManager.port</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="storage/BlockManager.html#spark_blockManager_port" class="page">spark.blockManager.port</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Port to use for the <a href="storage/BlockManager.html" class="page">BlockManager</a> on the driver.</p>
-<p class="tableblock">More precisely, <code>spark.driver.blockManager.port</code> is used when <a href="spark-SparkEnv.adoc#NettyBlockTransferService"><code>NettyBlockTransferService</code> is created</a> (while <code>SparkEnv</code> is created for the driver).</p></td>
+<p class="tableblock">More precisely, <code>spark.driver.blockManager.port</code> is used when <a href="core/SparkEnv.html#NettyBlockTransferService" class="page"><code>NettyBlockTransferService</code> is created</a> (while <code>SparkEnv</code> is created for the driver).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark_driver_host"></a><a id="spark.driver.host"></a> <code>spark.driver.host</code></p></td>

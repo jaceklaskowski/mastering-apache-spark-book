@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -1917,7 +1923,7 @@ The only instance of <code>TaskResultGetter</code> is created while <a href="Tas
 </table>
 </div>
 <div class="paragraph">
-<p><code>TaskResultGetter</code> requires a <a href="spark-SparkEnv.adoc">SparkEnv</a> and <a href="TaskSchedulerImpl.html" class="page">TaskSchedulerImpl</a> to be created and is stopped when <a href="TaskSchedulerImpl.html#stop" class="page"><code>TaskSchedulerImpl</code> stops</a>.</p>
+<p><code>TaskResultGetter</code> requires a <a href="../core/SparkEnv.html" class="page">SparkEnv</a> and <a href="TaskSchedulerImpl.html" class="page">TaskSchedulerImpl</a> to be created and is stopped when <a href="TaskSchedulerImpl.html#stop" class="page"><code>TaskSchedulerImpl</code> stops</a>.</p>
 </div>
 <div class="paragraph">
 <p><code>TaskResultGetter</code> uses <a href="#task-result-getter"><code>task-result-getter</code> asynchronous task executor</a> for operation.</p>
@@ -1992,7 +1998,7 @@ Read up on <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurre
 <p><code>serializer</code> is a thread-local <a href="../serializer/SerializerInstance.html" class="page">SerializerInstance</a> that <code>TaskResultGetter</code> uses to deserialize byte buffers (with <code>TaskResult</code>s or a <code>TaskEndReason</code>).</p>
 </div>
 <div class="paragraph">
-<p>When created for a new thread, <code>serializer</code> is initialized with a new instance of <code>Serializer</code> (using <a href="spark-SparkEnv.adoc#closureSerializer">SparkEnv.closureSerializer</a>).</p>
+<p>When created for a new thread, <code>serializer</code> is initialized with a new instance of <code>Serializer</code> (using <a href="../core/SparkEnv.html#closureSerializer" class="page">SparkEnv.closureSerializer</a>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2018,7 +2024,7 @@ Read up on <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurre
 <p><code>taskResultSerializer</code> is a thread-local <a href="../serializer/SerializerInstance.html" class="page">SerializerInstance</a> that <code>TaskResultGetter</code> uses to&#8230;&#8203;</p>
 </div>
 <div class="paragraph">
-<p>When created for a new thread, <code>taskResultSerializer</code> is initialized with a new instance of <code>Serializer</code> (using <a href="spark-SparkEnv.adoc#serializer">SparkEnv.serializer</a>).</p>
+<p>When created for a new thread, <code>taskResultSerializer</code> is initialized with a new instance of <code>Serializer</code> (using <a href="../core/SparkEnv.html#serializer" class="page">SparkEnv.serializer</a>).</p>
 </div>
 <div class="admonitionblock note">
 <table>

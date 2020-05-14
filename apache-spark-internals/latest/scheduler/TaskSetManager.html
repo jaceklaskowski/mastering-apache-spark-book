@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -2572,7 +2578,7 @@ res0: Long = 3</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>resourceOffer</code> uses <a href="spark-SparkEnv.adoc#closureSerializer"><code>SparkEnv</code> to access the closure <code>Serializer</code></a> and <a href="../serializer/Serializer.html#newInstance" class="page">create an instance thereof</a>.
+<code>resourceOffer</code> uses <a href="../core/SparkEnv.html#closureSerializer" class="page"><code>SparkEnv</code> to access the closure <code>Serializer</code></a> and <a href="../serializer/Serializer.html#newInstance" class="page">create an instance thereof</a>.
 </td>
 </tr>
 </table>
@@ -3289,7 +3295,7 @@ FIXME Why is the epoch important?
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>TaskSetManager</code> requests <a href="TaskSchedulerImpl.html#mapOutputTracker" class="page"><code>MapOutputTracker</code> from <code>TaskSchedulerImpl</code></a> which is <em>likely</em> for unit testing only since <a href="spark-SparkEnv.adoc#mapOutputTracker"><code>MapOutputTracker</code> is available using <code>SparkEnv</code></a>.
+<code>TaskSetManager</code> requests <a href="TaskSchedulerImpl.html#mapOutputTracker" class="page"><code>MapOutputTracker</code> from <code>TaskSchedulerImpl</code></a> which is <em>likely</em> for unit testing only since <a href="../core/SparkEnv.html#mapOutputTracker" class="page"><code>MapOutputTracker</code> is available using <code>SparkEnv</code></a>.
 </td>
 </tr>
 </table>
@@ -3690,7 +3696,7 @@ Since <code>TaskSetManager</code> manages execution of the tasks in a single <a 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>executorLost</code> uses <a href="spark-SparkEnv.adoc#blockManager"><code>SparkEnv</code> to access the current <code>BlockManager</code></a> and finds out whether an <a href="../storage/BlockManager.html#externalShuffleServiceEnabled" class="page">external shuffle service is enabled</a> or not (based on <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property).
+<code>executorLost</code> uses <a href="../core/SparkEnv.html#blockManager" class="page"><code>SparkEnv</code> to access the current <code>BlockManager</code></a> and finds out whether an <a href="../storage/BlockManager.html#externalShuffleServiceEnabled" class="page">external shuffle service is enabled</a> or not (based on <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property).
 </td>
 </tr>
 </table>

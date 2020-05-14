@@ -69,10 +69,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+    <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -646,9 +655,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
@@ -1903,7 +1909,7 @@
 <div class="title">Figure 1. MemoryManager and Core Services</div>
 </div>
 <div class="paragraph">
-<p>MemoryManager is available as <a href="../spark-SparkEnv.html#memoryManager" class="page">SparkEnv.memoryManager</a>.</p>
+<p>MemoryManager is available as <a href="../core/SparkEnv.html#memoryManager" class="page">SparkEnv.memoryManager</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1912,7 +1918,7 @@ val mm = SparkEnv.get.memoryManager</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A <a href="#implementations">concrete MemoryManager</a> is chosen based on <a href="../configuration-properties.html#spark.memory.useLegacyMode" class="page">spark.memory.useLegacyMode</a> configuration property (for <a href="../spark-SparkEnv.html#memoryManager" class="page">SparkEnv</a> for the driver and executors).</p>
+<p>A <a href="#implementations">concrete MemoryManager</a> is chosen based on <a href="../configuration-properties.html#spark.memory.useLegacyMode" class="page">spark.memory.useLegacyMode</a> configuration property (for <a href="../core/SparkEnv.html#memoryManager" class="page">SparkEnv</a> for the driver and executors).</p>
 </div>
 </div>
 </div>
