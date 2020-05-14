@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1892,7 +1892,7 @@
 <p>It intercepts Spark events using the internal <a href="spark-SparkListener-ExecutorAllocationListener.adoc">ExecutorAllocationListener</a> that keeps track of the workload (changing the <a href="#internal-registries">internal registries</a> that the allocation manager uses for executors management).</p>
 </div>
 <div class="paragraph">
-<p>It uses <a href="spark-service-ExecutorAllocationClient.adoc">ExecutorAllocationClient</a>, <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a>, and <a href="spark-SparkConf.adoc">SparkConf</a> (that are all passed in when <code>ExecutorAllocationManager</code> is created).</p>
+<p>It uses <a href="spark-service-ExecutorAllocationClient.adoc">ExecutorAllocationClient</a>, <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a>, and <a href="SparkConf.html" class="page">SparkConf</a> (that are all passed in when <code>ExecutorAllocationManager</code> is created).</p>
 </div>
 <div class="paragraph">
 <p><code>ExecutorAllocationManager</code> is created when <a href="spark-SparkContext-creating-instance-internals.adoc#ExecutorAllocationManager"><code>SparkContext</code> is created and dynamic allocation of executors is enabled</a>.</p>
@@ -2186,7 +2186,7 @@ FIXME
 <p><a id="listenerBus"></a> <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a></p>
 </li>
 <li>
-<p><a id="conf"></a> <a href="spark-SparkConf.adoc">SparkConf</a></p>
+<p><a id="conf"></a> <a href="SparkConf.html" class="page">SparkConf</a></p>
 </li>
 </ul>
 </div>

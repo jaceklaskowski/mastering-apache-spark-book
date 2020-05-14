@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1990,7 +1990,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="MapStageSubmitted"></a> <code>MapStageSubmitted</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#handleMapStageSubmitted">handleMapStageSubmitted</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Posted to inform DAGScheduler that <a href="spark-SparkContext.adoc#submitMapStage"><code>SparkContext</code> submitted a <code>MapStage</code> for execution</a> (through <a href="DAGScheduler.html#submitMapStage" class="page">submitMapStage</a>).</p>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Posted to inform DAGScheduler that <a href="../SparkContext.html#submitMapStage" class="page"><code>SparkContext</code> submitted a <code>MapStage</code> for execution</a> (through <a href="DAGScheduler.html#submitMapStage" class="page">submitMapStage</a>).</p>
 <p class="tableblock"><code>MapStageSubmitted</code> conveys the following information:</p>
 <p class="tableblock">1. A job identifier (as <code>jobId</code>)</p>
 <p class="tableblock">2. The <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a></p>
@@ -2096,7 +2096,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>JobGroupCancelled</code> is posted when DAGScheduler is informed (through <a href="DAGScheduler.html#cancelJobGroup" class="page">cancelJobGroup</a>) that <a href="spark-SparkContext.adoc#cancelJobGroup"><code>SparkContext</code> was requested to cancel a job group</a>.
+<code>JobGroupCancelled</code> is posted when DAGScheduler is informed (through <a href="DAGScheduler.html#cancelJobGroup" class="page">cancelJobGroup</a>) that <a href="../SparkContext.html#cancelJobGroup" class="page"><code>SparkContext</code> was requested to cancel a job group</a>.
 </td>
 </tr>
 </table>

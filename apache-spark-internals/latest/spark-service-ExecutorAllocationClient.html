@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1930,7 +1930,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="getExecutorIds"></a> <code>getExecutorIds</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Finds identifiers of the executors in use.</p>
-<p class="tableblock">Used when <a href="spark-SparkContext.adoc#getExecutorIds"><code>SparkContext</code> calculates the executors in use</a> and also when <a href="spark-streaming/spark-streaming-dynamic-allocation.adoc">Spark Streaming manages executors</a>.</p></td>
+<p class="tableblock">Used when <a href="SparkContext.html#getExecutorIds" class="page"><code>SparkContext</code> calculates the executors in use</a> and also when <a href="spark-streaming/spark-streaming-dynamic-allocation.adoc">Spark Streaming manages executors</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="requestTotalExecutors"></a> <code>requestTotalExecutors</code></p></td>
@@ -1943,7 +1943,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a href="spark-SparkContext.adoc#requestTotalExecutors"><code>SparkContext</code> requests executors</a> (for coarse-grained scheduler backends only).</p>
+<p><a href="SparkContext.html#requestTotalExecutors" class="page"><code>SparkContext</code> requests executors</a> (for coarse-grained scheduler backends only).</p>
 </li>
 <li>
 <p><code>ExecutorAllocationManager</code> <a href="spark-ExecutorAllocationManager.adoc#start">starts</a>, does <a href="spark-ExecutorAllocationManager.adoc#updateAndSyncNumExecutorsTarget">updateAndSyncNumExecutorsTarget</a>, and <a href="spark-ExecutorAllocationManager.adoc#addExecutors">addExecutors</a>.</p>
@@ -1960,7 +1960,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="requestExecutors"></a> <code>requestExecutors</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Requests additional executors from a cluster manager and returns whether the request has been acknowledged by the cluster manager (<code>true</code>) or not (<code>false</code>).</p>
-<p class="tableblock">Used when <a href="spark-SparkContext.adoc#requestExecutors"><code>SparkContext</code> requests additional executors</a> (for coarse-grained scheduler backends only).</p></td>
+<p class="tableblock">Used when <a href="SparkContext.html#requestExecutors" class="page"><code>SparkContext</code> requests additional executors</a> (for coarse-grained scheduler backends only).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="killExecutor"></a> <code>killExecutor</code></p></td>
@@ -1979,7 +1979,7 @@
 <p><code>ExecutorAllocationManager</code> <a href="spark-ExecutorAllocationManager.adoc#removeExecutor">removes an executor</a>.</p>
 </li>
 <li>
-<p><code>SparkContext</code> <a href="spark-SparkContext.adoc#killExecutors">is requested to kill executors</a>.</p>
+<p><code>SparkContext</code> <a href="SparkContext.html#killExecutors" class="page">is requested to kill executors</a>.</p>
 </li>
 <li>
 <p>Streaming <code>ExecutorAllocationManager</code> <a href="spark-streaming/spark-streaming-ExecutorAllocationManager.adoc#killExecutor">is requested to kill executors</a>.</p>

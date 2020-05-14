@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -2230,7 +2230,7 @@ YARN&#8217;s <code>ApplicationSubmissionContext</code> represents all of the inf
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The name of the Spark application</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../spark-SparkConf.adoc#spark.app.name">spark.app.name</a> configuration setting or <code>Spark</code> if not set</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../SparkConf.adoc#spark.app.name">spark.app.name</a> configuration setting or <code>Spark</code> if not set</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Queue (to which the Spark application is submitted)</p></td>
@@ -2928,7 +2928,7 @@ It is exclusively used when <a href="#createContainerLaunchContext">Client creat
 <p>The archive will also contain all the files under <code>HADOOP_CONF_DIR</code> and <code>YARN_CONF_DIR</code> environment variables (if defined).</p>
 </div>
 <div class="paragraph">
-<p>Additionally, the archive contains a <code><em>spark_conf</em>.properties</code> with the current <a href="../spark-SparkConf.adoc">Spark configuration</a>.</p>
+<p>Additionally, the archive contains a <code><em>spark_conf</em>.properties</code> with the current <a href="../SparkConf.adoc">Spark configuration</a>.</p>
 </div>
 <div class="paragraph">
 <p>The archive is a temporary file with the <code><em>spark_conf</em></code> prefix and <code>.zip</code> extension with the files above.</p>
@@ -3357,7 +3357,7 @@ It is executed by <a href="spark-submit.adoc#submit">spark-submit</a> with <code
 <p><code>main</code> turns <a href="#SPARK_YARN_MODE">SPARK_YARN_MODE flag</a> on.</p>
 </div>
 <div class="paragraph">
-<p>It then instantiates <a href="../spark-SparkConf.adoc">SparkConf</a>, parses command-line arguments (using <a href="#ClientArguments">ClientArguments</a>) and passes the call on to <a href="#run">Client.run</a> method.</p>
+<p>It then instantiates <a href="../SparkConf.adoc">SparkConf</a>, parses command-line arguments (using <a href="#ClientArguments">ClientArguments</a>) and passes the call on to <a href="#run">Client.run</a> method.</p>
 </div>
 </div>
 <div class="sect2">

@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1907,7 +1907,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Stages</strong> tab in <a href="spark-webui.adoc">web UI</a> shows <a href="spark-webui-AllStagesPage.adoc">the current state of all stages of all jobs in a Spark application</a> (i.e. a <a href="spark-SparkContext.adoc">SparkContext</a>) with two optional pages for <a href="spark-webui-StagePage.adoc">the tasks and statistics for a stage</a> (when a stage is selected) and <a href="spark-webui-PoolPage.adoc">pool details</a> (when the application works in <a href="spark-scheduler-SchedulingMode.adoc#FAIR">FAIR scheduling mode</a>).</p>
+<p><strong>Stages</strong> tab in <a href="spark-webui.adoc">web UI</a> shows <a href="spark-webui-AllStagesPage.adoc">the current state of all stages of all jobs in a Spark application</a> (i.e. a <a href="../SparkContext.html" class="page">SparkContext</a>) with two optional pages for <a href="spark-webui-StagePage.adoc">the tasks and statistics for a stage</a> (when a stage is selected) and <a href="spark-webui-PoolPage.adoc">pool details</a> (when the application works in <a href="spark-scheduler-SchedulingMode.adoc#FAIR">FAIR scheduling mode</a>).</p>
 </div>
 <div class="paragraph">
 <p>The title of the tab is <strong>Stages for All Jobs</strong>.</p>
@@ -1958,7 +1958,7 @@ The state sections are only displayed when there are stages in a given state. Re
 <p>Internally, the page is represented by <a href="https://github.com/apache/spark/blob/master/core/src/main/scala/org/apache/spark/ui/jobs/StagesTab.scala">org.apache.spark.ui.jobs.StagesTab</a> class.</p>
 </div>
 <div class="paragraph">
-<p>The page uses the parent&#8217;s <a href="spark-webui-SparkUI.adoc">SparkUI</a> to access required services, i.e. <a href="spark-SparkContext.adoc">SparkContext</a>, <a href="spark-sql-SQLConf.adoc">SparkConf</a>, <a href="spark-webui-JobProgressListener.adoc">JobProgressListener</a>, <a href="spark-webui-RDDOperationGraphListener.adoc">RDDOperationGraphListener</a>, and to know whether <a href="#killEnabled">kill is enabled or not</a>.</p>
+<p>The page uses the parent&#8217;s <a href="spark-webui-SparkUI.adoc">SparkUI</a> to access required services, i.e. <a href="../SparkContext.html" class="page">SparkContext</a>, <a href="spark-sql-SQLConf.adoc">SparkConf</a>, <a href="spark-webui-JobProgressListener.adoc">JobProgressListener</a>, <a href="spark-webui-RDDOperationGraphListener.adoc">RDDOperationGraphListener</a>, and to know whether <a href="#killEnabled">kill is enabled or not</a>.</p>
 </div>
 <div class="paragraph">
 <p><code>StagesTab</code> is <a href="#creating-instance">created</a> when&#8230;&#8203;FIXME</p>

@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1873,8 +1873,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Apache Spark</a></li>
-    <li><a href="spark-architecture.html">Spark Architecture</a></li>
-    <li><a href="spark-SparkContext.html">SparkContext</a></li>
+    <li><a href="SparkContext.html">SparkContext</a></li>
     <li><a href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a></li>
   </ul>
 </nav>
@@ -1909,7 +1908,7 @@
 </table>
 </div>
 <div class="paragraph">
-<p><a href="#creating-instance"><code>ConsoleProgressBar</code> is created</a> when <a href="spark-SparkContext-creating-instance-internals.adoc#ConsoleProgressBar"><code>SparkContext</code> starts</a> with <a href="spark-webui-properties.adoc#spark.ui.showConsoleProgress">spark.ui.showConsoleProgress</a> enabled and the logging level of <a href="spark-SparkContext.adoc">org.apache.spark.SparkContext</a> logger as <code>WARN</code> or higher (i.e. less messages are printed out and so there is a "space" for <code>ConsoleProgressBar</code>).</p>
+<p><a href="#creating-instance"><code>ConsoleProgressBar</code> is created</a> when <a href="spark-SparkContext-creating-instance-internals.adoc#ConsoleProgressBar"><code>SparkContext</code> starts</a> with <a href="spark-webui-properties.adoc#spark.ui.showConsoleProgress">spark.ui.showConsoleProgress</a> enabled and the logging level of <a href="SparkContext.html" class="page">org.apache.spark.SparkContext</a> logger as <code>WARN</code> or higher (i.e. less messages are printed out and so there is a "space" for <code>ConsoleProgressBar</code>).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2000,7 +1999,7 @@ scala&gt; a.union(b).count()</code></pre>
 <div class="sect2">
 <h3 id="creating-consoleprogressbar-instance"><a class="anchor" href="#creating-consoleprogressbar-instance"></a><a class="link" href="#creating-consoleprogressbar-instance"><a id="creating-instance"></a> Creating ConsoleProgressBar Instance</a></h3>
 <div class="paragraph">
-<p><code>ConsoleProgressBar</code> requires a <a href="spark-SparkContext.adoc">SparkContext</a>.</p>
+<p><code>ConsoleProgressBar</code> requires a <a href="SparkContext.html" class="page">SparkContext</a>.</p>
 </div>
 <div class="paragraph">
 <p>When being created, <code>ConsoleProgressBar</code> reads <a href="spark-webui-properties.adoc#spark.ui.consoleProgress.update.interval">spark.ui.consoleProgress.update.interval</a> configuration property to set up the update interval and <code>COLUMNS</code> environment variable for the terminal width (or assumes <code>80</code> columns).</p>
@@ -2015,7 +2014,7 @@ scala&gt; a.union(b).count()</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>ConsoleProgressBar</code> is created when <a href="spark-SparkContext-creating-instance-internals.adoc#ConsoleProgressBar"><code>SparkContext</code> starts</a>, <a href="spark-webui-properties.adoc#spark.ui.showConsoleProgress">spark.ui.showConsoleProgress</a> configuration property is enabled, and the logging level of <a href="spark-SparkContext.adoc">org.apache.spark.SparkContext</a> logger is <code>WARN</code> or higher (i.e. less messages are printed out and so there is a "space" for <code>ConsoleProgressBar</code>).
+<code>ConsoleProgressBar</code> is created when <a href="spark-SparkContext-creating-instance-internals.adoc#ConsoleProgressBar"><code>SparkContext</code> starts</a>, <a href="spark-webui-properties.adoc#spark.ui.showConsoleProgress">spark.ui.showConsoleProgress</a> configuration property is enabled, and the logging level of <a href="SparkContext.html" class="page">org.apache.spark.SparkContext</a> logger is <code>WARN</code> or higher (i.e. less messages are printed out and so there is a "space" for <code>ConsoleProgressBar</code>).
 </td>
 </tr>
 </table>
@@ -2065,7 +2064,7 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>stop</code> is executed when <a href="spark-SparkContext.adoc#stop"><code>SparkContext</code> stops</a>.
+<code>stop</code> is executed when <a href="SparkContext.html#stop" class="page"><code>SparkContext</code> stops</a>.
 </td>
 </tr>
 </table>

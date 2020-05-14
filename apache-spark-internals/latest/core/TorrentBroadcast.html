@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1898,7 +1898,7 @@
 <p>TorrentBroadcast is <a href="#creating-instance">created</a> exclusively when <code>TorrentBroadcastFactory</code> is requested to <a href="TorrentBroadcastFactory.html#newBroadcast" class="page">newBroadcast</a>.</p>
 </div>
 <div class="paragraph">
-<p>When a <a href="spark-SparkContext.adoc#broadcast">broadcast variable is created (using <code>SparkContext.broadcast</code>)</a> on the driver, a <a href="#creating-instance">new instance of TorrentBroadcast is created</a>.</p>
+<p>When a <a href="../SparkContext.html#broadcast" class="page">broadcast variable is created (using <code>SparkContext.broadcast</code>)</a> on the driver, a <a href="#creating-instance">new instance of TorrentBroadcast is created</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2083,7 +2083,7 @@ The internal <code>_value</code> is <em>transient</em> and <em>lazy</em>, i.e. i
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The current <a href="spark-SparkConf.adoc">SparkConf</a> is available using <a href="SparkEnv.html#conf" class="page">SparkEnv.get.conf</a>.
+The current <a href="../SparkConf.html" class="page">SparkConf</a> is available using <a href="SparkEnv.html#conf" class="page">SparkEnv.get.conf</a>.
 </td>
 </tr>
 </table>
@@ -2174,7 +2174,7 @@ The current <a href="../storage/BlockManager.html" class="page">BlockManager</a>
 </div>
 </div>
 <div class="paragraph">
-<p><code>setConf</code> uses the input <code>conf</code> <a href="spark-SparkConf.adoc">SparkConf</a> to set compression codec and the block size.</p>
+<p><code>setConf</code> uses the input <code>conf</code> <a href="../SparkConf.html" class="page">SparkConf</a> to set compression codec and the block size.</p>
 </div>
 <div class="paragraph">
 <p>Internally, <code>setConf</code> reads <a href="BroadcastManager.html#spark.broadcast.compress" class="page">spark.broadcast.compress</a> configuration property and if enabled (which it is by default) sets a <a href="../io/CompressionCodec.html#createCodec" class="page">CompressionCodec</a> (as an internal <code>compressionCodec</code> property).</p>

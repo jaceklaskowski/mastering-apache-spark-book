@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -2040,7 +2040,7 @@ TaskScheduler works closely with <a href="DAGScheduler.html" class="page">DAGSch
 <p><strong>Default level of parallelism</strong></p>
 </div>
 <div class="paragraph">
-<p>Used when <code>SparkContext</code> is requested for the <a href="../spark-SparkContext.html#defaultParallelism" class="page">default level of parallelism</a></p>
+<p>Used when <code>SparkContext</code> is requested for the <a href="../SparkContext.html#defaultParallelism" class="page">default level of parallelism</a></p>
 </div></div></td>
 </tr>
 <tr>
@@ -2115,7 +2115,7 @@ TaskScheduler works closely with <a href="DAGScheduler.html" class="page">DAGSch
 <p><code>TaskSchedulerImpl</code> is requested to <a href="TaskSchedulerImpl.html#initialize" class="page">initialize</a></p>
 </li>
 <li>
-<p><code>SparkContext</code> is requested to <a href="../spark-SparkContext.html#getAllPools" class="page">getAllPools</a> and <a href="../spark-SparkContext.html#getPoolForName" class="page">getPoolForName</a></p>
+<p><code>SparkContext</code> is requested to <a href="../SparkContext.html#getAllPools" class="page">getAllPools</a> and <a href="../SparkContext.html#getPoolForName" class="page">getPoolForName</a></p>
 </li>
 <li>
 <p><code>TaskSchedulerImpl</code> is requested to <a href="TaskSchedulerImpl.html#resourceOffers" class="page">resourceOffers</a>, <a href="TaskSchedulerImpl.html#checkSpeculatableTasks" class="page">checkSpeculatableTasks</a>, and <a href="TaskSchedulerImpl.html#removeExecutor" class="page">removeExecutor</a></p>
@@ -2142,7 +2142,7 @@ TaskScheduler works closely with <a href="DAGScheduler.html" class="page">DAGSch
 <p><code>TaskSchedulerImpl</code> is <a href="TaskSchedulerImpl.html#rootPool" class="page">created</a> and <a href="TaskSchedulerImpl.html#initialize" class="page">initialized</a></p>
 </li>
 <li>
-<p><code>SparkContext</code> is requested to <a href="../spark-SparkContext.html#getSchedulingMode" class="page">getSchedulingMode</a></p>
+<p><code>SparkContext</code> is requested to <a href="../SparkContext.html#getSchedulingMode" class="page">getSchedulingMode</a></p>
 </li>
 </ul>
 </div></div></td>
@@ -2228,7 +2228,7 @@ TaskScheduler works closely with <a href="DAGScheduler.html" class="page">DAGSch
 <h2 id="lifecycle"><a class="anchor" href="#lifecycle"></a><a class="link" href="#lifecycle"><a id="lifecycle"></a> Lifecycle</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A TaskScheduler is created while <a href="../spark-SparkContext.html#creating-instance" class="page">SparkContext is being created</a> (by calling <a href="../spark-SparkContext.html#createTaskScheduler" class="page">SparkContext.createTaskScheduler</a> for a given <a href="../spark-deployment-environments.html" class="page">master URL</a> and <a href="../tools/spark-submit.html#deploy-mode" class="page">deploy mode</a>).</p>
+<p>A TaskScheduler is created while <a href="../SparkContext.html#creating-instance" class="page">SparkContext is being created</a> (by calling <a href="../SparkContext.html#createTaskScheduler" class="page">SparkContext.createTaskScheduler</a> for a given <a href="../spark-deployment-environments.html" class="page">master URL</a> and <a href="../tools/spark-submit.html#deploy-mode" class="page">deploy mode</a>).</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -2243,7 +2243,7 @@ TaskScheduler works closely with <a href="DAGScheduler.html" class="page">DAGSch
 <p>The <a href="#start">TaskScheduler is started</a> right after the blocking <code>TaskSchedulerIsSet</code> message receives a response.</p>
 </div>
 <div class="paragraph">
-<p>The <a href="#applicationId">application ID</a> and the <a href="#applicationAttemptId">application&#8217;s attempt ID</a> are set at this point (and <code>SparkContext</code> uses the application id to set <a href="../spark-SparkConf.html#spark.app.id" class="page">spark.app.id</a> Spark property, and configure <a href="../webui/spark-webui-SparkUI.html" class="page">SparkUI</a>, and <a href="../storage/BlockManager.html" class="page">BlockManager</a>).</p>
+<p>The <a href="#applicationId">application ID</a> and the <a href="#applicationAttemptId">application&#8217;s attempt ID</a> are set at this point (and <code>SparkContext</code> uses the application id to set <a href="../SparkConf.html#spark.app.id" class="page">spark.app.id</a> Spark property, and configure <a href="../webui/spark-webui-SparkUI.html" class="page">SparkUI</a>, and <a href="../storage/BlockManager.html" class="page">BlockManager</a>).</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -2261,7 +2261,7 @@ FIXME The application id is described as "associated with the job." in TaskSched
 <p>Right before SparkContext is fully initialized, <a href="#postStartHook">TaskScheduler.postStartHook</a> is called.</p>
 </div>
 <div class="paragraph">
-<p>The internal <code>_taskScheduler</code> is cleared (i.e. set to <code>null</code>) while <a href="../spark-SparkContext.html#stop" class="page">SparkContext is being stopped</a>.</p>
+<p>The internal <code>_taskScheduler</code> is cleared (i.e. set to <code>null</code>) while <a href="../SparkContext.html#stop" class="page">SparkContext is being stopped</a>.</p>
 </div>
 <div class="paragraph">
 <p><a href="#stop">TaskScheduler is stopped</a> while <a href="DAGScheduler.html#stop" class="page">DAGScheduler is being stopped</a>.</p>

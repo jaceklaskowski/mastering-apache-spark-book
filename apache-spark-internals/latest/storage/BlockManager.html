@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1964,7 +1964,7 @@ Use <a href="../tools/spark-submit.html" class="page">spark-submit</a>'s command
 <p><a id="serializerManager"></a> <a href="../serializer/SerializerManager.html" class="page">SerializerManager</a></p>
 </li>
 <li>
-<p><a id="conf"></a> <a href="../spark-SparkConf.html" class="page">SparkConf</a></p>
+<p><a id="conf"></a> <a href="../SparkConf.html" class="page">SparkConf</a></p>
 </li>
 <li>
 <p><a href="#memoryManager">MemoryManager</a></p>
@@ -3037,7 +3037,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p><code>initialize</code> initializes a BlockManager on the driver and executors (see <a href="spark-SparkContext.adoc#creating-instance">Creating SparkContext Instance</a> and <a href="spark-Executor.adoc#creating-instance">Creating Executor Instance</a>, respectively).</p>
+<p><code>initialize</code> initializes a BlockManager on the driver and executors (see <a href="../SparkContext.html#creating-instance" class="page">Creating SparkContext Instance</a> and <a href="spark-Executor.adoc#creating-instance">Creating Executor Instance</a>, respectively).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3470,7 +3470,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 <p>The underlying abstraction for blocks in Spark is a <code>ByteBuffer</code> that limits the size of a block to 2GB (<code>Integer.MAX_VALUE</code> - see <a href="http://stackoverflow.com/q/8076472/1305344">Why does FileChannel.map take up to Integer.MAX_VALUE of data?</a> and <a href="https://issues.apache.org/jira/browse/SPARK-1476">SPARK-1476 2GB limit in spark for blocks</a>). This has implication not just for managed blocks in use, but also for shuffle blocks (memory mapped blocks are limited to 2GB, even though the API allows for <code>long</code>), ser-deser via byte array-backed output streams.</p>
 </div>
 <div class="paragraph">
-<p>When a non-local executor starts, it initializes a BlockManager object using <a href="spark-SparkConf.adoc#spark.app.id">spark.app.id</a> Spark property for the id.</p>
+<p>When a non-local executor starts, it initializes a BlockManager object using <a href="../SparkConf.html#spark.app.id" class="page">spark.app.id</a> Spark property for the id.</p>
 </div>
 </div>
 </div>

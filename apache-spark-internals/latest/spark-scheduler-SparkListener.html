@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1894,7 +1894,7 @@
 <p>Spark <a href="#builtin-implementations">relies on <code>SparkListeners</code> internally</a> to manage communication between internal components in the distributed environment for a Spark application, e.g. <a href="spark-webui.adoc">web UI</a>, <a href="spark-history-server/EventLoggingListener.html" class="page">event persistence</a> (for History Server), <a href="spark-ExecutorAllocationManager.adoc">dynamic allocation of executors</a>, <a href="spark-HeartbeatReceiver.adoc">keeping track of executors (using <code>HeartbeatReceiver</code>)</a> and others.</p>
 </div>
 <div class="paragraph">
-<p>You can develop your own custom <code>SparkListener</code> and register it using <a href="spark-SparkContext.adoc#addSparkListener">SparkContext.addSparkListener</a> method or <a href="spark-scheduler-LiveListenerBus.adoc#spark_extraListeners">spark.extraListeners</a> Spark property.</p>
+<p>You can develop your own custom <code>SparkListener</code> and register it using <a href="SparkContext.html#addSparkListener" class="page">SparkContext.addSparkListener</a> method or <a href="spark-scheduler-LiveListenerBus.adoc#spark_extraListeners">spark.extraListeners</a> Spark property.</p>
 </div>
 <div class="paragraph">
 <p>With <code>SparkListener</code> you can focus on Spark events of your liking and process a subset of all scheduling events.</p>
@@ -1927,7 +1927,7 @@ Developing a custom SparkListener is an excellent introduction to low-level deta
 </div>
 </div>
 <div class="paragraph">
-<p>See <a href="spark-SparkContext.adoc"><code>SparkContext</code>&#8201;&#8212;&#8201;Entry Point to Spark (Core)</a>.</p>
+<p>See <a href="SparkContext.html" class="page">SparkContext</a>.</p>
 </div>
 </td>
 </tr>
@@ -2069,7 +2069,7 @@ Developing a custom SparkListener is an excellent introduction to low-level deta
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="onUnpersistRDD"></a> <code>onUnpersistRDD</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="SparkListenerUnpersistRDD"></a> <code>SparkListenerUnpersistRDD</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SparkContext</code> <a href="spark-SparkContext.adoc#unpersistRDD">unpersists an RDD</a>, i.e. removes RDD blocks from <code>BlockManagerMaster</code> (that can be triggered <a href="spark-SparkContext.adoc#unpersist">explicitly</a> or <a href="core/ContextCleaner.html#doCleanupRDD" class="page">implicitly</a>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SparkContext</code> <a href="SparkContext.html#unpersistRDD" class="page">unpersists an RDD</a>, i.e. removes RDD blocks from <code>BlockManagerMaster</code> (that can be triggered <a href="SparkContext.html#unpersist" class="page">explicitly</a> or <a href="core/ContextCleaner.html#doCleanupRDD" class="page">implicitly</a>).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="onOtherEvent"></a> <code>onOtherEvent</code></p></td>

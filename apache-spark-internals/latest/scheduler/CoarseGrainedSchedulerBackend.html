@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -2201,7 +2201,7 @@ Only free cores are considered in making offers. Memory is not! Why?!
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-It is called when <a href="spark-SparkContext.adoc#getExecutorIds">SparkContext calculates executor ids</a>.
+It is called when <a href="../SparkContext.html#getExecutorIds" class="page">SparkContext calculates executor ids</a>.
 </td>
 </tr>
 </table>
@@ -2367,7 +2367,7 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>requestExecutors</code> method is part of <a href="spark-service-ExecutorAllocationClient.adoc">ExecutorAllocationClient Contract</a> that <a href="spark-SparkContext.adoc#requestExecutors">SparkContext uses for requesting additional executors</a> (as a part of a developer API for dynamic allocation of executors).
+<code>requestExecutors</code> method is part of <a href="spark-service-ExecutorAllocationClient.adoc">ExecutorAllocationClient Contract</a> that <a href="../SparkContext.html#requestExecutors" class="page">SparkContext uses for requesting additional executors</a> (as a part of a developer API for dynamic allocation of executors).
 </td>
 </tr>
 </table>
@@ -2442,7 +2442,7 @@ The method is a synchronized block that makes multiple concurrent requests be ha
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>requestTotalExecutors</code> is part of <a href="spark-service-ExecutorAllocationClient.adoc">ExecutorAllocationClient Contract</a> that <a href="spark-SparkContext.adoc#requestTotalExecutors">SparkContext uses for requesting the exact number of executors</a>.
+<code>requestTotalExecutors</code> is part of <a href="spark-service-ExecutorAllocationClient.adoc">ExecutorAllocationClient Contract</a> that <a href="../SparkContext.html#requestTotalExecutors" class="page">SparkContext uses for requesting the exact number of executors</a>.
 </td>
 </tr>
 </table>
@@ -2647,7 +2647,7 @@ It is called by subclasses <a href="spark-standalone.adoc#SparkDeploySchedulerBa
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>CoarseGrainedSchedulerBackend</code> is created while <a href="spark-SparkContext.adoc#createTaskScheduler">SparkContext is being created</a> that in turn lives inside a <a href="spark-driver.adoc">Spark driver</a>. That explains the name <code>driverEndpoint</code> (at least partially).
+<code>CoarseGrainedSchedulerBackend</code> is created while <a href="../SparkContext.html#createTaskScheduler" class="page">SparkContext is being created</a> that in turn lives inside a <a href="spark-driver.adoc">Spark driver</a>. That explains the name <code>driverEndpoint</code> (at least partially).
 </td>
 </tr>
 </table>
@@ -2711,7 +2711,7 @@ FIXME A potential issue with <code>driverEndpoint.asInstanceOf[NettyRpcEndpointR
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>start</code> uses <a href="#scheduler">TaskSchedulerImpl</a> to access the current <a href="spark-SparkContext.adoc">SparkContext</a> and in turn <a href="spark-SparkConf.adoc">SparkConf</a>.
+<code>start</code> uses <a href="#scheduler">TaskSchedulerImpl</a> to access the current <a href="../SparkContext.html" class="page">SparkContext</a> and in turn <a href="../SparkConf.html" class="page">SparkConf</a>.
 </td>
 </tr>
 </table>

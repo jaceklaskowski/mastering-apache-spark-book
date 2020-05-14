@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/spark-deploy-mode.html">
+    <title>SparkConf :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/SparkConf.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -691,14 +691,14 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="rdd-checkpointing.html">RDD Checkpointing</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="SparkConf.html">SparkConf</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
   </li>
 </ul>
@@ -1874,94 +1874,202 @@
   <ul>
     <li><a href="index.html">Apache Spark</a></li>
     <li><a href="SparkConf.html">SparkConf</a></li>
-    <li><a href="spark-deploy-mode.html">Deploy Mode</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/ROOT/pages/spark-deploy-mode.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/ROOT/pages/SparkConf.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="deploy-mode"><a class="anchor" href="#deploy-mode"></a><a class="link" href="#deploy-mode">Deploy Mode</a></h2>
+<h1 class="page">SparkConf</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Deploy mode</strong> specifies the location of where <a href="spark-driver.adoc">driver</a> executes in the <a href="spark-deployment-environments.adoc">deployment environment</a>.</p>
+<p>Every user program starts with creating an instance of <code>SparkConf</code> that holds the <a href="spark-deployment-environments.html#master-urls" class="page">master URL</a> to connect to (<code>spark.master</code>), the name for your Spark application (that is later displayed in <a href="webui/index.html" class="page">web UI</a> and becomes <code>spark.app.name</code>) and other Spark properties required for proper runs. The instance of <code>SparkConf</code> can be used to create <a href="SparkContext.html" class="page">SparkContext</a>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Start <a href="tools/spark-shell.html" class="page">Spark shell</a> with <code>--conf spark.logConf=true</code> to log the effective Spark configuration as INFO when SparkContext is started.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ ./bin/spark-shell --conf spark.logConf=true
+...
+15/10/19 17:13:49 INFO SparkContext: Running Spark version 1.6.0-SNAPSHOT
+15/10/19 17:13:49 INFO SparkContext: Spark configuration:
+spark.app.name=Spark shell
+spark.home=/Users/jacek/dev/oss/spark
+spark.jars=
+spark.logConf=true
+spark.master=local[*]
+spark.repl.class.uri=http://10.5.10.20:64055
+spark.submit.deployMode=client
+...</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Deploy mode can be one of the following options:</p>
+<p>Use <code>sc.getConf.toDebugString</code> to have a richer output once SparkContext has finished initializing.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can query for the values of Spark properties in <a href="tools/spark-shell.html" class="page">Spark shell</a> as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>scala&gt; sc.getConf.getOption("spark.local.dir")
+res0: Option[String] = None
+
+scala&gt; sc.getConf.getOption("spark.app.name")
+res1: Option[String] = Some(Spark shell)
+
+scala&gt; sc.getConf.get("spark.master")
+res2: String = local[*]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setifmissing-method"><a class="anchor" href="#setifmissing-method"></a><a class="link" href="#setifmissing-method"><a id="setIfMissing"></a> setIfMissing Method</a></h2>
+<div class="sectionbody">
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="isexecutorstartupconf-method"><a class="anchor" href="#isexecutorstartupconf-method"></a><a class="link" href="#isexecutorstartupconf-method"><a id="isExecutorStartupConf"></a> isExecutorStartupConf Method</a></h2>
+<div class="sectionbody">
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="set-method"><a class="anchor" href="#set-method"></a><a class="link" href="#set-method"><a id="set"></a> set Method</a></h2>
+<div class="sectionbody">
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up-spark-properties"><a class="anchor" href="#setting-up-spark-properties"></a><a class="link" href="#setting-up-spark-properties">Setting up Spark Properties</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are the following places where a Spark application looks for Spark properties (in the order of importance from the least important to the most important):</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>client</code> (default) - the driver runs on the machine that the Spark application was launched.</p>
+<p><code>conf/spark-defaults.conf</code> - the configuration file with the default Spark properties. Read <a href="spark-properties.html#spark-defaults-conf" class="page">spark-defaults.conf</a>.</p>
 </li>
 <li>
-<p><code>cluster</code> - the driver runs on a random node in a cluster.</p>
+<p><code>--conf</code> or <code>-c</code> - the command-line option used by <a href="tools/spark-submit.html" class="page">spark-submit</a> (and other shell scripts that use <code>spark-submit</code> or <code>spark-class</code> under the covers, e.g. <code>spark-shell</code>)</p>
+</li>
+<li>
+<p><code>SparkConf</code></p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>cluster</code> deploy mode is only available for <a href="spark-cluster.adoc">non-local cluster deployments</a>.
-</td>
-</tr>
-</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="default-configuration"><a class="anchor" href="#default-configuration"></a><a class="link" href="#default-configuration"><a id="default-configuration"></a> Default Configuration</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The default Spark configuration is created when you execute the following code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">import org.apache.spark.SparkConf
+val conf = new SparkConf</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>You can control the deploy mode of a Spark application using <a href="spark-submit.adoc#deploy-mode">spark-submit&#8217;s <code>--deploy-mode</code> command-line option</a> or <a href="#spark.submit.deployMode"><code>spark.submit.deployMode</code> Spark property</a>.</p>
+<p>It simply loads <code>spark.*</code> system properties.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>spark.submit.deployMode</code> setting can be <code>client</code> or <code>cluster</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="client-deploy-mode"><a class="anchor" href="#client-deploy-mode"></a><a class="link" href="#client-deploy-mode"><a id="client"></a> Client Deploy Mode</a></h3>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="cluster-deploy-mode"><a class="anchor" href="#cluster-deploy-mode"></a><a class="link" href="#cluster-deploy-mode"><a id="cluster"></a> Cluster Deploy Mode</a></h3>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="spark-submit-deploymode"><a class="anchor" href="#spark-submit-deploymode"></a><a class="link" href="#spark-submit-deploymode"><a id="spark.submit.deployMode"></a> spark.submit.deployMode</a></h3>
 <div class="paragraph">
-<p><code>spark.submit.deployMode</code> (default: <code>client</code>) can be <code>client</code> or <code>cluster</code>.</p>
+<p>You can use <code>conf.toDebugString</code> or <code>conf.getAll</code> to have the <code>spark.*</code> system properties loaded printed out.</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">scala&gt; conf.getAll
+res0: Array[(String, String)] = Array((spark.app.name,Spark shell), (spark.jars,""), (spark.master,local[*]), (spark.submit.deployMode,client))
+
+scala&gt; conf.toDebugString
+res1: String =
+spark.app.name=Spark shell
+spark.jars=
+spark.master=local[*]
+spark.submit.deployMode=client
+
+scala&gt; println(conf.toDebugString)
+spark.app.name=Spark shell
+spark.jars=
+spark.master=local[*]
+spark.submit.deployMode=client</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="unique-identifier-of-spark-applicationgetappid-method"><a class="anchor" href="#unique-identifier-of-spark-applicationgetappid-method"></a><a class="link" href="#unique-identifier-of-spark-applicationgetappid-method"><a id="getAppId"></a> Unique Identifier of Spark Application&#8201;&#8212;&#8201;getAppId Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getAppId: String</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getAppId gives <a href="#spark.app.id">spark.app.id</a> Spark property or reports <code>NoSuchElementException</code> if not set.</p>
+</div>
+<div class="paragraph">
+<p>getAppId is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>NettyBlockTransferService is requested to <a href="spark-NettyBlockTransferService.html#init" class="page">init</a> (and creates a <a href="spark-NettyBlockRpcServer.html#creating-instance" class="page">NettyBlockRpcServer</a> as well as <a href="spark-NettyBlockTransferService.html#appId" class="page">saves the identifier for later use</a>).</p>
+</li>
+<li>
+<p>Executor <a href="spark-Executor.html#creating-instance" class="page">is created</a> (in non-local mode and <a href="storage/BlockManager.html#initialize" class="page">requests <code>BlockManager</code> to initialize</a>).</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

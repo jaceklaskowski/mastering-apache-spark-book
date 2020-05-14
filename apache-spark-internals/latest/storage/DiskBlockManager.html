@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1925,7 +1925,7 @@ Consult <a href="demo-diskblockmanager-and-block-data.html" class="page">Demo: D
 <div class="ulist">
 <ul>
 <li>
-<p><a id="conf"></a> <a href="../spark-SparkConf.html" class="page">SparkConf</a></p>
+<p><a id="conf"></a> <a href="../SparkConf.html" class="page">SparkConf</a></p>
 </li>
 <li>
 <p><a id="deleteFilesOnStop"></a> <code>deleteFilesOnStop</code> flag</p>
@@ -2188,7 +2188,7 @@ FIXME
 <p><code>getConfiguredLocalDirs</code> returns the local directories where Spark can write files.</p>
 </div>
 <div class="paragraph">
-<p>Internally, <code>getConfiguredLocalDirs</code> uses <code>conf</code> <a href="spark-SparkConf.adoc">SparkConf</a> to know if <a href="spark-ExternalShuffleService.adoc">External Shuffle Service</a> is enabled (based on <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property).</p>
+<p>Internally, <code>getConfiguredLocalDirs</code> uses <code>conf</code> <a href="../SparkConf.html" class="page">SparkConf</a> to know if <a href="spark-ExternalShuffleService.adoc">External Shuffle Service</a> is enabled (based on <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property).</p>
 </div>
 <div class="paragraph">
 <p><code>getConfiguredLocalDirs</code> checks if <a href="#isRunningInYarnContainer">Spark runs on YARN</a> and if so, returns <a href="#getYarnLocalDirs"><code>LOCAL_DIRS</code>-controlled local directories</a>.</p>
@@ -2247,7 +2247,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p><code>getYarnLocalDirs</code> uses <code>conf</code> <a href="spark-SparkConf.adoc">SparkConf</a> to read <code>LOCAL_DIRS</code> environment variable with comma-separated local directories (that have already been created and secured so that only the user has access to them).</p>
+<p><code>getYarnLocalDirs</code> uses <code>conf</code> <a href="../SparkConf.html" class="page">SparkConf</a> to read <code>LOCAL_DIRS</code> environment variable with comma-separated local directories (that have already been created and secured so that only the user has access to them).</p>
 </div>
 <div class="paragraph">
 <p><code>getYarnLocalDirs</code> throws an <code>Exception</code> with the message <code>Yarn Local dirs can&#8217;t be empty</code> if <code>LOCAL_DIRS</code> environment variable was not set.</p>
@@ -2263,7 +2263,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p><code>isRunningInYarnContainer</code> uses <code>conf</code> <a href="spark-SparkConf.adoc">SparkConf</a> to read Hadoop YARN&#8217;s <a href="http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-api/apidocs/org/apache/hadoop/yarn/api/ApplicationConstants.Environment.html#CONTAINER_ID"><code>CONTAINER_ID</code> environment variable</a> to find out if Spark runs in a YARN container.</p>
+<p><code>isRunningInYarnContainer</code> uses <code>conf</code> <a href="../SparkConf.html" class="page">SparkConf</a> to read Hadoop YARN&#8217;s <a href="http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-api/apidocs/org/apache/hadoop/yarn/api/ApplicationConstants.Environment.html#CONTAINER_ID"><code>CONTAINER_ID</code> environment variable</a> to find out if Spark runs in a YARN container.</p>
 </div>
 <div class="admonitionblock note">
 <table>

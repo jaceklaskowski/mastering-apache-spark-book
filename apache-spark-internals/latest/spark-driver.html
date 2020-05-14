@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1885,7 +1885,7 @@
 <h2 id="driver"><a class="anchor" href="#driver"></a><a class="link" href="#driver">Driver</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A <strong>Spark driver</strong> (<em>aka</em> <strong>an application&#8217;s driver process</strong>) is a JVM process that hosts <a href="spark-SparkContext.adoc">SparkContext</a> for a Spark application. It is the master node in a Spark application.</p>
+<p>A <strong>Spark driver</strong> (<em>aka</em> <strong>an application&#8217;s driver process</strong>) is a JVM process that hosts <a href="SparkContext.html" class="page">SparkContext</a> for a Spark application. It is the master node in a Spark application.</p>
 </div>
 <div class="paragraph">
 <p>It is the cockpit of jobs and tasks execution (using <a href="scheduler/DAGScheduler.html" class="page">DAGScheduler</a> and <a href="scheduler/TaskScheduler.html" class="page">Task Scheduler</a>). It hosts <a href="spark-webui.adoc">Web UI</a> for the environment.</p>
@@ -2055,12 +2055,12 @@ It is printed out to the standard error output in <a href="spark-submit.adoc#ver
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark_driver_host"></a><a id="spark.driver.host"></a> <code>spark.driver.host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-SparkContext-creating-instance-internals.adoc#localHostName">localHostName</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The address of the node where the driver runs on.</p>
-<p class="tableblock">Set when <a href="spark-SparkContext.adoc#creating-instance"><code>SparkContext</code> is created</a></p></td>
+<p class="tableblock">Set when <a href="SparkContext.html#creating-instance" class="page"><code>SparkContext</code> is created</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark_driver_port"></a><a id="spark.driver.port"></a> <code>spark.driver.port</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>0</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The port the driver listens to. It is first set to <code>0</code> in the driver when <a href="spark-SparkContext.adoc#creating-instance">SparkContext is initialized</a>.</p>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The port the driver listens to. It is first set to <code>0</code> in the driver when <a href="SparkContext.html#creating-instance" class="page">SparkContext is initialized</a>.</p>
 <p class="tableblock">Set to the port of <a href="rpc/index.html" class="page">RpcEnv</a> of the driver (in <a href="#create">SparkEnv.create</a>) or when <a href="yarn/spark-yarn-applicationmaster.adoc#waitForSparkDriver">client-mode <code>ApplicationMaster</code> connected to the driver</a> (in Spark on YARN).</p></td>
 </tr>
 <tr>
@@ -2110,7 +2110,7 @@ It is printed out to the standard error output in <a href="spark-submit.adoc#ver
 <p>For <a href="spark-deploy-mode.adoc#client"><code>client</code> deploy mode</a> you can use a properties file or command line to set <code>spark.driver.extraClassPath</code>.</p>
 </div>
 <div class="paragraph">
-<p>Do not use <a href="spark-SparkConf.adoc">SparkConf</a> since it is too late for <code>client</code> deploy mode given the JVM has already been set up to start a Spark application.</p>
+<p>Do not use <a href="SparkConf.html" class="page">SparkConf</a> since it is too late for <code>client</code> deploy mode given the JVM has already been set up to start a Spark application.</p>
 </div>
 <div class="paragraph">
 <p>Refer to <a href="spark-class.adoc#buildSparkSubmitCommand"><code>buildSparkSubmitCommand</code> Internal Method</a> for the very low-level details of how it is handled internally.</p>

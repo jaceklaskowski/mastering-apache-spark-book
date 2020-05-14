@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1989,7 +1989,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="sparkConf"></a> <code>sparkConf</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">New <a href="../spark-SparkConf.adoc">SparkConf</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">New <a href="../SparkConf.adoc">SparkConf</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">FIXME</p></td>
 </tr>
 <tr>
@@ -2428,7 +2428,7 @@ FIXME Why is this needed? <code>addAmIpFilter</code>
 </div>
 </div>
 <div id="runDriver-rpcEnv" class="paragraph">
-<p><code>runDriver</code> waits <a href="spark-yarn-settings.adoc#spark.yarn.am.waitTime">spark.yarn.am.waitTime</a> time till the Spark application&#8217;s <a href="../spark-SparkContext.adoc">SparkContext</a> is available and accesses the <a href="../index.adoc">current <code>RpcEnv</code></a> (and saves it as the internal <a href="#rpcEnv">rpcEnv</a>).</p>
+<p><code>runDriver</code> waits <a href="spark-yarn-settings.adoc#spark.yarn.am.waitTime">spark.yarn.am.waitTime</a> time till the Spark application&#8217;s <a href="../SparkContext.html" class="page">SparkContext</a> is available and accesses the <a href="../index.adoc">current <code>RpcEnv</code></a> (and saves it as the internal <a href="#rpcEnv">rpcEnv</a>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2437,7 +2437,7 @@ FIXME Why is this needed? <code>addAmIpFilter</code>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>runDriver</code> uses <a href="../core/SparkEnv.html#rpcEnv" class="page"><code>SparkEnv</code> to access the current <code>RpcEnv</code></a> that the <a href="../spark-SparkContext.html#env" class="page">Spark application&#8217;s <code>SparkContext</code> manages</a>.
+<code>runDriver</code> uses <a href="../core/SparkEnv.html#rpcEnv" class="page"><code>SparkEnv</code> to access the current <code>RpcEnv</code></a> that the <a href="../SparkContext.html#env" class="page">Spark application&#8217;s <code>SparkContext</code> manages</a>.
 </td>
 </tr>
 </table>
@@ -2787,7 +2787,7 @@ Options:
 </table>
 </div>
 <div class="paragraph">
-<p>Ultimately, it removes the cache-related settings from the <a href="../spark-SparkConf.adoc">Spark configuration</a> and system properties.</p>
+<p>Ultimately, it removes the cache-related settings from the <a href="../SparkConf.adoc">Spark configuration</a> and system properties.</p>
 </div>
 <div class="paragraph">
 <p>You should see the following INFO message in the logs:</p>

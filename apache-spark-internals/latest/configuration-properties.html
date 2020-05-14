@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -2132,7 +2132,7 @@ Introduced in <a href="https://issues.apache.org/jira/browse/SPARK-13522">SPARK-
 <p>Default: <code>1g</code></p>
 </div>
 <div class="paragraph">
-<p>Equivalent to <a href="spark-SparkContext.html#environment-variables" class="page">SPARK_EXECUTOR_MEMORY</a> environment variable.</p>
+<p>Equivalent to <a href="SparkContext.html#environment-variables" class="page">SPARK_EXECUTOR_MEMORY</a> environment variable.</p>
 </div>
 <div class="paragraph">
 <p>Refer to <a href="spark-Executor.html#memory" class="page">Executor Memory&#8201;&#8212;&#8201;spark.executor.memory or SPARK_EXECUTOR_MEMORY settings</a></p>
@@ -2916,6 +2916,31 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 </div>
 <div class="paragraph">
 <p>Used when <a href="core/TorrentBroadcast.html#creating-instance" class="page"><code>TorrentBroadcast</code> is created</a> and later when <a href="core/TorrentBroadcast.html#writeBlocks" class="page">it stores broadcast blocks to <code>BlockManager</code></a>. Also in <a href="serializer/SerializerManager.html#settings" class="page">SerializerManager</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-app-id"><a class="anchor" href="#spark-app-id"></a><a class="link" href="#spark-app-id"><a id="spark.app.id"></a> spark.app.id</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Unique identifier of a Spark application that Spark uses to uniquely identify <a href="metrics/spark-metrics-MetricsSystem.html#buildRegistryName" class="page">metric sources</a>.</p>
+</div>
+<div class="paragraph">
+<p>Default: <a href="scheduler/TaskScheduler.html#applicationId" class="page">TaskScheduler.applicationId()</a></p>
+</div>
+<div class="paragraph">
+<p>Set when SparkContext <a href="spark-SparkContext-creating-instance-internals.html#spark.app.id" class="page">is created</a> (right after TaskScheduler <a href="spark-SparkContext-creating-instance-internals.html#taskScheduler-start" class="page">is started</a> that actually gives the identifier).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-app-name"><a class="anchor" href="#spark-app-name"></a><a class="link" href="#spark-app-name"><a id="spark.app.name"></a> spark.app.name</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Application Name</p>
+</div>
+<div class="paragraph">
+<p>Default: (undefined)</p>
 </div>
 </div>
 </div>

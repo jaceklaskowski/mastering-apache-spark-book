@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1873,8 +1873,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Apache Spark</a></li>
-    <li><a href="spark-architecture.html">Spark Architecture</a></li>
-    <li><a href="spark-SparkContext.html">SparkContext</a></li>
+    <li><a href="SparkContext.html">SparkContext</a></li>
     <li><a href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a></li>
   </ul>
 </nav>
@@ -1886,7 +1885,7 @@
 <h2 id="inside-creating-sparkcontext"><a class="anchor" href="#inside-creating-sparkcontext"></a><a class="link" href="#inside-creating-sparkcontext">Inside Creating SparkContext</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document describes what happens when you <a href="spark-SparkContext.adoc#creating-instance">create a new SparkContext</a>.</p>
+<p>This document describes what happens when you <a href="SparkContext.html#creating-instance" class="page">create a new SparkContext</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1914,7 +1913,7 @@ The example uses Spark in <a href="local/spark-local.adoc">local mode</a>, but t
 </table>
 </div>
 <div class="paragraph">
-<p>Creating <code>SparkContext</code> instance starts by setting the internal <code>allowMultipleContexts</code> field with the value of <a href="spark-SparkContext.adoc#spark.driver.allowMultipleContexts">spark.driver.allowMultipleContexts</a> and marking this <code>SparkContext</code> instance as partially constructed. It makes sure that no other thread is creating a <code>SparkContext</code> instance in this JVM. It does so by synchronizing on <code>SPARK_CONTEXT_CONSTRUCTOR_LOCK</code> and using the internal atomic reference <code>activeContext</code> (that eventually has a fully-created <code>SparkContext</code> instance).</p>
+<p>Creating <code>SparkContext</code> instance starts by setting the internal <code>allowMultipleContexts</code> field with the value of <a href="SparkContext.html#spark.driver.allowMultipleContexts" class="page">spark.driver.allowMultipleContexts</a> and marking this <code>SparkContext</code> instance as partially constructed. It makes sure that no other thread is creating a <code>SparkContext</code> instance in this JVM. It does so by synchronizing on <code>SPARK_CONTEXT_CONSTRUCTOR_LOCK</code> and using the internal atomic reference <code>activeContext</code> (that eventually has a fully-created <code>SparkContext</code> instance).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1940,7 +1939,7 @@ SparkContext.setActiveContext(this, allowMultipleContexts)</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p><a href="spark-SparkContext.adoc#startTime">startTime</a> is set to the current time in milliseconds.</p>
+<p><a href="SparkContext.html#startTime" class="page">startTime</a> is set to the current time in milliseconds.</p>
 </div>
 <div class="paragraph">
 <p><a href="#stopped">stopped</a> internal flag is set to <code>false</code>.</p>
@@ -1960,7 +1959,7 @@ SparkContext.setActiveContext(this, allowMultipleContexts)</code></pre>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-You can use <a href="spark-SparkContext.adoc#version">version</a> method to learn about the current Spark version or <code>org.apache.spark.SPARK_VERSION</code> value.
+You can use <a href="SparkContext.html#version" class="page">version</a> method to learn about the current Spark version or <code>org.apache.spark.SPARK_VERSION</code> value.
 </td>
 </tr>
 </table>
@@ -1969,7 +1968,7 @@ You can use <a href="spark-SparkContext.adoc#version">version</a> method to lear
 <p>A <a href="spark-scheduler-LiveListenerBus.adoc#creating-instance">LiveListenerBus instance is created</a> (as <code>listenerBus</code>).</p>
 </div>
 <div id="sparkUser" class="paragraph">
-<p>The <a href="spark-SparkContext.adoc#sparkUser">current user name</a> is computed.</p>
+<p>The <a href="SparkContext.html#sparkUser" class="page">current user name</a> is computed.</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -2035,7 +2034,7 @@ FIXME How to "trigger" the exception? What are the steps?
 </table>
 </div>
 <div class="paragraph">
-<p>When <code>spark.logConf</code> is enabled <a href="spark-SparkConf.adoc">SparkConf.toDebugString</a> is called.</p>
+<p>When <code>spark.logConf</code> is enabled <a href="SparkConf.html" class="page">SparkConf.toDebugString</a> is called.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2118,7 +2117,7 @@ Read about compression codecs in <a href="core/BroadcastManager.html#compression
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The current <code>AppStatusStore</code> is available as <a href="spark-SparkContext.adoc#statusStore">statusStore</a> property of the <code>SparkContext</code>.
+The current <code>AppStatusStore</code> is available as <a href="SparkContext.html#statusStore" class="page">statusStore</a> property of the <code>SparkContext</code>.
 </td>
 </tr>
 </table>
@@ -2180,7 +2179,7 @@ FIXME What&#8217;s MetadataCleaner?
 <p><a href="#_statusStore">AppStatusStore</a></p>
 </li>
 <li>
-<p>Name of the Spark application that is exactly the value of <a href="spark-SparkConf.adoc#spark.app.name">spark.app.name</a> configuration property</p>
+<p>Name of the Spark application that is exactly the value of <a href="SparkConf.html#spark.app.name" class="page">spark.app.name</a> configuration property</p>
 </li>
 <li>
 <p>Empty base path</p>
@@ -2212,16 +2211,16 @@ FIXME Where&#8217;s <code>_ui</code> used?
 </table>
 </div>
 <div class="paragraph">
-<p>A Hadoop configuration is created. See <a href="spark-SparkContext.adoc#hadoopConfiguration">Hadoop Configuration</a>.</p>
+<p>A Hadoop configuration is created. See <a href="SparkContext.html#hadoopConfiguration" class="page">Hadoop Configuration</a>.</p>
 </div>
 <div id="jars" class="paragraph">
 <p>If there are jars given through the SparkContext constructor, they are added using <code>addJar</code>.</p>
 </div>
 <div id="files" class="paragraph">
-<p>If there were files specified, they are added using <a href="spark-SparkContext.adoc#addFile">addFile</a>.</p>
+<p>If there were files specified, they are added using <a href="SparkContext.html#addFile" class="page">addFile</a>.</p>
 </div>
 <div class="paragraph">
-<p>At this point in time, the amount of memory to allocate to each executor (as <code>_executorMemory</code>) is calculated. It is the value of <a href="spark-Executor.adoc#spark.executor.memory">spark.executor.memory</a> setting, or <a href="spark-SparkContext.adoc#environment-variables">SPARK_EXECUTOR_MEMORY</a> environment variable (or currently-deprecated <code>SPARK_MEM</code>), or defaults to <code>1024</code>.</p>
+<p>At this point in time, the amount of memory to allocate to each executor (as <code>_executorMemory</code>) is calculated. It is the value of <a href="spark-Executor.adoc#spark.executor.memory">spark.executor.memory</a> setting, or <a href="SparkContext.html#environment-variables" class="page">SPARK_EXECUTOR_MEMORY</a> environment variable (or currently-deprecated <code>SPARK_MEM</code>), or defaults to <code>1024</code>.</p>
 </div>
 <div class="paragraph">
 <p><code>_executorMemory</code> is later available as <code>sc.executorMemory</code> and used for LOCAL_CLUSTER_REGEX, <a href="spark-standalone.adoc#SparkDeploySchedulerBackend">Spark Standalone&#8217;s SparkDeploySchedulerBackend</a>, to set <code>executorEnvs("SPARK_EXECUTOR_MEMORY")</code>, MesosSchedulerBackend, CoarseMesosSchedulerBackend.</p>
@@ -2260,13 +2259,13 @@ FIXME Where&#8217;s <code>_ui</code> used?
 </table>
 </div>
 <div class="paragraph">
-<p>The Mesos scheduler backend&#8217;s configuration is included in <code>executorEnvs</code>, i.e. <a href="spark-SparkContext.adoc#environment-variables">SPARK_EXECUTOR_MEMORY</a>, <code>_conf.getExecutorEnv</code>, and <code>SPARK_USER</code>.</p>
+<p>The Mesos scheduler backend&#8217;s configuration is included in <code>executorEnvs</code>, i.e. <a href="SparkContext.html#environment-variables" class="page">SPARK_EXECUTOR_MEMORY</a>, <code>_conf.getExecutorEnv</code>, and <code>SPARK_USER</code>.</p>
 </div>
 <div id="_heartbeatReceiver" class="paragraph">
 <p><code>SparkContext</code> registers <a href="spark-HeartbeatReceiver.adoc">HeartbeatReceiver RPC endpoint</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>SparkContext</code> object is requested to <a href="spark-SparkContext.html#createTaskScheduler" class="page">create the SchedulerBackend with the TaskScheduler</a> (for the given master URL) and the result becomes the internal <code>_schedulerBackend</code> and <code>_taskScheduler</code>.</p>
+<p><code>SparkContext</code> object is requested to <a href="SparkContext.html#createTaskScheduler" class="page">create the SchedulerBackend with the TaskScheduler</a> (for the given master URL) and the result becomes the internal <code>_schedulerBackend</code> and <code>_taskScheduler</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2329,7 +2328,7 @@ The unique identifier of a Spark application is used to initialize <a href="spar
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>_applicationAttemptId</code> is used when <code>SparkContext</code> is requested for the <a href="spark-SparkContext.adoc#applicationAttemptId">unique identifier of execution attempt of a Spark application</a> and when <code>EventLoggingListener</code> <a href="spark-history-server/EventLoggingListener.html#creating-instance" class="page">is created</a>.
+<code>_applicationAttemptId</code> is used when <code>SparkContext</code> is requested for the <a href="SparkContext.html#applicationAttemptId" class="page">unique identifier of execution attempt of a Spark application</a> and when <code>EventLoggingListener</code> <a href="spark-history-server/EventLoggingListener.html#creating-instance" class="page">is created</a>.
 </td>
 </tr>
 </table>
@@ -2338,7 +2337,7 @@ The unique identifier of a Spark application is used to initialize <a href="spar
 <div class="sect2">
 <h3 id="setting-spark-app-id-spark-property-in-sparkconf"><a class="anchor" href="#setting-spark-app-id-spark-property-in-sparkconf"></a><a class="link" href="#setting-spark-app-id-spark-property-in-sparkconf"><a id="spark.app.id"></a> Setting spark.app.id Spark Property in SparkConf</a></h3>
 <div class="paragraph">
-<p><code>SparkContext</code> sets <a href="spark-SparkConf.adoc#spark.app.id">spark.app.id</a> property to be the <a href="#_applicationId">unique identifier of a Spark application</a> and, if enabled, <a href="spark-webui-SparkUI.adoc#setAppId">passes it on to <code>SparkUI</code></a>.</p>
+<p><code>SparkContext</code> sets <a href="SparkConf.html#spark.app.id" class="page">spark.app.id</a> property to be the <a href="#_applicationId">unique identifier of a Spark application</a> and, if enabled, <a href="spark-webui-SparkUI.adoc#setAppId">passes it on to <code>SparkUI</code></a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2571,7 +2570,7 @@ FIXME Where are <code>nextShuffleId</code> and <code>nextRddId</code> used?
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>getClusterManager</code> is used to find a cluster manager for a master URL when <a href="spark-SparkContext.html#createTaskScheduler" class="page">creating a <code>SchedulerBackend</code> and a <code>TaskScheduler</code> for the driver</a>.
+<code>getClusterManager</code> is used to find a cluster manager for a master URL when <a href="SparkContext.html#createTaskScheduler" class="page">creating a <code>SchedulerBackend</code> and a <code>TaskScheduler</code> for the driver</a>.
 </td>
 </tr>
 </table>
@@ -2585,7 +2584,7 @@ FIXME Where are <code>nextShuffleId</code> and <code>nextRddId</code> used?
 </div>
 </div>
 <div class="paragraph">
-<p><code>setupAndStartListenerBus</code> is an internal method that reads <a href="spark-scheduler-LiveListenerBus.adoc#spark_extraListeners">spark.extraListeners</a> setting from the current <a href="spark-SparkConf.adoc">SparkConf</a> to create and register <a href="spark-scheduler-SparkListener.adoc#SparkListenerInterface">SparkListenerInterface</a> listeners.</p>
+<p><code>setupAndStartListenerBus</code> is an internal method that reads <a href="spark-scheduler-LiveListenerBus.adoc#spark_extraListeners">spark.extraListeners</a> setting from the current <a href="SparkConf.html" class="page">SparkConf</a> to create and register <a href="spark-scheduler-SparkListener.adoc#SparkListenerInterface">SparkListenerInterface</a> listeners.</p>
 </div>
 <div class="paragraph">
 <p>It expects that the class name represents a <code>SparkListenerInterface</code> listener with one of the following constructors (in this order):</p>
@@ -2593,7 +2592,7 @@ FIXME Where are <code>nextShuffleId</code> and <code>nextRddId</code> used?
 <div class="ulist">
 <ul>
 <li>
-<p>a single-argument constructor that accepts <a href="spark-SparkConf.adoc">SparkConf</a></p>
+<p>a single-argument constructor that accepts <a href="SparkConf.html" class="page">SparkConf</a></p>
 </li>
 <li>
 <p>a zero-argument constructor</p>
@@ -2623,7 +2622,7 @@ FIXME Where are <code>nextShuffleId</code> and <code>nextRddId</code> used?
 </div>
 </div>
 <div class="paragraph">
-<p>Any exception while registering a <a href="spark-scheduler-SparkListener.adoc#SparkListenerInterface">SparkListenerInterface</a> listener <a href="spark-SparkContext.adoc#stop">stops the SparkContext</a> and a <code>SparkException</code> is thrown and the source exception&#8217;s message.</p>
+<p>Any exception while registering a <a href="spark-scheduler-SparkListener.adoc#SparkListenerInterface">SparkListenerInterface</a> listener <a href="SparkContext.html#stop" class="page">stops the SparkContext</a> and a <code>SparkException</code> is thrown and the source exception&#8217;s message.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2675,7 +2674,7 @@ FIXME Where are <code>nextShuffleId</code> and <code>nextRddId</code> used?
 </div>
 </div>
 <div class="paragraph">
-<p><code>getCurrentUserName</code> computes the user name who has started the <a href="spark-SparkContext.adoc">SparkContext</a> instance.</p>
+<p><code>getCurrentUserName</code> computes the user name who has started the <a href="SparkContext.html" class="page">SparkContext</a> instance.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2684,13 +2683,13 @@ FIXME Where are <code>nextShuffleId</code> and <code>nextRddId</code> used?
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-It is later available as <a href="spark-SparkContext.adoc#sparkUser">SparkContext.sparkUser</a>.
+It is later available as <a href="SparkContext.html#sparkUser" class="page">SparkContext.sparkUser</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Internally, it reads <a href="spark-SparkContext.adoc#SPARK_USER">SPARK_USER</a> environment variable and, if not set, reverts to Hadoop Security API&#8217;s <code>UserGroupInformation.getCurrentUser().getShortUserName()</code>.</p>
+<p>Internally, it reads <a href="SparkContext.html#SPARK_USER" class="page">SPARK_USER</a> environment variable and, if not set, reverts to Hadoop Security API&#8217;s <code>UserGroupInformation.getCurrentUser().getShortUserName()</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2720,7 +2719,7 @@ It is another place where Spark relies on Hadoop API for its operation.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>Utils.localHostName</code> is executed while <a href="spark-SparkContext.adoc#creating-instance"><code>SparkContext</code> is created</a> and also to compute the default value of <a href="spark-driver.adoc#spark_driver_host">spark.driver.host Spark property</a>.
+<code>Utils.localHostName</code> is executed while <a href="SparkContext.html#creating-instance" class="page"><code>SparkContext</code> is created</a> and also to compute the default value of <a href="spark-driver.adoc#spark_driver_host">spark.driver.host Spark property</a>.
 </td>
 </tr>
 </table>

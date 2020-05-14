@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1925,7 +1925,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>When created, ShuffleDependency gets <a href="spark-SparkContext.adoc#nextShuffleId">shuffle id</a> (as <code>shuffleId</code>).</p>
+<p>When created, ShuffleDependency gets <a href="../SparkContext.html#nextShuffleId" class="page">shuffle id</a> (as <code>shuffleId</code>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1964,7 +1964,7 @@ ShuffleDependency accesses <a href="../core/SparkEnv.html#shuffleManager" class=
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-ShuffleDependency accesses the <a href="spark-SparkContext.adoc#cleaner">optional <code>ContextCleaner</code> through <code>SparkContext</code></a>.
+ShuffleDependency accesses the <a href="../SparkContext.html#cleaner" class="page">optional <code>ContextCleaner</code> through <code>SparkContext</code></a>.
 </td>
 </tr>
 </table>
@@ -1990,7 +1990,7 @@ ShuffleDependency is created when <a href="ShuffledRDD.html#getDependencies" cla
 <p>Every ShuffleDependency has a unique application-wide <strong>shuffle ID</strong> that is assigned when <a href="#creating-instance">ShuffleDependency is created</a> (and is used throughout Spark&#8217;s code to reference a ShuffleDependency).</p>
 </div>
 <div class="paragraph">
-<p>Shuffle IDs are tracked by <a href="../spark-SparkContext.html#nextShuffleId" class="page">SparkContext</a>.</p>
+<p>Shuffle IDs are tracked by <a href="../SparkContext.html#nextShuffleId" class="page">SparkContext</a>.</p>
 </div>
 </div>
 </div>

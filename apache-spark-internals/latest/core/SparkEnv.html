@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1921,7 +1921,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a id="conf"></a> conf</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../spark-SparkConf.html" class="page">SparkConf</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../SparkConf.html" class="page">SparkConf</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a id="mapOutputTracker"></a> mapOutputTracker</code></p></td>
@@ -2160,7 +2160,7 @@ FIXME A picture with SparkEnv, <code>NettyBlockTransferService</code> and the po
 </div>
 <div class="paragraph">
 <p><a id="BlockManagerMaster"></a><a id="create-BlockManagerMaster"></a>
-create creates a <a href="../storage/BlockManagerMaster.html#creating-instance" class="page">BlockManagerMaster</a> object with the <code>BlockManagerMaster</code> RPC endpoint reference (by <a href="#registerOrLookupEndpoint">registering or looking it up by name</a> and <a href="spark-blockmanager-BlockManagerMasterEndpoint.adoc">BlockManagerMasterEndpoint</a>), the input <a href="spark-SparkConf.adoc">SparkConf</a>, and the input <code>isDriver</code> flag.</p>
+create creates a <a href="../storage/BlockManagerMaster.html#creating-instance" class="page">BlockManagerMaster</a> object with the <code>BlockManagerMaster</code> RPC endpoint reference (by <a href="#registerOrLookupEndpoint">registering or looking it up by name</a> and <a href="spark-blockmanager-BlockManagerMasterEndpoint.adoc">BlockManagerMasterEndpoint</a>), the input <a href="../SparkConf.html" class="page">SparkConf</a>, and the input <code>isDriver</code> flag.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -2294,7 +2294,7 @@ FIXME
 <div class="title">Figure 3. Spark Environment for driver</div>
 </div>
 <div class="paragraph">
-<p><code>createDriverEnv</code> accepts an instance of <a href="spark-SparkConf.adoc">SparkConf</a>, <a href="spark-deployment-environments.adoc">whether it runs in local mode or not</a>, <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a>, the number of cores to use for execution in local mode or <code>0</code> otherwise, and a <a href="../scheduler/OutputCommitCoordinator.html" class="page">OutputCommitCoordinator</a> (default: none).</p>
+<p><code>createDriverEnv</code> accepts an instance of <a href="../SparkConf.html" class="page">SparkConf</a>, <a href="spark-deployment-environments.adoc">whether it runs in local mode or not</a>, <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a>, the number of cores to use for execution in local mode or <code>0</code> otherwise, and a <a href="../scheduler/OutputCommitCoordinator.html" class="page">OutputCommitCoordinator</a> (default: none).</p>
 </div>
 <div class="paragraph">
 <p><code>createDriverEnv</code> ensures that <a href="spark-driver.adoc#spark_driver_host">spark.driver.host</a> and <a href="spark-driver.adoc#spark_driver_port">spark.driver.port</a> settings are defined.</p>
@@ -2309,7 +2309,7 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>createDriverEnv</code> is exclusively used by <a href="spark-SparkContext-creating-instance-internals.adoc#createSparkEnv">SparkContext to create a SparkEnv</a> (while a <a href="spark-SparkContext.adoc#creating-instance">SparkContext is being created for the driver</a>).
+<code>createDriverEnv</code> is exclusively used by <a href="spark-SparkContext-creating-instance-internals.adoc#createSparkEnv">SparkContext to create a SparkEnv</a> (while a <a href="../SparkContext.html#creating-instance" class="page">SparkContext is being created for the driver</a>).
 </td>
 </tr>
 </table>
@@ -2437,7 +2437,7 @@ The number of cores <code>numCores</code> is configured using <code>--cores</cod
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-stop is used when <a href="spark-SparkContext.adoc#stop"><code>SparkContext</code> stops</a> (on the driver) and <a href="spark-Executor.adoc#stop"><code>Executor</code> stops</a>.
+stop is used when <a href="../SparkContext.html#stop" class="page"><code>SparkContext</code> stops</a> (on the driver) and <a href="spark-Executor.adoc#stop"><code>Executor</code> stops</a>.
 </td>
 </tr>
 </table>
@@ -2485,7 +2485,7 @@ stop is used when <a href="spark-SparkContext.adoc#stop"><code>SparkContext</cod
 <p>environmentDetails&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p>environmentDetails is used when SparkContext is requested to <a href="../spark-SparkContext.html#postEnvironmentUpdate" class="page">post a SparkListenerEnvironmentUpdate event</a>.</p>
+<p>environmentDetails is used when SparkContext is requested to <a href="../SparkContext.html#postEnvironmentUpdate" class="page">post a SparkListenerEnvironmentUpdate event</a>.</p>
 </div>
 </div>
 </div>

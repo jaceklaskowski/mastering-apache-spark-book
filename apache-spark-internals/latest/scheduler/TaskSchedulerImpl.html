@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1889,7 +1889,7 @@
 <p><strong>TaskSchedulerImpl</strong> is the default <a href="TaskScheduler.html" class="page">TaskScheduler</a> that uses a <a href="#backend">SchedulerBackend</a> to schedule tasks (for execution on a cluster manager).</p>
 </div>
 <div class="paragraph">
-<p>When a Spark application starts (and so an instance of <a href="../spark-SparkContext.html#creating-instance" class="page">SparkContext is created</a>) TaskSchedulerImpl with a <a href="SchedulerBackend.html" class="page">SchedulerBackend</a> and <a href="DAGScheduler.html" class="page">DAGScheduler</a> are created and soon started.</p>
+<p>When a Spark application starts (and so an instance of <a href="../SparkContext.html#creating-instance" class="page">SparkContext is created</a>) TaskSchedulerImpl with a <a href="SchedulerBackend.html" class="page">SchedulerBackend</a> and <a href="DAGScheduler.html" class="page">DAGScheduler</a> are created and soon started.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1923,7 +1923,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a id="sc"></a> <a href="../spark-SparkContext.html" class="page">SparkContext</a></p>
+<p><a id="sc"></a> <a href="../SparkContext.html" class="page">SparkContext</a></p>
 </li>
 <li>
 <p><a href="#maxTaskFailures">Acceptable number of task failures</a></p>
@@ -2451,7 +2451,7 @@ FIXME Why are <code>rootPool</code> and <code>schedulableBuilder</code> created 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>initialize</code> is called while <a href="../spark-SparkContext.html#createTaskScheduler" class="page">SparkContext is created and creates SchedulerBackend and <code>TaskScheduler</code></a>.
+<code>initialize</code> is called while <a href="../SparkContext.html#createTaskScheduler" class="page">SparkContext is created and creates SchedulerBackend and <code>TaskScheduler</code></a>.
 </td>
 </tr>
 </table>
@@ -2724,7 +2724,7 @@ The internal <code>removeExecutor</code> is called as part of <a href="#statusUp
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<strong>Default level of parallelism</strong> is a hint for sizing jobs that <code>SparkContext</code> <a href="../spark-SparkContext.html#defaultParallelism" class="page">uses to create RDDs with the right number of partitions when not specified explicitly</a>.
+<strong>Default level of parallelism</strong> is a hint for sizing jobs that <code>SparkContext</code> <a href="../SparkContext.html#defaultParallelism" class="page">uses to create RDDs with the right number of partitions when not specified explicitly</a>.
 </td>
 </tr>
 </table>
@@ -3057,7 +3057,7 @@ FIXME Image with a call from TaskSchedulerImpl to DAGScheduler, please.
 </div>
 </div>
 <div class="paragraph">
-<p><code>waitBackendReady</code> waits until the <a href="#backend">SchedulerBackend</a> is <a href="SchedulerBackend.html#isReady" class="page">ready</a>. If it is, <code>waitBackendReady</code> returns immediately. Otherwise, <code>waitBackendReady</code> keeps checking every <code>100</code> milliseconds (hardcoded) or the <a href="#sc">SparkContext</a> is <a href="../spark-SparkContext.html#stopped" class="page">stopped</a>.</p>
+<p><code>waitBackendReady</code> waits until the <a href="#backend">SchedulerBackend</a> is <a href="SchedulerBackend.html#isReady" class="page">ready</a>. If it is, <code>waitBackendReady</code> returns immediately. Otherwise, <code>waitBackendReady</code> keeps checking every <code>100</code> milliseconds (hardcoded) or the <a href="#sc">SparkContext</a> is <a href="../SparkContext.html#stopped" class="page">stopped</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>

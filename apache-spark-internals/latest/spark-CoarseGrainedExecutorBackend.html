@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -2299,13 +2299,13 @@ This is the first moment when <code>CoarseGrainedExecutorBackend</code> initiate
 </table>
 </div>
 <div class="paragraph">
-<p><code>run</code> uses <code>SparkAppConfig</code> to get the driver&#8217;s <code>sparkProperties</code> and adds <a href="spark-SparkConf.adoc#spark.app.id">spark.app.id</a> Spark property with the value of the input <code>appId</code>.</p>
+<p><code>run</code> uses <code>SparkAppConfig</code> to get the driver&#8217;s <code>sparkProperties</code> and adds <a href="SparkConf.html#spark.app.id" class="page">spark.app.id</a> Spark property with the value of the input <code>appId</code>.</p>
 </div>
 <div class="paragraph">
 <p><code>run</code> <a href="rpc/index.html#shutdown" class="page">shuts <code>driverPropsFetcher</code> RPC Endpoint down</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>run</code> creates a <a href="spark-SparkConf.adoc">SparkConf</a> using the Spark properties fetched from the driver, i.e. with the <a href="spark-SparkConf.adoc#isExecutorStartupConf">executor-related Spark settings</a> if they <a href="spark-SparkConf.adoc#setIfMissing">were missing</a> and the <a href="spark-SparkConf.adoc#set">rest unconditionally</a>.</p>
+<p><code>run</code> creates a <a href="SparkConf.html" class="page">SparkConf</a> using the Spark properties fetched from the driver, i.e. with the <a href="SparkConf.html#isExecutorStartupConf" class="page">executor-related Spark settings</a> if they <a href="SparkConf.html#setIfMissing" class="page">were missing</a> and the <a href="SparkConf.html#set" class="page">rest unconditionally</a>.</p>
 </div>
 <div class="paragraph">
 <p>If <a href="yarn/spark-yarn-settings.adoc#spark.yarn.credentials.file">spark.yarn.credentials.file</a> Spark property is defined in <code>SparkConf</code>, you should see the following INFO message in the logs:</p>

@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1912,7 +1912,7 @@
 <h2 id="checkpoint-directory"><a class="anchor" href="#checkpoint-directory"></a><a class="link" href="#checkpoint-directory"><a id="cpDir"></a><a id="checkpointPath"></a> Checkpoint Directory</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>ReliableRDDCheckpointData creates a subdirectory of the <a href="../spark-SparkContext.html#checkpointDir" class="page">application-wide checkpoint directory</a> for <a href="#doCheckpoint">checkpointing</a> the given <a href="#rdd">RDD</a>.</p>
+<p>ReliableRDDCheckpointData creates a subdirectory of the <a href="../SparkContext.html#checkpointDir" class="page">application-wide checkpoint directory</a> for <a href="#doCheckpoint">checkpointing</a> the given <a href="#rdd">RDD</a>.</p>
 </div>
 <div class="paragraph">
 <p>The name of the subdirectory uses the <a href="RDD.html#id" class="page">unique identifier</a> of the <a href="#rdd">RDD</a>:</p>
@@ -1936,7 +1936,7 @@
 <p>doCheckpoint <a href="ReliableCheckpointRDD.html#writeRDDToCheckpointDirectory" class="page">writes</a> the <a href="#rdd">RDD</a> to the <a href="#cpDir">checkpoint directory</a> (that creates a new RDD).</p>
 </div>
 <div class="paragraph">
-<p>With <a href="../configuration-properties.html#spark.cleaner.referenceTracking.cleanCheckpoints" class="page">spark.cleaner.referenceTracking.cleanCheckpoints</a> configuration property enabled, doCheckpoint requests the <a href="../spark-SparkContext.html#cleaner" class="page">ContextCleaner</a> to <a href="../core/ContextCleaner.html#registerRDDCheckpointDataForCleanup" class="page">registerRDDCheckpointDataForCleanup</a> for the new RDD.</p>
+<p>With <a href="../configuration-properties.html#spark.cleaner.referenceTracking.cleanCheckpoints" class="page">spark.cleaner.referenceTracking.cleanCheckpoints</a> configuration property enabled, doCheckpoint requests the <a href="../SparkContext.html#cleaner" class="page">ContextCleaner</a> to <a href="../core/ContextCleaner.html#registerRDDCheckpointDataForCleanup" class="page">registerRDDCheckpointDataForCleanup</a> for the new RDD.</p>
 </div>
 <div class="paragraph">
 <p>In the end, doCheckpoint prints out the following INFO message to the logs and returns the new RDD.</p>

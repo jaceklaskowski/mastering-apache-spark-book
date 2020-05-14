@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -2048,7 +2048,7 @@ User-defined JARs are defined using <a href="spark-CoarseGrainedExecutorBackend.
 <p>(only for <a href="#isLocal">non-local modes</a>) <code>Executor</code> sets <code>SparkUncaughtExceptionHandler</code> as the default handler invoked when a thread abruptly terminates due to an uncaught exception.</p>
 </div>
 <div class="paragraph">
-<p>(only for <a href="#isLocal">non-local modes</a>) <code>Executor</code> requests the <a href="core/SparkEnv.html#blockManager" class="page">BlockManager</a> to <a href="#BlockManager.adoc#initialize" class="page unresolved">initialize</a> (with the <a href="spark-SparkConf.html#getAppId" class="page">Spark application id</a> of the <a href="core/SparkEnv.html#conf" class="page">SparkConf</a>).</p>
+<p>(only for <a href="#isLocal">non-local modes</a>) <code>Executor</code> requests the <a href="core/SparkEnv.html#blockManager" class="page">BlockManager</a> to <a href="#BlockManager.adoc#initialize" class="page unresolved">initialize</a> (with the <a href="SparkConf.html#getAppId" class="page">Spark application id</a> of the <a href="core/SparkEnv.html#conf" class="page">SparkConf</a>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2057,7 +2057,7 @@ User-defined JARs are defined using <a href="spark-CoarseGrainedExecutorBackend.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<a href="spark-SparkConf.html#getAppId" class="page">Spark application id</a> corresponds to the value of <a href="spark-SparkConf.html#spark.app.id" class="page">spark.app.id</a> Spark property.
+<a href="SparkConf.html#getAppId" class="page">Spark application id</a> corresponds to the value of <a href="SparkConf.html#spark.app.id" class="page">spark.app.id</a> Spark property.
 </td>
 </tr>
 </table>
@@ -2229,13 +2229,13 @@ User-defined JARs are defined using <a href="spark-CoarseGrainedExecutorBackend.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The amount of memory per executor is looked up when <a href="spark-SparkContext.html#creating-instance" class="page">SparkContext is created</a>.
+The amount of memory per executor is looked up when <a href="SparkContext.html#creating-instance" class="page">SparkContext is created</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>You can change the assigned memory per executor per node in <a href="#spark-standalone.adoc" class="page unresolved">standalone cluster</a> using <a href="spark-SparkContext.html#environment-variables" class="page">SPARK_EXECUTOR_MEMORY</a> environment variable.</p>
+<p>You can change the assigned memory per executor per node in <a href="#spark-standalone.adoc" class="page unresolved">standalone cluster</a> using <a href="SparkContext.html#environment-variables" class="page">SPARK_EXECUTOR_MEMORY</a> environment variable.</p>
 </div>
 <div class="paragraph">
 <p>You can find the value displayed as <strong>Memory per Node</strong> in <a href="#spark-standalone-Master.adoc" class="page unresolved">web UI for standalone Master</a> (as depicted in the figure below).</p>

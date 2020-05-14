@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -2011,7 +2011,7 @@
 <div class="sect2">
 <h3 id="spark-properties"><a class="anchor" href="#spark-properties"></a><a class="link" href="#spark-properties"><a id="spark-properties"></a> Spark properties</a></h3>
 <div class="paragraph">
-<p>After loading the <a href="spark-SparkConf.adoc#default-configuration">default SparkConf</a>, if <code>--properties-file</code> or <code>SPARK_WORKER_OPTS</code> define <code>spark.worker.ui.port</code>, the value of the property is used as the port of the worker&#8217;s web UI.</p>
+<p>After loading the <a href="../SparkConf.html#default-configuration" class="page">default SparkConf</a>, if <code>--properties-file</code> or <code>SPARK_WORKER_OPTS</code> define <code>spark.worker.ui.port</code>, the value of the property is used as the port of the worker&#8217;s web UI.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2039,7 +2039,7 @@ $ ./sbin/start-slave.sh spark://localhost:7077 --properties-file worker.properti
 <div class="sect2">
 <h3 id="internals-of-org-apache-spark-deploy-worker-worker"><a class="anchor" href="#internals-of-org-apache-spark-deploy-worker-worker"></a><a class="link" href="#internals-of-org-apache-spark-deploy-worker-worker">Internals of org.apache.spark.deploy.worker.Worker</a></h3>
 <div class="paragraph">
-<p>Upon starting, a Spark worker creates the <a href="spark-SparkConf.adoc#default-configuration">default SparkConf</a>.</p>
+<p>Upon starting, a Spark worker creates the <a href="../SparkConf.html#default-configuration" class="page">default SparkConf</a>.</p>
 </div>
 <div class="paragraph">
 <p>It parses command-line arguments for the worker using <code>WorkerArguments</code> class.</p>

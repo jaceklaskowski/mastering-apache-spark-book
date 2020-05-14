@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -2311,7 +2311,7 @@ FIXME Why does <code>blockManagerInfo</code> require a new <code>System.currentT
 </table>
 </div>
 <div class="paragraph">
-<p>In either case, <a href="spark-scheduler-SparkListener.adoc#SparkListenerBlockManagerAdded">SparkListenerBlockManagerAdded</a> is posted (to <a href="spark-SparkContext.adoc#listenerBus">listenerBus</a>).</p>
+<p>In either case, <a href="spark-scheduler-SparkListener.adoc#SparkListenerBlockManagerAdded">SparkListenerBlockManagerAdded</a> is posted (to <a href="../SparkContext.html#listenerBus" class="page">listenerBus</a>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2437,7 +2437,7 @@ FIXME Describe <code>listenerBus</code> + omnigraffle it.
 <p>It then goes over all the blocks for the <code>BlockManager</code>, and removes the executor for each block from <code>blockLocations</code> registry.</p>
 </div>
 <div class="paragraph">
-<p><a href="spark-scheduler-SparkListener.adoc#SparkListenerBlockManagerRemoved">SparkListenerBlockManagerRemoved(System.currentTimeMillis(), blockManagerId)</a> is posted to <a href="spark-SparkContext.adoc#listenerBus">listenerBus</a>.</p>
+<p><a href="spark-scheduler-SparkListener.adoc#SparkListenerBlockManagerRemoved">SparkListenerBlockManagerRemoved(System.currentTimeMillis(), blockManagerId)</a> is posted to <a href="../SparkContext.html#listenerBus" class="page">listenerBus</a>.</p>
 </div>
 <div class="paragraph">
 <p>You should then see the following INFO message in the logs:</p>
@@ -2485,7 +2485,7 @@ FIXME Describe <code>listenerBus</code> + omnigraffle it.
 <p><a id="isLocal"></a> Flag whether <code>BlockManagerMasterEndpoint</code> works in local or cluster mode</p>
 </li>
 <li>
-<p><a id="conf"></a> <a href="spark-SparkConf.adoc">SparkConf</a></p>
+<p><a id="conf"></a> <a href="../SparkConf.html" class="page">SparkConf</a></p>
 </li>
 <li>
 <p><a id="listenerBus"></a> <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a></p>

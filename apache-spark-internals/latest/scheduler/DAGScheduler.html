@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1916,7 +1916,7 @@
 <div class="title">Figure 1. DAGScheduler Transforming RDD Lineage Into Stage DAG</div>
 </div>
 <div class="paragraph">
-<p>After an <a href="../rdd/spark-rdd-actions.html" class="page">action</a> has been called, <a href="../spark-SparkContext.html" class="page">SparkContext</a> hands over a logical plan to DAGScheduler that it in turn translates to a set of stages that are submitted as <a href="TaskSet.html" class="page">TaskSets</a> for execution (see <a href="../spark-execution-model.html" class="page">Execution Model</a>).</p>
+<p>After an <a href="../rdd/spark-rdd-actions.html" class="page">action</a> has been called, <a href="../SparkContext.html" class="page">SparkContext</a> hands over a logical plan to DAGScheduler that it in turn translates to a set of stages that are submitted as <a href="TaskSet.html" class="page">TaskSets</a> for execution (see <a href="../spark-execution-model.html" class="page">Execution Model</a>).</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1928,7 +1928,7 @@
 <p>The fundamental concepts of DAGScheduler are <strong>jobs</strong> and <strong>stages</strong> (refer to <a href="spark-scheduler-ActiveJob.html" class="page">Jobs</a> and <a href="Stage.html" class="page">Stages</a> respectively) that it tracks through <a href="#internal-registries">internal registries and counters</a>.</p>
 </div>
 <div class="paragraph">
-<p>DAGScheduler works solely on the driver and is created as part of <a href="../spark-SparkContext.html#creating-instance" class="page">SparkContext&#8217;s initialization</a> (right after <a href="TaskScheduler.html" class="page">TaskScheduler</a> and <a href="SchedulerBackend.html" class="page">SchedulerBackend</a> are ready).</p>
+<p>DAGScheduler works solely on the driver and is created as part of <a href="../SparkContext.html#creating-instance" class="page">SparkContext&#8217;s initialization</a> (right after <a href="TaskScheduler.html" class="page">TaskScheduler</a> and <a href="SchedulerBackend.html" class="page">SchedulerBackend</a> are ready).</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1980,10 +1980,10 @@
 <p>DAGScheduler runs stages in topological order.</p>
 </div>
 <div class="paragraph">
-<p>DAGScheduler uses <a href="../spark-SparkContext.html" class="page">SparkContext</a>, <a href="TaskScheduler.html" class="page">TaskScheduler</a>, <a href="../spark-scheduler-LiveListenerBus.html" class="page">LiveListenerBus</a>, <a href="MapOutputTracker.html" class="page">MapOutputTracker</a> and <a href="../storage/BlockManager.html" class="page">BlockManager</a> for its services. However, at the very minimum, DAGScheduler takes a <code>SparkContext</code> only (and requests <code>SparkContext</code> for the other services).</p>
+<p>DAGScheduler uses <a href="../SparkContext.html" class="page">SparkContext</a>, <a href="TaskScheduler.html" class="page">TaskScheduler</a>, <a href="../spark-scheduler-LiveListenerBus.html" class="page">LiveListenerBus</a>, <a href="MapOutputTracker.html" class="page">MapOutputTracker</a> and <a href="../storage/BlockManager.html" class="page">BlockManager</a> for its services. However, at the very minimum, DAGScheduler takes a <code>SparkContext</code> only (and requests <code>SparkContext</code> for the other services).</p>
 </div>
 <div class="paragraph">
-<p>When DAGScheduler schedules a job as a result of <a href="../rdd/index.html#actions" class="page">executing an action on a RDD</a> or <a href="../spark-SparkContext.html#runJob" class="page">calling SparkContext.runJob() method directly</a>, it spawns parallel tasks to compute (partial) results per partition.</p>
+<p>When DAGScheduler schedules a job as a result of <a href="../rdd/index.html#actions" class="page">executing an action on a RDD</a> or <a href="../SparkContext.html#runJob" class="page">calling SparkContext.runJob() method directly</a>, it spawns parallel tasks to compute (partial) results per partition.</p>
 </div>
 </div>
 </div>
@@ -1996,7 +1996,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a id="sc"></a> <a href="../spark-SparkContext.html" class="page">SparkContext</a></p>
+<p><a id="sc"></a> <a href="../SparkContext.html" class="page">SparkContext</a></p>
 </li>
 <li>
 <p><a href="#taskScheduler">TaskScheduler</a></p>
@@ -2053,22 +2053,22 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a id="cancelAllJobs"></a> cancelAllJobs</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="DAGSchedulerEvent.html#AllJobsCancelled" class="page">AllJobsCancelled</a></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SparkContext is requested to <a href="../spark-SparkContext.html#cancelAllJobs" class="page">cancel all running or scheduled Spark jobs</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SparkContext is requested to <a href="../SparkContext.html#cancelAllJobs" class="page">cancel all running or scheduled Spark jobs</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a id="cancelJob"></a> cancelJob</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="DAGSchedulerEvent.html#JobCancelled" class="page">JobCancelled</a></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../spark-SparkContext.html#cancelJob" class="page">SparkContext</a> or <a href="spark-scheduler-JobWaiter.html" class="page">JobWaiter</a> are requested to cancel a Spark job</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../SparkContext.html#cancelJob" class="page">SparkContext</a> or <a href="spark-scheduler-JobWaiter.html" class="page">JobWaiter</a> are requested to cancel a Spark job</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a id="cancelJobGroup"></a> cancelJobGroup</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="DAGSchedulerEvent.html#JobGroupCancelled" class="page">JobGroupCancelled</a></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SparkContext is requested to <a href="../spark-SparkContext.html#cancelJobGroup" class="page">cancel a job group</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SparkContext is requested to <a href="../SparkContext.html#cancelJobGroup" class="page">cancel a job group</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a id="cancelStage"></a> cancelStage</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="DAGSchedulerEvent.html#StageCancelled" class="page">StageCancelled</a></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SparkContext is requested to <a href="../spark-SparkContext.html#cancelStage" class="page">cancel a stage</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SparkContext is requested to <a href="../SparkContext.html#cancelStage" class="page">cancel a stage</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a id="executorAdded"></a> executorAdded</code></p></td>
@@ -2083,7 +2083,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a id="runApproximateJob"></a> runApproximateJob</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="DAGSchedulerEvent.html#JobSubmitted" class="page">JobSubmitted</a></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SparkContext is requested to <a href="../spark-SparkContext.html#runApproximateJob" class="page">run an approximate job</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SparkContext is requested to <a href="../SparkContext.html#runApproximateJob" class="page">run an approximate job</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a id="speculativeTaskSubmitted"></a> speculativeTaskSubmitted</code></p></td>
@@ -2096,7 +2096,7 @@
 <td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
 <ul>
 <li>
-<p>SparkContext is requested to <a href="../spark-SparkContext.html#submitJob" class="page">submits a job</a></p>
+<p>SparkContext is requested to <a href="../SparkContext.html#submitJob" class="page">submits a job</a></p>
 </li>
 <li>
 <p>DAGScheduler is requested to <a href="#runJob">run a job</a></p>
@@ -2107,7 +2107,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a id="submitMapStage"></a> submitMapStage</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="DAGSchedulerEvent.html#MapStageSubmitted" class="page">MapStageSubmitted</a></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SparkContext is requested to <a href="../spark-SparkContext.html#submitMapStage" class="page">submit a MapStage for execution</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SparkContext is requested to <a href="../SparkContext.html#submitMapStage" class="page">submit a MapStage for execution</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a id="taskEnded"></a> taskEnded</code></p></td>
@@ -2205,7 +2205,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>runJob is used when SparkContext is requested to <a href="../spark-SparkContext.html#runJob" class="page">run a job</a>.</p>
+<p>runJob is used when SparkContext is requested to <a href="../SparkContext.html#runJob" class="page">run a job</a>.</p>
 </div>
 </div>
 </div>
@@ -3060,7 +3060,7 @@ FIXME&#8230;&#8203;IMAGE with ShuffleDependencies queried
 <p>submitMissingTasks uses the <a href="#closureSerializer">closure Serializer</a> to <a href="../serializer/Serializer.html#serialize" class="page">serialize</a> the stage and create a so-called task binary. submitMissingTasks serializes the RDD (of the stage) and either the ShuffleDependency or the compute function based on the type of the stage, i.e. ShuffleMapStage and ResultStage, respectively.</p>
 </div>
 <div class="paragraph">
-<p>submitMissingTasks creates a <a href="../spark-SparkContext.html#broadcast" class="page">broadcast variable</a> for the task binary.</p>
+<p>submitMissingTasks creates a <a href="../SparkContext.html#broadcast" class="page">broadcast variable</a> for the task binary.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3383,7 +3383,7 @@ FIXME Where are <code>Stage.latestInfo.accumulables</code> and <code>CompletionE
 <p>killTaskAttempt requests the <a href="#taskScheduler">TaskScheduler</a> to <a href="TaskScheduler.html#killTaskAttempt" class="page">kill a task</a>.</p>
 </div>
 <div class="paragraph">
-<p>killTaskAttempt is used when SparkContext is requested to <a href="../spark-SparkContext.html#killTaskAttempt" class="page">kill a task</a>.</p>
+<p>killTaskAttempt is used when SparkContext is requested to <a href="../SparkContext.html#killTaskAttempt" class="page">kill a task</a>.</p>
 </div>
 </div>
 </div>

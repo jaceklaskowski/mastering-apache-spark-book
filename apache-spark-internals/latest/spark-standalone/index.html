@@ -693,6 +693,39 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -832,39 +865,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-workers.html">Workers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkConf.html">SparkConf</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-SparkContext.html">SparkContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -2125,10 +2125,10 @@ It can be a duplicate of the above section.
 <h2 id="sparkdeployschedulerbackend"><a class="anchor" href="#sparkdeployschedulerbackend"></a><a class="link" href="#sparkdeployschedulerbackend"><a id="SparkDeploySchedulerBackend"></a> SparkDeploySchedulerBackend</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>SparkDeploySchedulerBackend</code> is the <a href="../scheduler/SchedulerBackend.html" class="page">Scheduler Backend</a> for Spark Standalone, i.e. it is used when you <a href="spark-SparkContext.adoc#creating-instance">create a SparkContext</a> using <code>spark://</code> <a href="spark-deployment-environments.adoc#master-urls">master URL</a>.</p>
+<p><code>SparkDeploySchedulerBackend</code> is the <a href="../scheduler/SchedulerBackend.html" class="page">Scheduler Backend</a> for Spark Standalone, i.e. it is used when you <a href="../SparkContext.html#creating-instance" class="page">create a SparkContext</a> using <code>spark://</code> <a href="spark-deployment-environments.adoc#master-urls">master URL</a>.</p>
 </div>
 <div class="paragraph">
-<p>It requires a <a href="../scheduler/TaskScheduler.html" class="page">Task Scheduler</a>, a <a href="spark-SparkContext.adoc">Spark context</a>, and a collection of <a href="spark-deployment-environments.adoc#master-urls">master URLs</a>.</p>
+<p>It requires a <a href="../scheduler/TaskScheduler.html" class="page">Task Scheduler</a>, a <a href="../SparkContext.html" class="page">SparkContext</a>, and a collection of <a href="spark-deployment-environments.adoc#master-urls">master URLs</a>.</p>
 </div>
 <div class="paragraph">
 <p>It is a specialized <a href="../scheduler/CoarseGrainedSchedulerBackend.html" class="page">CoarseGrainedSchedulerBackend</a> that uses <a href="#AppClient">AppClient</a> and is a <code>AppClientListener</code>.</p>
