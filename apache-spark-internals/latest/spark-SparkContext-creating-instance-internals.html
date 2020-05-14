@@ -76,6 +76,21 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/BroadcastManager.html">BroadcastManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/BroadcastFactory.html">BroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/TorrentBroadcast.html">TorrentBroadcast</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
@@ -672,24 +687,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-ExternalClusterManager.html">ExternalClusterManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-service-broadcastmanager.html">BroadcastManager</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-BroadcastFactory.html">BroadcastFactory</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-TorrentBroadcast.html">TorrentBroadcast</a>
-  </li>
-</ul>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -2085,7 +2082,7 @@ Use <code>sc.getConf.get("spark.executor.id")</code> to know where the code is e
 <p>If <a href="spark-history-server/EventLoggingListener.html" class="page">event logging</a> is enabled, i.e. <a href="EventLoggingListener.adoc#spark_eventLog_enabled">spark.eventLog.enabled</a> flag is <code>true</code>, the internal field <code>_eventLogDir</code> is set to the value of <a href="EventLoggingListener.adoc#spark_eventLog_dir">spark.eventLog.dir</a> setting or the default value <code>/tmp/spark-events</code>.</p>
 </div>
 <div id="_eventLogCodec" class="paragraph">
-<p>Also, if <a href="spark-history-server/EventLoggingListener.html#spark_eventLog_compress" class="page">spark.eventLog.compress</a> is enabled (it is not by default), the short name of the <a href="io/CompressionCodec.html" class="page">CompressionCodec</a> is assigned to <code>_eventLogCodec</code>. The config key is <a href="spark-service-broadcastmanager.adoc#spark_io_compression_codec">spark.io.compression.codec</a> (default: <code>lz4</code>).</p>
+<p>Also, if <a href="spark-history-server/EventLoggingListener.html#spark_eventLog_compress" class="page">spark.eventLog.compress</a> is enabled (it is not by default), the short name of the <a href="io/CompressionCodec.html" class="page">CompressionCodec</a> is assigned to <code>_eventLogCodec</code>. The config key is <a href="core/BroadcastManager.html#spark_io_compression_codec" class="page">spark.io.compression.codec</a> (default: <code>lz4</code>).</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -2094,7 +2091,7 @@ Use <code>sc.getConf.get("spark.executor.id")</code> to know where the code is e
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Read about compression codecs in <a href="spark-service-broadcastmanager.adoc#compression">Compression</a>.
+Read about compression codecs in <a href="core/BroadcastManager.html#compression" class="page">Compression</a>.
 </td>
 </tr>
 </table>

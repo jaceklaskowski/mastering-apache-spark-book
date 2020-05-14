@@ -76,6 +76,21 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/BroadcastManager.html">BroadcastManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BroadcastFactory.html">BroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/TorrentBroadcast.html">TorrentBroadcast</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
@@ -672,24 +687,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-service-broadcastmanager.html">BroadcastManager</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-BroadcastFactory.html">BroadcastFactory</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../spark-TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../spark-TorrentBroadcast.html">TorrentBroadcast</a>
-  </li>
-</ul>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1951,18 +1948,18 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>TorrentBroadcast</code> is <a href="#spark-TorrentBroadcast.adoc#broadcastId" class="page unresolved">created</a>, requested to <a href="#spark-TorrentBroadcast.adoc#writeBlocks" class="page unresolved">store a broadcast and the blocks in a local BlockManager</a>, and <a href="#readBlocks">read blocks</a></p>
+<p>TorrentBroadcast is <a href="../core/TorrentBroadcast.html#broadcastId" class="page">created</a>, requested to <a href="../core/TorrentBroadcast.html#writeBlocks" class="page">store a broadcast and the blocks in a local BlockManager</a>, and <a href="#readBlocks">read blocks</a></p>
 </li>
 <li>
-<p><code>BlockManager</code> is requested to <a href="BlockManager.html#removeBroadcast" class="page">remove all the blocks of a broadcast variable</a></p>
+<p>BlockManager is requested to <a href="BlockManager.html#removeBroadcast" class="page">remove all the blocks of a broadcast variable</a></p>
 </li>
 <li>
-<p><code>AppStatusListener</code> is requested to <a href="#spark-SparkListener-AppStatusListener.adoc#updateBroadcastBlock" class="page unresolved">updateBroadcastBlock</a> (when <a href="#spark-SparkListener-AppStatusListener.adoc#onBlockUpdated" class="page unresolved">onBlockUpdated</a> for a <code>BroadcastBlockId</code>)</p>
+<p>AppStatusListener is requested to <a href="#ROOTspark-SparkListener-AppStatusListener.adoc#updateBroadcastBlock" class="page unresolved">updateBroadcastBlock</a> (when <a href="#ROOTspark-SparkListener-AppStatusListener.adoc#onBlockUpdated" class="page unresolved">onBlockUpdated</a> for a <code>BroadcastBlockId</code>)</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><a href="../serializer/SerializerManager.html#shouldCompress" class="page">Compressed</a> when <a href="#spark-service-broadcastmanager.adoc#spark.broadcast.compress" class="page unresolved">spark.broadcast.compress</a> configuration property is enabled (default: <code>true</code>)</p>
+<p><a href="../serializer/SerializerManager.html#shouldCompress" class="page">Compressed</a> when <a href="../core/BroadcastManager.html#spark.broadcast.compress" class="page">spark.broadcast.compress</a> configuration property is enabled</p>
 </div></div></td>
 </tr>
 <tr>

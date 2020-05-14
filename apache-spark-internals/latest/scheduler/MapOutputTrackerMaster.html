@@ -76,6 +76,21 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/BroadcastManager.html">BroadcastManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BroadcastFactory.html">BroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/TorrentBroadcast.html">TorrentBroadcast</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
@@ -672,24 +687,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-service-broadcastmanager.html">BroadcastManager</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-BroadcastFactory.html">BroadcastFactory</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../spark-TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../spark-TorrentBroadcast.html">TorrentBroadcast</a>
-  </li>
-</ul>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1904,7 +1901,7 @@
 <p><a id="conf"></a> <a href="../spark-SparkConf.html" class="page">SparkConf</a></p>
 </li>
 <li>
-<p><a id="broadcastManager"></a> <a href="../spark-service-broadcastmanager.html" class="page">BroadcastManager</a></p>
+<p><a href="#broadcastManager">BroadcastManager</a></p>
 </li>
 <li>
 <p><a id="isLocal"></a> isLocal flag (whether MapOutputTrackerMaster runs in local or on a cluster)</p>
@@ -1913,6 +1910,14 @@
 </div>
 <div class="paragraph">
 <p>MapOutputTrackerMaster starts <a href="#MessageLoop">dispatcher threads</a> on the <a href="#threadpool">map-output-dispatcher thread pool</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="mapoutputtrackermaster-and-broadcastmanager"><a class="anchor" href="#mapoutputtrackermaster-and-broadcastmanager"></a><a class="link" href="#mapoutputtrackermaster-and-broadcastmanager"><a id="BroadcastManager"></a><a id="broadcastManager"></a> MapOutputTrackerMaster and BroadcastManager</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MapOutputTrackerMaster is given a <a href="../core/BroadcastManager.html" class="page">BroadcastManager</a> to be created.</p>
 </div>
 </div>
 </div>

@@ -76,6 +76,21 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/BroadcastManager.html">BroadcastManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BroadcastFactory.html">BroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/TorrentBroadcast.html">TorrentBroadcast</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
@@ -672,24 +687,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-service-broadcastmanager.html">BroadcastManager</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-BroadcastFactory.html">BroadcastFactory</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../spark-TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../spark-TorrentBroadcast.html">TorrentBroadcast</a>
-  </li>
-</ul>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -2395,7 +2392,7 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>getLocalValues</code> is used when <a href="../spark-TorrentBroadcast.html#readBroadcastBlock" class="page"><code>TorrentBroadcast</code> reads the blocks of a broadcast variable and stores them in a local BlockManager</a>.
+<code>getLocalValues</code> is used when <a href="../core/TorrentBroadcast.html#readBroadcastBlock" class="page"><code>TorrentBroadcast</code> reads the blocks of a broadcast variable and stores them in a local BlockManager</a>.
 </td>
 </tr>
 </table>
@@ -2552,7 +2549,7 @@ FIXME
 <div class="ulist">
 <ul>
 <li>
-<p>TorrentBroadcast is requested to <a href="../spark-TorrentBroadcast.html#readBlocks" class="page">readBlocks</a></p>
+<p>TorrentBroadcast is requested to <a href="../core/TorrentBroadcast.html#readBlocks" class="page">readBlocks</a></p>
 </li>
 <li>
 <p>BlockManager is requested for the <a href="#getBlockData">block data</a> (of a non-shuffle block)</p>
@@ -2692,7 +2689,7 @@ FIXME How is <code>shuffleClient</code> used?
 <p><code>TaskRunner</code> is requested to <a href="../spark-Executor-TaskRunner.html#run-result-sent-via-blockmanager" class="page">run</a> (and the result size is above <a href="../spark-Executor.html#maxDirectResultSize" class="page">maxDirectResultSize</a>)</p>
 </li>
 <li>
-<p><code>TorrentBroadcast</code> is requested to <a href="../spark-TorrentBroadcast.html#writeBlocks" class="page">writeBlocks</a> and <a href="../spark-TorrentBroadcast.html#readBlocks" class="page">readBlocks</a></p>
+<p><code>TorrentBroadcast</code> is requested to <a href="../core/TorrentBroadcast.html#writeBlocks" class="page">writeBlocks</a> and <a href="../core/TorrentBroadcast.html#readBlocks" class="page">readBlocks</a></p>
 </li>
 </ul>
 </div>
@@ -3426,7 +3423,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 <h2 id="broadcast-values"><a class="anchor" href="#broadcast-values"></a><a class="link" href="#broadcast-values"><a id="broadcast"></a> Broadcast Values</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When a new broadcast value is created, <a href="spark-TorrentBroadcast.adoc">TorrentBroadcast</a> blocks are put in the block manager.</p>
+<p>When a new broadcast value is created, <a href="../core/TorrentBroadcast.html" class="page">TorrentBroadcast</a> blocks are put in the block manager.</p>
 </div>
 <div class="paragraph">
 <p>You should see the following <code>TRACE</code> message:</p>
@@ -3730,7 +3727,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>putSingle</code> is used when <code>TorrentBroadcast</code> is requested to <a href="spark-TorrentBroadcast.adoc#writeBlocks">read the blocks of a broadcast variable</a> and <a href="spark-TorrentBroadcast.adoc#readBroadcastBlock">readBroadcastBlock</a>.
+<code>putSingle</code> is used when <code>TorrentBroadcast</code> is requested to <a href="../core/TorrentBroadcast.html#writeBlocks" class="page">read the blocks of a broadcast variable</a> and <a href="../core/TorrentBroadcast.html#readBroadcastBlock" class="page">readBroadcastBlock</a>.
 </td>
 </tr>
 </table>
@@ -3764,7 +3761,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 <p>BlockManager is requested to <a href="#getRemoteValues">getRemoteValues</a></p>
 </li>
 <li>
-<p><code>TorrentBroadcast</code> is requested to <a href="../spark-TorrentBroadcast.html#readBlocks" class="page">readBlocks</a></p>
+<p><code>TorrentBroadcast</code> is requested to <a href="../core/TorrentBroadcast.html#readBlocks" class="page">readBlocks</a></p>
 </li>
 <li>
 <p><code>TaskResultGetter</code> is requested to <a href="../scheduler/TaskResultGetter.html#enqueueSuccessfulTask" class="page">enqueuing a successful IndirectTaskResult</a></p>

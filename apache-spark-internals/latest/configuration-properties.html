@@ -76,6 +76,21 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/BroadcastManager.html">BroadcastManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/BroadcastFactory.html">BroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/TorrentBroadcast.html">TorrentBroadcast</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
@@ -672,24 +687,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-ExternalClusterManager.html">ExternalClusterManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-service-broadcastmanager.html">BroadcastManager</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-BroadcastFactory.html">BroadcastFactory</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-TorrentBroadcast.html">TorrentBroadcast</a>
-  </li>
-</ul>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -2887,6 +2884,34 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 </div>
 <div class="paragraph">
 <p>Default: <code>false</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-broadcast-blocksize"><a class="anchor" href="#spark-broadcast-blocksize"></a><a class="link" href="#spark-broadcast-blocksize"><a id="spark.broadcast.blockSize"></a> spark.broadcast.blockSize</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The size of a block (in kB unless the unit is specified)</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>4m</code></p>
+</div>
+<div class="paragraph">
+<p>Used when <a href="core/TorrentBroadcast.html#writeBlocks" class="page"><code>TorrentBroadcast</code> stores brodcast blocks to <code>BlockManager</code></a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-broadcast-compress"><a class="anchor" href="#spark-broadcast-compress"></a><a class="link" href="#spark-broadcast-compress"><a id="spark.broadcast.compress"></a> spark.broadcast.compress</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Controls broadcast compression</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>true</code></p>
+</div>
+<div class="paragraph">
+<p>Used when <a href="core/TorrentBroadcast.html#creating-instance" class="page"><code>TorrentBroadcast</code> is created</a> and later when <a href="core/TorrentBroadcast.html#writeBlocks" class="page">it stores broadcast blocks to <code>BlockManager</code></a>. Also in <a href="serializer/SerializerManager.html#settings" class="page">SerializerManager</a>.</p>
 </div>
 </div>
 </div>

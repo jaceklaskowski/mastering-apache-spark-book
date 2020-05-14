@@ -76,6 +76,21 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/BroadcastManager.html">BroadcastManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/BroadcastFactory.html">BroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/TorrentBroadcast.html">TorrentBroadcast</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
@@ -672,24 +687,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-ExternalClusterManager.html">ExternalClusterManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-service-broadcastmanager.html">BroadcastManager</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-BroadcastFactory.html">BroadcastFactory</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-TorrentBroadcast.html">TorrentBroadcast</a>
-  </li>
-</ul>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1913,7 +1910,7 @@
 <p>To use a broadcast value in a Spark transformation you have to create it first using <a href="spark-SparkContext.adoc#broadcast">SparkContext.broadcast</a> and then use <code>value</code> method to access the shared value. Learn it in <a href="#introductory-example">Introductory Example</a> section.</p>
 </div>
 <div class="paragraph">
-<p>The Broadcast feature in Spark uses SparkContext to create broadcast values and <a href="spark-service-broadcastmanager.adoc">BroadcastManager</a> and <a href="core/ContextCleaner.html" class="page">ContextCleaner</a> to manage their lifecycle.</p>
+<p>The Broadcast feature in Spark uses SparkContext to create broadcast values and <a href="core/BroadcastManager.html" class="page">BroadcastManager</a> and <a href="core/ContextCleaner.html" class="page">ContextCleaner</a> to manage their lifecycle.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1932,6 +1929,9 @@ Not only can Spark developers use broadcast variables for efficient data distrib
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>The idea is to transfer values used in transformations from a driver to executors in a most effective way so they are copied once and used many times by tasks (rather than being copied every time a task is launched).</p>
 </div>
 <div class="sect2">
 <h3 id="broadcast-spark-developer-facing-contract"><a class="anchor" href="#broadcast-spark-developer-facing-contract"></a><a class="link" href="#broadcast-spark-developer-facing-contract"><a id="developer-contract"></a> <code>Broadcast</code> Spark Developer-Facing Contract</a></h3>
@@ -2104,7 +2104,7 @@ DEBUG BlockManager: Removing block broadcast_0</code></pre>
 <p><code>getValue</code> is abstracted and broadcast variable implementations are supposed to provide a concrete behaviour.</p>
 </div>
 <div class="paragraph">
-<p>Refer to <a href="spark-TorrentBroadcast.adoc#getValue">TorrentBroadcast</a>.</p>
+<p>Refer to <a href="core/TorrentBroadcast.html#getValue" class="page">TorrentBroadcast</a>.</p>
 </div>
 </td>
 </tr>
@@ -2302,7 +2302,7 @@ myBigRDD.map { case (a, b, c, d) =&gt;
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<a href="spark-TorrentBroadcast.adoc">TorrentBroadcast</a> is the only implementation of the <code>Broadcast</code> contract.
+<a href="core/TorrentBroadcast.html" class="page">TorrentBroadcast</a> is the only implementation of the <code>Broadcast</code> contract.
 </td>
 </tr>
 </table>

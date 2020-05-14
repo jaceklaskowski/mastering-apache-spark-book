@@ -76,6 +76,21 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="BroadcastManager.html">BroadcastManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="BroadcastFactory.html">BroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="TorrentBroadcast.html">TorrentBroadcast</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="ContextCleaner.html">ContextCleaner</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
@@ -672,24 +687,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-service-broadcastmanager.html">BroadcastManager</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-BroadcastFactory.html">BroadcastFactory</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../spark-TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../spark-TorrentBroadcast.html">TorrentBroadcast</a>
-  </li>
-</ul>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1912,7 +1909,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a id="broadcastManager"></a> broadcastManager</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../spark-service-broadcastmanager.html" class="page">BroadcastManager</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="BroadcastManager.html" class="page">BroadcastManager</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a id="closureSerializer"></a> closureSerializer</code></p></td>
@@ -2190,7 +2187,7 @@ create registers the <strong>BlockManagerMaster</strong> RPC endpoint for the dr
 create creates a <a href="../storage/BlockManager.html#creating-instance" class="page">BlockManager</a> (using the above <a href="#BlockManagerMaster">BlockManagerMaster</a>, <a href="#create-NettyBlockTransferService">NettyBlockTransferService</a> and other services).</p>
 </div>
 <div class="paragraph">
-<p>create creates a <a href="spark-service-broadcastmanager.adoc">BroadcastManager</a>.</p>
+<p>create creates a <a href="BroadcastManager.html" class="page">BroadcastManager</a>.</p>
 </div>
 <div class="paragraph">
 <p><a id="MapOutputTracker"></a><a id="create-MapOutputTracker"></a>
@@ -2402,7 +2399,7 @@ The number of cores <code>numCores</code> is configured using <code>--cores</cod
 <p><a href="../shuffle/ShuffleManager.html#stop" class="page">ShuffleManager</a></p>
 </li>
 <li>
-<p><a href="spark-service-broadcastmanager.adoc#stop">BroadcastManager</a></p>
+<p><a href="BroadcastManager.html#stop" class="page">BroadcastManager</a></p>
 </li>
 <li>
 <p><a href="../storage/BlockManager.html#stop" class="page">BlockManager</a></p>

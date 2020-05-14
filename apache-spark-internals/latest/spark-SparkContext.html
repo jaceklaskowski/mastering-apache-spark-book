@@ -76,6 +76,21 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/BroadcastManager.html">BroadcastManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/BroadcastFactory.html">BroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/TorrentBroadcast.html">TorrentBroadcast</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="core/ContextCleaner.html">ContextCleaner</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
@@ -672,24 +687,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-ExternalClusterManager.html">ExternalClusterManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-service-broadcastmanager.html">BroadcastManager</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-BroadcastFactory.html">BroadcastFactory</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="spark-TorrentBroadcast.html">TorrentBroadcast</a>
-  </li>
-</ul>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -3167,7 +3164,7 @@ hello: org.apache.spark.broadcast.Broadcast[String] = Broadcast(0)</code></pre>
 <div class="title">Figure 4. Broadcasting a value to executors</div>
 </div>
 <div class="paragraph">
-<p>Internally, broadcast requests BroadcastManager for a <a href="spark-service-broadcastmanager.html#newBroadcast" class="page">new broadcast variable</a>.</p>
+<p>Internally, broadcast requests BroadcastManager for a <a href="core/BroadcastManager.html#newBroadcast" class="page">new broadcast variable</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3176,7 +3173,7 @@ hello: org.apache.spark.broadcast.Broadcast[String] = Broadcast(0)</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The current <code>BroadcastManager</code> is available using <a href="core/SparkEnv.html#broadcastManager" class="page"><code>SparkEnv.broadcastManager</code></a> attribute and is always <a href="spark-service-broadcastmanager.adoc">BroadcastManager</a> (with few internal configuration changes to reflect where it runs, i.e. inside the driver or executors).
+The current <code>BroadcastManager</code> is available using <a href="core/SparkEnv.html#broadcastManager" class="page"><code>SparkEnv.broadcastManager</code></a> attribute and is always <a href="core/BroadcastManager.html" class="page">BroadcastManager</a> (with few internal configuration changes to reflect where it runs, i.e. inside the driver or executors).
 </td>
 </tr>
 </table>
