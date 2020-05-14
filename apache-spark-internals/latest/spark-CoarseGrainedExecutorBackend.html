@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcEnv.html">RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -711,27 +736,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-cachemanager.html">Cache Manager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-rpc.html">RPC Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rpc-RpcEnv.html">RpcEnv</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rpc-RpcEndpoint.html">RpcEndpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-RpcEndpointRef.html">RpcEndpointRef</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-RpcEnvFactory.html">RpcEnvFactory</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rpc-netty.html">Netty-based RpcEnv</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-TransportConf.html">TransportConf</a>
@@ -1919,7 +1923,7 @@
 <div class="title">Figure 2. CoarseGrainedExecutorBackend Sending Task Status Updates to Driver&#8217;s CoarseGrainedScheduler Endpoint</div>
 </div>
 <div class="paragraph">
-<p><code>CoarseGrainedExecutorBackend</code> is a <a href="spark-rpc.adoc#ThreadSafeRpcEndpoint">ThreadSafeRpcEndpoint</a> that <a href="#onStart">connects to the driver</a> (before accepting <a href="#messages">messages</a>) and <a href="#onDisconnected">shuts down when the driver disconnects</a>.</p>
+<p><code>CoarseGrainedExecutorBackend</code> is a <a href="rpc/index.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> that <a href="#onStart">connects to the driver</a> (before accepting <a href="#messages">messages</a>) and <a href="#onDisconnected">shuts down when the driver disconnects</a>.</p>
 </div>
 <table id="messages" class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. CoarseGrainedExecutorBackend&#8217;s RPC Messages</caption>
@@ -1985,7 +1989,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="driver"></a> <code>driver</code></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">(empty)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-RpcEndpointRef.adoc">RpcEndpointRef</a> of the driver</p>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="rpc/RpcEndpointRef.html" class="page">RpcEndpointRef</a> of the driver</p>
 <p class="tableblock">FIXME</p></td>
 </tr>
 <tr>
@@ -2277,10 +2281,10 @@ FIXME What does <code>initDaemon</code> do?
 </table>
 </div>
 <div id="run-driverPropsFetcher" class="paragraph">
-<p><code>run</code> uses <a href="spark-Executor.adoc#spark_executor_port">spark.executor.port</a> Spark property (or <code>0</code> if not set) for the port to <a href="spark-rpc.adoc#create">create a <code>RpcEnv</code></a> called <strong>driverPropsFetcher</strong> (together with the input <code>hostname</code> and <code>clientMode</code> enabled).</p>
+<p><code>run</code> uses <a href="spark-Executor.adoc#spark_executor_port">spark.executor.port</a> Spark property (or <code>0</code> if not set) for the port to <a href="rpc/index.html#create" class="page">create a <code>RpcEnv</code></a> called <strong>driverPropsFetcher</strong> (together with the input <code>hostname</code> and <code>clientMode</code> enabled).</p>
 </div>
 <div class="paragraph">
-<p><code>run</code> <a href="spark-rpc.adoc#setupEndpointRefByURI">resolves <code>RpcEndpointRef</code> for the input <code>driverUrl</code></a> and requests <code>SparkAppConfig</code> (by posting a blocking <code>RetrieveSparkAppConfig</code>).</p>
+<p><code>run</code> <a href="rpc/index.html#setupEndpointRefByURI" class="page">resolves <code>RpcEndpointRef</code> for the input <code>driverUrl</code></a> and requests <code>SparkAppConfig</code> (by posting a blocking <code>RetrieveSparkAppConfig</code>).</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -2298,7 +2302,7 @@ This is the first moment when <code>CoarseGrainedExecutorBackend</code> initiate
 <p><code>run</code> uses <code>SparkAppConfig</code> to get the driver&#8217;s <code>sparkProperties</code> and adds <a href="spark-SparkConf.adoc#spark.app.id">spark.app.id</a> Spark property with the value of the input <code>appId</code>.</p>
 </div>
 <div class="paragraph">
-<p><code>run</code> <a href="spark-rpc.adoc#shutdown">shuts <code>driverPropsFetcher</code> RPC Endpoint down</a>.</p>
+<p><code>run</code> <a href="rpc/index.html#shutdown" class="page">shuts <code>driverPropsFetcher</code> RPC Endpoint down</a>.</p>
 </div>
 <div class="paragraph">
 <p><code>run</code> creates a <a href="spark-SparkConf.adoc">SparkConf</a> using the Spark properties fetched from the driver, i.e. with the <a href="spark-SparkConf.adoc#isExecutorStartupConf">executor-related Spark settings</a> if they <a href="spark-SparkConf.adoc#setIfMissing">were missing</a> and the <a href="spark-SparkConf.adoc#set">rest unconditionally</a>.</p>
@@ -2342,7 +2346,7 @@ This is the moment when <code>SparkEnv</code> gets created with all the executor
 </table>
 </div>
 <div class="paragraph">
-<p><code>run</code> <a href="spark-rpc.adoc#setupEndpoint">sets up an RPC endpoint</a> with the name <strong>Executor</strong> and <a href="#creating-instance">CoarseGrainedExecutorBackend</a> as the endpoint.</p>
+<p><code>run</code> <a href="rpc/index.html#setupEndpoint" class="page">sets up an RPC endpoint</a> with the name <strong>Executor</strong> and <a href="#creating-instance">CoarseGrainedExecutorBackend</a> as the endpoint.</p>
 </div>
 <div class="paragraph">
 <p>(only in Spark Standalone) If the optional input <code>workerUrl</code> was defined, <code>run</code> sets up an RPC endpoint with the name <strong>WorkerWatcher</strong> and <code>WorkerWatcher</code> RPC endpoint.</p>
@@ -2365,7 +2369,7 @@ This is the moment when <code>SparkEnv</code> gets created with all the executor
 </table>
 </div>
 <div class="paragraph">
-<p><code>run</code>'s main thread is blocked until <a href="spark-rpc.adoc#awaitTermination"><code>RpcEnv</code> terminates</a> and only the RPC endpoints process RPC messages.</p>
+<p><code>run</code>'s main thread is blocked until <a href="rpc/index.html#awaitTermination" class="page"><code>RpcEnv</code> terminates</a> and only the RPC endpoints process RPC messages.</p>
 </div>
 <div class="paragraph">
 <p>Once <code>RpcEnv</code> has terminated, <code>run</code> <a href="spark-SparkHadoopUtil.adoc#stopCredentialUpdater">stops the credential updater</a>.</p>
@@ -2394,7 +2398,7 @@ FIXME Think of the place for <code>Utils.initDaemon</code>, <code>Utils.getProce
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><a id="rpcEnv"></a> <a href="spark-rpc.adoc">RpcEnv</a></p>
+<p><a id="rpcEnv"></a> <a href="rpc/index.html" class="page">RpcEnv</a></p>
 </li>
 <li>
 <p><code>driverUrl</code></p>
@@ -2458,7 +2462,7 @@ FIXME Think of the place for <code>Utils.initDaemon</code>, <code>Utils.getProce
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>onStart</code> is part of <a href="spark-rpc-RpcEndpoint.adoc#onStart">RpcEndpoint contract</a> that is executed before a RPC endpoint starts accepting messages.
+<code>onStart</code> is part of <a href="rpc/RpcEndpoint.html#onStart" class="page">RpcEndpoint contract</a> that is executed before a RPC endpoint starts accepting messages.
 </td>
 </tr>
 </table>
@@ -2484,7 +2488,7 @@ FIXME Think of the place for <code>Utils.initDaemon</code>, <code>Utils.getProce
 </table>
 </div>
 <div class="paragraph">
-<p><code>onStart</code> then <a href="spark-rpc.adoc#asyncSetupEndpointRefByURI">takes the <code>RpcEndpointRef</code> of the driver asynchronously</a> and initializes the internal <a href="#driver">driver</a> property. <code>onStart</code> sends a blocking <a href="scheduler/CoarseGrainedSchedulerBackend.html#RegisterExecutor" class="page">RegisterExecutor</a> message immediately (with <a href="#executorId">executorId</a>, <a href="spark-RpcEndpointRef.adoc">RpcEndpointRef</a> to itself, <a href="#hostname">hostname</a>, <a href="#cores">cores</a> and <a href="#extractLogUrls">log URLs</a>).</p>
+<p><code>onStart</code> then <a href="rpc/index.html#asyncSetupEndpointRefByURI" class="page">takes the <code>RpcEndpointRef</code> of the driver asynchronously</a> and initializes the internal <a href="#driver">driver</a> property. <code>onStart</code> sends a blocking <a href="scheduler/CoarseGrainedSchedulerBackend.html#RegisterExecutor" class="page">RegisterExecutor</a> message immediately (with <a href="#executorId">executorId</a>, <a href="rpc/RpcEndpointRef.html" class="page">RpcEndpointRef</a> to itself, <a href="#hostname">hostname</a>, <a href="#cores">cores</a> and <a href="#extractLogUrls">log URLs</a>).</p>
 </div>
 <div class="paragraph">
 <p>In case of failures, <code>onStart</code> <a href="#exitExecutor">terminates <code>CoarseGrainedExecutorBackend</code></a> with the error code <code>1</code> and the reason (and no notification to the driver):</p>

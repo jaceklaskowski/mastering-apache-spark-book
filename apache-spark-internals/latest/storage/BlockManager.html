@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnv.html">RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -711,27 +736,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-cachemanager.html">Cache Manager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-rpc.html">RPC Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEnv.html">RpcEnv</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEndpoint.html">RpcEndpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEndpointRef.html">RpcEndpointRef</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEnvFactory.html">RpcEnvFactory</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-netty.html">Netty-based RpcEnv</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-TransportConf.html">TransportConf</a>
@@ -1951,7 +1955,7 @@ Use <a href="../tools/spark-submit.html" class="page">spark-submit</a>'s command
 <p><a id="executorId"></a> Executor ID</p>
 </li>
 <li>
-<p><a id="rpcEnv"></a> <a href="../spark-rpc.html" class="page">RpcEnv</a></p>
+<p><a id="rpcEnv"></a> <a href="../index.html" class="page">RpcEnv</a></p>
 </li>
 <li>
 <p><a id="master"></a> <a href="BlockManagerMaster.html" class="page">BlockManagerMaster</a></p>
@@ -2031,7 +2035,7 @@ It is computed specially in Spark on YARN.
 <p>BlockManager sets the <a href="../configuration-properties.html#spark.block.failures.beforeLocationRefresh" class="page">maximum number of failures</a> before this block manager refreshes the block locations from the driver (as <code>maxFailuresBeforeLocationRefresh</code>).</p>
 </div>
 <div class="paragraph">
-<p>BlockManager registers <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc">BlockManagerSlaveEndpoint</a> with the input <a href="../spark-rpc.html" class="page">RpcEnv</a>, itself, and <a href="../scheduler/MapOutputTracker.html" class="page">MapOutputTracker</a> (as <code>slaveEndpoint</code>).</p>
+<p>BlockManager registers <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc">BlockManagerSlaveEndpoint</a> with the input <a href="../index.html" class="page">RpcEnv</a>, itself, and <a href="../scheduler/MapOutputTracker.html" class="page">MapOutputTracker</a> (as <code>slaveEndpoint</code>).</p>
 </div>
 </div>
 </div>

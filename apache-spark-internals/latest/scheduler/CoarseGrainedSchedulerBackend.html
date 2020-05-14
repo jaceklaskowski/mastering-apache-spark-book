@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnv.html">RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -711,27 +736,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-cachemanager.html">Cache Manager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-rpc.html">RPC Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEnv.html">RpcEnv</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEndpoint.html">RpcEndpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEndpointRef.html">RpcEndpointRef</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEnvFactory.html">RpcEnvFactory</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-netty.html">Netty-based RpcEnv</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-TransportConf.html">TransportConf</a>
@@ -1988,14 +1992,14 @@ FIXME Picture with dependencies
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="defaultAskTimeout"></a> <code>defaultAskTimeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-rpc.adoc#spark.rpc.askTimeout">spark.rpc.askTimeout</a> or <a href="spark-rpc.adoc#spark.network.timeout">spark.network.timeout</a> or <code>120s</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../rpc/index.html#spark.rpc.askTimeout" class="page">spark.rpc.askTimeout</a> or <a href="../rpc/index.html#spark.network.timeout" class="page">spark.network.timeout</a> or <code>120s</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Default timeout for blocking RPC messages (<em>aka</em> ask messages).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="driverEndpoint"></a> <code>driverEndpoint</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">(uninitialized)</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="spark-RpcEndpointRef.adoc">RPC endpoint reference</a> to <code>CoarseGrainedScheduler</code> RPC endpoint (with <a href="CoarseGrainedSchedulerBackend-DriverEndpoint.html" class="page">DriverEndpoint</a> as the message handler).</p>
+<p><a href="../rpc/RpcEndpointRef.html" class="page">RPC endpoint reference</a> to <code>CoarseGrainedScheduler</code> RPC endpoint (with <a href="CoarseGrainedSchedulerBackend-DriverEndpoint.html" class="page">DriverEndpoint</a> as the message handler).</p>
 </div>
 <div class="paragraph">
 <p>Initialized when <code>CoarseGrainedSchedulerBackend</code> <a href="#start">starts</a>.</p>
@@ -2175,7 +2179,7 @@ Only free cores are considered in making offers. Memory is not! Why?!
 <p><a id="scheduler"></a> <a href="TaskSchedulerImpl.html" class="page">TaskSchedulerImpl</a></p>
 </li>
 <li>
-<p><a id="rpcEnv"></a> <a href="spark-rpc.adoc">RpcEnv</a></p>
+<p><a id="rpcEnv"></a> <a href="../rpc/index.html" class="page">RpcEnv</a></p>
 </li>
 </ol>
 </div>
@@ -2873,7 +2877,7 @@ FIXME A potential issue with <code>driverEndpoint.asInstanceOf[NettyRpcEndpointR
 </div>
 </div>
 <div class="paragraph">
-<p><code>createDriverEndpointRef</code> <a href="#createDriverEndpoint">creates <code>DriverEndpoint</code></a> and <a href="spark-rpc.adoc#setupEndpoint">registers it</a> as <strong>CoarseGrainedScheduler</strong>.</p>
+<p><code>createDriverEndpointRef</code> <a href="#createDriverEndpoint">creates <code>DriverEndpoint</code></a> and <a href="../rpc/index.html#setupEndpoint" class="page">registers it</a> as <strong>CoarseGrainedScheduler</strong>.</p>
 </div>
 <div class="admonitionblock note">
 <table>

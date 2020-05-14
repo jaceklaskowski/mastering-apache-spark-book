@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnv.html">RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -711,27 +736,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-cachemanager.html">Cache Manager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-rpc.html">RPC Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEnv.html">RpcEnv</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEndpoint.html">RpcEndpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEndpointRef.html">RpcEndpointRef</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEnvFactory.html">RpcEnvFactory</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-netty.html">Netty-based RpcEnv</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-TransportConf.html">TransportConf</a>
@@ -1882,7 +1886,7 @@
 <h2 id="blockmanagermasterendpointblockmanagermaster-rpc-endpoint"><a class="anchor" href="#blockmanagermasterendpointblockmanagermaster-rpc-endpoint"></a><a class="link" href="#blockmanagermasterendpointblockmanagermaster-rpc-endpoint"><a id="BlockManagerMasterEndpoint"></a> BlockManagerMasterEndpoint&#8201;&#8212;&#8201;BlockManagerMaster RPC Endpoint</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>BlockManagerMasterEndpoint</code> is the <a href="spark-rpc.adoc#ThreadSafeRpcEndpoint">ThreadSafeRpcEndpoint</a> for <a href="BlockManagerMaster.html" class="page">BlockManagerMaster</a> under <strong>BlockManagerMaster</strong> name.</p>
+<p><code>BlockManagerMasterEndpoint</code> is the <a href="../rpc/index.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> for <a href="BlockManagerMaster.html" class="page">BlockManagerMaster</a> under <strong>BlockManagerMaster</strong> name.</p>
 </div>
 <div class="paragraph">
 <p><code>BlockManagerMasterEndpoint</code> tracks status of the <a href="BlockManager.html" class="page">BlockManagers</a> (on the executors) in a Spark application.</p>
@@ -2475,7 +2479,7 @@ FIXME Describe <code>listenerBus</code> + omnigraffle it.
 <div class="ulist">
 <ul>
 <li>
-<p><a id="rpcEnv"></a> <a href="spark-rpc.adoc">RpcEnv</a></p>
+<p><a id="rpcEnv"></a> <a href="../rpc/index.html" class="page">RpcEnv</a></p>
 </li>
 <li>
 <p><a id="isLocal"></a> Flag whether <code>BlockManagerMasterEndpoint</code> works in local or cluster mode</p>

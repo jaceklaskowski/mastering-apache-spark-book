@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcEnv.html">RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -711,27 +736,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-cachemanager.html">Cache Manager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-rpc.html">RPC Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rpc-RpcEnv.html">RpcEnv</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rpc-RpcEndpoint.html">RpcEndpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-RpcEndpointRef.html">RpcEndpointRef</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-RpcEnvFactory.html">RpcEnvFactory</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rpc-netty.html">Netty-based RpcEnv</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-TransportConf.html">TransportConf</a>
@@ -1922,7 +1926,7 @@
 <p>Listener Bus</p>
 </li>
 <li>
-<p><a href="spark-rpc.adoc">RPC Environment</a></p>
+<p><a href="rpc/index.html" class="page">RPC Environment</a></p>
 </li>
 <li>
 <p><a href="scheduler/MapOutputTrackerMaster.html" class="page">MapOutputTrackerMaster</a> with the name <strong>MapOutputTracker</strong></p>
@@ -2057,7 +2061,7 @@ It is printed out to the standard error output in <a href="spark-submit.adoc#ver
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark_driver_port"></a><a id="spark.driver.port"></a> <code>spark.driver.port</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>0</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The port the driver listens to. It is first set to <code>0</code> in the driver when <a href="spark-SparkContext.adoc#creating-instance">SparkContext is initialized</a>.</p>
-<p class="tableblock">Set to the port of <a href="spark-rpc.adoc">RpcEnv</a> of the driver (in <a href="#create">SparkEnv.create</a>) or when <a href="yarn/spark-yarn-applicationmaster.adoc#waitForSparkDriver">client-mode <code>ApplicationMaster</code> connected to the driver</a> (in Spark on YARN).</p></td>
+<p class="tableblock">Set to the port of <a href="rpc/index.html" class="page">RpcEnv</a> of the driver (in <a href="#create">SparkEnv.create</a>) or when <a href="yarn/spark-yarn-applicationmaster.adoc#waitForSparkDriver">client-mode <code>ApplicationMaster</code> connected to the driver</a> (in Spark on YARN).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark_driver_memory"></a> <code>spark.driver.memory</code></p></td>

@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnv.html">RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -711,27 +736,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-cachemanager.html">Cache Manager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-rpc.html">RPC Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEnv.html">RpcEnv</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEndpoint.html">RpcEndpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEndpointRef.html">RpcEndpointRef</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEnvFactory.html">RpcEnvFactory</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-netty.html">Netty-based RpcEnv</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-TransportConf.html">TransportConf</a>
@@ -1979,7 +1983,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="amEndpoint"></a> <code>amEndpoint</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">(uninitialized)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../spark-RpcEndpointRef.adoc">RpcEndpointRef</a> to the <strong>YarnAM</strong> RPC endpoint initialized when <code>ApplicationMaster</code> <a href="#runAMEndpoint">runAMEndpoint</a>.</p>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../rpc/RpcEndpointRef.html" class="page">RpcEndpointRef</a> to the <strong>YarnAM</strong> RPC endpoint initialized when <code>ApplicationMaster</code> <a href="#runAMEndpoint">runAMEndpoint</a>.</p>
 <p class="tableblock">CAUTION: FIXME When, in a Spark application&#8217;s lifecycle, does <code>runAMEndpoint</code> really happen?</p>
 <p class="tableblock">Used exclusively when <code>ApplicationMaster</code> <a href="#addAmIpFilter">registers the web UI security filters</a> (in <a href="#isClusterMode"><code>client</code> deploy mode</a> when the driver runs outside <code>ApplicationMaster</code>).</p></td>
 </tr>
@@ -2021,7 +2025,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="rpcEnv"></a> <code>rpcEnv</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">(uninitialized)</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="spark-rpc.adoc">RpcEnv</a> which is:</p>
+<p><a href="../rpc/index.html" class="page">RpcEnv</a> which is:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2349,7 +2353,7 @@ FIXME Security stuff begs for more details.
 </div>
 </div>
 <div id="runExecutorLauncher-sparkYarnAM" class="paragraph">
-<p><code>runExecutorLauncher</code> <a href="../spark-rpc.adoc#create">creates <code>sparkYarnAM</code> RPC environment</a> (on <a href="spark-yarn-settings.adoc#spark.yarn.am.port">spark.yarn.am.port</a> port, the internal <a href="#sparkConf">SparkConf</a> and <code>clientMode</code> enabled).</p>
+<p><code>runExecutorLauncher</code> <a href="../index.adoc#create">creates <code>sparkYarnAM</code> RPC environment</a> (on <a href="spark-yarn-settings.adoc#spark.yarn.am.port">spark.yarn.am.port</a> port, the internal <a href="#sparkConf">SparkConf</a> and <code>clientMode</code> enabled).</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -2359,7 +2363,7 @@ FIXME Security stuff begs for more details.
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Read the note in <a href="../spark-rpc.adoc#create">Creating RpcEnv</a> to learn the meaning of <code>clientMode</code> input argument.</p>
+<p>Read the note in <a href="../index.adoc#create">Creating RpcEnv</a> to learn the meaning of <code>clientMode</code> input argument.</p>
 </div>
 <div class="paragraph">
 <p><code>clientMode</code> is enabled for so-called a client-mode <code>ApplicationMaster</code> which is when a Spark application is submitted to YARN in <a href="../spark-deploy-mode.adoc#client"><code>client</code> deploy mode</a>.</p>
@@ -2424,7 +2428,7 @@ FIXME Why is this needed? <code>addAmIpFilter</code>
 </div>
 </div>
 <div id="runDriver-rpcEnv" class="paragraph">
-<p><code>runDriver</code> waits <a href="spark-yarn-settings.adoc#spark.yarn.am.waitTime">spark.yarn.am.waitTime</a> time till the Spark application&#8217;s <a href="../spark-SparkContext.adoc">SparkContext</a> is available and accesses the <a href="../spark-rpc.adoc">current <code>RpcEnv</code></a> (and saves it as the internal <a href="#rpcEnv">rpcEnv</a>).</p>
+<p><code>runDriver</code> waits <a href="spark-yarn-settings.adoc#spark.yarn.am.waitTime">spark.yarn.am.waitTime</a> time till the Spark application&#8217;s <a href="../spark-SparkContext.adoc">SparkContext</a> is available and accesses the <a href="../index.adoc">current <code>RpcEnv</code></a> (and saves it as the internal <a href="#rpcEnv">rpcEnv</a>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2600,7 +2604,7 @@ A Spark application&#8217;s exit codes are passed directly to <a href="#finish">
 <p>Internally, <code>registerAM</code> first takes the application and attempt ids, and creates the URL of <a href="../spark-history-server/index.html" class="page">Spark History Server</a> for the Spark application, i.e. <code>[address]/history/[appId]/[attemptId]</code>, by <a href="../spark-SparkHadoopUtil.adoc#substituteHadoopVariables">substituting Hadoop variables</a> (using the internal <a href="#yarnConf">YarnConfiguration</a>) in the optional <a href="spark-yarn-settings.adoc#spark.yarn.historyServer.address">spark.yarn.historyServer.address</a> setting.</p>
 </div>
 <div class="paragraph">
-<p><code>registerAM</code> then creates a <a href="../spark-rpc.adoc#RpcEndpointAddress">RpcEndpointAddress</a> for the driver&#8217;s <a href="../scheduler/CoarseGrainedSchedulerBackend.html#CoarseGrainedScheduler" class="page">CoarseGrainedScheduler RPC endpoint</a> available at <a href="../spark-driver.adoc#spark.driver.host">spark.driver.host</a> and <a href="../spark-driver.adoc#spark.driver.port">spark.driver.port</a>.</p>
+<p><code>registerAM</code> then creates a <a href="../index.adoc#RpcEndpointAddress">RpcEndpointAddress</a> for the driver&#8217;s <a href="../scheduler/CoarseGrainedSchedulerBackend.html#CoarseGrainedScheduler" class="page">CoarseGrainedScheduler RPC endpoint</a> available at <a href="../spark-driver.adoc#spark.driver.host">spark.driver.host</a> and <a href="../spark-driver.adoc#spark.driver.port">spark.driver.port</a>.</p>
 </div>
 <div class="paragraph">
 <p><code>registerAM</code> <a href="spark-yarn-ExecutorRunnable.adoc#launchContextDebugInfo">prints YARN launch context diagnostic information (with command, environment and resources) for executors</a> (with <a href="../spark-Executor.adoc#spark.executor.memory">spark.executor.memory</a>, <a href="../spark-Executor.adoc#spark.executor.cores">spark.executor.cores</a> and dummy <code>&lt;executorId&gt;</code> and <code>&lt;hostname&gt;</code>)</p>
@@ -3043,7 +3047,7 @@ FIXME <code>waitForSparkDriver</code> expects the driver&#8217;s host and port a
 </div>
 </div>
 <div class="paragraph">
-<p><code>runAMEndpoint</code> sets up a <a href="../spark-RpcEndpointRef.adoc">RpcEndpointRef</a> to the driver&#8217;s <code>YarnScheduler</code> endpoint and registers <strong>YarnAM</strong> endpoint.</p>
+<p><code>runAMEndpoint</code> sets up a <a href="../rpc/RpcEndpointRef.html" class="page">RpcEndpointRef</a> to the driver&#8217;s <code>YarnScheduler</code> endpoint and registers <strong>YarnAM</strong> endpoint.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3064,7 +3068,7 @@ FIXME <code>waitForSparkDriver</code> expects the driver&#8217;s host and port a
 <div class="title">Figure 5. Registering YarnAM Endpoint</div>
 </div>
 <div class="paragraph">
-<p>Internally, <code>runAMEndpoint</code> <a href="../spark-rpc.adoc#setupEndpointRefByURI">gets a <code>RpcEndpointRef</code></a> to the driver&#8217;s <code>YarnScheduler</code> endpoint (available on the <code>host</code> and <code>port</code>).</p>
+<p>Internally, <code>runAMEndpoint</code> <a href="../index.adoc#setupEndpointRefByURI">gets a <code>RpcEndpointRef</code></a> to the driver&#8217;s <code>YarnScheduler</code> endpoint (available on the <code>host</code> and <code>port</code>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3079,7 +3083,7 @@ FIXME <code>waitForSparkDriver</code> expects the driver&#8217;s host and port a
 </table>
 </div>
 <div class="paragraph">
-<p><code>runAMEndpoint</code> then <a href="../spark-rpc.adoc#setupEndpoint">registers the RPC endpoint</a> as <strong>YarnAM</strong> (and <a href="spark-yarn-AMEndpoint.adoc">AMEndpoint</a> implementation with <code>ApplicationMaster</code>'s <a href="#rpcEnv">RpcEnv</a>, <code>YarnScheduler</code> endpoint reference, and <code>isClusterMode</code> flag).</p>
+<p><code>runAMEndpoint</code> then <a href="../index.adoc#setupEndpoint">registers the RPC endpoint</a> as <strong>YarnAM</strong> (and <a href="spark-yarn-AMEndpoint.adoc">AMEndpoint</a> implementation with <code>ApplicationMaster</code>'s <a href="#rpcEnv">RpcEnv</a>, <code>YarnScheduler</code> endpoint reference, and <code>isClusterMode</code> flag).</p>
 </div>
 <div class="admonitionblock note">
 <table>

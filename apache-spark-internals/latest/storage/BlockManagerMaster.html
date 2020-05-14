@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnv.html">RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -711,27 +736,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-cachemanager.html">Cache Manager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-rpc.html">RPC Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEnv.html">RpcEnv</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEndpoint.html">RpcEndpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEndpointRef.html">RpcEndpointRef</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEnvFactory.html">RpcEnvFactory</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-netty.html">Netty-based RpcEnv</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-TransportConf.html">TransportConf</a>
@@ -1961,7 +1965,7 @@ FIXME
 <div class="ulist">
 <ul>
 <li>
-<p><a id="driverEndpoint"></a> <a href="spark-RpcEndpointRef.adoc">RpcEndpointRef</a> to&#8230;&#8203;FIXME</p>
+<p><a id="driverEndpoint"></a> <a href="../rpc/RpcEndpointRef.html" class="page">RpcEndpointRef</a> to&#8230;&#8203;FIXME</p>
 </li>
 <li>
 <p><a id="conf"></a> <a href="spark-SparkConf.adoc">SparkConf</a></p>
@@ -2047,7 +2051,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p>If it is a <code>blocking</code> operation, it waits for a result for <a href="spark-rpc.adoc#spark.rpc.askTimeout">spark.rpc.askTimeout</a>, <a href="spark-rpc.adoc#spark.network.timeout">spark.network.timeout</a> or <code>120</code> secs.</p>
+<p>If it is a <code>blocking</code> operation, it waits for a result for <a href="../rpc/index.html#spark.rpc.askTimeout" class="page">spark.rpc.askTimeout</a>, <a href="../rpc/index.html#spark.network.timeout" class="page">spark.network.timeout</a> or <code>120</code> secs.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2072,7 +2076,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p>If it is a <code>blocking</code> operation, it waits for the result for <a href="spark-rpc.adoc#spark.rpc.askTimeout">spark.rpc.askTimeout</a>, <a href="spark-rpc.adoc#spark.network.timeout">spark.network.timeout</a> or <code>120</code> secs.</p>
+<p>If it is a <code>blocking</code> operation, it waits for the result for <a href="../rpc/index.html#spark.rpc.askTimeout" class="page">spark.rpc.askTimeout</a>, <a href="../rpc/index.html#spark.network.timeout" class="page">spark.network.timeout</a> or <code>120</code> secs.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2109,7 +2113,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p>If it is a <code>blocking</code> operation, it waits for the result for <a href="spark-rpc.adoc#spark.rpc.askTimeout">spark.rpc.askTimeout</a>, <a href="spark-rpc.adoc#spark.network.timeout">spark.network.timeout</a> or <code>120</code> secs.</p>
+<p>If it is a <code>blocking</code> operation, it waits for the result for <a href="../rpc/index.html#spark.rpc.askTimeout" class="page">spark.rpc.askTimeout</a>, <a href="../rpc/index.html#spark.network.timeout" class="page">spark.network.timeout</a> or <code>120</code> secs.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2380,7 +2384,7 @@ The input <code>maxMemSize</code> is the <a href="BlockManager.html#maxMemory" c
 <p><code>getBlockStatus</code> posts a <code>GetBlockStatus(blockId, askSlaves)</code> message to <a href="spark-blockmanager-BlockManagerMasterEndpoint.adoc">BlockManagerMaster RPC endpoint</a> and waits for a response (of type <code>Map[BlockManagerId, Future[Option[BlockStatus]]]</code>).</p>
 </div>
 <div class="paragraph">
-<p>It then builds a sequence of future results that are <code>BlockStatus</code> statuses and waits for a result for <a href="spark-rpc.adoc#spark.rpc.askTimeout">spark.rpc.askTimeout</a>, <a href="spark-rpc.adoc#spark.network.timeout">spark.network.timeout</a> or <code>120</code> secs.</p>
+<p>It then builds a sequence of future results that are <code>BlockStatus</code> statuses and waits for a result for <a href="../rpc/index.html#spark.rpc.askTimeout" class="page">spark.rpc.askTimeout</a>, <a href="../rpc/index.html#spark.network.timeout" class="page">spark.network.timeout</a> or <code>120</code> secs.</p>
 </div>
 <div class="paragraph">
 <p>No result leads to a <code>SparkException</code> with the following message:</p>
@@ -2401,7 +2405,7 @@ The input <code>maxMemSize</code> is the <a href="BlockManager.html#maxMemory" c
 </div>
 </div>
 <div class="paragraph">
-<p><code>getMatchingBlockIds</code> posts a <code>GetMatchingBlockIds(filter, askSlaves)</code> message to <a href="spark-blockmanager-BlockManagerMasterEndpoint.adoc">BlockManagerMaster RPC endpoint</a> and waits for a response which becomes the result for <a href="spark-rpc.adoc#spark.rpc.askTimeout">spark.rpc.askTimeout</a>, <a href="spark-rpc.adoc#spark.network.timeout">spark.network.timeout</a> or <code>120</code> secs.</p>
+<p><code>getMatchingBlockIds</code> posts a <code>GetMatchingBlockIds(filter, askSlaves)</code> message to <a href="spark-blockmanager-BlockManagerMasterEndpoint.adoc">BlockManagerMaster RPC endpoint</a> and waits for a response which becomes the result for <a href="../rpc/index.html#spark.rpc.askTimeout" class="page">spark.rpc.askTimeout</a>, <a href="../rpc/index.html#spark.network.timeout" class="page">spark.network.timeout</a> or <code>120</code> secs.</p>
 </div>
 </div>
 <div class="sect2">

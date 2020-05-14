@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnv.html">RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -711,27 +736,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-cachemanager.html">Cache Manager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-rpc.html">RPC Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEnv.html">RpcEnv</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEndpoint.html">RpcEndpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEndpointRef.html">RpcEndpointRef</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEnvFactory.html">RpcEnvFactory</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-netty.html">Netty-based RpcEnv</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-TransportConf.html">TransportConf</a>
@@ -1884,7 +1888,7 @@
 <h2 id="driverendpointcoarsegrainedschedulerbackend-rpc-endpoint"><a class="anchor" href="#driverendpointcoarsegrainedschedulerbackend-rpc-endpoint"></a><a class="link" href="#driverendpointcoarsegrainedschedulerbackend-rpc-endpoint"><a id="DriverEndpoint"></a> DriverEndpoint&#8201;&#8212;&#8201;CoarseGrainedSchedulerBackend RPC Endpoint</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>DriverEndpoint</code> is a <a href="spark-rpc.adoc#ThreadSafeRpcEndpoint">ThreadSafeRpcEndpoint</a> that acts as a <a href="#messages">message handler</a> for <a href="CoarseGrainedSchedulerBackend.html" class="page">CoarseGrainedSchedulerBackend</a> to communicate with <a href="spark-CoarseGrainedExecutorBackend.adoc">CoarseGrainedExecutorBackend</a>.</p>
+<p><code>DriverEndpoint</code> is a <a href="../rpc/index.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> that acts as a <a href="#messages">message handler</a> for <a href="CoarseGrainedSchedulerBackend.html" class="page">CoarseGrainedSchedulerBackend</a> to communicate with <a href="spark-CoarseGrainedExecutorBackend.adoc">CoarseGrainedExecutorBackend</a>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -2119,7 +2123,7 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>onStart</code> is part of <a href="spark-rpc-RpcEndpoint.adoc#onStart">RpcEndpoint contract</a> that is executed before a RPC endpoint starts accepting messages.
+<code>onStart</code> is part of <a href="../rpc/RpcEndpoint.html#onStart" class="page">RpcEndpoint contract</a> that is executed before a RPC endpoint starts accepting messages.
 </td>
 </tr>
 </table>
@@ -2337,7 +2341,7 @@ The default task scheduler in Spark&#8201;&#8212;&#8201;<a href="TaskSchedulerIm
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>ExecutorData</code> tracks the <a href="spark-RpcEndpointRef.adoc">RpcEndpointRef</a> of executors to send serialized tasks to (as <code>executorEndpoint</code>).
+<code>ExecutorData</code> tracks the <a href="../rpc/RpcEndpointRef.html" class="page">RpcEndpointRef</a> of executors to send serialized tasks to (as <code>executorEndpoint</code>).
 </td>
 </tr>
 </table>
@@ -2407,7 +2411,7 @@ Scheduling in Spark relies on cores only (not memory), i.e. the number of tasks 
 <div class="ulist">
 <ul>
 <li>
-<p><a id="rpcEnv"></a> <a href="spark-rpc.adoc">RpcEnv</a></p>
+<p><a id="rpcEnv"></a> <a href="../rpc/index.html" class="page">RpcEnv</a></p>
 </li>
 <li>
 <p><a id="sparkProperties"></a> Collection of Spark properties and their values</p>
@@ -2512,7 +2516,7 @@ extends CoarseGrainedClusterMessage</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>DriverEndpoint</code> uses the input <code>executorRef</code> as the executor&#8217;s <a href="spark-RpcEndpointRef.adoc">RpcEndpointRef</a>.
+<code>DriverEndpoint</code> uses the input <code>executorRef</code> as the executor&#8217;s <a href="../rpc/RpcEndpointRef.html" class="page">RpcEndpointRef</a>.
 </td>
 </tr>
 </table>

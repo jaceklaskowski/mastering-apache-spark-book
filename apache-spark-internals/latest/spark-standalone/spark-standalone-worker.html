@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnv.html">RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -711,27 +736,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-cachemanager.html">Cache Manager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-rpc.html">RPC Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEnv.html">RpcEnv</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEndpoint.html">RpcEndpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEndpointRef.html">RpcEndpointRef</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEnvFactory.html">RpcEnvFactory</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-netty.html">Netty-based RpcEnv</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-TransportConf.html">TransportConf</a>
@@ -1884,7 +1888,7 @@
 <p><strong>Standalone Worker</strong> (aka <em>standalone slave</em>) is a logical node in a Spark Standalone cluster.</p>
 </div>
 <div id="ENDPOINT_NAME" class="paragraph">
-<p><code>Worker</code> is a <a href="spark-rpc.adoc#ThreadSafeRpcEndpoint">ThreadSafeRpcEndpoint</a> that uses <strong>Worker</strong> for the RPC endpoint name when <a href="#startRpcEnvAndEndpoint">registered</a>.</p>
+<p><code>Worker</code> is a <a href="../rpc/index.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> that uses <strong>Worker</strong> for the RPC endpoint name when <a href="#startRpcEnvAndEndpoint">registered</a>.</p>
 </div>
 <div class="paragraph">
 <p>You can have one or many standalone workers in a standalone cluster. They can be started and stopped using <a href="spark-standalone-worker-scripts.adoc">management scripts</a>.</p>
@@ -1931,7 +1935,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>receive</code> is part of <a href="spark-rpc-RpcEndpoint.adoc#receive">RpcEndpoint Contract</a> to process messages.
+<code>receive</code> is part of <a href="../rpc/RpcEndpoint.html#receive" class="page">RpcEndpoint Contract</a> to process messages.
 </td>
 </tr>
 </table>
@@ -1994,13 +1998,13 @@
 <p><code>startRpcEnvAndEndpoint</code>&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p><code>startRpcEnvAndEndpoint</code> creates a <a href="spark-rpc.adoc#create">RpcEnv</a> for the input <code>host</code> and <code>port</code>.</p>
+<p><code>startRpcEnvAndEndpoint</code> creates a <a href="../rpc/index.html#create" class="page">RpcEnv</a> for the input <code>host</code> and <code>port</code>.</p>
 </div>
 <div class="paragraph">
 <p><code>startRpcEnvAndEndpoint</code> <a href="#creating-instance">creates a Worker RPC endpoint</a> (for the RPC environment and the input <code>webUiPort</code>, <code>cores</code>, <code>memory</code>, <code>masterUrls</code>, <code>workDir</code> and <code>conf</code>).</p>
 </div>
 <div class="paragraph">
-<p><code>startRpcEnvAndEndpoint</code> requests the <code>RpcEnv</code> to <a href="spark-rpc.adoc#setupEndpoint">register the Worker RPC endpoint</a> under the name <a href="#ENDPOINT_NAME">Worker</a>.</p>
+<p><code>startRpcEnvAndEndpoint</code> requests the <code>RpcEnv</code> to <a href="../rpc/index.html#setupEndpoint" class="page">register the Worker RPC endpoint</a> under the name <a href="#ENDPOINT_NAME">Worker</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2035,7 +2039,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a id="rpcEnv"></a> <a href="spark-rpc.adoc">RpcEnv</a></p>
+<p><a id="rpcEnv"></a> <a href="../rpc/index.html" class="page">RpcEnv</a></p>
 </li>
 <li>
 <p><a id="webUiPort"></a> Port of the administrative web UI</p>
@@ -2110,7 +2114,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>onStart</code> is part of <a href="spark-rpc-RpcEndpoint.adoc#onStart">RpcEndpoint Contract</a> to activate an endpoint and start accepting messages.
+<code>onStart</code> is part of <a href="../rpc/RpcEndpoint.html#onStart" class="page">RpcEndpoint Contract</a> to activate an endpoint and start accepting messages.
 </td>
 </tr>
 </table>

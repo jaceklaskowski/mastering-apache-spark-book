@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcEnv.html">RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -711,27 +736,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-cachemanager.html">Cache Manager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-rpc.html">RPC Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rpc-RpcEnv.html">RpcEnv</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rpc-RpcEndpoint.html">RpcEndpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-RpcEndpointRef.html">RpcEndpointRef</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-RpcEnvFactory.html">RpcEnvFactory</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-rpc-netty.html">Netty-based RpcEnv</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-TransportConf.html">TransportConf</a>
@@ -1882,7 +1886,7 @@
 <h2 id="heartbeatreceiver-rpc-endpoint"><a class="anchor" href="#heartbeatreceiver-rpc-endpoint"></a><a class="link" href="#heartbeatreceiver-rpc-endpoint"><a id="HeartbeatReceiver"></a> HeartbeatReceiver RPC Endpoint</a></h2>
 <div class="sectionbody">
 <div id="ENDPOINT_NAME" class="paragraph">
-<p><code>HeartbeatReceiver</code> is a <a href="spark-rpc.adoc#ThreadSafeRpcEndpoint">ThreadSafeRpcEndpoint</a> registered on the driver under the name <strong>HeartbeatReceiver</strong>.</p>
+<p><code>HeartbeatReceiver</code> is a <a href="rpc/index.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> registered on the driver under the name <strong>HeartbeatReceiver</strong>.</p>
 </div>
 <div class="paragraph">
 <p><code>HeartbeatReceiver</code> receives <a href="#Heartbeat">Heartbeat</a> messages from executors that Spark uses as the mechanism to receive accumulator updates (with task metrics and a Spark application&#8217;s accumulators) and <a href="scheduler/TaskScheduler.html#executorHeartbeatReceived" class="page">pass them along to <code>TaskScheduler</code></a>.</p>
@@ -2022,7 +2026,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>onStart</code> is part of the <a href="spark-rpc-RpcEndpoint.adoc">RpcEndpoint Contract</a>
+<code>onStart</code> is part of the <a href="rpc/RpcEndpoint.html" class="page">RpcEndpoint Contract</a>
 </td>
 </tr>
 </table>
@@ -2297,7 +2301,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>onStop</code> is part of the <a href="spark-rpc.adoc#RpcEndpoint">RpcEndpoint Contract</a>
+<code>onStop</code> is part of the <a href="rpc/index.html#RpcEndpoint" class="page">RpcEndpoint Contract</a>
 </td>
 </tr>
 </table>
@@ -2398,7 +2402,7 @@ FIXME
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark.network.timeout"></a> <code>spark.network.timeout</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#spark_storage_blockManagerSlaveTimeoutMs">spark.storage.blockManagerSlaveTimeoutMs</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="spark-rpc.adoc#spark.network.timeout">spark.network.timeout</a> in <a href="spark-rpc.adoc">RPC Environment (RpcEnv)</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="rpc/index.html#spark.network.timeout" class="page">spark.network.timeout</a> in <a href="rpc/index.html" class="page">RPC Environment (RpcEnv)</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark.network.timeoutInterval"></a> <code>spark.network.timeoutInterval</code></p></td>

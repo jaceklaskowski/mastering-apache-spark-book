@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnv.html">RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -711,27 +736,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-cachemanager.html">Cache Manager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-rpc.html">RPC Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEnv.html">RpcEnv</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEndpoint.html">RpcEndpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEndpointRef.html">RpcEndpointRef</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEnvFactory.html">RpcEnvFactory</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-netty.html">Netty-based RpcEnv</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-TransportConf.html">TransportConf</a>
@@ -1883,7 +1887,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>MapOutputTrackerMasterEndpoint</strong> is a <a href="../spark-rpc-RpcEndpoint.html" class="page">RpcEndpoint</a> for <a href="MapOutputTrackerMaster.html" class="page">MapOutputTrackerMaster</a> to <a href="#receiveAndReply">handle</a> the following messages:</p>
+<p><strong>MapOutputTrackerMasterEndpoint</strong> is a <a href="../rpc/RpcEndpoint.html" class="page">RpcEndpoint</a> for <a href="MapOutputTrackerMaster.html" class="page">MapOutputTrackerMaster</a> to <a href="#receiveAndReply">handle</a> the following messages:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1906,7 +1910,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a id="rpcEnv"></a> <a href="../spark-rpc-RpcEnv.html" class="page">RpcEnv</a></p>
+<p><a id="rpcEnv"></a> <a href="../rpc/RpcEnv.html" class="page">RpcEnv</a></p>
 </li>
 <li>
 <p><a id="tracker"></a> <a href="MapOutputTrackerMaster.html" class="page">MapOutputTrackerMaster</a></p>
@@ -1967,7 +1971,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>MapOutputTrackerMasterEndpoint confirms the request (by replying <code>true</code>) and <a href="spark-rpc-RpcEndpoint.adoc#stop">stops itself</a> (and stops accepting messages).</p>
+<p>MapOutputTrackerMasterEndpoint confirms the request (by replying <code>true</code>) and <a href="../rpc/RpcEndpoint.html#stop" class="page">stops itself</a> (and stops accepting messages).</p>
 </div>
 <div class="paragraph">
 <p>StopMapOutputTracker is posted when MapOutputTrackerMaster is requested to <a href="MapOutputTrackerMaster.html#stop" class="page">stop</a>.</p>

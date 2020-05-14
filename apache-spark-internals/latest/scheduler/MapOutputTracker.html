@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnv.html">RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -711,27 +736,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-cachemanager.html">Cache Manager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-rpc.html">RPC Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEnv.html">RpcEnv</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEndpoint.html">RpcEndpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEndpointRef.html">RpcEndpointRef</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEnvFactory.html">RpcEnvFactory</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-netty.html">Netty-based RpcEnv</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-TransportConf.html">TransportConf</a>
@@ -1932,7 +1936,7 @@
 <h2 id="mapoutputtracker-rpc-endpoint"><a class="anchor" href="#mapoutputtracker-rpc-endpoint"></a><a class="link" href="#mapoutputtracker-rpc-endpoint"><a id="trackerEndpoint"></a><a id="ENDPOINT_NAME"></a> MapOutputTracker RPC Endpoint</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>trackerEndpoint is a <a href="../spark-RpcEndpointRef.html" class="page">RpcEndpointRef</a> of the <strong>MapOutputTracker</strong> RPC endpoint.</p>
+<p>trackerEndpoint is a <a href="../rpc/RpcEndpointRef.html" class="page">RpcEndpointRef</a> of the <strong>MapOutputTracker</strong> RPC endpoint.</p>
 </div>
 <div class="paragraph">
 <p>trackerEndpoint is initialized (registered or looked up) when SparkEnv is <a href="../core/SparkEnv.html#create" class="page">created</a> for the driver and executors.</p>
@@ -2159,7 +2163,7 @@ getMapSizesByExecutorId gets the map outputs for all the partitions (despite the
 </div>
 </div>
 <div class="paragraph">
-<p>askTracker <a href="../spark-RpcEndpointRef.html#askWithRetry" class="page">sends the <code>message</code></a> to <a href="#trackerEndpoint">trackerEndpoint RpcEndpointRef</a> and waits for a result.</p>
+<p>askTracker <a href="../rpc/RpcEndpointRef.html#askWithRetry" class="page">sends the <code>message</code></a> to <a href="#trackerEndpoint">trackerEndpoint RpcEndpointRef</a> and waits for a result.</p>
 </div>
 <div class="paragraph">
 <p>When an exception happens, you should see the following ERROR message in the logs and askTracker throws a <code>SparkException</code>.</p>

@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnv.html">RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -711,27 +736,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-cachemanager.html">Cache Manager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-rpc.html">RPC Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEnv.html">RpcEnv</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEndpoint.html">RpcEndpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEndpointRef.html">RpcEndpointRef</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEnvFactory.html">RpcEnvFactory</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-netty.html">Netty-based RpcEnv</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-TransportConf.html">TransportConf</a>
@@ -1881,13 +1885,13 @@
 <h2 id="localendpointrpc-endpoint-for-localschedulerbackend"><a class="anchor" href="#localendpointrpc-endpoint-for-localschedulerbackend"></a><a class="link" href="#localendpointrpc-endpoint-for-localschedulerbackend"><a id="LocalEndpoint"></a> LocalEndpoint&#8201;&#8212;&#8201;RPC Endpoint for LocalSchedulerBackend</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>LocalEndpoint</code> is the <a href="#../spark-rpc.adoc#ThreadSafeRpcEndpoint" class="page unresolved">ThreadSafeRpcEndpoint</a> for <a href="#executorBackend">LocalSchedulerBackend</a> and is registered under the <strong>LocalSchedulerBackendEndpoint</strong> name.</p>
+<p><code>LocalEndpoint</code> is the <a href="index.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> for <a href="#executorBackend">LocalSchedulerBackend</a> and is registered under the <strong>LocalSchedulerBackendEndpoint</strong> name.</p>
 </div>
 <div class="paragraph">
 <p><code>LocalEndpoint</code> is <a href="#creating-instance">created</a> exclusively when <code>LocalSchedulerBackend</code> is requested to <a href="spark-LocalSchedulerBackend.html#start" class="page">start</a>.</p>
 </div>
 <div class="paragraph">
-<p>Put simply, <code>LocalEndpoint</code> is the communication channel between <a href="#scheduler">TaskSchedulerImpl</a> and <a href="#executorBackend">LocalSchedulerBackend</a>. <code>LocalEndpoint</code> is a (thread-safe) <a href="#../spark-rpc-RpcEndpoint.adoc" class="page unresolved">RpcEndpoint</a> that hosts an <a href="#executor">executor</a> (with <code>driver</code> ID and <code>localhost</code> hostname) for Spark local mode.</p>
+<p>Put simply, <code>LocalEndpoint</code> is the communication channel between <a href="#scheduler">TaskSchedulerImpl</a> and <a href="#executorBackend">LocalSchedulerBackend</a>. <code>LocalEndpoint</code> is a (thread-safe) <a href="../rpc/RpcEndpoint.html" class="page">RpcEndpoint</a> that hosts an <a href="#executor">executor</a> (with <code>driver</code> ID and <code>localhost</code> hostname) for Spark local mode.</p>
 </div>
 <table id="messages" class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. LocalEndpoint&#8217;s RPC Messages</caption>
@@ -2029,7 +2033,7 @@ A single task to execute costs <a href="../scheduler/TaskSchedulerImpl.html#CPUS
 <div class="ulist">
 <ul>
 <li>
-<p><a id="rpcEnv"></a> <a href="#../spark-rpc.adoc" class="page unresolved">RpcEnv</a></p>
+<p><a id="rpcEnv"></a> <a href="index.html" class="page">RpcEnv</a></p>
 </li>
 <li>
 <p><a id="userClassPath"></a> User-defined class path (<code>Seq[URL]</code>) that is the <a href="spark-LocalSchedulerBackend.html#userClassPath" class="page">spark.executor.extraClassPath</a> configuration property and is used exclusively to create the <a href="#executor">Executor</a></p>
@@ -2063,7 +2067,7 @@ A single task to execute costs <a href="../scheduler/TaskSchedulerImpl.html#CPUS
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>receive</code> is part of the <a href="#../spark-rpc-RpcEndpoint.adoc#receive" class="page unresolved">RpcEndpoint Contract</a> to process receive-only RPC messages.
+<code>receive</code> is part of the <a href="../rpc/RpcEndpoint.html#receive" class="page">RpcEndpoint</a> abstraction.
 </td>
 </tr>
 </table>
@@ -2187,7 +2191,7 @@ A single task to execute costs <a href="../scheduler/TaskSchedulerImpl.html#CPUS
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>receiveAndReply</code> is part of the <a href="#../spark-rpc-RpcEndpoint.adoc#receiveAndReply" class="page unresolved">RpcEndpoint Contract</a> to process receive-reply RPC messages.
+<code>receiveAndReply</code> is part of the <a href="../rpc/RpcEndpoint.html#receiveAndReply" class="page">RpcEndpoint</a> abstraction.
 </td>
 </tr>
 </table>

@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnv.html">RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
@@ -711,27 +736,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-cachemanager.html">Cache Manager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-rpc.html">RPC Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEnv.html">RpcEnv</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEndpoint.html">RpcEndpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEndpointRef.html">RpcEndpointRef</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEnvFactory.html">RpcEnvFactory</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-netty.html">Netty-based RpcEnv</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-TransportConf.html">TransportConf</a>
@@ -1937,7 +1941,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a id="rpcEnv"></a> rpcEnv</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../spark-rpc-RpcEnv.html" class="page">RpcEnv</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../rpc/RpcEnv.html" class="page">RpcEnv</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a id="securityManager"></a> securityManager</code></p></td>
@@ -2084,11 +2088,11 @@ assert(SparkEnv.get.isInstanceOf[SparkEnv])</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bindAddress</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Used to create <a href="spark-rpc.adoc">RpcEnv</a> and <a href="spark-NettyBlockTransferService.adoc#creating-instance">NettyBlockTransferService</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to create <a href="../rpc/index.html" class="page">RpcEnv</a> and <a href="spark-NettyBlockTransferService.adoc#creating-instance">NettyBlockTransferService</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>advertiseAddress</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Used to create <a href="spark-rpc.adoc">RpcEnv</a> and <a href="spark-NettyBlockTransferService.adoc#creating-instance">NettyBlockTransferService</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to create <a href="../rpc/index.html" class="page">RpcEnv</a> and <a href="spark-NettyBlockTransferService.adoc#creating-instance">NettyBlockTransferService</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>numUsableCores</code></p></td>
@@ -2416,7 +2420,7 @@ The number of cores <code>numCores</code> is configured using <code>--cores</cod
 </ol>
 </div>
 <div class="paragraph">
-<p>stop <a href="spark-rpc.adoc#shutdown">requests <code>RpcEnv</code> to shut down</a> and <a href="spark-rpc.adoc#awaitTermination">waits till it terminates</a>.</p>
+<p>stop <a href="../rpc/index.html#shutdown" class="page">requests <code>RpcEnv</code> to shut down</a> and <a href="../rpc/index.html#awaitTermination" class="page">waits till it terminates</a>.</p>
 </div>
 <div class="paragraph">
 <p>Only on the driver, stop deletes the <a href="#driverTmpDir">temporary directory</a>. You can see the following WARN message in the logs if the deletion fails.</p>

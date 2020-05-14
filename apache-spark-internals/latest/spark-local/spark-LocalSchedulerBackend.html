@@ -69,6 +69,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnv.html">RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -711,27 +736,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-cachemanager.html">Cache Manager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-rpc.html">RPC Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEnv.html">RpcEnv</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-RpcEndpoint.html">RpcEndpoint</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEndpointRef.html">RpcEndpointRef</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RpcEnvFactory.html">RpcEnvFactory</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-rpc-netty.html">Netty-based RpcEnv</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-TransportConf.html">TransportConf</a>
@@ -1961,7 +1965,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>localEndpoint</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="localEndpoint"></a> <a href="#../spark-RpcEndpointRef.adoc" class="page unresolved">RpcEndpointRef</a> to <strong>LocalSchedulerBackendEndpoint</strong> RPC endpoint (that is <a href="spark-LocalEndpoint.html" class="page">LocalEndpoint</a> which <code>LocalSchedulerBackend</code> registers when <a href="#start">started</a>)</p>
+<p><a id="localEndpoint"></a> <a href="../rpc/RpcEndpointRef.html" class="page">RpcEndpointRef</a> to <strong>LocalSchedulerBackendEndpoint</strong> RPC endpoint (that is <a href="spark-LocalEndpoint.html" class="page">LocalEndpoint</a> which <code>LocalSchedulerBackend</code> registers when <a href="#start">started</a>)</p>
 </div>
 <div class="paragraph">
 <p>Used when <code>LocalSchedulerBackend</code> is requested for the following:</p>
@@ -2048,7 +2052,7 @@
 <p><code>start</code> requests the <code>SparkEnv</code> object for the current <a href="../core/SparkEnv.html#rpcEnv" class="page">RpcEnv</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>start</code> then creates a <a href="spark-LocalEndpoint.html" class="page">LocalEndpoint</a> and requests the <code>RpcEnv</code> to <a href="#../spark-rpc-RpcEnv.adoc#setupEndpoint" class="page unresolved">register it</a> as <strong>LocalSchedulerBackendEndpoint</strong> RPC endpoint.</p>
+<p><code>start</code> then creates a <a href="spark-LocalEndpoint.html" class="page">LocalEndpoint</a> and requests the <code>RpcEnv</code> to <a href="../rpc/RpcEnv.html#setupEndpoint" class="page">register it</a> as <strong>LocalSchedulerBackendEndpoint</strong> RPC endpoint.</p>
 </div>
 <div class="paragraph">
 <p><code>start</code> requests the <a href="#listenerBus">LiveListenerBus</a> to <a href="#../spark-scheduler-LiveListenerBus.adoc#post" class="page unresolved">post</a> a <a href="#../spark-scheduler-SparkListener.adoc#SparkListenerExecutorAdded" class="page unresolved">SparkListenerExecutorAdded</a> event.</p>
