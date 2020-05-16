@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title> BlockDataManager Contract&#8201;&#8212;&#8201;Block Storage Management API :: The Internals Of Apache Spark</title>
+    <title>BlockDataManager :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/storage/spark-BlockDataManager.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -65,6 +65,46 @@
   <nav class="nav-menu">
     <h3 class="title"><a href="../index.html">Apache Spark</a></h3>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Network System</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/TransportContext.html">TransportContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/MessageHandler.html">MessageHandler</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/TransportRequestHandler.html">TransportRequestHandler</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/TransportConf.html">TransportConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/SparkTransportConf.html">SparkTransportConf</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportClientFactory.html">TransportClientFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportServer.html">TransportServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/RpcHandler.html">RpcHandler</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
@@ -817,34 +857,13 @@
     <a class="nav-link" href="../spark-cachemanager.html">Cache Manager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportConf.html">TransportConf</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-Utils.html">Utils Helper Object</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ManagedBuffer.html">ManagedBuffer</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-RpcHandler.html">RpcHandler</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-RpcResponseCallback.html">RpcResponseCallback</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportRequestHandler.html">TransportRequestHandler</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportContext.html">TransportContext</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportServer.html">TransportServer</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportClientFactory.html">TransportClientFactory</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-MessageHandler.html">MessageHandler</a>
   </li>
 </ul>
   </li>
@@ -1888,12 +1907,12 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page"><a id="BlockDataManager"></a> BlockDataManager Contract&#8201;&#8212;&#8201;Block Storage Management API</h1>
+<h1 class="page">BlockDataManager</h1>
 <div class="paragraph">
-<p><code>BlockDataManager</code> is the <a href="#contract">abstraction</a> of <a href="#implementations">block data managers</a> that manage storage for blocks of data (aka <em>block storage management API</em>).</p>
+<p><strong>BlockDataManager</strong> is the <a href="#contract">abstraction</a> of <a href="#implementations">block data managers</a> that manage storage for blocks of data (aka <em>block storage management API</em>).</p>
 </div>
 <div class="paragraph">
-<p><code>BlockDataManager</code> uses <a href="spark-BlockId.html" class="page">BlockIds</a> to uniquely identify blocks of data and <a href="#spark-ManagedBuffer.adoc" class="page unresolved">ManagedBuffers</a> to refer to them.</p>
+<p>BlockDataManager uses <a href="spark-BlockId.html" class="page">BlockIds</a> to uniquely identify blocks of data and <a href="#spark-ManagedBuffer.adoc" class="page unresolved">ManagedBuffers</a> to refer to them.</p>
 </div>
 <div id="implementations" class="admonitionblock note">
 <table>

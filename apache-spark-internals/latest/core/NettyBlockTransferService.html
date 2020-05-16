@@ -69,6 +69,46 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <span class="nav-text">Network System</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/TransportContext.html">TransportContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/MessageHandler.html">MessageHandler</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/TransportRequestHandler.html">TransportRequestHandler</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/TransportConf.html">TransportConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/SparkTransportConf.html">SparkTransportConf</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportClientFactory.html">TransportClientFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportServer.html">TransportServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/RpcHandler.html">RpcHandler</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../deploy/ExternalShuffleService.html">External Shuffle Service</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -817,34 +857,13 @@
     <a class="nav-link" href="../spark-cachemanager.html">Cache Manager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportConf.html">TransportConf</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-Utils.html">Utils Helper Object</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ManagedBuffer.html">ManagedBuffer</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-RpcHandler.html">RpcHandler</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-RpcResponseCallback.html">RpcResponseCallback</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportRequestHandler.html">TransportRequestHandler</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportContext.html">TransportContext</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportServer.html">TransportServer</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportClientFactory.html">TransportClientFactory</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-MessageHandler.html">MessageHandler</a>
   </li>
 </ul>
   </li>
@@ -1894,60 +1913,148 @@
 <div class="paragraph">
 <p><strong>NettyBlockTransferService</strong> is a <a href="BlockTransferService.html" class="page">BlockTransferService</a> that uses Netty for <a href="#uploadBlock">uploading</a> or <a href="#fetchBlocks">fetching</a> blocks of data.</p>
 </div>
-<div class="paragraph">
-<p>NettyBlockTransferService is <a href="#creating-instance">created</a> when <code>SparkEnv</code> is <a href="SparkEnv.html#create-NettyBlockTransferService" class="page">created</a> for the driver and executors (to <a href="SparkEnv.html#create-BlockManager" class="page">create the BlockManager</a>).</p>
-</div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="_images/NettyBlockTransferService.png" alt="NettyBlockTransferService">
 </div>
-<div class="title">Figure 1. Creating NettyBlockTransferService for BlockManager</div>
-</div>
-<div class="paragraph">
-<p><code>BlockManager</code> uses NettyBlockTransferService for the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>FIXME (should it be here or in BlockManager?)</p>
-</li>
-<li>
-<p><a href="../storage/BlockManager.html#shuffleClient" class="page">ShuffleClient</a> (when <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property is off) for&#8230;&#8203;FIXME</p>
-</li>
-</ul>
-</div>
-<div id="port" class="paragraph">
-<p>NettyBlockTransferService simply requests the <a href="#server">TransportServer</a> for the <a href="spark-TransportServer.adoc#getPort">port</a>.</p>
-</div>
-<div id="logging" class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Enable <code>INFO</code> or <code>TRACE</code> logging level for <code>org.apache.spark.network.netty.NettyBlockTransferService</code> logger to see what happens inside.</p>
-</div>
-<div class="paragraph">
-<p>Add the following line to <code>conf/log4j.properties</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.network.netty.NettyBlockTransferService=TRACE</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Refer to <a href="spark-logging.adoc">Logging</a>.</p>
-</div>
-</td>
-</tr>
-</table>
+<div class="title">Figure 1. NettyBlockTransferService, SparkEnv and BlockManager</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="fetchblocks-method"><a class="anchor" href="#fetchblocks-method"></a><a class="link" href="#fetchblocks-method"><a id="fetchBlocks"></a> <code>fetchBlocks</code> Method</a></h2>
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>NettyBlockTransferService takes the following to be created:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="conf"></a> <a href="../SparkConf.html" class="page">SparkConf</a></p>
+</li>
+<li>
+<p><a id="securityManager"></a> SecurityManager</p>
+</li>
+<li>
+<p><a id="bindAddress"></a> Bind address</p>
+</li>
+<li>
+<p><a id="hostName"></a> Host name</p>
+</li>
+<li>
+<p><a id="_port"></a> Port number</p>
+</li>
+<li>
+<p><a id="numCores"></a> Number of CPU cores</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>NettyBlockTransferService is created when SparkEnv is <a href="SparkEnv.html#create-NettyBlockTransferService" class="page">created</a> for the driver and executors (and <a href="SparkEnv.html#create-BlockManager" class="page">creates the BlockManager</a>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="transportconf-transportcontext"><a class="anchor" href="#transportconf-transportcontext"></a><a class="link" href="#transportconf-transportcontext"><a id="transportConf"></a><a id="transportContext"></a> TransportConf, TransportContext</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>NettyBlockTransferService creates a <a href="../network/TransportConf.html" class="page">TransportConf</a> for <strong>shuffle</strong> module (using <a href="../network/SparkTransportConf.html#fromSparkConf" class="page">SparkTransportConf</a> utility) when <a href="#creating-instance">created</a>.</p>
+</div>
+<div class="paragraph">
+<p>NettyBlockTransferService uses the TransportConf for the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a <a href="../network/TransportContext.html" class="page">TransportContext</a> when requested to <a href="#init">initialize</a></p>
+</li>
+<li>
+<p>Create a OneForOneBlockFetcher and a <a href="RetryingBlockFetcher.html" class="page">RetryingBlockFetcher</a> when requested to <a href="#fetchBlocks">fetch blocks</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>NettyBlockTransferService uses the TransportContext to create the <a href="#clientFactory">TransportClientFactory</a> and the <a href="#server">TransportServer</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="transportclientfactory"><a class="anchor" href="#transportclientfactory"></a><a class="link" href="#transportclientfactory"><a id="clientFactory"></a> TransportClientFactory</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>NettyBlockTransferService creates a <a href="../network/TransportClientFactory.html" class="page">TransportClientFactory</a> when requested to <a href="#init">initialize</a>.</p>
+</div>
+<div class="paragraph">
+<p>NettyBlockTransferService uses the TransportClientFactory for the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#shuffleMetrics">Shuffle metrics</a></p>
+</li>
+<li>
+<p><a href="#fetchBlocks">Fetching blocks</a></p>
+</li>
+<li>
+<p><a href="#uploadBlock">Uploading blocks</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>NettyBlockTransferService requests the TransportClientFactory to <a href="../network/TransportClientFactory.html#close" class="page">close</a> when requested to <a href="#close">close</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="transportserver"><a class="anchor" href="#transportserver"></a><a class="link" href="#transportserver"><a id="server"></a> TransportServer</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>NettyBlockTransferService <a href="#createServer">creates a TransportServer</a> when requested to <a href="#init">initialize</a>.</p>
+</div>
+<div class="paragraph">
+<p>NettyBlockTransferService uses the TransportServer for the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#shuffleMetrics">Shuffle metrics</a></p>
+</li>
+<li>
+<p><a href="#port">Port</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>NettyBlockTransferService requests the TransportServer to <a href="../network/TransportServer.html#close" class="page">close</a> when requested to <a href="#close">close</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="port"><a class="anchor" href="#port"></a><a class="link" href="#port"><a id="port"></a> Port</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>NettyBlockTransferService simply requests the <a href="#server">TransportServer</a> for the <a href="../network/TransportServer.html#getPort" class="page">port</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="shuffle-metrics"><a class="anchor" href="#shuffle-metrics"></a><a class="link" href="#shuffle-metrics"><a id="shuffleMetrics"></a> Shuffle Metrics</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">shuffleMetrics(): MetricSet</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>shuffleMetrics&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>shuffleMetrics is part of the <a href="ShuffleClient.html#shuffleMetrics" class="page">ShuffleClient</a> abstraction.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="fetching-blocks"><a class="anchor" href="#fetching-blocks"></a><a class="link" href="#fetching-blocks"><a id="fetchBlocks"></a> Fetching Blocks</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -1959,20 +2066,8 @@
   listener: BlockFetchingListener): Unit</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>fetchBlocks</code> is part of <a href="BlockTransferService.html#fetchBlocks" class="page">BlockTransferService Contract</a> to&#8230;&#8203;FIXME.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
-<p>When executed, <code>fetchBlocks</code> prints out the following TRACE message in the logs:</p>
+<p>When executed, fetchBlocks prints out the following TRACE message in the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1980,10 +2075,10 @@
 </div>
 </div>
 <div class="paragraph">
-<p><code>fetchBlocks</code> then creates a <code>RetryingBlockFetcher.BlockFetchStarter</code> where <code>createAndStart</code> method&#8230;&#8203;FIXME</p>
+<p>fetchBlocks then creates a <code>RetryingBlockFetcher.BlockFetchStarter</code> where <code>createAndStart</code> method&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p>Depending on the maximum number of acceptable IO exceptions (such as connection timeouts) per request, if the number is greater than <code>0</code>, <code>fetchBlocks</code> creates a <a href="RetryingBlockFetcher.html#creating-instance" class="page">RetryingBlockFetcher</a> and <a href="RetryingBlockFetcher.html#start" class="page">starts</a> it immediately.</p>
+<p>Depending on the maximum number of acceptable IO exceptions (such as connection timeouts) per request, if the number is greater than <code>0</code>, fetchBlocks creates a <a href="RetryingBlockFetcher.html#creating-instance" class="page">RetryingBlockFetcher</a> and <a href="RetryingBlockFetcher.html#start" class="page">starts</a> it immediately.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2008,47 +2103,30 @@
 <pre class="highlightjs highlight"><code>ERROR Exception while beginning fetchBlocks</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>fetchBlocks is part of <a href="BlockTransferService.html#fetchBlocks" class="page">BlockTransferService</a> abstraction.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="application-idappid-property"><a class="anchor" href="#application-idappid-property"></a><a class="link" href="#application-idappid-property"><a id="appId"></a> Application Id&#8201;&#8212;&#8201;<code>appId</code> Property</a></h2>
+<h2 id="application-id"><a class="anchor" href="#application-id"></a><a class="link" href="#application-id"><a id="appId"></a> Application Id</a></h2>
 <div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
+
 </div>
 </div>
 <div class="sect1">
-<h2 id="closing-nettyblocktransferserviceclose-method"><a class="anchor" href="#closing-nettyblocktransferserviceclose-method"></a><a class="link" href="#closing-nettyblocktransferserviceclose-method"><a id="close"></a> Closing NettyBlockTransferService&#8201;&#8212;&#8201;<code>close</code> Method</a></h2>
+<h2 id="closing-nettyblocktransferservice"><a class="anchor" href="#closing-nettyblocktransferservice"></a><a class="link" href="#closing-nettyblocktransferservice"><a id="close"></a> Closing NettyBlockTransferService</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">close(): Unit</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>close</code> is part of the <a href="BlockTransferService.html#close" class="page">BlockTransferService Contract</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>close&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p><code>close</code>&#8230;&#8203;FIXME</p>
+<p>close is part of the <a href="BlockTransferService.html#close" class="page">BlockTransferService</a> abstraction.</p>
 </div>
 </div>
 </div>
@@ -2062,37 +2140,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p>init starts a server for&#8230;&#8203;FIXME</p>
-</div>
-<div class="paragraph">
-<p>Internally, init <a href="NettyBlockRpcServer.html#creating-instance" class="page">creates a <code>NettyBlockRpcServer</code></a> (using the application id, a <code>JavaSerializer</code> and the input <code>blockDataManager</code>).</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME Describe security when <code>authEnabled</code> is enabled.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>init creates a <code>TransportContext</code> with the <code>NettyBlockRpcServer</code> created earlier.</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME Describe <code>transportConf</code> and <code>TransportContext</code>.
-</td>
-</tr>
-</table>
+<p>init creates a <a href="NettyBlockRpcServer.html" class="page">NettyBlockRpcServer</a> (for the <a href="../SparkConf.html#getAppId" class="page">application id</a>, a JavaSerializer and the given <a href="../storage/spark-BlockDataManager.html" class="page">BlockDataManager</a>) that is used to create a <a href="#transportContext">TransportContext</a>.</p>
 </div>
 <div class="paragraph">
 <p>init creates the internal <code>clientFactory</code> and a server.</p>
@@ -2114,7 +2162,7 @@ FIXME What&#8217;s the "a server"?
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>INFO NettyBlockTransferService: Server created on [hostName]:[port]</code></pre>
+<pre class="highlightjs highlight"><code>Server created on [hostName]:[port]</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -2135,7 +2183,7 @@ FIXME What&#8217;s the "a server"?
 </div>
 </div>
 <div class="sect1">
-<h2 id="uploading-blockuploadblock-method"><a class="anchor" href="#uploading-blockuploadblock-method"></a><a class="link" href="#uploading-blockuploadblock-method"><a id="uploadBlock"></a> Uploading Block&#8201;&#8212;&#8201;<code>uploadBlock</code> Method</a></h2>
+<h2 id="uploading-block"><a class="anchor" href="#uploading-block"></a><a class="link" href="#uploading-block"><a id="uploadBlock"></a> Uploading Block</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2149,20 +2197,8 @@ FIXME What&#8217;s the "a server"?
   classTag: ClassTag[_]): Future[Unit]</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>uploadBlock</code> is part of the <a href="BlockTransferService.html#uploadBlock" class="page">BlockTransferService Contract</a>.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
-<p>Internally, <code>uploadBlock</code> creates a <code>TransportClient</code> client to send a <a href="#UploadBlock"><code>UploadBlock</code> message</a> (to the input <code>hostname</code> and <code>port</code>).</p>
+<p>Internally, uploadBlock creates a <code>TransportClient</code> client to send a <a href="#UploadBlock"><code>UploadBlock</code> message</a> (to the input <code>hostname</code> and <code>port</code>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2210,10 +2246,13 @@ FIXME Describe <code>TransportClient</code> and <code>clientFactory.createClient
 <pre class="highlightjs highlight"><code>ERROR Error while uploading block [blockId]</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>uploadBlock is part of the <a href="BlockTransferService.html#uploadBlock" class="page">BlockTransferService</a> abstraction.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="uploadblock-message"><a class="anchor" href="#uploadblock-message"></a><a class="link" href="#uploadblock-message"><a id="UploadBlock"></a> <code>UploadBlock</code> Message</a></h2>
+<h2 id="uploadblock-message"><a class="anchor" href="#uploadblock-message"></a><a class="link" href="#uploadblock-message"><a id="UploadBlock"></a> UploadBlock Message</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><code>UploadBlock</code> is a <code>BlockTransferMessage</code> that describes a block being uploaded, i.e. send over the wire from a <a href="#uploadBlock">NettyBlockTransferService</a> to a <a href="NettyBlockRpcServer.html#UploadBlock" class="page">NettyBlockRpcServer</a>.</p>
@@ -2259,60 +2298,38 @@ FIXME Describe <code>TransportClient</code> and <code>clientFactory.createClient
 </div>
 </div>
 <div class="sect1">
-<h2 id="createserver-internal-method"><a class="anchor" href="#createserver-internal-method"></a><a class="link" href="#createserver-internal-method"><a id="createServer"></a> <code>createServer</code> Internal Method</a></h2>
+<h2 id="createserver-internal-method"><a class="anchor" href="#createserver-internal-method"></a><a class="link" href="#createserver-internal-method"><a id="createServer"></a> createServer Internal Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">createServer(bootstraps: List[TransportServerBootstrap]): TransportServer</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">createServer(
+  bootstraps: List[TransportServerBootstrap]): TransportServer</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>createServer</code>&#8230;&#8203;FIXME</p>
+<p>createServer&#8230;&#8203;FIXME</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>createServer</code> is used exclusively when NettyBlockTransferService is requested to <a href="#init">init</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>createServer is used when NettyBlockTransferService is requested to <a href="#init">initialize</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-nettyblocktransferservice-instance"><a class="anchor" href="#creating-nettyblocktransferservice-instance"></a><a class="link" href="#creating-nettyblocktransferservice-instance"><a id="creating-instance"></a> Creating NettyBlockTransferService Instance</a></h2>
+<h2 id="logging"><a class="anchor" href="#logging"></a><a class="link" href="#logging"><a id="logging"></a> Logging</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>NettyBlockTransferService takes the following when created:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a id="conf"></a> <a href="../SparkConf.html" class="page">SparkConf</a></p>
-</li>
-<li>
-<p><a id="securityManager"></a> <code>SecurityManager</code></p>
-</li>
-<li>
-<p><a id="bindAddress"></a> Bind address to bind to</p>
-</li>
-<li>
-<p><a id="hostName"></a> Host name to bind to</p>
-</li>
-<li>
-<p><a id="_port"></a> Port number</p>
-</li>
-<li>
-<p><a id="numCores"></a> Number of CPU cores</p>
-</li>
-</ul>
+<p>Enable <code>ALL</code> logging level for <code>org.apache.spark.network.netty.NettyBlockTransferService</code> logger to see what happens inside.</p>
 </div>
 <div class="paragraph">
-<p>NettyBlockTransferService initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
+<p>Add the following line to <code>conf/log4j.properties</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">log4j.logger.org.apache.spark.network.netty.NettyBlockTransferService=ALL</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Refer to <a href="../spark-logging.html" class="page">Logging</a>.</p>
 </div>
 </div>
 </div>

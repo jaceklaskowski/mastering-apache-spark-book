@@ -69,6 +69,46 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <span class="nav-text">Network System</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/TransportContext.html">TransportContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/MessageHandler.html">MessageHandler</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/TransportRequestHandler.html">TransportRequestHandler</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/TransportConf.html">TransportConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/SparkTransportConf.html">SparkTransportConf</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportClientFactory.html">TransportClientFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportServer.html">TransportServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/RpcHandler.html">RpcHandler</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../deploy/ExternalShuffleService.html">External Shuffle Service</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -817,34 +857,13 @@
     <a class="nav-link" href="../spark-cachemanager.html">Cache Manager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportConf.html">TransportConf</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-Utils.html">Utils Helper Object</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ManagedBuffer.html">ManagedBuffer</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-RpcHandler.html">RpcHandler</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-RpcResponseCallback.html">RpcResponseCallback</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportRequestHandler.html">TransportRequestHandler</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportContext.html">TransportContext</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportServer.html">TransportServer</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportClientFactory.html">TransportClientFactory</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-MessageHandler.html">MessageHandler</a>
   </li>
 </ul>
   </li>
@@ -1898,7 +1917,24 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="register-block-manager-with-shuffle-serverregisterwithshuffleserver-method"><a class="anchor" href="#register-block-manager-with-shuffle-serverregisterwithshuffleserver-method"></a><a class="link" href="#register-block-manager-with-shuffle-serverregisterwithshuffleserver-method"><a id="registerWithShuffleServer"></a> Register Block Manager with Shuffle Server&#8201;&#8212;&#8201;<code>registerWithShuffleServer</code> Method</a></h2>
+<h2 id="initializing-externalshuffleclient"><a class="anchor" href="#initializing-externalshuffleclient"></a><a class="link" href="#initializing-externalshuffleclient"><a id="init"></a> Initializing ExternalShuffleClient</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void init(
+  String appId)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>init&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>init is part of the <a href="ShuffleClient.html#init" class="page">ShuffleClient</a> abstraction.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="register-block-manager-with-shuffle-server"><a class="anchor" href="#register-block-manager-with-shuffle-server"></a><a class="link" href="#register-block-manager-with-shuffle-server"><a id="registerWithShuffleServer"></a> Register Block Manager with Shuffle Server</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -1906,28 +1942,19 @@
   String host,
   int port,
   String execId,
-  ExecutorShuffleInfo executorInfo) throws IOException, InterruptedException</code></pre>
+  ExecutorShuffleInfo executorInfo)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>registerWithShuffleServer</code>&#8230;&#8203;FIXME</p>
+<p>registerWithShuffleServer&#8230;&#8203;FIXME</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>registerWithShuffleServer</code> is used when&#8230;&#8203;FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>registerWithShuffleServer is used when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="fetchblocks-method"><a class="anchor" href="#fetchblocks-method"></a><a class="link" href="#fetchblocks-method"><a id="fetchBlocks"></a> <code>fetchBlocks</code> Method</a></h2>
+<h2 id="fetching-blocks"><a class="anchor" href="#fetching-blocks"></a><a class="link" href="#fetching-blocks"><a id="fetchBlocks"></a> Fetching Blocks</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -1940,20 +1967,11 @@
   TempFileManager tempFileManager)</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>fetchBlocks</code> is part of <a href="ShuffleClient.html#fetchBlocks" class="page">ShuffleClient Contract</a> to&#8230;&#8203;FIXME.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>fetchBlocks&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p><code>fetchBlocks</code>&#8230;&#8203;FIXME</p>
+<p>fetchBlocks is part of <a href="ShuffleClient.html#fetchBlocks" class="page">ShuffleClient</a> abstraction.</p>
 </div>
 </div>
 </div>

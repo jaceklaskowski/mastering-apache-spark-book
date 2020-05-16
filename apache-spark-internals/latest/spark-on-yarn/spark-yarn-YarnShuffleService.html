@@ -69,6 +69,46 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <span class="nav-text">Network System</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/TransportContext.html">TransportContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/MessageHandler.html">MessageHandler</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/TransportRequestHandler.html">TransportRequestHandler</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/TransportConf.html">TransportConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/SparkTransportConf.html">SparkTransportConf</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportClientFactory.html">TransportClientFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportServer.html">TransportServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/RpcHandler.html">RpcHandler</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../deploy/ExternalShuffleService.html">External Shuffle Service</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -817,34 +857,13 @@
     <a class="nav-link" href="../spark-cachemanager.html">Cache Manager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportConf.html">TransportConf</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-Utils.html">Utils Helper Object</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ManagedBuffer.html">ManagedBuffer</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-RpcHandler.html">RpcHandler</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-RpcResponseCallback.html">RpcResponseCallback</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportRequestHandler.html">TransportRequestHandler</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportContext.html">TransportContext</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportServer.html">TransportServer</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportClientFactory.html">TransportClientFactory</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-MessageHandler.html">MessageHandler</a>
   </li>
 </ul>
   </li>
@@ -1889,10 +1908,10 @@
   <div class="content">
 <article class="doc">
 <div class="sect1">
-<h2 id="yarnshuffleserviceexternalshuffleservice-on-yarn"><a class="anchor" href="#yarnshuffleserviceexternalshuffleservice-on-yarn"></a><a class="link" href="#yarnshuffleserviceexternalshuffleservice-on-yarn">YarnShuffleService&#8201;&#8212;&#8201;ExternalShuffleService on YARN</a></h2>
+<h2 id="yarnshuffleservice"><a class="anchor" href="#yarnshuffleservice"></a><a class="link" href="#yarnshuffleservice">YarnShuffleService</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>YarnShuffleService</code> is an external shuffle service for <a href="README.adoc">Spark on YARN</a>. It is YARN NodeManager&#8217;s auxiliary service that implements <code>org.apache.hadoop.yarn.server.api.AuxiliaryService</code>.</p>
+<p>YarnShuffleService is an external shuffle service for <a href="index.html" class="page">Spark on YARN</a>. It is YARN NodeManager&#8217;s auxiliary service that implements <code>org.apache.hadoop.yarn.server.api.AuxiliaryService</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1919,7 +1938,7 @@ FIXME What happens when the <code>spark.shuffle.service.enabled</code> flag is e
 </table>
 </div>
 <div class="paragraph">
-<p><code>YarnShuffleService</code> is <a href="#configuration-file">configured in <code>yarn-site.xml</code> configuration file</a> and <a href="#serviceInit">is initialized on each YARN NodeManager node</a> when the node(s) starts.</p>
+<p>YarnShuffleService is <a href="#configuration-file">configured in <code>yarn-site.xml</code> configuration file</a> and <a href="#serviceInit">is initialized on each YARN NodeManager node</a> when the node(s) starts.</p>
 </div>
 <div class="paragraph">
 <p>After the external shuffle service is configured in YARN you enable it in a Spark application using <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property.</p>
@@ -1931,7 +1950,7 @@ FIXME What happens when the <code>spark.shuffle.service.enabled</code> flag is e
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>YarnShuffleService</code> was introduced in <a href="https://issues.apache.org/jira/browse/SPARK-3797">SPARK-3797</a>.
+YarnShuffleService was introduced in <a href="https://issues.apache.org/jira/browse/SPARK-3797">SPARK-3797</a>.
 </td>
 </tr>
 </table>
@@ -1958,8 +1977,11 @@ FIXME What happens when the <code>spark.shuffle.service.enabled</code> flag is e
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="advantages"><a class="anchor" href="#advantages"></a><a class="link" href="#advantages"><a id="advantages"></a> Advantages</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="advantages"><a class="anchor" href="#advantages"></a><a class="link" href="#advantages"><a id="advantages"></a> Advantages</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The advantages of using the YARN Shuffle Service:</p>
 </div>
@@ -1974,10 +1996,12 @@ FIXME What happens when the <code>spark.shuffle.service.enabled</code> flag is e
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="creating-yarnshuffleservice-instance"><a class="anchor" href="#creating-yarnshuffleservice-instance"></a><a class="link" href="#creating-yarnshuffleservice-instance"><a id="creating-instance"></a> Creating YarnShuffleService Instance</a></h3>
+</div>
+<div class="sect1">
+<h2 id="creating-yarnshuffleservice-instance"><a class="anchor" href="#creating-yarnshuffleservice-instance"></a><a class="link" href="#creating-yarnshuffleservice-instance"><a id="creating-instance"></a> Creating YarnShuffleService Instance</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>When <code>YarnShuffleService</code> is created, it calls YARN&#8217;s <code>AuxiliaryService</code> with <code>spark_shuffle</code> service name.</p>
+<p>When YarnShuffleService is created, it calls YARN&#8217;s <code>AuxiliaryService</code> with <code>spark_shuffle</code> service name.</p>
 </div>
 <div class="paragraph">
 <p>You should see the following INFO message in the logs:</p>
@@ -1989,8 +2013,10 @@ INFO org.apache.hadoop.yarn.server.nodemanager.containermanager.AuxServices: Add
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="getrecoverypath"><a class="anchor" href="#getrecoverypath"></a><a class="link" href="#getrecoverypath"><a id="getRecoveryPath"></a> getRecoveryPath</a></h3>
+</div>
+<div class="sect1">
+<h2 id="getrecoverypath"><a class="anchor" href="#getrecoverypath"></a><a class="link" href="#getrecoverypath"><a id="getRecoveryPath"></a> getRecoveryPath</a></h2>
+<div class="sectionbody">
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -2004,8 +2030,10 @@ FIXME
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="servicestop"><a class="anchor" href="#servicestop"></a><a class="link" href="#servicestop"><a id="serviceStop"></a> serviceStop</a></h3>
+</div>
+<div class="sect1">
+<h2 id="servicestop"><a class="anchor" href="#servicestop"></a><a class="link" href="#servicestop"><a id="serviceStop"></a> serviceStop</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void serviceStop()</code></pre>
@@ -2050,8 +2078,10 @@ FIXME What are <code>shuffleServer</code> and <code>blockHandler</code>? What&#8
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="stopcontainer"><a class="anchor" href="#stopcontainer"></a><a class="link" href="#stopcontainer"><a id="stopContainer"></a> stopContainer</a></h3>
+</div>
+<div class="sect1">
+<h2 id="stopcontainer"><a class="anchor" href="#stopcontainer"></a><a class="link" href="#stopcontainer"><a id="stopContainer"></a> stopContainer</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void stopContainer(ContainerTerminationContext context)</code></pre>
@@ -2084,8 +2114,10 @@ FIXME The contract
 <p>It obtains the <code>containerId</code> from <code>context</code> using <code>getContainerId</code> method.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="initializecontainer"><a class="anchor" href="#initializecontainer"></a><a class="link" href="#initializecontainer"><a id="initializeContainer"></a> initializeContainer</a></h3>
+</div>
+<div class="sect1">
+<h2 id="initializecontainer"><a class="anchor" href="#initializecontainer"></a><a class="link" href="#initializecontainer"><a id="initializeContainer"></a> initializeContainer</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void initializeContainer(ContainerInitializationContext context)</code></pre>
@@ -2118,8 +2150,10 @@ FIXME The contract
 <p>It obtains the <code>containerId</code> from <code>context</code> using <code>getContainerId</code> method.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="stopapplication"><a class="anchor" href="#stopapplication"></a><a class="link" href="#stopapplication"><a id="stopApplication"></a> stopApplication</a></h3>
+</div>
+<div class="sect1">
+<h2 id="stopapplication"><a class="anchor" href="#stopapplication"></a><a class="link" href="#stopapplication"><a id="stopApplication"></a> stopApplication</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void stopApplication(ApplicationTerminationContext context)</code></pre>
@@ -2169,8 +2203,10 @@ FIXME The contract
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="initializeapplication"><a class="anchor" href="#initializeapplication"></a><a class="link" href="#initializeapplication"><a id="initializeApplication"></a> initializeApplication</a></h3>
+</div>
+<div class="sect1">
+<h2 id="initializeapplication"><a class="anchor" href="#initializeapplication"></a><a class="link" href="#initializeapplication"><a id="initializeApplication"></a> initializeApplication</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void initializeApplication(ApplicationInitializationContext context)</code></pre>
@@ -2217,15 +2253,15 @@ FIXME The contract
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="serviceinit"><a class="anchor" href="#serviceinit"></a><a class="link" href="#serviceinit"><a id="serviceInit"></a> serviceInit</a></h3>
+</div>
+<div class="sect1">
+<h2 id="serviceinit-method"><a class="anchor" href="#serviceinit-method"></a><a class="link" href="#serviceinit-method"><a id="serviceInit"></a> serviceInit Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void serviceInit(Configuration conf)</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void serviceInit(
+  Configuration conf)</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p><code>serviceInit</code> is part of YARN&#8217;s <code>AuxiliaryService</code> contract and is called when&#8230;&#8203;FIXME</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -2240,7 +2276,7 @@ FIXME
 </table>
 </div>
 <div class="paragraph">
-<p>When called, <code>serviceInit</code> creates a <a href="spark-TransportConf.adoc">TransportConf</a> for the <code>shuffle</code> module that is used to create <code>ExternalShuffleBlockHandler</code> (as <code>blockHandler</code>).</p>
+<p>When called, serviceInit creates a <a href="../network/TransportConf.html" class="page">TransportConf</a> for the <code>shuffle</code> module that is used to create <code>ExternalShuffleBlockHandler</code> (as <code>blockHandler</code>).</p>
 </div>
 <div class="paragraph">
 <p>It checks <code>spark.authenticate</code> key in the configuration (defaults to <code>false</code>) and if only authentication is enabled, it sets up a <code>SaslServerBootstrap</code> with a <code>ShuffleSecretManager</code> and adds it to a collection of <code>TransportServerBootstraps</code>.</p>
@@ -2249,18 +2285,23 @@ FIXME
 <p>It creates a <code>TransportServer</code> as <code>shuffleServer</code> to listen to <a href="../deploy/ExternalShuffleService.html#spark.shuffle.service.port" class="page">spark.shuffle.service.port</a> (default: <code>7337</code>). It reads <code>spark.shuffle.service.port</code> key in the configuration.</p>
 </div>
 <div class="paragraph">
-<p>You should see the following INFO message in the logs:</p>
+<p>serviceInit prints out the following INFO message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>INFO org.apache.spark.network.yarn.YarnShuffleService: Started YARN shuffle service for Spark on port [port]. Authentication is [authEnabled].  Registered executor file is [registeredExecutorFile]</code></pre>
+<pre class="highlightjs highlight"><code>Started YARN shuffle service for Spark on port [port]. Authentication is [authEnabled].  Registered executor file is [registeredExecutorFile]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>serviceInit is part of YARN&#8217;s AuxiliaryService contract.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="installation"><a class="anchor" href="#installation"></a><a class="link" href="#installation"><a id="installation"></a> Installation</a></h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="installation"><a class="anchor" href="#installation"></a><a class="link" href="#installation"><a id="installation"></a> Installation</a></h3>
-<div class="sect3">
-<h4 id="yarn-shuffle-service-plugin"><a class="anchor" href="#yarn-shuffle-service-plugin"></a><a class="link" href="#yarn-shuffle-service-plugin"><a id="copy-plugin"></a> YARN Shuffle Service Plugin</a></h4>
+<h3 id="yarn-shuffle-service-plugin"><a class="anchor" href="#yarn-shuffle-service-plugin"></a><a class="link" href="#yarn-shuffle-service-plugin"><a id="copy-plugin"></a> YARN Shuffle Service Plugin</a></h3>
 <div class="paragraph">
 <p>Add the YARN Shuffle Service plugin from the <code>common/network-yarn</code> module to YARN NodeManager&#8217;s CLASSPATH.</p>
 </div>
@@ -2283,8 +2324,8 @@ Use <code>yarn classpath</code> command to know YARN&#8217;s CLASSPATH.
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="yarn-site-xmlnodemanager-configuration-file"><a class="anchor" href="#yarn-site-xmlnodemanager-configuration-file"></a><a class="link" href="#yarn-site-xmlnodemanager-configuration-file"><a id="configuration-file"></a> yarn-site.xml&#8201;&#8212;&#8201;NodeManager Configuration File</a></h4>
+<div class="sect2">
+<h3 id="yarn-site-xmlnodemanager-configuration-file"><a class="anchor" href="#yarn-site-xmlnodemanager-configuration-file"></a><a class="link" href="#yarn-site-xmlnodemanager-configuration-file"><a id="configuration-file"></a> yarn-site.xml&#8201;&#8212;&#8201;NodeManager Configuration File</a></h3>
 <div class="paragraph">
 <p>If <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">external shuffle service is enabled</a>, you need to add <code>spark_shuffle</code> to <code>yarn.nodemanager.aux-services</code> in the <code>yarn-site.xml</code> file on all nodes.</p>
 </div>
@@ -2315,7 +2356,6 @@ Use <code>yarn classpath</code> command to know YARN&#8217;s CLASSPATH.
 </div>
 <div class="paragraph">
 <p><code>yarn.nodemanager.aux-services</code> property is for the auxiliary service name being <code>spark_shuffle</code> with <code>yarn.nodemanager.aux-services.spark_shuffle.class</code> property being <code>org.apache.spark.network.yarn.YarnShuffleService</code>.</p>
-</div>
 </div>
 </div>
 <div class="sect2">

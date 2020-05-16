@@ -69,6 +69,46 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <span class="nav-text">Network System</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/TransportContext.html">TransportContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/MessageHandler.html">MessageHandler</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/TransportRequestHandler.html">TransportRequestHandler</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/TransportConf.html">TransportConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/SparkTransportConf.html">SparkTransportConf</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportClientFactory.html">TransportClientFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportServer.html">TransportServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/RpcHandler.html">RpcHandler</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../deploy/ExternalShuffleService.html">External Shuffle Service</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -817,34 +857,13 @@
     <a class="nav-link" href="../spark-cachemanager.html">Cache Manager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportConf.html">TransportConf</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-Utils.html">Utils Helper Object</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ManagedBuffer.html">ManagedBuffer</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-RpcHandler.html">RpcHandler</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-RpcResponseCallback.html">RpcResponseCallback</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportRequestHandler.html">TransportRequestHandler</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportContext.html">TransportContext</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportServer.html">TransportServer</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-TransportClientFactory.html">TransportClientFactory</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-MessageHandler.html">MessageHandler</a>
   </li>
 </ul>
   </li>
@@ -1900,10 +1919,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>NettyBlockTransferService</code> is requested to <a href="NettyBlockTransferService.html#fetchBlocks" class="page">fetchBlocks</a> (when <a href="spark-TransportConf.adoc#io.maxRetries">maxIORetries</a> is greater than <code>0</code> which it is by default)</p>
+<p><code>NettyBlockTransferService</code> is requested to <a href="NettyBlockTransferService.html#fetchBlocks" class="page">fetchBlocks</a> (when <a href="../network/TransportConf.html#io.maxRetries" class="page">maxIORetries</a> is greater than <code>0</code> which it is by default)</p>
 </li>
 <li>
-<p><code>ExternalShuffleClient</code> is requested to <a href="ExternalShuffleClient.html#fetchBlocks" class="page">fetchBlocks</a> (when <a href="spark-TransportConf.adoc#io.maxRetries">maxIORetries</a> is greater than <code>0</code> which it is by default)</p>
+<p><code>ExternalShuffleClient</code> is requested to <a href="ExternalShuffleClient.html#fetchBlocks" class="page">fetchBlocks</a> (when <a href="../network/TransportConf.html#io.maxRetries" class="page">maxIORetries</a> is greater than <code>0</code> which it is by default)</p>
 </li>
 </ul>
 </div>
@@ -1938,7 +1957,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a id="conf"></a> <a href="../spark-TransportConf.html" class="page">TransportConf</a></p>
+<p><a id="conf"></a> <a href="../network/TransportConf.html" class="page">TransportConf</a></p>
 </li>
 <li>
 <p><a id="fetchStarter"></a> <a href="BlockFetchStarter.html" class="page">BlockFetchStarter</a></p>
@@ -1977,10 +1996,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>NettyBlockTransferService</code> is requested to <a href="NettyBlockTransferService.html#fetchBlocks" class="page">fetchBlocks</a> (when <a href="spark-TransportConf.adoc#io.maxRetries">maxIORetries</a> is greater than <code>0</code> which it is by default)</p>
+<p><code>NettyBlockTransferService</code> is requested to <a href="NettyBlockTransferService.html#fetchBlocks" class="page">fetchBlocks</a> (when <a href="../network/TransportConf.html#io.maxRetries" class="page">maxIORetries</a> is greater than <code>0</code> which it is by default)</p>
 </li>
 <li>
-<p><code>ExternalShuffleClient</code> is requested to <a href="ExternalShuffleClient.html#fetchBlocks" class="page">fetchBlocks</a> (when <a href="spark-TransportConf.adoc#io.maxRetries">maxIORetries</a> is greater than <code>0</code> which it is by default)</p>
+<p><code>ExternalShuffleClient</code> is requested to <a href="ExternalShuffleClient.html#fetchBlocks" class="page">fetchBlocks</a> (when <a href="../network/TransportConf.html#io.maxRetries" class="page">maxIORetries</a> is greater than <code>0</code> which it is by default)</p>
 </li>
 </ul>
 </div>
