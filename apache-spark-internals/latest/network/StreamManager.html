@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/spark-on-yarn/spark-yarn-YarnAllocator.html">
+    <title>StreamManager :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/network/StreamManager.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -73,40 +73,40 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../network/TransportContext.html">TransportContext</a>
+    <a class="nav-link" href="TransportContext.html">TransportContext</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../network/MessageHandler.html">MessageHandler</a>
+    <a class="nav-link" href="MessageHandler.html">MessageHandler</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../network/TransportRequestHandler.html">TransportRequestHandler</a>
+    <a class="nav-link" href="TransportRequestHandler.html">TransportRequestHandler</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../network/TransportConf.html">TransportConf</a>
+    <a class="nav-link" href="TransportConf.html">TransportConf</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../network/SparkTransportConf.html">SparkTransportConf</a>
+    <a class="nav-link" href="SparkTransportConf.html">SparkTransportConf</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../network/TransportClientFactory.html">TransportClientFactory</a>
+    <a class="nav-link" href="TransportClientFactory.html">TransportClientFactory</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../network/TransportServer.html">TransportServer</a>
+    <a class="nav-link" href="TransportServer.html">TransportServer</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../network/RpcHandler.html">RpcHandler</a>
+    <a class="nav-link" href="RpcHandler.html">RpcHandler</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../network/StreamManager.html">StreamManager</a>
+    <a class="nav-link" href="StreamManager.html">StreamManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../network/OneForOneStreamManager.html">OneForOneStreamManager</a>
+    <a class="nav-link" href="OneForOneStreamManager.html">OneForOneStreamManager</a>
   </li>
 </ul>
   </li>
@@ -1629,88 +1629,88 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Spark on YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/index.html">Spark on YARN</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-YarnShuffleService.html">YarnShuffleService&#8201;&#8212;&#8201;ExternalShuffleService on YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnShuffleService.html">YarnShuffleService&#8201;&#8212;&#8201;ExternalShuffleService on YARN</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-ExecutorRunnable.html">ExecutorRunnable</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-ExecutorRunnable.html">ExecutorRunnable</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-client.html">Client</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-client.html">Client</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-yarnrmclient.html">YarnRMClient</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnrmclient.html">YarnRMClient</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-yarn-applicationmaster.html">ApplicationMaster</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-applicationmaster.html">ApplicationMaster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-AMEndpoint.html">AMEndpoint&#8201;&#8212;&#8201;ApplicationMaster RPC Endpoint</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-AMEndpoint.html">AMEndpoint&#8201;&#8212;&#8201;ApplicationMaster RPC Endpoint</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-YarnClusterManager.html">YarnClusterManager&#8201;&#8212;&#8201;ExternalClusterManager for YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnClusterManager.html">YarnClusterManager&#8201;&#8212;&#8201;ExternalClusterManager for YARN</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-yarn-taskschedulers.html">TaskSchedulers for YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-taskschedulers.html">TaskSchedulers for YARN</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-yarnscheduler.html">YarnScheduler</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnscheduler.html">YarnScheduler</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-yarnclusterscheduler.html">YarnClusterScheduler</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnclusterscheduler.html">YarnClusterScheduler</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-yarn-schedulerbackends.html">SchedulerBackends for YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-schedulerbackends.html">SchedulerBackends for YARN</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-yarnschedulerbackend.html">YarnSchedulerBackend</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnschedulerbackend.html">YarnSchedulerBackend</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-client-yarnclientschedulerbackend.html">YarnClientSchedulerBackend</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-client-yarnclientschedulerbackend.html">YarnClientSchedulerBackend</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-cluster-yarnclusterschedulerbackend.html">YarnClusterSchedulerBackend</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-cluster-yarnclusterschedulerbackend.html">YarnClusterSchedulerBackend</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-cluster-YarnSchedulerEndpoint.html">YarnSchedulerEndpoint RPC Endpoint</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-cluster-YarnSchedulerEndpoint.html">YarnSchedulerEndpoint RPC Endpoint</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="spark-yarn-YarnAllocator.html">YarnAllocator</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnAllocator.html">YarnAllocator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-introduction.html">Introduction to Hadoop YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-introduction.html">Introduction to Hadoop YARN</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-cluster-setup.html">Setting up YARN Cluster</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-cluster-setup.html">Setting up YARN Cluster</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-yarn-kerberos.html">Kerberos</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-kerberos.html">Kerberos</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-ConfigurableCredentialManager.html">ConfigurableCredentialManager</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-ConfigurableCredentialManager.html">ConfigurableCredentialManager</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-ClientDistributedCacheManager.html">ClientDistributedCacheManager</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-ClientDistributedCacheManager.html">ClientDistributedCacheManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-YarnSparkHadoopUtil.html">YarnSparkHadoopUtil</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnSparkHadoopUtil.html">YarnSparkHadoopUtil</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-settings.html">Settings</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-settings.html">Settings</a>
   </li>
 </ul>
   </li>
@@ -1905,977 +1905,47 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Spark on YARN</a></li>
-    <li><a href="spark-yarn-YarnAllocator.html">YarnAllocator</a></li>
+    <li>Network System</li>
+    <li><a href="StreamManager.html">StreamManager</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/spark-on-yarn/pages/spark-yarn-YarnAllocator.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/network/pages/StreamManager.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="yarnallocatoryarn-resource-container-allocator"><a class="anchor" href="#yarnallocatoryarn-resource-container-allocator"></a><a class="link" href="#yarnallocatoryarn-resource-container-allocator"><a id="YarnAllocator"></a> YarnAllocator&#8201;&#8212;&#8201;YARN Resource Container Allocator</a></h2>
+<h1 class="page">StreamManager</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>YarnAllocator</code> <a href="#updateResourceRequests">requests resources from a YARN cluster</a> (in a form of containers from YARN ResourceManager) and manages the container allocations by <a href="#allocateResources">allocating them to Spark executors</a> and <a href="#internalReleaseContainer">releasing them</a> when no longer needed by a Spark application.</p>
+<p><strong>StreamManager</strong> is an abstraction of&#8230;&#8203;FIXME</p>
 </div>
-<div class="paragraph">
-<p><code>YarnAllocator</code> manages resources using <a href="#amClient">AMRMClient</a> (that <a href="spark-yarn-yarnrmclient.adoc#register"><code>YarnRMClient</code> passes in</a> when <a href="#creating-instance">creating a <code>YarnAllocator</code></a>).</p>
 </div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/spark-yarn-YarnAllocator-amClient-ResourceManager.png" alt="spark yarn YarnAllocator amClient ResourceManager">
 </div>
-<div class="title">Figure 1. Creating YarnAllocator</div>
-</div>
-<div class="paragraph">
-<p><code>YarnAllocator</code> is part of the internal state of <a href="spark-yarn-applicationmaster.adoc#allocator">ApplicationMaster</a> (via the internal <code>allocator</code> reference).</p>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/spark-yarn-YarnAllocator.png" alt="spark yarn YarnAllocator">
-</div>
-<div class="title">Figure 2. ApplicationMaster uses YarnAllocator (via allocator attribute)</div>
-</div>
-<div class="paragraph">
-<p><code>YarnAllocator</code> later <a href="#runAllocatedContainers">launches Spark executors in allocated YARN resource containers</a>.</p>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/spark-yarn-YarnAllocator-runAllocatedContainers.png" alt="spark yarn YarnAllocator runAllocatedContainers">
-</div>
-<div class="title">Figure 3. YarnAllocator Runs ExecutorRunnables in Allocated YARN Containers</div>
-</div>
-<table id="internal-registries" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. YarnAllocator&#8217;s Internal Registries and Counters</caption>
+<div class="sect1">
+<h2 id="available-streammanagers"><a class="anchor" href="#available-streammanagers"></a><a class="link" href="#available-streammanagers"><a id="implementations"></a> Available StreamManagers</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
+<col style="width: 30%;">
+<col style="width: 70%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">StreamManager</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="resource"></a> <code>resource</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The YARN <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/records/Resource.html">Resource</a> that sets capacity requirement (i.e. memory and virtual cores) of a single executor.</p>
-<p class="tableblock">NOTE: <code>Resource</code> models a set of computer resources in the cluster. Currently both memory and virtual CPU cores (vcores).</p>
-<p class="tableblock">Created when <a href="#creating-instance"><code>YarnAllocator</code> is created</a> and is the sum of <a href="#executorMemory">executorMemory</a> and <a href="#memoryOverhead">memoryOverhead</a> for the amount of memory and <a href="#executorCores">executorCores</a> for the number of virtual cores.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NettyStreamManager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="NettyStreamManager"></a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="executorIdCounter"></a> <code>executorIdCounter</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Used to set executor id when <a href="#runAllocatedContainers">launching Spark executors in allocated YARN resource containers</a>.</p>
-<p class="tableblock">Set to the <a href="spark-yarn-cluster-YarnSchedulerEndpoint.adoc#RetrieveLastAllocatedExecutorId">last allocated executor id</a> (received through a RPC system when <a href="#creating-instance"><code>YarnAllocator</code> is created</a>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="targetNumExecutors"></a> <code>targetNumExecutors</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Current desired total number of executors (as YARN resource containers).</p>
-<p class="tableblock">Set to the <a href="spark-yarn-YarnSparkHadoopUtil.adoc#getInitialTargetExecutorNumber">initial number of executors</a> when <a href="#creating-instance"><code>YarnAllocator</code> is created</a>.</p>
-<p class="tableblock"><code>targetNumExecutors</code> is eventually reached after <a href="#updateResourceRequests"><code>YarnAllocator</code> updates YARN container allocation requests</a>.</p>
-<p class="tableblock">May later be changed when <a href="#requestTotalExecutorsWithPreferredLocalities"><code>YarnAllocator</code> is requested for total number of executors given locality preferences</a>.</p>
-<p class="tableblock">Used when <a href="#updateResourceRequests">requesting missing resource containers</a> and <a href="#runAllocatedContainers">launching Spark executors in the allocated resource containers</a>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="numExecutorsRunning"></a> <code>numExecutorsRunning</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Current number of&#8230;&#8203;FIXME</p>
-<p class="tableblock">Used to <a href="#updateResourceRequests">update YARN container allocation requests</a> and <a href="#getNumExecutorsRunning">get the current number of executors running</a>.</p>
-<p class="tableblock">Incremented when <a href="#runAllocatedContainers">launching Spark executors in allocated YARN resource containers</a> and decremented when <a href="#killExecutor">releasing a resource container for a Spark executor</a>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="currentNodeBlacklist"></a> <code>currentNodeBlacklist</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List of&#8230;&#8203;FIXME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="releasedContainers"></a> <code>releasedContainers</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Unneeded containers that are of no use anymore by their globally unique identifier <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/records/ContainerId.html">ContainerId</a> (for a <code>Container</code> in the cluster).</p>
-<p class="tableblock">NOTE: Hadoop YARN&#8217;s <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/records/Container.html">Container</a> represents an allocated resource in the cluster. The YARN ResourceManager is the sole authority to allocate any <code>Container</code> to applications. The allocated <code>Container</code> is always on a single node and has a unique <code>ContainerId</code>. It has a specific amount of <code>Resource</code> allocated.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="allocatedHostToContainersMap"></a> <code>allocatedHostToContainersMap</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lookup table</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="allocatedContainerToHostMap"></a> <code>allocatedContainerToHostMap</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lookup Table</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="pendingLossReasonRequests"></a> <code>pendingLossReasonRequests</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="releasedExecutorLossReasons"></a> <code>releasedExecutorLossReasons</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="executorIdToContainer"></a> <code>executorIdToContainer</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="numUnexpectedContainerRelease"></a> <code>numUnexpectedContainerRelease</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="containerIdToExecutorId"></a> <code>containerIdToExecutorId</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="hostToLocalTaskCounts"></a> <code>hostToLocalTaskCounts</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lookup table</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="failedExecutorsTimeStamps"></a> <code>failedExecutorsTimeStamps</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="executorMemory"></a> <code>executorMemory</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="memoryOverhead"></a> <code>memoryOverhead</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="executorCores"></a> <code>executorCores</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="launchContainers"></a> <code>launchContainers</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="labelExpression"></a> <code>labelExpression</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="nodeLabelConstructor"></a> <code>nodeLabelConstructor</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="containerPlacementStrategy"></a> <code>containerPlacementStrategy</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="launcherPool"></a> <code>launcherPool</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ContainerLauncher Thread Pool</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="numLocalityAwareTasks"></a> <code>numLocalityAwareTasks</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of locality-aware tasks to be used as container placement hint when <a href="#requestTotalExecutorsWithPreferredLocalities"><code>YarnAllocator</code> is requested for executors given locality preferences</a>.</p>
-<p class="tableblock">Set to <code>0</code> when <a href="#creating-instance"><code>YarnAllocator</code> is created</a>.</p>
-<p class="tableblock">Used as an input to <code>containerPlacementStrategy.localityOfRequestedContainers</code> when <a href="#updateResourceRequests"><code>YarnAllocator</code> updates YARN container allocation requests</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="OneForOneStreamManager.html" class="page">OneForOneStreamManager</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="OneForOneStreamManager"></a></p></td>
 </tr>
 </tbody>
 </table>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Enable <code>INFO</code> or <code>DEBUG</code> logging level for <code>org.apache.spark.deploy.yarn.YarnAllocator</code> logger to see what happens inside.</p>
-</div>
-<div class="paragraph">
-<p>Add the following line to <code>conf/log4j.properties</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.deploy.yarn.YarnAllocator=DEBUG</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Refer to <a href="../spark-logging.adoc">Logging</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="creating-yarnallocator-instance"><a class="anchor" href="#creating-yarnallocator-instance"></a><a class="link" href="#creating-yarnallocator-instance"><a id="creating-instance"></a> Creating YarnAllocator Instance</a></h3>
-<div class="paragraph">
-<p><code>YarnAllocator</code> takes the following when created:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>driverUrl</code></p>
-</li>
-<li>
-<p><code>driverRef</code>&#8201;&#8212;&#8201;<a href="../rpc/RpcEndpointRef.html" class="page">RpcEndpointRef</a> to the driver&#8217;s FIXME</p>
-</li>
-<li>
-<p><a id="conf"></a> <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/conf/YarnConfiguration.html">YarnConfiguration</a></p>
-</li>
-<li>
-<p><code>sparkConf</code>&#8201;&#8212;&#8201;<a href="../SparkConf.adoc">SparkConf</a></p>
-</li>
-<li>
-<p><a id="amClient"></a> <code>amClient</code> <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/client/api/AMRMClient.html">AMRMClient</a> for <code>ContainerRequest</code></p>
-</li>
-<li>
-<p><code>ApplicationAttemptId</code></p>
-</li>
-<li>
-<p><a id="securityMgr"></a> <code>SecurityManager</code></p>
-</li>
-<li>
-<p><a id="localResources"></a> <code>localResources</code>&#8201;&#8212;&#8201;<code>Map[String, LocalResource]</code></p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>All the input parameters for <code>YarnAllocator</code> (but <code>appAttemptId</code> and <code>amClient</code>) are passed directly from the input parameters of <code>YarnRMClient</code>.</p>
-</div>
-<div class="paragraph">
-<p><code>YarnAllocator</code> sets the <code>org.apache.hadoop.yarn.util.RackResolver</code> logger to <code>WARN</code> (unless set to some log level already).</p>
-</div>
-<div class="paragraph">
-<p><code>YarnAllocator</code> initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
-</div>
-<div class="paragraph">
-<p>It sets the following internal counters:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>numExecutorsRunning</code> to <code>0</code></p>
-</li>
-<li>
-<p><code>numUnexpectedContainerRelease</code> to <code>0L</code></p>
-</li>
-<li>
-<p><code>numLocalityAwareTasks</code> to <code>0</code></p>
-</li>
-<li>
-<p><code>targetNumExecutors</code> to <a href="spark-yarn-YarnSparkHadoopUtil.adoc#getInitialTargetExecutorNumber">the initial number of executors</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>It creates an empty <a href="#failedExecutorsTimeStamps">queue of failed executors</a>.</p>
-</div>
-<div class="paragraph">
-<p>It sets the internal <code>executorFailuresValidityInterval</code> to <a href="spark-yarn-settings.adoc#spark.yarn.executor.failuresValidityInterval">spark.yarn.executor.failuresValidityInterval</a>.</p>
-</div>
-<div class="paragraph">
-<p>It sets the internal <code>executorMemory</code> to <a href="../spark-Executor.adoc#spark.executor.memory">spark.executor.memory</a>.</p>
-</div>
-<div class="paragraph">
-<p>It sets the internal <code>memoryOverhead</code> to <a href="spark-yarn-settings.adoc#spark.yarn.executor.memoryOverhead">spark.yarn.executor.memoryOverhead</a>. If unavailable, it is set to the maximum of 10% of <code>executorMemory</code> and <code>384</code>.</p>
-</div>
-<div class="paragraph">
-<p>It sets the internal <code>executorCores</code> to <a href="../spark-Executor.adoc#spark.executor.cores">spark.executor.cores</a>.</p>
-</div>
-<div class="paragraph">
-<p>It creates the internal <code>resource</code> to Hadoop YARN&#8217;s <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/records/Resource.html">Resource</a> with both <code>executorMemory + memoryOverhead</code> memory and <code>executorCores</code> CPU cores.</p>
-</div>
-<div class="paragraph">
-<p>It creates the internal <code>launcherPool</code> called <strong>ContainerLauncher</strong> with maximum <a href="spark-yarn-settings.adoc#spark.yarn.containerLauncherMaxThreads">spark.yarn.containerLauncherMaxThreads</a> threads.</p>
-</div>
-<div class="paragraph">
-<p>It sets the internal <code>launchContainers</code> to <a href="spark-yarn-settings.adoc#spark.yarn.launchContainers">spark.yarn.launchContainers</a>.</p>
-</div>
-<div class="paragraph">
-<p>It sets the internal <code>labelExpression</code> to <a href="spark-yarn-settings.adoc#spark.yarn.executor.nodeLabelExpression">spark.yarn.executor.nodeLabelExpression</a>.</p>
-</div>
-<div class="paragraph">
-<p>It sets the internal <code>nodeLabelConstructor</code> to&#8230;&#8203;FIXME</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME nodeLabelConstructor?
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>It sets the internal <code>containerPlacementStrategy</code> to&#8230;&#8203;FIXME</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME LocalityPreferredContainerPlacementStrategy?
-</td>
-</tr>
-</table>
-</div>
-<div class="sect3">
-<h4 id="getnumexecutorsrunning-method"><a class="anchor" href="#getnumexecutorsrunning-method"></a><a class="link" href="#getnumexecutorsrunning-method"><a id="getNumExecutorsRunning"></a> <code>getNumExecutorsRunning</code> Method</a></h4>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="updateinternalstate-method"><a class="anchor" href="#updateinternalstate-method"></a><a class="link" href="#updateinternalstate-method"><a id="updateInternalState"></a> <code>updateInternalState</code> Method</a></h4>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="killexecutor-method"><a class="anchor" href="#killexecutor-method"></a><a class="link" href="#killexecutor-method"><a id="killExecutor"></a> <code>killExecutor</code> Method</a></h3>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="specifying-current-total-number-of-executors-with-locality-preferencesrequesttotalexecutorswithpreferredlocalities-method"><a class="anchor" href="#specifying-current-total-number-of-executors-with-locality-preferencesrequesttotalexecutorswithpreferredlocalities-method"></a><a class="link" href="#specifying-current-total-number-of-executors-with-locality-preferencesrequesttotalexecutorswithpreferredlocalities-method"><a id="requestTotalExecutorsWithPreferredLocalities"></a> Specifying Current Total Number of Executors with Locality Preferences&#8201;&#8212;&#8201;<code>requestTotalExecutorsWithPreferredLocalities</code> Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">requestTotalExecutorsWithPreferredLocalities(
-  requestedTotal: Int,
-  localityAwareTasks: Int,
-  hostToLocalTaskCount: Map[String, Int],
-  nodeBlacklist: Set[String]): Boolean</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>requestTotalExecutorsWithPreferredLocalities</code> returns whether the <a href="#targetNumExecutors">current desired total number of executors</a> is different than the input <code>requestedTotal</code>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>requestTotalExecutorsWithPreferredLocalities</code> should instead have been called <code>shouldRequestTotalExecutorsWithPreferredLocalities</code> since it answers the question whether to request new total executors or not.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><code>requestTotalExecutorsWithPreferredLocalities</code> sets the internal <a href="#numLocalityAwareTasks">numLocalityAwareTasks</a> and <a href="#hostToLocalTaskCounts">hostToLocalTaskCounts</a> attributes to the input <code>localityAwareTasks</code> and <code>hostToLocalTaskCount</code> arguments, respectively.</p>
-</div>
-<div class="paragraph">
-<p>If the input <code>requestedTotal</code> is different than the internal <a href="#targetNumExecutors">targetNumExecutors</a> you should see the following INFO message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>INFO YarnAllocator: Driver requested a total number of [requestedTotal] executor(s).</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>requestTotalExecutorsWithPreferredLocalities</code> saves the input <code>requestedTotal</code> to be the <a href="#targetNumExecutors">current desired total number of executors</a>.</p>
-</div>
-<div class="paragraph">
-<p><code>requestTotalExecutorsWithPreferredLocalities</code> updates blacklist information to YARN ResouceManager for this application in order to avoid allocating new Containers on the problematic nodes.</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME Describe the blacklisting
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>requestTotalExecutorsWithPreferredLocalities</code> is executed in response to <a href="spark-yarn-AMEndpoint.adoc#RequestExecutors"><code>RequestExecutors</code> message to <code>ApplicationMaster</code></a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="adding-or-removing-container-requests-to-launch-executorsupdateresourcerequests-method"><a class="anchor" href="#adding-or-removing-container-requests-to-launch-executorsupdateresourcerequests-method"></a><a class="link" href="#adding-or-removing-container-requests-to-launch-executorsupdateresourcerequests-method"><a id="updateResourceRequests"></a> Adding or Removing Container Requests to Launch Executors&#8201;&#8212;&#8201;<code>updateResourceRequests</code> Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">updateResourceRequests(): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>updateResourceRequests</code> <a href="#updateResourceRequests-missing-executors">requests new</a> or <a href="#updateResourceRequests-cancelling-executor-allocations">cancels outstanding</a> executor containers from the <a href="spark-yarn-introduction.adoc#ResourceManager">YARN ResourceManager</a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-In YARN, you have to request containers for resources first (using <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/client/api/AMRMClient.html#addContainerRequest(T)">AMRMClient.addContainerRequest</a>) before calling <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/client/api/AMRMClient.html#allocate(float)">AMRMClient.allocate</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>It gets the list of outstanding YARN&#8217;s <code>ContainerRequests</code> (using the constructor&#8217;s <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/client/api/AMRMClient.html#getMatchingRequests(org.apache.hadoop.yarn.api.records.Priority, java.lang.String, org.apache.hadoop.yarn.api.records.Resource)">AMRMClient[ContainerRequest]</a>) and aligns their number to current workload.</p>
-</div>
-<div class="paragraph">
-<p><code>updateResourceRequests</code> consists of two main branches:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><a href="#updateResourceRequests-missing-executors">missing executors</a>, i.e. when the number of executors allocated already or pending does not match the needs and so there are missing executors.</p>
-</li>
-<li>
-<p><a href="#updateResourceRequests-cancelling-executor-allocations">executors to cancel</a>, i.e. when the number of pending executor allocations is positive, but the number of all the executors is more than Spark needs.</p>
-</li>
-</ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>updateResourceRequests</code> is used when <code>YarnAllocator</code> <a href="#allocateResources">requests new resource containers</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect3">
-<h4 id="case-1-missing-executors"><a class="anchor" href="#case-1-missing-executors"></a><a class="link" href="#case-1-missing-executors"><a id="updateResourceRequests-missing-executors"></a> Case 1. Missing Executors</a></h4>
-<div class="paragraph">
-<p>You should see the following INFO message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>INFO YarnAllocator: Will request [count] executor containers, each with [vCores] cores and [memory] MB memory including [memoryOverhead] MB overhead</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>It then splits pending container allocation requests per locality preference of pending tasks (in the internal <a href="#hostToLocalTaskCounts">hostToLocalTaskCounts</a> registry).</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME Review <code>splitPendingAllocationsByLocality</code>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>It removes stale container allocation requests (using YARN&#8217;s <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/client/api/AMRMClient.html#removeContainerRequest(T)">AMRMClient.removeContainerRequest</a>).</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME Stale?
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>You should see the following INFO message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>INFO YarnAllocator: Canceled [cancelledContainers] container requests (locality no longer needed)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>It computes locality of requested containers (based on the internal <a href="#numLocalityAwareTasks">numLocalityAwareTasks</a>, <a href="#hostToLocalTaskCounts">hostToLocalTaskCounts</a> and <a href="#allocatedHostToContainersMap">allocatedHostToContainersMap</a> lookup table).</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME Review <code>containerPlacementStrategy.localityOfRequestedContainers</code> + the code that follows.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>For any new container needed <code>updateResourceRequests</code> adds a container request (using YARN&#8217;s <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/client/api/AMRMClient.html#addContainerRequest(T)">AMRMClient.addContainerRequest</a>).</p>
-</div>
-<div class="paragraph">
-<p>You should see the following INFO message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>INFO YarnAllocator: Submitted container request (host: [host], capability: [resource])</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="case-2-cancelling-pending-executor-allocations"><a class="anchor" href="#case-2-cancelling-pending-executor-allocations"></a><a class="link" href="#case-2-cancelling-pending-executor-allocations"><a id="updateResourceRequests-cancelling-executor-allocations"></a> Case 2. Cancelling Pending Executor Allocations</a></h4>
-<div class="paragraph">
-<p>When there are executors to cancel (case 2.), you should see the following INFO message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>INFO Canceling requests for [numToCancel] executor container(s) to have a new desired total [targetNumExecutors] executors.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>It checks whether there are pending allocation requests and removes the excess (using YARN&#8217;s <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/client/api/AMRMClient.html#removeContainerRequest(T)">AMRMClient.removeContainerRequest</a>). If there are no pending allocation requests, you should see the WARN message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>WARN Expected to find pending requests, but found none.</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="handling-allocated-containers-for-executorshandleallocatedcontainers-internal-method"><a class="anchor" href="#handling-allocated-containers-for-executorshandleallocatedcontainers-internal-method"></a><a class="link" href="#handling-allocated-containers-for-executorshandleallocatedcontainers-internal-method"><a id="handleAllocatedContainers"></a> Handling Allocated Containers for Executors&#8201;&#8212;&#8201;<code>handleAllocatedContainers</code> Internal Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">handleAllocatedContainers(allocatedContainers: Seq[Container]): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>handleAllocatedContainers</code> handles allocated YARN containers, i.e. runs Spark executors on matched containers or releases unneeded containers.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-A YARN <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/records/Container.html">Container</a> represents an allocated resource in the cluster. The allocated <code>Container</code> is always on a single node and has a unique <code>ContainerId</code>. It has a specific amount of <code>Resource</code> allocated.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Internally, <code>handleAllocatedContainers</code> <a href="#matchContainerToRequest">matches requests to host, rack, and any host (a container allocation)</a>.</p>
-</div>
-<div class="paragraph">
-<p>If <code>handleAllocatedContainers</code> did not manage to allocate some containers, you should see the following DEBUG message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>DEBUG Releasing [size] unneeded containers that were allocated to us</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>handleAllocatedContainers</code> <a href="#internalReleaseContainer">releases the unneeded containers</a> (if there are any).</p>
-</div>
-<div class="paragraph">
-<p><code>handleAllocatedContainers</code> <a href="#runAllocatedContainers">runs the allocated and matched containers</a>.</p>
-</div>
-<div class="paragraph">
-<p>You should see the following INFO message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>INFO Received [allocatedContainersSize] containers from YARN, launching executors on [containersToUseSize] of them.</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>handleAllocatedContainers</code> is used exclusively when <code>YarnAllocator</code> <a href="#allocateResources">allocates YARN resource containers for Spark executors</a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="running-executorrunnables-with-coarsegrainedexecutorbackends-in-allocated-yarn-resource-containersrunallocatedcontainers-internal-method"><a class="anchor" href="#running-executorrunnables-with-coarsegrainedexecutorbackends-in-allocated-yarn-resource-containersrunallocatedcontainers-internal-method"></a><a class="link" href="#running-executorrunnables-with-coarsegrainedexecutorbackends-in-allocated-yarn-resource-containersrunallocatedcontainers-internal-method"><a id="runAllocatedContainers"></a> Running ExecutorRunnables (with CoarseGrainedExecutorBackends) in Allocated YARN Resource Containers&#8201;&#8212;&#8201;<code>runAllocatedContainers</code> Internal Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">runAllocatedContainers(containersToUse: ArrayBuffer[Container]): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>runAllocatedContainers</code> traverses the YARN <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/records/Container.html">Container</a> collection (as the input <code>containersToUse</code>) and schedules execution of <a href="spark-yarn-ExecutorRunnable.adoc">ExecutorRunnables</a> per YARN container on <a href="#launcherPool"><code>ContainerLauncher</code> thread pool</a>.</p>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/spark-yarn-YarnAllocator-runAllocatedContainers.png" alt="spark yarn YarnAllocator runAllocatedContainers">
-</div>
-<div class="title">Figure 4. YarnAllocator Runs ExecutorRunnables in Allocated YARN Containers</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-A <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/records/Container.html">Container</a> in YARN represents allocated resources (memory and cores) in the cluster.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Internally, <code>runAllocatedContainers</code> increments <a href="#executorIdCounter">executorIdCounter</a> internal counter.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>runAllocatedContainers</code> asserts that the amount of memory of a container not less than the <a href="#resource">requested memory for executors</a>. And only memory!
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>You should see the following INFO message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>INFO YarnAllocator: Launching container [containerId] for on host [executorHostname]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>runAllocatedContainers</code> checks if the <a href="#numExecutorsRunning">number of executors running</a> is less than the <a href="#targetNumExecutors">number of required executors</a>.</p>
-</div>
-<div class="paragraph">
-<p>If there are executors still missing (and <code>runAllocatedContainers</code> is not in <a href="#launchContainers">testing mode</a>), <code>runAllocatedContainers</code> schedules execution of a <a href="spark-yarn-ExecutorRunnable.adoc">ExecutorRunnable</a> on <a href="#launcherPool"><code>ContainerLauncher</code> thread pool</a> and <a href="#updateInternalState">updates internal state</a>. When executing a <code>ExecutorRunnable</code> <code>runAllocatedContainers</code> first <a href="spark-yarn-ExecutorRunnable.adoc#creating-instance">creates a <code>ExecutorRunnable</code></a> and <a href="spark-yarn-ExecutorRunnable.adoc#run">starts it</a>.</p>
-</div>
-<div class="paragraph">
-<p>When <code>runAllocatedContainers</code> catches a non-fatal exception and you should see the following ERROR message in the logs and immediately <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/client/api/AMRMClient.html#releaseAssignedContainer(org.apache.hadoop.yarn.api.records.ContainerId)">releases the container</a> (using the internal <a href="#amClient">AMRMClient</a>).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>ERROR Failed to launch executor [executorId] on container [containerId]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If <code>YarnAllocator</code> has reached <a href="#targetNumExecutors">target number of executors</a>, you should see the following INFO message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>INFO Skip launching executorRunnable as running Executors count: [numExecutorsRunning] reached target Executors count: [targetNumExecutors].</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>runAllocatedContainers</code> is used exclusively when <code>YarnAllocator</code> <a href="#handleAllocatedContainers">handles allocated YARN containers</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect3">
-<h4 id="releasing-yarn-containerinternalreleasecontainer-internal-procedure"><a class="anchor" href="#releasing-yarn-containerinternalreleasecontainer-internal-procedure"></a><a class="link" href="#releasing-yarn-containerinternalreleasecontainer-internal-procedure"><a id="internalReleaseContainer"></a> Releasing YARN Container&#8201;&#8212;&#8201;<code>internalReleaseContainer</code> Internal Procedure</a></h4>
-<div class="paragraph">
-<p>All unnecessary YARN containers (that were allocated but are either <a href="#handleAllocatedContainers">of no use</a> or <a href="#killExecutor">no longer needed</a>) are released using the internal <code>internalReleaseContainer</code> procedure.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">internalReleaseContainer(container: Container): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>internalReleaseContainer</code> records <code>container</code> in the internal <a href="#releasedContainers">releasedContainers</a> registry and releases it to the <a href="spark-yarn-introduction.adoc#ResourceManager">YARN ResourceManager</a> (calling <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/client/api/AMRMClient.html#releaseAssignedContainer(org.apache.hadoop.yarn.api.records.ContainerId)">AMRMClient[ContainerRequest].releaseAssignedContainer</a> using the internal <code>amClient</code>).</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="deciding-on-use-of-yarn-containermatchcontainertorequest-internal-method"><a class="anchor" href="#deciding-on-use-of-yarn-containermatchcontainertorequest-internal-method"></a><a class="link" href="#deciding-on-use-of-yarn-containermatchcontainertorequest-internal-method"><a id="matchContainerToRequest"></a> Deciding on Use of YARN Container&#8201;&#8212;&#8201;<code>matchContainerToRequest</code> Internal Method</a></h4>
-<div class="paragraph">
-<p>When <a href="#handleAllocatedContainers"><code>handleAllocatedContainers</code> handles allocated containers for executors</a>, it uses <code>matchContainerToRequest</code> to match the containers to <code>ContainerRequests</code> (and hence to workload and location preferences).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">matchContainerToRequest(
-  allocatedContainer: Container,
-  location: String,
-  containersToUse: ArrayBuffer[Container],
-  remaining: ArrayBuffer[Container]): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>matchContainerToRequest</code> puts <code>allocatedContainer</code> in <code>containersToUse</code> or <code>remaining</code> collections per available outstanding <code>ContainerRequests</code> that match the priority of the input <code>allocatedContainer</code>, the input <code>location</code>, and the memory and vcore capabilities for Spark executors.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The input <code>location</code> can be host, rack, or <code>*</code> (star), i.e. any host.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>It <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/client/api/AMRMClient.html#getMatchingRequests(org.apache.hadoop.yarn.api.records.Priority, java.lang.String, org.apache.hadoop.yarn.api.records.Resource)">gets the outstanding <code>ContainerRequests</code></a> (from the <a href="spark-yarn-introduction.adoc#ResourceManager">YARN ResourceManager</a>).</p>
-</div>
-<div class="paragraph">
-<p>If there are any outstanding <code>ContainerRequests</code> that meet the requirements, it simply takes the first one and puts it in the input <code>containersToUse</code> collection. It also removes the <code>ContainerRequest</code> so it is not submitted again (it uses the internal <code>AMRMClient[ContainerRequest]</code>).</p>
-</div>
-<div class="paragraph">
-<p>Otherwise, it puts the input <code>allocatedContainer</code> in the input <code>remaining</code> collection.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="processcompletedcontainers-method"><a class="anchor" href="#processcompletedcontainers-method"></a><a class="link" href="#processcompletedcontainers-method"><a id="processCompletedContainers"></a> <code>processCompletedContainers</code> Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">processCompletedContainers(completedContainers: Seq[ContainerStatus]): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>processCompletedContainers</code> accepts a collection of YARN&#8217;s <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/records/ContainerStatus.html">ContainerStatus</a>'es.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p><code>ContainerStatus</code> represents the current status of a YARN <code>Container</code> and provides details such as:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Id</p>
-</li>
-<li>
-<p>State</p>
-</li>
-<li>
-<p>Exit status of a completed container.</p>
-</li>
-<li>
-<p>Diagnostic message for a failed container.</p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>For each completed container in the collection, <code>processCompletedContainers</code> removes it from the internal <a href="#releasedContainers">releasedContainers</a> registry.</p>
-</div>
-<div class="paragraph">
-<p>It looks the host of the container up (in the internal <a href="#allocatedContainerToHostMap">allocatedContainerToHostMap</a> lookup table). The host may or may not exist in the lookup table.</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME The host may or may not exist in the lookup table?
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The <code>ExecutorExited</code> exit reason is computed.</p>
-</div>
-<div class="paragraph">
-<p>When the host of the completed container has been found, the internal <a href="#numExecutorsRunning">numExecutorsRunning</a> counter is decremented.</p>
-</div>
-<div class="paragraph">
-<p>You should see the following INFO message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>INFO Completed container [containerId] [host] (state: [containerState], exit status: [containerExitStatus])</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>For <code>ContainerExitStatus.SUCCESS</code> and <code>ContainerExitStatus.PREEMPTED</code> exit statuses of the container (which are not considered application failures), you should see one of the two possible INFO messages in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>INFO Executor for container [id] exited because of a YARN event (e.g., pre-emption) and not because of an error in the running job.</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>INFO Container [id] [host] was preempted.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Other exit statuses of the container are considered application failures and reported as a WARN message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>WARN Container killed by YARN for exceeding memory limits. [diagnostics] Consider boosting spark.yarn.executor.memoryOverhead.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>WARN Container marked as failed: [id] [host]. Exit status: [containerExitStatus]. Diagnostics: [containerDiagnostics]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The host is looked up in the internal <a href="#allocatedHostToContainersMap">allocatedHostToContainersMap</a> lookup table. If found, the container is removed from the containers registered for the host or the host itself is removed from the lookup table when this container was the last on the host.</p>
-</div>
-<div class="paragraph">
-<p>The container is removed from the internal <a href="#allocatedContainerToHostMap">allocatedContainerToHostMap</a> lookup table.</p>
-</div>
-<div class="paragraph">
-<p>The container is removed from the internal <a href="#containerIdToExecutorId">containerIdToExecutorId</a> translation table. If an executor is found, it is removed from the internal <a href="#executorIdToContainer">executorIdToContainer</a> translation table.</p>
-</div>
-<div class="paragraph">
-<p>If the executor was recorded in the internal <a href="#pendingLossReasonRequests">pendingLossReasonRequests</a> lookup table, the exit reason (as calculated earlier as <code>ExecutorExited</code>) is sent back for every pending RPC message recorded.</p>
-</div>
-<div class="paragraph">
-<p>If no executor was found, the executor and the exit reason are recorded in the internal <a href="#releasedExecutorLossReasons">releasedExecutorLossReasons</a> lookup table.</p>
-</div>
-<div class="paragraph">
-<p>In case the container was not in the internal <a href="#releasedContainers">releasedContainers</a> registry, the internal <a href="#numUnexpectedContainerRelease">numUnexpectedContainerRelease</a> counter is increased and a <code>RemoveExecutor</code> RPC message is sent to the driver (as specified when <a href="#creating-instance"><code>YarnAllocator</code> was created</a>) to notify about the failure of the executor.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="requesting-and-allocating-yarn-resource-containers-to-spark-executors-and-cancelling-outstanding-containersallocateresources-method"><a class="anchor" href="#requesting-and-allocating-yarn-resource-containers-to-spark-executors-and-cancelling-outstanding-containersallocateresources-method"></a><a class="link" href="#requesting-and-allocating-yarn-resource-containers-to-spark-executors-and-cancelling-outstanding-containersallocateresources-method"><a id="allocateResources"></a> Requesting and Allocating YARN Resource Containers to Spark Executors (and Cancelling Outstanding Containers)&#8201;&#8212;&#8201;<code>allocateResources</code> Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">allocateResources(): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>allocateResources</code> claims new resource containers from <a href="spark-yarn-introduction.adoc#ResourceManager">YARN ResourceManager</a> and cancels any outstanding resource container requests.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-In YARN, you first have to submit requests for YARN resource containers to <a href="spark-yarn-introduction.adoc#ResourceManager">YARN ResourceManager</a> (using <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/client/api/AMRMClient.html#addContainerRequest(T)">AMRMClient.addContainerRequest</a>) before claiming them by calling <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/client/api/AMRMClient.html#allocate(float)">AMRMClient.allocate</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Internally, <code>allocateResources</code> <a href="#updateResourceRequests">submits requests for new containers and cancels previous container requests</a>.</p>
-</div>
-<div class="paragraph">
-<p><code>allocateResources</code> then <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/client/api/AMRMClient.html#allocate(float)">claims the containers</a> (using the internal reference to YARN&#8217;s <a href="#amClient">AMRMClient</a>) with progress indicator of <code>0.1f</code>.</p>
-</div>
-<div class="paragraph">
-<p>You can see the exact moment in the YARN console for the Spark application with the progress bar at 10%.</p>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/spark-yarn-console-progress-10.png" alt="spark yarn console progress 10">
-</div>
-<div class="title">Figure 5. YARN Console after Allocating YARN Containers (Progress at 10%)</div>
-</div>
-<div class="paragraph">
-<p><code>allocateResources</code> <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/protocolrecords/AllocateResponse.html#getAllocatedContainers()">gets the list of allocated containers</a> from the <a href="spark-yarn-introduction.adoc#ResourceManager">YARN ResourceManager</a>.</p>
-</div>
-<div class="paragraph">
-<p>If the number of allocated containers is greater than <code>0</code>, you should see the following DEBUG message in the logs (in stderr on YARN):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>DEBUG YarnAllocator: Allocated containers: [allocatedContainersSize]. Current executor count: [numExecutorsRunning]. Cluster resources: [availableResources].</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>allocateResources</code> <a href="#handleAllocatedContainers">launches executors on the allocated YARN resource containers</a>.</p>
-</div>
-<div class="paragraph">
-<p><code>allocateResources</code> <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/protocolrecords/AllocateResponse.html#getCompletedContainersStatuses()">gets the list of completed containers' statuses from YARN ResourceManager</a>.</p>
-</div>
-<div class="paragraph">
-<p>If the number of completed containers is greater than <code>0</code>, you should see the following DEBUG message in the logs (in stderr on YARN):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>DEBUG YarnAllocator: Completed [completedContainersSize] containers</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>allocateResources</code> <a href="#processCompletedContainers">processes completed containers</a>.</p>
-</div>
-<div class="paragraph">
-<p>You should see the following DEBUG message in the logs (in stderr on YARN):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>DEBUG YarnAllocator: Finished processing [completedContainersSize] completed containers. Current running executor count: [numExecutorsRunning].</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>allocateResources</code> is used when <code>ApplicationMaster</code> <a href="spark-yarn-applicationmaster.adoc#registerAM">is registered to the YARN ResourceManager</a> and <a href="spark-yarn-applicationmaster.adoc#launchReporterThread">launches progress <code>Reporter</code> thread</a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
 </div>
 </div>
 </article>

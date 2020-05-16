@@ -101,6 +101,15 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../network/RpcHandler.html">RpcHandler</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/StreamManager.html">StreamManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/OneForOneStreamManager.html">OneForOneStreamManager</a>
+  </li>
+</ul>
+  </li>
 </ul>
   </li>
 </ul>
@@ -825,9 +834,6 @@
     <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-OneForOneStreamManager.html">OneForOneStreamManager</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
@@ -1950,7 +1956,7 @@
 <h2 id="oneforonestreammanager"><a class="anchor" href="#oneforonestreammanager"></a><a class="link" href="#oneforonestreammanager"><a id="streamManager"></a> OneForOneStreamManager</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>NettyBlockRpcServer uses a <a href="../spark-OneForOneStreamManager.html" class="page">OneForOneStreamManager</a> for&#8230;&#8203;FIXME</p>
+<p>NettyBlockRpcServer uses a <a href="../network/OneForOneStreamManager.html" class="page">OneForOneStreamManager</a> for&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>
@@ -1982,7 +1988,7 @@
 <p>When OpenBlocks arrives, NettyBlockRpcServer requests the <a href="#blockManager">BlockDataManager</a> for <a href="../storage/spark-BlockDataManager.html#getBlockData" class="page">block data</a> for every block id in the message. The block data is a collection of <code>ManagedBuffer</code> for every block id in the incoming message.</p>
 </div>
 <div class="paragraph">
-<p>NettyBlockRpcServer then <a href="spark-OneForOneStreamManager.adoc#registerStream">registers a stream of <code>ManagedBuffer</code>s (for the blocks) with the internal <code>StreamManager</code></a> under <code>streamId</code>.</p>
+<p>NettyBlockRpcServer then <a href="../network/OneForOneStreamManager.html#registerStream" class="page">registers a stream of <code>ManagedBuffer</code>s (for the blocks) with the internal <code>StreamManager</code></a> under <code>streamId</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1991,7 +1997,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The internal <code>StreamManager</code> is <a href="spark-OneForOneStreamManager.adoc">OneForOneStreamManager</a> and is created when <a href="#creating-instance">NettyBlockRpcServer is created</a>.
+The internal <code>StreamManager</code> is <a href="../network/OneForOneStreamManager.html" class="page">OneForOneStreamManager</a> and is created when <a href="#creating-instance">NettyBlockRpcServer is created</a>.
 </td>
 </tr>
 </table>
