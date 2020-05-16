@@ -139,6 +139,39 @@
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/ShuffleClient.html">ShuffleClient</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/BlockTransferService.html">BlockTransferService</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/ExternalShuffleClient.html">ExternalShuffleClient</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/NettyBlockTransferService.html">NettyBlockTransferService</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/BlockFetchingListener.html">BlockFetchingListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/RetryingBlockFetcher.html">RetryingBlockFetcher</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/BlockFetchStarter.html">BlockFetchStarter</a>
+  </li>
+</ul>
+  </li>
 </ul>
   </li>
 </ul>
@@ -788,45 +821,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-Utils.html">Utils Helper Object</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Transferring Data Blocks (between Nodes in Spark Application)</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-ShuffleClient.html">ShuffleClient</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-BlockTransferService.html">BlockTransferService</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-ShuffleClient-ExternalShuffleClient.html">ExternalShuffleClient</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-NettyBlockTransferService.html">NettyBlockTransferService</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-NettyBlockRpcServer.html">NettyBlockRpcServer</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-BlockFetchingListener.html">BlockFetchingListener</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-RetryingBlockFetcher.html">RetryingBlockFetcher</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-RetryingBlockFetcher-BlockFetchStarter.html">BlockFetchStarter</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-ManagedBuffer.html">ManagedBuffer</a>
@@ -1886,7 +1880,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Apache Spark</a></li>
-    <li>Transferring Data Blocks (between Nodes in Spark Application)</li>
+    <li>Core Services</li>
     <li><a href="spark-TransportClientFactory.html">TransportClientFactory</a></li>
   </ul>
 </nav>
@@ -1950,7 +1944,7 @@ TransportClient createClient(InetSocketAddress address)
 <div class="ulist">
 <ul>
 <li>
-<p><code>NettyBlockTransferService</code> is requested to <a href="spark-NettyBlockTransferService.adoc#fetchBlocks">fetchBlocks</a> and <a href="spark-NettyBlockTransferService.adoc#uploadBlock">uploadBlock</a></p>
+<p><code>NettyBlockTransferService</code> is requested to <a href="core/NettyBlockTransferService.html#fetchBlocks" class="page">fetchBlocks</a> and <a href="core/NettyBlockTransferService.html#uploadBlock" class="page">uploadBlock</a></p>
 </li>
 <li>
 <p><code>NettyRpcEnv</code> is requested to <code>createClient</code> and <code>downloadClient</code></p>
@@ -1959,7 +1953,7 @@ TransportClient createClient(InetSocketAddress address)
 <p><code>TransportClientFactory</code> is requested to <a href="#createUnmanagedClient">createUnmanagedClient</a>.</p>
 </li>
 <li>
-<p><code>ExternalShuffleClient</code> is requested to <a href="spark-ShuffleClient-ExternalShuffleClient.adoc#fetchBlocks">fetchBlocks</a></p>
+<p><code>ExternalShuffleClient</code> is requested to <a href="core/ExternalShuffleClient.html#fetchBlocks" class="page">fetchBlocks</a></p>
 </li>
 <li>
 <p>Spark on Mesos' <code>MesosExternalShuffleClient</code> is requested to <code>registerDriverWithShuffleService</code></p>

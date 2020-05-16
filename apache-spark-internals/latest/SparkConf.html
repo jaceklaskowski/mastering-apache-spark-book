@@ -139,6 +139,39 @@
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/ShuffleClient.html">ShuffleClient</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/BlockTransferService.html">BlockTransferService</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/ExternalShuffleClient.html">ExternalShuffleClient</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/NettyBlockTransferService.html">NettyBlockTransferService</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/BlockFetchingListener.html">BlockFetchingListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/RetryingBlockFetcher.html">RetryingBlockFetcher</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/BlockFetchStarter.html">BlockFetchStarter</a>
+  </li>
+</ul>
+  </li>
 </ul>
   </li>
 </ul>
@@ -788,45 +821,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-Utils.html">Utils Helper Object</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Transferring Data Blocks (between Nodes in Spark Application)</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-ShuffleClient.html">ShuffleClient</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-BlockTransferService.html">BlockTransferService</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-ShuffleClient-ExternalShuffleClient.html">ExternalShuffleClient</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-NettyBlockTransferService.html">NettyBlockTransferService</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-NettyBlockRpcServer.html">NettyBlockRpcServer</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-BlockFetchingListener.html">BlockFetchingListener</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-RetryingBlockFetcher.html">RetryingBlockFetcher</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-RetryingBlockFetcher-BlockFetchStarter.html">BlockFetchStarter</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-ManagedBuffer.html">ManagedBuffer</a>
@@ -2069,7 +2063,7 @@ spark.submit.deployMode=client</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>getAppId gives <a href="#spark.app.id">spark.app.id</a> Spark property or reports <code>NoSuchElementException</code> if not set.</p>
+<p>getAppId returns the value of <a href="configuration-properties.html#spark.app.id" class="page">spark.app.id</a> configuration property or throws a <code>NoSuchElementException</code> if not set.</p>
 </div>
 <div class="paragraph">
 <p>getAppId is used when:</p>
@@ -2077,12 +2071,28 @@ spark.submit.deployMode=client</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>NettyBlockTransferService is requested to <a href="spark-NettyBlockTransferService.html#init" class="page">init</a> (and creates a <a href="spark-NettyBlockRpcServer.html#creating-instance" class="page">NettyBlockRpcServer</a> as well as <a href="spark-NettyBlockTransferService.html#appId" class="page">saves the identifier for later use</a>).</p>
+<p>NettyBlockTransferService is requested to <a href="core/NettyBlockTransferService.html#init" class="page">init</a> (and creates a <a href="core/NettyBlockRpcServer.html#creating-instance" class="page">NettyBlockRpcServer</a> as well as <a href="core/NettyBlockTransferService.html#appId" class="page">saves the identifier for later use</a>).</p>
 </li>
 <li>
 <p>Executor <a href="spark-Executor.html#creating-instance" class="page">is created</a> (in non-local mode and <a href="storage/BlockManager.html#initialize" class="page">requests <code>BlockManager</code> to initialize</a>).</p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getavroschema-method"><a class="anchor" href="#getavroschema-method"></a><a class="link" href="#getavroschema-method"><a id="getAvroSchema"></a> getAvroSchema Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getAvroSchema: Map[Long, String]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getAvroSchema takes all <strong>avro.schema</strong>-prefixed configuration properties from <a href="#getAll">getAll</a> and&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>getAvroSchema is used when KryoSerializer is created (and initializes avroSchemas).</p>
 </div>
 </div>
 </div>

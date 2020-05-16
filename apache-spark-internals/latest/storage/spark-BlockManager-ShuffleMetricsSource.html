@@ -139,6 +139,39 @@
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ShuffleClient.html">ShuffleClient</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BlockTransferService.html">BlockTransferService</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/ExternalShuffleClient.html">ExternalShuffleClient</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/NettyBlockTransferService.html">NettyBlockTransferService</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/BlockFetchingListener.html">BlockFetchingListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/RetryingBlockFetcher.html">RetryingBlockFetcher</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
+  </li>
+</ul>
+  </li>
 </ul>
   </li>
 </ul>
@@ -788,45 +821,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-Utils.html">Utils Helper Object</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Transferring Data Blocks (between Nodes in Spark Application)</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-ShuffleClient.html">ShuffleClient</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-BlockTransferService.html">BlockTransferService</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-ShuffleClient-ExternalShuffleClient.html">ExternalShuffleClient</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-NettyBlockTransferService.html">NettyBlockTransferService</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-NettyBlockRpcServer.html">NettyBlockRpcServer</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-BlockFetchingListener.html">BlockFetchingListener</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-RetryingBlockFetcher.html">RetryingBlockFetcher</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RetryingBlockFetcher-BlockFetchStarter.html">BlockFetchStarter</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ManagedBuffer.html">ManagedBuffer</a>
@@ -1913,7 +1907,7 @@
 <p><code>ShuffleMetricsSource</code> is <a href="#creating-instance">created</a> exclusively when <code>BlockManager</code> is requested for the <a href="BlockManager.html#shuffleMetricsSource" class="page">shuffleMetricsSource</a>.</p>
 </div>
 <div class="paragraph">
-<p>When <a href="#creating-instance">created</a>, <code>ShuffleMetricsSource</code> gets a <a href="#metricSet">MetricSet</a> that <code>BlockManager</code> requests from the <a href="spark-ShuffleClient.adoc#shuffleMetrics">ShuffleClient</a> (only <a href="spark-Executor.adoc#creating-instance-BlockManager-shuffleMetricsSource">when in a non-local / cluster mode</a>).</p>
+<p>When <a href="#creating-instance">created</a>, <code>ShuffleMetricsSource</code> gets a <a href="#metricSet">MetricSet</a> that <code>BlockManager</code> requests from the <a href="../core/ShuffleClient.html#shuffleMetrics" class="page">ShuffleClient</a> (only <a href="spark-Executor.adoc#creating-instance-BlockManager-shuffleMetricsSource">when in a non-local / cluster mode</a>).</p>
 </div>
 <div class="paragraph">
 <p><code>ShuffleMetricsSource</code> is registered under the following source name per the type of a <code>BlockManager</code>:</p>

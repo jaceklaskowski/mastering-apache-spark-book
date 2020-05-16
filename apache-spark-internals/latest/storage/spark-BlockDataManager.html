@@ -139,6 +139,39 @@
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ShuffleClient.html">ShuffleClient</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BlockTransferService.html">BlockTransferService</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/ExternalShuffleClient.html">ExternalShuffleClient</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/NettyBlockTransferService.html">NettyBlockTransferService</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/BlockFetchingListener.html">BlockFetchingListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/RetryingBlockFetcher.html">RetryingBlockFetcher</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
+  </li>
+</ul>
+  </li>
 </ul>
   </li>
 </ul>
@@ -788,45 +821,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-Utils.html">Utils Helper Object</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Transferring Data Blocks (between Nodes in Spark Application)</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-ShuffleClient.html">ShuffleClient</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-BlockTransferService.html">BlockTransferService</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-ShuffleClient-ExternalShuffleClient.html">ExternalShuffleClient</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-NettyBlockTransferService.html">NettyBlockTransferService</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-NettyBlockRpcServer.html">NettyBlockRpcServer</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-BlockFetchingListener.html">BlockFetchingListener</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-RetryingBlockFetcher.html">RetryingBlockFetcher</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RetryingBlockFetcher-BlockFetchStarter.html">BlockFetchStarter</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ManagedBuffer.html">ManagedBuffer</a>
@@ -1942,7 +1936,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>NettyBlockRpcServer</code> is requested to <a href="#spark-NettyBlockRpcServer.adoc#receive-OpenBlocks" class="page unresolved">handle a OpenBlocks message</a></p>
+<p>NettyBlockRpcServer is requested to <a href="../core/NettyBlockRpcServer.html#receive-OpenBlocks" class="page">handle a OpenBlocks message</a></p>
 </li>
 <li>
 <p><code>ShuffleBlockFetcherIterator</code> is requested to <a href="ShuffleBlockFetcherIterator.html#fetchLocalBlocks" class="page">fetchLocalBlocks</a></p>
@@ -1965,7 +1959,7 @@
 <p>Stores (<em>puts</em>) a block data (as a <a href="#spark-ManagedBuffer.adoc" class="page unresolved">ManagedBuffer</a>) for the given <a href="spark-BlockId.html" class="page">BlockId</a>. Returns <code>true</code> when completed successfully or <code>false</code> when failed.</p>
 </div>
 <div class="paragraph">
-<p>Used exclusively when <code>NettyBlockRpcServer</code> is requested to <a href="#spark-NettyBlockRpcServer.adoc#receive-UploadBlock" class="page unresolved">handle an UploadBlock message</a></p>
+<p>Used when NettyBlockRpcServer is requested to <a href="../core/NettyBlockRpcServer.html#receive-UploadBlock" class="page">handle an UploadBlock message</a></p>
 </div></div></td>
 </tr>
 <tr>
@@ -1982,7 +1976,7 @@
 <p>Stores a block data that will be received as a stream</p>
 </div>
 <div class="paragraph">
-<p>Used exclusively when <code>NettyBlockRpcServer</code> is requested to <a href="#spark-NettyBlockRpcServer.adoc#receiveStream" class="page unresolved">receiveStream</a></p>
+<p>Used when NettyBlockRpcServer is requested to <a href="../core/NettyBlockRpcServer.html#receiveStream" class="page">receiveStream</a></p>
 </div></div></td>
 </tr>
 <tr>

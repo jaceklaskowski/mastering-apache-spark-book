@@ -139,6 +139,39 @@
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ShuffleClient.html">ShuffleClient</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BlockTransferService.html">BlockTransferService</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/ExternalShuffleClient.html">ExternalShuffleClient</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/NettyBlockTransferService.html">NettyBlockTransferService</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/BlockFetchingListener.html">BlockFetchingListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/RetryingBlockFetcher.html">RetryingBlockFetcher</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
+  </li>
+</ul>
+  </li>
 </ul>
   </li>
 </ul>
@@ -788,45 +821,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-Utils.html">Utils Helper Object</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Transferring Data Blocks (between Nodes in Spark Application)</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-ShuffleClient.html">ShuffleClient</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-BlockTransferService.html">BlockTransferService</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-ShuffleClient-ExternalShuffleClient.html">ExternalShuffleClient</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-NettyBlockTransferService.html">NettyBlockTransferService</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-NettyBlockRpcServer.html">NettyBlockRpcServer</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-BlockFetchingListener.html">BlockFetchingListener</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-RetryingBlockFetcher.html">RetryingBlockFetcher</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-RetryingBlockFetcher-BlockFetchStarter.html">BlockFetchStarter</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ManagedBuffer.html">ManagedBuffer</a>
@@ -1952,7 +1946,7 @@ Use <a href="../tools/spark-submit.html" class="page">spark-submit</a>'s command
 <p>A <a href="#creating-instance">BlockManager is created</a> when a <a href="../core/SparkEnv.html#create" class="page">Spark application starts</a> and must be <a href="#initialize">initialized</a> before it is fully operable.</p>
 </div>
 <div class="paragraph">
-<p>When <a href="#externalShuffleServiceEnabled">External Shuffle Service is enabled</a>, BlockManager uses <a href="../spark-ShuffleClient-ExternalShuffleClient.html" class="page">ExternalShuffleClient</a> to read other executors' shuffle files.</p>
+<p>When <a href="#externalShuffleServiceEnabled">External Shuffle Service is enabled</a>, BlockManager uses <a href="../core/ExternalShuffleClient.html" class="page">ExternalShuffleClient</a> to read other executors' shuffle files.</p>
 </div>
 </div>
 </div>
@@ -2042,7 +2036,7 @@ It is computed specially in Spark on YARN.
 </table>
 </div>
 <div class="paragraph">
-<p>BlockManager creates a client to read other executors' shuffle files (as <code>shuffleClient</code>). If the external shuffle service is used an <a href="../spark-ShuffleClient-ExternalShuffleClient.html" class="page">ExternalShuffleClient</a> is created or the input <a href="../spark-BlockTransferService.html" class="page">BlockTransferService</a> is used.</p>
+<p>BlockManager creates a client to read other executors' shuffle files (as <code>shuffleClient</code>). If the external shuffle service is used an <a href="../core/ExternalShuffleClient.html" class="page">ExternalShuffleClient</a> is created or the input <a href="../core/BlockTransferService.html" class="page">BlockTransferService</a> is used.</p>
 </div>
 <div class="paragraph">
 <p>BlockManager sets the <a href="../configuration-properties.html#spark.block.failures.beforeLocationRefresh" class="page">maximum number of failures</a> before this block manager refreshes the block locations from the driver (as <code>maxFailuresBeforeLocationRefresh</code>).</p>
@@ -2070,16 +2064,16 @@ SparkEnv.get.blockManager</code></pre>
 <h2 id="blocktransferservice"><a class="anchor" href="#blocktransferservice"></a><a class="link" href="#blocktransferservice"><a id="blockTransferService"></a> BlockTransferService</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>BlockManager is given a <a href="../spark-BlockTransferService.html" class="page">BlockTransferService</a> to be created.</p>
+<p>BlockManager is given a <a href="../core/BlockTransferService.html" class="page">BlockTransferService</a> to be created.</p>
 </div>
 <div class="paragraph">
 <p>BlockTransferService is used as the <a href="#shuffleClient">ShuffleClient</a> when BlockManager is configured to use no external shuffle service (based on <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property).</p>
 </div>
 <div class="paragraph">
-<p>BlockTransferService is <a href="../spark-BlockTransferService.html#init" class="page">initialized</a> when BlockManager <a href="#initialize">is</a>.</p>
+<p>BlockTransferService is <a href="../core/BlockTransferService.html#init" class="page">initialized</a> when BlockManager <a href="#initialize">is</a>.</p>
 </div>
 <div class="paragraph">
-<p>BlockTransferService is <a href="../spark-BlockTransferService.html#close" class="page">closed</a> when BlockManager is requested to <a href="#stop">stop</a>.</p>
+<p>BlockTransferService is <a href="../core/BlockTransferService.html#close" class="page">closed</a> when BlockManager is requested to <a href="#stop">stop</a>.</p>
 </div>
 <div class="paragraph">
 <p>BlockTransferService is used when BlockManager is requested to <a href="#getRemoteBytes">fetching a block from</a> or <a href="#replicate">replicate a block to</a> remote block managers.</p>
@@ -2600,7 +2594,7 @@ FIXME
 <h2 id="is-external-shuffle-service-enabled"><a class="anchor" href="#is-external-shuffle-service-enabled"></a><a class="link" href="#is-external-shuffle-service-enabled"><a id="externalShuffleServiceEnabled"></a> Is External Shuffle Service Enabled?</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When the <a href="#ROOT:ExternalShuffleService.adoc" class="page unresolved">External Shuffle Service</a> is enabled for a Spark application, BlockManager uses <a href="../spark-ShuffleClient-ExternalShuffleClient.html" class="page">ExternalShuffleClient</a> to read other executors' shuffle files.</p>
+<p>When the <a href="#ROOT:ExternalShuffleService.adoc" class="page unresolved">External Shuffle Service</a> is enabled for a Spark application, BlockManager uses <a href="../core/ExternalShuffleClient.html" class="page">ExternalShuffleClient</a> to read other executors' shuffle files.</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -3046,11 +3040,12 @@ FIXME
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">initialize(appId: String): Unit</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">initialize(
+  appId: String): Unit</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>initialize</code> initializes a BlockManager on the driver and executors (see <a href="../SparkContext.html#creating-instance" class="page">Creating SparkContext Instance</a> and <a href="spark-Executor.adoc#creating-instance">Creating Executor Instance</a>, respectively).</p>
+<p>initialize initializes a BlockManager on the driver and executors (see <a href="../SparkContext.html#creating-instance" class="page">Creating SparkContext Instance</a> and <a href="spark-Executor.adoc#creating-instance">Creating Executor Instance</a>, respectively).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3065,15 +3060,15 @@ The method must be called before a BlockManager can be considered fully operable
 </table>
 </div>
 <div class="paragraph">
-<p><code>initialize</code> does the following in order:</p>
+<p>initialize does the following in order:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Initializes <a href="spark-BlockTransferService.adoc#init">BlockTransferService</a></p>
+<p>Initializes <a href="../core/BlockTransferService.html#init" class="page">BlockTransferService</a></p>
 </li>
 <li>
-<p>Initializes the internal shuffle client, be it <a href="spark-ShuffleClient-ExternalShuffleClient.adoc">ExternalShuffleClient</a> or <a href="spark-BlockTransferService.adoc">BlockTransferService</a>.</p>
+<p>Initializes the internal shuffle client, be it <a href="../core/ExternalShuffleClient.html" class="page">ExternalShuffleClient</a> or <a href="../core/BlockTransferService.html" class="page">BlockTransferService</a>.</p>
 </li>
 <li>
 <p><a href="BlockManagerMaster.html#registerBlockManager" class="page">Registers itself with the driver&#8217;s <code>BlockManagerMaster</code></a> (using the <code>id</code>, <code>maxMemory</code> and its <code>slaveEndpoint</code>).</p>
@@ -3082,7 +3077,7 @@ The method must be called before a BlockManager can be considered fully operable
 </div>
 </li>
 <li>
-<p>Sets <a href="#shuffleServerId">shuffleServerId</a> to an instance of <a href="#BlockManagerId">BlockManagerId</a> given an executor id, host name and port for <a href="spark-BlockTransferService.adoc">BlockTransferService</a>.</p>
+<p>Sets <a href="#shuffleServerId">shuffleServerId</a> to an instance of <a href="#BlockManagerId">BlockManagerId</a> given an executor id, host name and port for <a href="../core/BlockTransferService.html" class="page">BlockTransferService</a>.</p>
 </li>
 <li>
 <p>It creates the address of the server that serves this executor&#8217;s shuffle files (using <a href="#shuffleServerId">shuffleServerId</a>)</p>
@@ -3134,7 +3129,7 @@ FIXME Describe <code>shuffleServerId</code>. Where is it used?
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>initialize</code> is called when the <a href="spark-SparkContext-creating-instance-internals.adoc#BlockManager-initialization">driver is launched (and <code>SparkContext</code> is created)</a> and when an <a href="spark-Executor.adoc#creating-instance"><code>Executor</code> is created</a> (for <a href="spark-CoarseGrainedExecutorBackend.adoc#RegisteredExecutor">CoarseGrainedExecutorBackend</a> and <a href="spark-executor-backends-MesosExecutorBackend.adoc">MesosExecutorBackend</a>).
+initialize is called when the <a href="spark-SparkContext-creating-instance-internals.adoc#BlockManager-initialization">driver is launched (and <code>SparkContext</code> is created)</a> and when an <a href="spark-Executor.adoc#creating-instance"><code>Executor</code> is created</a> (for <a href="spark-CoarseGrainedExecutorBackend.adoc#RegisteredExecutor">CoarseGrainedExecutorBackend</a> and <a href="spark-executor-backends-MesosExecutorBackend.adoc">MesosExecutorBackend</a>).
 </td>
 </tr>
 </table>
@@ -3173,7 +3168,7 @@ It is executed when a <a href="#initialize">BlockManager is initialized on an ex
 </div>
 </div>
 <div class="paragraph">
-<p>It uses <a href="#shuffleClient">shuffleClient</a> to <a href="spark-ShuffleClient-ExternalShuffleClient.adoc#registerWithShuffleServer">register the block manager</a> using <a href="#shuffleServerId">shuffleServerId</a> (i.e. the host, the port and the executorId) and a <code>ExecutorShuffleInfo</code>.</p>
+<p>It uses <a href="#shuffleClient">shuffleClient</a> to <a href="../core/ExternalShuffleClient.html#registerWithShuffleServer" class="page">register the block manager</a> using <a href="#shuffleServerId">shuffleServerId</a> (i.e. the host, the port and the executorId) and a <code>ExecutorShuffleInfo</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3597,7 +3592,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="paragraph">
-<p><code>shuffleMetricsSource</code> requests the <a href="#shuffleClient">ShuffleClient</a> for the <a href="spark-ShuffleClient.adoc#shuffleMetrics">shuffle-related metrics</a> and creates a <a href="spark-BlockManager-ShuffleMetricsSource.adoc">ShuffleMetricsSource</a> with the <a href="spark-BlockManager-ShuffleMetricsSource.adoc#sourceName">source name</a> per <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property:</p>
+<p><code>shuffleMetricsSource</code> requests the <a href="#shuffleClient">ShuffleClient</a> for the <a href="../core/ShuffleClient.html#shuffleMetrics" class="page">shuffle-related metrics</a> and creates a <a href="spark-BlockManager-ShuffleMetricsSource.adoc">ShuffleMetricsSource</a> with the <a href="spark-BlockManager-ShuffleMetricsSource.adoc#sourceName">source name</a> per <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3850,7 +3845,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="paragraph">
-<p><code>shuffleClient</code> is a <a href="spark-ShuffleClient.adoc">ShuffleClient</a> that BlockManager uses for the following:</p>
+<p><code>shuffleClient</code> is a <a href="../core/ShuffleClient.html" class="page">ShuffleClient</a> that BlockManager uses for the following:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3866,7 +3861,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 <p><code>shuffleClient</code> is also used when <code>BlockStoreShuffleReader</code> is requested to <a href="../shuffle/BlockStoreShuffleReader.html#read" class="page">read combined key-value records for a reduce task</a> (and creates a <a href="ShuffleBlockFetcherIterator.html#shuffleClient" class="page">ShuffleBlockFetcherIterator</a>).</p>
 </div>
 <div class="paragraph">
-<p><code>shuffleClient</code> can be either a <a href="spark-ShuffleClient-ExternalShuffleClient.adoc">ExternalShuffleClient</a> or the <a href="#blockTransferService">BlockTransferService</a> (that is the <a href="spark-NettyBlockTransferService.adoc">NettyBlockTransferService</a> given by <a href="../core/SparkEnv.html#create-BlockManager" class="page">SparkEnv</a>).</p>
+<p><code>shuffleClient</code> can be either a <a href="../core/ExternalShuffleClient.html" class="page">ExternalShuffleClient</a> or the <a href="#blockTransferService">BlockTransferService</a> (that is the <a href="../core/NettyBlockTransferService.html" class="page">NettyBlockTransferService</a> given by <a href="../core/SparkEnv.html#create-BlockManager" class="page">SparkEnv</a>).</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -3881,7 +3876,7 @@ FIXME Figure
 </table>
 </div>
 <div id="shuffleClient-externalShuffleServiceEnabled" class="paragraph">
-<p><code>shuffleClient</code> uses <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property that controls whether to use <a href="spark-ShuffleClient-ExternalShuffleClient.adoc">ExternalShuffleClient</a> (<code>true</code>) or the <a href="#blockTransferService">BlockTransferService</a> (i.e. <a href="spark-NettyBlockTransferService.adoc">NettyBlockTransferService</a>).</p>
+<p><code>shuffleClient</code> uses <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property that controls whether to use <a href="../core/ExternalShuffleClient.html" class="page">ExternalShuffleClient</a> (<code>true</code>) or the <a href="#blockTransferService">BlockTransferService</a> (i.e. <a href="../core/NettyBlockTransferService.html" class="page">NettyBlockTransferService</a>).</p>
 </div>
 </div>
 </div>
