@@ -96,6 +96,12 @@
     <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcAddress.html">RpcAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointAddress.html">RpcEndpointAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
 <ul class="nav-list">
@@ -105,7 +111,13 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFileServer.html">RpcEnvFileServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcUtils.html">RpcUtils</a>
   </li>
 </ul>
   </li>
@@ -1882,9 +1894,6 @@
     <a class="nav-link" href="../exercises/spark-exercise-custom-scheduler-listener.html">Developing Custom SparkListener to monitor DAGScheduler in Scala</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../exercises/spark-exercise-custom-rpc-environment.html">Developing RPC Environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../exercises/spark-exercise-custom-rdd.html">Developing Custom RDD</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -2922,27 +2931,19 @@ FIXME A potential issue with <code>driverEndpoint.asInstanceOf[NettyRpcEndpointR
 </div>
 </div>
 <div class="sect1">
-<h2 id="createdriverendpointref-method"><a class="anchor" href="#createdriverendpointref-method"></a><a class="link" href="#createdriverendpointref-method"><a id="createDriverEndpointRef"></a> <code>createDriverEndpointRef</code> Method</a></h2>
+<h2 id="createdriverendpointref-method"><a class="anchor" href="#createdriverendpointref-method"></a><a class="link" href="#createdriverendpointref-method"><a id="createDriverEndpointRef"></a> createDriverEndpointRef Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">createDriverEndpointRef(properties: ArrayBuffer[(String, String)]): RpcEndpointRef</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">createDriverEndpointRef(
+  properties: ArrayBuffer[(String, String)]): RpcEndpointRef</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>createDriverEndpointRef</code> <a href="#createDriverEndpoint">creates <code>DriverEndpoint</code></a> and <a href="../rpc/index.html#setupEndpoint" class="page">registers it</a> as <strong>CoarseGrainedScheduler</strong>.</p>
+<p>createDriverEndpointRef <a href="#createDriverEndpoint">creates DriverEndpoint</a> and <a href="../rpc/index.html#setupEndpoint" class="page">registers it</a> as <strong>CoarseGrainedScheduler</strong>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>createDriverEndpointRef</code> is used when <code>CoarseGrainedSchedulerBackend</code> <a href="#start">starts</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>createDriverEndpointRef is used when CoarseGrainedSchedulerBackend is requested to <a href="#start">start</a>.</p>
 </div>
 </div>
 </div>

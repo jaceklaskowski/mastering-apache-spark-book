@@ -96,6 +96,12 @@
     <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcAddress.html">RpcAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointAddress.html">RpcEndpointAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
 <ul class="nav-list">
@@ -105,7 +111,13 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFileServer.html">RpcEnvFileServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcUtils.html">RpcUtils</a>
   </li>
 </ul>
   </li>
@@ -1882,9 +1894,6 @@
     <a class="nav-link" href="../exercises/spark-exercise-custom-scheduler-listener.html">Developing Custom SparkListener to monitor DAGScheduler in Scala</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../exercises/spark-exercise-custom-rpc-environment.html">Developing RPC Environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../exercises/spark-exercise-custom-rdd.html">Developing Custom RDD</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -2461,28 +2470,29 @@ FIXME Why is this needed? <code>addAmIpFilter</code>
 </div>
 </div>
 <div class="sect2">
-<h3 id="running-spark-applications-driver-and-registering-applicationmaster-with-yarn-resourcemanager-cluster-deploy-moderundriver-internal-method"><a class="anchor" href="#running-spark-applications-driver-and-registering-applicationmaster-with-yarn-resourcemanager-cluster-deploy-moderundriver-internal-method"></a><a class="link" href="#running-spark-applications-driver-and-registering-applicationmaster-with-yarn-resourcemanager-cluster-deploy-moderundriver-internal-method"><a id="runDriver"></a> Running Spark Application&#8217;s Driver and Registering ApplicationMaster with YARN ResourceManager (Cluster Deploy Mode)&#8201;&#8212;&#8201;<code>runDriver</code> Internal Method</a></h3>
+<h3 id="running-spark-applications-driver-and-registering-applicationmaster-with-yarn-resourcemanager-cluster-deploy-mode"><a class="anchor" href="#running-spark-applications-driver-and-registering-applicationmaster-with-yarn-resourcemanager-cluster-deploy-mode"></a><a class="link" href="#running-spark-applications-driver-and-registering-applicationmaster-with-yarn-resourcemanager-cluster-deploy-mode"><a id="runDriver"></a> Running Spark Application&#8217;s Driver and Registering ApplicationMaster with YARN ResourceManager (Cluster Deploy Mode)</a></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">runDriver(securityMgr: SecurityManager): Unit</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">runDriver(
+  securityMgr: SecurityManager): Unit</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>runDriver</code> starts a Spark application on a <a href="#userClassThread">separate thread</a>, registers <code>YarnAM</code> endpoint in the application&#8217;s <code>RpcEnv</code> followed by registering <code>ApplicationMaster</code> with YARN ResourceManager. In the end, <code>runDriver</code> waits for the Spark application to finish.</p>
+<p>runDriver starts a Spark application on a <a href="#userClassThread">separate thread</a>, registers <code>YarnAM</code> endpoint in the application&#8217;s <code>RpcEnv</code> followed by registering <code>ApplicationMaster</code> with YARN ResourceManager. In the end, runDriver waits for the Spark application to finish.</p>
 </div>
 <div class="paragraph">
-<p>Internally, <code>runDriver</code> <a href="#addAmIpFilter">registers web UI security filters</a> and <a href="#startUserApplication">starts a Spark application</a> (on a <a href="#userClassThread">separate Thread</a>).</p>
+<p>Internally, runDriver <a href="#addAmIpFilter">registers web UI security filters</a> and <a href="#startUserApplication">starts a Spark application</a> (on a <a href="#userClassThread">separate Thread</a>).</p>
 </div>
 <div class="paragraph">
 <p>You should see the following INFO message in the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>INFO Waiting for spark context initialization...</code></pre>
+<pre class="highlightjs highlight"><code>Waiting for spark context initialization...</code></pre>
 </div>
 </div>
 <div id="runDriver-rpcEnv" class="paragraph">
-<p><code>runDriver</code> waits <a href="spark-yarn-settings.adoc#spark.yarn.am.waitTime">spark.yarn.am.waitTime</a> time till the Spark application&#8217;s <a href="../SparkContext.html" class="page">SparkContext</a> is available and accesses the <a href="../index.adoc">current <code>RpcEnv</code></a> (and saves it as the internal <a href="#rpcEnv">rpcEnv</a>).</p>
+<p>runDriver waits <a href="spark-yarn-settings.adoc#spark.yarn.am.waitTime">spark.yarn.am.waitTime</a> time till the Spark application&#8217;s <a href="../SparkContext.html" class="page">SparkContext</a> is available and accesses the <a href="../index.adoc">current <code>RpcEnv</code></a> (and saves it as the internal <a href="#rpcEnv">rpcEnv</a>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2491,19 +2501,19 @@ FIXME Why is this needed? <code>addAmIpFilter</code>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>runDriver</code> uses <a href="../core/SparkEnv.html#rpcEnv" class="page"><code>SparkEnv</code> to access the current <code>RpcEnv</code></a> that the <a href="../SparkContext.html#env" class="page">Spark application&#8217;s <code>SparkContext</code> manages</a>.
+runDriver uses <a href="../core/SparkEnv.html#rpcEnv" class="page"><code>SparkEnv</code> to access the current <code>RpcEnv</code></a> that the <a href="../SparkContext.html#env" class="page">Spark application&#8217;s <code>SparkContext</code> manages</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p><code>runDriver</code> <a href="#runAMEndpoint">creates <code>RpcEndpointRef</code> to the driver&#8217;s <code>YarnScheduler</code> endpoint and registers <code>YarnAM</code> endpoint</a> (using <a href="../spark-driver.adoc#spark_driver_host">spark.driver.host</a> and <a href="../spark-driver.adoc#spark_driver_port">spark.driver.port</a> properties for the driver&#8217;s host and port and <code>isClusterMode</code> enabled).</p>
+<p>runDriver <a href="#runAMEndpoint">creates <code>RpcEndpointRef</code> to the driver&#8217;s <code>YarnScheduler</code> endpoint and registers <code>YarnAM</code> endpoint</a> (using <a href="../spark-driver.adoc#spark_driver_host">spark.driver.host</a> and <a href="../spark-driver.adoc#spark_driver_port">spark.driver.port</a> properties for the driver&#8217;s host and port and <code>isClusterMode</code> enabled).</p>
 </div>
 <div class="paragraph">
-<p><code>runDriver</code> <a href="#registerAM">registers <code>ApplicationMaster</code> with YARN ResourceManager and requests cluster resources</a> (using the Spark application&#8217;s <a href="#rpcEnv">RpcEnv</a>, the driver&#8217;s RPC endpoint reference, <code>webUrl</code> if web UI is enabled and the input <code>securityMgr</code>).</p>
+<p>runDriver <a href="#registerAM">registers <code>ApplicationMaster</code> with YARN ResourceManager and requests cluster resources</a> (using the Spark application&#8217;s <a href="#rpcEnv">RpcEnv</a>, the driver&#8217;s RPC endpoint reference, <code>webUrl</code> if web UI is enabled and the input <code>securityMgr</code>).</p>
 </div>
 <div class="paragraph">
-<p><code>runDriver</code> pauses until the Spark application finishes.</p>
+<p>runDriver pauses until the Spark application finishes.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2512,13 +2522,13 @@ FIXME Why is this needed? <code>addAmIpFilter</code>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>runDriver</code> uses Java&#8217;s <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html#join--">Thread.join</a> on the internal <a href="#userClassThread">Thread</a> reference to the Spark application running on it.
+runDriver uses Java&#8217;s <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html#join--">Thread.join</a> on the internal <a href="#userClassThread">Thread</a> reference to the Spark application running on it.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>If the Spark application has not started in <a href="spark-yarn-settings.adoc#spark.yarn.am.waitTime">spark.yarn.am.waitTime</a> time, <code>runDriver</code> reports a <code>IllegalStateException</code>:</p>
+<p>If the Spark application has not started in <a href="spark-yarn-settings.adoc#spark.yarn.am.waitTime">spark.yarn.am.waitTime</a> time, runDriver reports a <code>IllegalStateException</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2526,24 +2536,15 @@ FIXME Why is this needed? <code>addAmIpFilter</code>
 </div>
 </div>
 <div class="paragraph">
-<p>If <code>TimeoutException</code> is reported while waiting for the Spark application to start, you should see the following ERROR message in the logs and <code>runDriver</code> <a href="#finish">finishes</a> with <code>FAILED</code> final application status and the error code <code>13</code>.</p>
+<p>If <code>TimeoutException</code> is reported while waiting for the Spark application to start, you should see the following ERROR message in the logs and runDriver <a href="#finish">finishes</a> with <code>FAILED</code> final application status and the error code <code>13</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>ERROR SparkContext did not initialize after waiting for [spark.yarn.am.waitTime] ms. Please check earlier log output for errors. Failing the application.</code></pre>
+<pre class="highlightjs highlight"><code>SparkContext did not initialize after waiting for [spark.yarn.am.waitTime] ms. Please check earlier log output for errors. Failing the application.</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>runDriver</code> is used exclusively when <a href="#run"><code>ApplicationMaster</code> is started</a> in <a href="#isClusterMode"><code>cluster</code> deploy mode</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>runDriver is used when ApplicationMaster is <a href="#run">started</a> (in <a href="#isClusterMode">cluster deploy mode</a>).</p>
 </div>
 </div>
 <div class="sect2">
@@ -3150,6 +3151,22 @@ FIXME <code>waitForSparkDriver</code> expects the driver&#8217;s host and port a
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="createallocator-method"><a class="anchor" href="#createallocator-method"></a><a class="link" href="#createallocator-method"><a id="createAllocator"></a> createAllocator Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">createAllocator(
+  driverRef: RpcEndpointRef,
+  _sparkConf: SparkConf): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>createAllocator&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>createAllocator is used when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>

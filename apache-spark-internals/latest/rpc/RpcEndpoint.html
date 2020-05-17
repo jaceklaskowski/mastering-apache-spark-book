@@ -96,6 +96,12 @@
     <a class="nav-link" href="RpcEndpointRef.html">RpcEndpointRef</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcAddress.html">RpcAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcEndpointAddress.html">RpcEndpointAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="RpcEnvFactory.html">RpcEnvFactory</a>
 <ul class="nav-list">
@@ -105,7 +111,13 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcEnvFileServer.html">RpcEnvFileServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcUtils.html">RpcUtils</a>
   </li>
 </ul>
   </li>
@@ -1882,9 +1894,6 @@
     <a class="nav-link" href="../exercises/spark-exercise-custom-scheduler-listener.html">Developing Custom SparkListener to monitor DAGScheduler in Scala</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../exercises/spark-exercise-custom-rpc-environment.html">Developing RPC Environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../exercises/spark-exercise-custom-rdd.html">Developing Custom RDD</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1939,6 +1948,9 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>RpcEndpoint is a <a href="#contract">contract</a> to define an RPC endpoint that can <a href="#receive">receive</a> <strong>messages</strong> using <strong>callbacks</strong>, i.e. <strong>functions</strong> to execute when a message arrives.</p>
+</div>
+<div class="paragraph">
+<p>RpcEndpoint defines how to handle <strong>messages</strong> (what <strong>functions</strong> to execute given a message). RpcEndpoints register (with a name or uri) to <code>RpcEnv</code> to receive messages from <a href="RpcEndpointRef.html" class="page">RpcEndpointRefs</a>.</p>
 </div>
 <div id="contract" class="listingblock">
 <div class="content">
@@ -2048,6 +2060,14 @@ FIXME
 </td>
 </tr>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="threadsaferpcendpoint"><a class="anchor" href="#threadsaferpcendpoint"></a><a class="link" href="#threadsaferpcendpoint"><a id="ThreadSafeRpcEndpoint"></a> ThreadSafeRpcEndpoint</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ThreadSafeRpcEndpoint is an RpcEndpoint for endpoints that&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>

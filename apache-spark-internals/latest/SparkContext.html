@@ -96,6 +96,12 @@
     <a class="nav-link" href="rpc/RpcEndpointRef.html">RpcEndpointRef</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcAddress.html">RpcAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcEndpointAddress.html">RpcEndpointAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="rpc/RpcEnvFactory.html">RpcEnvFactory</a>
 <ul class="nav-list">
@@ -105,7 +111,13 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcEnvFileServer.html">RpcEnvFileServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcUtils.html">RpcUtils</a>
   </li>
 </ul>
   </li>
@@ -1882,9 +1894,6 @@
     <a class="nav-link" href="exercises/spark-exercise-custom-scheduler-listener.html">Developing Custom SparkListener to monitor DAGScheduler in Scala</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="exercises/spark-exercise-custom-rpc-environment.html">Developing RPC Environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="exercises/spark-exercise-custom-rdd.html">Developing Custom RDD</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -2116,12 +2125,15 @@ Read the scaladoc of  <a href="http://spark.apache.org/docs/latest/api/scala/ind
 </div>
 </div>
 <div class="sect1">
-<h2 id="addfile-method"><a class="anchor" href="#addfile-method"></a><a class="link" href="#addfile-method"><a id="addFile"></a> <code>addFile</code> Method</a></h2>
+<h2 id="addfile-method"><a class="anchor" href="#addfile-method"></a><a class="link" href="#addfile-method"><a id="addFile"></a> addFile Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">addFile(path: String): Unit <i class="conum" data-value="1"></i><b>(1)</b>
-addFile(path: String, recursive: Boolean): Unit</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">addFile(
+  path: String): Unit <i class="conum" data-value="1"></i><b>(1)</b>
+addFile(
+  path: String,
+  recursive: Boolean): Unit</code></pre>
 </div>
 </div>
 <div class="colist arabic">

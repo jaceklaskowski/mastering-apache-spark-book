@@ -96,6 +96,12 @@
     <a class="nav-link" href="RpcEndpointRef.html">RpcEndpointRef</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcAddress.html">RpcAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcEndpointAddress.html">RpcEndpointAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="RpcEnvFactory.html">RpcEnvFactory</a>
 <ul class="nav-list">
@@ -105,7 +111,13 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcEnvFileServer.html">RpcEnvFileServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcUtils.html">RpcUtils</a>
   </li>
 </ul>
   </li>
@@ -1882,9 +1894,6 @@
     <a class="nav-link" href="../exercises/spark-exercise-custom-scheduler-listener.html">Developing Custom SparkListener to monitor DAGScheduler in Scala</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../exercises/spark-exercise-custom-rpc-environment.html">Developing RPC Environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../exercises/spark-exercise-custom-rdd.html">Developing Custom RDD</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1934,463 +1943,17 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">RPC System</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
 <div class="paragraph">
-<p>FIXME</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>How to know the available endpoints in the environment? See the exercise <a href="exercises/spark-exercise-custom-rpc-environment.adoc">Developing RPC Environment</a>.</p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
+<p>RPC System is a communication system of Spark services.</p>
 </div>
 <div class="paragraph">
-<p><strong>RPC Environment</strong> (aka <strong>RpcEnv</strong>) is an environment for <a href="RpcEndpoint.html" class="page">RpcEndpoints</a> to process messages. A RPC Environment manages the entire lifecycle of RpcEndpoints:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>registers (sets up) endpoints (by name or uri)</p>
-</li>
-<li>
-<p>routes incoming messages to them</p>
-</li>
-<li>
-<p>stops them</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>A RPC Environment is defined by the <strong>name</strong>, <strong>host</strong>, and <strong>port</strong>. It can also be controlled by a <strong>security manager</strong>.</p>
-</div>
-<div class="paragraph">
-<p>You can create a RPC Environment using <a href="#create">RpcEnv.create</a> factory methods.</p>
-</div>
-<div class="paragraph">
-<p>The only implementation of RPC Environment is <a href="spark-rpc-netty.html" class="page">Netty-based implementation</a>.</p>
-</div>
-<div class="paragraph">
-<p>A <a href="RpcEndpoint.html" class="page">RpcEndpoint</a> defines how to handle <strong>messages</strong> (what <strong>functions</strong> to execute given a message). RpcEndpoints register (with a name or uri) to <code>RpcEnv</code> to receive messages from <a href="RpcEndpointRef.html" class="page">RpcEndpointRefs</a>.</p>
+<p>The main abstractions are <a href="RpcEnv.html" class="page">RpcEnv</a> and <a href="RpcEndpoint.html" class="page">RpcEndpoint</a>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="_images/rpcenv-endpoints.png" alt="rpcenv endpoints">
 </div>
 <div class="title">Figure 1. RpcEnvironment with RpcEndpoints and RpcEndpointRefs</div>
-</div>
-<div class="paragraph">
-<p>RpcEndpointRefs can be looked up by <strong>name</strong> or <strong>uri</strong> (because different RpcEnvs may have different naming schemes).</p>
-</div>
-<div class="paragraph">
-<p><code>org.apache.spark.rpc</code> package contains the machinery for RPC communication in Spark.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="client-mode-is-this-an-executor-or-the-driver"><a class="anchor" href="#client-mode-is-this-an-executor-or-the-driver"></a><a class="link" href="#client-mode-is-this-an-executor-or-the-driver"><a id="client-mode"></a> Client Mode = is this an executor or the driver?</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>When an RPC Environment is initialized <a href="../core/SparkEnv.html#createDriverEnv" class="page">as part of the initialization of the driver</a> or <a href="../core/SparkEnv.html#createExecutorEnv" class="page">executors</a> (using <code>RpcEnv.create</code>), <code>clientMode</code> is <code>false</code> for the driver and <code>true</code> for executors.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>RpcEnv.create(actorSystemName, hostname, port, conf, securityManager, clientMode = !isDriver)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Refer to <a href="#client-mode">Client Mode</a> in Netty-based RpcEnv for the implementation-specific details.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="creating-rpcendpointref-for-uriasyncsetupendpointrefbyuri-method"><a class="anchor" href="#creating-rpcendpointref-for-uriasyncsetupendpointrefbyuri-method"></a><a class="link" href="#creating-rpcendpointref-for-uriasyncsetupendpointrefbyuri-method"><a id="asyncSetupEndpointRefByURI"></a> Creating RpcEndpointRef For URI&#8201;&#8212;&#8201;<code>asyncSetupEndpointRefByURI</code> Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="creating-rpcendpointref-for-urisetupendpointrefbyuri-method"><a class="anchor" href="#creating-rpcendpointref-for-urisetupendpointrefbyuri-method"></a><a class="link" href="#creating-rpcendpointref-for-urisetupendpointrefbyuri-method"><a id="setupEndpointRefByURI"></a> Creating RpcEndpointRef For URI&#8201;&#8212;&#8201;<code>setupEndpointRefByURI</code> Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="shutdown-method"><a class="anchor" href="#shutdown-method"></a><a class="link" href="#shutdown-method"><a id="shutdown"></a> <code>shutdown</code> Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="registering-rpc-endpointsetupendpoint-method"><a class="anchor" href="#registering-rpc-endpointsetupendpoint-method"></a><a class="link" href="#registering-rpc-endpointsetupendpoint-method"><a id="setupEndpoint"></a> Registering RPC Endpoint&#8201;&#8212;&#8201;<code>setupEndpoint</code> Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="awaittermination-method"><a class="anchor" href="#awaittermination-method"></a><a class="link" href="#awaittermination-method"><a id="awaitTermination"></a> <code>awaitTermination</code> Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="threadsaferpcendpoint"><a class="anchor" href="#threadsaferpcendpoint"></a><a class="link" href="#threadsaferpcendpoint"><a id="ThreadSafeRpcEndpoint"></a> ThreadSafeRpcEndpoint</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><code>ThreadSafeRpcEndpoint</code> is a marker <a href="RpcEndpoint.html" class="page">RpcEndpoint</a> that does nothing by itself but tells&#8230;&#8203;</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME What is marker?
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>ThreadSafeRpcEndpoint</code> is a <code>private[spark] trait</code>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="rpcaddress"><a class="anchor" href="#rpcaddress"></a><a class="link" href="#rpcaddress"><a id="RpcAddress"></a> RpcAddress</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><strong>RpcAddress</strong> is the logical address for an RPC Environment, with hostname and port.</p>
-</div>
-<div class="paragraph">
-<p>RpcAddress is encoded as a <strong>Spark URL</strong>, i.e. <code>spark://host:port</code>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="rpcendpointaddress"><a class="anchor" href="#rpcendpointaddress"></a><a class="link" href="#rpcendpointaddress"><a id="RpcEndpointAddress"></a> RpcEndpointAddress</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><strong>RpcEndpointAddress</strong> is the logical address for an endpoint registered to an RPC Environment, with <a href="#RpcAddress">RpcAddress</a> and <strong>name</strong>.</p>
-</div>
-<div class="paragraph">
-<p>It is in the format of <strong>spark://[name]@[rpcAddress.host]:[rpcAddress.port]</strong>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="stopping-rpcendpointrefstop-method"><a class="anchor" href="#stopping-rpcendpointrefstop-method"></a><a class="link" href="#stopping-rpcendpointrefstop-method"><a id="stop"></a> Stopping RpcEndpointRef&#8201;&#8212;&#8201;<code>stop</code> Method</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">stop(endpoint: RpcEndpointRef): Unit</code></pre>
-</div>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="endpoint-lookup-timeout"><a class="anchor" href="#endpoint-lookup-timeout"></a><a class="link" href="#endpoint-lookup-timeout"><a id="endpoint-lookup-timeout"></a> Endpoint Lookup Timeout</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>When a remote endpoint is resolved, a local RPC environment connects to the remote one. It is called <strong>endpoint lookup</strong>. To configure the time needed for the endpoint lookup you can use the following settings.</p>
-</div>
-<div class="paragraph">
-<p>It is a prioritized list of <strong>lookup timeout</strong> properties (the higher on the list, the more important):</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>spark.rpc.lookupTimeout</code></p>
-</li>
-<li>
-<p><a href="#spark.network.timeout">spark.network.timeout</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Their value can be a number alone (seconds) or any number with time suffix, e.g. <code>50s</code>, <code>100ms</code>, or <code>250us</code>. See <a href="#settings">Settings</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="ask-operation-timeout"><a class="anchor" href="#ask-operation-timeout"></a><a class="link" href="#ask-operation-timeout"><a id="ask-timeout"></a> Ask Operation Timeout</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><strong>Ask operation</strong> is when a RPC client expects a response to a message. It is a blocking operation.</p>
-</div>
-<div class="paragraph">
-<p>You can control the time to wait for a response using the following settings (in that order):</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#spark.rpc.askTimeout">spark.rpc.askTimeout</a></p>
-</li>
-<li>
-<p><a href="#spark.network.timeout">spark.network.timeout</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Their value can be a number alone (seconds) or any number with time suffix, e.g. <code>50s</code>, <code>100ms</code>, or <code>250us</code>. See <a href="#settings">Settings</a>.</p>
-</div>
-<div class="sect2">
-<h3 id="exceptions"><a class="anchor" href="#exceptions"></a><a class="link" href="#exceptions">Exceptions</a></h3>
-<div class="paragraph">
-<p>When RpcEnv catches uncaught exceptions, it uses <code>RpcCallContext.sendFailure</code> to send exceptions back to the sender, or logging them if no such sender or <code>NotSerializableException</code>.</p>
-</div>
-<div class="paragraph">
-<p>If any error is thrown from one of <a href="RpcEndpoint.html" class="page">RpcEndpoint</a> methods except <code>onError</code>, <code>onError</code> will be invoked with the cause. If <code>onError</code> throws an error, RpcEnv will ignore it.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="rpcenvconfig"><a class="anchor" href="#rpcenvconfig"></a><a class="link" href="#rpcenvconfig"><a id="RpcEnvConfig"></a> RpcEnvConfig</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><code>RpcEnvConfig</code> is a placeholder for an instance of <a href="../SparkConf.html" class="page">SparkConf</a>, the name of the RPC Environment, host and port, a security manager, and <a href="#client-mode">clientMode</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="creating-rpcenvcreate-factory-methods"><a class="anchor" href="#creating-rpcenvcreate-factory-methods"></a><a class="link" href="#creating-rpcenvcreate-factory-methods"><a id="create"></a> Creating RpcEnv&#8201;&#8212;&#8201;<code>create</code> Factory Methods</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">create(
-  name: String,
-  host: String,
-  port: Int,
-  conf: SparkConf,
-  securityManager: SecurityManager,
-  clientMode: Boolean = false): RpcEnv  <i class="conum" data-value="1"></i><b>(1)</b>
-
-create(
-  name: String,
-  bindAddress: String,
-  advertiseAddress: String,
-  port: Int,
-  conf: SparkConf,
-  securityManager: SecurityManager,
-  clientMode: Boolean): RpcEnv</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The 6-argument <code>create</code> (with <code>clientMode</code> disabled) simply passes the input arguments on to the second <code>create</code> making <code>bindAddress</code> and <code>advertiseAddress</code> the same.</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><code>create</code> creates a <a href="#RpcEnvConfig">RpcEnvConfig</a> (with the input arguments) and <a href="spark-rpc-netty.html#create" class="page">creates a <code>NettyRpcEnv</code></a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Copied (almost verbatim) from <a href="https://issues.apache.org/jira/browse/SPARK-10997">SPARK-10997 Netty-based RPC env should support a "client-only" mode</a> and the <a href="https://github.com/apache/spark/commit/71d1c907dec446db566b19f912159fd8f46deb7d">commit</a>:</p>
-</div>
-<div class="paragraph">
-<p>"Client mode" means the RPC env will not listen for incoming connections.</p>
-</div>
-<div class="paragraph">
-<p>This allows certain processes in the Spark stack (such as Executors or tha YARN client-mode AM) to act as pure clients when using the netty-based RPC backend, reducing the number of sockets Spark apps need to use and also the number of open ports.</p>
-</div>
-<div class="paragraph">
-<p>The AM connects to the driver in "client mode", and that connection is used for all driver&#8201;&#8212;&#8201;AM communication, and so the AM is properly notified when the connection goes down.</p>
-</div>
-<div class="paragraph">
-<p>In "general", non-YARN case, <code>clientMode</code> flag is therefore enabled for executors and disabled for the driver.</p>
-</div>
-<div class="paragraph">
-<p>In Spark on YARN in <a href="spark-deploy-mode.adoc#client"><code>client</code> deploy mode</a>, <code>clientMode</code> flag is however enabled explicitly when Spark on YARN&#8217;s <a href="spark-yarn-applicationmaster.adoc#runExecutorLauncher-sparkYarnAM">ApplicationMaster</a> creates the <code>sparkYarnAM</code> RPC Environment.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p><code>create</code> is used when:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><a href="../core/SparkEnv.html#create" class="page"><code>SparkEnv</code> creates a <code>RpcEnv</code></a> (for the driver and executors).</p>
-</li>
-<li>
-<p>Spark on YARN&#8217;s <a href="spark-yarn-applicationmaster.adoc#runExecutorLauncher-sparkYarnAM">ApplicationMaster</a> creates the <code>sparkYarnAM</code> RPC Environment (with <code>clientMode</code> enabled).</p>
-</li>
-<li>
-<p><a href="spark-CoarseGrainedExecutorBackend.adoc#run-driverPropsFetcher">CoarseGrainedExecutorBackend</a> creates the temporary <code>driverPropsFetcher</code> RPC Environment (to fetch the current Spark properties from the driver).</p>
-</li>
-<li>
-<p><code>org.apache.spark.deploy.Client</code> standalone application creates the <code>driverClient</code> RPC Environment.</p>
-</li>
-<li>
-<p><a href="spark-standalone-Master.adoc#startRpcEnvAndEndpoint">Spark Standalone&#8217;s master</a> creates the <code>sparkMaster</code> RPC Environment.</p>
-</li>
-<li>
-<p><a href="spark-standalone-worker.adoc#startRpcEnvAndEndpoint">Spark Standalone&#8217;s worker</a> creates the <code>sparkWorker</code> RPC Environment.</p>
-</li>
-<li>
-<p>Spark Standalone&#8217;s <code>DriverWrapper</code> creates the <code>Driver</code> RPC Environment.</p>
-</li>
-</ol>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="settings"><a class="anchor" href="#settings"></a><a class="link" href="#settings"><a id="settings"></a> Settings</a></h2>
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Spark Properties</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Spark Property</th>
-<th class="tableblock halign-left valign-top">Default Value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark.rpc.lookupTimeout"></a> <code>spark.rpc.lookupTimeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>120s</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Timeout to use for RPC remote endpoint lookup. Refer to <a href="#endpoint-lookup-timeout">Endpoint Lookup Timeout</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark.rpc.numRetries"></a> <code>spark.rpc.numRetries</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of attempts to send a message to and receive a response from a remote endpoint.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark.rpc.retry.wait"></a> <code>spark.rpc.retry.wait</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3s</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Time to wait between retries.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark.rpc.askTimeout"></a> <code>spark.rpc.askTimeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>120s</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Timeout for RPC ask calls. Refer to <a href="#ask-timeout">Ask Operation Timeout</a>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark.network.timeout"></a> <code>spark.network.timeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>120s</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Network timeout to use for RPC remote endpoint lookup. Fallback for <a href="#spark.rpc.askTimeout">spark.rpc.askTimeout</a>.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
 </div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

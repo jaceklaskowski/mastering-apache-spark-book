@@ -96,6 +96,12 @@
     <a class="nav-link" href="RpcEndpointRef.html">RpcEndpointRef</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcAddress.html">RpcAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcEndpointAddress.html">RpcEndpointAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="RpcEnvFactory.html">RpcEnvFactory</a>
 <ul class="nav-list">
@@ -104,8 +110,14 @@
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcEnvFileServer.html">RpcEnvFileServer</a>
+  </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcUtils.html">RpcUtils</a>
   </li>
 </ul>
   </li>
@@ -1882,9 +1894,6 @@
     <a class="nav-link" href="../exercises/spark-exercise-custom-scheduler-listener.html">Developing Custom SparkListener to monitor DAGScheduler in Scala</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../exercises/spark-exercise-custom-rpc-environment.html">Developing RPC Environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../exercises/spark-exercise-custom-rdd.html">Developing Custom RDD</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1938,25 +1947,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The class <a href="https://github.com/apache/spark/blob/master/core/src/main/scala/org/apache/spark/rpc/netty/NettyRpcEnv.scala">org.apache.spark.rpc.netty.NettyRpcEnv</a> is the implementation of <a href="index.html" class="page">RpcEnv</a> using <a href="http://netty.io/">Netty</a> - <em>"an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers &amp; clients"</em>.</p>
-</div>
-<div class="paragraph">
 <p>Netty-based RPC Environment is created by <code>NettyRpcEnvFactory</code> when <a href="index.html#settings" class="page">spark.rpc</a> is <code>netty</code> or <code>org.apache.spark.rpc.netty.NettyRpcEnvFactory</code>.</p>
-</div>
-<div class="paragraph">
-<p>It uses Java&#8217;s built-in serialization (the implementation of <code>JavaSerializerInstance</code>).</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME What other choices of JavaSerializerInstance are available in Spark?
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p>NettyRpcEnv is only started on <a href="spark-driver.adoc">the driver</a>. See <a href="#client-mode">Client Mode</a>.</p>
@@ -1969,73 +1960,8 @@ FIXME What other choices of JavaSerializerInstance are available in Spark?
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>INFO Utils: Successfully started service 'NettyRpcEnv' on port 0.</code></pre>
+<pre class="highlightjs highlight"><code>Successfully started service 'NettyRpcEnv' on port 0.</code></pre>
 </div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Set <code>DEBUG</code> for <code>org.apache.spark.network.server.TransportServer</code> logger to know when Shuffle server/NettyRpcEnv starts listening to messages.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>DEBUG Shuffle server started on port :</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>FIXME: The message above in TransportServer has a space before <code>:</code>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="creating-nettyrpcenv"><a class="anchor" href="#creating-nettyrpcenv"></a><a class="link" href="#creating-nettyrpcenv"><a id="NettyRpcEnvFactory"></a><a id="create"></a> Creating NettyRpcEnv</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="client-mode"><a class="anchor" href="#client-mode"></a><a class="link" href="#client-mode"><a id="client-mode"></a> Client Mode</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Refer to <a href="index.html#client-mode" class="page">Client Mode = is this an executor or the driver?</a> for introduction about <strong>client mode</strong>. This is only for Netty-based RpcEnv.</p>
-</div>
-<div class="paragraph">
-<p>When created, a Netty-based RpcEnv starts the RPC server and register necessary endpoints for non-client mode, i.e. when client mode is <code>false</code>.</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME What endpoints?
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>It means that the required services for remote communication with <strong>NettyRpcEnv</strong> are only started on the driver (not executors).</p>
 </div>
 </div>
 </div>

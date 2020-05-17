@@ -96,6 +96,12 @@
     <a class="nav-link" href="rpc/RpcEndpointRef.html">RpcEndpointRef</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcAddress.html">RpcAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcEndpointAddress.html">RpcEndpointAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="rpc/RpcEnvFactory.html">RpcEnvFactory</a>
 <ul class="nav-list">
@@ -105,7 +111,13 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcEnvFileServer.html">RpcEnvFileServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rpc/RpcUtils.html">RpcUtils</a>
   </li>
 </ul>
   </li>
@@ -1882,9 +1894,6 @@
     <a class="nav-link" href="exercises/spark-exercise-custom-scheduler-listener.html">Developing Custom SparkListener to monitor DAGScheduler in Scala</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="exercises/spark-exercise-custom-rpc-environment.html">Developing RPC Environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="exercises/spark-exercise-custom-rdd.html">Developing Custom RDD</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -2150,6 +2159,20 @@ User-defined JARs are defined using <a href="spark-CoarseGrainedExecutorBackend.
 </div>
 <div class="paragraph">
 <p><code>Executor</code> initializes the <a href="#internal-properties">internal properties</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="heartbeatreceiver-rpc-endpoint-reference"><a class="anchor" href="#heartbeatreceiver-rpc-endpoint-reference"></a><a class="link" href="#heartbeatreceiver-rpc-endpoint-reference"><a id="heartbeatReceiverRef"></a> HeartbeatReceiver RPC Endpoint Reference</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="rpc/RpcEndpointRef.html" class="page">RPC endpoint reference</a> to <a href="spark-HeartbeatReceiver.html" class="page">HeartbeatReceiver</a> on the <a href="spark-driver.html" class="page">driver</a>.</p>
+</div>
+<div class="paragraph">
+<p>Set when <code>Executor</code> <a href="#creating-instance">is created</a>.</p>
+</div>
+<div class="paragraph">
+<p>Used exclusively when <code>Executor</code> <a href="#reportHeartBeat">reports heartbeats and partial metrics for active tasks to the driver</a> (that happens every <a href="#spark.executor.heartbeatInterval">spark.executor.heartbeatInterval</a> interval).</p>
 </div>
 </div>
 </div>
@@ -2715,18 +2738,6 @@ Read about <code>TaskMetrics</code> in <a href="#spark-executor-TaskMetrics.adoc
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>heartbeatFailures</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>heartbeatReceiverRef</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="heartbeatReceiverRef"></a> <a href="rpc/RpcEndpointRef.html" class="page">RPC endpoint reference</a> to <a href="spark-HeartbeatReceiver.html" class="page">HeartbeatReceiver</a> on the <a href="spark-driver.html" class="page">driver</a></p>
-</div>
-<div class="paragraph">
-<p>Set when <code>Executor</code> <a href="#creating-instance">is created</a>.</p>
-</div>
-<div class="paragraph">
-<p>Used exclusively when <code>Executor</code> <a href="#reportHeartBeat">reports heartbeats and partial metrics for active tasks to the driver</a> (that happens every <a href="#spark.executor.heartbeatInterval">spark.executor.heartbeatInterval</a> interval).</p>
-</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>maxDirectResultSize</code></p></td>

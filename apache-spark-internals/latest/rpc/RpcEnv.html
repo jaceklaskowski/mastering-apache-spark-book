@@ -96,6 +96,12 @@
     <a class="nav-link" href="RpcEndpointRef.html">RpcEndpointRef</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcAddress.html">RpcAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcEndpointAddress.html">RpcEndpointAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="RpcEnvFactory.html">RpcEnvFactory</a>
 <ul class="nav-list">
@@ -105,7 +111,13 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcEnvFileServer.html">RpcEnvFileServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcUtils.html">RpcUtils</a>
   </li>
 </ul>
   </li>
@@ -1882,9 +1894,6 @@
     <a class="nav-link" href="../exercises/spark-exercise-custom-scheduler-listener.html">Developing Custom SparkListener to monitor DAGScheduler in Scala</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../exercises/spark-exercise-custom-rpc-environment.html">Developing RPC Environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../exercises/spark-exercise-custom-rdd.html">Developing Custom RDD</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1938,7 +1947,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>RpcEnv is an abstraction of <a href="#implementations">RPC systems</a>.</p>
+<p>RpcEnv is an <a href="#contract">abstraction</a> of <a href="#implementations">RPC systems</a>.</p>
 </div>
 </div>
 </div>
@@ -1947,6 +1956,360 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="NettyRpcEnv.html" class="page">NettyRpcEnv</a> is the default and only known RpcEnv in Apache Spark.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contract"><a class="anchor" href="#contract"></a><a class="link" href="#contract"><a id="contract"></a> Contract</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="address-method"><a class="anchor" href="#address-method"></a><a class="link" href="#address-method"><a id="address"></a> address Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">address: RpcAddress</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="RpcAddress.html" class="page">RpcAddress</a> of the RPC system</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="asyncsetupendpointrefbyuri-method"><a class="anchor" href="#asyncsetupendpointrefbyuri-method"></a><a class="link" href="#asyncsetupendpointrefbyuri-method"><a id="asyncSetupEndpointRefByURI"></a> asyncSetupEndpointRefByURI Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">asyncSetupEndpointRefByURI(
+  uri: String): Future[RpcEndpointRef]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Sets up an RPC endpoing by URI (asynchronously) and returns <a href="RpcEndpointRef.html" class="page">RpcEndpointRef&#8201;&#8212;&#8201;Reference to RPC Endpoint</a></p>
+</div>
+<div class="paragraph">
+<p>Used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>WorkerWatcher is created</p>
+</li>
+<li>
+<p>CoarseGrainedExecutorBackend is requested to <a href="../spark-CoarseGrainedExecutorBackend.html#onStart" class="page">onStart</a></p>
+</li>
+<li>
+<p>RpcEnv is requested to <a href="#setupEndpointRefByURI">setupEndpointRefByURI</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="awaittermination-method"><a class="anchor" href="#awaittermination-method"></a><a class="link" href="#awaittermination-method"><a id="awaitTermination"></a> awaitTermination Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">awaitTermination(): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Waits till the RPC system terminates</p>
+</div>
+<div class="paragraph">
+<p>Used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>SparkEnv is requested to <a href="../core/SparkEnv.html#stop" class="page">stop</a></p>
+</li>
+<li>
+<p>ClientApp is requested to start</p>
+</li>
+<li>
+<p>LocalSparkCluster is requested to stop</p>
+</li>
+<li>
+<p>(Spark Standalone) Master and Worker are launched</p>
+</li>
+<li>
+<p>CoarseGrainedExecutorBackend standalone application is launched</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deserialize-method"><a class="anchor" href="#deserialize-method"></a><a class="link" href="#deserialize-method"><a id="deserialize"></a> deserialize Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">deserialize[T](
+  deserializationAction: () =&gt; T): T</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>PersistenceEngine is requested to readPersistedData</p>
+</li>
+<li>
+<p>NettyRpcEnv is requested to <a href="NettyRpcEnv.html#deserialize" class="page">deserialize</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="endpointref-method"><a class="anchor" href="#endpointref-method"></a><a class="link" href="#endpointref-method"><a id="endpointRef"></a> endpointRef Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">endpointRef(
+  endpoint: RpcEndpoint): RpcEndpointRef</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Used when RpcEndpoint is requested for the <a href="RpcEndpoint.html#self" class="page">RpcEndpointRef to itself</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="rpcenvfileserver"><a class="anchor" href="#rpcenvfileserver"></a><a class="link" href="#rpcenvfileserver"><a id="fileServer"></a> RpcEnvFileServer</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">fileServer: RpcEnvFileServer</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="RpcEnvFileServer.html" class="page">RpcEnvFileServer</a> of the RPC system</p>
+</div>
+<div class="paragraph">
+<p>Used when <a href="../SparkContext.html" class="page">SparkContext</a> is created (and registers the REPL&#8217;s output directory) and requested to <a href="../SparkContext.html#addFile" class="page">addFile</a> or <a href="../SparkContext.html#addJar" class="page">addJar</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="openchannel-method"><a class="anchor" href="#openchannel-method"></a><a class="link" href="#openchannel-method"><a id="openChannel"></a> openChannel Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">openChannel(
+  uri: String): ReadableByteChannel</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Opens a channel to download a file from the given URI</p>
+</div>
+<div class="paragraph">
+<p>Used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Utils utility is used to doFetchFile</p>
+</li>
+<li>
+<p>ExecutorClassLoader is requested to getClassFileInputStreamFromSparkRPC</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setupendpoint-method"><a class="anchor" href="#setupendpoint-method"></a><a class="link" href="#setupendpoint-method"><a id="setupEndpoint"></a> setupEndpoint Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">setupEndpoint(
+  name: String,
+  endpoint: RpcEndpoint): RpcEndpointRef</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../SparkContext.html" class="page">SparkContext</a> is created (and registers the <a href="../spark-SparkContext-creating-instance-internals.html#_heartbeatReceiver" class="page">HeartbeatReceiver</a>)</p>
+</li>
+<li>
+<p>SparkEnv utility is used to <a href="../core/SparkEnv.html#create" class="page">create a SparkEnv</a> (and register the BlockManagerMaster, MapOutputTracker and OutputCommitCoordinator RPC endpoints on the driver)</p>
+</li>
+<li>
+<p>ClientApp is requested to start (and register the client RPC endpoint)</p>
+</li>
+<li>
+<p>StandaloneAppClient is requested to start (and register the AppClient RPC endpoint)</p>
+</li>
+<li>
+<p>(Spark Standalone) Master is requested to startRpcEnvAndEndpoint (and register the Master RPC endpoint)</p>
+</li>
+<li>
+<p>(Spark Standalone) Worker is requested to startRpcEnvAndEndpoint (and register the Worker RPC endpoint)</p>
+</li>
+<li>
+<p>DriverWrapper standalone application is launched (and registers the workerWatcher RPC endpoint)</p>
+</li>
+<li>
+<p>CoarseGrainedExecutorBackend standalone application is launched (and registers the Executor and WorkerWatcher RPC endpoints)</p>
+</li>
+<li>
+<p>TaskSchedulerImpl is requested to <a href="../scheduler/TaskSchedulerImpl.html#maybeInitBarrierCoordinator" class="page">maybeInitBarrierCoordinator</a></p>
+</li>
+<li>
+<p>CoarseGrainedSchedulerBackend is requested to <a href="../scheduler/CoarseGrainedSchedulerBackend.html#createDriverEndpointRef" class="page">createDriverEndpointRef</a> (and registers the CoarseGrainedScheduler RPC endpoint)</p>
+</li>
+<li>
+<p>LocalSchedulerBackend is requested to <a href="../spark-local/spark-LocalSchedulerBackend.html#start" class="page">start</a> (and registers the LocalSchedulerBackendEndpoint RPC endpoint)</p>
+</li>
+<li>
+<p><a href="../storage/BlockManager.html#slaveEndpoint" class="page">BlockManager</a> is created (and registers the BlockManagerEndpoint RPC endpoint)</p>
+</li>
+<li>
+<p>(Spark on YARN) ApplicationMaster is requested to <a href="../spark-on-yarn/spark-yarn-applicationmaster.html#createAllocator" class="page">createAllocator</a> (and registers the YarnAM RPC endpoint)</p>
+</li>
+<li>
+<p>(Spark on YARN) <a href="../spark-on-yarn/spark-yarn-yarnschedulerbackend.html#yarnSchedulerEndpointRef" class="page">YarnSchedulerBackend</a> is created (and registers the YarnScheduler RPC endpoint)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setupendpointref-method"><a class="anchor" href="#setupendpointref-method"></a><a class="link" href="#setupendpointref-method"><a id="setupEndpointRef"></a> setupEndpointRef Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">setupEndpointRef(
+  address: RpcAddress,
+  endpointName: String): RpcEndpointRef</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>setupEndpointRef creates an RpcEndpointAddress (for the given <a href="RpcAddress.html" class="page">RpcAddress</a> and endpoint name) and <a href="#setupEndpointRefByURI">setupEndpointRefByURI</a>.</p>
+</div>
+<div class="paragraph">
+<p>setupEndpointRef is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ClientApp is requested to start</p>
+</li>
+<li>
+<p>ClientEndpoint is requested to tryRegisterAllMasters</p>
+</li>
+<li>
+<p>Worker is requested to tryRegisterAllMasters and reregisterWithMaster</p>
+</li>
+<li>
+<p>RpcUtils utility is used to <a href="RpcUtils.html#makeDriverRef" class="page">makeDriverRef</a></p>
+</li>
+<li>
+<p>(Spark on YARN) ApplicationMaster is requested to <a href="../spark-on-yarn/spark-yarn-applicationmaster.html#runDriver" class="page">runDriver</a> and <a href="../spark-on-yarn/spark-yarn-applicationmaster.html#runExecutorLauncher" class="page">runExecutorLauncher</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setupendpointrefbyuri-method"><a class="anchor" href="#setupendpointrefbyuri-method"></a><a class="link" href="#setupendpointrefbyuri-method"><a id="setupEndpointRefByURI"></a> setupEndpointRefByURI Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">setupEndpointRefByURI(
+  uri: String): RpcEndpointRef</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>setupEndpointRefByURI <a href="#asyncSetupEndpointRefByURI">asyncSetupEndpointRefByURI</a> by the given URI and waits for the result or <a href="#defaultLookupTimeout">defaultLookupTimeout</a>.</p>
+</div>
+<div class="paragraph">
+<p>setupEndpointRefByURI is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>CoarseGrainedExecutorBackend standalone application is <a href="../spark-CoarseGrainedExecutorBackend.html#run" class="page">launched</a></p>
+</li>
+<li>
+<p>RpcEnv is requested to <a href="#setupEndpointRef">setupEndpointRef</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="shutdown-method"><a class="anchor" href="#shutdown-method"></a><a class="link" href="#shutdown-method"><a id="shutdown"></a> shutdown Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">shutdown(): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Shuts down the RPC system</p>
+</div>
+<div class="paragraph">
+<p>Used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>SparkEnv is requested to <a href="../core/SparkEnv.html#stop" class="page">stop</a></p>
+</li>
+<li>
+<p>LocalSparkCluster is requested to <a href="../spark-standalone/spark-standalone-LocalSparkCluster.html#stop" class="page">stop</a></p>
+</li>
+<li>
+<p>DriverWrapper is launched</p>
+</li>
+<li>
+<p>CoarseGrainedExecutorBackend is <a href="../spark-CoarseGrainedExecutorBackend.html#run" class="page">launched</a></p>
+</li>
+<li>
+<p>NettyRpcEnvFactory is requested to <a href="NettyRpcEnvFactory.html#create" class="page">create an RpcEnv</a> (in server mode and failed to assign a port)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stop-method"><a class="anchor" href="#stop-method"></a><a class="link" href="#stop-method"><a id="stop"></a> stop Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">stop(
+  endpoint: RpcEndpointRef): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>SparkContext is requested to <a href="../SparkContext.html#stop" class="page">stop</a></p>
+</li>
+<li>
+<p>RpcEndpoint is requested to <a href="RpcEndpoint.html#stop" class="page">stop</a></p>
+</li>
+<li>
+<p>BlockManager is requested to <a href="../storage/BlockManager.html#stop" class="page">stop</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="default-endpoint-lookup-timeout"><a class="anchor" href="#default-endpoint-lookup-timeout"></a><a class="link" href="#default-endpoint-lookup-timeout"><a id="defaultLookupTimeout"></a> Default Endpoint Lookup Timeout</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RpcEnv uses the default lookup timeout for&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>When a remote endpoint is resolved, a local RPC environment connects to the remote one. It is called <strong>endpoint lookup</strong>. To configure the time needed for the endpoint lookup you can use the following settings.</p>
+</div>
+<div class="paragraph">
+<p>It is a prioritized list of <strong>lookup timeout</strong> properties (the higher on the list, the more important):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../configuration-properties.html#spark.rpc.lookupTimeout" class="page">spark.rpc.lookupTimeout</a></p>
+</li>
+<li>
+<p><a href="#spark.network.timeout">spark.network.timeout</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Their value can be a number alone (seconds) or any number with time suffix, e.g. <code>50s</code>, <code>100ms</code>, or <code>250us</code>. See <a href="#settings">Settings</a>.</p>
 </div>
 </div>
 </div>

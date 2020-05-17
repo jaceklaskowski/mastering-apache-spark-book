@@ -96,6 +96,12 @@
     <a class="nav-link" href="RpcEndpointRef.html">RpcEndpointRef</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcAddress.html">RpcAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcEndpointAddress.html">RpcEndpointAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="RpcEnvFactory.html">RpcEnvFactory</a>
 <ul class="nav-list">
@@ -105,7 +111,13 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcEnvFileServer.html">RpcEnvFileServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcUtils.html">RpcUtils</a>
   </li>
 </ul>
   </li>
@@ -1882,9 +1894,6 @@
     <a class="nav-link" href="../exercises/spark-exercise-custom-scheduler-listener.html">Developing Custom SparkListener to monitor DAGScheduler in Scala</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../exercises/spark-exercise-custom-rpc-environment.html">Developing RPC Environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../exercises/spark-exercise-custom-rdd.html">Developing Custom RDD</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1935,6 +1944,8 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">RpcEnvConfig</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div id="creating-instance" class="paragraph">
 <p><strong>RpcEnvConfig</strong> is a configuration of an <a href="RpcEnv.html" class="page">RpcEnv</a>:</p>
 </div>
@@ -1962,15 +1973,43 @@
 <p><a id="numUsableCores"></a> Number of CPU cores</p>
 </li>
 <li>
-<p><a id="clientMode"></a> clientMode flag</p>
+<p><a href="#clientMode">clientMode flag</a></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>RpcEnvConfig is created when RpcEnv utility is used to <a href="RpcEnv.html#create" class="page">create an RpcEnv</a> (using <a href="RpcEnvFactory.html" class="page">RpcEnvFactory</a>).</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="client-mode"><a class="anchor" href="#client-mode"></a><a class="link" href="#client-mode"><a id="clientMode"></a> Client Mode</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When an RPC Environment is initialized <a href="../core/SparkEnv.html#createDriverEnv" class="page">as part of the initialization of the driver</a> or <a href="../core/SparkEnv.html#createExecutorEnv" class="page">executors</a> (using <code>RpcEnv.create</code>), <code>clientMode</code> is <code>false</code> for the driver and <code>true</code> for executors.</p>
+</div>
+<div class="paragraph">
+<p>Copied (almost verbatim) from <a href="https://issues.apache.org/jira/browse/SPARK-10997">SPARK-10997 Netty-based RPC env should support a "client-only" mode</a> and the <a href="https://github.com/apache/spark/commit/71d1c907dec446db566b19f912159fd8f46deb7d">commit</a>:</p>
+</div>
+<div class="paragraph">
+<p>"Client mode" means the RPC env will not listen for incoming connections.</p>
+</div>
+<div class="paragraph">
+<p>This allows certain processes in the Spark stack (such as Executors or tha YARN client-mode AM) to act as pure clients when using the netty-based RPC backend, reducing the number of sockets Spark apps need to use and also the number of open ports.</p>
+</div>
+<div class="paragraph">
+<p>The AM connects to the driver in "client mode", and that connection is used for all driver&#8201;&#8212;&#8201;AM communication, and so the AM is properly notified when the connection goes down.</p>
+</div>
+<div class="paragraph">
+<p>In "general", non-YARN case, <code>clientMode</code> flag is therefore enabled for executors and disabled for the driver.</p>
+</div>
+<div class="paragraph">
+<p>In Spark on YARN in <a href="spark-deploy-mode.adoc#client"><code>client</code> deploy mode</a>, <code>clientMode</code> flag is however enabled explicitly when Spark on YARN&#8217;s <a href="spark-yarn-applicationmaster.adoc#runExecutorLauncher-sparkYarnAM">ApplicationMaster</a> creates the <code>sparkYarnAM</code> RPC Environment.</p>
+</div>
+</div>
+</div>
 </article>
-<aside class="toc sidebar" data-title="Contents" data-levels="2">
+<aside class="toc sidebar" data-title="Contents" data-levels="-1">
   <div class="toc-menu"></div>
 </aside>
   </div>

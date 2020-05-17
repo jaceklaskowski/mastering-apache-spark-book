@@ -96,6 +96,12 @@
     <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcAddress.html">RpcAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointAddress.html">RpcEndpointAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
 <ul class="nav-list">
@@ -105,7 +111,13 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFileServer.html">RpcEnvFileServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcUtils.html">RpcUtils</a>
   </li>
 </ul>
   </li>
@@ -1882,9 +1894,6 @@
     <a class="nav-link" href="../exercises/spark-exercise-custom-scheduler-listener.html">Developing Custom SparkListener to monitor DAGScheduler in Scala</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../exercises/spark-exercise-custom-rpc-environment.html">Developing RPC Environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../exercises/spark-exercise-custom-rdd.html">Developing Custom RDD</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1939,10 +1948,16 @@
 <h2 id="barriertaskcontexttaskcontext-for-barrier-tasks"><a class="anchor" href="#barriertaskcontexttaskcontext-for-barrier-tasks"></a><a class="link" href="#barriertaskcontexttaskcontext-for-barrier-tasks"><a id="BarrierTaskContext"></a> BarrierTaskContext&#8201;&#8212;&#8201;TaskContext for Barrier Tasks</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>BarrierTaskContext</code> is a concrete <a href="spark-TaskContext.html" class="page">TaskContext</a> that is <a href="#creating-instance">created</a> exclusively when <code>Task</code> is requested to <a href="Task.html#run" class="page">run</a> and the task is <a href="Task.html#isBarrier" class="page">isBarrier</a> (when <code>Executor</code> is requested to <a href="#spark-Executor.adoc#launchTask" class="page unresolved">launch a task (on "Executor task launch worker" thread pool) sometime in the future</a>).</p>
+<p>BarrierTaskContext is a concrete <a href="spark-TaskContext.html" class="page">TaskContext</a> that is <a href="#creating-instance">created</a> exclusively when <code>Task</code> is requested to <a href="Task.html#run" class="page">run</a> and the task is <a href="Task.html#isBarrier" class="page">isBarrier</a> (when <code>Executor</code> is requested to <a href="#spark-Executor.adoc#launchTask" class="page unresolved">launch a task (on "Executor task launch worker" thread pool) sometime in the future</a>).</p>
 </div>
 <div id="taskContext" class="paragraph">
-<p><code>BarrierTaskContext</code> takes a single <a href="spark-TaskContext.html" class="page">TaskContext</a> to be created.</p>
+<p>BarrierTaskContext takes a single <a href="spark-TaskContext.html" class="page">TaskContext</a> to be created.</p>
+</div>
+<div class="sect2">
+<h3 id="rpcendpointref"><a class="anchor" href="#rpcendpointref"></a><a class="link" href="#rpcendpointref"><a id="barrierCoordinator"></a> RpcEndpointRef</a></h3>
+<div class="paragraph">
+<p>BarrierTaskContext creates an RpcEndpointRef for&#8230;&#8203;FIXME</p>
+</div>
 </div>
 </div>
 </div>

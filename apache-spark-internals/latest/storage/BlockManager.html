@@ -96,6 +96,12 @@
     <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcAddress.html">RpcAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointAddress.html">RpcEndpointAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
 <ul class="nav-list">
@@ -105,7 +111,13 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFileServer.html">RpcEnvFileServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcUtils.html">RpcUtils</a>
   </li>
 </ul>
   </li>
@@ -1882,9 +1894,6 @@
     <a class="nav-link" href="../exercises/spark-exercise-custom-scheduler-listener.html">Developing Custom SparkListener to monitor DAGScheduler in Scala</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../exercises/spark-exercise-custom-rpc-environment.html">Developing RPC Environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../exercises/spark-exercise-custom-rdd.html">Developing Custom RDD</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -2089,6 +2098,14 @@ It is computed specially in Spark on YARN.
 </div>
 <div class="paragraph">
 <p>BlockManager registers <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc">BlockManagerSlaveEndpoint</a> with the input <a href="../index.html" class="page">RpcEnv</a>, itself, and <a href="../scheduler/MapOutputTracker.html" class="page">MapOutputTracker</a> (as <code>slaveEndpoint</code>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="blockmanagerendpoint-rpc-endpoint"><a class="anchor" href="#blockmanagerendpoint-rpc-endpoint"></a><a class="link" href="#blockmanagerendpoint-rpc-endpoint"><a id="slaveEndpoint"></a> BlockManagerEndpoint RPC Endpoint</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When created, BlockManager requests the <a href="#rpcEnv">RpcEnv</a> to <a href="../rpc/RpcEnv.html#setupEndpoint" class="page">register BlockManagerEndpoint RPC endpoint</a>.</p>
 </div>
 </div>
 </div>
