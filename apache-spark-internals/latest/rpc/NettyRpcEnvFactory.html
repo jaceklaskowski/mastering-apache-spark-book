@@ -1953,7 +1953,28 @@
 </div>
 </div>
 <div class="paragraph">
-<p>create&#8230;&#8203;FIXME</p>
+<p>create creates a JavaSerializerInstance (using a JavaSerializer).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+KryoSerializer is not supported.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>create creates a <a href="NettyRpcEnv.html" class="page">NettyRpcEnv</a> with the JavaSerializerInstance. create uses the given <a href="RpcEnvConfig.html" class="page">RpcEnvConfig</a> for the <a href="RpcEnvConfig.html#advertiseAddress" class="page">advertised address</a>, <a href="RpcEnvConfig.html#securityManager" class="page">SecurityManager</a> and <a href="RpcEnvConfig.html#numUsableCores" class="page">number of CPU cores</a>.</p>
+</div>
+<div class="paragraph">
+<p>create returns the NettyRpcEnv unless the <a href="RpcEnvConfig.html#clientMode" class="page">clientMode</a> is turned off (<em>server mode</em>).</p>
+</div>
+<div class="paragraph">
+<p>In server mode, create attempts to start the NettyRpcEnv on a given port. create uses the given <a href="RpcEnvConfig.html" class="page">RpcEnvConfig</a> for the <a href="RpcEnvConfig.html#port" class="page">port</a>, <a href="RpcEnvConfig.html#bindAddress" class="page">bind address</a>, and <a href="RpcEnvConfig.html#name" class="page">name</a>. With the port, the NettyRpcEnv is requested to <a href="NettyRpcEnv.html#startServer" class="page">start a server</a>.</p>
 </div>
 <div class="paragraph">
 <p>create is part of the <a href="RpcEnvFactory.html#create" class="page">RpcEnvFactory</a> abstraction.</p>
