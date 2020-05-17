@@ -146,10 +146,25 @@
     <a class="nav-link" href="RpcEndpointRef.html">RpcEndpointRef</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="RpcEnvFactory.html">RpcEnvFactory</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="NettyRpcEnvFactory.html">NettyRpcEnvFactory</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="NettyRpcEnv.html">NettyRpcEnv</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="NettyStreamManager.html">NettyStreamManager</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -1917,63 +1932,30 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>RpcEnvFactory is the <a href="#contract">contract</a> to create a <a href="index.html" class="page">RPC Environment</a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-As of <a href="https://github.com/apache/spark/commit/4f5a24d7e73104771f233af041eeba4f41675974">this commit</a> in Spark 2, the one and only RpcEnvFactory is <a href="spark-rpc-netty.html" class="page">Netty-based <code>NettyRpcEnvFactory</code></a>.
-</td>
-</tr>
-</table>
+<p>RpcEnvFactory is an abstraction of <a href="#implementations">factories</a> to <a href="#create">create RpcEnvs</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="rpcenvfactory-contract"><a class="anchor" href="#rpcenvfactory-contract"></a><a class="link" href="#rpcenvfactory-contract"><a id="contract"></a> RpcEnvFactory Contract</a></h2>
+<h2 id="available-rpcenvfactories"><a class="anchor" href="#available-rpcenvfactories"></a><a class="link" href="#available-rpcenvfactories"><a id="implementations"></a> Available RpcEnvFactories</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="NettyRpcEnvFactory.html" class="page">NettyRpcEnvFactory</a> is the default and only known RpcEnvFactory in Apache Spark (as of <a href="https://github.com/apache/spark/commit/4f5a24d7e73104771f233af041eeba4f41675974">this commit</a>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-rpcenv"><a class="anchor" href="#creating-rpcenv"></a><a class="link" href="#creating-rpcenv"><a id="create"></a> Creating RpcEnv</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">trait RpcEnvFactory {
-  def create(config: RpcEnvConfig): RpcEnv
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">create(
+  config: RpcEnvConfig): RpcEnv</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-RpcEnvFactory is a <code>private[spark]</code> contract.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>create is used when RpcEnv utility is requested to <a href="RpcEnv.html#create" class="page">create an RpcEnv</a>.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. RpcEnvFactory Contract</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Method</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="create"></a> <code>create</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Used when <a href="index.html#create" class="page"><code>RpcEnv</code> creates a RPC Environment</a>.</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 </article>
