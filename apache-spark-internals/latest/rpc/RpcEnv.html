@@ -69,6 +69,52 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="RpcEnv.html">RpcEnv</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="NettyRpcEnv.html">NettyRpcEnv</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="NettyStreamManager.html">NettyStreamManager</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcEnvConfig.html">RpcEnvConfig</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="RpcEnvFactory.html">RpcEnvFactory</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="NettyRpcEnvFactory.html">NettyRpcEnvFactory</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Network System</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -125,46 +171,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../deploy/ExternalShuffleBlockResolver.html">ExternalShuffleBlockResolver</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">RPC System</a>
-<ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="RpcEnv.html">RpcEnv</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="RpcEndpoint.html">RpcEndpoint</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="RpcEndpointRef.html">RpcEndpointRef</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="RpcEnvFactory.html">RpcEnvFactory</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="NettyRpcEnvFactory.html">NettyRpcEnvFactory</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-rpc-netty.html">Netty-based RpcEnv</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="NettyRpcEnv.html">NettyRpcEnv</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="NettyStreamManager.html">NettyStreamManager</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1929,8 +1935,112 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">RpcEnv</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>RpcEnv is&#8230;&#8203;FIXME</p>
+<p>RpcEnv is an abstraction of <a href="#implementations">RPC systems</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="available-rpcenvs"><a class="anchor" href="#available-rpcenvs"></a><a class="link" href="#available-rpcenvs"><a id="implementations"></a> Available RpcEnvs</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="NettyRpcEnv.html" class="page">NettyRpcEnv</a> is the default and only known RpcEnv in Apache Spark.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RpcEnv takes the following to be created:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="conf"></a> <a href="../SparkConf.html" class="page">SparkConf</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>RpcEnv is created using <a href="#create">RpcEnv.create</a> utility.</p>
+</div>
+<div class="paragraph">
+<p>RpcEnv is an abstract class and cannot be created directly. It is created indirectly for the <a href="#implementations">concrete RpcEnvs</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-rpcenv"><a class="anchor" href="#creating-rpcenv"></a><a class="link" href="#creating-rpcenv"><a id="create"></a> Creating RpcEnv</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">create(
+  name: String,
+  host: String,
+  port: Int,
+  conf: SparkConf,
+  securityManager: SecurityManager,
+  clientMode: Boolean = false): RpcEnv <i class="conum" data-value="1"></i><b>(1)</b>
+create(
+  name: String,
+  bindAddress: String,
+  advertiseAddress: String,
+  port: Int,
+  conf: SparkConf,
+  securityManager: SecurityManager,
+  numUsableCores: Int,
+  clientMode: Boolean): RpcEnv</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Uses 0 for numUsableCores</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>create creates a <a href="NettyRpcEnvFactory.html" class="page">NettyRpcEnvFactory</a> and requests to <a href="NettyRpcEnvFactory.html#create" class="page">create an RpcEnv</a> (with an <a href="RpcEnvConfig.html" class="page">RpcEnvConfig</a> with all the given arguments).</p>
+</div>
+<div class="paragraph">
+<p>create is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>SparkEnv utility is requested to <a href="../core/SparkEnv.html#create" class="page">create a SparkEnv</a> (clientMode flag is turned on for executors and off for the driver)</p>
+</li>
+<li>
+<p>With clientMode flag turned on:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>(Spark on YARN) ApplicationMaster is requested to <a href="../spark-on-yarn/spark-yarn-applicationmaster.html#runExecutorLauncher" class="page">runExecutorLauncher</a> (in client deploy mode with clientMode flag is turned on)</p>
+</li>
+<li>
+<p>ClientApp is requested to start</p>
+</li>
+<li>
+<p>(Spark Standalone) Master is requested to startRpcEnvAndEndpoint</p>
+</li>
+<li>
+<p>DriverWrapper standalone application is launched</p>
+</li>
+<li>
+<p>(Spark Standalone) Worker is requested to startRpcEnvAndEndpoint</p>
+</li>
+<li>
+<p>CoarseGrainedExecutorBackend is requested to <a href="../spark-CoarseGrainedExecutorBackend.html#run" class="page">run</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
