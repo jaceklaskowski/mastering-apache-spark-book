@@ -69,20 +69,45 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Core Services</span>
+    <a class="nav-link" href="../executor/Executor.html">Executor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/Executor.html">Executor</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/TaskRunner.html">TaskRunner</a>
+    <a class="nav-link" href="../executor/TaskRunner.html">TaskRunner</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/ExecutorSource.html">ExecutorSource</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ExecutorSource.html">ExecutorSource</a>
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/ExecutorBackend.html">ExecutorBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/TaskMetrics.html">TaskMetrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
   </li>
@@ -872,15 +897,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1383,15 +1399,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../metrics/spark-metrics-properties.html">Metrics Configuration Properties</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../metrics/spark-executor-TaskMetrics.html">TaskMetrics</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../metrics/spark-executor-ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1947,7 +1954,7 @@
 <h2 id="fetchfailedexception"><a class="anchor" href="#fetchfailedexception"></a><a class="link" href="#fetchfailedexception"><a id="FetchFailedException"></a> FetchFailedException</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>FetchFailedException</code> exception <a href="../core/TaskRunner.html#run-FetchFailedException" class="page">may be thrown when a task runs</a> (and <a href="../storage/ShuffleBlockFetcherIterator.html#throwFetchFailedException" class="page"><code>ShuffleBlockFetcherIterator</code> did not manage to fetch shuffle blocks</a>).</p>
+<p><code>FetchFailedException</code> exception <a href="../executor/TaskRunner.html#run-FetchFailedException" class="page">may be thrown when a task runs</a> (and <a href="../storage/ShuffleBlockFetcherIterator.html#throwFetchFailedException" class="page"><code>ShuffleBlockFetcherIterator</code> did not manage to fetch shuffle blocks</a>).</p>
 </div>
 <div class="paragraph">
 <p><code>FetchFailedException</code> contains the following:</p>
@@ -1975,10 +1982,10 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>When <code>FetchFailedException</code> is reported, <a href="../core/TaskRunner.html#run-FetchFailedException" class="page"><code>TaskRunner</code> catches it and notifies <code>ExecutorBackend</code></a> (with <code>TaskState.FAILED</code> task state).</p>
+<p>When <code>FetchFailedException</code> is reported, <a href="../executor/TaskRunner.html#run-FetchFailedException" class="page"><code>TaskRunner</code> catches it and notifies <code>ExecutorBackend</code></a> (with <code>TaskState.FAILED</code> task state).</p>
 </div>
 <div class="paragraph">
-<p>The root <code>cause</code> of the <code>FetchFailedException</code> is usually because the <a href="../core/Executor.html" class="page">Executor</a> (with the <a href="../storage/BlockManager.html" class="page">BlockManager</a> for the shuffle blocks) is lost (i.e. no longer available) due to:</p>
+<p>The root <code>cause</code> of the <code>FetchFailedException</code> is usually because the <a href="../executor/Executor.html" class="page">Executor</a> (with the <a href="../storage/BlockManager.html" class="page">BlockManager</a> for the shuffle blocks) is lost (i.e. no longer available) due to:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">

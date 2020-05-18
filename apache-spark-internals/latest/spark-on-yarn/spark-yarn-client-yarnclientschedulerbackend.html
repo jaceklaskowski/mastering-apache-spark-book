@@ -69,20 +69,45 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Core Services</span>
+    <a class="nav-link" href="../executor/Executor.html">Executor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/Executor.html">Executor</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/TaskRunner.html">TaskRunner</a>
+    <a class="nav-link" href="../executor/TaskRunner.html">TaskRunner</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/ExecutorSource.html">ExecutorSource</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ExecutorSource.html">ExecutorSource</a>
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/ExecutorBackend.html">ExecutorBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/TaskMetrics.html">TaskMetrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
   </li>
@@ -872,15 +897,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1383,15 +1399,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../metrics/spark-metrics-properties.html">Metrics Configuration Properties</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../metrics/spark-executor-TaskMetrics.html">TaskMetrics</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../metrics/spark-executor-ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -2128,7 +2135,7 @@ FIXME Why is this part of subtypes since they both set it to the same value?
 <p><code>start</code> <a href="spark-yarn-client.adoc#submitApplication">submits the Spark application to YARN</a> (through <a href="#client">Client</a>) and  <a href="spark-yarn-yarnschedulerbackend.adoc#bindToYarn">saves <code>ApplicationId</code></a> (with undefined <code>ApplicationAttemptId</code>).</p>
 </div>
 <div class="paragraph">
-<p><code>start</code> starts <a href="spark-yarn-yarnschedulerbackend.adoc#start">YarnSchedulerBackend</a> (that in turn starts the top-level <a href="../spark-CoarseGrainedExecutorBackend.adoc#start">CoarseGrainedSchedulerBackend</a>).</p>
+<p><code>start</code> starts <a href="spark-yarn-yarnschedulerbackend.adoc#start">YarnSchedulerBackend</a> (that in turn starts the top-level <a href="../executor/CoarseGrainedExecutorBackend.html#start" class="page">CoarseGrainedSchedulerBackend</a>).</p>
 </div>
 <div class="admonitionblock caution">
 <table>

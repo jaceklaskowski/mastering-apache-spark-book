@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>LocalSchedulerBackend :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/spark-local/spark-LocalSchedulerBackend.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -69,20 +69,45 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Core Services</span>
+    <a class="nav-link" href="../executor/Executor.html">Executor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/Executor.html">Executor</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/TaskRunner.html">TaskRunner</a>
+    <a class="nav-link" href="../executor/TaskRunner.html">TaskRunner</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/ExecutorSource.html">ExecutorSource</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ExecutorSource.html">ExecutorSource</a>
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/ExecutorBackend.html">ExecutorBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/TaskMetrics.html">TaskMetrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
   </li>
@@ -872,15 +897,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1383,15 +1399,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../metrics/spark-metrics-properties.html">Metrics Configuration Properties</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../metrics/spark-executor-TaskMetrics.html">TaskMetrics</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../metrics/spark-executor-ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1943,14 +1950,14 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="localschedulerbackend"><a class="anchor" href="#localschedulerbackend"></a><a class="link" href="#localschedulerbackend"><a id="LocalSchedulerBackend"></a> LocalSchedulerBackend</a></h2>
+<h1 class="page">LocalSchedulerBackend</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>LocalSchedulerBackend</code> is a <a href="#../SchedulerBackend.adoc" class="page unresolved">SchedulerBackend</a> and an <a href="#../spark-ExecutorBackend.adoc" class="page unresolved">ExecutorBackend</a> for the <a href="#spark-local.adoc" class="page unresolved">Spark local</a>.</p>
+<p>LocalSchedulerBackend is a <a href="#../SchedulerBackend.adoc" class="page unresolved">SchedulerBackend</a> and an <a href="../executor/ExecutorBackend.html" class="page">ExecutorBackend</a> for the <a href="#spark-local.adoc" class="page unresolved">Spark local</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>LocalSchedulerBackend</code> is <a href="#creating-instance">created</a> when <code>SparkContext</code> is requested to <a href="../SparkContext.html#createTaskScheduler" class="page">create the SchedulerBackend with the TaskScheduler</a> for the following master URLs:</p>
+<p>LocalSchedulerBackend is <a href="#creating-instance">created</a> when <code>SparkContext</code> is requested to <a href="../SparkContext.html#createTaskScheduler" class="page">create the SchedulerBackend with the TaskScheduler</a> for the following master URLs:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1972,7 +1979,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>While being <a href="#creating-instance">created</a>, <code>LocalSchedulerBackend</code> requests the <a href="#launcherBackend">LauncherBackend</a> to <a href="spark-LauncherBackend.html#connect" class="page">connect</a>.</p>
+<p>While being <a href="#creating-instance">created</a>, LocalSchedulerBackend requests the <a href="#launcherBackend">LauncherBackend</a> to <a href="spark-LauncherBackend.html#connect" class="page">connect</a>.</p>
 </div>
 <div class="paragraph">
 <p>When an executor sends task status updates (using <code>ExecutorBackend.statusUpdate</code>), they are passed along as <a href="#messages">StatusUpdate</a> to <a href="spark-LocalEndpoint.html" class="page">LocalEndpoint</a>.</p>
@@ -1984,19 +1991,19 @@
 <div class="title">Figure 1. Task status updates flow in local mode</div>
 </div>
 <div id="applicationId" class="paragraph">
-<p>When requested for the <a href="#../SchedulerBackend.adoc#applicationId" class="page unresolved">applicationId</a>, <code>LocalSchedulerBackend</code> uses <strong>local-[currentTimeMillis]</strong>.</p>
+<p>When requested for the <a href="#../SchedulerBackend.adoc#applicationId" class="page unresolved">applicationId</a>, LocalSchedulerBackend uses <strong>local-[currentTimeMillis]</strong>.</p>
 </div>
 <div id="maxNumConcurrentTasks" class="paragraph">
-<p>When requested for the <a href="#../SchedulerBackend.adoc#maxNumConcurrentTasks" class="page unresolved">maxNumConcurrentTasks</a>, <code>LocalSchedulerBackend</code> simply divides the <a href="#totalCores">total number of CPU cores</a> by <a href="../scheduler/TaskSchedulerImpl.html#CPUS_PER_TASK" class="page">spark.task.cpus</a> configuration (default: <code>1</code>).</p>
+<p>When requested for the <a href="#../SchedulerBackend.adoc#maxNumConcurrentTasks" class="page unresolved">maxNumConcurrentTasks</a>, LocalSchedulerBackend simply divides the <a href="#totalCores">total number of CPU cores</a> by <a href="../scheduler/TaskSchedulerImpl.html#CPUS_PER_TASK" class="page">spark.task.cpus</a> configuration (default: <code>1</code>).</p>
 </div>
 <div id="defaultParallelism" class="paragraph">
-<p>When requested for the <a href="#../SchedulerBackend.adoc#defaultParallelism" class="page unresolved">defaultParallelism</a>, <code>LocalSchedulerBackend</code> uses <a href="#../configuration-properties.adoc#spark.default.parallelism" class="page unresolved">spark.default.parallelism</a> configuration (if defined) or the <a href="#totalCores">total number of CPU cores</a>.</p>
+<p>When requested for the <a href="#../SchedulerBackend.adoc#defaultParallelism" class="page unresolved">defaultParallelism</a>, LocalSchedulerBackend uses <a href="#../configuration-properties.adoc#spark.default.parallelism" class="page unresolved">spark.default.parallelism</a> configuration (if defined) or the <a href="#totalCores">total number of CPU cores</a>.</p>
 </div>
 <div id="userClassPath" class="paragraph">
-<p>When <a href="#creating-instance">created</a>, <code>LocalSchedulerBackend</code> <a href="#getUserClasspath">uses</a> the <a href="#../configuration-properties.adoc#spark.executor.extraClassPath" class="page unresolved">spark.executor.extraClassPath</a> configuration property (in the given <a href="#conf">SparkConf</a>) for the <strong>user-defined class path for executors</strong> that is used exclusively when <code>LocalSchedulerBackend</code> is requested to <a href="#start">start</a> (and creates a <a href="spark-LocalEndpoint.html" class="page">LocalEndpoint</a> that in turn uses it to create the one <a href="spark-LocalEndpoint.html#executor" class="page">Executor</a>).</p>
+<p>When <a href="#creating-instance">created</a>, LocalSchedulerBackend <a href="#getUserClasspath">uses</a> the <a href="#../configuration-properties.adoc#spark.executor.extraClassPath" class="page unresolved">spark.executor.extraClassPath</a> configuration property (in the given <a href="#conf">SparkConf</a>) for the <strong>user-defined class path for executors</strong> that is used exclusively when LocalSchedulerBackend is requested to <a href="#start">start</a> (and creates a <a href="spark-LocalEndpoint.html" class="page">LocalEndpoint</a> that in turn uses it to create the one <a href="spark-LocalEndpoint.html#executor" class="page">Executor</a>).</p>
 </div>
 <div id="creating-instance" class="paragraph">
-<p><code>LocalSchedulerBackend</code> takes the following to be created:</p>
+<p>LocalSchedulerBackend takes the following to be created:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2027,10 +2034,10 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>localEndpoint</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="localEndpoint"></a> <a href="../rpc/RpcEndpointRef.html" class="page">RpcEndpointRef</a> to <strong>LocalSchedulerBackendEndpoint</strong> RPC endpoint (that is <a href="spark-LocalEndpoint.html" class="page">LocalEndpoint</a> which <code>LocalSchedulerBackend</code> registers when <a href="#start">started</a>)</p>
+<p><a id="localEndpoint"></a> <a href="../rpc/RpcEndpointRef.html" class="page">RpcEndpointRef</a> to <strong>LocalSchedulerBackendEndpoint</strong> RPC endpoint (that is <a href="spark-LocalEndpoint.html" class="page">LocalEndpoint</a> which LocalSchedulerBackend registers when <a href="#start">started</a>)</p>
 </div>
 <div class="paragraph">
-<p>Used when <code>LocalSchedulerBackend</code> is requested for the following:</p>
+<p>Used when LocalSchedulerBackend is requested for the following:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2055,13 +2062,13 @@
 <p><a id="launcherBackend"></a> <a href="spark-LauncherBackend.html" class="page">LauncherBackend</a></p>
 </div>
 <div class="paragraph">
-<p>Used when <code>LocalSchedulerBackend</code> is <a href="#creating-instance">created</a>, <a href="#start">started</a> and <a href="#stop">stopped</a></p>
+<p>Used when LocalSchedulerBackend is <a href="#creating-instance">created</a>, <a href="#start">started</a> and <a href="#stop">stopped</a></p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>listenerBus</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="listenerBus"></a> <a href="#../spark-scheduler-LiveListenerBus.adoc" class="page unresolved">LiveListenerBus</a> that is used exclusively when <code>LocalSchedulerBackend</code> is requested to <a href="#start">start</a></p>
+<p><a id="listenerBus"></a> <a href="#../spark-scheduler-LiveListenerBus.adoc" class="page unresolved">LiveListenerBus</a> that is used exclusively when LocalSchedulerBackend is requested to <a href="#start">start</a></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -2091,8 +2098,11 @@
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="starting-scheduling-backendstart-method"><a class="anchor" href="#starting-scheduling-backendstart-method"></a><a class="link" href="#starting-scheduling-backendstart-method"><a id="start"></a> Starting Scheduling Backend&#8201;&#8212;&#8201;<code>start</code> Method</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="starting-scheduling-backendstart-method"><a class="anchor" href="#starting-scheduling-backendstart-method"></a><a class="link" href="#starting-scheduling-backendstart-method"><a id="start"></a> Starting Scheduling Backend&#8201;&#8212;&#8201;<code>start</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">start(): Unit</code></pre>
@@ -2123,8 +2133,10 @@
 <p>In the end, <code>start</code> requests the <a href="#launcherBackend">LauncherBackend</a> to <a href="spark-LauncherBackend.html#setAppId" class="page">setAppId</a> as the <a href="#appId">appId</a> and <a href="spark-LauncherBackend.html#setState" class="page">setState</a> as <code>RUNNING</code>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="reviveoffers-method"><a class="anchor" href="#reviveoffers-method"></a><a class="link" href="#reviveoffers-method"><a id="reviveOffers"></a> <code>reviveOffers</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="reviveoffers-method"><a class="anchor" href="#reviveoffers-method"></a><a class="link" href="#reviveoffers-method"><a id="reviveOffers"></a> <code>reviveOffers</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">reviveOffers(): Unit</code></pre>
@@ -2146,8 +2158,10 @@
 <p><code>reviveOffers</code>&#8230;&#8203;FIXME</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="killtask-method"><a class="anchor" href="#killtask-method"></a><a class="link" href="#killtask-method"><a id="killTask"></a> <code>killTask</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="killtask-method"><a class="anchor" href="#killtask-method"></a><a class="link" href="#killtask-method"><a id="killTask"></a> <code>killTask</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">killTask(
@@ -2173,8 +2187,10 @@
 <p><code>killTask</code>&#8230;&#8203;FIXME</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="statusupdate-method"><a class="anchor" href="#statusupdate-method"></a><a class="link" href="#statusupdate-method"><a id="statusUpdate"></a> <code>statusUpdate</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="statusupdate-method"><a class="anchor" href="#statusupdate-method"></a><a class="link" href="#statusupdate-method"><a id="statusUpdate"></a> <code>statusUpdate</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">statusUpdate(
@@ -2190,7 +2206,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>statusUpdate</code> is part of the <a href="#../spark-ExecutorBackend.adoc#statusUpdate" class="page unresolved">ExecutorBackend Contract</a> to&#8230;&#8203;FIXME.
+<code>statusUpdate</code> is part of the <a href="../executor/ExecutorBackend.html#statusUpdate" class="page">ExecutorBackend</a> abstraction.
 </td>
 </tr>
 </table>
@@ -2199,8 +2215,10 @@
 <p><code>statusUpdate</code>&#8230;&#8203;FIXME</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="stopping-scheduling-backendstop-method"><a class="anchor" href="#stopping-scheduling-backendstop-method"></a><a class="link" href="#stopping-scheduling-backendstop-method"><a id="stop"></a> Stopping Scheduling Backend&#8201;&#8212;&#8201;<code>stop</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="stopping-scheduling-backendstop-method"><a class="anchor" href="#stopping-scheduling-backendstop-method"></a><a class="link" href="#stopping-scheduling-backendstop-method"><a id="stop"></a> Stopping Scheduling Backend&#8201;&#8212;&#8201;<code>stop</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">stop(): Unit</code></pre>
@@ -2222,8 +2240,10 @@
 <p><code>stop</code>&#8230;&#8203;FIXME</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="user-defined-class-path-for-executorsgetuserclasspath-method"><a class="anchor" href="#user-defined-class-path-for-executorsgetuserclasspath-method"></a><a class="link" href="#user-defined-class-path-for-executorsgetuserclasspath-method"><a id="getUserClasspath"></a> User-Defined Class Path for Executors&#8201;&#8212;&#8201;<code>getUserClasspath</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="user-defined-class-path-for-executorsgetuserclasspath-method"><a class="anchor" href="#user-defined-class-path-for-executorsgetuserclasspath-method"></a><a class="link" href="#user-defined-class-path-for-executorsgetuserclasspath-method"><a id="getUserClasspath"></a> User-Defined Class Path for Executors&#8201;&#8212;&#8201;<code>getUserClasspath</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getUserClasspath(conf: SparkConf): Seq[URL]</code></pre>
@@ -2239,11 +2259,10 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>getUserClasspath</code> is used exclusively when <code>LocalSchedulerBackend</code> is <a href="#userClassPath">created</a>.
+<code>getUserClasspath</code> is used exclusively when LocalSchedulerBackend is <a href="#userClassPath">created</a>.
 </td>
 </tr>
 </table>
-</div>
 </div>
 </div>
 </div>

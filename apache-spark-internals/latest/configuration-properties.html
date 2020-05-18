@@ -69,20 +69,45 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Core Services</span>
+    <a class="nav-link" href="executor/Executor.html">Executor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="core/Executor.html">Executor</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="core/TaskRunner.html">TaskRunner</a>
+    <a class="nav-link" href="executor/TaskRunner.html">TaskRunner</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="core/ExecutorSource.html">ExecutorSource</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="executor/ExecutorSource.html">ExecutorSource</a>
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="executor/ExecutorBackend.html">ExecutorBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="executor/TaskMetrics.html">TaskMetrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="core/SparkEnv.html">SparkEnv</a>
   </li>
@@ -872,15 +897,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-ExecutorBackend.html">ExecutorBackend</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1383,15 +1399,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="metrics/spark-metrics-properties.html">Metrics Configuration Properties</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="metrics/spark-executor-TaskMetrics.html">TaskMetrics</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="metrics/spark-executor-ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -2021,7 +2028,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>Executor</code> is <a href="core/Executor.html#maxResultSize" class="page">created</a> (and later for a <a href="core/TaskRunner.html" class="page">TaskRunner</a>)</p>
+<p><code>Executor</code> is <a href="executor/Executor.html#maxResultSize" class="page">created</a> (and later for a <a href="executor/TaskRunner.html" class="page">TaskRunner</a>)</p>
 </li>
 <li>
 <p><code>TaskSetManager</code> is <a href="scheduler/TaskSetManager.html#maxResultSize" class="page">created</a> (and later requested to <a href="scheduler/TaskSetManager.html#canFetchMoreResults" class="page">check available memory for task results</a>)</p>
@@ -2043,7 +2050,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Spark Standalone&#8217;s <code>StandaloneSchedulerBackend</code> is requested to <a href="spark-standalone/spark-standalone-StandaloneSchedulerBackend.html#start" class="page">start</a> (and creates a command for <a href="spark-CoarseGrainedExecutorBackend.html" class="page">CoarseGrainedExecutorBackend</a>)</p>
+<p>Spark Standalone&#8217;s <code>StandaloneSchedulerBackend</code> is requested to <a href="spark-standalone/spark-standalone-StandaloneSchedulerBackend.html#start" class="page">start</a> (and creates a command for <a href="executor/CoarseGrainedExecutorBackend.html" class="page">CoarseGrainedExecutorBackend</a>)</p>
 </li>
 <li>
 <p>Spark local&#8217;s <code>LocalSchedulerBackend</code> is requested for the <a href="spark-local/spark-LocalSchedulerBackend.html#getUserClasspath" class="page">user-defined class path for executors</a></p>
@@ -2066,13 +2073,13 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.cores</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="spark.executor.cores"></a> Number of cores of an <a href="core/Executor.html" class="page">Executor</a></p>
+<p><a id="spark.executor.cores"></a> Number of cores of an <a href="executor/Executor.html" class="page">Executor</a></p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.extraJavaOptions</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="spark.executor.extraJavaOptions"></a> Extra Java options of an <a href="core/Executor.html" class="page">Executor</a></p>
+<p><a id="spark.executor.extraJavaOptions"></a> Extra Java options of an <a href="executor/Executor.html" class="page">Executor</a></p>
 </div>
 <div class="paragraph">
 <p>Used when Spark on YARN&#8217;s <code>ExecutorRunnable</code> is requested to <a href="spark-on-yarn/spark-yarn-ExecutorRunnable.html#prepareCommand" class="page">prepare the command to launch CoarseGrainedExecutorBackend in a YARN container</a></p>
@@ -2116,19 +2123,19 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.heartbeatInterval</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="spark.executor.heartbeatInterval"></a> Interval after which an <a href="core/Executor.html" class="page">Executor</a> reports heartbeat and metrics for active tasks to the driver</p>
+<p><a id="spark.executor.heartbeatInterval"></a> Interval after which an <a href="executor/Executor.html" class="page">Executor</a> reports heartbeat and metrics for active tasks to the driver</p>
 </div>
 <div class="paragraph">
 <p>Default: <code>10s</code></p>
 </div>
 <div class="paragraph">
-<p>Refer to <a href="core/Executor.html#heartbeats-and-active-task-metrics" class="page">Sending heartbeats and partial metrics for active tasks</a></p>
+<p>Refer to <a href="executor/Executor.html#heartbeats-and-active-task-metrics" class="page">Sending heartbeats and partial metrics for active tasks</a></p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.heartbeat.maxFailures</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="spark.executor.heartbeat.maxFailures"></a> Number of times an <a href="core/Executor.html" class="page">Executor</a> will try to send heartbeats to the driver before it gives up and exits (with exit code <code>56</code>).</p>
+<p><a id="spark.executor.heartbeat.maxFailures"></a> Number of times an <a href="executor/Executor.html" class="page">Executor</a> will try to send heartbeats to the driver before it gives up and exits (with exit code <code>56</code>).</p>
 </div>
 <div class="paragraph">
 <p>Default: <code>60</code></p>
@@ -2149,7 +2156,7 @@ Introduced in <a href="https://issues.apache.org/jira/browse/SPARK-13522">SPARK-
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.instances</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="spark.executor.instances"></a> Number of <a href="core/Executor.html" class="page">Executor</a> in use</p>
+<p><a id="spark.executor.instances"></a> Number of <a href="executor/Executor.html" class="page">Executor</a> in use</p>
 </div>
 <div class="paragraph">
 <p>Default: <code>0</code></p>
@@ -2188,7 +2195,7 @@ Introduced in <a href="https://issues.apache.org/jira/browse/SPARK-13522">SPARK-
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.executor.memory</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="spark.executor.memory"></a> Amount of memory to use for an <a href="core/Executor.html" class="page">Executor</a></p>
+<p><a id="spark.executor.memory"></a> Amount of memory to use for an <a href="executor/Executor.html" class="page">Executor</a></p>
 </div>
 <div class="paragraph">
 <p>Default: <code>1g</code></p>
@@ -2197,7 +2204,7 @@ Introduced in <a href="https://issues.apache.org/jira/browse/SPARK-13522">SPARK-
 <p>Equivalent to <a href="SparkContext.html#environment-variables" class="page">SPARK_EXECUTOR_MEMORY</a> environment variable.</p>
 </div>
 <div class="paragraph">
-<p>Refer to <a href="core/Executor.html#memory" class="page">Executor Memory&#8201;&#8212;&#8201;spark.executor.memory or SPARK_EXECUTOR_MEMORY settings</a></p>
+<p>Refer to <a href="executor/Executor.html#memory" class="page">Executor Memory&#8201;&#8212;&#8201;spark.executor.memory or SPARK_EXECUTOR_MEMORY settings</a></p>
 </div></div></td>
 </tr>
 <tr>

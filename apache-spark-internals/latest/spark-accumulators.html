@@ -69,20 +69,45 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Core Services</span>
+    <a class="nav-link" href="executor/Executor.html">Executor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="core/Executor.html">Executor</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="core/TaskRunner.html">TaskRunner</a>
+    <a class="nav-link" href="executor/TaskRunner.html">TaskRunner</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="core/ExecutorSource.html">ExecutorSource</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="executor/ExecutorSource.html">ExecutorSource</a>
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="executor/ExecutorBackend.html">ExecutorBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="executor/TaskMetrics.html">TaskMetrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="core/SparkEnv.html">SparkEnv</a>
   </li>
@@ -872,15 +897,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-ExecutorBackend.html">ExecutorBackend</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1383,15 +1399,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="metrics/spark-metrics-properties.html">Metrics Configuration Properties</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="metrics/spark-executor-TaskMetrics.html">TaskMetrics</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="metrics/spark-executor-ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1947,7 +1954,7 @@
 <h2 id="accumulators"><a class="anchor" href="#accumulators"></a><a class="link" href="#accumulators"><a id="AccumulatorV2"></a> Accumulators</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Accumulators</strong> are variables that are "added" to through an associative and commutative "add" operation. They act as a container for accumulating partial values across multiple tasks (running on executors). They are designed to be used safely and efficiently in parallel and distributed Spark computations and are meant for distributed counters and sums (e.g. <a href="spark-executor-TaskMetrics.adoc">task metrics</a>).</p>
+<p><strong>Accumulators</strong> are variables that are "added" to through an associative and commutative "add" operation. They act as a container for accumulating partial values across multiple tasks (running on executors). They are designed to be used safely and efficiently in parallel and distributed Spark computations and are meant for distributed counters and sums (e.g. <a href="executor/TaskMetrics.html" class="page">task metrics</a>).</p>
 </div>
 <div class="paragraph">
 <p>You can create built-in accumulators for <a href="SparkContext.html#creating-accumulators" class="page">longs, doubles, or collections</a> or register custom accumulators using the <a href="SparkContext.html#register" class="page">SparkContext.register</a> methods. You can create accumulators with or without a name, but only <a href="#named">named accumulators</a> are displayed in <a href="spark-webui-StagePage.adoc#accumulators">web UI</a> (under Stages tab for a given stage).</p>
@@ -2098,7 +2105,7 @@ FIXME
 <p><code>SparkContext</code> <a href="SparkContext.html#register" class="page">registers accumulators</a></p>
 </li>
 <li>
-<p><code>TaskMetrics</code> <a href="spark-executor-TaskMetrics.adoc#register">registers the internal accumulators</a></p>
+<p><code>TaskMetrics</code> <a href="executor/TaskMetrics.html#register" class="page">registers the internal accumulators</a></p>
 </li>
 <li>
 <p><a href="spark-sql-SQLMetric.adoc">SQLMetrics</a> creates metrics.</p>

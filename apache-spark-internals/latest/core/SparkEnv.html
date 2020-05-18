@@ -69,20 +69,45 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Core Services</span>
+    <a class="nav-link" href="../executor/Executor.html">Executor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="Executor.html">Executor</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="TaskRunner.html">TaskRunner</a>
+    <a class="nav-link" href="../executor/TaskRunner.html">TaskRunner</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ExecutorSource.html">ExecutorSource</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ExecutorSource.html">ExecutorSource</a>
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/ExecutorBackend.html">ExecutorBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/TaskMetrics.html">TaskMetrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="SparkEnv.html">SparkEnv</a>
   </li>
@@ -872,15 +897,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1383,15 +1399,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../metrics/spark-metrics-properties.html">Metrics Configuration Properties</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../metrics/spark-executor-TaskMetrics.html">TaskMetrics</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../metrics/spark-executor-ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -2086,7 +2093,7 @@
 <p><a href="../spark-SparkContext-creating-instance-internals.html" class="page">SparkContext</a> is created (for the <a href="#createDriverEnv">driver</a>)</p>
 </li>
 <li>
-<p>CoarseGrainedExecutorBackend is requested to <a href="../spark-CoarseGrainedExecutorBackend.html#run" class="page">run</a> (for <a href="#createExecutorEnv">executors</a>)</p>
+<p>CoarseGrainedExecutorBackend is requested to <a href="../executor/CoarseGrainedExecutorBackend.html#run" class="page">run</a> (for <a href="#createExecutorEnv">executors</a>)</p>
 </li>
 <li>
 <p>MesosExecutorBackend is requested to <a href="../spark-on-mesos/spark-executor-backends-MesosExecutorBackend.html#registered" class="page">registered</a> (for <a href="#createExecutorEnv">executors</a>)</p>
@@ -2435,7 +2442,7 @@ The number of cores <code>numCores</code> is configured using <code>--cores</cod
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>createExecutorEnv</code> is used when <a href="spark-CoarseGrainedExecutorBackend.adoc#run"><code>CoarseGrainedExecutorBackend</code> runs</a> and <a href="spark-executor-backends-MesosExecutorBackend.adoc#registered"><code>MesosExecutorBackend</code> registers a Spark executor</a>.
+<code>createExecutorEnv</code> is used when <a href="../executor/CoarseGrainedExecutorBackend.html#run" class="page"><code>CoarseGrainedExecutorBackend</code> runs</a> and <a href="spark-executor-backends-MesosExecutorBackend.adoc#registered"><code>MesosExecutorBackend</code> registers a Spark executor</a>.
 </td>
 </tr>
 </table>
@@ -2499,7 +2506,7 @@ The number of cores <code>numCores</code> is configured using <code>--cores</cod
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-stop is used when <a href="../SparkContext.html#stop" class="page"><code>SparkContext</code> stops</a> (on the driver) and <a href="Executor.html#stop" class="page"><code>Executor</code> stops</a>.
+stop is used when <a href="../SparkContext.html#stop" class="page"><code>SparkContext</code> stops</a> (on the driver) and <a href="../executor/Executor.html#stop" class="page"><code>Executor</code> stops</a>.
 </td>
 </tr>
 </table>

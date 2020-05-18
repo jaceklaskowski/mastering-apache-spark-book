@@ -69,20 +69,45 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Core Services</span>
+    <a class="nav-link" href="../executor/Executor.html">Executor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/Executor.html">Executor</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/TaskRunner.html">TaskRunner</a>
+    <a class="nav-link" href="../executor/TaskRunner.html">TaskRunner</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/ExecutorSource.html">ExecutorSource</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ExecutorSource.html">ExecutorSource</a>
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/ExecutorBackend.html">ExecutorBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/TaskMetrics.html">TaskMetrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
   </li>
@@ -872,15 +897,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1383,15 +1399,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../metrics/spark-metrics-properties.html">Metrics Configuration Properties</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../metrics/spark-executor-TaskMetrics.html">TaskMetrics</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../metrics/spark-executor-ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -2076,7 +2083,7 @@ If Getting Result Time is large, consider decreasing the amount of data returned
 <p>If the stage has shuffle read there will be three more rows in the table. The first row is <strong>Shuffle Read Blocked Time</strong> which is the time that tasks spent blocked waiting for shuffle data to be read from remote machines (using <code>shuffleReadMetrics.fetchWaitTime</code> task metric). The other row is <strong>Shuffle Read Size / Records</strong> which is the total shuffle bytes and records read (including both data read locally and data read from remote executors using <code>shuffleReadMetrics.totalBytesRead</code> and <code>shuffleReadMetrics.recordsRead</code> task metrics). And the last row is <strong>Shuffle Remote Reads</strong> which is the total shuffle bytes read from remote executors (which is a subset of the shuffle read bytes; the remaining shuffle data is read locally). It uses <code>shuffleReadMetrics.remoteBytesRead</code> task metric.</p>
 </div>
 <div class="paragraph">
-<p>If the stage has shuffle write, the following row is <strong>Shuffle Write Size / Records</strong> (using <a href="spark-executor-ShuffleWriteMetrics.adoc#bytesWritten">shuffleWriteMetrics.bytesWritten</a> and <a href="spark-executor-ShuffleWriteMetrics.adoc#recordsWritten">shuffleWriteMetrics.recordsWritten</a> task metrics).</p>
+<p>If the stage has shuffle write, the following row is <strong>Shuffle Write Size / Records</strong> (using <a href="../executor/ShuffleWriteMetrics.html#bytesWritten" class="page">shuffleWriteMetrics.bytesWritten</a> and <a href="../executor/ShuffleWriteMetrics.html#recordsWritten" class="page">shuffleWriteMetrics.recordsWritten</a> task metrics).</p>
 </div>
 <div class="paragraph">
 <p>If the stage has bytes spilled, the following two rows are <strong>Shuffle spill (memory)</strong> (using <code>memoryBytesSpilled</code> task metric) and <strong>Shuffle spill (disk)</strong> (using <code>diskBytesSpilled</code> task metric).</p>

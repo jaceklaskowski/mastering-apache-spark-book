@@ -69,20 +69,45 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Core Services</span>
+    <a class="nav-link" href="../executor/Executor.html">Executor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/Executor.html">Executor</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/TaskRunner.html">TaskRunner</a>
+    <a class="nav-link" href="../executor/TaskRunner.html">TaskRunner</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/ExecutorSource.html">ExecutorSource</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ExecutorSource.html">ExecutorSource</a>
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/ExecutorBackend.html">ExecutorBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/TaskMetrics.html">TaskMetrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
   </li>
@@ -872,15 +897,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1383,15 +1399,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../metrics/spark-metrics-properties.html">Metrics Configuration Properties</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../metrics/spark-executor-TaskMetrics.html">TaskMetrics</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../metrics/spark-executor-ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -2137,7 +2144,7 @@ A <code>SchedulerExtensionServices</code> object is created when <a href="#creat
 </table>
 </div>
 <div class="paragraph">
-<p>Ultimately, it calls the parent&#8217;s <a href="../spark-CoarseGrainedExecutorBackend.adoc#start">CoarseGrainedSchedulerBackend.start</a>.</p>
+<p>Ultimately, it calls the parent&#8217;s <a href="../executor/CoarseGrainedExecutorBackend.html#start" class="page">CoarseGrainedSchedulerBackend.start</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2162,7 +2169,7 @@ A <code>SchedulerExtensionServices</code> object is created when <a href="#creat
 <div class="sect2">
 <h3 id="stopping-the-backendstop-method"><a class="anchor" href="#stopping-the-backendstop-method"></a><a class="link" href="#stopping-the-backendstop-method"><a id="stop"></a> Stopping the Backend&#8201;&#8212;&#8201;<code>stop</code> Method</a></h3>
 <div class="paragraph">
-<p><code>stop</code> calls the parent&#8217;s <a href="../spark-CoarseGrainedExecutorBackend.adoc#requestTotalExecutors">CoarseGrainedSchedulerBackend.requestTotalExecutors</a> (using <code>(0, 0, Map.empty)</code> parameters).</p>
+<p><code>stop</code> calls the parent&#8217;s <a href="../executor/CoarseGrainedExecutorBackend.html#requestTotalExecutors" class="page">CoarseGrainedSchedulerBackend.requestTotalExecutors</a> (using <code>(0, 0, Map.empty)</code> parameters).</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -2177,7 +2184,7 @@ FIXME Explain what <code>0, 0, Map.empty</code> means after the method&#8217;s d
 </table>
 </div>
 <div class="paragraph">
-<p>It calls the parent&#8217;s <a href="../spark-CoarseGrainedExecutorBackend.adoc#stop">CoarseGrainedSchedulerBackend.stop</a>.</p>
+<p>It calls the parent&#8217;s <a href="../executor/CoarseGrainedExecutorBackend.html#stop" class="page">CoarseGrainedSchedulerBackend.stop</a>.</p>
 </div>
 <div class="paragraph">
 <p>Ultimately, it stops the internal <code>SchedulerExtensionServiceBinding</code> object (using <code>services.stop()</code>).</p>

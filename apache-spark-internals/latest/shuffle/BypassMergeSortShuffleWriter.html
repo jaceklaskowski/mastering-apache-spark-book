@@ -69,20 +69,45 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Core Services</span>
+    <a class="nav-link" href="../executor/Executor.html">Executor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/Executor.html">Executor</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/TaskRunner.html">TaskRunner</a>
+    <a class="nav-link" href="../executor/TaskRunner.html">TaskRunner</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/ExecutorSource.html">ExecutorSource</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ExecutorSource.html">ExecutorSource</a>
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/ExecutorBackend.html">ExecutorBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/TaskMetrics.html">TaskMetrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
   </li>
@@ -872,15 +897,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1383,15 +1399,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../metrics/spark-metrics-properties.html">Metrics Configuration Properties</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../metrics/spark-executor-TaskMetrics.html">TaskMetrics</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../metrics/spark-executor-ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -2057,7 +2064,7 @@
 <p>write requests the <a href="#blockManager">BlockManager</a> for the <a href="../storage/BlockManager.html#diskBlockManager" class="page">DiskBlockManager</a> and for <a href="#numPartitions">every partition</a> write requests it for a <a href="../storage/DiskBlockManager.html#createTempShuffleBlock" class="page">shuffle block ID and the file</a>. write creates a <a href="../storage/BlockManager.html#getDiskWriter" class="page">DiskBlockObjectWriter</a> for the shuffle block (using the <a href="#blockManager">BlockManager</a>). write stores the reference to DiskBlockObjectWriters in the <a href="#partitionWriters">partitionWriters</a> internal registry.</p>
 </div>
 <div class="paragraph">
-<p>After all DiskBlockObjectWriters are created, write requests the <a href="#writeMetrics">ShuffleWriteMetrics</a> to <a href="../metrics/spark-executor-ShuffleWriteMetrics.html#incWriteTime" class="page">increment shuffle write time metric</a>.</p>
+<p>After all DiskBlockObjectWriters are created, write requests the <a href="#writeMetrics">ShuffleWriteMetrics</a> to <a href="../executor/ShuffleWriteMetrics.html#incWriteTime" class="page">increment shuffle write time metric</a>.</p>
 </div>
 <div class="paragraph">
 <p>For every record (a key-value pair), write requests the <a href="#partitioner">Partitioner</a> for the <a href="../rdd/Partitioner.html#getPartition" class="page">partition ID</a> for the key. The partition ID is then used as an index of the partition writer (among the <a href="#partitionWriters">DiskBlockObjectWriters</a>) to <a href="../storage/DiskBlockObjectWriter.html#write" class="page">write the current record out to a block file</a>.</p>
@@ -2159,7 +2166,7 @@ At this point, all the per-partition shuffle block files are one single map shuf
 <p>writePartitionedFile then <a href="#copyStream">copies the raw bytes from each partition segment input stream to <code>outputFile</code></a> (possibly using Java New I/O per <a href="#transferToEnabled">transferToEnabled</a> flag set when <a href="#creating-instance">BypassMergeSortShuffleWriter was created</a>) and records the length of the shuffle data file (in <code>lengths</code> internal array).</p>
 </div>
 <div class="paragraph">
-<p>In the end, writePartitionedFile <a href="../metrics/spark-executor-ShuffleWriteMetrics.html#incWriteTime" class="page">increments shuffle write time</a>, clears <a href="#partitionWriters">partitionWriters</a> array and returns the lengths of the shuffle data files per partition.</p>
+<p>In the end, writePartitionedFile <a href="../executor/ShuffleWriteMetrics.html#incWriteTime" class="page">increments shuffle write time</a>, clears <a href="#partitionWriters">partitionWriters</a> array and returns the lengths of the shuffle data files per partition.</p>
 </div>
 <div class="paragraph">
 <p>writePartitionedFile is used when BypassMergeSortShuffleWriter is requested to <a href="#write">write records</a>.</p>

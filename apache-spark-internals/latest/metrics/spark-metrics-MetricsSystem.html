@@ -69,20 +69,45 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Core Services</span>
+    <a class="nav-link" href="../executor/Executor.html">Executor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/Executor.html">Executor</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/TaskRunner.html">TaskRunner</a>
+    <a class="nav-link" href="../executor/TaskRunner.html">TaskRunner</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/ExecutorSource.html">ExecutorSource</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ExecutorSource.html">ExecutorSource</a>
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/ExecutorBackend.html">ExecutorBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/TaskMetrics.html">TaskMetrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
   </li>
@@ -872,15 +897,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1383,15 +1399,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-metrics-properties.html">Metrics Configuration Properties</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-executor-TaskMetrics.html">TaskMetrics</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-executor-ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -2182,7 +2189,7 @@ FIXME
 <p><code>MetricsSystem</code> <a href="#start">is started</a> (and registers the "static" metrics sources&#8201;&#8212;&#8201;<code>CodegenMetrics</code> and <code>HiveCatalogMetrics</code>) and does <a href="#registerSources">registerSources</a>.</p>
 </li>
 <li>
-<p><code>Executor</code> <a href="../core/Executor.html#creating-instance" class="page">is created</a> (and registers a <a href="../core/ExecutorSource.html" class="page">ExecutorSource</a>)</p>
+<p><code>Executor</code> <a href="../executor/Executor.html#creating-instance" class="page">is created</a> (and registers a <a href="../executor/ExecutorSource.html" class="page">ExecutorSource</a>)</p>
 </li>
 <li>
 <p><code>ExternalShuffleService</code> <a href="../deploy/ExternalShuffleService.html#start" class="page">is started</a> (and registers <code>ExternalShuffleServiceSource</code>)</p>
@@ -2235,13 +2242,13 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>buildRegistryName</code> uses <a href="spark-metrics-properties.adoc#spark.metrics.namespace">spark.metrics.namespace</a> and <a href="../core/Executor.html#spark.executor.id" class="page">spark.executor.id</a> Spark properties to differentiate between a Spark application&#8217;s driver and executors, and the other Spark framework&#8217;s components.
+<code>buildRegistryName</code> uses <a href="spark-metrics-properties.adoc#spark.metrics.namespace">spark.metrics.namespace</a> and <a href="../executor/Executor.html#spark.executor.id" class="page">spark.executor.id</a> Spark properties to differentiate between a Spark application&#8217;s driver and executors, and the other Spark framework&#8217;s components.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>(only when <a href="#instance">instance</a> is <code>driver</code> or <code>executor</code>) <code>buildRegistryName</code> builds metrics source name that is made up of <a href="spark-metrics-properties.adoc#spark.metrics.namespace">spark.metrics.namespace</a>, <a href="../core/Executor.html#spark.executor.id" class="page">spark.executor.id</a> and the name of the <code>source</code>.</p>
+<p>(only when <a href="#instance">instance</a> is <code>driver</code> or <code>executor</code>) <code>buildRegistryName</code> builds metrics source name that is made up of <a href="spark-metrics-properties.adoc#spark.metrics.namespace">spark.metrics.namespace</a>, <a href="../executor/Executor.html#spark.executor.id" class="page">spark.executor.id</a> and the name of the <code>source</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2564,7 +2571,7 @@ FIXME Finish for the other components.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>report</code> is used when <a href="../SparkContext.html#stop" class="page">SparkContext</a>, <a href="../core/Executor.html#stop" class="page">Executor</a>, Spark Standalone&#8217;s <code>Master</code> and <code>Worker</code>, Spark on Mesos' <code>MesosClusterScheduler</code> are requested to stop
+<code>report</code> is used when <a href="../SparkContext.html#stop" class="page">SparkContext</a>, <a href="../executor/Executor.html#stop" class="page">Executor</a>, Spark Standalone&#8217;s <code>Master</code> and <code>Worker</code>, Spark on Mesos' <code>MesosClusterScheduler</code> are requested to stop
 </td>
 </tr>
 </table>

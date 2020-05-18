@@ -69,20 +69,45 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Core Services</span>
+    <a class="nav-link" href="../executor/Executor.html">Executor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/Executor.html">Executor</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/TaskRunner.html">TaskRunner</a>
+    <a class="nav-link" href="../executor/TaskRunner.html">TaskRunner</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/ExecutorSource.html">ExecutorSource</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ExecutorSource.html">ExecutorSource</a>
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/ExecutorBackend.html">ExecutorBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/TaskMetrics.html">TaskMetrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
   </li>
@@ -872,15 +897,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1383,15 +1399,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../metrics/spark-metrics-properties.html">Metrics Configuration Properties</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../metrics/spark-executor-TaskMetrics.html">TaskMetrics</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../metrics/spark-executor-ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1987,7 +1994,7 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="executorMemoryOverhead"></a> <code>executorMemoryOverhead</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-settings.adoc#spark.yarn.executor.memoryOverhead">spark.yarn.executor.memoryOverhead</a> and falls back to <a href="spark-yarn-YarnSparkHadoopUtil.adoc#MEMORY_OVERHEAD_FACTOR">10%</a> of the <a href="../core/Executor.html#spark.executor.memory" class="page">spark.executor.memory</a> or <a href="spark-yarn-YarnSparkHadoopUtil.adoc#MEMORY_OVERHEAD_MIN">384</a> whatever is larger.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-settings.adoc#spark.yarn.executor.memoryOverhead">spark.yarn.executor.memoryOverhead</a> and falls back to <a href="spark-yarn-YarnSparkHadoopUtil.adoc#MEMORY_OVERHEAD_FACTOR">10%</a> of the <a href="../executor/Executor.html#spark.executor.memory" class="page">spark.executor.memory</a> or <a href="spark-yarn-YarnSparkHadoopUtil.adoc#MEMORY_OVERHEAD_MIN">384</a> whatever is larger.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">FIXME</p>
 <p class="tableblock">NOTE: <a href="spark-yarn-YarnSparkHadoopUtil.adoc#MEMORY_OVERHEAD_FACTOR">10%</a> and <a href="spark-yarn-YarnSparkHadoopUtil.adoc#MEMORY_OVERHEAD_MIN">384</a> are constants and cannot be changed.</p></td>
 </tr>
@@ -2129,7 +2136,7 @@ FIXME
 <p>Sets the internal <code>amCores</code> to <a href="../spark-driver.adoc#spark_driver_cores">spark.driver.cores</a> when <code>isClusterMode</code> is enabled or <a href="spark-yarn-settings.adoc#spark.yarn.am.cores">spark.yarn.am.cores</a> otherwise.</p>
 </li>
 <li>
-<p>Sets the internal <code>executorMemory</code> to <a href="../core/Executor.html#spark.executor.memory" class="page">spark.executor.memory</a>.</p>
+<p>Sets the internal <code>executorMemory</code> to <a href="../executor/Executor.html#spark.executor.memory" class="page">spark.executor.memory</a>.</p>
 </li>
 <li>
 <p>Sets the internal <a href="#executorMemoryOverhead">executorMemoryOverhead</a> to <a href="spark-yarn-settings.adoc#spark.yarn.executor.memoryOverhead">spark.yarn.executor.memoryOverhead</a>. If unavailable, it is set to the maximum of 10% of <code>executorMemory</code> and <code>384</code>.</p>
@@ -2453,7 +2460,7 @@ YARN&#8217;s <a href="https://hadoop.apache.org/docs/current/api/org/apache/hado
 </div>
 </div>
 <div class="paragraph">
-<p>If however the executor memory (as a sum of <a href="../core/Executor.html#spark.executor.memory" class="page">spark.executor.memory</a> and <a href="spark-yarn-settings.adoc#spark.yarn.executor.memoryOverhead">spark.yarn.executor.memoryOverhead</a> settings) is more than the maximum memory capability, <code>verifyClusterResources</code> throws an <code>IllegalArgumentException</code> with the following message:</p>
+<p>If however the executor memory (as a sum of <a href="../executor/Executor.html#spark.executor.memory" class="page">spark.executor.memory</a> and <a href="spark-yarn-settings.adoc#spark.yarn.executor.memoryOverhead">spark.yarn.executor.memoryOverhead</a> settings) is more than the maximum memory capability, <code>verifyClusterResources</code> throws an <code>IllegalArgumentException</code> with the following message:</p>
 </div>
 <div class="listingblock">
 <div class="content">

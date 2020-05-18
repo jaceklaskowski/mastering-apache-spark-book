@@ -69,20 +69,45 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Core Services</span>
+    <a class="nav-link" href="../executor/Executor.html">Executor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/Executor.html">Executor</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/TaskRunner.html">TaskRunner</a>
+    <a class="nav-link" href="../executor/TaskRunner.html">TaskRunner</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/ExecutorSource.html">ExecutorSource</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ExecutorSource.html">ExecutorSource</a>
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/ExecutorBackend.html">ExecutorBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/TaskMetrics.html">TaskMetrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
   </li>
@@ -872,15 +897,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1383,15 +1399,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../metrics/spark-metrics-properties.html">Metrics Configuration Properties</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../metrics/spark-executor-TaskMetrics.html">TaskMetrics</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../metrics/spark-executor-ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1950,7 +1957,7 @@
 <p><strong>BlockManager</strong> is a block storage of blocks of data identified by a block ID.</p>
 </div>
 <div class="paragraph">
-<p>BlockManager runs on every node in a Spark application, i.e. the <a href="../spark-driver.html" class="page">driver</a> and <a href="../core/Executor.html" class="page">executors</a>.</p>
+<p>BlockManager runs on every node in a Spark application, i.e. the <a href="../spark-driver.html" class="page">driver</a> and <a href="../executor/Executor.html" class="page">executors</a>.</p>
 </div>
 <div id="BlockDataManager" class="paragraph">
 <p>BlockManager is a <a href="spark-BlockDataManager.html" class="page">BlockDataManager</a> and manages the storage for blocks that with cached RDD partitions, intermediate shuffle outputs, broadcasts, etc.</p>
@@ -2055,7 +2062,7 @@ Use <a href="../tools/spark-submit.html" class="page">spark-submit</a>'s command
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>executorId</code> is <code>SparkContext.DRIVER_IDENTIFIER</code>, i.e. <code>driver</code> for the driver, and the value of <a href="../spark-CoarseGrainedExecutorBackend.html#executor-id" class="page">--executor-id</a> command-line argument for <a href="../spark-CoarseGrainedExecutorBackend.html" class="page">CoarseGrainedExecutorBackend</a> executors (or <a href="../spark-on-mesos/spark-executor-backends-MesosExecutorBackend.html" class="page">MesosExecutorBackend</a>).
+<code>executorId</code> is <code>SparkContext.DRIVER_IDENTIFIER</code>, i.e. <code>driver</code> for the driver, and the value of <a href="../executor/CoarseGrainedExecutorBackend.html#executor-id" class="page">--executor-id</a> command-line argument for <a href="../executor/CoarseGrainedExecutorBackend.html" class="page">CoarseGrainedExecutorBackend</a> executors (or <a href="../spark-on-mesos/spark-executor-backends-MesosExecutorBackend.html" class="page">MesosExecutorBackend</a>).
 </td>
 </tr>
 </table>
@@ -2760,7 +2767,7 @@ FIXME How is <code>shuffleClient</code> used?
 <p>BlockManager is requested to <a href="#putBlockData">puts a block data locally</a></p>
 </li>
 <li>
-<p><code>TaskRunner</code> is requested to <a href="../core/TaskRunner.html#run-result-sent-via-blockmanager" class="page">run</a> (and the result size is above <a href="../core/Executor.html#maxDirectResultSize" class="page">maxDirectResultSize</a>)</p>
+<p><code>TaskRunner</code> is requested to <a href="../executor/TaskRunner.html#run-result-sent-via-blockmanager" class="page">run</a> (and the result size is above <a href="../executor/Executor.html#maxDirectResultSize" class="page">maxDirectResultSize</a>)</p>
 </li>
 <li>
 <p><code>TorrentBroadcast</code> is requested to <a href="../core/TorrentBroadcast.html#writeBlocks" class="page">writeBlocks</a> and <a href="../core/TorrentBroadcast.html#readBlocks" class="page">readBlocks</a></p>
@@ -2820,7 +2827,7 @@ FIXME How is <code>shuffleClient</code> used?
 <p>If the storage level is to use disk only, <a href="DiskStore.html#putBytes" class="page"><code>DiskStore</code> stores the bytes</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>doPutBytes</code> requests <a href="#getCurrentBlockStatus">current block status</a> and if the block was successfully stored, and the driver should know about it (<code>tellMaster</code>), the function <a href="#reportBlockStatus">reports the current storage status of the block to the driver</a>. The <a href="../metrics/spark-executor-TaskMetrics.html#incUpdatedBlockStatuses" class="page">current <code>TaskContext</code> metrics are updated with the updated block status</a> (only when executed inside a task where <code>TaskContext</code> is available).</p>
+<p><code>doPutBytes</code> requests <a href="#getCurrentBlockStatus">current block status</a> and if the block was successfully stored, and the driver should know about it (<code>tellMaster</code>), the function <a href="#reportBlockStatus">reports the current storage status of the block to the driver</a>. The <a href="../executor/TaskMetrics.html#incUpdatedBlockStatuses" class="page">current <code>TaskContext</code> metrics are updated with the updated block status</a> (only when executed inside a task where <code>TaskContext</code> is available).</p>
 </div>
 <div class="paragraph">
 <p>You should see the following DEBUG message in the logs:</p>
@@ -2970,7 +2977,7 @@ FIXME
 <p>The block is removed from <a href="spark-BlockInfoManager.adoc">BlockInfoManager</a>.</p>
 </div>
 <div class="paragraph">
-<p>It then <a href="#getCurrentBlockStatus">calculates the current block status</a> that is used to <a href="#reportBlockStatus">report the block status to the driver</a> (if the input <code>tellMaster</code> and the info&#8217;s <code>tellMaster</code> are both enabled, i.e. <code>true</code>) and the <a href="spark-executor-TaskMetrics.adoc#incUpdatedBlockStatuses">current TaskContext metrics are updated with the change</a>.</p>
+<p>It then <a href="#getCurrentBlockStatus">calculates the current block status</a> that is used to <a href="#reportBlockStatus">report the block status to the driver</a> (if the input <code>tellMaster</code> and the info&#8217;s <code>tellMaster</code> are both enabled, i.e. <code>true</code>) and the <a href="../executor/TaskMetrics.html#incUpdatedBlockStatuses" class="page">current TaskContext metrics are updated with the change</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3108,7 +3115,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p>initialize initializes a BlockManager on the driver and executors (see <a href="../SparkContext.html#creating-instance" class="page">Creating SparkContext Instance</a> and <a href="../core/Executor.html#creating-instance" class="page">Creating Executor Instance</a>, respectively).</p>
+<p>initialize initializes a BlockManager on the driver and executors (see <a href="../SparkContext.html#creating-instance" class="page">Creating SparkContext Instance</a> and <a href="../executor/Executor.html#creating-instance" class="page">Creating Executor Instance</a>, respectively).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3192,7 +3199,7 @@ FIXME Describe <code>shuffleServerId</code>. Where is it used?
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-initialize is called when the <a href="spark-SparkContext-creating-instance-internals.adoc#BlockManager-initialization">driver is launched (and <code>SparkContext</code> is created)</a> and when an <a href="../core/Executor.html#creating-instance" class="page"><code>Executor</code> is created</a> (for <a href="spark-CoarseGrainedExecutorBackend.adoc#RegisteredExecutor">CoarseGrainedExecutorBackend</a> and <a href="spark-executor-backends-MesosExecutorBackend.adoc">MesosExecutorBackend</a>).
+initialize is called when the <a href="spark-SparkContext-creating-instance-internals.adoc#BlockManager-initialization">driver is launched (and <code>SparkContext</code> is created)</a> and when an <a href="../executor/Executor.html#creating-instance" class="page"><code>Executor</code> is created</a> (for <a href="../executor/CoarseGrainedExecutorBackend.html#RegisteredExecutor" class="page">CoarseGrainedExecutorBackend</a> and <a href="../spark-on-mesos/spark-executor-backends-MesosExecutorBackend.html" class="page">MesosExecutorBackend</a>).
 </td>
 </tr>
 </table>
@@ -3333,7 +3340,7 @@ registerWithExternalShuffleServer is used when BlockManager is requested to <a h
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>reregister</code> is called when a <a href="../core/Executor.html#heartbeats-and-active-task-metrics" class="page"><code>Executor</code> was informed to re-register while sending heartbeats</a>.
+<code>reregister</code> is called when a <a href="../executor/Executor.html#heartbeats-and-active-task-metrics" class="page"><code>Executor</code> was informed to re-register while sending heartbeats</a>.
 </td>
 </tr>
 </table>
@@ -3630,7 +3637,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="paragraph">
-<p><code>addUpdatedBlockStatusToTaskMetrics</code> <a href="spark-TaskContext.adoc#get">takes an active <code>TaskContext</code></a> (if available) and <a href="spark-executor-TaskMetrics.adoc#incUpdatedBlockStatuses">records updated <code>BlockStatus</code> for <code>Block</code></a> (in the <a href="spark-TaskContext.adoc#taskMetrics">task&#8217;s <code>TaskMetrics</code></a>).</p>
+<p><code>addUpdatedBlockStatusToTaskMetrics</code> <a href="spark-TaskContext.adoc#get">takes an active <code>TaskContext</code></a> (if available) and <a href="../executor/TaskMetrics.html#incUpdatedBlockStatuses" class="page">records updated <code>BlockStatus</code> for <code>Block</code></a> (in the <a href="spark-TaskContext.adoc#taskMetrics">task&#8217;s <code>TaskMetrics</code></a>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3674,7 +3681,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>shuffleMetricsSource</code> is used exclusively when <code>Executor</code> is <a href="../core/Executor.html#creating-instance" class="page">created</a> (for non-local / cluster modes).
+<code>shuffleMetricsSource</code> is used exclusively when <code>Executor</code> is <a href="../executor/Executor.html#creating-instance" class="page">created</a> (for non-local / cluster modes).
 </td>
 </tr>
 </table>
@@ -4210,7 +4217,7 @@ FIXME When would <code>info.tellMaster</code> be <code>true</code>?
 </table>
 </div>
 <div class="paragraph">
-<p>A block is considered updated when it was written to disk or removed from memory or both. If either happened, the <a href="spark-executor-TaskMetrics.adoc#incUpdatedBlockStatuses">current TaskContext metrics are updated with the change</a>.</p>
+<p>A block is considered updated when it was written to disk or removed from memory or both. If either happened, the <a href="../executor/TaskMetrics.html#incUpdatedBlockStatuses" class="page">current TaskContext metrics are updated with the change</a>.</p>
 </div>
 <div class="paragraph">
 <p>Ultimately, <code>dropFromMemory</code> returns the current storage level of the block.</p>

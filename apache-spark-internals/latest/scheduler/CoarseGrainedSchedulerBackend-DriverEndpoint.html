@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title> DriverEndpoint :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/scheduler/CoarseGrainedSchedulerBackend-DriverEndpoint.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -69,20 +69,45 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Core Services</span>
+    <a class="nav-link" href="../executor/Executor.html">Executor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/Executor.html">Executor</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/TaskRunner.html">TaskRunner</a>
+    <a class="nav-link" href="../executor/TaskRunner.html">TaskRunner</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/ExecutorSource.html">ExecutorSource</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ExecutorSource.html">ExecutorSource</a>
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/ExecutorBackend.html">ExecutorBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/TaskMetrics.html">TaskMetrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
   </li>
@@ -872,15 +897,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1383,15 +1399,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../metrics/spark-metrics-properties.html">Metrics Configuration Properties</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../metrics/spark-executor-TaskMetrics.html">TaskMetrics</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../metrics/spark-executor-ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1946,11 +1953,11 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="driverendpointcoarsegrainedschedulerbackend-rpc-endpoint"><a class="anchor" href="#driverendpointcoarsegrainedschedulerbackend-rpc-endpoint"></a><a class="link" href="#driverendpointcoarsegrainedschedulerbackend-rpc-endpoint"><a id="DriverEndpoint"></a> DriverEndpoint&#8201;&#8212;&#8201;CoarseGrainedSchedulerBackend RPC Endpoint</a></h2>
+<h1 class="page"><a id="DriverEndpoint"></a> DriverEndpoint</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>DriverEndpoint</code> is a <a href="../rpc/index.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> that acts as a <a href="#messages">message handler</a> for <a href="CoarseGrainedSchedulerBackend.html" class="page">CoarseGrainedSchedulerBackend</a> to communicate with <a href="spark-CoarseGrainedExecutorBackend.adoc">CoarseGrainedExecutorBackend</a>.</p>
+<p>DriverEndpoint is a <a href="../rpc/index.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> that acts as a <a href="#messages">message handler</a> for <a href="CoarseGrainedSchedulerBackend.html" class="page">CoarseGrainedSchedulerBackend</a> to communicate with <a href="../executor/CoarseGrainedExecutorBackend.html" class="page">CoarseGrainedExecutorBackend</a>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1959,10 +1966,10 @@
 <div class="title">Figure 1. CoarseGrainedSchedulerBackend uses DriverEndpoint for communication with CoarseGrainedExecutorBackend</div>
 </div>
 <div class="paragraph">
-<p><code>DriverEndpoint</code> <a href="#creating-instance">is created</a> when <code>CoarseGrainedSchedulerBackend</code> <a href="CoarseGrainedSchedulerBackend.html#starts" class="page">starts</a>.</p>
+<p>DriverEndpoint <a href="#creating-instance">is created</a> when <code>CoarseGrainedSchedulerBackend</code> <a href="CoarseGrainedSchedulerBackend.html#starts" class="page">starts</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>DriverEndpoint</code> uses <a href="CoarseGrainedSchedulerBackend.html#executorDataMap" class="page">executorDataMap</a> internal registry of all the <a href="spark-CoarseGrainedExecutorBackend.adoc#onStart">executors that registered with the driver</a>. An executor sends a <a href="#RegisterExecutor">RegisterExecutor</a> message to inform that it wants to register.</p>
+<p>DriverEndpoint uses <a href="CoarseGrainedSchedulerBackend.html#executorDataMap" class="page">executorDataMap</a> internal registry of all the <a href="../executor/CoarseGrainedExecutorBackend.html#onStart" class="page">executors that registered with the driver</a>. An executor sends a <a href="#RegisterExecutor">RegisterExecutor</a> message to inform that it wants to register.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1971,7 +1978,7 @@
 <div class="title">Figure 2. Executor registration (RegisterExecutor RPC message flow)</div>
 </div>
 <div class="paragraph">
-<p><code>DriverEndpoint</code> uses a <a href="#reviveThread">single thread executor</a> called <strong>driver-revive-thread</strong> to <a href="#makeOffers">make executor resource offers (for launching tasks)</a> (by emitting <a href="#ReviveOffers">ReviveOffers</a> message every <a href="CoarseGrainedSchedulerBackend.html#spark.scheduler.revive.interval" class="page">spark.scheduler.revive.interval</a>).</p>
+<p>DriverEndpoint uses a <a href="#reviveThread">single thread executor</a> called <strong>driver-revive-thread</strong> to <a href="#makeOffers">make executor resource offers (for launching tasks)</a> (by emitting <a href="#ReviveOffers">ReviveOffers</a> message every <a href="CoarseGrainedSchedulerBackend.html#spark.scheduler.revive.interval" class="page">spark.scheduler.revive.interval</a>).</p>
 </div>
 <table id="messages" class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. CoarseGrainedClusterMessages and Their Handlers (in alphabetical order)</caption>
@@ -2004,7 +2011,7 @@
 <td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
 <ul>
 <li>
-<p>Periodically (every <a href="CoarseGrainedSchedulerBackend.html#spark.scheduler.revive.interval" class="page">spark.scheduler.revive.interval</a>) soon after <code>DriverEndpoint</code> <a href="#onStart">starts accepting messages</a>.</p>
+<p>Periodically (every <a href="CoarseGrainedSchedulerBackend.html#spark.scheduler.revive.interval" class="page">spark.scheduler.revive.interval</a>) soon after DriverEndpoint <a href="#onStart">starts accepting messages</a>.</p>
 </li>
 <li>
 <p><code>CoarseGrainedSchedulerBackend</code> is requested to <a href="CoarseGrainedSchedulerBackend.html#reviveOffers" class="page">revive resource offers</a>.</p>
@@ -2015,12 +2022,12 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="RegisterExecutor"></a> RegisterExecutor</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#RegisterExecutor-handler">RegisterExecutor handler</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CoarseGrainedExecutorBackend</code> <a href="spark-CoarseGrainedExecutorBackend.adoc#onStart">registers with the driver</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CoarseGrainedExecutorBackend</code> <a href="../executor/CoarseGrainedExecutorBackend.html#onStart" class="page">registers with the driver</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="StatusUpdate"></a> StatusUpdate</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#StatusUpdate-handler">StatusUpdate handler</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CoarseGrainedExecutorBackend</code> <a href="spark-CoarseGrainedExecutorBackend.adoc#statusUpdate">sends task status updates to the driver</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CoarseGrainedExecutorBackend</code> <a href="../executor/CoarseGrainedExecutorBackend.html#statusUpdate" class="page">sends task status updates to the driver</a>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -2057,8 +2064,11 @@
 </tr>
 </tbody>
 </table>
-<div class="sect2">
-<h3 id="disableexecutor-internal-method"><a class="anchor" href="#disableexecutor-internal-method"></a><a class="link" href="#disableexecutor-internal-method"><a id="disableExecutor"></a> <code>disableExecutor</code> Internal Method</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="disableexecutor-internal-method"><a class="anchor" href="#disableexecutor-internal-method"></a><a class="link" href="#disableexecutor-internal-method"><a id="disableExecutor"></a> <code>disableExecutor</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -2072,8 +2082,10 @@ FIXME
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="killexecutorsonhost-handler"><a class="anchor" href="#killexecutorsonhost-handler"></a><a class="link" href="#killexecutorsonhost-handler"><a id="KillExecutorsOnHost-handler"></a> KillExecutorsOnHost Handler</a></h3>
+</div>
+<div class="sect1">
+<h2 id="killexecutorsonhost-handler"><a class="anchor" href="#killexecutorsonhost-handler"></a><a class="link" href="#killexecutorsonhost-handler"><a id="KillExecutorsOnHost-handler"></a> KillExecutorsOnHost Handler</a></h2>
+<div class="sectionbody">
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -2087,8 +2099,10 @@ FIXME
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="executorisalive-internal-method"><a class="anchor" href="#executorisalive-internal-method"></a><a class="link" href="#executorisalive-internal-method"><a id="executorIsAlive"></a> <code>executorIsAlive</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="executorisalive-internal-method"><a class="anchor" href="#executorisalive-internal-method"></a><a class="link" href="#executorisalive-internal-method"><a id="executorIsAlive"></a> <code>executorIsAlive</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -2102,8 +2116,10 @@ FIXME
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="onstop-callback"><a class="anchor" href="#onstop-callback"></a><a class="link" href="#onstop-callback"><a id="onStop"></a> <code>onStop</code> Callback</a></h3>
+</div>
+<div class="sect1">
+<h2 id="onstop-callback"><a class="anchor" href="#onstop-callback"></a><a class="link" href="#onstop-callback"><a id="onStop"></a> <code>onStop</code> Callback</a></h2>
+<div class="sectionbody">
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -2117,8 +2133,10 @@ FIXME
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="ondisconnected-callback"><a class="anchor" href="#ondisconnected-callback"></a><a class="link" href="#ondisconnected-callback"><a id="onDisconnected"></a> <code>onDisconnected</code> Callback</a></h3>
+</div>
+<div class="sect1">
+<h2 id="ondisconnected-callback"><a class="anchor" href="#ondisconnected-callback"></a><a class="link" href="#ondisconnected-callback"><a id="onDisconnected"></a> <code>onDisconnected</code> Callback</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>When called, <code>onDisconnected</code> removes the worker from the internal <a href="#addressToExecutorId">addressToExecutorId registry</a> (that effectively removes the worker from a cluster).</p>
 </div>
@@ -2143,22 +2161,30 @@ FIXME
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="removeexecutor"><a class="anchor" href="#removeexecutor"></a><a class="link" href="#removeexecutor"><a id="RemoveExecutor"></a> RemoveExecutor</a></h3>
+</div>
+<div class="sect1">
+<h2 id="removeexecutor"><a class="anchor" href="#removeexecutor"></a><a class="link" href="#removeexecutor"><a id="RemoveExecutor"></a> RemoveExecutor</a></h2>
+<div class="sectionbody">
 
 </div>
-<div class="sect2">
-<h3 id="retrievesparkprops"><a class="anchor" href="#retrievesparkprops"></a><a class="link" href="#retrievesparkprops"><a id="RetrieveSparkProps"></a> RetrieveSparkProps</a></h3>
+</div>
+<div class="sect1">
+<h2 id="retrievesparkprops"><a class="anchor" href="#retrievesparkprops"></a><a class="link" href="#retrievesparkprops"><a id="RetrieveSparkProps"></a> RetrieveSparkProps</a></h2>
+<div class="sectionbody">
 
 </div>
-<div class="sect2">
-<h3 id="stopdriver"><a class="anchor" href="#stopdriver"></a><a class="link" href="#stopdriver"><a id="StopDriver"></a> StopDriver</a></h3>
+</div>
+<div class="sect1">
+<h2 id="stopdriver"><a class="anchor" href="#stopdriver"></a><a class="link" href="#stopdriver"><a id="StopDriver"></a> StopDriver</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><code>StopDriver</code> message stops the RPC endpoint.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="stopexecutors"><a class="anchor" href="#stopexecutors"></a><a class="link" href="#stopexecutors"><a id="StopExecutors"></a> StopExecutors</a></h3>
+</div>
+<div class="sect1">
+<h2 id="stopexecutors"><a class="anchor" href="#stopexecutors"></a><a class="link" href="#stopexecutors"><a id="StopExecutors"></a> StopExecutors</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><code>StopExecutors</code> message is receive-reply and blocking. When received, the following INFO message appears in the logs:</p>
 </div>
@@ -2168,11 +2194,13 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p>It then sends a <a href="spark-CoarseGrainedExecutorBackend.adoc#StopExecutor">StopExecutor</a> message to every registered executor (from <code>executorDataMap</code>).</p>
+<p>It then sends a <a href="../executor/CoarseGrainedExecutorBackend.html#StopExecutor" class="page">StopExecutor</a> message to every registered executor (from <code>executorDataMap</code>).</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="scheduling-sending-reviveoffers-periodicallyonstart-callback"><a class="anchor" href="#scheduling-sending-reviveoffers-periodicallyonstart-callback"></a><a class="link" href="#scheduling-sending-reviveoffers-periodicallyonstart-callback"><a id="onStart"></a> Scheduling Sending ReviveOffers Periodically&#8201;&#8212;&#8201;<code>onStart</code> Callback</a></h3>
+</div>
+<div class="sect1">
+<h2 id="scheduling-sending-reviveoffers-periodicallyonstart-callback"><a class="anchor" href="#scheduling-sending-reviveoffers-periodicallyonstart-callback"></a><a class="link" href="#scheduling-sending-reviveoffers-periodicallyonstart-callback"><a id="onStart"></a> Scheduling Sending ReviveOffers Periodically&#8201;&#8212;&#8201;<code>onStart</code> Callback</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">onStart(): Unit</code></pre>
@@ -2206,8 +2234,10 @@ FIXME
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="making-executor-resource-offers-for-launching-tasksmakeoffers-internal-method"><a class="anchor" href="#making-executor-resource-offers-for-launching-tasksmakeoffers-internal-method"></a><a class="link" href="#making-executor-resource-offers-for-launching-tasksmakeoffers-internal-method"><a id="makeOffers"></a> Making Executor Resource Offers (for Launching Tasks)&#8201;&#8212;&#8201;<code>makeOffers</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="making-executor-resource-offers-for-launching-tasksmakeoffers-internal-method"><a class="anchor" href="#making-executor-resource-offers-for-launching-tasksmakeoffers-internal-method"></a><a class="link" href="#making-executor-resource-offers-for-launching-tasksmakeoffers-internal-method"><a id="makeOffers"></a> Making Executor Resource Offers (for Launching Tasks)&#8201;&#8212;&#8201;<code>makeOffers</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">makeOffers(): Unit</code></pre>
@@ -2262,14 +2292,16 @@ Tasks are described using <a href="spark-scheduler-TaskDescription.adoc">TaskDes
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>makeOffers</code> is used when <code>CoarseGrainedSchedulerBackend</code> RPC endpoint (<code>DriverEndpoint</code>) handles <a href="#ReviveOffers">ReviveOffers</a> or <a href="#RegisterExecutor">RegisterExecutor</a> messages.
+<code>makeOffers</code> is used when <code>CoarseGrainedSchedulerBackend</code> RPC endpoint (DriverEndpoint) handles <a href="#ReviveOffers">ReviveOffers</a> or <a href="#RegisterExecutor">RegisterExecutor</a> messages.
 </td>
 </tr>
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="making-executor-resource-offer-on-single-executor-for-launching-tasksmakeoffers-internal-method"><a class="anchor" href="#making-executor-resource-offer-on-single-executor-for-launching-tasksmakeoffers-internal-method"></a><a class="link" href="#making-executor-resource-offer-on-single-executor-for-launching-tasksmakeoffers-internal-method"><a id="makeOffers-executorId"></a> Making Executor Resource Offer on Single Executor (for Launching Tasks)&#8201;&#8212;&#8201;<code>makeOffers</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="making-executor-resource-offer-on-single-executor-for-launching-tasksmakeoffers-internal-method"><a class="anchor" href="#making-executor-resource-offer-on-single-executor-for-launching-tasksmakeoffers-internal-method"></a><a class="link" href="#making-executor-resource-offer-on-single-executor-for-launching-tasksmakeoffers-internal-method"><a id="makeOffers-executorId"></a> Making Executor Resource Offer on Single Executor (for Launching Tasks)&#8201;&#8212;&#8201;<code>makeOffers</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">makeOffers(executorId: String): Unit</code></pre>
@@ -2315,14 +2347,16 @@ Tasks are described using <a href="spark-scheduler-TaskDescription.adoc">TaskDes
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>makeOffers</code> is used when <code>CoarseGrainedSchedulerBackend</code> RPC endpoint (<code>DriverEndpoint</code>) handles <a href="#StatusUpdate">StatusUpdate</a> messages.
+<code>makeOffers</code> is used when <code>CoarseGrainedSchedulerBackend</code> RPC endpoint (DriverEndpoint) handles <a href="#StatusUpdate">StatusUpdate</a> messages.
 </td>
 </tr>
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="launching-tasks-on-executorslaunchtasks-internal-method"><a class="anchor" href="#launching-tasks-on-executorslaunchtasks-internal-method"></a><a class="link" href="#launching-tasks-on-executorslaunchtasks-internal-method"><a id="launchTasks"></a> Launching Tasks on Executors&#8201;&#8212;&#8201;<code>launchTasks</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="launching-tasks-on-executorslaunchtasks-internal-method"><a class="anchor" href="#launching-tasks-on-executorslaunchtasks-internal-method"></a><a class="link" href="#launching-tasks-on-executorslaunchtasks-internal-method"><a id="launchTasks"></a> Launching Tasks on Executors&#8201;&#8212;&#8201;<code>launchTasks</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">launchTasks(tasks: Seq[Seq[TaskDescription]]): Unit</code></pre>
@@ -2394,7 +2428,7 @@ The default task scheduler in Spark&#8201;&#8212;&#8201;<a href="TaskSchedulerIm
 </div>
 </div>
 <div class="paragraph">
-<p>In the end, <code>launchTasks</code> sends the (serialized) task to associated executor to launch the task (by sending a <a href="spark-CoarseGrainedExecutorBackend.adoc#LaunchTask">LaunchTask</a> message to the executor&#8217;s RPC endpoint with the serialized task insize <code>SerializableBuffer</code>).</p>
+<p>In the end, <code>launchTasks</code> sends the (serialized) task to associated executor to launch the task (by sending a <a href="../executor/CoarseGrainedExecutorBackend.html#LaunchTask" class="page">LaunchTask</a> message to the executor&#8217;s RPC endpoint with the serialized task insize <code>SerializableBuffer</code>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2465,10 +2499,12 @@ Scheduling in Spark relies on cores only (not memory), i.e. the number of tasks 
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="creating-driverendpoint-instance"><a class="anchor" href="#creating-driverendpoint-instance"></a><a class="link" href="#creating-driverendpoint-instance"><a id="creating-instance"></a> Creating DriverEndpoint Instance</a></h3>
+</div>
+<div class="sect1">
+<h2 id="creating-driverendpoint-instance"><a class="anchor" href="#creating-driverendpoint-instance"></a><a class="link" href="#creating-driverendpoint-instance"><a id="creating-instance"></a> Creating DriverEndpoint Instance</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p><code>DriverEndpoint</code> takes the following when created:</p>
+<p>DriverEndpoint takes the following when created:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2481,11 +2517,13 @@ Scheduling in Spark relies on cores only (not memory), i.e. the number of tasks 
 </ul>
 </div>
 <div class="paragraph">
-<p><code>DriverEndpoint</code> initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
+<p>DriverEndpoint initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="registerexecutor-handler"><a class="anchor" href="#registerexecutor-handler"></a><a class="link" href="#registerexecutor-handler"><a id="RegisterExecutor-handler"></a> RegisterExecutor Handler</a></h3>
+</div>
+<div class="sect1">
+<h2 id="registerexecutor-handler"><a class="anchor" href="#registerexecutor-handler"></a><a class="link" href="#registerexecutor-handler"><a id="RegisterExecutor-handler"></a> RegisterExecutor Handler</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RegisterExecutor(
@@ -2504,7 +2542,7 @@ extends CoarseGrainedClusterMessage</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>RegisterExecutor</code> is sent when <a href="spark-CoarseGrainedExecutorBackend.adoc#onStart"><code>CoarseGrainedExecutorBackend</code> (RPC Endpoint) is started</a>.
+<code>RegisterExecutor</code> is sent when <a href="../executor/CoarseGrainedExecutorBackend.html#onStart" class="page"><code>CoarseGrainedExecutorBackend</code> (RPC Endpoint) is started</a>.
 </td>
 </tr>
 </table>
@@ -2516,7 +2554,7 @@ extends CoarseGrainedClusterMessage</code></pre>
 <div class="title">Figure 3. Executor registration (RegisterExecutor RPC message flow)</div>
 </div>
 <div class="paragraph">
-<p>When received, <code>DriverEndpoint</code> makes sure that no other <a href="CoarseGrainedSchedulerBackend.html#executorDataMap" class="page">executors were registered</a> under the input <code>executorId</code> and that the input <code>hostname</code> is not <a href="TaskSchedulerImpl.html#nodeBlacklist" class="page">blacklisted</a>.</p>
+<p>When received, DriverEndpoint makes sure that no other <a href="CoarseGrainedSchedulerBackend.html#executorDataMap" class="page">executors were registered</a> under the input <code>executorId</code> and that the input <code>hostname</code> is not <a href="TaskSchedulerImpl.html#nodeBlacklist" class="page">blacklisted</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2525,7 +2563,7 @@ extends CoarseGrainedClusterMessage</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>DriverEndpoint</code> uses <a href="#scheduler">TaskSchedulerImpl</a> (for the list of blacklisted nodes) that was specified when <code>CoarseGrainedSchedulerBackend</code> <a href="CoarseGrainedSchedulerBackend.html#creating-instance" class="page">was created</a>.
+DriverEndpoint uses <a href="#scheduler">TaskSchedulerImpl</a> (for the list of blacklisted nodes) that was specified when <code>CoarseGrainedSchedulerBackend</code> <a href="CoarseGrainedSchedulerBackend.html#creating-instance" class="page">was created</a>.
 </td>
 </tr>
 </table>
@@ -2539,7 +2577,7 @@ extends CoarseGrainedClusterMessage</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>DriverEndpoint</code> does the bookkeeping:</p>
+<p>DriverEndpoint does the bookkeeping:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2561,7 +2599,7 @@ extends CoarseGrainedClusterMessage</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>If <a href="CoarseGrainedSchedulerBackend.html#numPendingExecutors" class="page">numPendingExecutors</a> is greater than <code>0</code>, you should see the following DEBUG message in the logs and <code>DriverEndpoint</code> decrements <code>numPendingExecutors</code>.</p>
+<p>If <a href="CoarseGrainedSchedulerBackend.html#numPendingExecutors" class="page">numPendingExecutors</a> is greater than <code>0</code>, you should see the following DEBUG message in the logs and DriverEndpoint decrements <code>numPendingExecutors</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2569,7 +2607,7 @@ extends CoarseGrainedClusterMessage</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>DriverEndpoint</code> sends <a href="spark-CoarseGrainedExecutorBackend.adoc#RegisteredExecutor">RegisteredExecutor</a> message back (that is to confirm that the executor was registered successfully).</p>
+<p>DriverEndpoint sends <a href="../executor/CoarseGrainedExecutorBackend.html#RegisteredExecutor" class="page">RegisteredExecutor</a> message back (that is to confirm that the executor was registered successfully).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2578,22 +2616,22 @@ extends CoarseGrainedClusterMessage</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>DriverEndpoint</code> uses the input <code>executorRef</code> as the executor&#8217;s <a href="../rpc/RpcEndpointRef.html" class="page">RpcEndpointRef</a>.
+DriverEndpoint uses the input <code>executorRef</code> as the executor&#8217;s <a href="../rpc/RpcEndpointRef.html" class="page">RpcEndpointRef</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p><code>DriverEndpoint</code> replies <code>true</code> (to acknowledge the message).</p>
+<p>DriverEndpoint replies <code>true</code> (to acknowledge the message).</p>
 </div>
 <div class="paragraph">
-<p><code>DriverEndpoint</code> then announces the new executor by posting <a href="spark-scheduler-SparkListener.adoc#SparkListenerExecutorAdded">SparkListenerExecutorAdded</a> to <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a> (with the current time, executor id, and <code>ExecutorData</code>).</p>
+<p>DriverEndpoint then announces the new executor by posting <a href="spark-scheduler-SparkListener.adoc#SparkListenerExecutorAdded">SparkListenerExecutorAdded</a> to <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a> (with the current time, executor id, and <code>ExecutorData</code>).</p>
 </div>
 <div class="paragraph">
-<p>In the end, <code>DriverEndpoint</code> <a href="#makeOffers">makes executor resource offers (for launching tasks)</a>.</p>
+<p>In the end, DriverEndpoint <a href="#makeOffers">makes executor resource offers (for launching tasks)</a>.</p>
 </div>
 <div class="paragraph">
-<p>If however there was already another executor registered under the input <code>executorId</code>, <code>DriverEndpoint</code> sends <a href="spark-CoarseGrainedExecutorBackend.adoc#RegisterExecutorFailed">RegisterExecutorFailed</a> message back with the reason:</p>
+<p>If however there was already another executor registered under the input <code>executorId</code>, DriverEndpoint sends <a href="../executor/CoarseGrainedExecutorBackend.html#RegisterExecutorFailed" class="page">RegisterExecutorFailed</a> message back with the reason:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2609,7 +2647,7 @@ extends CoarseGrainedClusterMessage</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>DriverEndpoint</code> sends <a href="spark-CoarseGrainedExecutorBackend.adoc#RegisterExecutorFailed">RegisterExecutorFailed</a> message back with the reason:</p>
+<p>DriverEndpoint sends <a href="../executor/CoarseGrainedExecutorBackend.html#RegisterExecutorFailed" class="page">RegisterExecutorFailed</a> message back with the reason:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2617,8 +2655,10 @@ extends CoarseGrainedClusterMessage</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="statusupdate-handler"><a class="anchor" href="#statusupdate-handler"></a><a class="link" href="#statusupdate-handler"><a id="StatusUpdate-handler"></a> StatusUpdate Handler</a></h3>
+</div>
+<div class="sect1">
+<h2 id="statusupdate-handler"><a class="anchor" href="#statusupdate-handler"></a><a class="link" href="#statusupdate-handler"><a id="StatusUpdate-handler"></a> StatusUpdate Handler</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">StatusUpdate(
@@ -2636,16 +2676,16 @@ extends CoarseGrainedClusterMessage</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>StatusUpdate</code> is sent when <code>CoarseGrainedExecutorBackend</code> <a href="spark-CoarseGrainedExecutorBackend.adoc#statusUpdate">sends task status updates to the driver</a>.
+<code>StatusUpdate</code> is sent when <code>CoarseGrainedExecutorBackend</code> <a href="../executor/CoarseGrainedExecutorBackend.html#statusUpdate" class="page">sends task status updates to the driver</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>When <code>StatusUpdate</code> is received, <code>DriverEndpoint</code> requests the <a href="CoarseGrainedSchedulerBackend.html#scheduler" class="page">TaskSchedulerImpl</a> to <a href="TaskSchedulerImpl.html#statusUpdate" class="page">handle the task status update</a>.</p>
+<p>When <code>StatusUpdate</code> is received, DriverEndpoint requests the <a href="CoarseGrainedSchedulerBackend.html#scheduler" class="page">TaskSchedulerImpl</a> to <a href="TaskSchedulerImpl.html#statusUpdate" class="page">handle the task status update</a>.</p>
 </div>
 <div class="paragraph">
-<p>If the <a href="Task.html#TaskState" class="page">task has finished</a>, <code>DriverEndpoint</code> updates the number of cores available for work on the corresponding executor (registered in <a href="CoarseGrainedSchedulerBackend.html#executorDataMap" class="page">executorDataMap</a>).</p>
+<p>If the <a href="Task.html#TaskState" class="page">task has finished</a>, DriverEndpoint updates the number of cores available for work on the corresponding executor (registered in <a href="CoarseGrainedSchedulerBackend.html#executorDataMap" class="page">executorDataMap</a>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2654,16 +2694,16 @@ extends CoarseGrainedClusterMessage</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>DriverEndpoint</code> uses <code>TaskSchedulerImpl</code>'s <a href="../configuration-properties.html#spark.task.cpus" class="page">spark.task.cpus</a> as the number of cores that became available after the task has finished.
+DriverEndpoint uses <code>TaskSchedulerImpl</code>'s <a href="../configuration-properties.html#spark.task.cpus" class="page">spark.task.cpus</a> as the number of cores that became available after the task has finished.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p><code>DriverEndpoint</code> <a href="#makeOffers">makes an executor resource offer on the single executor</a>.</p>
+<p>DriverEndpoint <a href="#makeOffers">makes an executor resource offer on the single executor</a>.</p>
 </div>
 <div class="paragraph">
-<p>When <code>DriverEndpoint</code> found no executor (in <a href="CoarseGrainedSchedulerBackend.html#executorDataMap" class="page">executorDataMap</a>), you should see the following WARN message in the logs:</p>
+<p>When DriverEndpoint found no executor (in <a href="CoarseGrainedSchedulerBackend.html#executorDataMap" class="page">executorDataMap</a>), you should see the following WARN message in the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2671,8 +2711,10 @@ extends CoarseGrainedClusterMessage</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="killtask-handler"><a class="anchor" href="#killtask-handler"></a><a class="link" href="#killtask-handler"><a id="KillTask-handler"></a> KillTask Handler</a></h3>
+</div>
+<div class="sect1">
+<h2 id="killtask-handler"><a class="anchor" href="#killtask-handler"></a><a class="link" href="#killtask-handler"><a id="KillTask-handler"></a> KillTask Handler</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">KillTask(
@@ -2695,10 +2737,10 @@ extends CoarseGrainedClusterMessage</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>When <code>KillTask</code> is received, <code>DriverEndpoint</code> finds <code>executor</code> (in <a href="CoarseGrainedSchedulerBackend.html#executorDataMap" class="page">executorDataMap</a> registry).</p>
+<p>When <code>KillTask</code> is received, DriverEndpoint finds <code>executor</code> (in <a href="CoarseGrainedSchedulerBackend.html#executorDataMap" class="page">executorDataMap</a> registry).</p>
 </div>
 <div class="paragraph">
-<p>If found, <code>DriverEndpoint</code> <a href="spark-CoarseGrainedExecutorBackend.adoc#KillTask">passes the message on to the executor</a> (using its registered RPC endpoint for <code>CoarseGrainedExecutorBackend</code>).</p>
+<p>If found, DriverEndpoint <a href="../executor/CoarseGrainedExecutorBackend.html#KillTask" class="page">passes the message on to the executor</a> (using its registered RPC endpoint for <code>CoarseGrainedExecutorBackend</code>).</p>
 </div>
 <div class="paragraph">
 <p>Otherwise, you should see the following WARN in the logs:</p>
@@ -2709,8 +2751,10 @@ extends CoarseGrainedClusterMessage</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="removing-executor-from-internal-registries-and-notifying-taskschedulerimpl-and-posting-sparklistenerexecutorremovedremoveexecutor-internal-method"><a class="anchor" href="#removing-executor-from-internal-registries-and-notifying-taskschedulerimpl-and-posting-sparklistenerexecutorremovedremoveexecutor-internal-method"></a><a class="link" href="#removing-executor-from-internal-registries-and-notifying-taskschedulerimpl-and-posting-sparklistenerexecutorremovedremoveexecutor-internal-method"><a id="removeExecutor"></a> Removing Executor from Internal Registries (and Notifying TaskSchedulerImpl and Posting SparkListenerExecutorRemoved)&#8201;&#8212;&#8201;<code>removeExecutor</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="removing-executor-from-internal-registries-and-notifying-taskschedulerimpl-and-posting-sparklistenerexecutorremovedremoveexecutor-internal-method"><a class="anchor" href="#removing-executor-from-internal-registries-and-notifying-taskschedulerimpl-and-posting-sparklistenerexecutorremovedremoveexecutor-internal-method"></a><a class="link" href="#removing-executor-from-internal-registries-and-notifying-taskschedulerimpl-and-posting-sparklistenerexecutorremovedremoveexecutor-internal-method"><a id="removeExecutor"></a> Removing Executor from Internal Registries (and Notifying TaskSchedulerImpl and Posting SparkListenerExecutorRemoved)&#8201;&#8212;&#8201;<code>removeExecutor</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">removeExecutor(executorId: String, reason: ExecutorLossReason): Unit</code></pre>
@@ -2807,14 +2851,16 @@ extends CoarseGrainedClusterMessage</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>removeExecutor</code> is used when <code>DriverEndpoint</code> <a href="#RemoveExecutor">handles <code>RemoveExecutor</code> message</a> and <a href="#onDisconnected">gets disassociated with a remote RPC endpoint of an executor</a>.
+<code>removeExecutor</code> is used when DriverEndpoint <a href="#RemoveExecutor">handles <code>RemoveExecutor</code> message</a> and <a href="#onDisconnected">gets disassociated with a remote RPC endpoint of an executor</a>.
 </td>
 </tr>
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="removeworker-internal-method"><a class="anchor" href="#removeworker-internal-method"></a><a class="link" href="#removeworker-internal-method"><a id="removeWorker"></a> <code>removeWorker</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="removeworker-internal-method"><a class="anchor" href="#removeworker-internal-method"></a><a class="link" href="#removeworker-internal-method"><a id="removeWorker"></a> <code>removeWorker</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">removeWorker(
@@ -2841,11 +2887,10 @@ extends CoarseGrainedClusterMessage</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>removeWorker</code> is used exclusively when <code>DriverEndpoint</code> is requested to handle a <a href="#RemoveWorker">RemoveWorker</a> event.
+<code>removeWorker</code> is used exclusively when DriverEndpoint is requested to handle a <a href="#RemoveWorker">RemoveWorker</a> event.
 </td>
 </tr>
 </table>
-</div>
 </div>
 </div>
 </div>

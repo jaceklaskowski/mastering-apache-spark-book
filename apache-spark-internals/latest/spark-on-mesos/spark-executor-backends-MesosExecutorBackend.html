@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>MesosExecutorBackend :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/spark-on-mesos/spark-executor-backends-MesosExecutorBackend.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -69,20 +69,45 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Core Services</span>
+    <a class="nav-link" href="../executor/Executor.html">Executor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/Executor.html">Executor</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/TaskRunner.html">TaskRunner</a>
+    <a class="nav-link" href="../executor/TaskRunner.html">TaskRunner</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/ExecutorSource.html">ExecutorSource</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ExecutorSource.html">ExecutorSource</a>
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/ExecutorBackend.html">ExecutorBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/TaskMetrics.html">TaskMetrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
   </li>
@@ -872,15 +897,6 @@
     <span class="nav-text">Core Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-ExecutorBackend.html">ExecutorBackend</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1383,15 +1399,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../metrics/spark-metrics-properties.html">Metrics Configuration Properties</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../metrics/spark-executor-TaskMetrics.html">TaskMetrics</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../metrics/spark-executor-ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1943,8 +1950,9 @@
   </div>
   <div class="content">
 <article class="doc">
+<h1 class="page">MesosExecutorBackend</h1>
 <div class="sect1">
-<h2 id="mesosexecutorbackend"><a class="anchor" href="#mesosexecutorbackend"></a><a class="link" href="#mesosexecutorbackend"><a id="MesosExecutorBackend"></a> MesosExecutorBackend</a></h2>
+<h2 id="registered-method"><a class="anchor" href="#registered-method"></a><a class="link" href="#registered-method"><a id="registered"></a> <code>registered</code> Method</a></h2>
 <div class="sectionbody">
 <div class="admonitionblock caution">
 <table>
@@ -1958,23 +1966,11 @@ FIXME
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="registered-method"><a class="anchor" href="#registered-method"></a><a class="link" href="#registered-method"><a id="registered"></a> <code>registered</code> Method</a></h3>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="launchtask-method"><a class="anchor" href="#launchtask-method"></a><a class="link" href="#launchtask-method"><a id="launchTask"></a> <code>launchTask</code> Method</a></h3>
+<div class="sect1">
+<h2 id="launchtask-method"><a class="anchor" href="#launchtask-method"></a><a class="link" href="#launchtask-method"><a id="launchTask"></a> <code>launchTask</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">launchTask(d: ExecutorDriver, taskInfo: TaskInfo): Unit</code></pre>
@@ -1994,7 +1990,6 @@ FIXME
 </div>
 <div class="paragraph">
 <p><code>launchTask</code>&#8230;&#8203;FIXME</p>
-</div>
 </div>
 </div>
 </div>
