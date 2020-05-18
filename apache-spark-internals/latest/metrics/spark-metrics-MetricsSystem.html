@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>MetricsSystem :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/latest/metrics/spark-metrics-MetricsSystem.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -69,259 +69,121 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../executor/Executor.html">Executor</a>
+    <a class="nav-link" href="../rdd/index.html">Resilient Distributed Dataset</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../executor/TaskRunner.html">TaskRunner</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../executor/ExecutorSource.html">ExecutorSource</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../executor/ExecutorBackend.html">ExecutorBackend</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../executor/TaskMetrics.html">TaskMetrics</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Core Services</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/BroadcastManager.html">BroadcastManager</a>
+    <a class="nav-link" href="../rdd/RDD.html">RDD</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/BroadcastFactory.html">BroadcastFactory</a>
+    <a class="nav-link" href="../rdd/spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
+    <a class="nav-link" href="../rdd/spark-rdd-HadoopRDD.html">HadoopRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/TorrentBroadcast.html">TorrentBroadcast</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/ShuffleClient.html">ShuffleClient</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/BlockTransferService.html">BlockTransferService</a>
+    <a class="nav-link" href="../rdd/spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/ExternalShuffleClient.html">ExternalShuffleClient</a>
+    <a class="nav-link" href="../rdd/spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
   </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/NettyBlockTransferService.html">NettyBlockTransferService</a>
-<ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
+    <a class="nav-link" href="../rdd/spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
   </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../core/BlockFetchingListener.html">BlockFetchingListener</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/RetryingBlockFetcher.html">RetryingBlockFetcher</a>
-<ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
+    <a class="nav-link" href="../rdd/spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
   </li>
-</ul>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rpc/index.html">RPC System</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rpc/RpcEnv.html">RpcEnv</a>
-<ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rpc/NettyRpcEnv.html">NettyRpcEnv</a>
+    <a class="nav-link" href="../rdd/CheckpointRDD.html">CheckpointRDD</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../rpc/NettyStreamManager.html">NettyStreamManager</a>
+    <a class="nav-link" href="../rdd/ReliableCheckpointRDD.html">ReliableCheckpointRDD</a>
   </li>
 </ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rpc/RpcEnvConfig.html">RpcEnvConfig</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rpc/RpcEndpoint.html">RpcEndpoint</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rpc/RpcAddress.html">RpcAddress</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rpc/RpcEndpointAddress.html">RpcEndpointAddress</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rpc/NettyRpcEnvFactory.html">NettyRpcEnvFactory</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rpc/RpcEnvFileServer.html">RpcEnvFileServer</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rpc/RpcUtils.html">RpcUtils</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Network System</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../network/TransportContext.html">TransportContext</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../network/MessageHandler.html">MessageHandler</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../network/TransportRequestHandler.html">TransportRequestHandler</a>
+    <a class="nav-link" href="../rdd/ShuffledRDD.html">ShuffledRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../network/TransportConf.html">TransportConf</a>
+    <a class="nav-link" href="../rdd/spark-rdd-operations.html">Operators</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../network/SparkTransportConf.html">SparkTransportConf</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/spark-rdd-transformations.html">Transformations</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../rdd/PairRDDFunctions.html">PairRDDFunctions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-actions.html">Actions</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../network/TransportClientFactory.html">TransportClientFactory</a>
+    <a class="nav-link" href="../rdd/spark-rdd-lineage.html">RDD Lineage</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../network/TransportServer.html">TransportServer</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../network/RpcHandler.html">RpcHandler</a>
+    <a class="nav-link" href="../rdd/spark-rdd-caching.html">Caching and Persistence</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../network/StreamManager.html">StreamManager</a>
+    <a class="nav-link" href="../rdd/spark-rdd-partitions.html">Partitions and Partitioning</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../network/OneForOneStreamManager.html">OneForOneStreamManager</a>
+    <a class="nav-link" href="../rdd/spark-rdd-Partition.html">Partition</a>
   </li>
 </ul>
   </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../deploy/ExternalShuffleService.html">External Shuffle Service</a>
+    <a class="nav-link" href="../rdd/Partitioner.html">Partitioner</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/HashPartitioner.html">HashPartitioner</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/RangePartitioner.html">RangePartitioner</a>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deploy/ExternalShuffleBlockHandler.html">ExternalShuffleBlockHandler</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deploy/ExternalShuffleBlockResolver.html">ExternalShuffleBlockResolver</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../io/CompressionCodec.html">CompressionCodec</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../serializer/index.html">Serialization System</a>
+    <a class="nav-link" href="../rdd/RDDCheckpointData.html">RDDCheckpointData</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../serializer/SerializerManager.html">SerializerManager</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/LocalRDDCheckpointData.html">LocalRDDCheckpointData</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/ReliableRDDCheckpointData.html">ReliableRDDCheckpointData</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../serializer/Serializer.html">Serializer</a>
+    <a class="nav-link" href="../rdd/spark-rdd-shuffle.html">Shuffling</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../serializer/SerializerInstance.html">SerializerInstance</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/spark-rdd-Dependency.html">Dependencies</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-NarrowDependency.html">NarrowDependency</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/ShuffleDependency.html">ShuffleDependency</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../serializer/SerializationStream.html">SerializationStream</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../serializer/DeserializationStream.html">DeserializationStream</a>
+    <a class="nav-link" href="../rdd/Aggregator.html">Aggregator</a>
   </li>
 </ul>
   </li>
@@ -497,6 +359,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../scheduler/TaskLocation.html">TaskLocation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
 </ul>
   </li>
@@ -730,134 +595,7 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/index.html">Resilient Distributed Dataset</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/RDD.html">RDD</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-HadoopRDD.html">HadoopRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/CheckpointRDD.html">CheckpointRDD</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../rdd/ReliableCheckpointRDD.html">ReliableCheckpointRDD</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/ShuffledRDD.html">ShuffledRDD</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-operations.html">Operators</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-transformations.html">Transformations</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../rdd/PairRDDFunctions.html">PairRDDFunctions</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-actions.html">Actions</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-rdd-lineage.html">RDD Lineage</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-rdd-caching.html">Caching and Persistence</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-partitions.html">Partitions and Partitioning</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-Partition.html">Partition</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/Partitioner.html">Partitioner</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/HashPartitioner.html">HashPartitioner</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/RangePartitioner.html">RangePartitioner</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/RDDCheckpointData.html">RDDCheckpointData</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/LocalRDDCheckpointData.html">LocalRDDCheckpointData</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/ReliableRDDCheckpointData.html">ReliableRDDCheckpointData</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/spark-rdd-shuffle.html">Shuffling</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../rdd/spark-rdd-Dependency.html">Dependencies</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/spark-rdd-NarrowDependency.html">NarrowDependency</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../rdd/ShuffleDependency.html">ShuffleDependency</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../rdd/Aggregator.html">Aggregator</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../spark-overview.html">Overview</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../rdd-checkpointing.html">RDD Checkpointing</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
@@ -893,46 +631,43 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Core Services</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-ExternalClusterManager.html">ExternalClusterManager</a>
+    <a class="nav-link" href="../rdd-checkpointing.html">RDD Checkpointing</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-dynamic-allocation.html">Dynamic Allocation (of Executors)</a>
+    <a class="nav-link" href="../spark-dynamic-allocation.html">Dynamic Allocation of Executors</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-ExecutorAllocationManager.html">ExecutorAllocationManager</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-service-ExecutorAllocationClient.html">ExecutorAllocationClient</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-service-ExecutorAllocationManagerSource.html">ExecutorAllocationManagerSource</a>
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Shared Variables</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-http-file-server.html">HTTP File Server</a>
+    <a class="nav-link" href="../spark-broadcast.html">Broadcast variables</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-data-locality.html">Data Locality</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-cachemanager.html">Cache Manager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-Utils.html">Utils Helper Object</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-ManagedBuffer.html">ManagedBuffer</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-RpcResponseCallback.html">RpcResponseCallback</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-accumulators.html">Accumulators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-AccumulatorContext.html">AccumulatorContext</a>
   </li>
 </ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../spark-data-locality.html">Data Locality</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
@@ -948,9 +683,6 @@
     <a class="nav-link" href="../spark-workers.html">Workers</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-execution-model.html">Execution Model</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
@@ -1025,6 +757,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-InterruptibleIterator.html">InterruptibleIterator</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-Utils.html">Utils Helper Object</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -1033,24 +768,6 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-RDDBarrier.html">RDDBarrier</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Shared Variables</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-broadcast.html">Broadcast variables</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-accumulators.html">Accumulators</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-AccumulatorContext.html">AccumulatorContext</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -1168,11 +885,273 @@
   </li>
 </ul>
   </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-sql.html">Spark SQL</a>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/BroadcastManager.html">BroadcastManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BroadcastFactory.html">BroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/TorrentBroadcast.html">TorrentBroadcast</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ShuffleClient.html">ShuffleClient</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BlockTransferService.html">BlockTransferService</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/ExternalShuffleClient.html">ExternalShuffleClient</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/NettyBlockTransferService.html">NettyBlockTransferService</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/BlockFetchingListener.html">BlockFetchingListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/RetryingBlockFetcher.html">RetryingBlockFetcher</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/Executor.html">Executor</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/TaskRunner.html">TaskRunner</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ExecutorSource.html">ExecutorSource</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../spark-structured-streaming.html">Spark Structured Streaming</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/ExecutorBackend.html">ExecutorBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/TaskMetrics.html">TaskMetrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/RpcEnv.html">RpcEnv</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/NettyRpcEnv.html">NettyRpcEnv</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../rpc/NettyStreamManager.html">NettyStreamManager</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvConfig.html">RpcEnvConfig</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcAddress.html">RpcAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointAddress.html">RpcEndpointAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rpc/NettyRpcEnvFactory.html">NettyRpcEnvFactory</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFileServer.html">RpcEnvFileServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcUtils.html">RpcUtils</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Network System</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/TransportContext.html">TransportContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/MessageHandler.html">MessageHandler</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/TransportRequestHandler.html">TransportRequestHandler</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/TransportConf.html">TransportConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/SparkTransportConf.html">SparkTransportConf</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportClientFactory.html">TransportClientFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportServer.html">TransportServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/RpcHandler.html">RpcHandler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/StreamManager.html">StreamManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/OneForOneStreamManager.html">OneForOneStreamManager</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/ManagedBuffer.html">ManagedBuffer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/RpcResponseCallback.html">RpcResponseCallback</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../deploy/ExternalShuffleService.html">External Shuffle Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockHandler.html">ExternalShuffleBlockHandler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockResolver.html">ExternalShuffleBlockResolver</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../io/CompressionCodec.html">CompressionCodec</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../serializer/index.html">Serialization System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerManager.html">SerializerManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/Serializer.html">Serializer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerInstance.html">SerializerInstance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializationStream.html">SerializationStream</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/DeserializationStream.html">DeserializationStream</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -1950,11 +1929,11 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="metricssystemregistry-of-metrics-sources-and-sinks-of-spark-subsystem"><a class="anchor" href="#metricssystemregistry-of-metrics-sources-and-sinks-of-spark-subsystem"></a><a class="link" href="#metricssystemregistry-of-metrics-sources-and-sinks-of-spark-subsystem"><a id="MetricsSystem"></a> MetricsSystem&#8201;&#8212;&#8201;Registry of Metrics Sources and Sinks of Spark Subsystem</a></h2>
+<h1 class="page">MetricsSystem</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>MetricsSystem</code> is a <a href="#registry">registry</a> of metrics <a href="#sources">sources</a> and <a href="#sinks">sinks</a> of a <a href="#subsystems">Spark subsystem</a>, e.g. the driver of a Spark application.</p>
+<p>MetricsSystem is a <a href="#registry">registry</a> of metrics <a href="#sources">sources</a> and <a href="#sinks">sinks</a> of a <a href="#subsystems">Spark subsystem</a>, e.g. the driver of a Spark application.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1963,10 +1942,10 @@
 <div class="title">Figure 1. Creating MetricsSystem for Driver</div>
 </div>
 <div class="paragraph">
-<p><code>MetricsSystem</code> may have at most one <a href="#metricsServlet">MetricsServlet JSON metrics sink</a> (which is <a href="spark-metrics-MetricsConfig.adoc#setDefaultProperties">registered by default</a>).</p>
+<p>MetricsSystem may have at most one <a href="#metricsServlet">MetricsServlet JSON metrics sink</a> (which is <a href="spark-metrics-MetricsConfig.adoc#setDefaultProperties">registered by default</a>).</p>
 </div>
 <div class="paragraph">
-<p>When <a href="#creating-instance">created</a>, <code>MetricsSystem</code> requests <a href="#metricsConfig">MetricsConfig</a> to <a href="spark-metrics-MetricsConfig.adoc#initialize">initialize</a>.</p>
+<p>When <a href="#creating-instance">created</a>, MetricsSystem requests <a href="#metricsConfig">MetricsConfig</a> to <a href="spark-metrics-MetricsConfig.adoc#initialize">initialize</a>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -2018,7 +1997,7 @@
 </tbody>
 </table>
 <div class="paragraph">
-<p><code>MetricsSystem</code> uses <a href="#registry">MetricRegistry</a> as the integration point to Dropwizard Metrics library.</p>
+<p>MetricsSystem uses <a href="#registry">MetricRegistry</a> as the integration point to Dropwizard Metrics library.</p>
 </div>
 <table id="internal-registries" class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 2. MetricsSystem&#8217;s Internal Registries and Counters</caption>
@@ -2036,14 +2015,14 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="metricsConfig"></a> <code>metricsConfig</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-metrics-MetricsConfig.adoc">MetricsConfig</a></p>
-<p class="tableblock">Initialized when <code>MetricsSystem</code> is <a href="#creating-instance">created</a>.</p>
-<p class="tableblock">Used when <code>MetricsSystem</code> registers <a href="#registerSinks">sinks</a> and <a href="#registerSources">sources</a>.</p></td>
+<p class="tableblock">Initialized when MetricsSystem is <a href="#creating-instance">created</a>.</p>
+<p class="tableblock">Used when MetricsSystem registers <a href="#registerSinks">sinks</a> and <a href="#registerSources">sources</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="metricsServlet"></a> <code>metricsServlet</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-metrics-MetricsServlet.adoc">MetricsServlet JSON metrics sink</a> that is only available for the <a href="#metrics-instances">metrics instances</a> with a web UI, i.e. the driver of a Spark application and Spark Standalone&#8217;s <code>Master</code>.</p>
-<p class="tableblock">Initialized when <code>MetricsSystem</code> registers <a href="#registerSinks">sinks</a> (and finds a configuration entry with <code>servlet</code> sink name).</p>
-<p class="tableblock">Used exclusively when <code>MetricsSystem</code> is requested for a <a href="#getServletHandlers">JSON servlet handler</a>.</p></td>
+<p class="tableblock">Initialized when MetricsSystem registers <a href="#registerSinks">sinks</a> (and finds a configuration entry with <code>servlet</code> sink name).</p>
+<p class="tableblock">Used exclusively when MetricsSystem is requested for a <a href="#getServletHandlers">JSON servlet handler</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="registry"></a> <code>registry</code></p></td>
@@ -2051,7 +2030,7 @@
 <p>Dropwizard Metrics' <a href="https://metrics.dropwizard.io/3.1.0/apidocs/com/codahale/metrics/MetricRegistry.html">MetricRegistry</a></p>
 </div>
 <div class="paragraph">
-<p>Used when <code>MetricsSystem</code> is requested to:</p>
+<p>Used when MetricsSystem is requested to:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2069,18 +2048,18 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="running"></a> <code>running</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Flag that indicates whether <code>MetricsSystem</code> has been <a href="#start">started</a> (<code>true</code>) or not (<code>false</code>)</p>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flag that indicates whether MetricsSystem has been <a href="#start">started</a> (<code>true</code>) or not (<code>false</code>)</p>
 <p class="tableblock">Default: <code>false</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="sinks"></a> <code>sinks</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-metrics-Sink.adoc">Metrics sinks</a> in a Spark application.</p>
-<p class="tableblock">Used when <code>MetricsSystem</code> <a href="#registerSinks">registers a new metrics sink</a> and <a href="#start">starts them eventually</a>.</p></td>
+<p class="tableblock">Used when MetricsSystem <a href="#registerSinks">registers a new metrics sink</a> and <a href="#start">starts them eventually</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="sources"></a> <code>sources</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-metrics-Source.adoc">Metrics sources</a> in a Spark application.</p>
-<p class="tableblock">Used when <code>MetricsSystem</code> <a href="#registerSource">registers a new metrics source</a>.</p></td>
+<p class="tableblock">Used when MetricsSystem <a href="#registerSource">registers a new metrics source</a>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -2092,7 +2071,7 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Enable <code>WARN</code> or <code>ERROR</code> logging levels for <code>org.apache.spark.metrics.MetricsSystem</code> logger to see what happens in <code>MetricsSystem</code>.</p>
+<p>Enable <code>WARN</code> or <code>ERROR</code> logging levels for <code>org.apache.spark.metrics.MetricsSystem</code> logger to see what happens in MetricsSystem.</p>
 </div>
 <div class="paragraph">
 <p>Add the following line to <code>conf/log4j.properties</code>:</p>
@@ -2109,8 +2088,11 @@
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="static-metrics-sources-for-spark-sqlstaticsources"><a class="anchor" href="#static-metrics-sources-for-spark-sqlstaticsources"></a><a class="link" href="#static-metrics-sources-for-spark-sqlstaticsources"><a id="StaticSources"></a> "Static" Metrics Sources for Spark SQL&#8201;&#8212;&#8201;StaticSources</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="static-metrics-sources-for-spark-sqlstaticsources"><a class="anchor" href="#static-metrics-sources-for-spark-sqlstaticsources"></a><a class="link" href="#static-metrics-sources-for-spark-sqlstaticsources"><a id="StaticSources"></a> "Static" Metrics Sources for Spark SQL&#8201;&#8212;&#8201;StaticSources</a></h2>
+<div class="sectionbody">
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -2124,8 +2106,10 @@ FIXME
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="registering-metrics-sourceregistersource-method"><a class="anchor" href="#registering-metrics-sourceregistersource-method"></a><a class="link" href="#registering-metrics-sourceregistersource-method"><a id="registerSource"></a> Registering Metrics Source&#8201;&#8212;&#8201;<code>registerSource</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="registering-metrics-sourceregistersource-method"><a class="anchor" href="#registering-metrics-sourceregistersource-method"></a><a class="link" href="#registering-metrics-sourceregistersource-method"><a id="registerSource"></a> Registering Metrics Source&#8201;&#8212;&#8201;<code>registerSource</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">registerSource(source: Source): Unit</code></pre>
@@ -2180,13 +2164,13 @@ FIXME
 <p><a href="spark-BlockManager-BlockManagerSource.adoc">BlockManager</a></p>
 </li>
 <li>
-<p><a href="spark-ExecutorAllocationManager.adoc#executorAllocationManagerSource">ExecutorAllocationManager</a> (when <a href="spark-dynamic-allocation.adoc#isDynamicAllocationEnabled">dynamic allocation is enabled</a>)</p>
+<p><a href="spark-ExecutorAllocationManager.adoc#executorAllocationManagerSource">ExecutorAllocationManager</a> (for <a href="../spark-dynamic-allocation.html" class="page">Dynamic Allocation of Executors</a>)</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>MetricsSystem</code> <a href="#start">is started</a> (and registers the "static" metrics sources&#8201;&#8212;&#8201;<code>CodegenMetrics</code> and <code>HiveCatalogMetrics</code>) and does <a href="#registerSources">registerSources</a>.</p>
+<p>MetricsSystem <a href="#start">is started</a> (and registers the "static" metrics sources&#8201;&#8212;&#8201;<code>CodegenMetrics</code> and <code>HiveCatalogMetrics</code>) and does <a href="#registerSources">registerSources</a>.</p>
 </li>
 <li>
 <p><code>Executor</code> <a href="../executor/Executor.html#creating-instance" class="page">is created</a> (and registers a <a href="../executor/ExecutorSource.html" class="page">ExecutorSource</a>)</p>
@@ -2216,8 +2200,10 @@ FIXME
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="building-metrics-source-identifierbuildregistryname-method"><a class="anchor" href="#building-metrics-source-identifierbuildregistryname-method"></a><a class="link" href="#building-metrics-source-identifierbuildregistryname-method"><a id="buildRegistryName"></a> Building Metrics Source Identifier&#8201;&#8212;&#8201;<code>buildRegistryName</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="building-metrics-source-identifierbuildregistryname-method"><a class="anchor" href="#building-metrics-source-identifierbuildregistryname-method"></a><a class="link" href="#building-metrics-source-identifierbuildregistryname-method"><a id="buildRegistryName"></a> Building Metrics Source Identifier&#8201;&#8212;&#8201;<code>buildRegistryName</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">buildRegistryName(source: Source): String</code></pre>
@@ -2281,14 +2267,16 @@ FIXME Finish for the other components.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>buildRegistryName</code> is used when <code>MetricsSystem</code> <a href="#registerSource">registers</a> or <a href="#removeSource">removes</a> a metrics source.
+<code>buildRegistryName</code> is used when MetricsSystem <a href="#registerSource">registers</a> or <a href="#removeSource">removes</a> a metrics source.
 </td>
 </tr>
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="registering-metrics-sources-for-spark-instanceregistersources-internal-method"><a class="anchor" href="#registering-metrics-sources-for-spark-instanceregistersources-internal-method"></a><a class="link" href="#registering-metrics-sources-for-spark-instanceregistersources-internal-method"><a id="registerSources"></a> Registering Metrics Sources for Spark Instance&#8201;&#8212;&#8201;<code>registerSources</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="registering-metrics-sources-for-spark-instanceregistersources-internal-method"><a class="anchor" href="#registering-metrics-sources-for-spark-instanceregistersources-internal-method"></a><a class="link" href="#registering-metrics-sources-for-spark-instanceregistersources-internal-method"><a id="registerSources"></a> Registering Metrics Sources for Spark Instance&#8201;&#8212;&#8201;<code>registerSources</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">registerSources(): Unit</code></pre>
@@ -2304,7 +2292,7 @@ FIXME Finish for the other components.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>instance</code> is defined when <code>MetricsSystem</code> <a href="#creating-instance">is created</a>.
+<code>instance</code> is defined when MetricsSystem <a href="#creating-instance">is created</a>.
 </td>
 </tr>
 </table>
@@ -2330,24 +2318,26 @@ FIXME Finish for the other components.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>registerSources</code> is used exclusively when <code>MetricsSystem</code> is <a href="#start">started</a>.
+<code>registerSources</code> is used exclusively when MetricsSystem is <a href="#start">started</a>.
 </td>
 </tr>
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="requesting-json-servlet-handlergetservlethandlers-method"><a class="anchor" href="#requesting-json-servlet-handlergetservlethandlers-method"></a><a class="link" href="#requesting-json-servlet-handlergetservlethandlers-method"><a id="getServletHandlers"></a> Requesting JSON Servlet Handler&#8201;&#8212;&#8201;<code>getServletHandlers</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="requesting-json-servlet-handlergetservlethandlers-method"><a class="anchor" href="#requesting-json-servlet-handlergetservlethandlers-method"></a><a class="link" href="#requesting-json-servlet-handlergetservlethandlers-method"><a id="getServletHandlers"></a> Requesting JSON Servlet Handler&#8201;&#8212;&#8201;<code>getServletHandlers</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getServletHandlers: Array[ServletContextHandler]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If the <code>MetricsSystem</code> is <a href="#running">running</a> and the <a href="#metricsServlet">MetricsServlet</a> is defined for the metrics system, <code>getServletHandlers</code> simply requests the <a href="#metricsServlet">MetricsServlet</a> for the <a href="spark-metrics-MetricsServlet.adoc#getHandlers">JSON servlet handler</a>.</p>
+<p>If the MetricsSystem is <a href="#running">running</a> and the <a href="#metricsServlet">MetricsServlet</a> is defined for the metrics system, <code>getServletHandlers</code> simply requests the <a href="#metricsServlet">MetricsServlet</a> for the <a href="spark-metrics-MetricsServlet.adoc#getHandlers">JSON servlet handler</a>.</p>
 </div>
 <div class="paragraph">
-<p>When <code>MetricsSystem</code> is not <a href="#running">running</a> <code>getServletHandlers</code> throws an <code>IllegalArgumentException</code>.</p>
+<p>When MetricsSystem is not <a href="#running">running</a> <code>getServletHandlers</code> throws an <code>IllegalArgumentException</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2379,8 +2369,10 @@ FIXME Finish for the other components.
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="registering-metrics-sinksregistersinks-internal-method"><a class="anchor" href="#registering-metrics-sinksregistersinks-internal-method"></a><a class="link" href="#registering-metrics-sinksregistersinks-internal-method"><a id="registerSinks"></a> Registering Metrics Sinks&#8201;&#8212;&#8201;<code>registerSinks</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="registering-metrics-sinksregistersinks-internal-method"><a class="anchor" href="#registering-metrics-sinksregistersinks-internal-method"></a><a class="link" href="#registering-metrics-sinksregistersinks-internal-method"><a id="registerSinks"></a> Registering Metrics Sinks&#8201;&#8212;&#8201;<code>registerSinks</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">registerSinks(): Unit</code></pre>
@@ -2416,14 +2408,16 @@ FIXME Finish for the other components.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>registerSinks</code> is used exclusively when <code>MetricsSystem</code> is requested to <a href="#start">start</a>.
+<code>registerSinks</code> is used exclusively when MetricsSystem is requested to <a href="#start">start</a>.
 </td>
 </tr>
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="stop-method"><a class="anchor" href="#stop-method"></a><a class="link" href="#stop-method"><a id="stop"></a> <code>stop</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="stop-method"><a class="anchor" href="#stop-method"></a><a class="link" href="#stop-method"><a id="stop"></a> <code>stop</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">stop(): Unit</code></pre>
@@ -2445,8 +2439,10 @@ FIXME Finish for the other components.
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="getsourcesbyname-method"><a class="anchor" href="#getsourcesbyname-method"></a><a class="link" href="#getsourcesbyname-method"><a id="getSourcesByName"></a> <code>getSourcesByName</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="getsourcesbyname-method"><a class="anchor" href="#getsourcesbyname-method"></a><a class="link" href="#getsourcesbyname-method"><a id="getSourcesByName"></a> <code>getSourcesByName</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getSourcesByName(sourceName: String): Seq[Source]</code></pre>
@@ -2468,8 +2464,10 @@ FIXME Finish for the other components.
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="removesource-method"><a class="anchor" href="#removesource-method"></a><a class="link" href="#removesource-method"><a id="removeSource"></a> <code>removeSource</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="removesource-method"><a class="anchor" href="#removesource-method"></a><a class="link" href="#removesource-method"><a id="removeSource"></a> <code>removeSource</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">removeSource(source: Source): Unit</code></pre>
@@ -2491,10 +2489,12 @@ FIXME Finish for the other components.
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="creating-metricssystem-instance"><a class="anchor" href="#creating-metricssystem-instance"></a><a class="link" href="#creating-metricssystem-instance"><a id="creating-instance"></a> Creating MetricsSystem Instance</a></h3>
+</div>
+<div class="sect1">
+<h2 id="creating-metricssystem-instance"><a class="anchor" href="#creating-metricssystem-instance"></a><a class="link" href="#creating-metricssystem-instance"><a id="creating-instance"></a> Creating MetricsSystem Instance</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p><code>MetricsSystem</code> takes the following when created:</p>
+<p>MetricsSystem takes the following when created:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2510,10 +2510,10 @@ FIXME Finish for the other components.
 </ul>
 </div>
 <div class="paragraph">
-<p><code>MetricsSystem</code> initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
+<p>MetricsSystem initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
 </div>
 <div class="paragraph">
-<p>When created, <code>MetricsSystem</code> requests <a href="#metricsConfig">MetricsConfig</a> to <a href="spark-metrics-MetricsConfig.adoc#initialize">initialize</a>.</p>
+<p>When created, MetricsSystem requests <a href="#metricsConfig">MetricsConfig</a> to <a href="spark-metrics-MetricsConfig.adoc#initialize">initialize</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2528,8 +2528,10 @@ FIXME Finish for the other components.
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="creating-metricssystem-instance-for-subsystemcreatemetricssystem-factory-method"><a class="anchor" href="#creating-metricssystem-instance-for-subsystemcreatemetricssystem-factory-method"></a><a class="link" href="#creating-metricssystem-instance-for-subsystemcreatemetricssystem-factory-method"><a id="createMetricsSystem"></a> Creating MetricsSystem Instance For Subsystem&#8201;&#8212;&#8201;<code>createMetricsSystem</code> Factory Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="creating-metricssystem-instance-for-subsystemcreatemetricssystem-factory-method"><a class="anchor" href="#creating-metricssystem-instance-for-subsystemcreatemetricssystem-factory-method"></a><a class="link" href="#creating-metricssystem-instance-for-subsystemcreatemetricssystem-factory-method"><a id="createMetricsSystem"></a> Creating MetricsSystem Instance For Subsystem&#8201;&#8212;&#8201;<code>createMetricsSystem</code> Factory Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">createMetricsSystem(
@@ -2554,8 +2556,10 @@ FIXME Finish for the other components.
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="requesting-sinks-to-report-metricsreport-method"><a class="anchor" href="#requesting-sinks-to-report-metricsreport-method"></a><a class="link" href="#requesting-sinks-to-report-metricsreport-method"><a id="report"></a> Requesting Sinks to Report Metrics&#8201;&#8212;&#8201;<code>report</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="requesting-sinks-to-report-metricsreport-method"><a class="anchor" href="#requesting-sinks-to-report-metricsreport-method"></a><a class="link" href="#requesting-sinks-to-report-metricsreport-method"><a id="report"></a> Requesting Sinks to Report Metrics&#8201;&#8212;&#8201;<code>report</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">report(): Unit</code></pre>
@@ -2577,8 +2581,10 @@ FIXME Finish for the other components.
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="starting-metricssystemstart-method"><a class="anchor" href="#starting-metricssystemstart-method"></a><a class="link" href="#starting-metricssystemstart-method"><a id="start"></a> Starting MetricsSystem&#8201;&#8212;&#8201;<code>start</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="starting-metricssystemstart-method"><a class="anchor" href="#starting-metricssystemstart-method"></a><a class="link" href="#starting-metricssystemstart-method"><a id="start"></a> Starting MetricsSystem&#8201;&#8212;&#8201;<code>start</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">start(): Unit</code></pre>
@@ -2645,7 +2651,6 @@ FIXME Finish for the other components.
 </td>
 </tr>
 </table>
-</div>
 </div>
 </div>
 </div>
