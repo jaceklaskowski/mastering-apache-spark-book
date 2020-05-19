@@ -1,0 +1,3150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title> DAGSchedulerEventProcessLoop :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/scheduler/DAGSchedulerEventProcessLoop.html">
+    <meta name="generator" content="Antora 2.3.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-86782445-1')</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://books.japila.pl/apache-spark-internals">The Internals Of Apache Spark</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Resources</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Resource A</a>
+            <a class="navbar-item" href="#">Resource B</a>
+            <a class="navbar-item" href="#">Resource C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="apache-spark-internals" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Apache Spark</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/index.html">Resilient Distributed Dataset</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/RDD.html">RDD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-HadoopRDD.html">HadoopRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/CheckpointRDD.html">CheckpointRDD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../rdd/ReliableCheckpointRDD.html">ReliableCheckpointRDD</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/ShuffledRDD.html">ShuffledRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/spark-rdd-operations.html">Operators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/spark-rdd-transformations.html">Transformations</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../rdd/PairRDDFunctions.html">PairRDDFunctions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-actions.html">Actions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rdd/spark-rdd-lineage.html">RDD Lineage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rdd/spark-rdd-caching.html">Caching and Persistence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/spark-rdd-partitions.html">Partitions and Partitioning</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-Partition.html">Partition</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/Partitioner.html">Partitioner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/HashPartitioner.html">HashPartitioner</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/RangePartitioner.html">RangePartitioner</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/RDDCheckpointData.html">RDDCheckpointData</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/LocalRDDCheckpointData.html">LocalRDDCheckpointData</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/ReliableRDDCheckpointData.html">ReliableRDDCheckpointData</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rdd/spark-rdd-shuffle.html">Shuffling</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/spark-rdd-Dependency.html">Dependencies</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-NarrowDependency.html">NarrowDependency</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/ShuffleDependency.html">ShuffleDependency</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rdd/Aggregator.html">Aggregator</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Scheduler</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="DAGScheduler.html">DAGScheduler</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="DAGSchedulerEvent.html">DAGScheduler Events</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="DAGSchedulerEventProcessLoop.html">DAGScheduler Event Bus</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="Stage.html">Stage</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ResultStage.html">ResultStage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ShuffleMapStage.html">ShuffleMapStage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="MapOutputTracker.html">MapOutputTracker</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="MapOutputTrackerMaster.html">MapOutputTrackerMaster</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ShuffleStatus.html">ShuffleStatus</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="MapOutputTrackerMasterEndpoint.html">MapOutputTrackerMasterEndpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="MapOutputTrackerWorker.html">MapOutputTrackerWorker</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-scheduler-StageInfo.html">StageInfo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="spark-scheduler-JobListener.html">JobListener</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-scheduler-JobWaiter.html">JobWaiter</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="TaskScheduler.html">TaskScheduler</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="TaskSchedulerImpl.html">TaskSchedulerImpl</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SchedulerBackend.html">SchedulerBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="CoarseGrainedSchedulerBackend.html">CoarseGrainedSchedulerBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="CoarseGrainedSchedulerBackend-DriverEndpoint.html">DriverEndpoint</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="Task.html">Task</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ShuffleMapTask.html">ShuffleMapTask</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ResultTask.html">ResultTask</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="TaskSet.html">TaskSet</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="TaskSetManager.html">TaskSetManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-scheduler-ActiveJob.html">Jobs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="spark-scheduler-SchedulableBuilder.html">SchedulableBuilder</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-scheduler-FIFOSchedulableBuilder.html">FIFOSchedulableBuilder</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-scheduler-FairSchedulableBuilder.html">FairSchedulableBuilder</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="spark-scheduler-Schedulable.html">Schedulable Entities</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-scheduler-Pool.html">Schedulable Pool</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-scheduler-SchedulingMode.html">Scheduling Mode</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-scheduler-TaskInfo.html">TaskInfo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="MapStatus.html">MapStatus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-scheduler-TaskDescription.html">TaskDescription</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-taskschedulerimpl-speculative-execution.html">Speculative Execution of Tasks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="TaskResultGetter.html">TaskResultGetter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="spark-TaskContext.html">TaskContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-BarrierTaskContext.html">BarrierTaskContext</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-TaskContextImpl.html">TaskContextImpl</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-scheduler-TaskResult.html">TaskResults</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-scheduler-TaskSetBlacklist.html">TaskSetBlacklist</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="OutputCommitCoordinator.html">OutputCommitCoordinator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="TaskLocation.html">TaskLocation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ExternalClusterManager.html">ExternalClusterManager</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../memory/index.html">Memory System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../memory/MemoryManager.html">MemoryManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/StaticMemoryManager.html">StaticMemoryManager</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/UnifiedMemoryManager.html">UnifiedMemoryManager</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../memory/MemoryPool.html">MemoryPool</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/ExecutionMemoryPool.html">ExecutionMemoryPool</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/StorageMemoryPool.html">StorageMemoryPool</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../memory/TaskMemoryManager.html">TaskMemoryManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../memory/MemoryConsumer.html">MemoryConsumer</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/BytesToBytesMap.html">BytesToBytesMap</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/UnsafeSorterSpillReader.html">UnsafeSorterSpillReader</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/UnsafeExternalSorter.html">UnsafeExternalSorter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/UnsafeInMemorySorter.html">UnsafeInMemorySorter</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../memory/UnsafeSorterSpillWriter.html">UnsafeSorterSpillWriter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Storage System</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/BlockManager.html">BlockManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/DiskBlockManager.html">DiskBlockManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/DiskStore.html">DiskStore</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-BlockDataManager.html">BlockDataManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-BlockId.html">BlockId</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../storage/spark-BlockInfoManager.html">BlockInfoManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../storage/spark-BlockInfo.html">BlockInfo</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../storage/BlockManagerMaster.html">BlockManagerMaster</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../storage/spark-blockmanager-BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/MemoryStore.html">MemoryStore</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-blockmanager-BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-BlockManager-BlockManagerSource.html">BlockManagerSource</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-BlockManager-ShuffleMetricsSource.html">ShuffleMetricsSource</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-blockmanager-StorageStatus.html">StorageStatus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/RDDInfo.html">RDDInfo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/StorageLevel.html">StorageLevel</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/demo-diskblockmanager-and-block-data.html">Demo: DiskBlockManager and Block Data</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/index.html">Shuffle System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/ShuffleManager.html">ShuffleManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/SortShuffleManager.html">SortShuffleManager</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleHandle.html">ShuffleHandle</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/spark-shuffle-BaseShuffleHandle.html">BaseShuffleHandle</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/SerializedShuffleHandle.html">SerializedShuffleHandle</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleReader.html">ShuffleReader</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/BlockStoreShuffleReader.html">BlockStoreShuffleReader</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/ShuffleWriter.html">ShuffleWriter</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/BypassMergeSortShuffleWriter.html">BypassMergeSortShuffleWriter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/SortShuffleWriter.html">SortShuffleWriter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../shuffle/ShuffleExternalSorter.html">ShuffleExternalSorter</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../shuffle/ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/ShuffleBlockResolver.html">ShuffleBlockResolver</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/IndexShuffleBlockResolver.html">IndexShuffleBlockResolver</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../shuffle/FetchFailedException.html">FetchFailedException</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/Spillable.html">Spillable</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/ExternalAppendOnlyMap.html">ExternalAppendOnlyMap</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/ExternalSorter.html">ExternalSorter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../spark-overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../rdd-checkpointing.html">RDD Checkpointing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-dynamic-allocation.html">Dynamic Allocation of Executors</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-ExecutorAllocationManager.html">ExecutorAllocationManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-service-ExecutorAllocationClient.html">ExecutorAllocationClient</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-service-ExecutorAllocationManagerSource.html">ExecutorAllocationManagerSource</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Shared Variables</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-broadcast.html">Broadcast variables</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-accumulators.html">Accumulators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-AccumulatorContext.html">AccumulatorContext</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../spark-data-locality.html">Data Locality</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-architecture.html">Spark Architecture</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-driver.html">Driver</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-master.html">Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-workers.html">Workers</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Internal IO</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-internal-io-SparkHadoopWriter.html">SparkHadoopWriter</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-internal-io-FileCommitProtocol.html">FileCommitProtocol</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-internal-io-HadoopMapReduceCommitProtocol.html">HadoopMapReduceCommitProtocol</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-internal-io-HadoopMapRedCommitProtocol.html">HadoopMapRedCommitProtocol</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-internal-io-HadoopWriteConfigUtil.html">HadoopWriteConfigUtil</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-internal-io-HadoopMapReduceWriteConfigUtil.html">HadoopMapReduceWriteConfigUtil</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-internal-io-HadoopMapRedWriteConfigUtil.html">HadoopMapRedWriteConfigUtil</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Misc</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-core-AppStatusStore.html">AppStatusStore</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-core-KVStore.html">KVStore</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-core-KVStoreView.html">KVStoreView</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-core-ElementTrackingStore.html">ElementTrackingStore</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-core-InMemoryStore.html">InMemoryStore</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-core-LevelDB.html">LevelDB</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-InterruptibleIterator.html">InterruptibleIterator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-Utils.html">Utils Helper Object</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-barrier-execution-mode.html">Barrier Execution Mode</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-RDDBarrier.html">RDDBarrier</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Security</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-webui-security.html">Securing Web UI</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-deployment-environments.html">Deployment Environments</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-cluster.html">Spark on cluster</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Monitoring, Tuning, Debugging and Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-logging.html">Logging</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-tuning.html">Performance Tuning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-scheduler-SparkListener.html">SparkListener</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkListener-SpillListener.html">SpillListener</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkListener-StatsReportListener.html">StatsReportListener</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-scheduler-LiveListenerBus.html">LiveListenerBus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-SparkListenerBus.html">SparkListenerBus</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkListenerBus-AsyncEventQueue.html">AsyncEventQueue</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkListenerBus-ReplayListenerBus.html">ReplayListenerBus</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-JsonProtocol.html">JsonProtocol</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-debugging.html">Debugging Spark</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Varia</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../varia/spark-building-from-sources.html">Building Apache Spark from Sources</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../varia/spark-hadoop.html">Spark and Hadoop</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkHadoopUtil.html">SparkHadoopUtil</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../varia/spark-inmemory-filesystems.html">Spark and software in-memory file systems</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../varia/spark-others.html">Spark and The Others</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../varia/spark-deeplearning.html">Distributed Deep Learning on Spark</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../varia/spark-packages.html">Spark Packages</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-tips-and-tricks.html">Spark Tips and Tricks</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-tips-and-tricks-access-private-members-spark-shell.html">Access private members in Scala in Spark shell</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-tips-and-tricks-sparkexception-task-not-serializable.html">SparkException: Task not serializable</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-tips-and-tricks-running-spark-windows.html">Running Spark Applications on Windows</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/BroadcastManager.html">BroadcastManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BroadcastFactory.html">BroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/TorrentBroadcast.html">TorrentBroadcast</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ShuffleClient.html">ShuffleClient</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BlockTransferService.html">BlockTransferService</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/ExternalShuffleClient.html">ExternalShuffleClient</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/NettyBlockTransferService.html">NettyBlockTransferService</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/BlockFetchingListener.html">BlockFetchingListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/RetryingBlockFetcher.html">RetryingBlockFetcher</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/Executor.html">Executor</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/TaskRunner.html">TaskRunner</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ExecutorSource.html">ExecutorSource</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/ExecutorBackend.html">ExecutorBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/TaskMetrics.html">TaskMetrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/RpcEnv.html">RpcEnv</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/NettyRpcEnv.html">NettyRpcEnv</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../rpc/NettyStreamManager.html">NettyStreamManager</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvConfig.html">RpcEnvConfig</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcAddress.html">RpcAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointAddress.html">RpcEndpointAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rpc/NettyRpcEnvFactory.html">NettyRpcEnvFactory</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFileServer.html">RpcEnvFileServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcUtils.html">RpcUtils</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Network System</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/TransportContext.html">TransportContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/MessageHandler.html">MessageHandler</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/TransportRequestHandler.html">TransportRequestHandler</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/TransportConf.html">TransportConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/SparkTransportConf.html">SparkTransportConf</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportClientFactory.html">TransportClientFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportServer.html">TransportServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/RpcHandler.html">RpcHandler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/StreamManager.html">StreamManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/OneForOneStreamManager.html">OneForOneStreamManager</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/ManagedBuffer.html">ManagedBuffer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/RpcResponseCallback.html">RpcResponseCallback</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../deploy/ExternalShuffleService.html">External Shuffle Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockHandler.html">ExternalShuffleBlockHandler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockResolver.html">ExternalShuffleBlockResolver</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../io/CompressionCodec.html">CompressionCodec</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../serializer/index.html">Serialization System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerManager.html">SerializerManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/Serializer.html">Serializer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerInstance.html">SerializerInstance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializationStream.html">SerializationStream</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/DeserializationStream.html">DeserializationStream</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tools</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools/spark-shell.html">Spark Shell (spark-shell)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../tools/spark-submit.html">Spark Submit (spark-submit)</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../tools/spark-submit-SparkSubmitArguments.html">SparkSubmitArguments</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../tools/spark-submit-SparkSubmitOptionParser.html">SparkSubmitOptionParser</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../tools/spark-submit-SparkSubmitCommandBuilder.html">SparkSubmitCommandBuilder</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../tools/spark-class.html">spark-class shell script</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../tools/spark-AbstractCommandBuilder.html">AbstractCommandBuilder</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools/spark-SparkLauncher.html">SparkLauncher</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/index.html">Web UI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-jobs.html">Jobs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-JobsTab.html">JobsTab</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../webui/spark-webui-AllJobsPage.html">AllJobsPage</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../webui/spark-webui-JobPage.html">JobPage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-stages.html">Stages</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-storage.html">Storage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-environment.html">Environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-executors.html">Executors</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-StagesTab.html">StagesTab&#8201;&#8212;&#8201;Stages for All Jobs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-AllStagesPage.html">AllStagesPage&#8201;&#8212;&#8201;Stages for All Jobs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-StagePage.html">StagePage&#8201;&#8212;&#8201;Stage Details</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-PoolPage.html">PoolPage&#8201;&#8212;&#8201;Pool Details</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-StorageTab.html">StorageTab</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-StoragePage.html">StoragePage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-RDDPage.html">RDDPage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-EnvironmentTab.html">EnvironmentTab</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-EnvironmentPage.html">EnvironmentPage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-ExecutorsTab.html">ExecutorsTab</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-ExecutorsPage.html">ExecutorsPage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-ExecutorThreadDumpPage.html">ExecutorThreadDumpPage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-SparkUI.html">SparkUI&#8201;&#8212;&#8201;Web UI of Spark Application</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-SparkUITab.html">SparkUITab</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-BlockStatusListener.html">BlockStatusListener Spark Listener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-EnvironmentListener.html">EnvironmentListener Spark Listener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-executors-ExecutorsListener.html">ExecutorsListener Spark Listener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-JobProgressListener.html">JobProgressListener Spark Listener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-StorageStatusListener.html">StorageStatusListener Spark Listener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-StorageListener.html">StorageListener&#8201;&#8212;&#8201;Spark Listener for Tracking Persistence Status of RDD Blocks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-RDDOperationGraphListener.html">RDDOperationGraphListener Spark Listener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-WebUI.html">WebUI&#8201;&#8212;&#8201;Framework For Web UIs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-WebUIPage.html">WebUIPage&#8201;&#8212;&#8201;Contract of Pages in Web UI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-WebUITab.html">WebUITab&#8201;&#8212;&#8201;Contract of Tabs in Web UI</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-RDDStorageInfo.html">RDDStorageInfo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-core-LiveEntity.html">LiveEntity</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-core-LiveRDD.html">LiveRDD</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-UIUtils.html">UIUtils</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-JettyUtils.html">JettyUtils</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-properties.html">web UI Configuration Properties</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../metrics/index.html">Spark Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../metrics/spark-metrics-MetricsSystem.html">MetricsSystem</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../metrics/spark-metrics-MetricsConfig.html">MetricsConfig</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../metrics/spark-metrics-Source.html">Source</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/spark-scheduler-DAGSchedulerSource.html">DAGSchedulerSourcer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../metrics/spark-metrics-Sink.html">Sink</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/spark-metrics-MetricsServlet.html">MetricsServlet JSON Metrics Sink</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../metrics/spark-metrics-properties.html">Metrics Configuration Properties</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/index.html">Spark MLlib</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines.html">ML Pipelines (spark.ml)</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Pipeline.html">Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-PipelineStage.html">PipelineStage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-transformers.html">Transformers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Transformer.html">Transformer</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-transformers-Tokenizer.html">Tokenizer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-estimators.html">Estimators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Estimator.html">Estimator</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-StringIndexer.html">StringIndexer</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-KMeans.html">KMeans</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-TrainValidationSplit.html">TrainValidationSplit</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Predictor.html">Predictor</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-RandomForestRegressor.html">RandomForestRegressor</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Regressor.html">Regressor</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-LinearRegression.html">LinearRegression</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Classifier.html">Classifier</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-RandomForestClassifier.html">RandomForestClassifier</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-DecisionTreeClassifier.html">DecisionTreeClassifier</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-models.html">Models</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Model.html">Model</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Evaluator.html">Evaluator&#8201;&#8212;&#8201;ML Pipeline Component for Model Scoring</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-BinaryClassificationEvaluator.html">BinaryClassificationEvaluator&#8201;&#8212;&#8201;Evaluator of Binary Classification Models</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ClusteringEvaluator.html">ClusteringEvaluator&#8201;&#8212;&#8201;Evaluator of Clustering Models</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MulticlassClassificationEvaluator.html">MulticlassClassificationEvaluator&#8201;&#8212;&#8201;Evaluator of Multiclass Classification Models</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-RegressionEvaluator.html">RegressionEvaluator&#8201;&#8212;&#8201;Evaluator of Regression Models</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-CrossValidator.html">CrossValidator&#8201;&#8212;&#8201;Model Tuning / Finding The Best Model</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-CrossValidatorModel.html">CrossValidatorModel</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ParamGridBuilder.html">ParamGridBuilder</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-CrossValidator-example.html">CrossValidator with Pipeline Example</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Params.html">Params and ParamMaps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ValidatorParams.html">ValidatorParams</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-HasParallelism.html">HasParallelism</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines-persistence.html">ML Persistence&#8201;&#8212;&#8201;Saving and Loading Models and Pipelines</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MLWritable.html">MLWritable</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MLReader.html">MLReader</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines-example-classification.html">Example&#8201;&#8212;&#8201;Text Classification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines-example-regression.html">Example&#8201;&#8212;&#8201;Linear Regression</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-logistic-regression.html">Logistic Regression</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-LogisticRegression.html">LogisticRegression</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-latent-dirichlet-allocation.html">Latent Dirichlet Allocation (LDA)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-vector.html">Vector</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-labeledpoint.html">LabeledPoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-streaming.html">Streaming MLlib</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-GeneralizedLinearRegression.html">GeneralizedLinearRegression</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-alternating-least-squares.html">Alternating Least Squares (ALS) Matrix Factorization</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ALS.html">ALS&#8201;&#8212;&#8201;Estimator for ALSModel</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ALSModel.html">ALSModel&#8201;&#8212;&#8201;Model for Predictions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ALSModelReader.html">ALSModelReader</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Instrumentation.html">Instrumentation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MLUtils.html">MLUtils</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/EventLoggingListener.html">EventLoggingListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/SQLHistoryListener.html">SQLHistoryListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-history-server/ApplicationHistoryProvider.html">ApplicationHistoryProvider</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-history-server/FsHistoryProvider.html">FsHistoryProvider</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/HistoryServerArguments.html">HistoryServerArguments</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/ApplicationCacheOperations.html">ApplicationCacheOperations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/ApplicationCache.html">ApplicationCache</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-local/index.html">Spark local</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-local/spark-LocalSchedulerBackend.html">LocalSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-local/spark-LocalEndpoint.html">LocalEndpoint&#8201;&#8212;&#8201;RPC Endpoint for LocalSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-local/spark-LauncherBackend.html">LauncherBackend</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-on-yarn/index.html">Spark on YARN</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnShuffleService.html">YarnShuffleService&#8201;&#8212;&#8201;ExternalShuffleService on YARN</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-ExecutorRunnable.html">ExecutorRunnable</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-client.html">Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnrmclient.html">YarnRMClient</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-applicationmaster.html">ApplicationMaster</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-AMEndpoint.html">AMEndpoint&#8201;&#8212;&#8201;ApplicationMaster RPC Endpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnClusterManager.html">YarnClusterManager&#8201;&#8212;&#8201;ExternalClusterManager for YARN</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-taskschedulers.html">TaskSchedulers for YARN</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnscheduler.html">YarnScheduler</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnclusterscheduler.html">YarnClusterScheduler</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-schedulerbackends.html">SchedulerBackends for YARN</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnschedulerbackend.html">YarnSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-client-yarnclientschedulerbackend.html">YarnClientSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-cluster-yarnclusterschedulerbackend.html">YarnClusterSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-cluster-YarnSchedulerEndpoint.html">YarnSchedulerEndpoint RPC Endpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnAllocator.html">YarnAllocator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-introduction.html">Introduction to Hadoop YARN</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-cluster-setup.html">Setting up YARN Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-kerberos.html">Kerberos</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-ConfigurableCredentialManager.html">ConfigurableCredentialManager</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-ClientDistributedCacheManager.html">ClientDistributedCacheManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnSparkHadoopUtil.html">YarnSparkHadoopUtil</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-settings.html">Settings</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-standalone/index.html">Spark Standalone</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-Master.html">Standalone Master&#8201;&#8212;&#8201;Cluster Manager of Spark Standalone</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-worker.html">Standalone Worker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-standalone/spark-standalone-webui.html">web UI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-webui-ApplicationPage.html">ApplicationPage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-LocalSparkCluster.html">LocalSparkCluster&#8201;&#8212;&#8201;Single-JVM Spark Standalone Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-submission-gateways.html">Submission Gateways</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-master-scripts.html">Management Scripts for Standalone Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-worker-scripts.html">Management Scripts for Standalone Workers</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-status.html">Checking Status</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-example-2-workers-on-1-node-cluster.html">Example 2-workers-on-1-node Standalone Cluster (one executor per worker)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-StandaloneSchedulerBackend.html">StandaloneSchedulerBackend</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rest-api/index.html">Status REST API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rest-api/spark-api-ApiRootResource.html">ApiRootResource&#8201;&#8212;&#8201;/api/v1 URI Handler</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rest-api/spark-api-ApplicationListResource.html">ApplicationListResource&#8201;&#8212;&#8201;applications URI Handler</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rest-api/spark-api-OneApplicationResource.html">OneApplicationResource&#8201;&#8212;&#8201;applications/appId URI Handler</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../rest-api/spark-api-StagesResource.html">StagesResource</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rest-api/spark-api-OneApplicationAttemptResource.html">OneApplicationAttemptResource</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rest-api/spark-api-AbstractApplicationResource.html">AbstractApplicationResource</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rest-api/spark-api-BaseAppResource.html">BaseAppResource</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rest-api/spark-api-ApiRequestContext.html">ApiRequestContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rest-api/spark-api-UIRoot.html">UIRoot&#8201;&#8212;&#8201;Contract for Root Contrainers of Application UI Information</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rest-api/spark-api-UIRootFromServletContext.html">UIRootFromServletContext</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-on-mesos/index.html">Spark on Mesos</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-mesos/spark-mesos-MesosCoarseGrainedSchedulerBackend.html">MesosCoarseGrainedSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-mesos/spark-mesos-introduction.html">About Mesos</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-mesos/spark-executor-backends-MesosExecutorBackend.html">MesosExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Exercises</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-pairrddfunctions-oneliners.html">One-liners using PairRDDFunctions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-take-multiple-jobs.html">Learning Jobs and Partitions Using take Action</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-standalone-master-ha.html">Spark Standalone - Using ZooKeeper for High-Availability of Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-hello-world-using-spark-shell.html">Spark&#8217;s Hello World using Spark shell and Scala</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-examples-wordcount-spark-shell.html">WordCount using Spark shell</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-first-app.html">Your first complete Spark application (using Scala and sbt)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-sql-hive-orc-example.html">Using Spark SQL to update data in Hive using ORC files</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-custom-scheduler-listener.html">Developing Custom SparkListener to monitor DAGScheduler in Scala</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-custom-rdd.html">Developing Custom RDD</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-dataframe-jdbc-postgresql.html">Working with Datasets from JDBC Data Sources (and PostgreSQL)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-failing-stage.html">Causing Stage to Fail</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Apache Spark</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Apache Spark</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Apache Spark</a></li>
+    <li><a href="index.html">Scheduler</a></li>
+    <li><a href="DAGScheduler.html">DAGScheduler</a></li>
+    <li><a href="DAGSchedulerEventProcessLoop.html">DAGScheduler Event Bus</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/scheduler/pages/DAGSchedulerEventProcessLoop.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page"><a id="DAGSchedulerEventProcessLoop"></a> DAGSchedulerEventProcessLoop</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>DAGSchedulerEventProcessLoop</strong> is an event processing thread to handle <a href="DAGSchedulerEvent.html" class="page">DAGSchedulerEvents</a> asynchronously and serially (one by one).</p>
+</div>
+<div class="paragraph">
+<p>DAGSchedulerEventProcessLoop is registered under the name of <strong>dag-scheduler-event-loop</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The purpose of the DAGSchedulerEventProcessLoop is to have a separate thread to process events asynchronously alongside <a href="DAGScheduler.html" class="page">DAGScheduler</a>.</p>
+</div>
+<div id="dagScheduler" class="paragraph">
+<p>When created, DAGSchedulerEventProcessLoop gets the reference to the owning <a href="DAGScheduler.html" class="page">DAGScheduler</a> that it uses to call event handler methods on.</p>
+</div>
+<div class="paragraph">
+<p>DAGSchedulerEventProcessLoop uses <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/LinkedBlockingDeque.html">java.util.concurrent.LinkedBlockingDeque</a> blocking deque that grows indefinitely (up to <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html#MAX_VALUE">Integer.MAX_VALUE</a> events).</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. DAGSchedulerEvents and Event Handlers</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">DAGSchedulerEvent</th>
+<th class="tableblock halign-left valign-top">Event Handler</th>
+<th class="tableblock halign-left valign-top">Trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#AllJobsCancelled">AllJobsCancelled</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DAGScheduler was requested to <a href="DAGScheduler.html#cancelAllJobs" class="page">cancel all running or waiting jobs</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#BeginEvent">BeginEvent</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#handleBeginEvent">handleBeginEvent</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="TaskSetManager.html" class="page">TaskSetManager</a> informs DAGScheduler that a task is starting (through <a href="DAGScheduler.html#taskStarted" class="page">taskStarted</a>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="CompletionEvent"></a> <code>CompletionEvent</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Posted exclusively when DAGScheduler is requested to <a href="#taskEnded">taskEnded</a></p>
+</div>
+<div class="paragraph">
+<p>Event handler: <a href="#handleTaskCompletion">handleTaskCompletion</a></p>
+</div>
+<div class="paragraph">
+<p><code>CompletionEvent</code> holds the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="CompletionEvent-task"></a> <a href="Task.html" class="page">Task</a></p>
+</li>
+<li>
+<p><a id="CompletionEvent-reason"></a> <code>TaskEndReason</code></p>
+</li>
+<li>
+<p><a id="CompletionEvent-result"></a> Result of executing the task</p>
+</li>
+<li>
+<p><a id="CompletionEvent-accumUpdates"></a> <a href="#spark-accumulators.adoc" class="page unresolved">AccumulatorV2s</a></p>
+</li>
+<li>
+<p><a id="CompletionEvent-taskInfo"></a> <a href="spark-scheduler-TaskInfo.html" class="page">TaskInfo</a></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#ExecutorAdded">ExecutorAdded</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#handleExecutorAdded">handleExecutorAdded</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DAGScheduler was informed (through <a href="DAGScheduler.html#executorAdded" class="page">executorAdded</a>) that an executor was spun up on a host.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="ExecutorLost"></a> <code>ExecutorLost</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#handleExecutorLost">handleExecutorLost</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Posted to notify <a href="DAGScheduler.html#executorLost" class="page">DAGScheduler that an executor was lost</a>.</p>
+<p class="tableblock"><code>ExecutorLost</code> conveys the following information:</p>
+<p class="tableblock">1. <code>execId</code></p>
+<p class="tableblock">2. <code>ExecutorLossReason</code></p>
+<p class="tableblock">NOTE: The input <code>filesLost</code> for <a href="#handleExecutorLost">handleExecutorLost</a> is enabled when <code>ExecutorLossReason</code> is <code>SlaveLost</code> with <code>workerLost</code> enabled (it is disabled by default).</p>
+<p class="tableblock">NOTE: <a href="#handleExecutorLost">handleExecutorLost</a> is also called when DAGScheduler is informed that a <a href="#handleTaskCompletion-FetchFailed">task has failed due to <code>FetchFailed</code> exception</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#GettingResultEvent">GettingResultEvent</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="TaskSetManager.html" class="page">TaskSetManager</a> informs DAGScheduler (through <a href="DAGScheduler.html#taskGettingResult" class="page">taskGettingResult</a>) that a task has completed and results are being fetched remotely.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#JobCancelled">JobCancelled</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#handleJobCancellation">handleJobCancellation</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DAGScheduler was requested to <a href="DAGScheduler.html#cancelJob" class="page">cancel a job</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#JobGroupCancelled">JobGroupCancelled</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#handleJobGroupCancelled">handleJobGroupCancelled</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DAGScheduler was requested to <a href="DAGScheduler.html#cancelJobGroup" class="page">cancel a job group</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="MapStageSubmitted"></a> <code>MapStageSubmitted</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#handleMapStageSubmitted">handleMapStageSubmitted</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Posted to inform DAGScheduler that <a href="../SparkContext.html#submitMapStage" class="page"><code>SparkContext</code> submitted a <code>MapStage</code> for execution</a> (through <a href="DAGScheduler.html#submitMapStage" class="page">submitMapStage</a>).</p>
+<p class="tableblock"><code>MapStageSubmitted</code> conveys the following information:</p>
+<p class="tableblock">1. A job identifier (as <code>jobId</code>)</p>
+<p class="tableblock">2. The <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a></p>
+<p class="tableblock">3. A <code>CallSite</code> (as <code>callSite</code>)</p>
+<p class="tableblock">4. The <a href="spark-scheduler-JobListener.html" class="page">JobListener</a> to inform about the status of the stage.</p>
+<p class="tableblock">5. <code>Properties</code> of the execution</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#ResubmitFailedStages">ResubmitFailedStages</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#resubmitFailedStages">resubmitFailedStages</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DAGScheduler was informed that a <a href="DAGScheduler.html#handleTaskCompletion-FetchFailed" class="page">task has failed due to <code>FetchFailed</code> exception</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#StageCancelled">StageCancelled</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#handleStageCancellation">handleStageCancellation</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DAGScheduler was requested to <a href="DAGScheduler.html#cancelStage" class="page">cancel a stage</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#TaskSetFailed">TaskSetFailed</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#handleTaskSetFailed">handleTaskSetFailed</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DAGScheduler was requested to <a href="DAGScheduler.html#taskSetFailed" class="page">cancel a <code>TaskSet</code></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="gettingresultevent-event-and-handlegettaskresult-handler"><a class="anchor" href="#gettingresultevent-event-and-handlegettaskresult-handler"></a><a class="link" href="#gettingresultevent-event-and-handlegettaskresult-handler"><a id="GettingResultEvent"></a> <code>GettingResultEvent</code> Event and <code>handleGetTaskResult</code> Handler</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GettingResultEvent(taskInfo: TaskInfo) extends DAGSchedulerEvent</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>GettingResultEvent</code> is a <code>DAGSchedulerEvent</code> that triggers <a href="#handleGetTaskResult">handleGetTaskResult</a> (on a separate thread).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>GettingResultEvent</code> is posted to inform DAGScheduler (through <a href="DAGScheduler.html#taskGettingResult" class="page">taskGettingResult</a>) that a <a href="TaskSetManager.html#handleTaskGettingResult" class="page">task fetches results</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="handlegettaskresult-handler"><a class="anchor" href="#handlegettaskresult-handler"></a><a class="link" href="#handlegettaskresult-handler"><a id="handleGetTaskResult"></a> <code>handleGetTaskResult</code> Handler</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">handleGetTaskResult(taskInfo: TaskInfo): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>handleGetTaskResult</code> merely posts <a href="spark-scheduler-SparkListener.adoc#SparkListenerTaskGettingResult">SparkListenerTaskGettingResult</a> (to <a href="DAGScheduler.html#listenerBus" class="page"><code>LiveListenerBus</code> Event Bus</a>).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="beginevent-event-and-handlebeginevent-handler"><a class="anchor" href="#beginevent-event-and-handlebeginevent-handler"></a><a class="link" href="#beginevent-event-and-handlebeginevent-handler"><a id="BeginEvent"></a> <code>BeginEvent</code> Event and <code>handleBeginEvent</code> Handler</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">BeginEvent(task: Task[_], taskInfo: TaskInfo) extends DAGSchedulerEvent</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>BeginEvent</code> is a <code>DAGSchedulerEvent</code> that triggers <a href="#handleBeginEvent">handleBeginEvent</a> (on a separate thread).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>BeginEvent</code> is posted to inform DAGScheduler (through <a href="DAGScheduler.html#taskStarted" class="page">taskStarted</a>) that a <a href="TaskSetManager.html#resourceOffer" class="page"><code>TaskSetManager</code> starts a task</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="jobgroupcancelled-event-and-handlejobgroupcancelled-handler"><a class="anchor" href="#jobgroupcancelled-event-and-handlejobgroupcancelled-handler"></a><a class="link" href="#jobgroupcancelled-event-and-handlejobgroupcancelled-handler"><a id="JobGroupCancelled"></a> <code>JobGroupCancelled</code> Event and <code>handleJobGroupCancelled</code> Handler</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">JobGroupCancelled(groupId: String) extends DAGSchedulerEvent</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>JobGroupCancelled</code> is a <code>DAGSchedulerEvent</code> that triggers <a href="#handleJobGroupCancelled">handleJobGroupCancelled</a> (on a separate thread).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>JobGroupCancelled</code> is posted when DAGScheduler is informed (through <a href="DAGScheduler.html#cancelJobGroup" class="page">cancelJobGroup</a>) that <a href="../SparkContext.html#cancelJobGroup" class="page"><code>SparkContext</code> was requested to cancel a job group</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="handlejobgroupcancelled-handler"><a class="anchor" href="#handlejobgroupcancelled-handler"></a><a class="link" href="#handlejobgroupcancelled-handler"><a id="handleJobGroupCancelled"></a> <code>handleJobGroupCancelled</code> Handler</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">handleJobGroupCancelled(groupId: String): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>handleJobGroupCancelled</code> finds active jobs in a group and cancels them.</p>
+</div>
+<div class="paragraph">
+<p>Internally, <code>handleJobGroupCancelled</code> computes all the active jobs (registered in the internal <a href="DAGScheduler.html#activeJobs" class="page">collection of active jobs</a>) that have <code>spark.jobGroup.id</code> scheduling property set to <code>groupId</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>handleJobGroupCancelled</code> then <a href="#handleJobCancellation">cancels every active job</a> in the group one by one and the cancellation reason: "part of cancelled job group [groupId]".</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-notified-that-shuffledependency-was-submittedhandlemapstagesubmitted-handler"><a class="anchor" href="#getting-notified-that-shuffledependency-was-submittedhandlemapstagesubmitted-handler"></a><a class="link" href="#getting-notified-that-shuffledependency-was-submittedhandlemapstagesubmitted-handler"><a id="handleMapStageSubmitted"></a> Getting Notified that ShuffleDependency Was Submitted&#8201;&#8212;&#8201;handleMapStageSubmitted Handler</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">handleMapStageSubmitted(
+  jobId: Int,
+  dependency: ShuffleDependency[_, _, _],
+  callSite: CallSite,
+  listener: JobListener,
+  properties: Properties): Unit</code></pre>
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/scheduler-handlemapstagesubmitted.png" alt="scheduler handlemapstagesubmitted">
+</div>
+<div class="title">Figure 1. <code>MapStageSubmitted</code> Event Handling</div>
+</div>
+<div class="paragraph">
+<p>handleMapStageSubmitted <a href="DAGScheduler.html#getOrCreateShuffleMapStage" class="page">finds or creates a new <code>ShuffleMapStage</code></a> for the input <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a> and <code>jobId</code>.</p>
+</div>
+<div class="paragraph">
+<p>handleMapStageSubmitted creates an <a href="spark-scheduler-ActiveJob.adoc">ActiveJob</a> (with the input <code>jobId</code>, <code>callSite</code>, <code>listener</code> and <code>properties</code>, and the <code>ShuffleMapStage</code>).</p>
+</div>
+<div class="paragraph">
+<p>handleMapStageSubmitted <a href="DAGScheduler.html#clearCacheLocs" class="page">clears the internal cache of RDD partition locations</a>.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME Why is this clearing here so important?
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You should see the following INFO messages in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO DAGScheduler: Got map stage job [id] ([callSite]) with [number] output partitions
+INFO DAGScheduler: Final stage: [stage] ([name])
+INFO DAGScheduler: Parents of final stage: [parents]
+INFO DAGScheduler: Missing parents: [missingStages]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>handleMapStageSubmitted registers the new job in <a href="DAGScheduler.html#jobIdToActiveJob" class="page">jobIdToActiveJob</a> and <a href="DAGScheduler.html#activeJobs" class="page">activeJobs</a> internal registries, and <a href="ShuffleMapStage.html#addActiveJob" class="page">with the final <code>ShuffleMapStage</code></a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>ShuffleMapStage</code> can have multiple <code>ActiveJob</code>s registered.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>handleMapStageSubmitted <a href="DAGScheduler.html#jobIdToStageIds" class="page">finds all the registered stages for the input <code>jobId</code></a> and collects <a href="Stage.html#latestInfo" class="page">their latest <code>StageInfo</code></a>.</p>
+</div>
+<div class="paragraph">
+<p>In the end, handleMapStageSubmitted posts <a href="spark-scheduler-SparkListener.adoc#SparkListenerJobStart">SparkListenerJobStart</a> message to <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a> and <a href="DAGScheduler.html#submitStage" class="page">submits the <code>ShuffleMapStage</code></a>.</p>
+</div>
+<div class="paragraph">
+<p>In case the <a href="ShuffleMapStage.html#isAvailable" class="page"><code>ShuffleMapStage</code> could be available</a> already, handleMapStageSubmitted <a href="DAGScheduler.html#markMapStageJobAsFinished" class="page">marks the job finished</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+DAGScheduler <a href="MapOutputTracker.html#getStatistics" class="page">requests <code>MapOutputTrackerMaster</code> for statistics for <code>ShuffleDependency</code></a> that it uses for handleMapStageSubmitted.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>MapOutputTrackerMaster</code> is passed in when <a href="DAGScheduler.html#creating-instance" class="page">DAGScheduler is created</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When handleMapStageSubmitted could not find or create a <code>ShuffleMapStage</code>, you should see the following WARN message in the logs.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>WARN Creating new stage failed due to exception - job: [id]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>handleMapStageSubmitted notifies <a href="spark-scheduler-JobListener.html#jobFailed" class="page"><code>listener</code> about the job failure</a> and exits.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>MapStageSubmitted</code> event processing is very similar to <a href="#JobSubmitted">JobSubmitted</a> events.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The difference between <a href="#handleMapStageSubmitted">handleMapStageSubmitted</a> and <a href="#handleJobSubmitted">handleJobSubmitted</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>handleMapStageSubmitted has a <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a> among the input parameters while handleJobSubmitted has <code>finalRDD</code>, <code>func</code>, and <code>partitions</code>.</p>
+</li>
+<li>
+<p>handleMapStageSubmitted initializes <code>finalStage</code> as <code>getShuffleMapStage(dependency, jobId)</code> while handleJobSubmitted as <code>finalStage = newResultStage(finalRDD, func, partitions, jobId, callSite)</code></p>
+</li>
+<li>
+<p>handleMapStageSubmitted INFO logs <code>Got map stage job %s (%s) with %d output partitions</code> with <code>dependency.rdd.partitions.length</code> while handleJobSubmitted does <code>Got job %s (%s) with %d output partitions</code> with <code>partitions.length</code>.</p>
+</li>
+<li>
+<p>FIXME: Could the above be cut to <code>ActiveJob.numPartitions</code>?</p>
+</li>
+<li>
+<p>handleMapStageSubmitted adds a new job with <code>finalStage.addActiveJob(job)</code> while handleJobSubmitted sets with <code>finalStage.setActiveJob(job)</code>.</p>
+</li>
+<li>
+<p>handleMapStageSubmitted checks if the final stage has already finished, tells the listener and removes it using the code:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">if (finalStage.isAvailable) {
+  markMapStageJobAsFinished(job, mapOutputTracker.getStatistics(dependency))
+}</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="resubmitfailedstages-handler"><a class="anchor" href="#resubmitfailedstages-handler"></a><a class="link" href="#resubmitfailedstages-handler"><a id="resubmitFailedStages"></a> <code>resubmitFailedStages</code> Handler</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">resubmitFailedStages(): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>resubmitFailedStages</code> iterates over the internal <a href="DAGScheduler.html#failedStages" class="page">collection of failed stages</a> and <a href="DAGScheduler.html#submitStage" class="page">submits</a> them.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>resubmitFailedStages</code> does nothing when there are no <a href="DAGScheduler.html#failedStages" class="page">failed stages reported</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You should see the following INFO message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO Resubmitting failed stages</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>resubmitFailedStages</code> <a href="DAGScheduler.html#clearCacheLocs" class="page">clears the internal cache of RDD partition locations</a> first. It then makes a copy of the <a href="DAGScheduler.html#failedStages" class="page">collection of failed stages</a> so DAGScheduler can track failed stages afresh.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+At this point DAGScheduler has no failed stages reported.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The previously-reported failed stages are sorted by the corresponding job ids in incremental order and <a href="DAGScheduler.html#submitStage" class="page">resubmitted</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-notified-that-executor-is-losthandleexecutorlost-handler"><a class="anchor" href="#getting-notified-that-executor-is-losthandleexecutorlost-handler"></a><a class="link" href="#getting-notified-that-executor-is-losthandleexecutorlost-handler"><a id="handleExecutorLost"></a> Getting Notified that Executor Is Lost&#8201;&#8212;&#8201;<code>handleExecutorLost</code> Handler</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">handleExecutorLost(
+  execId: String,
+  filesLost: Boolean,
+  maybeEpoch: Option[Long] = None): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>handleExecutorLost</code> checks whether the input optional <code>maybeEpoch</code> is defined and if not requests the <a href="MapOutputTracker.html#getEpoch" class="page">current epoch from <code>MapOutputTrackerMaster</code></a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>MapOutputTrackerMaster</code> is passed in (as <code>mapOutputTracker</code>) when <a href="DAGScheduler.html#creating-instance" class="page">DAGScheduler is created</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME When is <code>maybeEpoch</code> passed in?
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/dagscheduler-handleExecutorLost.png" alt="dagscheduler handleExecutorLost">
+</div>
+<div class="title">Figure 2. DAGScheduler.handleExecutorLost</div>
+</div>
+<div class="paragraph">
+<p>Recurring <code>ExecutorLost</code> events lead to the following repeating DEBUG message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>DEBUG Additional executor lost message for [execId] (epoch [currentEpoch])</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>handleExecutorLost</code> handler uses <code>DAGScheduler&#8217;s `failedEpoch</code> and FIXME internal registries.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Otherwise, when the executor <code>execId</code> is not in the <a href="DAGScheduler.html#failedEpoch" class="page">list of executor lost</a> or the executor failure&#8217;s epoch is smaller than the input <code>maybeEpoch</code>, the executor&#8217;s lost event is recorded in <a href="DAGScheduler.html#failedEpoch" class="page"><code>failedEpoch</code> internal registry</a>.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME Describe the case above in simpler non-technical words. Perhaps change the order, too.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You should see the following INFO message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO Executor lost: [execId] (epoch [epoch])</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="../storage/BlockManagerMaster.html#removeExecutor" class="page"><code>BlockManagerMaster</code> is requested to remove the lost executor <code>execId</code></a>.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME Review what&#8217;s <code>filesLost</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>handleExecutorLost</code> exits unless the <code>ExecutorLost</code> event was for a map output fetch operation (and the input <code>filesLost</code> is <code>true</code>) or <a href="../deploy/ExternalShuffleService.html" class="page">external shuffle service</a> is <em>not</em> used.</p>
+</div>
+<div class="paragraph">
+<p>In such a case, you should see the following INFO message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO Shuffle files lost for executor: [execId] (epoch [epoch])</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>handleExecutorLost</code> walks over all <a href="ShuffleMapStage.html" class="page">ShuffleMapStage</a>s in <a href="DAGScheduler.html#shuffleToMapStage" class="page">DAGScheduler&#8217;s <code>shuffleToMapStage</code> internal registry</a> and do the following (in order):</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>ShuffleMapStage.removeOutputsOnExecutor(execId)</code> is called</p>
+</li>
+<li>
+<p><a href="MapOutputTrackerMaster.html#registerMapOutputs" class="page">MapOutputTrackerMaster.registerMapOutputs(shuffleId</a> is called.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In case <a href="DAGScheduler.html#shuffleToMapStage" class="page">DAGScheduler&#8217;s <code>shuffleToMapStage</code> internal registry</a> has no shuffles registered,  <a href="MapOutputTrackerMaster.html#incrementEpoch" class="page"><code>MapOutputTrackerMaster</code> is requested to increment epoch</a>.</p>
+</div>
+<div class="paragraph">
+<p>Ultimatelly, DAGScheduler <a href="DAGScheduler.html#clearCacheLocs" class="page">clears the internal cache of RDD partition locations</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="handlejobcancellation-handler"><a class="anchor" href="#handlejobcancellation-handler"></a><a class="link" href="#handlejobcancellation-handler"><a id="handleJobCancellation"></a> <code>handleJobCancellation</code> Handler</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">handleJobCancellation(jobId: Int, reason: String = "")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>handleJobCancellation</code> first makes sure that the input <code>jobId</code> has been registered earlier (using <a href="DAGScheduler.html#jobIdToStageIds" class="page">jobIdToStageIds</a> internal registry).</p>
+</div>
+<div class="paragraph">
+<p>If the input <code>jobId</code> is not known to DAGScheduler, you should see the following DEBUG message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>DEBUG DAGScheduler: Trying to cancel unregistered job [jobId]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Otherwise, <code>handleJobCancellation</code> <a href="DAGScheduler.html#failJobAndIndependentStages" class="page">fails the active job and all independent stages</a> (by looking up the active job using <a href="DAGScheduler.html#jobIdToActiveJob" class="page">jobIdToActiveJob</a>) with failure reason:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>Job [jobId] cancelled [reason]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-notified-that-task-has-finishedhandletaskcompletion-handler"><a class="anchor" href="#getting-notified-that-task-has-finishedhandletaskcompletion-handler"></a><a class="link" href="#getting-notified-that-task-has-finishedhandletaskcompletion-handler"><a id="handleTaskCompletion"></a> Getting Notified That Task Has Finished&#8201;&#8212;&#8201;<code>handleTaskCompletion</code> Handler</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">handleTaskCompletion(event: CompletionEvent): Unit</code></pre>
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/dagscheduler-tasksetmanager.png" alt="dagscheduler tasksetmanager">
+</div>
+<div class="title">Figure 3. DAGScheduler and CompletionEvent</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>CompletionEvent</code> holds contextual information about the completed task.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. <code>CompletionEvent</code> Properties</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>task</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Completed <a href="Task.html" class="page">Task</a> instance for a stage, partition and stage attempt.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>reason</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>TaskEndReason</code>&#8230;&#8203;FIXME</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>result</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Result of the task</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>accumUpdates</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-accumulators.adoc">Accumulators</a> with&#8230;&#8203;FIXME</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>taskInfo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-scheduler-TaskInfo.adoc">TaskInfo</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><code>handleTaskCompletion</code> starts by <a href="OutputCommitCoordinator.html#taskCompleted" class="page">notifying <code>OutputCommitCoordinator</code> that a task completed</a>.</p>
+</div>
+<div class="paragraph">
+<p><code>handleTaskCompletion</code> <a href="../executor/TaskMetrics.html#fromAccumulators" class="page">re-creates <code>TaskMetrics</code></a> (using <a href="#CompletionEvent-accumUpdates"><code>accumUpdates</code> accumulators of the input <code>event</code></a>).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<a href="../executor/TaskMetrics.html" class="page">TaskMetrics</a> can be empty when the task has failed.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>handleTaskCompletion</code> announces task completion application-wide (by posting a <a href="spark-scheduler-SparkListener.adoc#SparkListenerTaskEnd">SparkListenerTaskEnd</a> to <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a>).</p>
+</div>
+<div class="paragraph">
+<p><code>handleTaskCompletion</code> checks the stage of the task out in the <a href="DAGScheduler.html#stageIdToStage" class="page"><code>stageIdToStage</code> internal registry</a> and if not found, it simply exits.</p>
+</div>
+<div class="paragraph">
+<p><code>handleTaskCompletion</code> branches off per <code>TaskEndReason</code> (as <code>event.reason</code>).</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. <code>handleTaskCompletion</code> Branches per <code>TaskEndReason</code></caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">TaskEndReason</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#handleTaskCompletion-Success">Success</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Acts according to the type of the task that completed, i.e. <a href="#handleTaskCompletion-Success-ShuffleMapTask">ShuffleMapTask</a> and <a href="#handleTaskCompletion-Success-ResultTask">ResultTask</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#handleTaskCompletion-Resubmitted">Resubmitted</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#handleTaskCompletion-FetchFailed">FetchFailed</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ExceptionFailure</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="DAGScheduler.html#updateAccumulators" class="page">Updates accumulators</a> (with partial values from the task).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ExecutorLostFailure</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Does nothing</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>TaskCommitDenied</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Does nothing</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>TaskKilled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Does nothing</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>TaskResultLost</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Does nothing</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>UnknownReason</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Does nothing</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="handling-successful-task-completion"><a class="anchor" href="#handling-successful-task-completion"></a><a class="link" href="#handling-successful-task-completion"><a id="handleTaskCompletion-Success"></a> Handling Successful Task Completion</a></h3>
+<div class="paragraph">
+<p>When a task has finished successfully (i.e. <code>Success</code> end reason), <code>handleTaskCompletion</code> marks the partition as no longer pending (i.e. the partition the task worked on is removed from <code>pendingPartitions</code> of the stage).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A <code>Stage</code> tracks its own pending partitions using <a href="Stage.html#pendingPartitions" class="page"><code>pendingPartitions</code> property</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>handleTaskCompletion</code> branches off given the type of the task that completed, i.e. <a href="#handleTaskCompletion-Success-ShuffleMapTask">ShuffleMapTask</a> and <a href="#handleTaskCompletion-Success-ResultTask">ResultTask</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="handling-successful-resulttask-completion"><a class="anchor" href="#handling-successful-resulttask-completion"></a><a class="link" href="#handling-successful-resulttask-completion"><a id="handleTaskCompletion-Success-ResultTask"></a> Handling Successful <code>ResultTask</code> Completion</a></h4>
+<div class="paragraph">
+<p>For <a href="ResultTask.html" class="page">ResultTask</a>, the stage is assumed a <a href="ResultStage.html" class="page">ResultStage</a>.</p>
+</div>
+<div class="paragraph">
+<p><code>handleTaskCompletion</code> finds the <code>ActiveJob</code> associated with the <code>ResultStage</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<a href="ResultStage.html" class="page">ResultStage</a> tracks the optional <code>ActiveJob</code> as <a href="ResultStage.html#activeJob" class="page"><code>activeJob</code> property</a>. There could only be one active job for a <code>ResultStage</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If there is <em>no</em> job for the <code>ResultStage</code>, you should see the following INFO message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO DAGScheduler: Ignoring result from [task] because its job has finished</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Otherwise, when the <code>ResultStage</code> has a <code>ActiveJob</code>, <code>handleTaskCompletion</code> checks the status of the partition output for the partition the <code>ResultTask</code> ran for.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>ActiveJob</code> tracks task completions in <code>finished</code> property with flags for every partition in a stage. When the flag for a partition is enabled (i.e. <code>true</code>), it is assumed that the partition has been computed (and no results from any <code>ResultTask</code> are expected and hence simply ignored).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME Describe why could a partition has more <code>ResultTask</code> running.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>handleTaskCompletion</code> ignores the <code>CompletionEvent</code> when the partition has already been marked as completed for the stage and simply exits.</p>
+</div>
+<div class="paragraph">
+<p><code>handleTaskCompletion</code> <a href="DAGScheduler.html#updateAccumulators" class="page">updates accumulators</a>.</p>
+</div>
+<div class="paragraph">
+<p>The partition for the <code>ActiveJob</code> (of the <code>ResultStage</code>) is marked as computed and the number of partitions calculated increased.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>ActiveJob</code> tracks what partitions have already been computed and their number.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If the <code>ActiveJob</code> has finished (when the number of partitions computed is exactly the number of partitions in a stage) <code>handleTaskCompletion</code> does the following (in order):</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="DAGScheduler.html#markStageAsFinished" class="page">Marks <code>ResultStage</code> computed</a>.</p>
+</li>
+<li>
+<p><a href="DAGScheduler.html#cleanupStateForJobAndIndependentStages" class="page">Cleans up after <code>ActiveJob</code> and independent stages</a>.</p>
+</li>
+<li>
+<p>Announces the job completion application-wide (by posting a <a href="spark-scheduler-SparkListener.adoc#SparkListenerJobEnd">SparkListenerJobEnd</a> to <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a>).</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In the end, <code>handleTaskCompletion</code> <a href="spark-scheduler-JobListener.html#taskSucceeded" class="page">notifies <code>JobListener</code> of the <code>ActiveJob</code> that the task succeeded</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A task succeeded notification holds the output index and the result.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When the notification throws an exception (because it runs user code), <code>handleTaskCompletion</code> <a href="spark-scheduler-JobListener.html#jobFailed" class="page">notifies <code>JobListener</code> about the failure</a> (wrapping it inside a <code>SparkDriverExecutionException</code> exception).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="handling-successful-shufflemaptask-completion"><a class="anchor" href="#handling-successful-shufflemaptask-completion"></a><a class="link" href="#handling-successful-shufflemaptask-completion"><a id="handleTaskCompletion-Success-ShuffleMapTask"></a> Handling Successful <code>ShuffleMapTask</code> Completion</a></h4>
+<div class="paragraph">
+<p>For <a href="ShuffleMapTask.html" class="page">ShuffleMapTask</a>, the stage is assumed a  <a href="ShuffleMapStage.html" class="page">ShuffleMapStage</a>.</p>
+</div>
+<div class="paragraph">
+<p><code>handleTaskCompletion</code> <a href="DAGScheduler.html#updateAccumulators" class="page">updates accumulators</a>.</p>
+</div>
+<div class="paragraph">
+<p>The task&#8217;s result is assumed <a href="MapStatus.html" class="page">MapStatus</a> that knows the executor where the task has finished.</p>
+</div>
+<div class="paragraph">
+<p>You should see the following DEBUG message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>DEBUG DAGScheduler: ShuffleMapTask finished on [execId]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the executor is registered in <a href="DAGScheduler.html#failedEpoch" class="page"><code>failedEpoch</code> internal registry</a> and the epoch of the completed task is not greater than that of the executor (as in <code>failedEpoch</code> registry), you should see the following INFO message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO DAGScheduler: Ignoring possibly bogus [task] completion from executor [executorId]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Otherwise, <code>handleTaskCompletion</code> <a href="ShuffleMapStage.html#addOutputLoc" class="page">registers the <code>MapStatus</code> result for the partition with the stage</a> (of the completed task).</p>
+</div>
+<div class="paragraph">
+<p><code>handleTaskCompletion</code> does more processing only if the <code>ShuffleMapStage</code> is registered as still running (in <a href="DAGScheduler.html#runningStages" class="page"><code>runningStages</code> internal registry</a>) and the <a href="Stage.html#pendingPartitions" class="page"><code>ShuffleMapStage</code> stage has no pending partitions to compute</a>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ShuffleMapStage</code> is <a href="#markStageAsFinished">marked as finished</a>.</p>
+</div>
+<div class="paragraph">
+<p>You should see the following INFO messages in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO DAGScheduler: looking for newly runnable stages
+INFO DAGScheduler: running: [runningStages]
+INFO DAGScheduler: waiting: [waitingStages]
+INFO DAGScheduler: failed: [failedStages]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>handleTaskCompletion</code> <a href="MapOutputTrackerMaster.html#registerMapOutputs" class="page">registers the shuffle map outputs of the <code>ShuffleDependency</code> with <code>MapOutputTrackerMaster</code></a> (with the epoch incremented) and <a href="DAGScheduler.html#clearCacheLocs" class="page">clears internal cache of the stage&#8217;s RDD block locations</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<a href="MapOutputTrackerMaster.html" class="page">MapOutputTrackerMaster</a> is given when <a href="DAGScheduler.html#creating-instance" class="page">DAGScheduler is created</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If the <a href="ShuffleMapStage.html#isAvailable" class="page"><code>ShuffleMapStage</code> stage is ready</a>, all <a href="ShuffleMapStage.html#mapStageJobs" class="page">active jobs of the stage</a> (aka <em>map-stage jobs</em>) are <a href="DAGScheduler.html#markMapStageJobAsFinished" class="page">marked as finished</a> (with <a href="MapOutputTrackerMaster.html#getStatistics" class="page"><code>MapOutputStatistics</code> from <code>MapOutputTrackerMaster</code> for the <code>ShuffleDependency</code></a>).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A <code>ShuffleMapStage</code> stage is ready (aka <em>available</em>) when all partitions have shuffle outputs, i.e. when their tasks have completed.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Eventually, <code>handleTaskCompletion</code> <a href="DAGScheduler.html#submitWaitingChildStages" class="page">submits waiting child stages (of the ready <code>ShuffleMapStage</code>)</a>.</p>
+</div>
+<div class="paragraph">
+<p>If however the <code>ShuffleMapStage</code> is <em>not</em> ready, you should see the following INFO message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO DAGScheduler: Resubmitting [shuffleStage] ([shuffleStage.name]) because some of its tasks had failed: [missingPartitions]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the end, <code>handleTaskCompletion</code> <a href="DAGScheduler.html#submitStage" class="page">submits the <code>ShuffleMapStage</code> for execution</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="taskendreason-resubmitted"><a class="anchor" href="#taskendreason-resubmitted"></a><a class="link" href="#taskendreason-resubmitted"><a id="handleTaskCompletion-Resubmitted"></a> TaskEndReason: Resubmitted</a></h3>
+<div class="paragraph">
+<p>For <code>Resubmitted</code> case, you should see the following INFO message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO Resubmitted [task], so marking it as still running</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The task (by <code>task.partitionId</code>) is added to the collection of pending partitions of the stage (using <code>stage.pendingPartitions</code>).</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A stage knows how many partitions are yet to be calculated. A task knows about the partition id for which it was launched.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="task-failed-with-fetchfailed-exceptiontaskendreason-fetchfailed"><a class="anchor" href="#task-failed-with-fetchfailed-exceptiontaskendreason-fetchfailed"></a><a class="link" href="#task-failed-with-fetchfailed-exceptiontaskendreason-fetchfailed"><a id="handleTaskCompletion-FetchFailed"></a> Task Failed with <code>FetchFailed</code> Exception&#8201;&#8212;&#8201;TaskEndReason: FetchFailed</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">FetchFailed(
+  bmAddress: BlockManagerId,
+  shuffleId: Int,
+  mapId: Int,
+  reduceId: Int,
+  message: String)
+extends TaskFailedReason</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. <code>FetchFailed</code> Properties</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bmAddress</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../storage/BlockManager.html#BlockManagerId" class="page">BlockManagerId</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shuffleId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used when&#8230;&#8203;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mapId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used when&#8230;&#8203;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>reduceId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used when&#8230;&#8203;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>failureMessage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used when&#8230;&#8203;</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A task knows about the id of the stage it belongs to.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When <code>FetchFailed</code> happens, <code>stageIdToStage</code> is used to access the failed stage (using <code>task.stageId</code> and the <code>task</code> is available in <code>event</code> in <code>handleTaskCompletion(event: CompletionEvent)</code>). <code>shuffleToMapStage</code> is used to access the map stage (using <code>shuffleId</code>).</p>
+</div>
+<div class="paragraph">
+<p>If <code>failedStage.latestInfo.attemptId != task.stageAttemptId</code>, you should see the following INFO in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO Ignoring fetch failure from [task] as it's from [failedStage] attempt [task.stageAttemptId] and there is a more recent attempt for that stage (attempt ID [failedStage.latestInfo.attemptId]) running</code></pre>
+</div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME What does <code>failedStage.latestInfo.attemptId != task.stageAttemptId</code> mean?
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>And the case finishes. Otherwise, the case continues.</p>
+</div>
+<div class="paragraph">
+<p>If the failed stage is in <code>runningStages</code>, the following INFO message shows in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO Marking [failedStage] ([failedStage.name]) as failed due to a fetch failure from [mapStage] ([mapStage.name])</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>markStageAsFinished(failedStage, Some(failureMessage))</code> is called.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME What does <code>markStageAsFinished</code> do?
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If the failed stage is not in <code>runningStages</code>, the following DEBUG message shows in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>DEBUG Received fetch failure from [task], but its from [failedStage] which is no longer running</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When <code>disallowStageRetryForTest</code> is set, <code>abortStage(failedStage, "Fetch failure will not retry stage due to testing config", None)</code> is called.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME Describe <code>disallowStageRetryForTest</code> and <code>abortStage</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If the <a href="Stage.html#failedOnFetchAndShouldAbort" class="page">number of fetch failed attempts for the stage exceeds the allowed number</a>, the <a href="DAGScheduler.html#abortStage" class="page">failed stage is aborted</a> with the reason:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>[failedStage] ([name]) has failed the maximum allowable number of times: 4. Most recent failure reason: [failureMessage]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If there are no failed stages reported (<a href="DAGScheduler.html#failedStages" class="page">DAGScheduler.failedStages</a> is empty), the following INFO shows in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO Resubmitting [mapStage] ([mapStage.name]) and [failedStage] ([failedStage.name]) due to fetch failure</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And the following code is executed:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>messageScheduler.schedule(
+  new Runnable {
+    override def run(): Unit = eventProcessLoop.post(ResubmitFailedStages)
+  }, DAGScheduler.RESUBMIT_TIMEOUT, TimeUnit.MILLISECONDS)</code></pre>
+</div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME What does the above code do?
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For all the cases, the failed stage and map stages are both added to the internal <a href="DAGScheduler.html#failedStages" class="page">registry of failed stages</a>.</p>
+</div>
+<div class="paragraph">
+<p>If <code>mapId</code> (in the <code>FetchFailed</code> object for the case) is provided, the map stage output is cleaned up (as it is broken) using <code>mapStage.removeOutputLoc(mapId, bmAddress)</code> and <a href="MapOutputTracker.html#unregisterMapOutput" class="page">MapOutputTrackerMaster.unregisterMapOutput(shuffleId, mapId, bmAddress)</a> methods.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME What does <code>mapStage.removeOutputLoc</code> do?
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If <code>BlockManagerId</code> (as <code>bmAddress</code> in the <code>FetchFailed</code> object) is defined, <code>handleTaskCompletion</code> <a href="#handleExecutorLost">notifies DAGScheduler that an executor was lost</a> (with <code>filesLost</code> enabled and <code>maybeEpoch</code> from the <a href="Task.html#epoch" class="page">Task</a> that completed).</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

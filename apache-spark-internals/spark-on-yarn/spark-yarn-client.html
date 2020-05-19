@@ -1,0 +1,3663 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/spark-on-yarn/spark-yarn-client.html">
+    <meta name="generator" content="Antora 2.3.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-86782445-1')</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://books.japila.pl/apache-spark-internals">The Internals Of Apache Spark</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Resources</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Resource A</a>
+            <a class="navbar-item" href="#">Resource B</a>
+            <a class="navbar-item" href="#">Resource C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="apache-spark-internals" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Apache Spark</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/index.html">Resilient Distributed Dataset</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/RDD.html">RDD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-HadoopRDD.html">HadoopRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/CheckpointRDD.html">CheckpointRDD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../rdd/ReliableCheckpointRDD.html">ReliableCheckpointRDD</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/ShuffledRDD.html">ShuffledRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/spark-rdd-operations.html">Operators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/spark-rdd-transformations.html">Transformations</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../rdd/PairRDDFunctions.html">PairRDDFunctions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-actions.html">Actions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rdd/spark-rdd-lineage.html">RDD Lineage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rdd/spark-rdd-caching.html">Caching and Persistence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/spark-rdd-partitions.html">Partitions and Partitioning</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-Partition.html">Partition</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/Partitioner.html">Partitioner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/HashPartitioner.html">HashPartitioner</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/RangePartitioner.html">RangePartitioner</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/RDDCheckpointData.html">RDDCheckpointData</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/LocalRDDCheckpointData.html">LocalRDDCheckpointData</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/ReliableRDDCheckpointData.html">ReliableRDDCheckpointData</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rdd/spark-rdd-shuffle.html">Shuffling</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/spark-rdd-Dependency.html">Dependencies</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-NarrowDependency.html">NarrowDependency</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/ShuffleDependency.html">ShuffleDependency</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rdd/Aggregator.html">Aggregator</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../scheduler/index.html">Scheduler</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../scheduler/DAGScheduler.html">DAGScheduler</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/DAGSchedulerEvent.html">DAGScheduler Events</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/DAGSchedulerEventProcessLoop.html">DAGScheduler Event Bus</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../scheduler/Stage.html">Stage</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/ResultStage.html">ResultStage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/ShuffleMapStage.html">ShuffleMapStage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../scheduler/MapOutputTracker.html">MapOutputTracker</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../scheduler/MapOutputTrackerMaster.html">MapOutputTrackerMaster</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../scheduler/ShuffleStatus.html">ShuffleStatus</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../scheduler/MapOutputTrackerMasterEndpoint.html">MapOutputTrackerMasterEndpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/MapOutputTrackerWorker.html">MapOutputTrackerWorker</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/spark-scheduler-StageInfo.html">StageInfo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../scheduler/spark-scheduler-JobListener.html">JobListener</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/spark-scheduler-JobWaiter.html">JobWaiter</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../scheduler/TaskScheduler.html">TaskScheduler</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/TaskSchedulerImpl.html">TaskSchedulerImpl</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../scheduler/SchedulerBackend.html">SchedulerBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../scheduler/CoarseGrainedSchedulerBackend.html">CoarseGrainedSchedulerBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../scheduler/CoarseGrainedSchedulerBackend-DriverEndpoint.html">DriverEndpoint</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../scheduler/Task.html">Task</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/ShuffleMapTask.html">ShuffleMapTask</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/ResultTask.html">ResultTask</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/TaskSet.html">TaskSet</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/TaskSetManager.html">TaskSetManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/spark-scheduler-ActiveJob.html">Jobs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../scheduler/spark-scheduler-SchedulableBuilder.html">SchedulableBuilder</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/spark-scheduler-FIFOSchedulableBuilder.html">FIFOSchedulableBuilder</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/spark-scheduler-FairSchedulableBuilder.html">FairSchedulableBuilder</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../scheduler/spark-scheduler-Schedulable.html">Schedulable Entities</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/spark-scheduler-Pool.html">Schedulable Pool</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/spark-scheduler-SchedulingMode.html">Scheduling Mode</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/spark-scheduler-TaskInfo.html">TaskInfo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/MapStatus.html">MapStatus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/spark-scheduler-TaskDescription.html">TaskDescription</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/spark-taskschedulerimpl-speculative-execution.html">Speculative Execution of Tasks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/TaskResultGetter.html">TaskResultGetter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../scheduler/spark-TaskContext.html">TaskContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/spark-BarrierTaskContext.html">BarrierTaskContext</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/spark-TaskContextImpl.html">TaskContextImpl</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/spark-scheduler-TaskResult.html">TaskResults</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/spark-scheduler-TaskSetBlacklist.html">TaskSetBlacklist</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/OutputCommitCoordinator.html">OutputCommitCoordinator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/TaskLocation.html">TaskLocation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/ExternalClusterManager.html">ExternalClusterManager</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../memory/index.html">Memory System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../memory/MemoryManager.html">MemoryManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/StaticMemoryManager.html">StaticMemoryManager</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/UnifiedMemoryManager.html">UnifiedMemoryManager</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../memory/MemoryPool.html">MemoryPool</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/ExecutionMemoryPool.html">ExecutionMemoryPool</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/StorageMemoryPool.html">StorageMemoryPool</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../memory/TaskMemoryManager.html">TaskMemoryManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../memory/MemoryConsumer.html">MemoryConsumer</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/BytesToBytesMap.html">BytesToBytesMap</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/UnsafeSorterSpillReader.html">UnsafeSorterSpillReader</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/UnsafeExternalSorter.html">UnsafeExternalSorter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/UnsafeInMemorySorter.html">UnsafeInMemorySorter</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../memory/UnsafeSorterSpillWriter.html">UnsafeSorterSpillWriter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Storage System</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/BlockManager.html">BlockManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/DiskBlockManager.html">DiskBlockManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/DiskStore.html">DiskStore</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-BlockDataManager.html">BlockDataManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-BlockId.html">BlockId</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../storage/spark-BlockInfoManager.html">BlockInfoManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../storage/spark-BlockInfo.html">BlockInfo</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../storage/BlockManagerMaster.html">BlockManagerMaster</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../storage/spark-blockmanager-BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/MemoryStore.html">MemoryStore</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-blockmanager-BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-BlockManager-BlockManagerSource.html">BlockManagerSource</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-BlockManager-ShuffleMetricsSource.html">ShuffleMetricsSource</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-blockmanager-StorageStatus.html">StorageStatus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/RDDInfo.html">RDDInfo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/StorageLevel.html">StorageLevel</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/demo-diskblockmanager-and-block-data.html">Demo: DiskBlockManager and Block Data</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/index.html">Shuffle System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/ShuffleManager.html">ShuffleManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/SortShuffleManager.html">SortShuffleManager</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleHandle.html">ShuffleHandle</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/spark-shuffle-BaseShuffleHandle.html">BaseShuffleHandle</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/SerializedShuffleHandle.html">SerializedShuffleHandle</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleReader.html">ShuffleReader</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/BlockStoreShuffleReader.html">BlockStoreShuffleReader</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/ShuffleWriter.html">ShuffleWriter</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/BypassMergeSortShuffleWriter.html">BypassMergeSortShuffleWriter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/SortShuffleWriter.html">SortShuffleWriter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../shuffle/ShuffleExternalSorter.html">ShuffleExternalSorter</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../shuffle/ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/ShuffleBlockResolver.html">ShuffleBlockResolver</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/IndexShuffleBlockResolver.html">IndexShuffleBlockResolver</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../shuffle/FetchFailedException.html">FetchFailedException</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/Spillable.html">Spillable</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/ExternalAppendOnlyMap.html">ExternalAppendOnlyMap</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/ExternalSorter.html">ExternalSorter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../spark-overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../rdd-checkpointing.html">RDD Checkpointing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-dynamic-allocation.html">Dynamic Allocation of Executors</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-ExecutorAllocationManager.html">ExecutorAllocationManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-service-ExecutorAllocationClient.html">ExecutorAllocationClient</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-service-ExecutorAllocationManagerSource.html">ExecutorAllocationManagerSource</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Shared Variables</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-broadcast.html">Broadcast variables</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-accumulators.html">Accumulators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-AccumulatorContext.html">AccumulatorContext</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../spark-data-locality.html">Data Locality</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-architecture.html">Spark Architecture</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-driver.html">Driver</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-master.html">Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-workers.html">Workers</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Internal IO</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-internal-io-SparkHadoopWriter.html">SparkHadoopWriter</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-internal-io-FileCommitProtocol.html">FileCommitProtocol</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-internal-io-HadoopMapReduceCommitProtocol.html">HadoopMapReduceCommitProtocol</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-internal-io-HadoopMapRedCommitProtocol.html">HadoopMapRedCommitProtocol</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-internal-io-HadoopWriteConfigUtil.html">HadoopWriteConfigUtil</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-internal-io-HadoopMapReduceWriteConfigUtil.html">HadoopMapReduceWriteConfigUtil</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-internal-io-HadoopMapRedWriteConfigUtil.html">HadoopMapRedWriteConfigUtil</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Misc</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-core-AppStatusStore.html">AppStatusStore</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-core-KVStore.html">KVStore</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-core-KVStoreView.html">KVStoreView</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-core-ElementTrackingStore.html">ElementTrackingStore</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-core-InMemoryStore.html">InMemoryStore</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-core-LevelDB.html">LevelDB</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-InterruptibleIterator.html">InterruptibleIterator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-Utils.html">Utils Helper Object</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-barrier-execution-mode.html">Barrier Execution Mode</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-RDDBarrier.html">RDDBarrier</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Security</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-webui-security.html">Securing Web UI</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-deployment-environments.html">Deployment Environments</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-cluster.html">Spark on cluster</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Monitoring, Tuning, Debugging and Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-logging.html">Logging</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-tuning.html">Performance Tuning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-scheduler-SparkListener.html">SparkListener</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkListener-SpillListener.html">SpillListener</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkListener-StatsReportListener.html">StatsReportListener</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-scheduler-LiveListenerBus.html">LiveListenerBus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-SparkListenerBus.html">SparkListenerBus</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkListenerBus-AsyncEventQueue.html">AsyncEventQueue</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkListenerBus-ReplayListenerBus.html">ReplayListenerBus</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-JsonProtocol.html">JsonProtocol</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-debugging.html">Debugging Spark</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Varia</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../varia/spark-building-from-sources.html">Building Apache Spark from Sources</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../varia/spark-hadoop.html">Spark and Hadoop</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkHadoopUtil.html">SparkHadoopUtil</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../varia/spark-inmemory-filesystems.html">Spark and software in-memory file systems</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../varia/spark-others.html">Spark and The Others</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../varia/spark-deeplearning.html">Distributed Deep Learning on Spark</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../varia/spark-packages.html">Spark Packages</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-tips-and-tricks.html">Spark Tips and Tricks</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-tips-and-tricks-access-private-members-spark-shell.html">Access private members in Scala in Spark shell</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-tips-and-tricks-sparkexception-task-not-serializable.html">SparkException: Task not serializable</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-tips-and-tricks-running-spark-windows.html">Running Spark Applications on Windows</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/BroadcastManager.html">BroadcastManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BroadcastFactory.html">BroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/TorrentBroadcast.html">TorrentBroadcast</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ShuffleClient.html">ShuffleClient</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BlockTransferService.html">BlockTransferService</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/ExternalShuffleClient.html">ExternalShuffleClient</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/NettyBlockTransferService.html">NettyBlockTransferService</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/BlockFetchingListener.html">BlockFetchingListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/RetryingBlockFetcher.html">RetryingBlockFetcher</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/Executor.html">Executor</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/TaskRunner.html">TaskRunner</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ExecutorSource.html">ExecutorSource</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/ExecutorBackend.html">ExecutorBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/TaskMetrics.html">TaskMetrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/RpcEnv.html">RpcEnv</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/NettyRpcEnv.html">NettyRpcEnv</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../rpc/NettyStreamManager.html">NettyStreamManager</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvConfig.html">RpcEnvConfig</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcAddress.html">RpcAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointAddress.html">RpcEndpointAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rpc/NettyRpcEnvFactory.html">NettyRpcEnvFactory</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFileServer.html">RpcEnvFileServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcUtils.html">RpcUtils</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Network System</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/TransportContext.html">TransportContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/MessageHandler.html">MessageHandler</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/TransportRequestHandler.html">TransportRequestHandler</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/TransportConf.html">TransportConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/SparkTransportConf.html">SparkTransportConf</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportClientFactory.html">TransportClientFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportServer.html">TransportServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/RpcHandler.html">RpcHandler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/StreamManager.html">StreamManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/OneForOneStreamManager.html">OneForOneStreamManager</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/ManagedBuffer.html">ManagedBuffer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/RpcResponseCallback.html">RpcResponseCallback</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../deploy/ExternalShuffleService.html">External Shuffle Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockHandler.html">ExternalShuffleBlockHandler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockResolver.html">ExternalShuffleBlockResolver</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../io/CompressionCodec.html">CompressionCodec</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../serializer/index.html">Serialization System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerManager.html">SerializerManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/Serializer.html">Serializer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerInstance.html">SerializerInstance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializationStream.html">SerializationStream</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/DeserializationStream.html">DeserializationStream</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tools</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools/spark-shell.html">Spark Shell (spark-shell)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../tools/spark-submit.html">Spark Submit (spark-submit)</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../tools/spark-submit-SparkSubmitArguments.html">SparkSubmitArguments</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../tools/spark-submit-SparkSubmitOptionParser.html">SparkSubmitOptionParser</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../tools/spark-submit-SparkSubmitCommandBuilder.html">SparkSubmitCommandBuilder</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../tools/spark-class.html">spark-class shell script</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../tools/spark-AbstractCommandBuilder.html">AbstractCommandBuilder</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools/spark-SparkLauncher.html">SparkLauncher</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/index.html">Web UI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-jobs.html">Jobs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-JobsTab.html">JobsTab</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../webui/spark-webui-AllJobsPage.html">AllJobsPage</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../webui/spark-webui-JobPage.html">JobPage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-stages.html">Stages</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-storage.html">Storage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-environment.html">Environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-executors.html">Executors</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-StagesTab.html">StagesTab&#8201;&#8212;&#8201;Stages for All Jobs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-AllStagesPage.html">AllStagesPage&#8201;&#8212;&#8201;Stages for All Jobs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-StagePage.html">StagePage&#8201;&#8212;&#8201;Stage Details</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-PoolPage.html">PoolPage&#8201;&#8212;&#8201;Pool Details</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-StorageTab.html">StorageTab</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-StoragePage.html">StoragePage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-RDDPage.html">RDDPage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-EnvironmentTab.html">EnvironmentTab</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-EnvironmentPage.html">EnvironmentPage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-ExecutorsTab.html">ExecutorsTab</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-ExecutorsPage.html">ExecutorsPage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-ExecutorThreadDumpPage.html">ExecutorThreadDumpPage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-SparkUI.html">SparkUI&#8201;&#8212;&#8201;Web UI of Spark Application</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-SparkUITab.html">SparkUITab</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-BlockStatusListener.html">BlockStatusListener Spark Listener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-EnvironmentListener.html">EnvironmentListener Spark Listener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-executors-ExecutorsListener.html">ExecutorsListener Spark Listener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-JobProgressListener.html">JobProgressListener Spark Listener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-StorageStatusListener.html">StorageStatusListener Spark Listener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-StorageListener.html">StorageListener&#8201;&#8212;&#8201;Spark Listener for Tracking Persistence Status of RDD Blocks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-RDDOperationGraphListener.html">RDDOperationGraphListener Spark Listener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-WebUI.html">WebUI&#8201;&#8212;&#8201;Framework For Web UIs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-WebUIPage.html">WebUIPage&#8201;&#8212;&#8201;Contract of Pages in Web UI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-WebUITab.html">WebUITab&#8201;&#8212;&#8201;Contract of Tabs in Web UI</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-RDDStorageInfo.html">RDDStorageInfo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-core-LiveEntity.html">LiveEntity</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-core-LiveRDD.html">LiveRDD</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-UIUtils.html">UIUtils</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-JettyUtils.html">JettyUtils</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-properties.html">web UI Configuration Properties</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../metrics/index.html">Spark Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../metrics/spark-metrics-MetricsSystem.html">MetricsSystem</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../metrics/spark-metrics-MetricsConfig.html">MetricsConfig</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../metrics/spark-metrics-Source.html">Source</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/spark-scheduler-DAGSchedulerSource.html">DAGSchedulerSourcer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../metrics/spark-metrics-Sink.html">Sink</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/spark-metrics-MetricsServlet.html">MetricsServlet JSON Metrics Sink</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../metrics/spark-metrics-properties.html">Metrics Configuration Properties</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/index.html">Spark MLlib</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines.html">ML Pipelines (spark.ml)</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Pipeline.html">Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-PipelineStage.html">PipelineStage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-transformers.html">Transformers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Transformer.html">Transformer</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-transformers-Tokenizer.html">Tokenizer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-estimators.html">Estimators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Estimator.html">Estimator</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-StringIndexer.html">StringIndexer</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-KMeans.html">KMeans</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-TrainValidationSplit.html">TrainValidationSplit</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Predictor.html">Predictor</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-RandomForestRegressor.html">RandomForestRegressor</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Regressor.html">Regressor</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-LinearRegression.html">LinearRegression</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Classifier.html">Classifier</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-RandomForestClassifier.html">RandomForestClassifier</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-DecisionTreeClassifier.html">DecisionTreeClassifier</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-models.html">Models</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Model.html">Model</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Evaluator.html">Evaluator&#8201;&#8212;&#8201;ML Pipeline Component for Model Scoring</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-BinaryClassificationEvaluator.html">BinaryClassificationEvaluator&#8201;&#8212;&#8201;Evaluator of Binary Classification Models</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ClusteringEvaluator.html">ClusteringEvaluator&#8201;&#8212;&#8201;Evaluator of Clustering Models</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MulticlassClassificationEvaluator.html">MulticlassClassificationEvaluator&#8201;&#8212;&#8201;Evaluator of Multiclass Classification Models</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-RegressionEvaluator.html">RegressionEvaluator&#8201;&#8212;&#8201;Evaluator of Regression Models</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-CrossValidator.html">CrossValidator&#8201;&#8212;&#8201;Model Tuning / Finding The Best Model</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-CrossValidatorModel.html">CrossValidatorModel</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ParamGridBuilder.html">ParamGridBuilder</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-CrossValidator-example.html">CrossValidator with Pipeline Example</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Params.html">Params and ParamMaps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ValidatorParams.html">ValidatorParams</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-HasParallelism.html">HasParallelism</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines-persistence.html">ML Persistence&#8201;&#8212;&#8201;Saving and Loading Models and Pipelines</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MLWritable.html">MLWritable</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MLReader.html">MLReader</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines-example-classification.html">Example&#8201;&#8212;&#8201;Text Classification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines-example-regression.html">Example&#8201;&#8212;&#8201;Linear Regression</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-logistic-regression.html">Logistic Regression</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-LogisticRegression.html">LogisticRegression</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-latent-dirichlet-allocation.html">Latent Dirichlet Allocation (LDA)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-vector.html">Vector</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-labeledpoint.html">LabeledPoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-streaming.html">Streaming MLlib</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-GeneralizedLinearRegression.html">GeneralizedLinearRegression</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-alternating-least-squares.html">Alternating Least Squares (ALS) Matrix Factorization</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ALS.html">ALS&#8201;&#8212;&#8201;Estimator for ALSModel</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ALSModel.html">ALSModel&#8201;&#8212;&#8201;Model for Predictions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ALSModelReader.html">ALSModelReader</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Instrumentation.html">Instrumentation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MLUtils.html">MLUtils</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/EventLoggingListener.html">EventLoggingListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/SQLHistoryListener.html">SQLHistoryListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-history-server/ApplicationHistoryProvider.html">ApplicationHistoryProvider</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-history-server/FsHistoryProvider.html">FsHistoryProvider</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/HistoryServerArguments.html">HistoryServerArguments</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/ApplicationCacheOperations.html">ApplicationCacheOperations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/ApplicationCache.html">ApplicationCache</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-local/index.html">Spark local</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-local/spark-LocalSchedulerBackend.html">LocalSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-local/spark-LocalEndpoint.html">LocalEndpoint&#8201;&#8212;&#8201;RPC Endpoint for LocalSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-local/spark-LauncherBackend.html">LauncherBackend</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Spark on YARN</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-yarn-YarnShuffleService.html">YarnShuffleService&#8201;&#8212;&#8201;ExternalShuffleService on YARN</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-yarn-ExecutorRunnable.html">ExecutorRunnable</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="spark-yarn-client.html">Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-yarn-yarnrmclient.html">YarnRMClient</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="spark-yarn-applicationmaster.html">ApplicationMaster</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-yarn-AMEndpoint.html">AMEndpoint&#8201;&#8212;&#8201;ApplicationMaster RPC Endpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-yarn-YarnClusterManager.html">YarnClusterManager&#8201;&#8212;&#8201;ExternalClusterManager for YARN</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="spark-yarn-taskschedulers.html">TaskSchedulers for YARN</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-yarn-yarnscheduler.html">YarnScheduler</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-yarn-yarnclusterscheduler.html">YarnClusterScheduler</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="spark-yarn-schedulerbackends.html">SchedulerBackends for YARN</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-yarn-yarnschedulerbackend.html">YarnSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-yarn-client-yarnclientschedulerbackend.html">YarnClientSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-yarn-cluster-yarnclusterschedulerbackend.html">YarnClusterSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-yarn-cluster-YarnSchedulerEndpoint.html">YarnSchedulerEndpoint RPC Endpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-yarn-YarnAllocator.html">YarnAllocator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-yarn-introduction.html">Introduction to Hadoop YARN</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-yarn-cluster-setup.html">Setting up YARN Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="spark-yarn-kerberos.html">Kerberos</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-yarn-ConfigurableCredentialManager.html">ConfigurableCredentialManager</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-yarn-ClientDistributedCacheManager.html">ClientDistributedCacheManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-yarn-YarnSparkHadoopUtil.html">YarnSparkHadoopUtil</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-yarn-settings.html">Settings</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-standalone/index.html">Spark Standalone</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-Master.html">Standalone Master&#8201;&#8212;&#8201;Cluster Manager of Spark Standalone</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-worker.html">Standalone Worker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-standalone/spark-standalone-webui.html">web UI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-webui-ApplicationPage.html">ApplicationPage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-LocalSparkCluster.html">LocalSparkCluster&#8201;&#8212;&#8201;Single-JVM Spark Standalone Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-submission-gateways.html">Submission Gateways</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-master-scripts.html">Management Scripts for Standalone Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-worker-scripts.html">Management Scripts for Standalone Workers</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-status.html">Checking Status</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-example-2-workers-on-1-node-cluster.html">Example 2-workers-on-1-node Standalone Cluster (one executor per worker)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-StandaloneSchedulerBackend.html">StandaloneSchedulerBackend</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rest-api/index.html">Status REST API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rest-api/spark-api-ApiRootResource.html">ApiRootResource&#8201;&#8212;&#8201;/api/v1 URI Handler</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rest-api/spark-api-ApplicationListResource.html">ApplicationListResource&#8201;&#8212;&#8201;applications URI Handler</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rest-api/spark-api-OneApplicationResource.html">OneApplicationResource&#8201;&#8212;&#8201;applications/appId URI Handler</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../rest-api/spark-api-StagesResource.html">StagesResource</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rest-api/spark-api-OneApplicationAttemptResource.html">OneApplicationAttemptResource</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rest-api/spark-api-AbstractApplicationResource.html">AbstractApplicationResource</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rest-api/spark-api-BaseAppResource.html">BaseAppResource</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rest-api/spark-api-ApiRequestContext.html">ApiRequestContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rest-api/spark-api-UIRoot.html">UIRoot&#8201;&#8212;&#8201;Contract for Root Contrainers of Application UI Information</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rest-api/spark-api-UIRootFromServletContext.html">UIRootFromServletContext</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-on-mesos/index.html">Spark on Mesos</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-mesos/spark-mesos-MesosCoarseGrainedSchedulerBackend.html">MesosCoarseGrainedSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-mesos/spark-mesos-introduction.html">About Mesos</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-mesos/spark-executor-backends-MesosExecutorBackend.html">MesosExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Exercises</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-pairrddfunctions-oneliners.html">One-liners using PairRDDFunctions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-take-multiple-jobs.html">Learning Jobs and Partitions Using take Action</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-standalone-master-ha.html">Spark Standalone - Using ZooKeeper for High-Availability of Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-hello-world-using-spark-shell.html">Spark&#8217;s Hello World using Spark shell and Scala</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-examples-wordcount-spark-shell.html">WordCount using Spark shell</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-first-app.html">Your first complete Spark application (using Scala and sbt)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-sql-hive-orc-example.html">Using Spark SQL to update data in Hive using ORC files</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-custom-scheduler-listener.html">Developing Custom SparkListener to monitor DAGScheduler in Scala</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-custom-rdd.html">Developing Custom RDD</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-dataframe-jdbc-postgresql.html">Working with Datasets from JDBC Data Sources (and PostgreSQL)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-failing-stage.html">Causing Stage to Fail</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Apache Spark</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Apache Spark</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Apache Spark</a></li>
+    <li><a href="index.html">Spark on YARN</a></li>
+    <li><a href="spark-yarn-client.html">Client</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/spark-on-yarn/pages/spark-yarn-client.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<div class="sect1">
+<h2 id="client"><a class="anchor" href="#client"></a><a class="link" href="#client"><a id="Client"></a> Client</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>Client</code> is a handle to a YARN cluster to submit <a href="spark-yarn-applicationmaster.adoc">ApplicationMaster</a> (that represents a Spark application submitted to a YARN cluster).</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/spark-yarn-Client-YarnClient.png" alt="spark yarn Client YarnClient">
+</div>
+<div class="title">Figure 1. Client and Hadoop&#8217;s YarnClient Interactions</div>
+</div>
+<div class="paragraph">
+<p>Depending on the <a href="#isClusterMode">deploy mode</a> it uses <a href="spark-yarn-applicationmaster.adoc">ApplicationMaster</a> or ApplicationMaster&#8217;s wrapper <a href="spark-yarn-applicationmaster.adoc#ExecutorLauncher">ExecutorLauncher</a> by their class names in a <a href="#createContainerLaunchContext">ContainerLaunchContext</a> (that represents all of the information needed by the YARN NodeManager to launch a container).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>Client</code> was initially used as a <a href="#main">standalone application</a> to <a href="../spark-submit.adoc#submit">submit Spark applications</a> to a YARN cluster, but is currently considered obsolete.
+</td>
+</tr>
+</table>
+</div>
+<table id="internal-properties" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Client&#8217;s Internal Properties</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Initial Value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="executorMemoryOverhead"></a> <code>executorMemoryOverhead</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-settings.adoc#spark.yarn.executor.memoryOverhead">spark.yarn.executor.memoryOverhead</a> and falls back to <a href="spark-yarn-YarnSparkHadoopUtil.adoc#MEMORY_OVERHEAD_FACTOR">10%</a> of the <a href="../executor/Executor.html#spark.executor.memory" class="page">spark.executor.memory</a> or <a href="spark-yarn-YarnSparkHadoopUtil.adoc#MEMORY_OVERHEAD_MIN">384</a> whatever is larger.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FIXME</p>
+<p class="tableblock">NOTE: <a href="spark-yarn-YarnSparkHadoopUtil.adoc#MEMORY_OVERHEAD_FACTOR">10%</a> and <a href="spark-yarn-YarnSparkHadoopUtil.adoc#MEMORY_OVERHEAD_MIN">384</a> are constants and cannot be changed.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Enable <code>INFO</code> or <code>DEBUG</code> logging level for <code>org.apache.spark.deploy.yarn.Client</code> logger to see what happens inside.</p>
+</div>
+<div class="paragraph">
+<p>Add the following line to <code>conf/log4j.properties</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.deploy.yarn.Client=DEBUG</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Refer to <a href="../spark-logging.adoc">Logging</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="isuserclasspathfirst-method"><a class="anchor" href="#isuserclasspathfirst-method"></a><a class="link" href="#isuserclasspathfirst-method"><a id="isUserClassPathFirst"></a> <code>isUserClassPathFirst</code> Method</a></h3>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getuserclasspath-method"><a class="anchor" href="#getuserclasspath-method"></a><a class="link" href="#getuserclasspath-method"><a id="getUserClasspath"></a> <code>getUserClasspath</code> Method</a></h3>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="clientarguments"><a class="anchor" href="#clientarguments"></a><a class="link" href="#clientarguments"><a id="ClientArguments"></a> <code>ClientArguments</code></a></h3>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setting-up-environment-to-launch-applicationmaster-containersetuplaunchenv-method"><a class="anchor" href="#setting-up-environment-to-launch-applicationmaster-containersetuplaunchenv-method"></a><a class="link" href="#setting-up-environment-to-launch-applicationmaster-containersetuplaunchenv-method"><a id="setupLaunchEnv"></a> Setting Up Environment to Launch ApplicationMaster Container&#8201;&#8212;&#8201;<code>setupLaunchEnv</code> Method</a></h3>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="launcherbackend-property"><a class="anchor" href="#launcherbackend-property"></a><a class="link" href="#launcherbackend-property"><a id="launcherBackend"></a> <code>launcherBackend</code> Property</a></h3>
+<div class="paragraph">
+<p><code>launcherBackend</code>&#8230;&#8203;FIXME</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="loginfromkeytab-method"><a class="anchor" href="#loginfromkeytab-method"></a><a class="link" href="#loginfromkeytab-method"><a id="loginFromKeytab"></a> <code>loginFromKeytab</code> Method</a></h3>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="creating-client-instance"><a class="anchor" href="#creating-client-instance"></a><a class="link" href="#creating-client-instance"><a id="creating-instance"></a> Creating Client Instance</a></h3>
+<div class="paragraph">
+<p>Creating an instance of <code>Client</code> does the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Creates an internal instance of <code>YarnClient</code> (using <code>YarnClient.createYarnClient</code>) that becomes <code>yarnClient</code>.</p>
+</li>
+<li>
+<p>Creates an internal instance of <code>YarnConfiguration</code> (using <code>YarnConfiguration</code> and the input <code>hadoopConf</code>) that becomes <code>yarnConf</code>.</p>
+</li>
+<li>
+<p>Sets the internal <code>isClusterMode</code> that says whether <a href="../spark-deploy-mode.adoc#spark.submit.deployMode">spark.submit.deployMode</a> is <a href="../spark-deploy-mode.adoc#cluster">cluster deploy mode</a>.</p>
+</li>
+</ul>
+</div>
+<div id="amMemory" class="ulist">
+<ul>
+<li>
+<p>Sets the internal <code>amMemory</code> to <a href="../spark-driver.adoc#spark_driver_memory">spark.driver.memory</a> when <code>isClusterMode</code> is enabled or <a href="spark-yarn-settings.adoc#spark.yarn.am.memory">spark.yarn.am.memory</a> otherwise.</p>
+</li>
+<li>
+<p>Sets the internal <code>amMemoryOverhead</code> to <a href="spark-yarn-settings.adoc#spark.yarn.driver.memoryOverhead">spark.yarn.driver.memoryOverhead</a> when <code>isClusterMode</code> is enabled or <a href="spark-yarn-settings.adoc#spark.yarn.am.memoryOverhead">spark.yarn.am.memoryOverhead</a> otherwise. If neither is available, the maximum of 10% of <code>amMemory</code> and <code>384</code> is chosen.</p>
+</li>
+<li>
+<p>Sets the internal <code>amCores</code> to <a href="../spark-driver.adoc#spark_driver_cores">spark.driver.cores</a> when <code>isClusterMode</code> is enabled or <a href="spark-yarn-settings.adoc#spark.yarn.am.cores">spark.yarn.am.cores</a> otherwise.</p>
+</li>
+<li>
+<p>Sets the internal <code>executorMemory</code> to <a href="../executor/Executor.html#spark.executor.memory" class="page">spark.executor.memory</a>.</p>
+</li>
+<li>
+<p>Sets the internal <a href="#executorMemoryOverhead">executorMemoryOverhead</a> to <a href="spark-yarn-settings.adoc#spark.yarn.executor.memoryOverhead">spark.yarn.executor.memoryOverhead</a>. If unavailable, it is set to the maximum of 10% of <code>executorMemory</code> and <code>384</code>.</p>
+</li>
+<li>
+<p>Creates an internal instance of <a href="spark-yarn-ClientDistributedCacheManager.adoc">ClientDistributedCacheManager</a> (as <code>distCacheMgr</code>).</p>
+</li>
+<li>
+<p>Sets the variables: <code>loginFromKeytab</code> to <code>false</code> with <code>principal</code>, <code>keytab</code>, and <code>credentials</code> to <code>null</code>.</p>
+</li>
+<li>
+<p>Creates an internal instance of <a href="#../spark-LauncherBackend.adoc" class="page unresolved">LauncherBackend</a> (as <a href="#launcherBackend">launcherBackend</a>).</p>
+</li>
+<li>
+<p>Sets the internal <code>fireAndForget</code> flag to the result of <code>isClusterMode</code> and not <a href="spark-yarn-settings.adoc#spark.yarn.submit.waitAppCompletion">spark.yarn.submit.waitAppCompletion</a>.</p>
+</li>
+<li>
+<p>Sets the internal variable <code>appId</code> to <code>null</code>.</p>
+</li>
+<li>
+<p>Sets the internal <code>appStagingBaseDir</code> to <a href="spark-yarn-settings.adoc#spark.yarn.stagingDir">spark.yarn.stagingDir</a> or the home directory of Hadoop.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="submitting-spark-application-to-yarnsubmitapplication-method"><a class="anchor" href="#submitting-spark-application-to-yarnsubmitapplication-method"></a><a class="link" href="#submitting-spark-application-to-yarnsubmitapplication-method"><a id="submitApplication"></a> Submitting Spark Application to YARN&#8201;&#8212;&#8201;<code>submitApplication</code> Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">submitApplication(): ApplicationId</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>submitApplication</code> submits a Spark application (represented by <a href="spark-yarn-applicationmaster.adoc">ApplicationMaster</a>) to a YARN cluster (i.e. to the <a href="spark-yarn-introduction.adoc#ResourceManager">YARN ResourceManager</a>) and returns the application&#8217;s <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/records/ApplicationId.html">ApplicationId</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>submitApplication</code> is also used in the currently-deprecated <a href="#run">Client.run</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Internally, <code>submitApplication</code> requests the <code>LauncherBackend</code> to <a href="#../spark-LauncherBackend.adoc#connect" class="page unresolved">connect</a> first and then executes <code>Client.setupCredentials</code> to set up credentials for future calls.</p>
+</div>
+<div class="paragraph">
+<p>It then <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/service/AbstractService.html#init(org.apache.hadoop.conf.Configuration)">inits</a> the internal <a href="#yarnClient">yarnClient</a> (with the internal <code>yarnConf</code>) and <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/service/AbstractService.html#start()">starts</a> it. All this happens using Hadoop API.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME How to configure <code>YarnClient</code>? What is YARN&#8217;s <code>YarnClient.getYarnClusterMetrics</code>?
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You should see the following INFO in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO Client: Requesting a new application from cluster with [count] NodeManagers</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It then <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/client/api/YarnClient.html#createApplication()">YarnClient.createApplication()</a> to create a new application in YARN and obtains the application id.</p>
+</div>
+<div class="paragraph">
+<p>The <code>LauncherBackend</code> instance changes state to SUBMITTED with the application id.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME Why is this important?
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>submitApplication</code> verifies whether the cluster has resources for the <a href="spark-yarn-applicationmaster.adoc">ApplicationManager</a> (using <a href="#verifyClusterResources">verifyClusterResources</a>).</p>
+</div>
+<div class="paragraph">
+<p>It then <a href="#createContainerLaunchContext">creates YARN <code>ContainerLaunchContext</code></a> followed by <a href="#createApplicationSubmissionContext">creating YARN <code>ApplicationSubmissionContext</code></a>.</p>
+</div>
+<div class="paragraph">
+<p>You should see the following INFO message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO Client: Submitting application [appId] to ResourceManager</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>submitApplication</code> submits the new YARN <code>ApplicationSubmissionContext</code> for <a href="spark-yarn-applicationmaster.adoc">ApplicationMaster</a> to YARN (using Hadoop&#8217;s <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/client/api/YarnClient.html#submitApplication(org.apache.hadoop.yarn.api.records.ApplicationSubmissionContext)">YarnClient.submitApplication</a>).</p>
+</div>
+<div class="paragraph">
+<p>It returns the YARN <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/records/ApplicationId.html">ApplicationId</a> for the Spark application (represented by <a href="spark-yarn-applicationmaster.adoc">ApplicationMaster</a>).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>submitApplication</code> is used when <code>Client</code> <a href="#run">runs</a> or <a href="spark-yarn-client-yarnclientschedulerbackend.adoc#start"><code>YarnClientSchedulerBackend</code> is started</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="creating-yarn-applicationsubmissioncontextcreateapplicationsubmissioncontext-method"><a class="anchor" href="#creating-yarn-applicationsubmissioncontextcreateapplicationsubmissioncontext-method"></a><a class="link" href="#creating-yarn-applicationsubmissioncontextcreateapplicationsubmissioncontext-method"><a id="createApplicationSubmissionContext"></a> Creating YARN ApplicationSubmissionContext&#8201;&#8212;&#8201;<code>createApplicationSubmissionContext</code> Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">createApplicationSubmissionContext(
+  newApp: YarnClientApplication,
+  containerContext: ContainerLaunchContext): ApplicationSubmissionContext</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>createApplicationSubmissionContext</code> creates YARN&#8217;s <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/records/ApplicationSubmissionContext.html">ApplicationSubmissionContext</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+YARN&#8217;s <code>ApplicationSubmissionContext</code> represents all of the information needed by the <a href="spark-yarn-introduction.adoc#ResourceManager">YARN ResourceManager</a> to launch the <a href="spark-yarn-applicationmaster.adoc">ApplicationMaster</a> for a Spark application.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>createApplicationSubmissionContext</code> uses YARN&#8217;s <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/client/api/YarnClientApplication.html">YarnClientApplication</a> (as the input <code>newApp</code>) to create a <code>ApplicationSubmissionContext</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>createApplicationSubmissionContext</code> sets the following information in the <code>ApplicationSubmissionContext</code>:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the Spark application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../SparkConf.adoc#spark.app.name">spark.app.name</a> configuration setting or <code>Spark</code> if not set</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Queue (to which the Spark application is submitted)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-settings.adoc#spark.yarn.queue">spark.yarn.queue</a> configuration setting</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ContainerLaunchContext</code> (that describes the <code>Container</code> with which the <code>ApplicationMaster</code> for the Spark application is launched)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the input <code>containerContext</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type of the Spark application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SPARK</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tags for the Spark application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-settings.adoc#spark.yarn.tags">spark.yarn.tags</a> configuration setting</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of max attempts of the Spark application to be submitted.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-settings.adoc#spark.yarn.maxAppAttempts">spark.yarn.maxAppAttempts</a> configuration setting</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>attemptFailuresValidityInterval</code> in milliseconds for the Spark application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-settings.adoc#spark.yarn.am.attemptFailuresValidityInterval">spark.yarn.am.attemptFailuresValidityInterval</a> configuration setting</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Resource Capabilities for <a href="spark-yarn-applicationmaster.adoc">ApplicationMaster</a> for the Spark application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="#resource">Resource Capabilities for ApplicationMaster&#8201;&#8212;&#8201;Memory and Virtual CPU Cores</a> section below</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rolled Log Aggregation for the Spark application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="#LogAggregationContext">Rolled Log Aggregation Configuration for Spark Application</a> section below</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>You will see the DEBUG message in the logs when the setting is not set:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>DEBUG spark.yarn.maxAppAttempts is not set. Cluster's default value will be used.</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="resource-capabilities-for-applicationmastermemory-and-virtual-cpu-cores"><a class="anchor" href="#resource-capabilities-for-applicationmastermemory-and-virtual-cpu-cores"></a><a class="link" href="#resource-capabilities-for-applicationmastermemory-and-virtual-cpu-cores"><a id="resource"></a> Resource Capabilities for ApplicationMaster&#8201;&#8212;&#8201;Memory and Virtual CPU Cores</a></h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+YARN&#8217;s <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/records/Resource.html">Resource</a> models a set of computer resources in the cluster. Currently, YARN supports resources with memory and virtual CPU cores capabilities only.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The requested YARN&#8217;s <code>Resource</code> for the <a href="spark-yarn-applicationmaster.adoc">ApplicationMaster</a> for a Spark application is the sum of <code>amMemory</code> and <code>amMemoryOverhead</code> for the memory and <code>amCores</code> for the virtual CPU cores.</p>
+</div>
+<div class="paragraph">
+<p>Besides, if <a href="spark-yarn-settings.adoc#spark.yarn.am.nodeLabelExpression">spark.yarn.am.nodeLabelExpression</a> is set, a new YARN <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/records/ResourceRequest.html">ResourceRequest</a> is created (for the <code>ApplicationMaster</code> container) that includes:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Resource Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code> (star) that represents no locality.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Priority</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Capability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The resource capabilities as defined above.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of containers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node label expression</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-settings.adoc#spark.yarn.am.nodeLabelExpression">spark.yarn.am.nodeLabelExpression</a> configuration setting</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ResourceRequest of AM container</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-settings.adoc#spark.yarn.am.nodeLabelExpression">spark.yarn.am.nodeLabelExpression</a> configuration setting</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>It sets the resource request to this new YARN <code>ResourceRequest</code> detailed in the table above.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rolled-log-aggregation-for-spark-application"><a class="anchor" href="#rolled-log-aggregation-for-spark-application"></a><a class="link" href="#rolled-log-aggregation-for-spark-application"><a id="LogAggregationContext"></a> Rolled Log Aggregation for Spark Application</a></h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+YARN&#8217;s <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/records/LogAggregationContext.html">LogAggregationContext</a> represents all of the information needed by the <a href="spark-yarn-introduction.adoc#NodeManager">YARN NodeManager</a> to handle the logs for an application.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If <a href="spark-yarn-settings.adoc#spark.yarn.rolledLog.includePattern">spark.yarn.rolledLog.includePattern</a> is defined, it creates a YARN <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/records/LogAggregationContext.html">LogAggregationContext</a> with the following patterns:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Include Pattern</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-settings.adoc#spark.yarn.rolledLog.includePattern">spark.yarn.rolledLog.includePattern</a> configuration setting</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exclude Pattern</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-settings.adoc#spark.yarn.rolledLog.excludePattern">spark.yarn.rolledLog.excludePattern</a> configuration setting</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="verifying-maximum-memory-capability-of-yarn-clusterverifyclusterresources-internal-method"><a class="anchor" href="#verifying-maximum-memory-capability-of-yarn-clusterverifyclusterresources-internal-method"></a><a class="link" href="#verifying-maximum-memory-capability-of-yarn-clusterverifyclusterresources-internal-method"><a id="verifyClusterResources"></a> Verifying Maximum Memory Capability of YARN Cluster&#8201;&#8212;&#8201;<code>verifyClusterResources</code> Internal Method</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">verifyClusterResources(newAppResponse: GetNewApplicationResponse): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>verifyClusterResources</code> is a private helper method that <a href="#submitApplication">submitApplication</a> uses to ensure that the Spark application (as a set of <a href="spark-yarn-applicationmaster.adoc">ApplicationMaster</a> and executors) is not going to request more than the maximum memory capability of the YARN cluster. If so, it throws an <code>IllegalArgumentException</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>verifyClusterResources</code> queries the input  <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/protocolrecords/GetNewApplicationResponse.html">GetNewApplicationResponse</a> (as <code>newAppResponse</code>) for the maximum memory.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>INFO Client: Verifying our application has not requested more than the maximum memory capability of the cluster ([maximumMemory] MB per container)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the maximum memory capability is above the required executor or <a href="spark-yarn-applicationmaster.adoc">ApplicationMaster</a> memory, you should see the following INFO message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>INFO Client: Will allocate AM container, with [amMem] MB memory including [amMemoryOverhead] MB overhead</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If however the executor memory (as a sum of <a href="../executor/Executor.html#spark.executor.memory" class="page">spark.executor.memory</a> and <a href="spark-yarn-settings.adoc#spark.yarn.executor.memoryOverhead">spark.yarn.executor.memoryOverhead</a> settings) is more than the maximum memory capability, <code>verifyClusterResources</code> throws an <code>IllegalArgumentException</code> with the following message:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Required executor memory ([executorMemory]+[executorMemoryOverhead] MB) is above the max threshold ([maximumMemory] MB) of this cluster! Please check the values of 'yarn.scheduler.maximum-allocation-mb' and/or 'yarn.nodemanager.resource.memory-mb'.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the <a href="spark-yarn-applicationmaster.adoc">required memory for <code>ApplicationMaster</code></a> is more than the maximum memory capability, <code>verifyClusterResources</code> throws an <code>IllegalArgumentException</code> with the following message:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Required AM memory ([amMemory]+[amMemoryOverhead] MB) is above the max threshold ([maximumMemory] MB) of this cluster! Please increase the value of 'yarn.scheduler.maximum-allocation-mb'.</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="creating-yarn-containerlaunchcontext-to-launch-applicationmastercreatecontainerlaunchcontext-internal-method"><a class="anchor" href="#creating-yarn-containerlaunchcontext-to-launch-applicationmastercreatecontainerlaunchcontext-internal-method"></a><a class="link" href="#creating-yarn-containerlaunchcontext-to-launch-applicationmastercreatecontainerlaunchcontext-internal-method"><a id="createContainerLaunchContext"></a> Creating YARN ContainerLaunchContext to Launch ApplicationMaster&#8201;&#8212;&#8201;<code>createContainerLaunchContext</code> Internal Method</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">createContainerLaunchContext(newAppResponse: GetNewApplicationResponse): ContainerLaunchContext</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The input <code>GetNewApplicationResponse</code> is Hadoop YARN&#8217;s <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/protocolrecords/GetNewApplicationResponse.html">GetNewApplicationResponse</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When <a href="#submitApplication">a Spark application is submitted to YARN</a>, it calls the private helper method <code>createContainerLaunchContext</code> that creates a YARN <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/records/ContainerLaunchContext.html">ContainerLaunchContext</a> request for <a href="spark-yarn-introduction.adoc#NodeManager">YARN NodeManager</a> to launch <a href="spark-yarn-applicationmaster.adoc">ApplicationMaster</a> (in a container).</p>
+</div>
+<div class="paragraph">
+<p>When called, you should see the following INFO message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO Setting up container launch context for our AM</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It gets at the application id (from the input <code>newAppResponse</code>).</p>
+</div>
+<div class="paragraph">
+<p>It calculates the path of the application&#8217;s staging directory.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME What&#8217;s <code>appStagingBaseDir</code>?
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It does a <em>custom</em> step for a Python application.</p>
+</div>
+<div class="paragraph">
+<p>It <a href="#setupLaunchEnv">sets up an environment to launch <code>ApplicationMaster</code> container</a> and <a href="#prepareLocalResources">prepareLocalResources</a>. A <code>ContainerLaunchContext</code> record is created with the environment and the local resources.</p>
+</div>
+<div class="paragraph">
+<p>The JVM options are calculated as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>-Xmx</code> (that <a href="#amMemory">was calculated when the Client was created</a>)</p>
+</li>
+<li>
+<p><code>-Djava.io.tmpdir=</code> - FIXME: <code>tmpDir</code></p>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME <code>tmpDir</code>?
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Using <code>UseConcMarkSweepGC</code> when <code>SPARK_USE_CONC_INCR_GC</code> is enabled.</p>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME <code>SPARK_USE_CONC_INCR_GC</code>?
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>In cluster deploy mode, &#8230;&#8203;FIXME</p>
+</li>
+<li>
+<p>In client deploy mode, &#8230;&#8203;FIXME</p>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><code>-Dspark.yarn.app.container.log.dir=</code>&#8230;&#8203;FIXME</p>
+</li>
+<li>
+<p>Perm gen size option&#8230;&#8203;FIXME</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>--class</code> is set if in cluster mode based on <code>--class</code> command-line argument.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If <code>--jar</code> command-line argument was specified, it is set as <code>--jar</code>.</p>
+</div>
+<div class="paragraph">
+<p>In cluster deploy mode, <a href="spark-yarn-applicationmaster.adoc">org.apache.spark.deploy.yarn.ApplicationMaster</a> is created while in client deploy mode it is <a href="spark-yarn-applicationmaster.adoc#ExecutorLauncher">org.apache.spark.deploy.yarn.ExecutorLauncher</a>.</p>
+</div>
+<div class="paragraph">
+<p>If <code>--arg</code> command-line argument was specified, it is set as <code>--arg</code>.</p>
+</div>
+<div class="paragraph">
+<p>The path for <code>--properties-file</code> is <a href="#buildPath">built based on <code>YarnSparkHadoopUtil.expandEnvironment(Environment.PWD), LOCALIZED_CONF_DIR, SPARK_CONF_FILE</code></a>.</p>
+</div>
+<div class="paragraph">
+<p>The entire <code>ApplicationMaster</code> argument line (as <code>amArgs</code>) is of the form:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>[amClassName] --class [userClass] --jar [userJar] --arg [userArgs] --properties-file [propFile]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The entire command line is of the form:</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME <code>prefixEnv</code>? How is <code>path</code> calculated? <code>ApplicationConstants.LOG_DIR_EXPANSION_VAR</code>?
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>[JAVA_HOME]/bin/java -server [javaOpts] [amArgs] 1&gt; [LOG_DIR]/stdout 2&gt; [LOG_DIR]/stderr</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The command line to launch a <code>ApplicationMaster</code> is set to the <code>ContainerLaunchContext</code> record (using <code>setCommands</code>).</p>
+</div>
+<div class="paragraph">
+<p>You should see the following DEBUG messages in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>DEBUG Client: ===============================================================================
+DEBUG Client: YARN AM launch context:
+DEBUG Client:     user class: N/A
+DEBUG Client:     env:
+DEBUG Client:         [launchEnv]
+DEBUG Client:     resources:
+DEBUG Client:         [localResources]
+DEBUG Client:     command:
+DEBUG Client:         [commands]
+DEBUG Client: ===============================================================================</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A <a href="spark-security.adoc#SecurityManager">SecurityManager</a> is created and set as the application&#8217;s ACLs.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME <code>setApplicationACLs</code>? Set up security tokens?
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>createContainerLaunchContext</code> is used when <code>Client</code> <a href="#submitApplication">submits a Spark application to a YARN cluster</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="preparelocalresources-method"><a class="anchor" href="#preparelocalresources-method"></a><a class="link" href="#preparelocalresources-method"><a id="prepareLocalResources"></a> <code>prepareLocalResources</code> Method</a></h4>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">prepareLocalResources(
+  destDir: Path,
+  pySparkArchives: Seq[String]): HashMap[String, LocalResource]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>prepareLocalResources</code> is&#8230;&#8203;FIXME</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME Describe <code>credentialManager</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When called, <code>prepareLocalResources</code> prints out the following INFO message to the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO Client: Preparing resources for our AM container</code></pre>
+</div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME What&#8217;s a delegation token?
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>prepareLocalResources</code> then <a href="spark-yarn-ConfigurableCredentialManager.adoc#obtainCredentials">obtains security tokens from credential providers and gets the nearest time of the next renewal</a> (for renewable credentials).</p>
+</div>
+<div class="paragraph">
+<p>After all the security delegation tokens are obtained and only when there are any, you should see the following DEBUG message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>DEBUG Client: [token1]
+DEBUG Client: [token2]
+...
+DEBUG Client: [tokenN]</code></pre>
+</div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME Where is <code>credentials</code> assigned?
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If <a href="#loginFromKeytab">a keytab is used to log in</a> and the nearest time of the next renewal is in the future, <code>prepareLocalResources</code> sets the internal <a href="spark-yarn-settings.adoc#spark.yarn.credentials.renewalTime">spark.yarn.credentials.renewalTime</a> and <a href="spark-yarn-settings.adoc#spark.yarn.credentials.updateTime">spark.yarn.credentials.updateTime</a> times for renewal and update security tokens.</p>
+</div>
+<div class="paragraph">
+<p>It gets the replication factor (using <a href="spark-yarn-settings.adoc#spark.yarn.submit.file.replication">spark.yarn.submit.file.replication</a> setting) or falls back to the default value for the input <code>destDir</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The replication factor is only used for <a href="#copyFileToRemote">copyFileToRemote</a> later. Perhaps it should not be mentioned here (?)
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It creates the input <code>destDir</code> (on a HDFS-compatible file system) with <code>0700</code> permission (<code>rwx------</code>), i.e. inaccessible to all but its owner and the superuser so the owner only can read, write and execute. It uses Hadoop&#8217;s <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/fs/Path.html#getFileSystem(org.apache.hadoop.conf.Configuration)">Path.getFileSystem</a> to access Hadoop&#8217;s <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/fs/FileSystem.html">FileSystem</a> that owns <code>destDir</code> (using the constructor&#8217;s <code>hadoopConf</code>&#8201;&#8212;&#8201;Hadoop&#8217;s Configuration).</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+See <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/fs/FileSystem.html">org.apache.hadoop.fs.FileSystem</a> to know a list of HDFS-compatible file systems, e.g. <a href="http://aws.amazon.com/s3/">Amazon S3</a> or <a href="https://azure.microsoft.com/">Windows Azure</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If <a href="#loginFromKeytab">a keytab is used to log in</a>, &#8230;&#8203;FIXME</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME <code>if (loginFromKeytab)</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If the <a href="spark-yarn-settings.adoc#spark.yarn.archive">location of the single archive containing Spark jars (spark.yarn.archive)</a> is set, it is <a href="#distribute">distributed</a> (as ARCHIVE) to <code><em>spark_libs</em></code>.</p>
+</div>
+<div class="paragraph">
+<p>Else if the <a href="spark-yarn-settings.adoc#spark.yarn.jars">location of the Spark jars (spark.yarn.jars)</a> is set, &#8230;&#8203;FIXME</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME Describe <code>case Some(jars)</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If neither <a href="spark-yarn-settings.adoc#spark.yarn.archive">spark.yarn.archive</a> nor <a href="spark-yarn-settings.adoc#spark.yarn.jars">spark.yarn.jars</a> is set, you should see the following WARN message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>WARN Client: Neither spark.yarn.jars nor spark.yarn.archive is set, falling back to uploading libraries under SPARK_HOME.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It then finds the directory with jar files under <code>SPARK_HOME</code> (using <code>YarnCommandBuilderUtils.findJarsDir</code>).</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME <code>YarnCommandBuilderUtils.findJarsDir</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>And all the jars are zipped to a temporary archive, e.g. <code><em>spark_libs</em>2944590295025097383.zip</code> that is <code>distribute</code> as <code>ARCHIVE</code> to <code><em>spark_libs</em></code> (only when they differ).</p>
+</div>
+<div class="paragraph">
+<p>If a user jar (<code>--jar</code>) was specified on command line, the jar is <code>distribute</code> as <code>FILE</code> to <code><em>app</em>.jar</code>.</p>
+</div>
+<div class="paragraph">
+<p>It then <a href="#distribute">distributes</a> additional resources specified in SparkConf for the application, i.e. jars (under <a href="spark-yarn-settings.adoc#spark.yarn.dist.jars">spark.yarn.dist.jars</a>), files (under <a href="spark-yarn-settings.adoc#spark.yarn.dist.files">spark.yarn.dist.files</a>), and archives (under <a href="spark-yarn-settings.adoc#spark.yarn.dist.archives">spark.yarn.dist.archives</a>).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The additional files to distribute can be defined using <a href="spark-submit.adoc">spark-submit</a> using command-line options <a href="spark-submit.adoc#jars">--jars</a>, <a href="spark-submit.adoc#files">--files</a>, and <a href="spark-submit.adoc#archives">--archives</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME Describe <code>distribute</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It sets <a href="spark-yarn-settings.adoc#spark.yarn.secondary.jars">spark.yarn.secondary.jars</a> for the jars that have localized path (non-local paths) or their path (for local paths).</p>
+</div>
+<div class="paragraph">
+<p>It <a href="spark-yarn-ClientDistributedCacheManager.adoc#updateConfiguration">updates Spark configuration</a> (with internal configuration settings using the internal <code>distCacheMgr</code> reference).</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME Where are they used? It appears they are required for <a href="spark-yarn-applicationmaster.adoc#localResources"><code>ApplicationMaster</code> when it prepares local resources</a>, but what is the sequence of calls to lead to <code>ApplicationMaster</code>?
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It uploads <code><em>spark_conf</em>.zip</code> to the input <code>destDir</code> and sets <a href="spark-yarn-settings.adoc#spark.yarn.cache.confArchive">spark.yarn.cache.confArchive</a></p>
+</div>
+<div class="paragraph">
+<p>It <a href="#createConfArchive">creates configuration archive</a> and <code>copyFileToRemote(destDir, localConfArchive, replication, force = true, destName = Some(LOCALIZED_CONF_ARCHIVE))</code>.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME <code>copyFileToRemote(destDir, localConfArchive, replication, force = true, destName = Some(LOCALIZED_CONF_ARCHIVE))</code>?
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It <a href="spark-yarn-ClientDistributedCacheManager.adoc#addResource">adds a cache-related resource</a> (using the internal <code>distCacheMgr</code>).</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME What resources? Where? Why is this needed?
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Ultimately, it clears the cache-related internal configuration settings&#8201;&#8212;&#8201;<a href="spark-yarn-settings.adoc#spark.yarn.cache.filenames">spark.yarn.cache.filenames</a>, <a href="spark-yarn-settings.adoc#spark.yarn.cache.sizes">spark.yarn.cache.sizes</a>, <a href="spark-yarn-settings.adoc#spark.yarn.cache.timestamps">spark.yarn.cache.timestamps</a>, <a href="spark-yarn-settings.adoc#spark.yarn.cache.visibilities">spark.yarn.cache.visibilities</a>, <a href="spark-yarn-settings.adoc#spark.yarn.cache.types">spark.yarn.cache.types</a>, <a href="spark-yarn-settings.adoc#spark.yarn.cache.confArchive">spark.yarn.cache.confArchive</a>&#8201;&#8212;&#8201;from the <code>SparkConf</code> configuration since they are internal and should not "pollute" the web UI&#8217;s environment page.</p>
+</div>
+<div class="paragraph">
+<p>The <code>localResources</code> are returned.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME How is <code>localResources</code> calculated?
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is exclusively used when <a href="#createContainerLaunchContext">Client creates a <code>ContainerLaunchContext</code> to launch a <code>ApplicationMaster</code> container</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="creating-__spark_conf__-zip-archive-with-configuration-files-and-spark-configurationcreateconfarchive-internal-method"><a class="anchor" href="#creating-__spark_conf__-zip-archive-with-configuration-files-and-spark-configurationcreateconfarchive-internal-method"></a><a class="link" href="#creating-__spark_conf__-zip-archive-with-configuration-files-and-spark-configurationcreateconfarchive-internal-method"><a id="createConfArchive"></a> Creating __spark_conf__.zip Archive With Configuration Files and Spark Configuration&#8201;&#8212;&#8201;<code>createConfArchive</code> Internal Method</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">createConfArchive(): File</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>createConfArchive</code> is a private helper method that <a href="#prepareLocalResources">prepareLocalResources</a> uses to create an archive with the local config files&#8201;&#8212;&#8201;<code>log4j.properties</code> and <code>metrics.properties</code> (before distributing it and the other files for <a href="spark-yarn-applicationmaster.adoc">ApplicationMaster</a> and executors to use on a YARN cluster).</p>
+</div>
+<div class="paragraph">
+<p>The archive will also contain all the files under <code>HADOOP_CONF_DIR</code> and <code>YARN_CONF_DIR</code> environment variables (if defined).</p>
+</div>
+<div class="paragraph">
+<p>Additionally, the archive contains a <code><em>spark_conf</em>.properties</code> with the current <a href="../SparkConf.adoc">Spark configuration</a>.</p>
+</div>
+<div class="paragraph">
+<p>The archive is a temporary file with the <code><em>spark_conf</em></code> prefix and <code>.zip</code> extension with the files above.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="copying-file-to-remote-file-systemcopyfiletoremote-method"><a class="anchor" href="#copying-file-to-remote-file-systemcopyfiletoremote-method"></a><a class="link" href="#copying-file-to-remote-file-systemcopyfiletoremote-method"><a id="copyFileToRemote"></a> Copying File to Remote File System&#8201;&#8212;&#8201;<code>copyFileToRemote</code> Method</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">copyFileToRemote(
+  destDir: Path,
+  srcPath: Path,
+  replication: Short,
+  force: Boolean = false,
+  destName: Option[String] = None): Path</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>copyFileToRemote</code> is a <code>private[yarn]</code> method to copy <code>srcPath</code> to the remote file system <code>destDir</code> (if needed) and return the destination path resolved following symlinks and mount points.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is exclusively used in <a href="#prepareLocalResources">prepareLocalResources</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Unless <code>force</code> is enabled (it is disabled by default), <code>copyFileToRemote</code> will only copy <code>srcPath</code> when the source (of <code>srcPath</code>) and target (of <code>destDir</code>) file systems are the same.</p>
+</div>
+<div class="paragraph">
+<p>You should see the following INFO message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO Client: Uploading resource [srcPath] -&gt; [destPath]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>copyFileToRemote</code> copies <code>srcPath</code> to <code>destDir</code> and sets <code>644</code> permissions, i.e. world-wide readable and owner writable.</p>
+</div>
+<div class="paragraph">
+<p>If <code>force</code> is disabled or the files are the same, <code>copyFileToRemote</code> will only print out the following INFO message to the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO Client: Source and destination file systems are the same. Not copying [srcPath]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ultimately, <code>copyFileToRemote</code> returns the destination path resolved following symlinks and mount points.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="populating-classpath-for-applicationmaster-and-executorspopulateclasspath-method"><a class="anchor" href="#populating-classpath-for-applicationmaster-and-executorspopulateclasspath-method"></a><a class="link" href="#populating-classpath-for-applicationmaster-and-executorspopulateclasspath-method"><a id="populateClasspath"></a> Populating CLASSPATH for ApplicationMaster and Executors&#8201;&#8212;&#8201;<code>populateClasspath</code> Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">populateClasspath(
+  args: ClientArguments,
+  conf: Configuration,
+  sparkConf: SparkConf,
+  env: HashMap[String, String],
+  extraClassPath: Option[String] = None): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>populateClasspath</code> is a <code>private[yarn]</code> helper method that populates the CLASSPATH (for <a href="#setupLaunchEnv">ApplicationMaster</a> and <a href="spark-yarn-ExecutorRunnable.adoc#prepareEnvironment">executors</a>).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The input <code>args</code> is <code>null</code> when <a href="spark-yarn-ExecutorRunnable.adoc#prepareEnvironment">preparing environment for <code>ExecutorRunnable</code></a> and the constructor&#8217;s <code>args</code> for <code>Client</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It merely <a href="#addClasspathEntry">adds the following entries to the CLASSPATH key in the input <code>env</code></a>:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The optional <code>extraClassPath</code> (which is first <a href="#getClusterPath">changed to include paths on YARN cluster machines</a>).</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>extraClassPath</code> corresponds to <a href="../spark-driver.adoc#spark_driver_extraClassPath">spark.driver.extraClassPath</a> for the driver and <a href="../configuration-properties.adoc#spark.executor.extraClassPath">spark.executor.extraClassPath</a> for executors.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>YARN&#8217;s own <code>Environment.PWD</code></p>
+</li>
+<li>
+<p><code>__spark_conf__</code> directory under YARN&#8217;s <code>Environment.PWD</code></p>
+</li>
+<li>
+<p>If the <em>deprecated</em> <a href="spark-yarn-settings.adoc#spark.yarn.user.classpath.first">spark.yarn.user.classpath.first</a> is set, &#8230;&#8203;FIXME</p>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><code>__spark_libs__/*</code> under YARN&#8217;s <code>Environment.PWD</code></p>
+</li>
+<li>
+<p>(unless the optional <a href="spark-yarn-settings.adoc#spark.yarn.archive">spark.yarn.archive</a> is defined) All the <code>local</code> jars in <a href="spark-yarn-settings.adoc#spark.yarn.jars">spark.yarn.jars</a> (which are first <a href="#getClusterPath">changed to be paths on YARN cluster machines</a>).</p>
+</li>
+<li>
+<p>All the entries from YARN&#8217;s <code>yarn.application.classpath</code> or <code>YarnConfiguration.DEFAULT_YARN_APPLICATION_CLASSPATH</code> (if <code>yarn.application.classpath</code> is not set)</p>
+</li>
+<li>
+<p>All the entries from YARN&#8217;s <code>mapreduce.application.classpath</code> or <code>MRJobConfig.DEFAULT_MAPREDUCE_APPLICATION_CLASSPATH</code> (if <code>mapreduce.application.classpath</code> not set).</p>
+</li>
+<li>
+<p><a href="README.adoc#SPARK_DIST_CLASSPATH">SPARK_DIST_CLASSPATH</a> (which is first <a href="#getClusterPath">changed to include paths on YARN cluster machines</a>).</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You should see the result of executing <code>populateClasspath</code> when you enable <code>DEBUG</code> logging level for the <code>org.apache.spark.deploy.yarn.Client</code> logger, i.e.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>DEBUG Client:     env:
+DEBUG Client:         CLASSPATH -&gt; {{PWD}}&lt;CPS&gt;{{PWD}}/__spark_conf__&lt;CPS&gt;{{PWD}}/__spark_libs__/*&lt;CPS&gt;$HADOOP_CONF_DIR&lt;CPS&gt;$HADOOP_COMMON_HOME/share/hadoop/common/*&lt;CPS&gt;$HADOOP_COMMON_HOME/share/hadoop/common/lib/*&lt;CPS&gt;$HADOOP_HDFS_HOME/share/hadoop/hdfs/*&lt;CPS&gt;$HADOOP_HDFS_HOME/share/hadoop/hdfs/lib/*&lt;CPS&gt;$HADOOP_YARN_HOME/share/hadoop/yarn/*&lt;CPS&gt;$HADOOP_YARN_HOME/share/hadoop/yarn/lib/*&lt;CPS&gt;$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*&lt;CPS&gt;$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="changing-path-to-be-yarn-nodemanager-awaregetclusterpath-method"><a class="anchor" href="#changing-path-to-be-yarn-nodemanager-awaregetclusterpath-method"></a><a class="link" href="#changing-path-to-be-yarn-nodemanager-awaregetclusterpath-method"><a id="getClusterPath"></a> Changing Path to be YARN NodeManager-aware&#8201;&#8212;&#8201;<code>getClusterPath</code> Method</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getClusterPath(conf: SparkConf, path: String): String</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>getClusterPath</code> replaces any occurences of <a href="spark-yarn-settings.adoc#spark.yarn.config.gatewayPath">spark.yarn.config.gatewayPath</a> in <code>path</code> to the value of <a href="spark-yarn-settings.adoc#spark.yarn.config.replacementPath">spark.yarn.config.replacementPath</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-classpath-entry-to-environmentaddclasspathentry-method"><a class="anchor" href="#adding-classpath-entry-to-environmentaddclasspathentry-method"></a><a class="link" href="#adding-classpath-entry-to-environmentaddclasspathentry-method"><a id="addClasspathEntry"></a> Adding CLASSPATH Entry to Environment&#8201;&#8212;&#8201;<code>addClasspathEntry</code> Method</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">addClasspathEntry(path: String, env: HashMap[String, String]): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>addClasspathEntry</code> is a private helper method to <a href="spark-yarn-YarnSparkHadoopUtil.adoc#addPathToEnvironment">add the input <code>path</code> to <code>CLASSPATH</code> key in the input <code>env</code></a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="distributing-files-to-remote-file-systemdistribute-internal-method"><a class="anchor" href="#distributing-files-to-remote-file-systemdistribute-internal-method"></a><a class="link" href="#distributing-files-to-remote-file-systemdistribute-internal-method"><a id="distribute"></a> Distributing Files to Remote File System&#8201;&#8212;&#8201;<code>distribute</code> Internal Method</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">distribute(
+  path: String,
+  resType: LocalResourceType = LocalResourceType.FILE,
+  destName: Option[String] = None,
+  targetDir: Option[String] = None,
+  appMasterOnly: Boolean = false): (Boolean, String)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>distribute</code> is an internal helper method that <a href="#prepareLocalResources">prepareLocalResources</a> uses to find out whether the input <code>path</code> is of <code>local:</code> URI scheme and return a localized path for a non-<code>local</code> path, or simply the input <code>path</code> for a local one.</p>
+</div>
+<div class="paragraph">
+<p><code>distribute</code> returns a pair with the first element being a flag for the input <code>path</code> being local or non-local, and the other element for the local or localized path.</p>
+</div>
+<div class="paragraph">
+<p>For local <code>path</code> that was not distributed already, <code>distribute</code> <a href="#copyFileToRemote">copies the input <code>path</code> to remote file system</a> (if needed) and <a href="spark-yarn-ClientDistributedCacheManager.adoc#addResource">adds <code>path</code> to the application&#8217;s distributed cache</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="joining-path-components-using-path-separatorbuildpath-method"><a class="anchor" href="#joining-path-components-using-path-separatorbuildpath-method"></a><a class="link" href="#joining-path-components-using-path-separatorbuildpath-method"><a id="buildPath"></a> Joining Path Components using Path.SEPARATOR&#8201;&#8212;&#8201;<code>buildPath</code> Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">buildPath(components: String*): String</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>buildPath</code> is a helper method to join all the path <code>components</code> using the directory separator, i.e. <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/fs/Path.html#SEPARATOR">org.apache.hadoop.fs.Path.SEPARATOR</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="isclustermode-internal-flag"><a class="anchor" href="#isclustermode-internal-flag"></a><a class="link" href="#isclustermode-internal-flag"><a id="isClusterMode"></a> <code>isClusterMode</code> Internal Flag</a></h3>
+<div class="paragraph">
+<p><code>isClusterMode</code> is an internal flag that says whether the Spark application runs in <a href="spark-deploy-mode.adoc#cluster">cluster</a> or <a href="spark-deploy-mode.adoc#client">client</a> deploy mode. The flag is enabled for <code>cluster</code> deploy mode, i.e. <code>true</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Since a Spark application requires different settings per deploy mode, <code>isClusterMode</code> flag effectively "splits" <code>Client</code> on two parts per deploy mode&#8201;&#8212;&#8201;one responsible for <code>client</code> and the other for <code>cluster</code> deploy mode.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME Replace the internal fields used below with their true meanings.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Internal Attributes of <code>Client</code> per Deploy Mode (<code>isClusterMode</code> flag)</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Internal attribute</th>
+<th class="tableblock halign-left valign-top">cluster deploy mode</th>
+<th class="tableblock halign-left valign-top">client deploy mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amMemory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../spark-driver.adoc#spark_driver_memory">spark.driver.memory</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-settings.adoc#spark.yarn.am.memory">spark.yarn.am.memory</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amMemoryOverhead</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-settings.adoc#spark.yarn.driver.memoryOverhead">spark.yarn.driver.memoryOverhead</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-settings.adoc#spark.yarn.am.memoryOverhead">spark.yarn.am.memoryOverhead</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amCores</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../spark-driver.adoc#spark_driver_cores">spark.driver.cores</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-settings.adoc#spark.yarn.am.cores">spark.yarn.am.cores</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>javaOpts</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../spark-driver.adoc#spark_driver_extraJavaOptions">spark.driver.extraJavaOptions</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-settings.adoc#spark.yarn.am.extraJavaOptions">spark.yarn.am.extraJavaOptions</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>libraryPaths</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../spark-driver.adoc#spark_driver_extraLibraryPath">spark.driver.extraLibraryPath</a> and <a href="../spark-driver.adoc#spark_driver_libraryPath">spark.driver.libraryPath</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-settings.adoc#spark.yarn.am.extraLibraryPath">spark.yarn.am.extraLibraryPath</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-applicationmaster.adoc#command-line-parameters"><code>--class</code> command-line argument for <code>ApplicationMaster</code></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>args.userClass</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Application master class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-applicationmaster.adoc">org.apache.spark.deploy.yarn.ApplicationMaster</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-yarn-applicationmaster.adoc">org.apache.spark.deploy.yarn.ExecutorLauncher</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>When the <code>isClusterMode</code> flag is enabled, the <a href="#yarnClient">internal reference to YARN&#8217;s <code>YarnClient</code></a> is used to stop application.</p>
+</div>
+<div class="paragraph">
+<p>When the <code>isClusterMode</code> flag is enabled (and <a href="spark-yarn-settings.adoc#spark.yarn.submit.waitAppCompletion">spark.yarn.submit.waitAppCompletion</a> is disabled), so is <code>fireAndForget</code> internal flag.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="spark_yarn_mode-flag"><a class="anchor" href="#spark_yarn_mode-flag"></a><a class="link" href="#spark_yarn_mode-flag"><a id="SPARK_YARN_MODE"></a> <code>SPARK_YARN_MODE</code> flag</a></h3>
+<div class="paragraph">
+<p><code>SPARK_YARN_MODE</code> flag controls&#8230;&#8203;FIXME</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Any environment variable with the <code>SPARK_</code> prefix is propagated to all (remote) processes.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME Where is <code>SPARK_</code> prefix rule enforced?
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>SPARK_YARN_MODE</code> is a system property (i.e. available using <code>System.getProperty</code>) and a environment variable (i.e. available using <code>System.getenv</code> or <code>sys.env</code>). See <a href="spark-yarn-YarnSparkHadoopUtil.adoc">YarnSparkHadoopUtil</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It is enabled (i.e. <code>true</code>) when <a href="../spark-SparkContext-creating-instance-internals.adoc#SPARK_YARN_MODE">SparkContext is created for Spark on YARN in client deploy mode</a>, when <a href="#setupLaunchEnv"><code>Client</code> sets up an environment to launch <code>ApplicationMaster</code> container</a> (and, what is currently considered deprecated, <a href="#main">a Spark application was deployed to a YARN cluster</a>).</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME Why is this needed? <code>git blame</code> it.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>SPARK_YARN_MODE</code> flag is checked when <a href="spark-yarn-YarnSparkHadoopUtil.adoc#get">YarnSparkHadoopUtil</a> or <a href="../varia/spark-hadoop.adoc#get">SparkHadoopUtil</a> are accessed.</p>
+</div>
+<div class="paragraph">
+<p>It is cleared later when <a href="#stop">Client is requested to stop</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="internal-hadoops-yarnclientyarnclient-property"><a class="anchor" href="#internal-hadoops-yarnclientyarnclient-property"></a><a class="link" href="#internal-hadoops-yarnclientyarnclient-property"><a id="yarnClient"></a> Internal Hadoop&#8217;s YarnClient&#8201;&#8212;&#8201;<code>yarnClient</code> Property</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">val yarnClient = YarnClient.createYarnClient</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>yarnClient</code> is a private internal reference to Hadoop&#8217;s <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/client/api/YarnClient.html">YarnClient</a> that <code>Client</code> uses to <a href="#submitApplication">create and submit a YARN application</a> (for your Spark application),  <a href="#launcherBackend">killApplication</a>.</p>
+</div>
+<div class="paragraph">
+<p><code>yarnClient</code> is inited and started when <a href="#submitApplication"><code>Client</code> submits a Spark application to a YARN cluster</a>.</p>
+</div>
+<div class="paragraph">
+<p><code>yarnClient</code> is stopped when <a href="#stop"><code>Client</code> stops</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="launching-client-standalone-applicationmain-method"><a class="anchor" href="#launching-client-standalone-applicationmain-method"></a><a class="link" href="#launching-client-standalone-applicationmain-method"><a id="main"></a> Launching Client Standalone Application&#8201;&#8212;&#8201;<code>main</code> Method</a></h3>
+<div class="paragraph">
+<p><code>main</code> method is invoked while a Spark application is being deployed to a YARN cluster.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is executed by <a href="spark-submit.adoc#submit">spark-submit</a> with <code>--master yarn</code> command-line argument.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When you start the <code>main</code> method when starting the <code>Client</code> standalone application, say using <code>./bin/spark-class org.apache.spark.deploy.yarn.Client</code>, you will see the following WARN message in the logs unless you set <code>SPARK_SUBMIT</code> system property.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>WARN Client: WARNING: This client is deprecated and will be removed in a future version of Spark. Use ./bin/spark-submit with "--master yarn"</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>main</code> turns <a href="#SPARK_YARN_MODE">SPARK_YARN_MODE flag</a> on.</p>
+</div>
+<div class="paragraph">
+<p>It then instantiates <a href="../SparkConf.adoc">SparkConf</a>, parses command-line arguments (using <a href="#ClientArguments">ClientArguments</a>) and passes the call on to <a href="#run">Client.run</a> method.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stopping-client-with-launcherbackend-and-yarnclientstop-method"><a class="anchor" href="#stopping-client-with-launcherbackend-and-yarnclientstop-method"></a><a class="link" href="#stopping-client-with-launcherbackend-and-yarnclientstop-method"><a id="stop"></a> Stopping Client (with LauncherBackend and YarnClient)&#8201;&#8212;&#8201;<code>stop</code> Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">stop(): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>stop</code> closes the internal <a href="#launcherBackend">LauncherBackend</a> and stops the internal <a href="#yarnClient">YarnClient</a>.</p>
+</div>
+<div class="paragraph">
+<p>It also clears <a href="#SPARK_YARN_MODE">SPARK_YARN_MODE flag</a> (to allow switching between cluster types).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="running-clientrun-method"><a class="anchor" href="#running-clientrun-method"></a><a class="link" href="#running-clientrun-method"><a id="run"></a> Running Client&#8201;&#8212;&#8201;<code>run</code> Method</a></h3>
+<div class="paragraph">
+<p><code>run</code> <a href="#submitApplication">submits a Spark application</a> to a <a href="spark-yarn-introduction.adoc">YARN ResourceManager</a> (RM).</p>
+</div>
+<div class="paragraph">
+<p>If <code>LauncherBackend</code> is not connected to a RM, i.e. <code>LauncherBackend.isConnected</code> returns <code>false</code>, and <code>fireAndForget</code> is enabled, &#8230;&#8203;FIXME</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME When could <code>LauncherBackend</code> lost the connection since it was connected in <a href="#submitApplication">submitApplication</a>?
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME What is <code>fireAndForget</code>?
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Otherwise, when <code>LauncherBackend</code> is connected or <code>fireAndForget</code> is disabled, <a href="#monitorApplication">monitorApplication</a> is called. It returns a pair of <code>yarnApplicationState</code> and <code>finalApplicationStatus</code> that is checked against three different state pairs and throw a <code>SparkException</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>YarnApplicationState.KILLED</code> or <code>FinalApplicationStatus.KILLED</code> lead to <code>SparkException</code> with the message "Application [appId] is killed".</p>
+</li>
+<li>
+<p><code>YarnApplicationState.FAILED</code> or <code>FinalApplicationStatus.FAILED</code> lead to <code>SparkException</code> with the message "Application [appId] finished with failed status".</p>
+</li>
+<li>
+<p><code>FinalApplicationStatus.UNDEFINED</code> leads to <code>SparkException</code> with the message "The final status of application [appId] is undefined".</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME What are <code>YarnApplicationState</code> and <code>FinalApplicationStatus</code> statuses?
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="monitorapplication-method"><a class="anchor" href="#monitorapplication-method"></a><a class="link" href="#monitorapplication-method"><a id="monitorApplication"></a> <code>monitorApplication</code> Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">monitorApplication(
+  appId: ApplicationId,
+  returnOnRunning: Boolean = false,
+  logApplicationReport: Boolean = true): (YarnApplicationState, FinalApplicationStatus)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>monitorApplication</code> continuously reports the status of a Spark application <code>appId</code> every <a href="spark-yarn-settings.adoc#spark.yarn.report.interval">spark.yarn.report.interval</a> until the application state is one of the following <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/records/YarnApplicationState.html">YarnApplicationState</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>RUNNING</code> (when <code>returnOnRunning</code> is enabled)</p>
+</li>
+<li>
+<p><code>FINISHED</code></p>
+</li>
+<li>
+<p><code>FAILED</code></p>
+</li>
+<li>
+<p><code>KILLED</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is used in <a href="#run">run</a>, <a href="spark-yarn-client-yarnclientschedulerbackend.adoc#waitForApplication">YarnClientSchedulerBackend.waitForApplication</a> and <code>MonitorThread.run</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It gets the application&#8217;s report from the <a href="spark-yarn-introduction.adoc#ResourceManager">YARN ResourceManager</a> to obtain <a href="https://hadoop.apache.org/docs/current/api/org/apache/hadoop/yarn/api/records/YarnApplicationState.html">YarnApplicationState</a> of the <a href="spark-yarn-applicationmaster.adoc">ApplicationMaster</a>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+It uses Hadoop&#8217;s <code>YarnClient.getApplicationReport(appId)</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Unless <code>logApplicationReport</code> is disabled, it prints the following INFO message to the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO Client: Application report for [appId] (state: [state])</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If <code>logApplicationReport</code> and DEBUG log level are enabled, it prints report details every time interval to the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>16/04/23 13:21:36 INFO Client:
+	 client token: N/A
+	 diagnostics: N/A
+	 ApplicationMaster host: N/A
+	 ApplicationMaster RPC port: -1
+	 queue: default
+	 start time: 1461410495109
+	 final status: UNDEFINED
+	 tracking URL: http://japila.local:8088/proxy/application_1461410200840_0001/
+	 user: jacek</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For INFO log level it prints report details only when the application state changes.</p>
+</div>
+<div class="paragraph">
+<p>When the application state changes, <code>LauncherBackend</code> is <a href="#../spark-LauncherBackend.adoc#setState" class="page unresolved">notified</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The application state is an instance of Hadoop&#8217;s <code>YarnApplicationState</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For states <code>FINISHED</code>, <code>FAILED</code> or <code>KILLED</code>, <a href="#cleanupStagingDir">cleanupStagingDir</a> is called and the method finishes by returning a pair of the current state and the final application status.</p>
+</div>
+<div class="paragraph">
+<p>If <code>returnOnRunning</code> is enabled (it is disabled by default) and the application state turns <code>RUNNING</code>, the method returns a pair of the current state <code>RUNNING</code> and the final application status.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<a href="#cleanupStagingDir">cleanupStagingDir</a> won&#8217;t be called when <code>returnOnRunning</code> is enabled and an application turns RUNNING. <em>I guess it is likely a left-over since the Client is deprecated now</em>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The current state is recorded for future checks (in the loop).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cleanupstagingdir-method"><a class="anchor" href="#cleanupstagingdir-method"></a><a class="link" href="#cleanupstagingdir-method"><a id="cleanupStagingDir"></a> <code>cleanupStagingDir</code> Method</a></h3>
+<div class="paragraph">
+<p><code>cleanupStagingDir</code> clears the staging directory of an application.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is used in <a href="#submitApplication">submitApplication</a> when there is an exception and <a href="#monitorApplication">monitorApplication</a> when an application finishes and the method quits.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It uses <a href="spark-yarn-settings.adoc#spark.yarn.stagingDir">spark.yarn.stagingDir</a> setting or falls back to a user&#8217;s home directory for the staging directory. If <a href="spark-yarn-settings.adoc#spark.yarn.preserve.staging.files">cleanup is enabled</a>, it deletes the entire staging directory for the application.</p>
+</div>
+<div class="paragraph">
+<p>You should see the following INFO message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO Deleting staging directory [stagingDirPath]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="reportlauncherstate-method"><a class="anchor" href="#reportlauncherstate-method"></a><a class="link" href="#reportlauncherstate-method"><a id="reportLauncherState"></a> <code>reportLauncherState</code> Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">reportLauncherState(state: SparkAppHandle.State): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>reportLauncherState</code> merely requests the LauncherBackend` to <a href="#../spark-LauncherBackend.adoc#setState" class="page unresolved">setState</a> with the given state.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

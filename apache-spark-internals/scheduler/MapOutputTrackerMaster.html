@@ -1,0 +1,2721 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MapOutputTrackerMaster :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/scheduler/MapOutputTrackerMaster.html">
+    <meta name="generator" content="Antora 2.3.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-86782445-1')</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://books.japila.pl/apache-spark-internals">The Internals Of Apache Spark</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Resources</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Resource A</a>
+            <a class="navbar-item" href="#">Resource B</a>
+            <a class="navbar-item" href="#">Resource C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="apache-spark-internals" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Apache Spark</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/index.html">Resilient Distributed Dataset</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/RDD.html">RDD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-CoGroupedRDD.html">CoGroupedRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-HadoopRDD.html">HadoopRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-MapPartitionsRDD.html">MapPartitionsRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-NewHadoopRDD.html">NewHadoopRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-OrderedRDDFunctions.html">OrderedRDDFunctions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-ParallelCollectionRDD.html">ParallelCollectionRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/CheckpointRDD.html">CheckpointRDD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../rdd/ReliableCheckpointRDD.html">ReliableCheckpointRDD</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/ShuffledRDD.html">ShuffledRDD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-SubtractedRDD.html">SubtractedRDD</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/spark-rdd-operations.html">Operators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/spark-rdd-transformations.html">Transformations</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../rdd/PairRDDFunctions.html">PairRDDFunctions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-actions.html">Actions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rdd/spark-rdd-lineage.html">RDD Lineage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rdd/spark-rdd-caching.html">Caching and Persistence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/spark-rdd-partitions.html">Partitions and Partitioning</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-Partition.html">Partition</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/Partitioner.html">Partitioner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/HashPartitioner.html">HashPartitioner</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/RangePartitioner.html">RangePartitioner</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/RDDCheckpointData.html">RDDCheckpointData</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/LocalRDDCheckpointData.html">LocalRDDCheckpointData</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/ReliableRDDCheckpointData.html">ReliableRDDCheckpointData</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rdd/spark-rdd-shuffle.html">Shuffling</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rdd/spark-rdd-Dependency.html">Dependencies</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/spark-rdd-NarrowDependency.html">NarrowDependency</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rdd/ShuffleDependency.html">ShuffleDependency</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rdd/Aggregator.html">Aggregator</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Scheduler</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="DAGScheduler.html">DAGScheduler</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="DAGSchedulerEvent.html">DAGScheduler Events</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="DAGSchedulerEventProcessLoop.html">DAGScheduler Event Bus</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="Stage.html">Stage</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ResultStage.html">ResultStage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ShuffleMapStage.html">ShuffleMapStage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="MapOutputTracker.html">MapOutputTracker</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="MapOutputTrackerMaster.html">MapOutputTrackerMaster</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ShuffleStatus.html">ShuffleStatus</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="MapOutputTrackerMasterEndpoint.html">MapOutputTrackerMasterEndpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="MapOutputTrackerWorker.html">MapOutputTrackerWorker</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-scheduler-StageInfo.html">StageInfo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="spark-scheduler-JobListener.html">JobListener</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-scheduler-JobWaiter.html">JobWaiter</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="TaskScheduler.html">TaskScheduler</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="TaskSchedulerImpl.html">TaskSchedulerImpl</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="SchedulerBackend.html">SchedulerBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="CoarseGrainedSchedulerBackend.html">CoarseGrainedSchedulerBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="CoarseGrainedSchedulerBackend-DriverEndpoint.html">DriverEndpoint</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="Task.html">Task</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ShuffleMapTask.html">ShuffleMapTask</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ResultTask.html">ResultTask</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="TaskSet.html">TaskSet</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="TaskSetManager.html">TaskSetManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-scheduler-ActiveJob.html">Jobs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="spark-scheduler-SchedulableBuilder.html">SchedulableBuilder</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-scheduler-FIFOSchedulableBuilder.html">FIFOSchedulableBuilder</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-scheduler-FairSchedulableBuilder.html">FairSchedulableBuilder</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="spark-scheduler-Schedulable.html">Schedulable Entities</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-scheduler-Pool.html">Schedulable Pool</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-scheduler-SchedulingMode.html">Scheduling Mode</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-scheduler-TaskInfo.html">TaskInfo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="MapStatus.html">MapStatus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-scheduler-TaskDescription.html">TaskDescription</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-taskschedulerimpl-speculative-execution.html">Speculative Execution of Tasks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="TaskResultGetter.html">TaskResultGetter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="spark-TaskContext.html">TaskContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-BarrierTaskContext.html">BarrierTaskContext</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spark-TaskContextImpl.html">TaskContextImpl</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-scheduler-TaskResult.html">TaskResults</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spark-scheduler-TaskSetBlacklist.html">TaskSetBlacklist</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="OutputCommitCoordinator.html">OutputCommitCoordinator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="TaskLocation.html">TaskLocation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ExternalClusterManager.html">ExternalClusterManager</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../memory/index.html">Memory System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../memory/MemoryManager.html">MemoryManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/StaticMemoryManager.html">StaticMemoryManager</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/UnifiedMemoryManager.html">UnifiedMemoryManager</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../memory/MemoryPool.html">MemoryPool</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/ExecutionMemoryPool.html">ExecutionMemoryPool</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/StorageMemoryPool.html">StorageMemoryPool</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../memory/TaskMemoryManager.html">TaskMemoryManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../memory/MemoryConsumer.html">MemoryConsumer</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/BytesToBytesMap.html">BytesToBytesMap</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/UnsafeSorterSpillReader.html">UnsafeSorterSpillReader</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/UnsafeExternalSorter.html">UnsafeExternalSorter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../memory/UnsafeInMemorySorter.html">UnsafeInMemorySorter</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../memory/UnsafeSorterSpillWriter.html">UnsafeSorterSpillWriter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Storage System</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/BlockManager.html">BlockManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/DiskBlockManager.html">DiskBlockManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/DiskStore.html">DiskStore</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-BlockDataManager.html">BlockDataManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-BlockId.html">BlockId</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../storage/spark-BlockInfoManager.html">BlockInfoManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../storage/spark-BlockInfo.html">BlockInfo</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../storage/BlockManagerMaster.html">BlockManagerMaster</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../storage/spark-blockmanager-BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/MemoryStore.html">MemoryStore</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-blockmanager-BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-BlockManager-BlockManagerSource.html">BlockManagerSource</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-BlockManager-ShuffleMetricsSource.html">ShuffleMetricsSource</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/spark-blockmanager-StorageStatus.html">StorageStatus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/RDDInfo.html">RDDInfo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/StorageLevel.html">StorageLevel</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/demo-diskblockmanager-and-block-data.html">Demo: DiskBlockManager and Block Data</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/index.html">Shuffle System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/ShuffleManager.html">ShuffleManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/SortShuffleManager.html">SortShuffleManager</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleHandle.html">ShuffleHandle</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/spark-shuffle-BaseShuffleHandle.html">BaseShuffleHandle</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/BypassMergeSortShuffleHandle.html">BypassMergeSortShuffleHandle</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/SerializedShuffleHandle.html">SerializedShuffleHandle</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/spark-shuffle-ShuffleReader.html">ShuffleReader</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/BlockStoreShuffleReader.html">BlockStoreShuffleReader</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/ShuffleWriter.html">ShuffleWriter</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/BypassMergeSortShuffleWriter.html">BypassMergeSortShuffleWriter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/SortShuffleWriter.html">SortShuffleWriter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/UnsafeShuffleWriter.html">UnsafeShuffleWriter</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../shuffle/ShuffleExternalSorter.html">ShuffleExternalSorter</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../shuffle/ShuffleInMemorySorter.html">ShuffleInMemorySorter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/ShuffleBlockResolver.html">ShuffleBlockResolver</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/IndexShuffleBlockResolver.html">IndexShuffleBlockResolver</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../shuffle/FetchFailedException.html">FetchFailedException</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../shuffle/Spillable.html">Spillable</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/ExternalAppendOnlyMap.html">ExternalAppendOnlyMap</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../shuffle/ExternalSorter.html">ExternalSorter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../spark-overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkConf.html">SparkConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-properties.html">Spark Properties and spark-defaults.conf Properties File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-deploy-mode.html">Deploy Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../SparkContext.html">SparkContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-HeartbeatReceiver.html">HeartbeatReceiver RPC Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-SparkContext-creating-instance-internals.html">Inside Creating SparkContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-ConsoleProgressBar.html">ConsoleProgressBar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-SparkStatusTracker.html">SparkStatusTracker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-sparkcontext-local-properties.html">Local Properties</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../rdd-checkpointing.html">RDD Checkpointing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-dynamic-allocation.html">Dynamic Allocation of Executors</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-ExecutorAllocationManager.html">ExecutorAllocationManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-service-ExecutorAllocationClient.html">ExecutorAllocationClient</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-service-ExecutorAllocationManagerSource.html">ExecutorAllocationManagerSource</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Shared Variables</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-broadcast.html">Broadcast variables</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-accumulators.html">Accumulators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-AccumulatorContext.html">AccumulatorContext</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../spark-data-locality.html">Data Locality</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-architecture.html">Spark Architecture</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-driver.html">Driver</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-master.html">Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-workers.html">Workers</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../spark-anatomy-spark-application.html">Anatomy of Spark Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Internal IO</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-internal-io-SparkHadoopWriter.html">SparkHadoopWriter</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-internal-io-FileCommitProtocol.html">FileCommitProtocol</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-internal-io-HadoopMapReduceCommitProtocol.html">HadoopMapReduceCommitProtocol</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-internal-io-HadoopMapRedCommitProtocol.html">HadoopMapRedCommitProtocol</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-internal-io-HadoopWriteConfigUtil.html">HadoopWriteConfigUtil</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-internal-io-HadoopMapReduceWriteConfigUtil.html">HadoopMapReduceWriteConfigUtil</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-internal-io-HadoopMapRedWriteConfigUtil.html">HadoopMapRedWriteConfigUtil</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Misc</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-core-AppStatusStore.html">AppStatusStore</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-core-KVStore.html">KVStore</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-core-KVStoreView.html">KVStoreView</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-core-ElementTrackingStore.html">ElementTrackingStore</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-core-InMemoryStore.html">InMemoryStore</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-core-LevelDB.html">LevelDB</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-InterruptibleIterator.html">InterruptibleIterator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-Utils.html">Utils Helper Object</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-barrier-execution-mode.html">Barrier Execution Mode</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-RDDBarrier.html">RDDBarrier</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Security</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-webui-security.html">Securing Web UI</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-deployment-environments.html">Deployment Environments</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-cluster.html">Spark on cluster</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Monitoring, Tuning, Debugging and Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-logging.html">Logging</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-tuning.html">Performance Tuning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-scheduler-SparkListener.html">SparkListener</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkListener-SpillListener.html">SpillListener</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkListener-StatsReportListener.html">StatsReportListener</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-scheduler-LiveListenerBus.html">LiveListenerBus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-SparkListenerBus.html">SparkListenerBus</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkListenerBus-AsyncEventQueue.html">AsyncEventQueue</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkListenerBus-ReplayListenerBus.html">ReplayListenerBus</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-JsonProtocol.html">JsonProtocol</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-debugging.html">Debugging Spark</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Varia</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../varia/spark-building-from-sources.html">Building Apache Spark from Sources</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../varia/spark-hadoop.html">Spark and Hadoop</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-SparkHadoopUtil.html">SparkHadoopUtil</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../varia/spark-inmemory-filesystems.html">Spark and software in-memory file systems</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../varia/spark-others.html">Spark and The Others</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../varia/spark-deeplearning.html">Distributed Deep Learning on Spark</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../varia/spark-packages.html">Spark Packages</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-tips-and-tricks.html">Spark Tips and Tricks</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-tips-and-tricks-access-private-members-spark-shell.html">Access private members in Scala in Spark shell</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-tips-and-tricks-sparkexception-task-not-serializable.html">SparkException: Task not serializable</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-tips-and-tricks-running-spark-windows.html">Running Spark Applications on Windows</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Core Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/SparkEnv.html">SparkEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/BroadcastManager.html">BroadcastManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BroadcastFactory.html">BroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/TorrentBroadcastFactory.html">TorrentBroadcastFactory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/TorrentBroadcast.html">TorrentBroadcast</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ContextCleaner.html">ContextCleaner</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/ShuffleClient.html">ShuffleClient</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BlockTransferService.html">BlockTransferService</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/ExternalShuffleClient.html">ExternalShuffleClient</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/NettyBlockTransferService.html">NettyBlockTransferService</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/BlockFetchingListener.html">BlockFetchingListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/RetryingBlockFetcher.html">RetryingBlockFetcher</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/Executor.html">Executor</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/TaskRunner.html">TaskRunner</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ExecutorSource.html">ExecutorSource</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/ExecutorBackend.html">ExecutorBackend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/CoarseGrainedExecutorBackend.html">CoarseGrainedExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../executor/TaskMetrics.html">TaskMetrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleWriteMetrics.html">ShuffleWriteMetrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../executor/ShuffleReadMetrics.html">ShuffleReadMetrics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/index.html">RPC System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/RpcEnv.html">RpcEnv</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/NettyRpcEnv.html">NettyRpcEnv</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../rpc/NettyStreamManager.html">NettyStreamManager</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvConfig.html">RpcEnvConfig</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpoint.html">RpcEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointRef.html">RpcEndpointRef</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcAddress.html">RpcAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEndpointAddress.html">RpcEndpointAddress</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rpc/RpcEnvFactory.html">RpcEnvFactory</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rpc/NettyRpcEnvFactory.html">NettyRpcEnvFactory</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcEnvFileServer.html">RpcEnvFileServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/spark-rpc-netty.html">Netty-based RpcEnv</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rpc/RpcUtils.html">RpcUtils</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Network System</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/TransportContext.html">TransportContext</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/MessageHandler.html">MessageHandler</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/TransportRequestHandler.html">TransportRequestHandler</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/TransportConf.html">TransportConf</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/SparkTransportConf.html">SparkTransportConf</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportClientFactory.html">TransportClientFactory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportServer.html">TransportServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/RpcHandler.html">RpcHandler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network/StreamManager.html">StreamManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../network/OneForOneStreamManager.html">OneForOneStreamManager</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/ManagedBuffer.html">ManagedBuffer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/RpcResponseCallback.html">RpcResponseCallback</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../deploy/ExternalShuffleService.html">External Shuffle Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockHandler.html">ExternalShuffleBlockHandler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deploy/ExternalShuffleBlockResolver.html">ExternalShuffleBlockResolver</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../io/CompressionCodec.html">CompressionCodec</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../serializer/index.html">Serialization System</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerManager.html">SerializerManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/Serializer.html">Serializer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializerInstance.html">SerializerInstance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/SerializationStream.html">SerializationStream</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serializer/DeserializationStream.html">DeserializationStream</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tools</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools/spark-shell.html">Spark Shell (spark-shell)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../tools/spark-submit.html">Spark Submit (spark-submit)</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../tools/spark-submit-SparkSubmitArguments.html">SparkSubmitArguments</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../tools/spark-submit-SparkSubmitOptionParser.html">SparkSubmitOptionParser</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../tools/spark-submit-SparkSubmitCommandBuilder.html">SparkSubmitCommandBuilder</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../tools/spark-class.html">spark-class shell script</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../tools/spark-AbstractCommandBuilder.html">AbstractCommandBuilder</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools/spark-SparkLauncher.html">SparkLauncher</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/index.html">Web UI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-jobs.html">Jobs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-JobsTab.html">JobsTab</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../webui/spark-webui-AllJobsPage.html">AllJobsPage</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../webui/spark-webui-JobPage.html">JobPage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-stages.html">Stages</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-storage.html">Storage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-environment.html">Environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-executors.html">Executors</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-StagesTab.html">StagesTab&#8201;&#8212;&#8201;Stages for All Jobs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-AllStagesPage.html">AllStagesPage&#8201;&#8212;&#8201;Stages for All Jobs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-StagePage.html">StagePage&#8201;&#8212;&#8201;Stage Details</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-PoolPage.html">PoolPage&#8201;&#8212;&#8201;Pool Details</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-StorageTab.html">StorageTab</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-StoragePage.html">StoragePage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-RDDPage.html">RDDPage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-EnvironmentTab.html">EnvironmentTab</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-EnvironmentPage.html">EnvironmentPage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-ExecutorsTab.html">ExecutorsTab</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-ExecutorsPage.html">ExecutorsPage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-ExecutorThreadDumpPage.html">ExecutorThreadDumpPage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-SparkUI.html">SparkUI&#8201;&#8212;&#8201;Web UI of Spark Application</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-SparkUITab.html">SparkUITab</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-BlockStatusListener.html">BlockStatusListener Spark Listener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-EnvironmentListener.html">EnvironmentListener Spark Listener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-executors-ExecutorsListener.html">ExecutorsListener Spark Listener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-JobProgressListener.html">JobProgressListener Spark Listener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-StorageStatusListener.html">StorageStatusListener Spark Listener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-StorageListener.html">StorageListener&#8201;&#8212;&#8201;Spark Listener for Tracking Persistence Status of RDD Blocks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-RDDOperationGraphListener.html">RDDOperationGraphListener Spark Listener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-webui-WebUI.html">WebUI&#8201;&#8212;&#8201;Framework For Web UIs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-WebUIPage.html">WebUIPage&#8201;&#8212;&#8201;Contract of Pages in Web UI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-webui-WebUITab.html">WebUITab&#8201;&#8212;&#8201;Contract of Tabs in Web UI</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-RDDStorageInfo.html">RDDStorageInfo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../webui/spark-core-LiveEntity.html">LiveEntity</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../webui/spark-core-LiveRDD.html">LiveRDD</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-UIUtils.html">UIUtils</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-JettyUtils.html">JettyUtils</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../webui/spark-webui-properties.html">web UI Configuration Properties</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../metrics/index.html">Spark Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../metrics/spark-metrics-MetricsSystem.html">MetricsSystem</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../metrics/spark-metrics-MetricsConfig.html">MetricsConfig</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../metrics/spark-metrics-Source.html">Source</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/spark-scheduler-DAGSchedulerSource.html">DAGSchedulerSourcer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../metrics/spark-metrics-Sink.html">Sink</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/spark-metrics-MetricsServlet.html">MetricsServlet JSON Metrics Sink</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../metrics/spark-metrics-properties.html">Metrics Configuration Properties</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/index.html">Spark MLlib</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines.html">ML Pipelines (spark.ml)</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Pipeline.html">Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-PipelineStage.html">PipelineStage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-transformers.html">Transformers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Transformer.html">Transformer</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-transformers-Tokenizer.html">Tokenizer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-estimators.html">Estimators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Estimator.html">Estimator</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-StringIndexer.html">StringIndexer</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-KMeans.html">KMeans</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-TrainValidationSplit.html">TrainValidationSplit</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Predictor.html">Predictor</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-RandomForestRegressor.html">RandomForestRegressor</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Regressor.html">Regressor</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-LinearRegression.html">LinearRegression</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Classifier.html">Classifier</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-RandomForestClassifier.html">RandomForestClassifier</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-DecisionTreeClassifier.html">DecisionTreeClassifier</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-models.html">Models</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Model.html">Model</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Evaluator.html">Evaluator&#8201;&#8212;&#8201;ML Pipeline Component for Model Scoring</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-BinaryClassificationEvaluator.html">BinaryClassificationEvaluator&#8201;&#8212;&#8201;Evaluator of Binary Classification Models</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ClusteringEvaluator.html">ClusteringEvaluator&#8201;&#8212;&#8201;Evaluator of Clustering Models</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MulticlassClassificationEvaluator.html">MulticlassClassificationEvaluator&#8201;&#8212;&#8201;Evaluator of Multiclass Classification Models</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-RegressionEvaluator.html">RegressionEvaluator&#8201;&#8212;&#8201;Evaluator of Regression Models</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-CrossValidator.html">CrossValidator&#8201;&#8212;&#8201;Model Tuning / Finding The Best Model</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-CrossValidatorModel.html">CrossValidatorModel</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ParamGridBuilder.html">ParamGridBuilder</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-CrossValidator-example.html">CrossValidator with Pipeline Example</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Params.html">Params and ParamMaps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ValidatorParams.html">ValidatorParams</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-HasParallelism.html">HasParallelism</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines-persistence.html">ML Persistence&#8201;&#8212;&#8201;Saving and Loading Models and Pipelines</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MLWritable.html">MLWritable</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MLReader.html">MLReader</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines-example-classification.html">Example&#8201;&#8212;&#8201;Text Classification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-pipelines-example-regression.html">Example&#8201;&#8212;&#8201;Linear Regression</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-logistic-regression.html">Logistic Regression</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-LogisticRegression.html">LogisticRegression</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-latent-dirichlet-allocation.html">Latent Dirichlet Allocation (LDA)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-vector.html">Vector</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-labeledpoint.html">LabeledPoint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-streaming.html">Streaming MLlib</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-GeneralizedLinearRegression.html">GeneralizedLinearRegression</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-mllib/spark-mllib-alternating-least-squares.html">Alternating Least Squares (ALS) Matrix Factorization</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ALS.html">ALS&#8201;&#8212;&#8201;Estimator for ALSModel</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ALSModel.html">ALSModel&#8201;&#8212;&#8201;Model for Predictions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-ALSModelReader.html">ALSModelReader</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-Instrumentation.html">Instrumentation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-mllib/spark-mllib-MLUtils.html">MLUtils</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/EventLoggingListener.html">EventLoggingListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/SQLHistoryListener.html">SQLHistoryListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-history-server/ApplicationHistoryProvider.html">ApplicationHistoryProvider</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-history-server/FsHistoryProvider.html">FsHistoryProvider</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/HistoryServerArguments.html">HistoryServerArguments</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/ApplicationCacheOperations.html">ApplicationCacheOperations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/ApplicationCache.html">ApplicationCache</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-local/index.html">Spark local</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-local/spark-LocalSchedulerBackend.html">LocalSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-local/spark-LocalEndpoint.html">LocalEndpoint&#8201;&#8212;&#8201;RPC Endpoint for LocalSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-local/spark-LauncherBackend.html">LauncherBackend</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-on-yarn/index.html">Spark on YARN</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnShuffleService.html">YarnShuffleService&#8201;&#8212;&#8201;ExternalShuffleService on YARN</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-ExecutorRunnable.html">ExecutorRunnable</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-client.html">Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnrmclient.html">YarnRMClient</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-applicationmaster.html">ApplicationMaster</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-AMEndpoint.html">AMEndpoint&#8201;&#8212;&#8201;ApplicationMaster RPC Endpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnClusterManager.html">YarnClusterManager&#8201;&#8212;&#8201;ExternalClusterManager for YARN</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-taskschedulers.html">TaskSchedulers for YARN</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnscheduler.html">YarnScheduler</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnclusterscheduler.html">YarnClusterScheduler</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-schedulerbackends.html">SchedulerBackends for YARN</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnschedulerbackend.html">YarnSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-client-yarnclientschedulerbackend.html">YarnClientSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-cluster-yarnclusterschedulerbackend.html">YarnClusterSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-cluster-YarnSchedulerEndpoint.html">YarnSchedulerEndpoint RPC Endpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnAllocator.html">YarnAllocator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-introduction.html">Introduction to Hadoop YARN</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-cluster-setup.html">Setting up YARN Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-kerberos.html">Kerberos</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-ConfigurableCredentialManager.html">ConfigurableCredentialManager</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-ClientDistributedCacheManager.html">ClientDistributedCacheManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnSparkHadoopUtil.html">YarnSparkHadoopUtil</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-settings.html">Settings</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-standalone/index.html">Spark Standalone</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-Master.html">Standalone Master&#8201;&#8212;&#8201;Cluster Manager of Spark Standalone</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-worker.html">Standalone Worker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-standalone/spark-standalone-webui.html">web UI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-webui-ApplicationPage.html">ApplicationPage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-LocalSparkCluster.html">LocalSparkCluster&#8201;&#8212;&#8201;Single-JVM Spark Standalone Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-submission-gateways.html">Submission Gateways</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-master-scripts.html">Management Scripts for Standalone Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-worker-scripts.html">Management Scripts for Standalone Workers</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-status.html">Checking Status</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-example-2-workers-on-1-node-cluster.html">Example 2-workers-on-1-node Standalone Cluster (one executor per worker)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-standalone/spark-standalone-StandaloneSchedulerBackend.html">StandaloneSchedulerBackend</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rest-api/index.html">Status REST API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rest-api/spark-api-ApiRootResource.html">ApiRootResource&#8201;&#8212;&#8201;/api/v1 URI Handler</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rest-api/spark-api-ApplicationListResource.html">ApplicationListResource&#8201;&#8212;&#8201;applications URI Handler</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rest-api/spark-api-OneApplicationResource.html">OneApplicationResource&#8201;&#8212;&#8201;applications/appId URI Handler</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../rest-api/spark-api-StagesResource.html">StagesResource</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rest-api/spark-api-OneApplicationAttemptResource.html">OneApplicationAttemptResource</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rest-api/spark-api-AbstractApplicationResource.html">AbstractApplicationResource</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rest-api/spark-api-BaseAppResource.html">BaseAppResource</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../rest-api/spark-api-ApiRequestContext.html">ApiRequestContext</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rest-api/spark-api-UIRoot.html">UIRoot&#8201;&#8212;&#8201;Contract for Root Contrainers of Application UI Information</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rest-api/spark-api-UIRootFromServletContext.html">UIRootFromServletContext</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../spark-on-mesos/index.html">Spark on Mesos</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-mesos/spark-mesos-MesosCoarseGrainedSchedulerBackend.html">MesosCoarseGrainedSchedulerBackend</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-mesos/spark-mesos-introduction.html">About Mesos</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-on-mesos/spark-executor-backends-MesosExecutorBackend.html">MesosExecutorBackend</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Exercises</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-pairrddfunctions-oneliners.html">One-liners using PairRDDFunctions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-take-multiple-jobs.html">Learning Jobs and Partitions Using take Action</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-standalone-master-ha.html">Spark Standalone - Using ZooKeeper for High-Availability of Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-hello-world-using-spark-shell.html">Spark&#8217;s Hello World using Spark shell and Scala</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-examples-wordcount-spark-shell.html">WordCount using Spark shell</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-first-app.html">Your first complete Spark application (using Scala and sbt)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-sql-hive-orc-example.html">Using Spark SQL to update data in Hive using ORC files</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-custom-scheduler-listener.html">Developing Custom SparkListener to monitor DAGScheduler in Scala</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-custom-rdd.html">Developing Custom RDD</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-dataframe-jdbc-postgresql.html">Working with Datasets from JDBC Data Sources (and PostgreSQL)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-failing-stage.html">Causing Stage to Fail</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Apache Spark</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Apache Spark</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Apache Spark</a></li>
+    <li><a href="index.html">Scheduler</a></li>
+    <li><a href="MapOutputTracker.html">MapOutputTracker</a></li>
+    <li><a href="MapOutputTrackerMaster.html">MapOutputTrackerMaster</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/scheduler/pages/MapOutputTrackerMaster.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">MapOutputTrackerMaster</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>MapOutputTrackerMaster</strong> is the <a href="MapOutputTracker.html" class="page">MapOutputTracker</a> for the driver.</p>
+</div>
+<div class="paragraph">
+<p>A MapOutputTrackerMaster is the source of truth of <a href="#shuffleStatuses">shuffle map output locations</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MapOutputTrackerMaster takes the following to be created:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="conf"></a> <a href="../SparkConf.html" class="page">SparkConf</a></p>
+</li>
+<li>
+<p><a href="#broadcastManager">BroadcastManager</a></p>
+</li>
+<li>
+<p><a id="isLocal"></a> isLocal flag (whether MapOutputTrackerMaster runs in local or on a cluster)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>MapOutputTrackerMaster starts <a href="#MessageLoop">dispatcher threads</a> on the <a href="#threadpool">map-output-dispatcher thread pool</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="mapoutputtrackermaster-and-broadcastmanager"><a class="anchor" href="#mapoutputtrackermaster-and-broadcastmanager"></a><a class="link" href="#mapoutputtrackermaster-and-broadcastmanager"><a id="BroadcastManager"></a><a id="broadcastManager"></a> MapOutputTrackerMaster and BroadcastManager</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MapOutputTrackerMaster is given a <a href="../core/BroadcastManager.html" class="page">BroadcastManager</a> to be created.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="shuffle-map-output-status-registry"><a class="anchor" href="#shuffle-map-output-status-registry"></a><a class="link" href="#shuffle-map-output-status-registry"><a id="shuffleStatuses"></a> Shuffle Map Output Status Registry</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MapOutputTrackerMaster uses an internal registry of <a href="ShuffleStatus.html" class="page">ShuffleStatuses</a> by shuffle stages.</p>
+</div>
+<div class="paragraph">
+<p>MapOutputTrackerMaster adds a new shuffle when requested to <a href="#registerShuffle">register one</a> (when DAGScheduler is requested to <a href="DAGScheduler.html#createShuffleMapStage" class="page">create a ShuffleMapStage</a> for a <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>).</p>
+</div>
+<div class="paragraph">
+<p>MapOutputTrackerMaster uses the registry when requested for the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#registerMapOutput">registerMapOutput</a></p>
+</li>
+<li>
+<p><a href="#getStatistics">getStatistics</a></p>
+</li>
+<li>
+<p><a href="#MessageLoop">MessageLoop</a></p>
+</li>
+<li>
+<p><a href="#unregisterMapOutput">unregisterMapOutput</a>, <a href="#unregisterAllMapOutput">unregisterAllMapOutput</a>, <a href="#unregisterShuffle">unregisterShuffle</a>, <a href="#removeOutputsOnHost">removeOutputsOnHost</a>, <a href="#removeOutputsOnExecutor">removeOutputsOnExecutor</a>, <a href="#containsShuffle">containsShuffle</a>, <a href="#getNumAvailableOutputs">getNumAvailableOutputs</a>, <a href="#findMissingPartitions">findMissingPartitions</a>, <a href="#getLocationsWithLargestOutputs">getLocationsWithLargestOutputs</a>, <a href="#getMapSizesByExecutorId">getMapSizesByExecutorId</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>MapOutputTrackerMaster removes (<em>clears</em>) all shuffles when requested to <a href="#stop">stop</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration-properties"><a class="anchor" href="#configuration-properties"></a><a class="link" href="#configuration-properties"><a id="configuration-properties"></a> Configuration Properties</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MapOutputTrackerMaster uses the following configuration properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="spark.shuffle.mapOutput.minSizeForBroadcast"></a><a id="minSizeForBroadcast"></a> <a href="../configuration-properties.html#spark.shuffle.mapOutput.minSizeForBroadcast" class="page">spark.shuffle.mapOutput.minSizeForBroadcast</a></p>
+</li>
+<li>
+<p><a id="spark.shuffle.mapOutput.dispatcher.numThreads"></a> <a href="../configuration-properties.html#spark.shuffle.mapOutput.dispatcher.numThreads" class="page">spark.shuffle.mapOutput.dispatcher.numThreads</a></p>
+</li>
+<li>
+<p><a id="spark.shuffle.reduceLocality.enabled"></a><a id="shuffleLocalityEnabled"></a> <a href="../configuration-properties.html#spark.shuffle.reduceLocality.enabled" class="page">spark.shuffle.reduceLocality.enabled</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="map-and-reduce-task-thresholds-for-preferred-locations"><a class="anchor" href="#map-and-reduce-task-thresholds-for-preferred-locations"></a><a class="link" href="#map-and-reduce-task-thresholds-for-preferred-locations"><a id="SHUFFLE_PREF_MAP_THRESHOLD"></a><a id="SHUFFLE_PREF_REDUCE_THRESHOLD"></a> Map and Reduce Task Thresholds for Preferred Locations</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MapOutputTrackerMaster defines 1000 (tasks) as the hardcoded threshold of the number of map and reduce tasks when requested to <a href="#getPreferredLocationsForShuffle">compute preferred locations</a> with <a href="#shuffleLocalityEnabled">spark.shuffle.reduceLocality.enabled</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="map-output-threshold-for-preferred-location-of-reduce-tasks"><a class="anchor" href="#map-output-threshold-for-preferred-location-of-reduce-tasks"></a><a class="link" href="#map-output-threshold-for-preferred-location-of-reduce-tasks"><a id="REDUCER_PREF_LOCS_FRACTION"></a> Map Output Threshold for Preferred Location of Reduce Tasks</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MapOutputTrackerMaster defines <code>0.2</code> as the fraction of total map output that must be at a location for it to considered as a preferred location for a reduce task.</p>
+</div>
+<div class="paragraph">
+<p>Making this larger will focus on fewer locations where most data can be read locally, but may lead to more delay in scheduling if those locations are busy.</p>
+</div>
+<div class="paragraph">
+<p>MapOutputTrackerMaster uses the fraction when requested for the <a href="#getPreferredLocationsForShuffle">preferred locations of shuffle RDDs</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getmapoutputmessage-queue"><a class="anchor" href="#getmapoutputmessage-queue"></a><a class="link" href="#getmapoutputmessage-queue"><a id="mapOutputRequests"></a><a id="GetMapOutputMessage"></a> GetMapOutputMessage Queue</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MapOutputTrackerMaster uses a blocking queue (a Java <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/LinkedBlockingQueue.html">LinkedBlockingQueue</a>) for requests for map output statuses.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetMapOutputMessage(shuffleId: Int, context: RpcCallContext)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>GetMapOutputMessage holds the shuffle ID and the RpcCallContext of the caller.</p>
+</div>
+<div class="paragraph">
+<p>A new GetMapOutputMessage is added to the queue when MapOutputTrackerMaster is requested to <a href="#post">post one</a>.</p>
+</div>
+<div class="paragraph">
+<p>MapOutputTrackerMaster uses <a href="#MessageLoop">MessageLoop Dispatcher Threads</a> to process GetMapOutputMessages.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="messageloop-dispatcher-thread"><a class="anchor" href="#messageloop-dispatcher-thread"></a><a class="link" href="#messageloop-dispatcher-thread"><a id="MessageLoop"></a><a id="run"></a> MessageLoop Dispatcher Thread</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MessageLoop is a thread of execution to handle <a href="#GetMapOutputMessage">GetMapOutputMessages</a> until a PoisonPill marker message arrives (posted when <a href="#stop">MapOutputTrackerMaster stops</a>).</p>
+</div>
+<div class="paragraph">
+<p>MessageLoop takes a GetMapOutputMessage and prints out the following DEBUG message to the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Handling request to send map output locations for shuffle [shuffleId] to [hostPort]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>MessageLoop then finds the <a href="ShuffleStatus.html" class="page">ShuffleStatus</a> by the shuffle ID in the <a href="#shuffleStatuses">shuffleStatuses</a> internal registry and replies back (to the RPC client) with a <a href="ShuffleStatus.html#serializedMapStatus" class="page">serialized map output status</a> (with the <a href="#broadcastManager">BroadcastManager</a> and <a href="#spark.shuffle.mapOutput.minSizeForBroadcast">spark.shuffle.mapOutput.minSizeForBroadcast</a> configuration property).</p>
+</div>
+<div class="paragraph">
+<p>MessageLoop threads run on the <a href="#threadpool">map-output-dispatcher Thread Pool</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="map-output-dispatcher-thread-pool"><a class="anchor" href="#map-output-dispatcher-thread-pool"></a><a class="link" href="#map-output-dispatcher-thread-pool"><a id="threadpool"></a> map-output-dispatcher Thread Pool</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">threadpool: ThreadPoolExecutor</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>threadpool is a daemon fixed thread pool registered with <strong>map-output-dispatcher</strong> thread name prefix.</p>
+</div>
+<div class="paragraph">
+<p>threadpool uses <a href="../configuration-properties.html#spark.shuffle.mapOutput.dispatcher.numThreads" class="page">spark.shuffle.mapOutput.dispatcher.numThreads</a> configuration property for the number of <a href="#MessageLoop">MessageLoop dispatcher threads</a> to process received <code>GetMapOutputMessage</code> messages.</p>
+</div>
+<div class="paragraph">
+<p>The dispatcher threads are started immediately when <a href="#creating-instance">MapOutputTrackerMaster is created</a>.</p>
+</div>
+<div class="paragraph">
+<p>The thread pool is shut down when MapOutputTrackerMaster is requested to <a href="#stop">stop</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="epoch-number"><a class="anchor" href="#epoch-number"></a><a class="link" href="#epoch-number"><a id="epoch"></a><a id="getEpoch"></a> Epoch Number</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MapOutputTrackerMaster uses an <strong>epoch number</strong> to&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>getEpoch is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>DAGScheduler is requested to <a href="DAGScheduler.html#removeExecutorAndUnregisterOutputs" class="page">removeExecutorAndUnregisterOutputs</a></p>
+</li>
+<li>
+<p><a href="TaskSetManager.html" class="page">TaskSetManager</a> is created (and sets the epoch to tasks)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="enqueueing-getmapoutputmessage"><a class="anchor" href="#enqueueing-getmapoutputmessage"></a><a class="link" href="#enqueueing-getmapoutputmessage"><a id="post"></a> Enqueueing GetMapOutputMessage</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">post(
+  message: GetMapOutputMessage): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>post simply adds the input GetMapOutputMessage to the <a href="#mapOutputRequests">mapOutputRequests</a> internal queue.</p>
+</div>
+<div class="paragraph">
+<p>post is used when MapOutputTrackerMasterEndpoint is requested to <a href="MapOutputTrackerMasterEndpoint.html#GetMapOutputStatuses" class="page">handle a GetMapOutputStatuses message</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stopping-mapoutputtrackermaster"><a class="anchor" href="#stopping-mapoutputtrackermaster"></a><a class="link" href="#stopping-mapoutputtrackermaster"><a id="stop"></a> Stopping MapOutputTrackerMaster</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">stop(): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>stop&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>stop is part of the <a href="MapOutputTracker.html#stop" class="page">MapOutputTracker</a> abstraction.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="unregistering-shuffle-map-output"><a class="anchor" href="#unregistering-shuffle-map-output"></a><a class="link" href="#unregistering-shuffle-map-output"><a id="unregisterMapOutput"></a> Unregistering Shuffle Map Output</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">unregisterMapOutput(
+  shuffleId: Int,
+  mapId: Int,
+  bmAddress: BlockManagerId): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>unregisterMapOutput&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>unregisterMapOutput is used when DAGScheduler is requested to <a href="DAGScheduler.html#handleTaskCompletion" class="page">handle a task completion (due to a fetch failure)</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="computing-preferred-locations-with-most-shuffle-map-outputs"><a class="anchor" href="#computing-preferred-locations-with-most-shuffle-map-outputs"></a><a class="link" href="#computing-preferred-locations-with-most-shuffle-map-outputs"><a id="getPreferredLocationsForShuffle"></a> Computing Preferred Locations (with Most Shuffle Map Outputs)</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getPreferredLocationsForShuffle(
+  dep: ShuffleDependency[_, _, _],
+  partitionId: Int): Seq[String]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getPreferredLocationsForShuffle computes the locations (<a href="../storage/BlockManager.html" class="page">BlockManagers</a>) with the most shuffle map outputs for the input <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a> and <a href="../rdd/spark-rdd-Partition.html" class="page">Partition</a>.</p>
+</div>
+<div class="paragraph">
+<p>getPreferredLocationsForShuffle computes the locations when all of the following are met:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#spark.shuffle.reduceLocality.enabled">spark.shuffle.reduceLocality.enabled</a> configuration property is enabled</p>
+</li>
+<li>
+<p>The number of "map" partitions (of the <a href="../rdd/ShuffleDependency.html#rdd" class="page">RDD</a> of the input <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>) is below <a href="#SHUFFLE_PREF_MAP_THRESHOLD">SHUFFLE_PREF_MAP_THRESHOLD</a></p>
+</li>
+<li>
+<p>The number of "reduce" partitions (of the <a href="../rdd/ShuffleDependency.html#partitioner" class="page">Partitioner</a> of the input <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>) is below <a href="#SHUFFLE_PREF_REDUCE_THRESHOLD">SHUFFLE_PREF_REDUCE_THRESHOLD</a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+getPreferredLocationsForShuffle is simply <a href="#getLocationsWithLargestOutputs">getLocationsWithLargestOutputs</a> with a guard condition.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Internally, getPreferredLocationsForShuffle checks whether <a href="#spark_shuffle_reduceLocality_enabled"><code>spark.shuffle.reduceLocality.enabled</code> Spark property</a> is enabled (it is by default) with the number of partitions of the <a href="../rdd/ShuffleDependency.html#rdd" class="page">RDD of the input <code>ShuffleDependency</code></a> and partitions in the <a href="../rdd/ShuffleDependency.html#partitioner" class="page">partitioner of the input <code>ShuffleDependency</code></a> both being less than <code>1000</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The thresholds for the number of partitions in the RDD and of the partitioner when computing the preferred locations are <code>1000</code> and are not configurable.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If the condition holds, getPreferredLocationsForShuffle <a href="#getLocationsWithLargestOutputs">finds locations with the largest number of shuffle map outputs</a> for the input <code>ShuffleDependency</code> and <code>partitionId</code> (with the number of partitions in the partitioner of the input <code>ShuffleDependency</code> and <code>0.2</code>) and returns the hosts of the preferred <code>BlockManagers</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>0.2</code> is the fraction of total map output that must be at a location to be considered as a preferred location for a reduce task. It is not configurable.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>getPreferredLocationsForShuffle is used when <a href="../rdd/ShuffledRDD.html#getPreferredLocations" class="page">ShuffledRDD</a> and Spark SQL&#8217;s ShuffledRowRDD are requested for preferred locations of a partition.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="incrementing-epoch"><a class="anchor" href="#incrementing-epoch"></a><a class="link" href="#incrementing-epoch"><a id="incrementEpoch"></a> Incrementing Epoch</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">incrementEpoch(): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>incrementEpoch increments the internal <a href="MapOutputTracker.html#epoch" class="page">epoch</a>.</p>
+</div>
+<div class="paragraph">
+<p>incrementEpoch prints out the following DEBUG message to the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>Increasing epoch to [epoch]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>incrementEpoch is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>MapOutputTrackerMaster is requested to <a href="#unregisterMapOutput">unregisterMapOutput</a>, <a href="#unregisterAllMapOutput">unregisterAllMapOutput</a>, <a href="#removeOutputsOnHost">removeOutputsOnHost</a> and <a href="#removeOutputsOnExecutor">removeOutputsOnExecutor</a></p>
+</li>
+<li>
+<p>DAGScheduler is requested to <a href="DAGScheduler.html#handleTaskCompletion" class="page">handle a ShuffleMapTask completion</a> (of a ShuffleMapStage)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="checking-availability-of-shuffle-map-output-status"><a class="anchor" href="#checking-availability-of-shuffle-map-output-status"></a><a class="link" href="#checking-availability-of-shuffle-map-output-status"><a id="containsShuffle"></a> Checking Availability of Shuffle Map Output Status</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">containsShuffle(
+  shuffleId: Int): Boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>containsShuffle checks if the input <code>shuffleId</code> is registered in the <a href="#cachedSerializedStatuses">cachedSerializedStatuses</a> or <a href="MapOutputTracker.html#mapStatuses" class="page">mapStatuses</a> internal caches.</p>
+</div>
+<div class="paragraph">
+<p>containsShuffle is used when DAGScheduler is requested to <a href="DAGScheduler.html#createShuffleMapStage" class="page">create a createShuffleMapStage</a> (for a <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="registering-shuffle"><a class="anchor" href="#registering-shuffle"></a><a class="link" href="#registering-shuffle"><a id="registerShuffle"></a> Registering Shuffle</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">registerShuffle(
+  shuffleId: Int,
+  numMaps: Int): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>registerShuffle adds the input shuffle ID and the number of partitions (as a <a href="ShuffleStatus.html" class="page">ShuffleStatus</a>) to <a href="#shuffleStatuses">shuffleStatuses</a> internal registry.</p>
+</div>
+<div class="paragraph">
+<p>If the shuffle ID has already been registered, registerShuffle throws an IllegalArgumentException:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>Shuffle ID [shuffleId] registered twice</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>registerShuffle is used when DAGScheduler is requested to <a href="DAGScheduler.html#createShuffleMapStage" class="page">create a ShuffleMapStage</a> (for a <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="registering-map-outputs-for-shuffle-possibly-with-epoch-change"><a class="anchor" href="#registering-map-outputs-for-shuffle-possibly-with-epoch-change"></a><a class="link" href="#registering-map-outputs-for-shuffle-possibly-with-epoch-change"><a id="registerMapOutputs"></a> Registering Map Outputs for Shuffle (Possibly with Epoch Change)</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">registerMapOutputs(
+  shuffleId: Int,
+  statuses: Array[MapStatus],
+  changeEpoch: Boolean = false): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>registerMapOutputs registers the input <code>statuses</code> (as the shuffle map output) with the input <code>shuffleId</code> in the <a href="MapOutputTracker.html#mapStatuses" class="page">mapStatuses</a> internal cache.</p>
+</div>
+<div class="paragraph">
+<p>registerMapOutputs <a href="#incrementEpoch">increments epoch</a> if the input <code>changeEpoch</code> is enabled (it is not by default).</p>
+</div>
+<div class="paragraph">
+<p>registerMapOutputs is used when <code>DAGScheduler</code> handles <a href="DAGSchedulerEventProcessLoop.html#handleTaskCompletion-Success-ShuffleMapTask" class="page">successful <code>ShuffleMapTask</code> completion</a> and <a href="DAGSchedulerEventProcessLoop.html#handleExecutorLost" class="page">executor lost events</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="finding-serialized-map-output-statuses-and-possibly-broadcasting-them"><a class="anchor" href="#finding-serialized-map-output-statuses-and-possibly-broadcasting-them"></a><a class="link" href="#finding-serialized-map-output-statuses-and-possibly-broadcasting-them"><a id="getSerializedMapOutputStatuses"></a> Finding Serialized Map Output Statuses (And Possibly Broadcasting Them)</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getSerializedMapOutputStatuses(
+  shuffleId: Int): Array[Byte]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getSerializedMapOutputStatuses <a href="#checkCachedStatuses">finds cached serialized map statuses</a> for the input <code>shuffleId</code>.</p>
+</div>
+<div class="paragraph">
+<p>If found, getSerializedMapOutputStatuses returns the cached serialized map statuses.</p>
+</div>
+<div class="paragraph">
+<p>Otherwise, getSerializedMapOutputStatuses acquires the <a href="#shuffleIdLocks">shuffle lock</a> for <code>shuffleId</code> and <a href="#checkCachedStatuses">finds cached serialized map statuses</a> again since some other thread could not update the <a href="#cachedSerializedStatuses">cachedSerializedStatuses</a> internal cache.</p>
+</div>
+<div class="paragraph">
+<p>getSerializedMapOutputStatuses returns the serialized map statuses if found.</p>
+</div>
+<div class="paragraph">
+<p>If not, getSerializedMapOutputStatuses <a href="MapOutputTracker.html#serializeMapStatuses" class="page">serializes the local array of <code>MapStatuses</code></a> (from <a href="#checkCachedStatuses">checkCachedStatuses</a>).</p>
+</div>
+<div class="paragraph">
+<p>You should see the following INFO message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>Size of output statuses for shuffle [shuffleId] is [bytes] bytes</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getSerializedMapOutputStatuses saves the serialized map output statuses in <a href="#cachedSerializedStatuses">cachedSerializedStatuses</a> internal cache if the <a href="#epoch">epoch</a> has not changed in the meantime. getSerializedMapOutputStatuses also saves its broadcast version in <a href="#cachedSerializedBroadcast">cachedSerializedBroadcast</a> internal cache.</p>
+</div>
+<div class="paragraph">
+<p>If the <a href="#epoch">epoch</a> has changed in the meantime, the serialized map output statuses and their broadcast version are not saved, and you should see the following INFO message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>Epoch changed, not caching!</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getSerializedMapOutputStatuses <a href="#removeBroadcast">removes the broadcast</a>.</p>
+</div>
+<div class="paragraph">
+<p>getSerializedMapOutputStatuses returns the serialized map statuses.</p>
+</div>
+<div class="paragraph">
+<p>getSerializedMapOutputStatuses is used when <a href="#MessageLoop">MapOutputTrackerMaster responds to <code>GetMapOutputMessage</code> requests</a> and <a href="DAGScheduler.html#createShuffleMapStage" class="page"><code>DAGScheduler</code> creates <code>ShuffleMapStage</code> for <code>ShuffleDependency</code></a> (copying the shuffle map output locations from previous jobs to avoid unnecessarily regenerating data).</p>
+</div>
+<div class="sect2">
+<h3 id="finding-cached-serialized-map-statuses"><a class="anchor" href="#finding-cached-serialized-map-statuses"></a><a class="link" href="#finding-cached-serialized-map-statuses"><a id="checkCachedStatuses"></a> Finding Cached Serialized Map Statuses</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">checkCachedStatuses(): Boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>checkCachedStatuses is an internal helper method that <a href="#getSerializedMapOutputStatuses">getSerializedMapOutputStatuses</a> uses to do some bookkeeping (when the <a href="#epoch">epoch</a> and <a href="#cacheEpoch">cacheEpoch</a> differ) and set local <code>statuses</code>, <code>retBytes</code> and <code>epochGotten</code> (that getSerializedMapOutputStatuses uses).</p>
+</div>
+<div class="paragraph">
+<p>Internally, checkCachedStatuses acquires the <a href="MapOutputTracker.html#epochLock" class="page"><code>epochLock</code> lock</a> and checks the status of <a href="#epoch">epoch</a> to <a href="#cacheEpoch">cached <code>cacheEpoch</code></a>.</p>
+</div>
+<div class="paragraph">
+<p>If <code>epoch</code> is younger (i.e. greater), checkCachedStatuses clears <a href="#cachedSerializedStatuses">cachedSerializedStatuses</a> internal cache, <a href="#clearCachedBroadcast">cached broadcasts</a> and sets <code>cacheEpoch</code> to be <code>epoch</code>.</p>
+</div>
+<div class="paragraph">
+<p>checkCachedStatuses gets the serialized map output statuses for the <code>shuffleId</code> (of the owning <a href="#getSerializedMapOutputStatuses">getSerializedMapOutputStatuses</a>).</p>
+</div>
+<div class="paragraph">
+<p>When the serialized map output status is found, checkCachedStatuses saves it in a local <code>retBytes</code> and returns <code>true</code>.</p>
+</div>
+<div class="paragraph">
+<p>When not found, you should see the following DEBUG message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>cached status not found for : [shuffleId]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>checkCachedStatuses uses <a href="MapOutputTracker.html#mapStatuses" class="page">mapStatuses</a> internal cache to get map output statuses for the <code>shuffleId</code> (of the owning <a href="#getSerializedMapOutputStatuses">getSerializedMapOutputStatuses</a>) or falls back to an empty array and sets it to a local <code>statuses</code>. checkCachedStatuses sets the local <code>epochGotten</code> to the current <a href="#epoch">epoch</a> and returns <code>false</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="registering-shuffle-map-output"><a class="anchor" href="#registering-shuffle-map-output"></a><a class="link" href="#registering-shuffle-map-output"><a id="registerMapOutput"></a> Registering Shuffle Map Output</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">registerMapOutput(
+  shuffleId: Int,
+  mapId: Int,
+  status: MapStatus): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>registerMapOutput finds the <a href="ShuffleStatus.html" class="page">ShuffleStatus</a> by the given shuffle ID and <a href="ShuffleStatus.html#addMapOutput" class="page">adds the given MapStatus</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The given mapId is the <a href="Task.html#partitionId" class="page">partitionId</a> of the <a href="ShuffleMapTask.html" class="page">ShuffleMapTask</a> that finished.</p>
+</li>
+<li>
+<p>The given shuffleId is the <a href="../rdd/ShuffleDependency.html#shuffleId" class="page">shuffleId</a> of the <a href="../rdd/ShuffleDependency.html" class="page">ShuffleDependency</a> of the <a href="ShuffleMapStage.html#shuffleDep" class="page">ShuffleMapStage</a> (for which the ShuffleMapTask completed)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>registerMapOutput is used when DAGScheduler is requested to <a href="DAGScheduler.html#handleTaskCompletion" class="page">handle a ShuffleMapTask completion</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="calculating-shuffle-map-output-statistics"><a class="anchor" href="#calculating-shuffle-map-output-statistics"></a><a class="link" href="#calculating-shuffle-map-output-statistics"><a id="getStatistics"></a> Calculating Shuffle Map Output Statistics</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getStatistics(
+  dep: ShuffleDependency[_, _, _]): MapOutputStatistics</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getStatistics&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>getStatistics is used when DAGScheduler is requested to <a href="DAGScheduler.html#handleMapStageSubmitted" class="page">handle a ShuffleMapStage submission</a> (and the stage has finished) and <a href="DAGScheduler.html#markMapStageJobsAsFinished" class="page">markMapStageJobsAsFinished</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deregistering-all-map-outputs-of-shuffle-stage"><a class="anchor" href="#deregistering-all-map-outputs-of-shuffle-stage"></a><a class="link" href="#deregistering-all-map-outputs-of-shuffle-stage"><a id="unregisterAllMapOutput"></a> Deregistering All Map Outputs of Shuffle Stage</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">unregisterAllMapOutput(
+  shuffleId: Int): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>unregisterAllMapOutput&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>unregisterAllMapOutput is used when DAGScheduler is requested to <a href="DAGScheduler.html#handleTaskCompletion" class="page">handle a task completion (due to a fetch failure)</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deregistering-shuffle"><a class="anchor" href="#deregistering-shuffle"></a><a class="link" href="#deregistering-shuffle"><a id="unregisterShuffle"></a> Deregistering Shuffle</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">unregisterShuffle(
+  shuffleId: Int): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>unregisterShuffle&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>unregisterShuffle is part of the <a href="MapOutputTracker.html#unregisterShuffle" class="page">MapOutputTracker</a> abstraction.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deregistering-shuffle-outputs-associated-with-host"><a class="anchor" href="#deregistering-shuffle-outputs-associated-with-host"></a><a class="link" href="#deregistering-shuffle-outputs-associated-with-host"><a id="removeOutputsOnHost"></a> Deregistering Shuffle Outputs Associated with Host</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">removeOutputsOnHost(
+  host: String): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>removeOutputsOnHost&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>removeOutputsOnHost is used when DAGScheduler is requested to <a href="DAGScheduler.html#removeExecutorAndUnregisterOutputs" class="page">removeExecutorAndUnregisterOutputs</a> and <a href="DAGScheduler.html#handleWorkerRemoved" class="page">handle a worker removal</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deregistering-shuffle-outputs-associated-with-executor"><a class="anchor" href="#deregistering-shuffle-outputs-associated-with-executor"></a><a class="link" href="#deregistering-shuffle-outputs-associated-with-executor"><a id="removeOutputsOnExecutor"></a> Deregistering Shuffle Outputs Associated with Executor</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">removeOutputsOnExecutor(
+  execId: String): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>removeOutputsOnExecutor&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>removeOutputsOnExecutor is used when DAGScheduler is requested to <a href="DAGScheduler.html#removeExecutorAndUnregisterOutputs" class="page">removeExecutorAndUnregisterOutputs</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="number-of-partitions-with-shuffle-map-outputs-available"><a class="anchor" href="#number-of-partitions-with-shuffle-map-outputs-available"></a><a class="link" href="#number-of-partitions-with-shuffle-map-outputs-available"><a id="getNumAvailableOutputs"></a> Number of Partitions with Shuffle Map Outputs Available</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getNumAvailableOutputs(
+  shuffleId: Int): Int</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getNumAvailableOutputs&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>getNumAvailableOutputs is used when ShuffleMapStage is requested for the <a href="ShuffleMapStage.html#numAvailableOutputs" class="page">number of partitions with shuffle outputs available</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="finding-missing-partitions"><a class="anchor" href="#finding-missing-partitions"></a><a class="link" href="#finding-missing-partitions"><a id="findMissingPartitions"></a> Finding Missing Partitions</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">findMissingPartitions(
+  shuffleId: Int): Option[Seq[Int]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>findMissingPartitions&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>findMissingPartitions is used when ShuffleMapStage is requested for <a href="ShuffleMapStage.html#findMissingPartitions" class="page">missing partitions</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="finding-locations-with-blocks-and-sizes"><a class="anchor" href="#finding-locations-with-blocks-and-sizes"></a><a class="link" href="#finding-locations-with-blocks-and-sizes"><a id="getMapSizesByExecutorId"></a> Finding Locations with Blocks and Sizes</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getMapSizesByExecutorId(
+  shuffleId: Int,
+  startPartition: Int,
+  endPartition: Int): Iterator[(BlockManagerId, Seq[(BlockId, Long)])]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getMapSizesByExecutorId&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>getMapSizesByExecutorId is part of the <a href="MapOutputTracker.html#getMapSizesByExecutorId" class="page">MapOutputTracker</a> abstraction.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="finding-locations-with-largest-number-of-shuffle-map-outputs"><a class="anchor" href="#finding-locations-with-largest-number-of-shuffle-map-outputs"></a><a class="link" href="#finding-locations-with-largest-number-of-shuffle-map-outputs"><a id="getLocationsWithLargestOutputs"></a> Finding Locations with Largest Number of Shuffle Map Outputs</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getLocationsWithLargestOutputs(
+  shuffleId: Int,
+  reducerId: Int,
+  numReducers: Int,
+  fractionThreshold: Double): Option[Array[BlockManagerId]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getLocationsWithLargestOutputs returns <a href="../storage/BlockManager.html#BlockManagerId" class="page">BlockManagerId</a>s with the largest size (of all the shuffle blocks they manage) above the input <code>fractionThreshold</code> (given the total size of all the shuffle blocks for the shuffle across all <a href="../storage/BlockManager.html" class="page">BlockManagers</a>).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+getLocationsWithLargestOutputs may return no <code>BlockManagerId</code> if their shuffle blocks do not total up above the input <code>fractionThreshold</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The input <code>numReducers</code> is not used.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Internally, getLocationsWithLargestOutputs queries the <a href="#mapStatuses">mapStatuses</a> internal cache for the input <code>shuffleId</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>One entry in <code>mapStatuses</code> internal cache is a <a href="MapStatus.html" class="page">MapStatus</a> array indexed by partition id.</p>
+</div>
+<div class="paragraph">
+<p><code>MapStatus</code> includes <a href="MapStatus.html#contract" class="page">information about the <code>BlockManager</code> (as <code>BlockManagerId</code>) and estimated size of the reduce blocks</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>getLocationsWithLargestOutputs iterates over the <code>MapStatus</code> array and builds an interim mapping between <a href="../storage/BlockManager.html#BlockManagerId" class="page">BlockManagerId</a> and the cumulative sum of shuffle blocks across <a href="../storage/BlockManager.html" class="page">BlockManagers</a>.</p>
+</div>
+<div class="paragraph">
+<p>getLocationsWithLargestOutputs is used when MapOutputTrackerMaster is requested for the <a href="#getPreferredLocationsForShuffle">preferred locations of a shuffle</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="logging"><a class="anchor" href="#logging"></a><a class="link" href="#logging"><a id="logging"></a> Logging</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Enable <code>ALL</code> logging level for <code>org.apache.spark.MapOutputTrackerMaster</code> logger to see what happens inside.</p>
+</div>
+<div class="paragraph">
+<p>Add the following line to <code>conf/log4j.properties</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.MapOutputTrackerMaster=ALL</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Refer to <a href="../spark-logging.html" class="page">Logging</a>.</p>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
