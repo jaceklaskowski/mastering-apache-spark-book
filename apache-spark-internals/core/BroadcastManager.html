@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>BroadcastManager :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/core/BroadcastManager.html">
-    <meta name="generator" content="Antora 2.3.1">
+    <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-86782445-1')</script>
@@ -1958,7 +1958,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a id="isDriver"></a> isDriver flag</p>
+<p><a href="#isDriver">isDriver</a> flag</p>
 </li>
 <li>
 <p><a id="conf"></a> <a href="../SparkConf.html" class="page">SparkConf</a></p>
@@ -1969,12 +1969,29 @@
 </ul>
 </div>
 <div class="paragraph">
+<p>When created, BroadcastManager <a href="#initialize">initializes</a>.</p>
+</div>
+<div class="paragraph">
 <p>BroadcastManager is created when SparkEnv is <a href="SparkEnv.html" class="page">created</a> (for the driver and executors and hence the need for the <a href="#isDriver">isDriver</a> flag).</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="broadcastfactory"><a class="anchor" href="#broadcastfactory"></a><a class="link" href="#broadcastfactory"><a id="broadcastFactory"></a> BroadcastFactory</a></h2>
+<h2 id="isdriver-flag"><a class="anchor" href="#isdriver-flag"></a><a class="link" href="#isdriver-flag"><a id="isDriver"></a> isDriver Flag</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>BroadcastManager is given <code>isDriver</code> flag when <a href="#creating-instance">created</a>.</p>
+</div>
+<div class="paragraph">
+<p>The isDriver flag indicates whether the initialization happens on the driver (<code>true</code>) or executors (<code>false</code>).</p>
+</div>
+<div class="paragraph">
+<p>BroadcastManager uses the flag when requested to <a href="#initialize">initialize</a> for the <a href="#broadcastFactory">TorrentBroadcastFactory</a> to <a href="TorrentBroadcastFactory.html#initialize" class="page">initialize</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="torrentbroadcastfactory"><a class="anchor" href="#torrentbroadcastfactory"></a><a class="link" href="#torrentbroadcastfactory"><a id="broadcastFactory"></a> TorrentBroadcastFactory</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>BroadcastManager manages a <a href="BroadcastFactory.html" class="page">BroadcastFactory</a>:</p>

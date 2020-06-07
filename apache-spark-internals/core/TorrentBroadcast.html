@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>TorrentBroadcast :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/core/TorrentBroadcast.html">
-    <meta name="generator" content="Antora 2.3.1">
+    <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-86782445-1')</script>
@@ -1934,16 +1934,13 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>TorrentBroadcast is a <a href="BroadcastFactory.html" class="page">BroadcastFactory</a> that uses a BitTorrent-like protocol for block distribution (that only happens when tasks access broadcast variables on executors).</p>
+<p><strong>TorrentBroadcast</strong> is a <a href="BroadcastFactory.html" class="page">BroadcastFactory</a> that uses a BitTorrent-like protocol for block distribution (that only happens when tasks access broadcast variables on executors).</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="_images/sparkcontext-broadcast-bittorrent.png" alt="sparkcontext broadcast bittorrent">
 </div>
 <div class="title">Figure 1. TorrentBroadcast - broadcasting using BitTorrent</div>
-</div>
-<div class="paragraph">
-<p>TorrentBroadcast is <a href="#creating-instance">created</a> exclusively when <code>TorrentBroadcastFactory</code> is requested to <a href="TorrentBroadcastFactory.html#newBroadcast" class="page">newBroadcast</a>.</p>
 </div>
 <div class="paragraph">
 <p>When a <a href="../SparkContext.html#broadcast" class="page">broadcast variable is created (using <code>SparkContext.broadcast</code>)</a> on the driver, a <a href="#creating-instance">new instance of TorrentBroadcast is created</a>.</p>
@@ -2036,6 +2033,30 @@ TorrentBroadcast belongs to <code>org.apache.spark.broadcast</code> package.
 </td>
 </tr>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-torrentbroadcast-instance"><a class="anchor" href="#creating-torrentbroadcast-instance"></a><a class="link" href="#creating-torrentbroadcast-instance"><a id="creating-instance"></a> Creating TorrentBroadcast Instance</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TorrentBroadcast takes the following when created:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="obj"></a> Object (the value) to be broadcast</p>
+</li>
+<li>
+<p><a id="id"></a> ID</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>TorrentBroadcast initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
+</div>
+<div class="paragraph">
+<p>TorrentBroadcast is <a href="#creating-instance">created</a> exclusively when <code>TorrentBroadcastFactory</code> is requested to <a href="TorrentBroadcastFactory.html#newBroadcast" class="page">newBroadcast</a>.</p>
 </div>
 </div>
 </div>
@@ -2383,7 +2404,7 @@ The entire broadcast value is stored in the local <code>BlockManager</code> with
 </div>
 </div>
 <div class="sect1">
-<h2 id="unpersist-internal-method"><a class="anchor" href="#unpersist-internal-method"></a><a class="link" href="#unpersist-internal-method"><a id="unpersist"></a> <code>unpersist</code> Internal Method</a></h2>
+<h2 id="unpersist-utility"><a class="anchor" href="#unpersist-utility"></a><a class="link" href="#unpersist-utility"><a id="unpersist"></a> unpersist Utility</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2394,30 +2415,18 @@ The entire broadcast value is stored in the local <code>BlockManager</code> with
 </div>
 </div>
 <div class="paragraph">
-<p><code>unpersist</code> removes all broadcast blocks from executors and possibly the driver (only when <code>removeFromDriver</code> flag is enabled).</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>unpersist</code> belongs to TorrentBroadcast private object and is executed when TorrentBroadcast <a href="#doUnpersist">unpersists a broadcast variable</a> and <a href="#doDestroy">removes a broadcast variable completely</a>.
-</td>
-</tr>
-</table>
+<p>unpersist removes all broadcast blocks from executors and, with the given removeFromDriver flag enabled, from the driver.</p>
 </div>
 <div class="paragraph">
-<p>When executed, you should see the following DEBUG message in the logs:</p>
+<p>When executed, unpersist prints out the following DEBUG message in the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>DEBUG TorrentBroadcast: Unpersisting TorrentBroadcast [id]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Unpersisting TorrentBroadcast [id]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>unpersist</code> requests <a href="../storage/BlockManagerMaster.html#removeBroadcast" class="page"><code>BlockManagerMaster</code> to remove the <code>id</code> broadcast</a>.</p>
+<p>unpersist requests <a href="../storage/BlockManagerMaster.html#removeBroadcast" class="page"><code>BlockManagerMaster</code> to remove the <code>id</code> broadcast</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2426,31 +2435,23 @@ The entire broadcast value is stored in the local <code>BlockManager</code> with
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>unpersist</code> uses <a href="SparkEnv.html#blockManager" class="page"><code>SparkEnv</code> to get the <code>BlockManagerMaster</code></a> (through <code>blockManager</code> property).
+unpersist uses <a href="SparkEnv.html#blockManager" class="page"><code>SparkEnv</code> to get the <code>BlockManagerMaster</code></a> (through <code>blockManager</code> property).
 </td>
 </tr>
 </table>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="creating-torrentbroadcast-instance"><a class="anchor" href="#creating-torrentbroadcast-instance"></a><a class="link" href="#creating-torrentbroadcast-instance"><a id="creating-instance"></a> Creating TorrentBroadcast Instance</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>TorrentBroadcast takes the following when created:</p>
+<p>unpersist is used when:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a id="obj"></a> Object (the value) to be broadcast</p>
+<p>TorrentBroadcast is requested to <a href="#doUnpersist">unpersist a broadcast variable on executors</a> and <a href="#doDestroy">remove a broadcast variable from the driver and executors</a></p>
 </li>
 <li>
-<p><a id="id"></a> ID</p>
+<p>TorrentBroadcastFactory is requested to <a href="TorrentBroadcastFactory.html#unbroadcast" class="page">unbroadcast</a></p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>TorrentBroadcast initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
 </div>
 </div>
 </div>

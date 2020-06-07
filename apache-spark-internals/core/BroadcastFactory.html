@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>BroadcastFactory :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/core/BroadcastFactory.html">
-    <meta name="generator" content="Antora 2.3.1">
+    <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-86782445-1')</script>
@@ -1931,8 +1931,10 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">BroadcastFactory</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p><code>BroadcastFactory</code> is the <a href="#contract">contract</a> for <a href="#implementations">factories</a> of <a href="spark-broadcast.adoc">broadcast variables</a> in Apache Spark.</p>
+<p><strong>BroadcastFactory</strong> is an <a href="#contract">abstraction</a> for <a href="#implementations">factories</a> that <a href="BroadcastManager.html" class="page">BroadcastManager</a> uses for <a href="../spark-broadcast.html" class="page">broadcast variables</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1941,80 +1943,78 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<a href="https://issues.apache.org/jira/browse/SPARK-12588">As of Spark 2.0</a>, it is no longer possible to plug a custom <code>BroadcastFactory</code> in, and <a href="TorrentBroadcastFactory.html" class="page">TorrentBroadcastFactory</a> is the one and only known implementation.
+As of <a href="https://issues.apache.org/jira/browse/SPARK-12588">Spark 2.0</a>, it is no longer possible to plug a custom BroadcastFactory in, and <a href="TorrentBroadcastFactory.html" class="page">TorrentBroadcastFactory</a> is the one and only known implementation.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p><code>BroadcastFactory</code> is exclusively used and instantiated inside of <a href="BroadcastManager.html" class="page">BroadcastManager</a>.</p>
 </div>
-<div id="contract" class="listingblock">
+</div>
+<div class="sect1">
+<h2 id="contract"><a class="anchor" href="#contract"></a><a class="link" href="#contract"><a id="contract"></a> Contract</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="initialize-method"><a class="anchor" href="#initialize-method"></a><a class="link" href="#initialize-method"><a id="initialize"></a> initialize Method</a></h3>
+<div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">package org.apache.spark.broadcast
-
-trait BroadcastFactory {
-  def initialize(isDriver: Boolean, conf: SparkConf, securityMgr: SecurityManager): Unit
-  def newBroadcast[T: ClassTag](value: T, isLocal: Boolean, id: Long): Broadcast[T]
-  def unbroadcast(id: Long, removeFromDriver: Boolean, blocking: Boolean): Unit
-  def stop(): Unit
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">initialize(
+  isDriver: Boolean,
+  conf: SparkConf,
+  securityMgr: SecurityManager): Unit</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>BroadcastFactory</code> is a <code>private[spark]</code> contract.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Used when BroadcastManager is <a href="BroadcastManager.html#creating-instance" class="page">created</a>.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. BroadcastFactory Contract</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Method</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>initialize</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="initialize"></a> Used when&#8230;&#8203;FIXME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>newBroadcast</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="newBroadcast"></a> Used when&#8230;&#8203;FIXME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unbroadcast</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="unbroadcast"></a> Used when&#8230;&#8203;FIXME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>stop</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="stop"></a> Used when&#8230;&#8203;FIXME</p></td>
-</tr>
-</tbody>
-</table>
-<div id="implementations" class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<a href="TorrentBroadcastFactory.html" class="page">TorrentBroadcastFactory</a> is the one and only known implementation of <a href="#contract">BroadcastFactory contract</a> in Apache Spark.
-</td>
-</tr>
-</table>
+</div>
+<div class="sect2">
+<h3 id="newbroadcast-method"><a class="anchor" href="#newbroadcast-method"></a><a class="link" href="#newbroadcast-method"><a id="newBroadcast"></a> newBroadcast Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">newBroadcast[T: ClassTag](
+  value: T,
+  isLocal: Boolean,
+  id: Long): Broadcast[T]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Used when BroadcastManager is requested for a <a href="BroadcastManager.html#newBroadcast" class="page">new broadcast variable</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stop-method"><a class="anchor" href="#stop-method"></a><a class="link" href="#stop-method"><a id="stop"></a> stop Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">stop(): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Used when BroadcastManager is requested to <a href="BroadcastManager.html#stop" class="page">stop</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unbroadcast-method"><a class="anchor" href="#unbroadcast-method"></a><a class="link" href="#unbroadcast-method"><a id="unbroadcast"></a> unbroadcast Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">unbroadcast(
+  id: Long,
+  removeFromDriver: Boolean,
+  blocking: Boolean): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Used when BroadcastManager is requested to <a href="BroadcastManager.html#unbroadcast" class="page">unbroadcast a broadcast variable</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="available-broadcastfactories"><a class="anchor" href="#available-broadcastfactories"></a><a class="link" href="#available-broadcastfactories"><a id="implementations"></a> Available BroadcastFactories</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="TorrentBroadcastFactory.html" class="page">TorrentBroadcastFactory</a> is the default and only known BroadcastFactory in Apache Spark.</p>
+</div>
+</div>
 </div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

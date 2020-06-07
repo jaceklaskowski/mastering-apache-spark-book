@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>TorrentBroadcastFactory :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/core/TorrentBroadcastFactory.html">
-    <meta name="generator" content="Antora 2.3.1">
+    <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-86782445-1')</script>
@@ -1934,7 +1934,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>TorrentBroadcastFactory</code> is a <a href="BroadcastFactory.html" class="page">BroadcastFactory</a> of <a href="TorrentBroadcast.html" class="page">TorrentBroadcast</a>s, i.e. BitTorrent-like <a href="spark-broadcast.adoc">broadcast variables</a>.</p>
+<p><strong>TorrentBroadcastFactory</strong> is a <a href="BroadcastFactory.html" class="page">BroadcastFactory</a> of <a href="TorrentBroadcast.html" class="page">TorrentBroadcast</a>s (for BitTorrent-like <a href="../spark-broadcast.html" class="page">broadcast variables</a>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1943,42 +1943,94 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<a href="https://issues.apache.org/jira/browse/SPARK-12588">As of Spark 2.0</a> <code>TorrentBroadcastFactory</code> is the only implementation of <a href="BroadcastFactory.html" class="page">BroadcastFactory</a>.
+As of <a href="https://issues.apache.org/jira/browse/SPARK-12588">Spark 2.0</a> TorrentBroadcastFactory is is the one and only known <a href="BroadcastFactory.html" class="page">BroadcastFactory</a>.
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p><a id="initialize"></a><a id="stop"></a>
-<code>initialize</code> and <code>stop</code> do nothing.</p>
-</div>
-<div class="paragraph">
-<p><code>unbroadcast</code> <a href="TorrentBroadcast.html#unpersist" class="page">removes all the persisted state associated with a <code>TorrentBroadcast</code> of a given ID</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-torrentbroadcastnewbroadcast-method"><a class="anchor" href="#creating-torrentbroadcastnewbroadcast-method"></a><a class="link" href="#creating-torrentbroadcastnewbroadcast-method"><a id="newBroadcast"></a> Creating TorrentBroadcast&#8201;&#8212;&#8201;<code>newBroadcast</code> Method</a></h2>
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TorrentBroadcastFactory takes no arguments to be created.</p>
+</div>
+<div class="paragraph">
+<p>TorrentBroadcastFactory is created for <a href="BroadcastManager.html#broadcastFactory" class="page">BroadcastManager</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-torrentbroadcast"><a class="anchor" href="#creating-torrentbroadcast"></a><a class="link" href="#creating-torrentbroadcast"><a id="newBroadcast"></a> Creating TorrentBroadcast</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">newBroadcast[T: ClassTag](value_ : T, isLocal: Boolean, id: Long): Broadcast[T]</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">newBroadcast[T: ClassTag](
+  value_ : T,
+  isLocal: Boolean,
+  id: Long): Broadcast[T]</code></pre>
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>newBroadcast</code> is part of <a href="BroadcastFactory.html#newBroadcast" class="page">BroadcastFactory Contract</a> to&#8230;&#8203;FIXME.
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
-<p><code>newBroadcast</code> creates a <a href="TorrentBroadcast.html#creating-instance" class="page">TorrentBroadcast</a> (for the input <code>value_</code> and <code>id</code> and ignoring the <code>isLocal</code> parameter).</p>
+<p>newBroadcast creates a <a href="TorrentBroadcast.html" class="page">TorrentBroadcast</a> (for the given <code>value_</code> and <code>id</code> and ignoring the <code>isLocal</code> flag).</p>
+</div>
+<div class="paragraph">
+<p>newBroadcast is part of the <a href="BroadcastFactory.html#newBroadcast" class="page">BroadcastFactory</a> abstraction.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="unbroadcasting-broadcast-variable"><a class="anchor" href="#unbroadcasting-broadcast-variable"></a><a class="link" href="#unbroadcasting-broadcast-variable"><a id="unbroadcast"></a> Unbroadcasting Broadcast Variable</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">unbroadcast(
+  id: Long,
+  removeFromDriver: Boolean,
+  blocking: Boolean): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>unbroadcast <a href="TorrentBroadcast.html#unpersist" class="page">removes all persisted state associated with the TorrentBroadcast</a> (by the given id).</p>
+</div>
+<div class="paragraph">
+<p>unbroadcast is part of the <a href="BroadcastFactory.html#unbroadcast" class="page">BroadcastFactory</a> abstraction.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="initializing-torrentbroadcastfactory"><a class="anchor" href="#initializing-torrentbroadcastfactory"></a><a class="link" href="#initializing-torrentbroadcastfactory"><a id="initialize"></a> Initializing TorrentBroadcastFactory</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">initialize(
+  isDriver: Boolean,
+  conf: SparkConf,
+  securityMgr: SecurityManager): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>initialize does nothing.</p>
+</div>
+<div class="paragraph">
+<p>initialize is part of the <a href="BroadcastFactory.html#initialize" class="page">BroadcastFactory</a> abstraction.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stopping-torrentbroadcastfactory"><a class="anchor" href="#stopping-torrentbroadcastfactory"></a><a class="link" href="#stopping-torrentbroadcastfactory"><a id="stop"></a> Stopping TorrentBroadcastFactory</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">stop(): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>stop does nothing.</p>
+</div>
+<div class="paragraph">
+<p>stop is part of the <a href="BroadcastFactory.html#stop" class="page">BroadcastFactory</a> abstraction.</p>
 </div>
 </div>
 </div>
