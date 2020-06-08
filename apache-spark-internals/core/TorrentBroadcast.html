@@ -653,7 +653,7 @@
     <span class="nav-text">Shared Variables</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-broadcast.html">Broadcast Variable</a>
+    <a class="nav-link" href="../Broadcast.html">Broadcast Variable</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1934,7 +1934,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>TorrentBroadcast</strong> is a <a href="../spark-broadcast.html" class="page">Broadcast Variable</a> that uses a BitTorrent-like protocol for block distribution (that only happens when tasks access broadcast variables on executors).</p>
+<p><strong>TorrentBroadcast</strong> is a <a href="../Broadcast.html" class="page">Broadcast Variable</a> that uses a BitTorrent-like protocol for block distribution (that only happens when tasks access broadcast variables on executors).</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -2047,7 +2047,7 @@ TorrentBroadcast belongs to <code>org.apache.spark.broadcast</code> package.
 <p>getValue returns the <a href="#_value">_value</a>.</p>
 </div>
 <div class="paragraph">
-<p>getValue is part of the <a href="../spark-broadcast.html#getValue" class="page">Broadcast</a> abstraction.</p>
+<p>getValue is part of the <a href="../Broadcast.html#getValue" class="page">Broadcast</a> abstraction.</p>
 </div>
 </div>
 </div>
@@ -2264,7 +2264,7 @@ The entire broadcast value is stored in the local <code>BlockManager</code> with
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>doUnpersist</code> is part of the <a href="spark-broadcast.adoc#contract"><code>Broadcast</code> Variable Contract</a> and is executed from <a href="#unpersist">unpersist</a> method.
+<code>doUnpersist</code> is part of the <a href="../Broadcast.html#contract" class="page"><code>Broadcast</code> Variable Contract</a> and is executed from <a href="#unpersist">unpersist</a> method.
 </td>
 </tr>
 </table>
@@ -2289,7 +2289,7 @@ The entire broadcast value is stored in the local <code>BlockManager</code> with
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>doDestroy</code> is executed when <a href="spark-broadcast.adoc#destroy-internal"><code>Broadcast</code> removes the persisted data and metadata related to a broadcast variable</a>.
+<code>doDestroy</code> is executed when <a href="../Broadcast.html#destroy-internal" class="page"><code>Broadcast</code> removes the persisted data and metadata related to a broadcast variable</a>.
 </td>
 </tr>
 </table>

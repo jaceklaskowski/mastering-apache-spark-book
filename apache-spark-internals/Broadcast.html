@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title> LiveListenerBus :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/spark-scheduler-LiveListenerBus.html">
+    <title>Broadcast Variable :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/Broadcast.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -652,7 +652,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Shared Variables</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="Broadcast.html">Broadcast Variable</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -817,7 +817,7 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-scheduler-LiveListenerBus.html">LiveListenerBus</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1921,224 +1921,164 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Apache Spark</a></li>
-    <li>Monitoring, Tuning, Debugging and Testing</li>
-    <li><a href="spark-scheduler-LiveListenerBus.html">LiveListenerBus</a></li>
+    <li>Shared Variables</li>
+    <li><a href="Broadcast.html">Broadcast Variable</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/ROOT/pages/spark-scheduler-LiveListenerBus.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/ROOT/pages/Broadcast.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page"><a id="LiveListenerBus"></a> LiveListenerBus</h1>
+<h1 class="page">Broadcast Variable</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>LiveListenerBus</strong> is an event bus to announce application-wide events in a Spark application. It asynchronously passes <a href="#events">listener events</a> to <a href="#spark_extraListeners">registered Spark listeners</a>.</p>
+<p>From <a href="http://spark.apache.org/docs/latest/programming-guide.html#broadcast-variables">the official documentation about Broadcast Variables</a>:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Broadcast variables allow the programmer to keep a read-only variable cached on each machine rather than shipping a copy of it with tasks.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>And later in the document:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Explicitly creating broadcast variables is only useful when tasks across multiple stages need the same data or when caching the data in deserialized form is important.</p>
+</div>
+</blockquote>
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<img src="_images/spark-sparklistener-event-senders.png" alt="spark sparklistener event senders">
+<img src="_images/sparkcontext-broadcast-executors.png" alt="sparkcontext broadcast executors">
 </div>
-<div class="title">Figure 1. LiveListenerBus, SparkListenerEvents, and Senders</div>
+<div class="title">Figure 1. Broadcasting a value to executors</div>
 </div>
 <div class="paragraph">
-<p>LiveListenerBus is a single-JVM <a href="spark-SparkListenerBus.adoc">SparkListenerBus</a> that uses <a href="#listenerThread">listenerThread to poll events</a>. Emitters are supposed to use <a href="#post"><code>post</code> method to post <code>SparkListenerEvent</code> events</a>.</p>
+<p>To use a broadcast value in a Spark transformation you have to create it first using <a href="SparkContext.html#broadcast" class="page">SparkContext.broadcast</a> and then use <code>value</code> method to access the shared value. Learn it in <a href="#introductory-example">Introductory Example</a> section.</p>
 </div>
-<div class="admonitionblock note">
+<div class="paragraph">
+<p>The Broadcast feature in Spark uses SparkContext to create broadcast values and <a href="core/BroadcastManager.html" class="page">BroadcastManager</a> and <a href="core/ContextCleaner.html" class="page">ContextCleaner</a> to manage their lifecycle.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/sparkcontext-broadcastmanager-contextcleaner.png" alt="sparkcontext broadcastmanager contextcleaner">
+</div>
+<div class="title">Figure 2. SparkContext to broadcast using BroadcastManager and ContextCleaner</div>
+</div>
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The event queue is <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/LinkedBlockingQueue.html">java.util.concurrent.LinkedBlockingQueue</a> with capacity of 10000 <code>SparkListenerEvent</code> events.
-</td>
-</tr>
-</table>
-</div>
-<div id="conf" class="paragraph">
-<p>LiveListenerBus takes a <a href="SparkConf.html" class="page">SparkConf</a> when created.</p>
-</div>
-<div class="paragraph">
-<p>LiveListenerBus is <a href="#creating-instance">created</a> and started when <code>SparkContext</code> is <a href="SparkContext.html#listenerBus" class="page">initialized</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="starting-livelistenerbusstart-method"><a class="anchor" href="#starting-livelistenerbusstart-method"></a><a class="link" href="#starting-livelistenerbusstart-method"><a id="start"></a> Starting LiveListenerBus&#8201;&#8212;&#8201;<code>start</code> method</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">start(sc: SparkContext): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>start</code> starts <a href="#listenerThread">processing events</a>.</p>
-</div>
-<div class="paragraph">
-<p>Internally, it saves the input <code>SparkContext</code> for later use and starts <a href="#listenerThread">listenerThread</a>. It makes sure that it only happens when LiveListenerBus has not been started before (i.e. <code>started</code> is disabled).</p>
-</div>
-<div class="paragraph">
-<p>If however LiveListenerBus has already been started, a <code>IllegalStateException</code> is thrown:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>[name] already started!</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="posting-sparklistenerevent-event"><a class="anchor" href="#posting-sparklistenerevent-event"></a><a class="link" href="#posting-sparklistenerevent-event"><a id="post"></a> Posting SparkListenerEvent Event</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">post(
-  event: SparkListenerEvent): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>post</code> puts the input <code>event</code> onto the internal <code>eventQueue</code> queue and releases the internal <code>eventLock</code> semaphore. If the event placement was not successful (and it could happen since it is tapped at 10000 events) <a href="#onDropEvent">onDropEvent</a> method is called.</p>
-</div>
-<div class="paragraph">
-<p>The event publishing is only possible when <code>stopped</code> flag has been enabled.</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME Who&#8217;s enabling the <code>stopped</code> flag and when/why?
+Not only can Spark developers use broadcast variables for efficient data distribution, but Spark itself uses them quite often. A very notable use case is when <a href="scheduler/DAGScheduler.html#submitMissingTasks" class="page">Spark distributes tasks to executors for their execution</a>. That <em>does</em> change my perspective on the role of broadcast variables in Spark.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>If LiveListenerBus has been stopped, the following ERROR appears in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>ERROR [name] has already stopped! Dropping event [event]</code></pre>
-</div>
+<p>The idea is to transfer values used in transformations from a driver to executors in a most effective way so they are copied once and used many times by tasks (rather than being copied every time a task is launched).</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="event-dropped-callbackondropevent-method"><a class="anchor" href="#event-dropped-callbackondropevent-method"></a><a class="link" href="#event-dropped-callbackondropevent-method"><a id="onDropEvent"></a> Event Dropped Callback&#8201;&#8212;&#8201;<code>onDropEvent</code> method</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">onDropEvent(event: SparkListenerEvent): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>onDropEvent</code> is called when no further events can be added to the internal <code>eventQueue</code> queue (while <a href="#post">posting a SparkListenerEvent event</a>).</p>
-</div>
-<div class="paragraph">
-<p>It simply prints out the following ERROR message to the logs and ensures that it happens only once.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>ERROR Dropping SparkListenerEvent because no remaining room in event queue. This likely means one of the SparkListeners is too slow and cannot keep up with the rate at which tasks are being started by the scheduler.</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-It uses the internal <code>logDroppedEvent</code> atomic variable to track the state.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="stopping-livelistenerbusstop-method"><a class="anchor" href="#stopping-livelistenerbusstop-method"></a><a class="link" href="#stopping-livelistenerbusstop-method"><a id="stop"></a> Stopping LiveListenerBus&#8201;&#8212;&#8201;<code>stop</code> method</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">stop(): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>stop</code> releases the internal <code>eventLock</code> semaphore and waits until <a href="#listenerThread">listenerThread</a> dies. It can only happen after all events were posted (and polling <code>eventQueue</code> gives nothing).</p>
-</div>
-<div class="paragraph">
-<p>It checks that <code>started</code> flag is enabled (i.e. <code>true</code>) and throws a <code>IllegalStateException</code> otherwise.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>Attempted to stop [name] that has not yet started!</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>stopped</code> flag is enabled.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="listenerthread-for-event-polling"><a class="anchor" href="#listenerthread-for-event-polling"></a><a class="link" href="#listenerthread-for-event-polling"><a id="listenerThread"></a> <code>listenerThread</code> for Event Polling</a></h2>
+<h2 id="broadcast-spark-developer-facing-contract"><a class="anchor" href="#broadcast-spark-developer-facing-contract"></a><a class="link" href="#broadcast-spark-developer-facing-contract"><a id="developer-contract"></a> <code>Broadcast</code> Spark Developer-Facing Contract</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>LiveListenerBus uses <a href="spark-SparkListenerBus.adoc">SparkListenerBus</a> single-daemon thread that ensures that the polling events from the event queue is only after <a href="#start">the listener was started</a> and only one event at a time.</p>
+<p>The developer-facing <code>Broadcast</code> contract allows Spark developers to use it in their applications.</p>
 </div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME There is some logic around no events in the queue.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="settings"><a class="anchor" href="#settings"></a><a class="link" href="#settings"><a id="settings"></a> Settings</a></h2>
-<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Spark Properties</caption>
+<caption class="title">Table 1. Broadcast API</caption>
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Spark Property</th>
-<th class="tableblock halign-left valign-top">Default Value</th>
+<th class="tableblock halign-left valign-top">Method Name</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="spark_extraListeners"></a> <code>spark.extraListeners</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">(empty)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The comma-separated list of fully-qualified class names of <a href="spark-scheduler-SparkListener.adoc">Spark listeners</a> that should be registered (when <a href="spark-SparkContext-creating-instance-internals.adoc#registering_SparkListeners"><code>SparkContext</code> is initialized</a>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The unique identifier</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#value">value</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#unpersist">unpersist</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Asynchronously deletes cached copies of this broadcast on the executors.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#destroy">destroy</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Destroys all data and metadata related to this broadcast variable.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toString</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The string representation</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="registering-sparklistenerinterface-with-application-status-queueaddtostatusqueue-method"><a class="anchor" href="#registering-sparklistenerinterface-with-application-status-queueaddtostatusqueue-method"></a><a class="link" href="#registering-sparklistenerinterface-with-application-status-queueaddtostatusqueue-method"><a id="addToStatusQueue"></a> Registering SparkListenerInterface with Application Status Queue&#8201;&#8212;&#8201;<code>addToStatusQueue</code> Method</a></h2>
+<h2 id="lifecycle-of-broadcast-variable"><a class="anchor" href="#lifecycle-of-broadcast-variable"></a><a class="link" href="#lifecycle-of-broadcast-variable"><a id="lifecycle"></a> Lifecycle of Broadcast Variable</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>You can create a broadcast variable of type <code>T</code> using <a href="SparkContext.html#broadcast" class="page">SparkContext.broadcast</a> method.</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">addToStatusQueue(listener: SparkListenerInterface): Unit</code></pre>
+<pre class="highlightjs highlight"><code>scala&gt; val b = sc.broadcast(1)
+b: org.apache.spark.broadcast.Broadcast[Int] = Broadcast(0)</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Enable <code>DEBUG</code> logging level for <code>org.apache.spark.storage.BlockManager</code> logger to debug <code>broadcast</code> method.</p>
+</div>
+<div class="paragraph">
+<p>Read <a href="storage/BlockManager.html" class="page">BlockManager</a> to find out how to enable the logging level.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>With DEBUG logging level enabled, you should see the following messages in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>DEBUG BlockManager: Put block broadcast_0 locally took  430 ms
+DEBUG BlockManager: Putting block broadcast_0 without replication took  431 ms
+DEBUG BlockManager: Told master about block broadcast_0_piece0
+DEBUG BlockManager: Put block broadcast_0_piece0 locally took  4 ms
+DEBUG BlockManager: Putting block broadcast_0_piece0 without replication took  4 ms</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>addToStatusQueue</code> simply <a href="#addToQueue">adds the SparkListenerInterface</a> to <a href="#EVENT_LOG_QUEUE">eventLog</a> queue.</p>
+<p>After creating an instance of a broadcast variable, you can then reference the value using <a href="#value">value</a> method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">scala&gt; b.value
+res0: Int = 1</code></pre>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2147,7 +2087,84 @@ FIXME There is some logic around no events in the queue.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>addToStatusQueue</code> is used when&#8230;&#8203;FIXME
+<code>value</code> method is the only way to access the value of a broadcast variable.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>With DEBUG logging level enabled, you should see the following messages in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>DEBUG BlockManager: Getting local block broadcast_0
+DEBUG BlockManager: Level for block broadcast_0 is StorageLevel(disk, memory, deserialized, 1 replicas)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When you are done with a broadcast variable, you should <a href="#destroy">destroy</a> it to release memory.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">scala&gt; b.destroy</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With DEBUG logging level enabled, you should see the following messages in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>DEBUG BlockManager: Removing broadcast 0
+DEBUG BlockManager: Removing block broadcast_0_piece0
+DEBUG BlockManager: Told master about block broadcast_0_piece0
+DEBUG BlockManager: Removing block broadcast_0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Before <a href="#destroy">destroying</a> a broadcast variable, you may want to <a href="#unpersist">unpersist</a> it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">scala&gt; b.unpersist</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-the-value-of-broadcast-variablevalue-method"><a class="anchor" href="#getting-the-value-of-broadcast-variablevalue-method"></a><a class="link" href="#getting-the-value-of-broadcast-variablevalue-method"><a id="value"></a> Getting the Value of Broadcast Variable&#8201;&#8212;&#8201;<code>value</code> Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">value: T</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>value</code> returns the value of a broadcast variable. You can only access the value until it is <a href="#destroy">destroyed</a> after which you will see the following <code>SparkException</code> exception in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>org.apache.spark.SparkException: Attempted to use Broadcast(0) after it was destroyed (destroy at &lt;console&gt;:27)
+  at org.apache.spark.broadcast.Broadcast.assertValid(Broadcast.scala:144)
+  at org.apache.spark.broadcast.Broadcast.value(Broadcast.scala:69)
+  ... 48 elided</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Internally, <code>value</code> makes sure that the broadcast variable is <strong>valid</strong>, i.e. <a href="#destroy">destroy</a> was not called, and, if so, calls the abstract <code>getValue</code> method.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>getValue</code> is abstracted and broadcast variable implementations are supposed to provide a concrete behaviour.</p>
+</div>
+<div class="paragraph">
+<p>Refer to <a href="core/TorrentBroadcast.html#getValue" class="page">TorrentBroadcast</a>.</p>
+</div>
 </td>
 </tr>
 </table>
@@ -2155,15 +2172,26 @@ FIXME There is some logic around no events in the queue.
 </div>
 </div>
 <div class="sect1">
-<h2 id="registering-sparklistenerinterface-with-queueaddtoqueue-method"><a class="anchor" href="#registering-sparklistenerinterface-with-queueaddtoqueue-method"></a><a class="link" href="#registering-sparklistenerinterface-with-queueaddtoqueue-method"><a id="addToQueue"></a> Registering SparkListenerInterface with Queue&#8201;&#8212;&#8201;<code>addToQueue</code> Method</a></h2>
+<h2 id="unpersisting-broadcast-variableunpersist-methods"><a class="anchor" href="#unpersisting-broadcast-variableunpersist-methods"></a><a class="link" href="#unpersisting-broadcast-variableunpersist-methods"><a id="unpersist"></a> Unpersisting Broadcast Variable&#8201;&#8212;&#8201;<code>unpersist</code> Methods</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">addToQueue(listener: SparkListenerInterface, queue: String): Unit</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">unpersist(): Unit
+unpersist(blocking: Boolean): Unit</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="destroying-broadcast-variabledestroy-method"><a class="anchor" href="#destroying-broadcast-variabledestroy-method"></a><a class="link" href="#destroying-broadcast-variabledestroy-method"><a id="destroy"></a> Destroying Broadcast Variable&#8201;&#8212;&#8201;<code>destroy</code> Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">destroy(): Unit</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>addToQueue</code>&#8230;&#8203;FIXME</p>
+<p><code>destroy</code> removes a broadcast variable.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2172,10 +2200,207 @@ FIXME There is some logic around no events in the queue.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>addToQueue</code> is used when&#8230;&#8203;FIXME
+Once a broadcast variable has been destroyed, it cannot be used again.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>If you try to destroy a broadcast variable more than once, you will see the following <code>SparkException</code> exception in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>scala&gt; b.destroy
+org.apache.spark.SparkException: Attempted to use Broadcast(0) after it was destroyed (destroy at &lt;console&gt;:27)
+  at org.apache.spark.broadcast.Broadcast.assertValid(Broadcast.scala:144)
+  at org.apache.spark.broadcast.Broadcast.destroy(Broadcast.scala:107)
+  at org.apache.spark.broadcast.Broadcast.destroy(Broadcast.scala:98)
+  ... 48 elided</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Internally, <code>destroy</code> executes the internal <a href="#destroy-internal">destroy</a> (with <code>blocking</code> enabled).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="removing-persisted-data-of-broadcast-variabledestroy-internal-method"><a class="anchor" href="#removing-persisted-data-of-broadcast-variabledestroy-internal-method"></a><a class="link" href="#removing-persisted-data-of-broadcast-variabledestroy-internal-method"><a id="destroy-internal"></a> Removing Persisted Data of Broadcast Variable&#8201;&#8212;&#8201;<code>destroy</code> Internal Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">destroy(blocking: Boolean): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>destroy</code> destroys all data and metadata of a broadcast variable.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>destroy</code> is a <code>private[spark]</code> method.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Internally, <code>destroy</code> marks a broadcast variable destroyed, i.e. the internal <code>_isValid</code> flag is disabled.</p>
+</div>
+<div class="paragraph">
+<p>You should see the following INFO message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>INFO TorrentBroadcast: Destroying Broadcast([id]) (from [destroySite])</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the end, <code>doDestroy</code> method is executed (that broadcast implementations are supposed to provide).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>doDestroy</code> is part of the <a href="#contract">Broadcast contract</a> for broadcast implementations so they can provide their own custom behaviour.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="introductory-example"><a class="anchor" href="#introductory-example"></a><a class="link" href="#introductory-example"><a id="introductory-example"></a> Introductory Example</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s start with an introductory example to check out how to use broadcast variables and build your initial understanding.</p>
+</div>
+<div class="paragraph">
+<p>You&#8217;re going to use a static mapping of interesting projects with their websites, i.e. <code>Map[String, String]</code> that the tasks, i.e. closures (anonymous functions) in transformations, use.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>scala&gt; val pws = Map("Apache Spark" -&gt; "http://spark.apache.org/", "Scala" -&gt; "http://www.scala-lang.org/")
+pws: scala.collection.immutable.Map[String,String] = Map(Apache Spark -&gt; http://spark.apache.org/, Scala -&gt; http://www.scala-lang.org/)
+
+scala&gt; val websites = sc.parallelize(Seq("Apache Spark", "Scala")).map(pws).collect
+...
+websites: Array[String] = Array(http://spark.apache.org/, http://www.scala-lang.org/)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It works, but is very ineffective as the <code>pws</code> map is sent over the wire to executors while it could have been there already. If there were more tasks that need the <code>pws</code> map, you could improve their performance by minimizing the number of bytes that are going to be sent over the network for task execution.</p>
+</div>
+<div class="paragraph">
+<p>Enter broadcast variables.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>val pwsB = sc.broadcast(pws)
+val websites = sc.parallelize(Seq("Apache Spark", "Scala")).map(pwsB.value).collect
+// websites: Array[String] = Array(http://spark.apache.org/, http://www.scala-lang.org/)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Semantically, the two computations - with and without the broadcast value - are exactly the same, but the broadcast-based one wins performance-wise when there are more executors spawned to execute many tasks that use <code>pws</code> map.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="introduction"><a class="anchor" href="#introduction"></a><a class="link" href="#introduction"><a id="introduction"></a> Introduction</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Broadcast</strong> is part of Spark that is responsible for broadcasting information across nodes in a cluster.</p>
+</div>
+<div class="paragraph">
+<p>You use broadcast variable to implement <strong>map-side join</strong>, i.e. a join using a <code>map</code>. For this, lookup tables are distributed across nodes in a cluster using <code>broadcast</code> and then looked up inside <code>map</code> (to do the join implicitly).</p>
+</div>
+<div class="paragraph">
+<p>When you broadcast a value, it is copied to executors only once (while it is copied multiple times for tasks otherwise). It means that broadcast can help to get your Spark application faster if you have a large value to use in tasks or there are more tasks than executors.</p>
+</div>
+<div class="paragraph">
+<p>It appears that a Spark idiom emerges that uses <code>broadcast</code> with <code>collectAsMap</code> to create a <code>Map</code> for broadcast. When an RDD is <code>map</code> over to a smaller dataset (column-wise not record-wise), <code>collectAsMap</code>, and <code>broadcast</code>, using the very big RDD to map its elements to the broadcast RDDs is computationally faster.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">val acMap = sc.broadcast(myRDD.map { case (a,b,c,b) =&gt; (a, c) }.collectAsMap)
+val otherMap = sc.broadcast(myOtherRDD.collectAsMap)
+
+myBigRDD.map { case (a, b, c, d) =&gt;
+  (acMap.value.get(a).get, otherMap.value.get(c).get)
+}.collect</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use large broadcasted HashMaps over RDDs whenever possible and leave RDDs with a key to lookup necessary data as demonstrated above.</p>
+</div>
+<div class="paragraph">
+<p>Spark comes with a BitTorrent implementation.</p>
+</div>
+<div class="paragraph">
+<p>It is not enabled by default.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="broadcast-contract"><a class="anchor" href="#broadcast-contract"></a><a class="link" href="#broadcast-contract"><a id="contract"></a> <code>Broadcast</code> Contract</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>Broadcast</code> contract is made up of the following methods that custom <code>Broadcast</code> implementations are supposed to provide:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>getValue</code></p>
+</li>
+<li>
+<p><code>doUnpersist</code></p>
+</li>
+<li>
+<p><code>doDestroy</code></p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<a href="core/TorrentBroadcast.html" class="page">TorrentBroadcast</a> is the only implementation of the <code>Broadcast</code> contract.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<a href="#developer-contract"><code>Broadcast</code> Spark Developer-Facing Contract</a> is the developer-facing <code>Broadcast</code> contract that allows Spark developers to use it in their applications.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="further-reading-or-watching"><a class="anchor" href="#further-reading-or-watching"></a><a class="link" href="#further-reading-or-watching"><a id="i-want-more"></a> Further Reading or Watching</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://dmtolpeko.com/2015/02/20/map-side-join-in-spark/">Map-Side Join in Spark</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
