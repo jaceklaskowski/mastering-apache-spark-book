@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>Broadcast Variable :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/spark-broadcast.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../_/css/site.css">
@@ -653,7 +653,7 @@
     <span class="nav-text">Shared Variables</span>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="spark-broadcast.html">Broadcast variables</a>
+    <a class="nav-link" href="spark-broadcast.html">Broadcast Variable</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1922,15 +1922,15 @@
   <ul>
     <li><a href="index.html">Apache Spark</a></li>
     <li>Shared Variables</li>
-    <li><a href="spark-broadcast.html">Broadcast variables</a></li>
+    <li><a href="spark-broadcast.html">Broadcast Variable</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/ROOT/pages/spark-broadcast.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="broadcast-variables"><a class="anchor" href="#broadcast-variables"></a><a class="link" href="#broadcast-variables">Broadcast Variables</a></h2>
+<h1 class="page">Broadcast Variable</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>From <a href="http://spark.apache.org/docs/latest/programming-guide.html#broadcast-variables">the official documentation about Broadcast Variables</a>:</p>
@@ -1985,8 +1985,11 @@ Not only can Spark developers use broadcast variables for efficient data distrib
 <div class="paragraph">
 <p>The idea is to transfer values used in transformations from a driver to executors in a most effective way so they are copied once and used many times by tasks (rather than being copied every time a task is launched).</p>
 </div>
-<div class="sect2">
-<h3 id="broadcast-spark-developer-facing-contract"><a class="anchor" href="#broadcast-spark-developer-facing-contract"></a><a class="link" href="#broadcast-spark-developer-facing-contract"><a id="developer-contract"></a> <code>Broadcast</code> Spark Developer-Facing Contract</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="broadcast-spark-developer-facing-contract"><a class="anchor" href="#broadcast-spark-developer-facing-contract"></a><a class="link" href="#broadcast-spark-developer-facing-contract"><a id="developer-contract"></a> <code>Broadcast</code> Spark Developer-Facing Contract</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The developer-facing <code>Broadcast</code> contract allows Spark developers to use it in their applications.</p>
 </div>
@@ -2026,8 +2029,10 @@ Not only can Spark developers use broadcast variables for efficient data distrib
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="lifecycle-of-broadcast-variable"><a class="anchor" href="#lifecycle-of-broadcast-variable"></a><a class="link" href="#lifecycle-of-broadcast-variable"><a id="lifecycle"></a> Lifecycle of Broadcast Variable</a></h3>
+</div>
+<div class="sect1">
+<h2 id="lifecycle-of-broadcast-variable"><a class="anchor" href="#lifecycle-of-broadcast-variable"></a><a class="link" href="#lifecycle-of-broadcast-variable"><a id="lifecycle"></a> Lifecycle of Broadcast Variable</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>You can create a broadcast variable of type <code>T</code> using <a href="SparkContext.html#broadcast" class="page">SparkContext.broadcast</a> method.</p>
 </div>
@@ -2124,8 +2129,10 @@ DEBUG BlockManager: Removing block broadcast_0</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="getting-the-value-of-broadcast-variablevalue-method"><a class="anchor" href="#getting-the-value-of-broadcast-variablevalue-method"></a><a class="link" href="#getting-the-value-of-broadcast-variablevalue-method"><a id="value"></a> Getting the Value of Broadcast Variable&#8201;&#8212;&#8201;<code>value</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="getting-the-value-of-broadcast-variablevalue-method"><a class="anchor" href="#getting-the-value-of-broadcast-variablevalue-method"></a><a class="link" href="#getting-the-value-of-broadcast-variablevalue-method"><a id="value"></a> Getting the Value of Broadcast Variable&#8201;&#8212;&#8201;<code>value</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">value: T</code></pre>
@@ -2163,8 +2170,10 @@ DEBUG BlockManager: Removing block broadcast_0</code></pre>
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="unpersisting-broadcast-variableunpersist-methods"><a class="anchor" href="#unpersisting-broadcast-variableunpersist-methods"></a><a class="link" href="#unpersisting-broadcast-variableunpersist-methods"><a id="unpersist"></a> Unpersisting Broadcast Variable&#8201;&#8212;&#8201;<code>unpersist</code> Methods</a></h3>
+</div>
+<div class="sect1">
+<h2 id="unpersisting-broadcast-variableunpersist-methods"><a class="anchor" href="#unpersisting-broadcast-variableunpersist-methods"></a><a class="link" href="#unpersisting-broadcast-variableunpersist-methods"><a id="unpersist"></a> Unpersisting Broadcast Variable&#8201;&#8212;&#8201;<code>unpersist</code> Methods</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">unpersist(): Unit
@@ -2172,8 +2181,10 @@ unpersist(blocking: Boolean): Unit</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="destroying-broadcast-variabledestroy-method"><a class="anchor" href="#destroying-broadcast-variabledestroy-method"></a><a class="link" href="#destroying-broadcast-variabledestroy-method"><a id="destroy"></a> Destroying Broadcast Variable&#8201;&#8212;&#8201;<code>destroy</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="destroying-broadcast-variabledestroy-method"><a class="anchor" href="#destroying-broadcast-variabledestroy-method"></a><a class="link" href="#destroying-broadcast-variabledestroy-method"><a id="destroy"></a> Destroying Broadcast Variable&#8201;&#8212;&#8201;<code>destroy</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">destroy(): Unit</code></pre>
@@ -2211,8 +2222,10 @@ org.apache.spark.SparkException: Attempted to use Broadcast(0) after it was dest
 <p>Internally, <code>destroy</code> executes the internal <a href="#destroy-internal">destroy</a> (with <code>blocking</code> enabled).</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="removing-persisted-data-of-broadcast-variabledestroy-internal-method"><a class="anchor" href="#removing-persisted-data-of-broadcast-variabledestroy-internal-method"></a><a class="link" href="#removing-persisted-data-of-broadcast-variabledestroy-internal-method"><a id="destroy-internal"></a> Removing Persisted Data of Broadcast Variable&#8201;&#8212;&#8201;<code>destroy</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="removing-persisted-data-of-broadcast-variabledestroy-internal-method"><a class="anchor" href="#removing-persisted-data-of-broadcast-variabledestroy-internal-method"></a><a class="link" href="#removing-persisted-data-of-broadcast-variabledestroy-internal-method"><a id="destroy-internal"></a> Removing Persisted Data of Broadcast Variable&#8201;&#8212;&#8201;<code>destroy</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">destroy(blocking: Boolean): Unit</code></pre>
@@ -2260,8 +2273,10 @@ org.apache.spark.SparkException: Attempted to use Broadcast(0) after it was dest
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="introductory-example"><a class="anchor" href="#introductory-example"></a><a class="link" href="#introductory-example"><a id="introductory-example"></a> Introductory Example</a></h3>
+</div>
+<div class="sect1">
+<h2 id="introductory-example"><a class="anchor" href="#introductory-example"></a><a class="link" href="#introductory-example"><a id="introductory-example"></a> Introductory Example</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Let&#8217;s start with an introductory example to check out how to use broadcast variables and build your initial understanding.</p>
 </div>
@@ -2295,8 +2310,10 @@ val websites = sc.parallelize(Seq("Apache Spark", "Scala")).map(pwsB.value).coll
 <p>Semantically, the two computations - with and without the broadcast value - are exactly the same, but the broadcast-based one wins performance-wise when there are more executors spawned to execute many tasks that use <code>pws</code> map.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="introduction"><a class="anchor" href="#introduction"></a><a class="link" href="#introduction"><a id="introduction"></a> Introduction</a></h3>
+</div>
+<div class="sect1">
+<h2 id="introduction"><a class="anchor" href="#introduction"></a><a class="link" href="#introduction"><a id="introduction"></a> Introduction</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><strong>Broadcast</strong> is part of Spark that is responsible for broadcasting information across nodes in a cluster.</p>
 </div>
@@ -2329,8 +2346,10 @@ myBigRDD.map { case (a, b, c, d) =&gt;
 <p>It is not enabled by default.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="broadcast-contract"><a class="anchor" href="#broadcast-contract"></a><a class="link" href="#broadcast-contract"><a id="contract"></a> <code>Broadcast</code> Contract</a></h3>
+</div>
+<div class="sect1">
+<h2 id="broadcast-contract"><a class="anchor" href="#broadcast-contract"></a><a class="link" href="#broadcast-contract"><a id="contract"></a> <code>Broadcast</code> Contract</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The <code>Broadcast</code> contract is made up of the following methods that custom <code>Broadcast</code> implementations are supposed to provide:</p>
 </div>
@@ -2372,15 +2391,16 @@ myBigRDD.map { case (a, b, c, d) =&gt;
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="further-reading-or-watching"><a class="anchor" href="#further-reading-or-watching"></a><a class="link" href="#further-reading-or-watching"><a id="i-want-more"></a> Further Reading or Watching</a></h3>
+</div>
+<div class="sect1">
+<h2 id="further-reading-or-watching"><a class="anchor" href="#further-reading-or-watching"></a><a class="link" href="#further-reading-or-watching"><a id="i-want-more"></a> Further Reading or Watching</a></h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
 <p><a href="http://dmtolpeko.com/2015/02/20/map-side-join-in-spark/">Map-Side Join in Spark</a></p>
 </li>
 </ul>
-</div>
 </div>
 </div>
 </div>

@@ -653,7 +653,7 @@
     <span class="nav-text">Shared Variables</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-broadcast.html">Broadcast variables</a>
+    <a class="nav-link" href="../spark-broadcast.html">Broadcast Variable</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1934,7 +1934,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>TorrentBroadcast</strong> is a <a href="BroadcastFactory.html" class="page">BroadcastFactory</a> that uses a BitTorrent-like protocol for block distribution (that only happens when tasks access broadcast variables on executors).</p>
+<p><strong>TorrentBroadcast</strong> is a <a href="../spark-broadcast.html" class="page">Broadcast Variable</a> that uses a BitTorrent-like protocol for block distribution (that only happens when tasks access broadcast variables on executors).</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1986,61 +1986,13 @@ TorrentBroadcast belongs to <code>org.apache.spark.broadcast</code> package.
 </tr>
 </table>
 </div>
-<div id="_value" class="paragraph">
-<p>TorrentBroadcast uses <code>_value</code> internal registry for the value that is computed by <a href="#readBroadcastBlock">readBroadcastBlock</a> when first requested.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">_value: T</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>_value</code> is a <code>@transient private lazy val</code> which means that it is not serialized to be sent remotely and instantiated when first requested.
-</td>
-</tr>
-</table>
-</div>
-<div id="broadcastId" class="paragraph">
-<p>TorrentBroadcast uses a <a href="#spark-BlockId.adoc#BroadcastBlockId" class="page unresolved">BroadcastBlockId</a> for&#8230;&#8203;FIXME</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Enable <code>INFO</code> or <code>DEBUG</code> logging levels for <code>org.apache.spark.broadcast.TorrentBroadcast</code> logger to see what happens inside.</p>
-</div>
-<div class="paragraph">
-<p>Add the following line to <code>conf/log4j.properties</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.broadcast.TorrentBroadcast=DEBUG</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Refer to <a href="spark-logging.adoc">Logging</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-torrentbroadcast-instance"><a class="anchor" href="#creating-torrentbroadcast-instance"></a><a class="link" href="#creating-torrentbroadcast-instance"><a id="creating-instance"></a> Creating TorrentBroadcast Instance</a></h2>
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TorrentBroadcast takes the following when created:</p>
+<p>TorrentBroadcast takes the following to be created:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2053,49 +2005,38 @@ TorrentBroadcast belongs to <code>org.apache.spark.broadcast</code> package.
 </ul>
 </div>
 <div class="paragraph">
-<p>TorrentBroadcast initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
+<p>TorrentBroadcast is created when TorrentBroadcastFactory is requested for a <a href="TorrentBroadcastFactory.html#newBroadcast" class="page">new broadcast variable</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="transient-lazy-broadcast-value"><a class="anchor" href="#transient-lazy-broadcast-value"></a><a class="link" href="#transient-lazy-broadcast-value"><a id="_value"></a> Transient Lazy Broadcast Value</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">_value: T</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>TorrentBroadcast is <a href="#creating-instance">created</a> exclusively when <code>TorrentBroadcastFactory</code> is requested to <a href="TorrentBroadcastFactory.html#newBroadcast" class="page">newBroadcast</a>.</p>
+<p>TorrentBroadcast uses <code>_value</code> internal registry for the value that is <a href="#readBroadcastBlock">computed</a> on demand (and cached afterwards).</p>
+</div>
+<div class="paragraph">
+<p><code>_value</code> is a <code>@transient private lazy val</code> and uses two Scala language features:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It is not serialized when the TorrentBroadcast is serialized to be sent over the wire to executors (and has to be <a href="#readBroadcastBlock">re-computed</a> afterwards)</p>
+</li>
+<li>
+<p>It is lazily instantiated when first requested and cached afterwards</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="unblockifyobject-method"><a class="anchor" href="#unblockifyobject-method"></a><a class="link" href="#unblockifyobject-method"><a id="unBlockifyObject"></a> <code>unBlockifyObject</code> Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="releaselock-method"><a class="anchor" href="#releaselock-method"></a><a class="link" href="#releaselock-method"><a id="releaseLock"></a> <code>releaseLock</code> Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="getting-value-of-broadcast-variablegetvalue-method"><a class="anchor" href="#getting-value-of-broadcast-variablegetvalue-method"></a><a class="link" href="#getting-value-of-broadcast-variablegetvalue-method"><a id="getValue"></a> Getting Value of Broadcast Variable&#8201;&#8212;&#8201;<code>getValue</code> Method</a></h2>
+<h2 id="getting-value-of-broadcast-variable"><a class="anchor" href="#getting-value-of-broadcast-variable"></a><a class="link" href="#getting-value-of-broadcast-variable"><a id="getValue"></a> Getting Value of Broadcast Variable</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2103,39 +2044,23 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p><code>getValue</code> returns the value of a broadcast variable.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>getValue</code> is part of the <a href="spark-broadcast.adoc#contract"><code>Broadcast</code> Variable Contract</a> and is the only way to access the value of a broadcast variable.
-</td>
-</tr>
-</table>
+<p>getValue returns the <a href="#_value">_value</a>.</p>
 </div>
 <div class="paragraph">
-<p>Internaly, <code>getValue</code> reads the internal <code>_value</code> that, once accessed, <a href="#readBroadcastBlock">reads broadcast blocks from the local or remote BlockManagers</a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The internal <code>_value</code> is <em>transient</em> and <em>lazy</em>, i.e. it is not preserved when serialized and (re)created only when requested, respectively. That "trick" allows for serializing broadcast values on the driver before they are transferred to executors over the wire.
-</td>
-</tr>
-</table>
+<p>getValue is part of the <a href="../spark-broadcast.html#getValue" class="page">Broadcast</a> abstraction.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="readbroadcastblock-internal-method"><a class="anchor" href="#readbroadcastblock-internal-method"></a><a class="link" href="#readbroadcastblock-internal-method"><a id="readBroadcastBlock"></a> <code>readBroadcastBlock</code> Internal Method</a></h2>
+<h2 id="broadcastblockid"><a class="anchor" href="#broadcastblockid"></a><a class="link" href="#broadcastblockid"><a id="broadcastId"></a> BroadcastBlockId</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TorrentBroadcast uses a <a href="../storage/spark-BlockId.html#BroadcastBlockId" class="page">BroadcastBlockId</a> for&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="readbroadcastblock-internal-method"><a class="anchor" href="#readbroadcastblock-internal-method"></a><a class="link" href="#readbroadcastblock-internal-method"><a id="readBroadcastBlock"></a> readBroadcastBlock Internal Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2143,59 +2068,44 @@ The internal <code>_value</code> is <em>transient</em> and <em>lazy</em>, i.e. i
 </div>
 </div>
 <div class="paragraph">
-<p>Internally, <code>readBroadcastBlock</code> <a href="#setConf">sets the <code>SparkConf</code></a></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The current <a href="../SparkConf.html" class="page">SparkConf</a> is available using <a href="SparkEnv.html#conf" class="page">SparkEnv.get.conf</a>.
-</td>
-</tr>
-</table>
+<p>readBroadcastBlock <a href="SparkEnv.html#get" class="page">uses the SparkEnv</a> to access <a href="SparkEnv.html#broadcastManager" class="page">BroadcastManager</a> that is requested for <a href="BroadcastManager.html#cachedValues" class="page">cached broadcast values</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>readBroadcastBlock</code> requests the <a href="../storage/BlockManager.html#getLocalValues" class="page">local <code>BlockManager</code> for values of the broadcast</a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The current <a href="../storage/BlockManager.html" class="page">BlockManager</a> is available using <a href="SparkEnv.html#blockManager" class="page">SparkEnv.get.blockManager</a>.
-</td>
-</tr>
-</table>
+<p>readBroadcastBlock looks up the <a href="#broadcastId">BroadcastBlockId</a> in the cached broadcast values and returns it if found.</p>
 </div>
 <div class="paragraph">
-<p>If the broadcast was available locally, <code>readBroadcastBlock</code> <a href="#releaseLock">releases a lock</a> for the broadcast and returns the value.</p>
+<p>If not found, readBroadcastBlock requests the SparkEnv for the <a href="SparkEnv.html#conf" class="page">SparkConf</a> and <a href="#setConf">setConf</a>.</p>
 </div>
 <div class="paragraph">
-<p>If however the broadcast was not found locally, you should see the following INFO message in the logs:</p>
+<p>readBroadcastBlock <a href="SparkEnv.html#get" class="page">uses the SparkEnv</a> to access <a href="SparkEnv.html#blockManager" class="page">BlockManager</a>.</p>
+</div>
+<div class="paragraph">
+<p>readBroadcastBlock requests the BlockManager for <a href="../storage/BlockManager.html#getLocalValues" class="page">getLocalValues</a>.</p>
+</div>
+<div class="paragraph">
+<p>If the broadcast data was available locally, readBroadcastBlock <a href="#releaseLock">releases a lock</a> for the broadcast and returns the value.</p>
+</div>
+<div class="paragraph">
+<p>If however the broadcast data was not found locally, you should see the following INFO message in the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>INFO Started reading broadcast variable [id]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Started reading broadcast variable [id]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>readBroadcastBlock</code> <a href="#readBlocks">reads blocks (as chunks)</a> of the broadcast.</p>
+<p>readBroadcastBlock <a href="#readBlocks">reads blocks (as chunks)</a> of the broadcast.</p>
 </div>
 <div class="paragraph">
 <p>You should see the following INFO message in the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>INFO Reading broadcast variable [id] took [usedTimeMs]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Reading broadcast variable [id] took [usedTimeMs]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>readBroadcastBlock</code> <a href="#unBlockifyObject"><em>unblockifies</em> the collection of <code>ByteBuffer</code> blocks</a></p>
+<p>readBroadcastBlock <a href="#unBlockifyObject"><em>unblockifies</em> the collection of <code>ByteBuffer</code> blocks</a></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2204,69 +2114,52 @@ The current <a href="../storage/BlockManager.html" class="page">BlockManager</a>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>readBroadcastBlock</code> uses the <a href="SparkEnv.html#serializer" class="page">current <code>Serializer</code></a> and the internal <a href="../io/CompressionCodec.html" class="page">CompressionCodec</a> to bring all the blocks together as one single broadcast variable.
+readBroadcastBlock uses the <a href="SparkEnv.html#serializer" class="page">current <code>Serializer</code></a> and the internal <a href="../io/CompressionCodec.html" class="page">CompressionCodec</a> to bring all the blocks together as one single broadcast variable.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p><code>readBroadcastBlock</code> <a href="../storage/BlockManager.html#putSingle" class="page">stores the broadcast variable with <code>MEMORY_AND_DISK</code> storage level to the local <code>BlockManager</code></a>. When storing the broadcast variable was unsuccessful, a <code>SparkException</code> is thrown.</p>
+<p>readBroadcastBlock <a href="../storage/BlockManager.html#putSingle" class="page">stores the broadcast variable with <code>MEMORY_AND_DISK</code> storage level to the local <code>BlockManager</code></a>. When storing the broadcast variable was unsuccessful, a <code>SparkException</code> is thrown.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>Failed to store [broadcastId] in BlockManager</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Failed to store [broadcastId] in BlockManager</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>The broadcast variable is returned.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>readBroadcastBlock</code> is used exclusively when TorrentBroadcast is requested for the <a href="#_value">value</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>readBroadcastBlock is used when TorrentBroadcast is requested for the <a href="#_value">broadcast value</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="setconf-internal-method"><a class="anchor" href="#setconf-internal-method"></a><a class="link" href="#setconf-internal-method"><a id="setConf"></a> <code>setConf</code> Internal Method</a></h2>
+<h2 id="setconf-internal-method"><a class="anchor" href="#setconf-internal-method"></a><a class="link" href="#setconf-internal-method"><a id="setConf"></a> setConf Internal Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">setConf(conf: SparkConf): Unit</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">setConf(
+  conf: SparkConf): Unit</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>setConf</code> uses the input <code>conf</code> <a href="../SparkConf.html" class="page">SparkConf</a> to set compression codec and the block size.</p>
+<p>setConf uses the input <code>conf</code> <a href="../SparkConf.html" class="page">SparkConf</a> to set compression codec and the block size.</p>
 </div>
 <div class="paragraph">
-<p>Internally, <code>setConf</code> reads <a href="BroadcastManager.html#spark.broadcast.compress" class="page">spark.broadcast.compress</a> configuration property and if enabled (which it is by default) sets a <a href="../io/CompressionCodec.html#createCodec" class="page">CompressionCodec</a> (as an internal <code>compressionCodec</code> property).</p>
+<p>Internally, setConf reads <a href="BroadcastManager.html#spark.broadcast.compress" class="page">spark.broadcast.compress</a> configuration property and if enabled (which it is by default) sets a <a href="../io/CompressionCodec.html#createCodec" class="page">CompressionCodec</a> (as an internal <code>compressionCodec</code> property).</p>
 </div>
 <div class="paragraph">
-<p><code>setConf</code> also reads <a href="BroadcastManager.html#spark_broadcast_blockSize" class="page">spark.broadcast.blockSize</a> Spark property and sets the block size (as the internal <code>blockSize</code> property).</p>
+<p>setConf also reads <a href="BroadcastManager.html#spark_broadcast_blockSize" class="page">spark.broadcast.blockSize</a> Spark property and sets the block size (as the internal <code>blockSize</code> property).</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>setConf</code> is executed when <a href="#creating-instance">TorrentBroadcast is created</a> or <a href="#readBroadcastBlock">re-created when deserialized on executors</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>setConf is executed when <a href="#creating-instance">TorrentBroadcast is created</a> or <a href="#readBroadcastBlock">re-created when deserialized on executors</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="storing-broadcast-and-blocks-in-local-blockmanagerwriteblocks-internal-method"><a class="anchor" href="#storing-broadcast-and-blocks-in-local-blockmanagerwriteblocks-internal-method"></a><a class="link" href="#storing-broadcast-and-blocks-in-local-blockmanagerwriteblocks-internal-method"><a id="writeBlocks"></a> Storing Broadcast and Blocks in Local BlockManager&#8201;&#8212;&#8201;<code>writeBlocks</code> Internal Method</a></h2>
+<h2 id="storing-broadcast-and-blocks-in-local-blockmanager"><a class="anchor" href="#storing-broadcast-and-blocks-in-local-blockmanager"></a><a class="link" href="#storing-broadcast-and-blocks-in-local-blockmanager"><a id="writeBlocks"></a> Storing Broadcast and Blocks in Local BlockManager</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2456,7 +2349,7 @@ unpersist uses <a href="SparkEnv.html#blockManager" class="page"><code>SparkEnv<
 </div>
 </div>
 <div class="sect1">
-<h2 id="reading-blocksreadblocks-internal-method"><a class="anchor" href="#reading-blocksreadblocks-internal-method"></a><a class="link" href="#reading-blocksreadblocks-internal-method"><a id="readBlocks"></a> Reading Blocks&#8201;&#8212;&#8201;<code>readBlocks</code> Internal Method</a></h2>
+<h2 id="reading-broadcast-blocks"><a class="anchor" href="#reading-broadcast-blocks"></a><a class="link" href="#reading-broadcast-blocks"><a id="readBlocks"></a> Reading Broadcast Blocks</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2464,19 +2357,65 @@ unpersist uses <a href="SparkEnv.html#blockManager" class="page"><code>SparkEnv<
 </div>
 </div>
 <div class="paragraph">
-<p><code>readBlocks</code>&#8230;&#8203;FIXME</p>
+<p>readBlocks&#8230;&#8203;FIXME</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>readBlocks</code> is used when&#8230;&#8203;FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>readBlocks is used when TorrentBroadcast is requested to <a href="#readBroadcastBlock">readBroadcastBlock</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="unblockifyobject-utility"><a class="anchor" href="#unblockifyobject-utility"></a><a class="link" href="#unblockifyobject-utility"><a id="unBlockifyObject"></a> unBlockifyObject Utility</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">unBlockifyObject[T: ClassTag](
+  blocks: Array[InputStream],
+  serializer: Serializer,
+  compressionCodec: Option[CompressionCodec]): T</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>unBlockifyObject&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>unBlockifyObject is used when TorrentBroadcast is requested to <a href="#readBroadcastBlock">readBroadcastBlock</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="releaselock-internal-method"><a class="anchor" href="#releaselock-internal-method"></a><a class="link" href="#releaselock-internal-method"><a id="releaseLock"></a> releaseLock Internal Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">releaseLock(
+  blockId: BlockId): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>releaseLock&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>releaseLock is used when TorrentBroadcast is requested to <a href="#readBroadcastBlock">readBroadcastBlock</a> and <a href="#readBlocks">readBlocks</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="logging"><a class="anchor" href="#logging"></a><a class="link" href="#logging"><a id="logging"></a> Logging</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Enable <code>ALL</code> logging level for <code>org.apache.spark.broadcast.TorrentBroadcast</code> logger to see what happens inside.</p>
+</div>
+<div class="paragraph">
+<p>Add the following line to <code>conf/log4j.properties</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.broadcast.TorrentBroadcast=ALL</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Refer to <a href="../spark-logging.html" class="page">Logging</a>.</p>
 </div>
 </div>
 </div>

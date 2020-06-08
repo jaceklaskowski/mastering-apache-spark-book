@@ -653,7 +653,7 @@
     <span class="nav-text">Shared Variables</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-broadcast.html">Broadcast variables</a>
+    <a class="nav-link" href="../spark-broadcast.html">Broadcast Variable</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -2012,6 +2012,16 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="cachedvalues-registry"><a class="anchor" href="#cachedvalues-registry"></a><a class="link" href="#cachedvalues-registry"><a id="cachedValues"></a> cachedValues Registry</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">cachedValues: ReferenceMap</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="unique-identifiers-of-broadcast-variables"><a class="anchor" href="#unique-identifiers-of-broadcast-variables"></a><a class="link" href="#unique-identifiers-of-broadcast-variables"><a id="nextBroadcastId"></a> Unique Identifiers of Broadcast Variables</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -2071,7 +2081,17 @@
 <p>The <code>BroadcastFactory</code> is created when <a href="#initialize">BroadcastManager is initialized</a>.</p>
 </div>
 <div class="paragraph">
-<p>newBroadcast is executed for <a href="../SparkContext.html#broadcast" class="page"><code>SparkContext.broadcast</code> method</a> and when <a href="../scheduler/MapOutputTracker.html#serializeMapStatuses" class="page"><code>MapOutputTracker</code> serializes <code>MapStatuses</code></a>.</p>
+<p>newBroadcast is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>MapOutputTracker utility is used to <a href="../scheduler/MapOutputTracker.html#serializeMapStatuses" class="page">serializeMapStatuses</a></p>
+</li>
+<li>
+<p>SparkContext is requested for a <a href="../SparkContext.html#broadcast" class="page">new broadcast variable</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
