@@ -447,6 +447,9 @@
     <a class="nav-link" href="../storage/spark-BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../storage/BlockData.html">BlockData</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../storage/spark-BlockInfoManager.html">BlockInfoManager</a>
 <ul class="nav-list">
@@ -1934,13 +1937,13 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>TorrentBroadcast</strong> is a <a href="../Broadcast.html" class="page">Broadcast Variable</a> that uses a BitTorrent-like protocol for block distribution (that only happens when tasks access broadcast variables on executors).</p>
+<p><strong>TorrentBroadcast</strong> is a <a href="../Broadcast.html" class="page">Broadcast Variable</a> that uses a BitTorrent-like protocol for broadcast blocks distribution.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="_images/sparkcontext-broadcast-bittorrent.png" alt="sparkcontext broadcast bittorrent">
 </div>
-<div class="title">Figure 1. TorrentBroadcast - broadcasting using BitTorrent</div>
+<div class="title">Figure 1. TorrentBroadcast&#8201;&#8212;&#8201;Broadcasting using BitTorrent</div>
 </div>
 <div class="paragraph">
 <p>When a <a href="../SparkContext.html#broadcast" class="page">broadcast variable is created (using <code>SparkContext.broadcast</code>)</a> on the driver, a <a href="#creating-instance">new instance of TorrentBroadcast is created</a>.</p>
@@ -1970,18 +1973,6 @@ val b = sc.broadcast(anyScalaValue) // &lt;-- TorrentBroadcast is created</code>
 </td>
 <td class="content">
 TorrentBroadcast-based broadcast variables are created using <a href="TorrentBroadcastFactory.html" class="page">TorrentBroadcastFactory</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-TorrentBroadcast belongs to <code>org.apache.spark.broadcast</code> package.
 </td>
 </tr>
 </table>
@@ -2349,6 +2340,12 @@ unpersist uses <a href="SparkEnv.html#blockManager" class="page"><code>SparkEnv<
 </div>
 </div>
 <div class="sect1">
+<h2 id="numblocks-internal-value"><a class="anchor" href="#numblocks-internal-value"></a><a class="link" href="#numblocks-internal-value"><a id="numBlocks"></a> numBlocks Internal Value</a></h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
 <h2 id="reading-broadcast-blocks"><a class="anchor" href="#reading-broadcast-blocks"></a><a class="link" href="#reading-broadcast-blocks"><a id="readBlocks"></a> Reading Broadcast Blocks</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
@@ -2357,7 +2354,38 @@ unpersist uses <a href="SparkEnv.html#blockManager" class="page"><code>SparkEnv<
 </div>
 </div>
 <div class="paragraph">
+<p>readBlocks creates a local array of <a href="../storage/BlockData.html" class="page">BlockData</a>s for <a href="#numBlocks">numBlocks</a> elements (that is later modified and returned).</p>
+</div>
+<div class="paragraph">
+<p>readBlocks uses the <a href="SparkEnv.html" class="page">SparkEnv</a> to access <a href="SparkEnv.html#blockManager" class="page">BlockManager</a> (that is later used to fetch local or remote blocks).</p>
+</div>
+<div class="paragraph">
+<p>For every block (randomly-chosen by block ID between 0 and <a href="#numBlocks">numBlocks</a>), readBlocks creates a <a href="../storage/spark-BlockId.html#BroadcastBlockId" class="page">BroadcastBlockId</a> for the <a href="#id">id</a> (of the broadcast variable) and the chunk identified by the <code>piece</code> prefix followed by the ID.</p>
+</div>
+<div class="paragraph">
+<p>readBlocks prints out the following DEBUG message to the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Reading piece [pieceId] of [broadcastId]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>readBlocks first tries to look up the piece locally by requesting the BlockManager to <a href="../storage/BlockManager.html#getLocalBytes" class="page">getLocalBytes</a> and, if found, stores the reference in the local block array (for the piece ID) and <a href="#releaseLock">releaseLock</a> for the chunk.</p>
+</div>
+<div class="paragraph">
+<p>If not found locally, readBlocks requests the BlockManager to <a href="../storage/BlockManager.html#getRemoteBytes" class="page">getRemoteBytes</a>.</p>
+</div>
+<div class="paragraph">
 <p>readBlocks&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>readBlocks throws a SparkException for blocks neither available locally nor remotely:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Failed to get [pieceId] of [broadcastId]</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>readBlocks is used when TorrentBroadcast is requested to <a href="#readBroadcastBlock">readBroadcastBlock</a>.</p>

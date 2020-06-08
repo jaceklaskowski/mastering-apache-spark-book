@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/exercises/spark-exercise-custom-scheduler-listener.html">
+    <title>BlockData :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/storage/BlockData.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -432,73 +432,73 @@
     <span class="nav-text">Storage System</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/BlockManager.html">BlockManager</a>
+    <a class="nav-link" href="BlockManager.html">BlockManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/DiskBlockManager.html">DiskBlockManager</a>
+    <a class="nav-link" href="DiskBlockManager.html">DiskBlockManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/DiskStore.html">DiskStore</a>
+    <a class="nav-link" href="DiskStore.html">DiskStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="spark-BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockId.html">BlockId</a>
+    <a class="nav-link" href="spark-BlockId.html">BlockId</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/BlockData.html">BlockData</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="BlockData.html">BlockData</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/spark-BlockInfoManager.html">BlockInfoManager</a>
+    <a class="nav-link" href="spark-BlockInfoManager.html">BlockInfoManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/spark-BlockInfo.html">BlockInfo</a>
+    <a class="nav-link" href="spark-BlockInfo.html">BlockInfo</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/BlockManagerMaster.html">BlockManagerMaster</a>
+    <a class="nav-link" href="BlockManagerMaster.html">BlockManagerMaster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/spark-blockmanager-BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
+    <a class="nav-link" href="spark-blockmanager-BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/MemoryStore.html">MemoryStore</a>
+    <a class="nav-link" href="MemoryStore.html">MemoryStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
+    <a class="nav-link" href="spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-blockmanager-BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
+    <a class="nav-link" href="spark-blockmanager-BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
+    <a class="nav-link" href="DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockManager-BlockManagerSource.html">BlockManagerSource</a>
+    <a class="nav-link" href="spark-BlockManager-BlockManagerSource.html">BlockManagerSource</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockManager-ShuffleMetricsSource.html">ShuffleMetricsSource</a>
+    <a class="nav-link" href="spark-BlockManager-ShuffleMetricsSource.html">ShuffleMetricsSource</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-blockmanager-StorageStatus.html">StorageStatus</a>
+    <a class="nav-link" href="spark-blockmanager-StorageStatus.html">StorageStatus</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
+    <a class="nav-link" href="ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/RDDInfo.html">RDDInfo</a>
+    <a class="nav-link" href="RDDInfo.html">RDDInfo</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/StorageLevel.html">StorageLevel</a>
+    <a class="nav-link" href="StorageLevel.html">StorageLevel</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/demo-diskblockmanager-and-block-data.html">Demo: DiskBlockManager and Block Data</a>
+    <a class="nav-link" href="demo-diskblockmanager-and-block-data.html">Demo: DiskBlockManager and Block Data</a>
   </li>
 </ul>
   </li>
@@ -1859,37 +1859,37 @@
     <span class="nav-text">Exercises</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-exercise-pairrddfunctions-oneliners.html">One-liners using PairRDDFunctions</a>
+    <a class="nav-link" href="../exercises/spark-exercise-pairrddfunctions-oneliners.html">One-liners using PairRDDFunctions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-exercise-take-multiple-jobs.html">Learning Jobs and Partitions Using take Action</a>
+    <a class="nav-link" href="../exercises/spark-exercise-take-multiple-jobs.html">Learning Jobs and Partitions Using take Action</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-exercise-standalone-master-ha.html">Spark Standalone - Using ZooKeeper for High-Availability of Master</a>
+    <a class="nav-link" href="../exercises/spark-exercise-standalone-master-ha.html">Spark Standalone - Using ZooKeeper for High-Availability of Master</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-hello-world-using-spark-shell.html">Spark&#8217;s Hello World using Spark shell and Scala</a>
+    <a class="nav-link" href="../exercises/spark-hello-world-using-spark-shell.html">Spark&#8217;s Hello World using Spark shell and Scala</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-examples-wordcount-spark-shell.html">WordCount using Spark shell</a>
+    <a class="nav-link" href="../exercises/spark-examples-wordcount-spark-shell.html">WordCount using Spark shell</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-first-app.html">Your first complete Spark application (using Scala and sbt)</a>
+    <a class="nav-link" href="../exercises/spark-first-app.html">Your first complete Spark application (using Scala and sbt)</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-sql-hive-orc-example.html">Using Spark SQL to update data in Hive using ORC files</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="spark-exercise-custom-scheduler-listener.html">Developing Custom SparkListener to monitor DAGScheduler in Scala</a>
+    <a class="nav-link" href="../exercises/spark-sql-hive-orc-example.html">Using Spark SQL to update data in Hive using ORC files</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-exercise-custom-rdd.html">Developing Custom RDD</a>
+    <a class="nav-link" href="../exercises/spark-exercise-custom-scheduler-listener.html">Developing Custom SparkListener to monitor DAGScheduler in Scala</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-exercise-dataframe-jdbc-postgresql.html">Working with Datasets from JDBC Data Sources (and PostgreSQL)</a>
+    <a class="nav-link" href="../exercises/spark-exercise-custom-rdd.html">Developing Custom RDD</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-exercise-failing-stage.html">Causing Stage to Fail</a>
+    <a class="nav-link" href="../exercises/spark-exercise-dataframe-jdbc-postgresql.html">Working with Datasets from JDBC Data Sources (and PostgreSQL)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exercises/spark-exercise-failing-stage.html">Causing Stage to Fail</a>
   </li>
 </ul>
   </li>
@@ -1924,166 +1924,17 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li>Exercises</li>
-    <li><a href="spark-exercise-custom-scheduler-listener.html">Developing Custom SparkListener to monitor DAGScheduler in Scala</a></li>
+    <li>Storage System</li>
+    <li><a href="BlockData.html">BlockData</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/exercises/pages/spark-exercise-custom-scheduler-listener.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/storage/pages/BlockData.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="exercise-developing-custom-sparklistener-to-monitor-dagscheduler-in-scala"><a class="anchor" href="#exercise-developing-custom-sparklistener-to-monitor-dagscheduler-in-scala"></a><a class="link" href="#exercise-developing-custom-sparklistener-to-monitor-dagscheduler-in-scala">Exercise: Developing Custom SparkListener to monitor DAGScheduler in Scala</a></h2>
-<div class="sectionbody">
+<h1 class="page">BlockData</h1>
 <div class="paragraph">
-<p>The example shows how to develop a custom Spark Listener. You should read <a href="../spark-scheduler-SparkListener.adoc">Spark Listeners&#8201;&#8212;&#8201;Intercepting Events from Spark Scheduler</a> first to understand the motivation for the example.</p>
-</div>
-<div class="sect2">
-<h3 id="requirements"><a class="anchor" href="#requirements"></a><a class="link" href="#requirements">Requirements</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a> (or eventually <a href="http://www.scala-sbt.org/">sbt</a> alone if you&#8217;re adventurous).</p>
-</li>
-<li>
-<p>Access to Internet to download Apache Spark&#8217;s dependencies.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="setting-up-scala-project-using-intellij-idea"><a class="anchor" href="#setting-up-scala-project-using-intellij-idea"></a><a class="link" href="#setting-up-scala-project-using-intellij-idea">Setting up Scala project using IntelliJ IDEA</a></h3>
-<div class="paragraph">
-<p>Create a new project <code>custom-spark-listener</code>.</p>
-</div>
-<div class="paragraph">
-<p>Add the following line to <code>build.sbt</code> (the main configuration file for the sbt project) that adds the dependency on Apache Spark.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>libraryDependencies += "org.apache.spark" %% "spark-core" % "2.0.1"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>build.sbt</code> should look as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">name := "custom-spark-listener"
-organization := "pl.jaceklaskowski.spark"
-version := "1.0"
-
-scalaVersion := "2.11.8"
-
-libraryDependencies += "org.apache.spark" %% "spark-core" % "2.0.1"</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="custom-listener-pl-jaceklaskowski-spark-customsparklistener"><a class="anchor" href="#custom-listener-pl-jaceklaskowski-spark-customsparklistener"></a><a class="link" href="#custom-listener-pl-jaceklaskowski-spark-customsparklistener">Custom Listener - pl.jaceklaskowski.spark.CustomSparkListener</a></h3>
-<div class="paragraph">
-<p>Create a Scala class&#8201;&#8212;&#8201;<code>CustomSparkListener</code>&#8201;&#8212;&#8201;for your custom <code>SparkListener</code>. It should be under <code>src/main/scala</code> directory (create one if it does not exist).</p>
-</div>
-<div class="paragraph">
-<p>The aim of the class is to intercept scheduler events about jobs being started and tasks completed.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">package pl.jaceklaskowski.spark
-
-import org.apache.spark.scheduler.{SparkListenerStageCompleted, SparkListener, SparkListenerJobStart}
-
-class CustomSparkListener extends SparkListener {
-  override def onJobStart(jobStart: SparkListenerJobStart) {
-    println(s"Job started with ${jobStart.stageInfos.size} stages: $jobStart")
-  }
-
-  override def onStageCompleted(stageCompleted: SparkListenerStageCompleted): Unit = {
-    println(s"Stage ${stageCompleted.stageInfo.stageId} completed with ${stageCompleted.stageInfo.numTasks} tasks.")
-  }
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="creating-deployable-package"><a class="anchor" href="#creating-deployable-package"></a><a class="link" href="#creating-deployable-package">Creating deployable package</a></h3>
-<div class="paragraph">
-<p>Package the custom Spark listener. Execute <code>sbt package</code> command in the <code>custom-spark-listener</code> project&#8217;s main directory.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>$ sbt package
-[info] Loading global plugins from /Users/jacek/.sbt/0.13/plugins
-[info] Loading project definition from /Users/jacek/dev/workshops/spark-workshop/solutions/custom-spark-listener/project
-[info] Updating {file:/Users/jacek/dev/workshops/spark-workshop/solutions/custom-spark-listener/project/}custom-spark-listener-build...
-[info] Resolving org.fusesource.jansi#jansi;1.4 ...
-[info] Done updating.
-[info] Set current project to custom-spark-listener (in build file:/Users/jacek/dev/workshops/spark-workshop/solutions/custom-spark-listener/)
-[info] Updating {file:/Users/jacek/dev/workshops/spark-workshop/solutions/custom-spark-listener/}custom-spark-listener...
-[info] Resolving jline#jline;2.12.1 ...
-[info] Done updating.
-[info] Compiling 1 Scala source to /Users/jacek/dev/workshops/spark-workshop/solutions/custom-spark-listener/target/scala-2.11/classes...
-[info] Packaging /Users/jacek/dev/workshops/spark-workshop/solutions/custom-spark-listener/target/scala-2.11/custom-spark-listener_2.11-1.0.jar ...
-[info] Done packaging.
-[success] Total time: 8 s, completed Oct 27, 2016 11:23:50 AM</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You should find the result jar file with the custom scheduler listener ready under <code>target/scala-2.11</code> directory, e.g. <code>target/scala-2.11/custom-spark-listener_2.11-1.0.jar</code>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="activating-custom-listener-in-spark-shell"><a class="anchor" href="#activating-custom-listener-in-spark-shell"></a><a class="link" href="#activating-custom-listener-in-spark-shell">Activating Custom Listener in Spark shell</a></h3>
-<div class="paragraph">
-<p>Start <a href="../spark-shell.adoc">spark-shell</a> with additional configurations for the extra custom listener and the jar that includes the class.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>$ spark-shell --conf spark.logConf=true --conf spark.extraListeners=pl.jaceklaskowski.spark.CustomSparkListener --driver-class-path target/scala-2.11/custom-spark-listener_2.11-1.0.jar</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Create a <a href="../spark-sql-Dataset.adoc#implicits">Dataset</a> and execute an action like <code>show</code> to start a job as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>scala&gt; spark.read.text("README.md").count
-[CustomSparkListener] Job started with 2 stages: SparkListenerJobStart(1,1473946006715,WrappedArray(org.apache.spark.scheduler.StageInfo@71515592, org.apache.spark.scheduler.StageInfo@6852819d),{spark.rdd.scope.noOverride=true, spark.rdd.scope={"id":"14","name":"collect"}, spark.sql.execution.id=2})
-[CustomSparkListener] Stage 1 completed with 1 tasks.
-[CustomSparkListener] Stage 2 completed with 1 tasks.
-res0: Long = 7</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The lines with <code>[CustomSparkListener]</code> came from your custom Spark listener. Congratulations! The exercise&#8217;s over.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="bonus-activating-custom-listener-in-spark-application"><a class="anchor" href="#bonus-activating-custom-listener-in-spark-application"></a><a class="link" href="#bonus-activating-custom-listener-in-spark-application">BONUS Activating Custom Listener in Spark Application</a></h3>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Read <a href="../SparkContext.html#addSparkListener" class="page">Registering SparkListener</a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="questions"><a class="anchor" href="#questions"></a><a class="link" href="#questions">Questions</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>What are the pros and cons of using the command line version vs inside a Spark application?</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
+<p><strong>BlockData</strong> is&#8230;&#8203;FIXME</p>
 </div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
