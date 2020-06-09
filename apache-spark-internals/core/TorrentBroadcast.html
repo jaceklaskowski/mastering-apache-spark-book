@@ -2027,6 +2027,14 @@ TorrentBroadcast-based broadcast variables are created using <a href="TorrentBro
 </div>
 </div>
 <div class="sect1">
+<h2 id="numblocks-internal-value"><a class="anchor" href="#numblocks-internal-value"></a><a class="link" href="#numblocks-internal-value"><a id="numBlocks"></a> numBlocks Internal Value</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TorrentBroadcast uses <code>numBlocks</code> internal value for the total number of blocks it contains. It is <a href="#writeBlocks">initialized</a> when TorrentBroadcast is <a href="#creating-instance">created</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="getting-value-of-broadcast-variable"><a class="anchor" href="#getting-value-of-broadcast-variable"></a><a class="link" href="#getting-value-of-broadcast-variable"><a id="getValue"></a> Getting Value of Broadcast Variable</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
@@ -2150,66 +2158,50 @@ readBroadcastBlock uses the <a href="SparkEnv.html#serializer" class="page">curr
 </div>
 </div>
 <div class="sect1">
-<h2 id="storing-broadcast-and-blocks-in-local-blockmanager"><a class="anchor" href="#storing-broadcast-and-blocks-in-local-blockmanager"></a><a class="link" href="#storing-broadcast-and-blocks-in-local-blockmanager"><a id="writeBlocks"></a> Storing Broadcast and Blocks in Local BlockManager</a></h2>
+<h2 id="storing-broadcast-and-blocks-to-blockmanager"><a class="anchor" href="#storing-broadcast-and-blocks-to-blockmanager"></a><a class="link" href="#storing-broadcast-and-blocks-to-blockmanager"><a id="writeBlocks"></a> Storing Broadcast and Blocks to BlockManager</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">writeBlocks(value: T): Int</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">writeBlocks(
+  value: T): Int</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>writeBlocks</code> stores the broadcast&#8217;s <code>value</code> and blocks in the driver&#8217;s <a href="../storage/BlockManager.html" class="page">BlockManager</a>. It returns the number of the broadcast blocks the broadcast was divided into.</p>
+<p>writeBlocks stores the given value (that is the <a href="#obj">broadcast value</a>) and the blocks in <a href="../storage/BlockManager.html" class="page">BlockManager</a>. writeBlocks returns the <a href="#numBlocks">number of blocks of the broadcast</a> (was divided into).</p>
 </div>
 <div class="paragraph">
-<p>Internally, <code>writeBlocks</code> <a href="../storage/BlockManager.html#putSingle" class="page">stores the block for <code>value</code> broadcast to the local <code>BlockManager</code></a> (using a new <a href="spark-BlockDataManager.adoc#BroadcastBlockId">BroadcastBlockId</a>, <code>value</code>, <code>MEMORY_AND_DISK</code> storage level and without telling the driver).</p>
+<p>Internally, writeBlocks uses the <a href="SparkEnv.html#get" class="page">SparkEnv</a> to access <a href="SparkEnv.html#blockManager" class="page">BlockManager</a>.</p>
 </div>
 <div class="paragraph">
-<p>If storing the broadcast block fails, you should see the following <code>SparkException</code> in the logs:</p>
+<p>writeBlocks requests the BlockManager to <a href="../storage/BlockManager.html#putSingle" class="page">putSingle</a> (with MEMORY_AND_DISK storage level).</p>
+</div>
+<div class="paragraph">
+<p>writeBlocks <a href="#blockifyObject">blockify</a> the given value (of the <a href="#blockSize">block size</a>, the system <a href="SparkEnv.html#serializer" class="page">Serializer</a>, and the optional <a href="#compressionCodec">compressionCodec</a>).</p>
+</div>
+<div class="paragraph">
+<p>For every block, writeBlocks creates a <a href="../storage/spark-BlockId.html#BroadcastBlockId" class="page">BroadcastBlockId</a> for the <a href="#id">broadcast variable ID</a> and <code>piece[index]</code> identifier, and requests the BlockManager to <a href="../storage/BlockManager.html#putBytes" class="page">putBytes</a> (with MEMORY_AND_DISK_SER storage level).</p>
+</div>
+<div class="paragraph">
+<p>The entire broadcast value is stored in the local BlockManager with MEMORY_AND_DISK storage level whereas the blocks with MEMORY_AND_DISK_SER storage level.</p>
+</div>
+<div class="paragraph">
+<p>With <a href="#checksumEnabled">checksumEnabled</a> writeBlocks&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>In case of an error while storing the value or the blocks, writeBlocks throws a SparkException:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>Failed to store [broadcastId] in BlockManager</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Failed to store [pieceId] of [broadcastId] in local BlockManager</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>writeBlocks</code> divides <code>value</code> into blocks (of <a href="BroadcastManager.html#spark_broadcast_blockSize" class="page">spark.broadcast.blockSize</a> size) using the <a href="SparkEnv.html#serializer" class="page">Serializer</a> and an optional <a href="../io/CompressionCodec.html" class="page">CompressionCodec</a> (enabled by <a href="BroadcastManager.html#spark.broadcast.compress" class="page">spark.broadcast.compress</a>). Every block gets its own <code>BroadcastBlockId</code> (with <code>piece</code> and an index) that is wrapped inside a <code>ChunkedByteBuffer</code>. <a href="../storage/BlockManager.html#putBytes" class="page">Blocks are stored in the local <code>BlockManager</code></a> (using the <code>piece</code> block id, <code>MEMORY_AND_DISK_SER</code> storage level and informing the driver).</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The entire broadcast value is stored in the local <code>BlockManager</code> with <code>MEMORY_AND_DISK</code> storage level, and the pieces with <code>MEMORY_AND_DISK_SER</code> storage level.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>If storing any of the broadcast pieces fails, you should see the following <code>SparkException</code> in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>Failed to store [pieceId] of [broadcastId] in local BlockManager</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>writeBlocks</code> is used exclusively when TorrentBroadcast is <a href="#creating-instance">created</a> (that happens on the driver only).
-</td>
-</tr>
-</table>
+<p>writeBlocks is used when TorrentBroadcast is <a href="#creating-instance">created</a> for the <a href="#numBlocks">numBlocks</a> internal registry (that happens on the driver only).</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="chunking-broadcast-into-blocks"><a class="anchor" href="#chunking-broadcast-into-blocks"></a><a class="link" href="#chunking-broadcast-into-blocks"><a id="blockifyObject"></a> Chunking Broadcast Into Blocks</a></h2>
+<h2 id="chunking-broadcast-variable-into-blocks"><a class="anchor" href="#chunking-broadcast-variable-into-blocks"></a><a class="link" href="#chunking-broadcast-variable-into-blocks"><a id="blockifyObject"></a> Chunking Broadcast Variable Into Blocks</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2221,19 +2213,10 @@ The entire broadcast value is stored in the local <code>BlockManager</code> with
 </div>
 </div>
 <div class="paragraph">
-<p><code>blockifyObject</code> divides (aka <em>blockifies</em>) the input <code>obj</code> broadcast variable into blocks (of <code>ByteBuffer</code>). <code>blockifyObject</code> uses the input <code>serializer</code> <code>Serializer</code> to write <code>obj</code> in a serialized format to a <code>ChunkedByteBufferOutputStream</code> (of <code>blockSize</code> size) with the optional <a href="../io/CompressionCodec.html" class="page">CompressionCodec</a>.</p>
+<p>blockifyObject divides (aka <em>blockifies</em>) the input <code>obj</code> value into blocks (<code>ByteBuffer</code> chunks). blockifyObject uses the given <a href="../serializer/Serializer.html" class="page">Serializer</a> to write the value in a serialized format to a <code>ChunkedByteBufferOutputStream</code> of the given <code>blockSize</code> size with the optional <a href="../io/CompressionCodec.html" class="page">CompressionCodec</a>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>blockifyObject</code> is executed when <a href="#writeBlocks">TorrentBroadcast stores a broadcast and its blocks to a local <code>BlockManager</code></a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>blockifyObject is used when TorrentBroadcast is requested to <a href="#writeBlocks">stores itself as blocks to a local BlockManager</a>.</p>
 </div>
 </div>
 </div>
@@ -2337,12 +2320,6 @@ unpersist uses <a href="SparkEnv.html#blockManager" class="page"><code>SparkEnv<
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="numblocks-internal-value"><a class="anchor" href="#numblocks-internal-value"></a><a class="link" href="#numblocks-internal-value"><a id="numBlocks"></a> numBlocks Internal Value</a></h2>
-<div class="sectionbody">
-
 </div>
 </div>
 <div class="sect1">
