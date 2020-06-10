@@ -830,13 +830,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../spark-SparkListenerBus-AsyncEventQueue.html">AsyncEventQueue</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkListenerBus-ReplayListenerBus.html">ReplayListenerBus</a>
-  </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-JsonProtocol.html">JsonProtocol</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-debugging.html">Debugging Spark</a>
@@ -1624,6 +1618,12 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-history-server/ApplicationCache.html">ApplicationCache</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/ReplayListenerBus.html">ReplayListenerBus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/JsonProtocol.html">JsonProtocol</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -2108,7 +2108,7 @@ FIXME
 <p><a href="../shuffle/ShuffleExternalSorter.html#writeSortedFile" class="page"><code>ShuffleExternalSorter</code> does <code>writeSortedFile</code></a> (to <code>incDiskBytesSpilled</code>)</p>
 </li>
 <li>
-<p><a href="spark-JsonProtocol.adoc#taskMetricsToJson"><code>JsonProtocol</code> converts ShuffleWriteMetrics to JSON</a></p>
+<p><a href="../spark-history-server/JsonProtocol.html#taskMetricsToJson" class="page"><code>JsonProtocol</code> converts ShuffleWriteMetrics to JSON</a></p>
 </li>
 <li>
 <p><a href="spark-webui-executors-ExecutorsListener.adoc#onTaskEnd"><code>ExecutorsListener</code> intercepts task end events</a> to update executor metrics</p>
@@ -2154,7 +2154,7 @@ FIXME
 <p><a href="../storage/DiskBlockObjectWriter.html#updateBytesWritten" class="page"><code>DiskBlockObjectWriter</code> does <code>updateBytesWritten</code></a></p>
 </li>
 <li>
-<p><a href="spark-JsonProtocol.adoc#taskMetricsFromJson"><code>JsonProtocol</code> creates <code>TaskMetrics</code> from JSON</a></p>
+<p><a href="../spark-history-server/JsonProtocol.html#taskMetricsFromJson" class="page"><code>JsonProtocol</code> creates <code>TaskMetrics</code> from JSON</a></p>
 </li>
 </ol>
 </div>
@@ -2200,7 +2200,7 @@ FIXME
 <p><a href="../storage/DiskBlockObjectWriter.html#commitAndGet" class="page"><code>DiskBlockObjectWriter</code> does <code>commitAndGet</code></a> (but only when <code>syncWrites</code> flag is enabled that forces outstanding writes to disk).</p>
 </li>
 <li>
-<p><a href="spark-JsonProtocol.adoc#taskMetricsFromJson"><code>JsonProtocol</code> creates <code>TaskMetrics</code> from JSON</a></p>
+<p><a href="../spark-history-server/JsonProtocol.html#taskMetricsFromJson" class="page"><code>JsonProtocol</code> creates <code>TaskMetrics</code> from JSON</a></p>
 </li>
 <li>
 <p><code>TimeTrackingOutputStream</code> does its operation (after all it is an output stream to track shuffle write time).</p>
@@ -2243,7 +2243,7 @@ FIXME
 <p><a href="../storage/DiskBlockObjectWriter.html#recordWritten" class="page"><code>DiskBlockObjectWriter</code> does <code>recordWritten</code></a></p>
 </li>
 <li>
-<p><a href="spark-JsonProtocol.adoc#taskMetricsFromJson"><code>JsonProtocol</code> creates <code>TaskMetrics</code> from JSON</a></p>
+<p><a href="../spark-history-server/JsonProtocol.html#taskMetricsFromJson" class="page"><code>JsonProtocol</code> creates <code>TaskMetrics</code> from JSON</a></p>
 </li>
 </ol>
 </div>

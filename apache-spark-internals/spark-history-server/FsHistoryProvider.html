@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>FsHistoryProvider :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/spark-history-server/FsHistoryProvider.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -830,13 +830,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../spark-SparkListenerBus-AsyncEventQueue.html">AsyncEventQueue</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkListenerBus-ReplayListenerBus.html">ReplayListenerBus</a>
-  </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-JsonProtocol.html">JsonProtocol</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-debugging.html">Debugging Spark</a>
@@ -1624,6 +1618,12 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="ApplicationCache.html">ApplicationCache</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ReplayListenerBus.html">ReplayListenerBus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="JsonProtocol.html">JsonProtocol</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -1933,14 +1933,14 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="fshistoryproviderfile-system-based-history-provider"><a class="anchor" href="#fshistoryproviderfile-system-based-history-provider"></a><a class="link" href="#fshistoryproviderfile-system-based-history-provider"><a id="FsHistoryProvider"></a> FsHistoryProvider&#8201;&#8212;&#8201;File-System-Based History Provider</a></h2>
+<h1 class="page">FsHistoryProvider</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>FsHistoryProvider</code> is the default <a href="ApplicationHistoryProvider.html" class="page">ApplicationHistoryProvider</a> for <a href="index.html" class="page">Spark History Server</a>.</p>
+<p><strong>FsHistoryProvider</strong> is the default <a href="ApplicationHistoryProvider.html" class="page">ApplicationHistoryProvider</a> for <a href="index.html" class="page">Spark History Server</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>FsHistoryProvider</code> is <a href="#creating-instance">created</a> exclusively when <code>HistoryServer</code> is <a href="HistoryServer.html#main" class="page">started</a> as a standalone application and <code>spark.history.provider</code> configuration property was not defined.</p>
+<p>FsHistoryProvider is <a href="#creating-instance">created</a> exclusively when <code>HistoryServer</code> is <a href="HistoryServer.html#main" class="page">started</a> as a standalone application and <code>spark.history.provider</code> configuration property was not defined.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1967,8 +1967,11 @@
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="rebuildappstore-internal-method"><a class="anchor" href="#rebuildappstore-internal-method"></a><a class="link" href="#rebuildappstore-internal-method"><a id="rebuildAppStore"></a> <code>rebuildAppStore</code> Internal Method</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rebuildappstore-internal-method"><a class="anchor" href="#rebuildappstore-internal-method"></a><a class="link" href="#rebuildappstore-internal-method"><a id="rebuildAppStore"></a> <code>rebuildAppStore</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">rebuildAppStore(
@@ -1993,8 +1996,10 @@
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="getappui-method"><a class="anchor" href="#getappui-method"></a><a class="link" href="#getappui-method"><a id="getAppUI"></a> <code>getAppUI</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="getappui-method"><a class="anchor" href="#getappui-method"></a><a class="link" href="#getappui-method"><a id="getAppUI"></a> <code>getAppUI</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getAppUI(appId: String, attemptId: Option[String]): Option[LoadedAppUI]</code></pre>
@@ -2016,10 +2021,12 @@
 <p><code>getAppUI</code>&#8230;&#8203;FIXME</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="creating-fshistoryprovider-instance"><a class="anchor" href="#creating-fshistoryprovider-instance"></a><a class="link" href="#creating-fshistoryprovider-instance"><a id="creating-instance"></a> Creating FsHistoryProvider Instance</a></h3>
+</div>
+<div class="sect1">
+<h2 id="creating-fshistoryprovider-instance"><a class="anchor" href="#creating-fshistoryprovider-instance"></a><a class="link" href="#creating-fshistoryprovider-instance"><a id="creating-instance"></a> Creating FsHistoryProvider Instance</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p><code>FsHistoryProvider</code> takes the following when created:</p>
+<p>FsHistoryProvider takes the following when created:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2032,8 +2039,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p><code>FsHistoryProvider</code> initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
-</div>
+<p>FsHistoryProvider initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
 </div>
 </div>
 </div>
