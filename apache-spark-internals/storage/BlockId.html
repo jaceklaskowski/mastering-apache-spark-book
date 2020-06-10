@@ -434,6 +434,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockManager.html">BlockManager</a>
   </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="BlockId.html">BlockId</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="DiskBlockManager.html">DiskBlockManager</a>
   </li>
@@ -442,9 +445,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockData.html">BlockData</a>
@@ -1936,7 +1936,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>BlockId</strong> is the <a href="#contract">abstraction</a> of <a href="#implementations">block data identifiers</a> that are uniquely identified by a <a href="#name">name</a>.</p>
+<p><strong>BlockId</strong> is an <a href="#contract">abstraction</a> of <a href="#implementations">block data identifiers</a> that are uniquely identified by a <a href="#name">name</a>.</p>
 </div>
 <div class="paragraph">
 <p>BlockId is a Scala sealed abstract class and so all the possible <a href="#implementations">implementations</a> are in the single Scala file alongside BlockId.</p>
@@ -1959,23 +1959,10 @@
 <div class="sect1">
 <h2 id="available-blockids"><a class="anchor" href="#available-blockids"></a><a class="link" href="#available-blockids"><a id="implementations"></a> Available BlockIds</a></h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. BlockIds</caption>
-<colgroup>
-<col style="width: 30%;">
-<col style="width: 70%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">BlockId</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">BroadcastBlockId</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="BroadcastBlockId"></a> BlockId for <a href="../Broadcast.html" class="page">Broadcast Variable</a>s with <code>broadcastId</code> identifier and optional <code>field</code> name (default: <code>empty</code>)</p>
+<div class="sect2">
+<h3 id="broadcastblockid"><a class="anchor" href="#broadcastblockid"></a><a class="link" href="#broadcastblockid"><a id="BroadcastBlockId"></a> BroadcastBlockId</a></h3>
+<div class="paragraph">
+<p>BlockId for <a href="../Broadcast.html" class="page">Broadcast Variable</a>s with <code>broadcastId</code> identifier and optional <code>field</code> name (default: <code>empty</code>)</p>
 </div>
 <div class="paragraph">
 <p>Uses <code>broadcast_</code> prefix for the <a href="#name">name</a></p>
@@ -1998,12 +1985,12 @@
 </div>
 <div class="paragraph">
 <p><a href="../serializer/SerializerManager.html#shouldCompress" class="page">Compressed</a> when <a href="../core/BroadcastManager.html#spark.broadcast.compress" class="page">spark.broadcast.compress</a> configuration property is enabled</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">RDDBlockId</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="RDDBlockId"></a> BlockId for RDD partitions with <code>rddId</code> and <code>splitIndex</code> identifiers</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="rddblockid"><a class="anchor" href="#rddblockid"></a><a class="link" href="#rddblockid"><a id="RDDBlockId"></a> RDDBlockId</a></h3>
+<div class="paragraph">
+<p>BlockId for RDD partitions with <code>rddId</code> and <code>splitIndex</code> identifiers</p>
 </div>
 <div class="paragraph">
 <p>Uses <code>rdd_</code> prefix for the <a href="#name">name</a></p>
@@ -2035,12 +2022,12 @@
 </div>
 <div class="paragraph">
 <p><a href="../serializer/SerializerManager.html#shouldCompress" class="page">Compressed</a> when <a href="../configuration-properties.html#spark.rdd.compress" class="page">spark.rdd.compress</a> configuration property is enabled (default: <code>false</code>)</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ShuffleBlockId</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="ShuffleBlockId"></a> BlockId for <em>FIXME</em> with <code>shuffleId</code>, <code>mapId</code>, and <code>reduceId</code> identifiers</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="shuffleblockid"><a class="anchor" href="#shuffleblockid"></a><a class="link" href="#shuffleblockid"><a id="ShuffleBlockId"></a> ShuffleBlockId</a></h3>
+<div class="paragraph">
+<p>BlockId for <em>FIXME</em> with <code>shuffleId</code>, <code>mapId</code>, and <code>reduceId</code> identifiers</p>
 </div>
 <div class="paragraph">
 <p>Uses <code>shuffle_</code> prefix for the <a href="#name">name</a></p>
@@ -2066,38 +2053,36 @@
 </div>
 <div class="paragraph">
 <p><a href="../serializer/SerializerManager.html#shouldCompress" class="page">Compressed</a> when <a href="../configuration-properties.html#spark.shuffle.compress" class="page">spark.shuffle.compress</a> configuration property is enabled (default: <code>true</code>)</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ShuffleDataBlockId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="ShuffleDataBlockId"></a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ShuffleIndexBlockId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="ShuffleIndexBlockId"></a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">StreamBlockId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="StreamBlockId"></a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TaskResultBlockId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="TaskResultBlockId"></a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TempLocalBlockId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="TempLocalBlockId"></a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TempShuffleBlockId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="TempShuffleBlockId"></a></p></td>
-</tr>
-</tbody>
-</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="shuffledatablockid"><a class="anchor" href="#shuffledatablockid"></a><a class="link" href="#shuffledatablockid"><a id="ShuffleDataBlockId"></a> ShuffleDataBlockId</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="shuffleindexblockid"><a class="anchor" href="#shuffleindexblockid"></a><a class="link" href="#shuffleindexblockid"><a id="ShuffleIndexBlockId"></a> ShuffleIndexBlockId</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="streamblockid"><a class="anchor" href="#streamblockid"></a><a class="link" href="#streamblockid"><a id="StreamBlockId"></a> StreamBlockId</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="taskresultblockid"><a class="anchor" href="#taskresultblockid"></a><a class="link" href="#taskresultblockid"><a id="TaskResultBlockId"></a> TaskResultBlockId</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="templocalblockid"><a class="anchor" href="#templocalblockid"></a><a class="link" href="#templocalblockid"><a id="TempLocalBlockId"></a> TempLocalBlockId</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="tempshuffleblockid"><a class="anchor" href="#tempshuffleblockid"></a><a class="link" href="#tempshuffleblockid"><a id="TempShuffleBlockId"></a> TempShuffleBlockId</a></h3>
+
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-blockidapply-factory-method"><a class="anchor" href="#creating-blockidapply-factory-method"></a><a class="link" href="#creating-blockidapply-factory-method"><a id="apply"></a> Creating BlockId&#8201;&#8212;&#8201;apply Factory Method</a></h2>
+<h2 id="creating-blockid-based-on-block-nameapply-factory-method"><a class="anchor" href="#creating-blockid-based-on-block-nameapply-factory-method"></a><a class="link" href="#creating-blockid-based-on-block-nameapply-factory-method"><a id="apply"></a> Creating BlockId (Based on Block Name)&#8201;&#8212;&#8201;apply Factory Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2106,10 +2091,29 @@
 </div>
 </div>
 <div class="paragraph">
-<p>apply simply creates a concrete <a href="#implementations">BlockId</a> by the given name.</p>
+<p>apply creates one of the available <a href="#implementations">BlockIds</a> by the given name (that uses a prefix to differentiate between different BlockIds).</p>
 </div>
 <div class="paragraph">
-<p>apply is used when&#8230;&#8203;FIXME</p>
+<p>apply is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>NettyBlockRpcServer is requested to <a href="../core/NettyBlockRpcServer.html#receive" class="page">handle an RPC message</a> and <a href="../core/NettyBlockRpcServer.html#receiveStream" class="page">receiveStream</a></p>
+</li>
+<li>
+<p>UpdateBlockInfo is requested to deserialize (readExternal)</p>
+</li>
+<li>
+<p>DiskBlockManager is requested for <a href="DiskBlockManager.html#getAllBlocks" class="page">all the blocks (from files stored on disk)</a></p>
+</li>
+<li>
+<p>ShuffleBlockFetcherIterator is requested to <a href="ShuffleBlockFetcherIterator.html#sendRequest" class="page">sendRequest</a></p>
+</li>
+<li>
+<p>JsonProtocol is requested to <a href="../spark-JsonProtocol.html#accumValueFromJson" class="page">accumValueFromJson</a>, <a href="../spark-JsonProtocol.html#taskMetricsFromJson" class="page">taskMetricsFromJson</a> and <a href="../spark-JsonProtocol.html#blockUpdatedInfoFromJson" class="page">blockUpdatedInfoFromJson</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>

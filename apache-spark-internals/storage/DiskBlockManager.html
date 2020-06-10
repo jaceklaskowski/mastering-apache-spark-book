@@ -434,6 +434,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockManager.html">BlockManager</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BlockId.html">BlockId</a>
+  </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="DiskBlockManager.html">DiskBlockManager</a>
   </li>
@@ -442,9 +445,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockData.html">BlockData</a>
@@ -2331,7 +2331,7 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="getting-all-blocks-stored-on-diskgetallblocks-method"><a class="anchor" href="#getting-all-blocks-stored-on-diskgetallblocks-method"></a><a class="link" href="#getting-all-blocks-stored-on-diskgetallblocks-method"><a id="getAllBlocks"></a> Getting All Blocks Stored On Disk&#8201;&#8212;&#8201;<code>getAllBlocks</code> Method</a></h2>
+<h2 id="getting-all-blocks-from-files-stored-on-disk"><a class="anchor" href="#getting-all-blocks-from-files-stored-on-disk"></a><a class="link" href="#getting-all-blocks-from-files-stored-on-disk"><a id="getAllBlocks"></a> Getting All Blocks (From Files Stored On Disk)</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2339,22 +2339,13 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p><code>getAllBlocks</code> gets all the blocks stored on disk.</p>
+<p>getAllBlocks gets all the blocks stored on disk.</p>
 </div>
 <div class="paragraph">
-<p>Internally, <code>getAllBlocks</code> takes the <a href="#getAllFiles">block files</a> and returns their names (as <code>BlockId</code>).</p>
+<p>Internally, getAllBlocks takes the <a href="#getAllFiles">block files</a> and returns their names (as <code>BlockId</code>).</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>getAllBlocks</code> is used exclusively when <code>BlockManager</code> is requested to <a href="BlockManager.html#getMatchingBlockIds" class="page">find IDs of existing blocks for a given filter</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>getAllBlocks is used when BlockManager is requested to <a href="BlockManager.html#getMatchingBlockIds" class="page">find IDs of existing blocks for a given filter</a>.</p>
 </div>
 </div>
 </div>

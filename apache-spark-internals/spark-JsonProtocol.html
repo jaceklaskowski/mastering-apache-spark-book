@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title> JsonProtocol :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/spark-JsonProtocol.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../_/css/site.css">
@@ -435,6 +435,9 @@
     <a class="nav-link" href="storage/BlockManager.html">BlockManager</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="storage/BlockId.html">BlockId</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="storage/DiskBlockManager.html">DiskBlockManager</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -442,9 +445,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="storage/BlockDataManager.html">BlockDataManager</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="storage/BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="storage/BlockData.html">BlockData</a>
@@ -1932,80 +1932,192 @@
   </div>
   <div class="content">
 <article class="doc">
+<h1 class="page"><a id="JsonProtocol"></a> JsonProtocol</h1>
 <div class="sect1">
-<h2 id="jsonprotocol"><a class="anchor" href="#jsonprotocol"></a><a class="link" href="#jsonprotocol"><a id="JsonProtocol"></a> JsonProtocol</a></h2>
+<h2 id="sparkeventfromjson-utility"><a class="anchor" href="#sparkeventfromjson-utility"></a><a class="link" href="#sparkeventfromjson-utility"><a id="sparkEventFromJson"></a> sparkEventFromJson Utility</a></h2>
 <div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="taskinfofromjson-method"><a class="anchor" href="#taskinfofromjson-method"></a><a class="link" href="#taskinfofromjson-method"><a id="taskInfoFromJson"></a> <code>taskInfoFromJson</code> Method</a></h3>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">sparkEventFromJson(
+  json: JValue): SparkListenerEvent</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="taskmetricsfromjson-method"><a class="anchor" href="#taskmetricsfromjson-method"></a><a class="link" href="#taskmetricsfromjson-method"><a id="taskMetricsFromJson"></a> <code>taskMetricsFromJson</code> Method</a></h3>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>sparkEventFromJson&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>sparkEventFromJson is used when ReplayListenerBus is requested to <a href="spark-SparkListenerBus-ReplayListenerBus.html#replay" class="page">replay</a>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="taskmetricstojson-method"><a class="anchor" href="#taskmetricstojson-method"></a><a class="link" href="#taskmetricstojson-method"><a id="taskMetricsToJson"></a> <code>taskMetricsToJson</code> Method</a></h3>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+</div>
+<div class="sect1">
+<h2 id="taskendfromjson-utility"><a class="anchor" href="#taskendfromjson-utility"></a><a class="link" href="#taskendfromjson-utility"><a id="taskEndFromJson"></a> taskEndFromJson Utility</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">taskEndFromJson(
+  json: JValue): SparkListenerTaskEnd</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="sparkeventfromjson-method"><a class="anchor" href="#sparkeventfromjson-method"></a><a class="link" href="#sparkeventfromjson-method"><a id="sparkEventFromJson"></a> <code>sparkEventFromJson</code> Method</a></h3>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>taskEndFromJson&#8230;&#8203;FIXME</p>
 </div>
+<div class="paragraph">
+<p>taskEndFromJson is used when JsonProtocol utility is used to <a href="#sparkEventFromJson">sparkEventFromJson</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="executormetricsupdatefromjson-utility"><a class="anchor" href="#executormetricsupdatefromjson-utility"></a><a class="link" href="#executormetricsupdatefromjson-utility"><a id="executorMetricsUpdateFromJson"></a> executorMetricsUpdateFromJson Utility</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">executorMetricsUpdateFromJson(
+  json: JValue): SparkListenerExecutorMetricsUpdate</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>executorMetricsUpdateFromJson&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>executorMetricsUpdateFromJson is used when JsonProtocol utility is used to <a href="#sparkEventFromJson">sparkEventFromJson</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="taskendreasonfromjson-utility"><a class="anchor" href="#taskendreasonfromjson-utility"></a><a class="link" href="#taskendreasonfromjson-utility"><a id="taskEndReasonFromJson"></a> taskEndReasonFromJson Utility</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">taskEndReasonFromJson(
+  json: JValue): TaskEndReason</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>taskEndReasonFromJson&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>taskEndReasonFromJson is used when JsonProtocol utility is used to <a href="#taskEndFromJson">taskEndFromJson</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stageinfofromjson-utility"><a class="anchor" href="#stageinfofromjson-utility"></a><a class="link" href="#stageinfofromjson-utility"><a id="stageInfoFromJson"></a> stageInfoFromJson Utility</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">stageInfoFromJson(
+  json: JValue): StageInfo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>stageInfoFromJson&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>stageInfoFromJson is used when JsonProtocol utility is used to <a href="#jobStartFromJson">jobStartFromJson</a>, <a href="#stageSubmittedFromJson">stageSubmittedFromJson</a>, <a href="#stageCompletedFromJson">stageCompletedFromJson</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="taskinfofromjson-utility"><a class="anchor" href="#taskinfofromjson-utility"></a><a class="link" href="#taskinfofromjson-utility"><a id="taskInfoFromJson"></a> taskInfoFromJson Utility</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">taskInfoFromJson(
+  json: JValue): TaskInfo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>taskInfoFromJson&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>taskInfoFromJson is used when JsonProtocol utility is used to <a href="#taskStartFromJson">taskStartFromJson</a>, <a href="#taskGettingResultFromJson">taskGettingResultFromJson</a>, <a href="#taskEndFromJson">taskEndFromJson</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="accumulableinfofromjson-utility"><a class="anchor" href="#accumulableinfofromjson-utility"></a><a class="link" href="#accumulableinfofromjson-utility"><a id="accumulableInfoFromJson"></a> accumulableInfoFromJson Utility</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">accumulableInfoFromJson(
+  json: JValue): AccumulableInfo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>accumulableInfoFromJson&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>accumulableInfoFromJson is used when JsonProtocol utility is used to <a href="#taskEndReasonFromJson">taskEndReasonFromJson</a>, <a href="#executorMetricsUpdateFromJson">executorMetricsUpdateFromJson</a>, <a href="#stageInfoFromJson">stageInfoFromJson</a>, <a href="#taskInfoFromJson">taskInfoFromJson</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="accumvaluefromjson-utility"><a class="anchor" href="#accumvaluefromjson-utility"></a><a class="link" href="#accumvaluefromjson-utility"><a id="accumValueFromJson"></a> accumValueFromJson Utility</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">accumValueFromJson(
+  name: Option[String],
+  value: JValue): Any</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>accumValueFromJson&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>accumValueFromJson is used when JsonProtocol utility is used to <a href="#accumulableInfoFromJson">accumulableInfoFromJson</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="taskmetricsfromjson-utility"><a class="anchor" href="#taskmetricsfromjson-utility"></a><a class="link" href="#taskmetricsfromjson-utility"><a id="taskMetricsFromJson"></a> taskMetricsFromJson Utility</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">taskMetricsFromJson(
+  json: JValue): TaskMetrics</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>taskMetricsFromJson&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>taskMetricsFromJson is used when JsonProtocol utility is used to <a href="#taskEndFromJson">taskEndFromJson</a> and <a href="#taskEndReasonFromJson">taskEndReasonFromJson</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="taskendtojson-utility"><a class="anchor" href="#taskendtojson-utility"></a><a class="link" href="#taskendtojson-utility"><a id="taskEndToJson"></a> taskEndToJson Utility</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">taskEndToJson(
+  taskEnd: SparkListenerTaskEnd): JValue</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>taskEndToJson&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>taskEndToJson is used when JsonProtocol utility is used to <a href="#sparkEventToJson">convert a SparkListenerEvent to JSON</a> (<em>serialize a SparkListenerEvent to JSON</em>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="taskmetricstojson-utility"><a class="anchor" href="#taskmetricstojson-utility"></a><a class="link" href="#taskmetricstojson-utility"><a id="taskMetricsToJson"></a> taskMetricsToJson Utility</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">taskMetricsToJson(
+  taskMetrics: TaskMetrics): JValue</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>taskMetricsToJson&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>taskMetricsToJson is used when JsonProtocol utility is used to <a href="#taskEndToJson">taskEndToJson</a>.</p>
 </div>
 </div>
 </div>
