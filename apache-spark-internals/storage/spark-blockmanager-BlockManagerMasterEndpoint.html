@@ -441,10 +441,10 @@
     <a class="nav-link" href="DiskStore.html">DiskStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-BlockId.html">BlockId</a>
+    <a class="nav-link" href="BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockData.html">BlockData</a>
@@ -1992,7 +1992,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="blockLocations"></a> <code>blockLocations</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Collection of <a href="spark-BlockId.html" class="page">BlockIds</a> and their locations (as <code>BlockManagerId</code>).</p>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Collection of <a href="BlockId.html" class="page">BlockId</a> and their locations (as <code>BlockManagerId</code>).</p>
 <p class="tableblock">Used in <code>removeRdd</code> to remove blocks for a RDD, <code>removeBlockManager</code> to remove blocks after a BlockManager gets removed, <code>removeBlockFromWorkers</code>, <code>updateBlockInfo</code>, and <a href="#getLocations">getLocations</a>.</p></td>
 </tr>
 </tbody>
@@ -2243,7 +2243,7 @@ extends ToBlockManagerMaster</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>GetLocationsMultipleBlockIds</code> replies with the <a href="#getLocationsMultipleBlockIds">getLocationsMultipleBlockIds</a> for the given <a href="spark-BlockId.html" class="page">BlockIds</a>.</p>
+<p><code>GetLocationsMultipleBlockIds</code> replies with the <a href="#getLocationsMultipleBlockIds">getLocationsMultipleBlockIds</a> for the given <a href="BlockId.html" class="page">BlockId</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2519,7 +2519,7 @@ FIXME Describe <code>listenerBus</code> + omnigraffle it.
 </div>
 </div>
 <div class="paragraph">
-<p>When executed, <code>getLocations</code> looks up the given <a href="spark-BlockId.html" class="page">BlockId</a> in the <code>blockLocations</code> internal registry and returns the locations (as a collection of <code>BlockManagerId</code>) or an empty collection.</p>
+<p>When executed, <code>getLocations</code> looks up the given <a href="BlockId.html" class="page">BlockId</a> in the <code>blockLocations</code> internal registry and returns the locations (as a collection of <code>BlockManagerId</code>) or an empty collection.</p>
 </div>
 </div>
 <div class="sect2">

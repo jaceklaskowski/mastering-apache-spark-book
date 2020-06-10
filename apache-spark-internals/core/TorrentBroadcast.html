@@ -441,10 +441,10 @@
     <a class="nav-link" href="../storage/DiskStore.html">DiskStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="../storage/BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockId.html">BlockId</a>
+    <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../storage/BlockData.html">BlockData</a>
@@ -2054,7 +2054,7 @@ TorrentBroadcast-based broadcast variables are created using <a href="TorrentBro
 <h2 id="broadcastblockid"><a class="anchor" href="#broadcastblockid"></a><a class="link" href="#broadcastblockid"><a id="broadcastId"></a> BroadcastBlockId</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TorrentBroadcast uses a <a href="../storage/spark-BlockId.html#BroadcastBlockId" class="page">BroadcastBlockId</a> for&#8230;&#8203;FIXME</p>
+<p>TorrentBroadcast uses a <a href="../storage/BlockId.html#BroadcastBlockId" class="page">BroadcastBlockId</a> for&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>
@@ -2179,7 +2179,7 @@ readBroadcastBlock uses the <a href="SparkEnv.html#serializer" class="page">curr
 <p>writeBlocks <a href="#blockifyObject">blockify</a> the given value (of the <a href="#blockSize">block size</a>, the system <a href="SparkEnv.html#serializer" class="page">Serializer</a>, and the optional <a href="#compressionCodec">compressionCodec</a>).</p>
 </div>
 <div class="paragraph">
-<p>For every block, writeBlocks creates a <a href="../storage/spark-BlockId.html#BroadcastBlockId" class="page">BroadcastBlockId</a> for the <a href="#id">broadcast variable ID</a> and <code>piece[index]</code> identifier, and requests the BlockManager to <a href="../storage/BlockManager.html#putBytes" class="page">putBytes</a> (with MEMORY_AND_DISK_SER storage level).</p>
+<p>For every block, writeBlocks creates a <a href="../storage/BlockId.html#BroadcastBlockId" class="page">BroadcastBlockId</a> for the <a href="#id">broadcast variable ID</a> and <code>piece[index]</code> identifier, and requests the BlockManager to <a href="../storage/BlockManager.html#putBytes" class="page">putBytes</a> (with MEMORY_AND_DISK_SER storage level).</p>
 </div>
 <div class="paragraph">
 <p>The entire broadcast value is stored in the local BlockManager with MEMORY_AND_DISK storage level whereas the blocks with MEMORY_AND_DISK_SER storage level.</p>
@@ -2337,7 +2337,7 @@ unpersist uses <a href="SparkEnv.html#blockManager" class="page"><code>SparkEnv<
 <p>readBlocks uses the <a href="SparkEnv.html" class="page">SparkEnv</a> to access <a href="SparkEnv.html#blockManager" class="page">BlockManager</a> (that is later used to fetch local or remote blocks).</p>
 </div>
 <div class="paragraph">
-<p>For every block (randomly-chosen by block ID between 0 and <a href="#numBlocks">numBlocks</a>), readBlocks creates a <a href="../storage/spark-BlockId.html#BroadcastBlockId" class="page">BroadcastBlockId</a> for the <a href="#id">id</a> (of the broadcast variable) and the chunk identified by the <code>piece</code> prefix followed by the ID.</p>
+<p>For every block (randomly-chosen by block ID between 0 and <a href="#numBlocks">numBlocks</a>), readBlocks creates a <a href="../storage/BlockId.html#BroadcastBlockId" class="page">BroadcastBlockId</a> for the <a href="#id">id</a> (of the broadcast variable) and the chunk identified by the <code>piece</code> prefix followed by the ID.</p>
 </div>
 <div class="paragraph">
 <p>readBlocks prints out the following DEBUG message to the logs:</p>

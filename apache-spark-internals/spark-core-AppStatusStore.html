@@ -441,10 +441,10 @@
     <a class="nav-link" href="storage/DiskStore.html">DiskStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="storage/spark-BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="storage/BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="storage/spark-BlockId.html">BlockId</a>
+    <a class="nav-link" href="storage/BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="storage/BlockData.html">BlockData</a>
@@ -1958,7 +1958,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>When <a href="#createLiveStore">created</a> for a live Spark application, <code>AppStatusStore</code> creates a <a href="spark-SparkListener-AppStatusListener.adoc">AppStatusListener</a> that is later used to <a href="#activeStages">get the active stages</a>.</p>
+<p>When <a href="#createLiveStore">created</a> for a live Spark application, <code>AppStatusStore</code> creates a <a href="spark-SparkListener-AppStatusListener.html" class="page">AppStatusListener</a> that is later used to <a href="#activeStages">get the active stages</a>.</p>
 </div>
 <div class="sect2">
 <h3 id="streamblockslist-method"><a class="anchor" href="#streamblockslist-method"></a><a class="link" href="#streamblockslist-method"><a id="streamBlocksList"></a> <code>streamBlocksList</code> Method</a></h3>
@@ -2017,7 +2017,7 @@
 <p><a id="store"></a> <a href="spark-core-KVStore.adoc">KVStore</a></p>
 </li>
 <li>
-<p><a id="listener"></a> Optional <a href="spark-SparkListener-AppStatusListener.adoc">AppStatusListener</a> (default: <code>None</code>)</p>
+<p><a id="listener"></a> Optional <a href="spark-SparkListener-AppStatusListener.html" class="page">AppStatusListener</a> (default: <code>None</code>)</p>
 </li>
 </ul>
 </div>
@@ -2036,7 +2036,7 @@
 <p>Internally, <code>createLiveStore</code> creates a <a href="spark-core-ElementTrackingStore.adoc#creating-instance">ElementTrackingStore</a> (with a new <a href="spark-core-InMemoryStore.adoc#">InMemoryStore</a> and the input <a href="SparkConf.html" class="page">SparkConf</a>).</p>
 </div>
 <div class="paragraph">
-<p><code>createLiveStore</code> creates a <a href="spark-SparkListener-AppStatusListener.adoc#creating-instance">AppStatusListener</a> (with the <code>ElementTrackingStore</code> created, the input <code>SparkConf</code> and the <code>live</code> flag enabled).</p>
+<p><code>createLiveStore</code> creates a <a href="spark-SparkListener-AppStatusListener.html" class="page">AppStatusListener</a> (with the <code>ElementTrackingStore</code> created, the input <code>SparkConf</code> and the <code>live</code> flag enabled).</p>
 </div>
 <div class="paragraph">
 <p>In the end, <code>createLiveStore</code> creates an <a href="#creating-instance">AppStatusStore</a> (with the <code>ElementTrackingStore</code> and <code>AppStatusListener</code> just created).</p>

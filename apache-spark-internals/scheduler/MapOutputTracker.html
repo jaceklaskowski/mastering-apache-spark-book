@@ -441,10 +441,10 @@
     <a class="nav-link" href="../storage/DiskStore.html">DiskStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="../storage/BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockId.html">BlockId</a>
+    <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../storage/BlockData.html">BlockData</a>
@@ -2187,7 +2187,7 @@ getMapSizesByExecutorId gets the map outputs for all the partitions (despite the
 </div>
 </div>
 <div class="paragraph">
-<p>convertMapStatuses iterates over the input <code>statuses</code> array (of <a href="MapStatus.html" class="page">MapStatus</a> entries indexed by map id) and creates a collection of <a href="../storage/BlockManager.html#BlockManagerId" class="page">BlockManagerId</a> (for each <code>MapStatus</code> entry) with a <a href="../storage/spark-BlockDataManager.html#ShuffleBlockId" class="page">ShuffleBlockId</a> (with the input <code>shuffleId</code>, a <code>mapId</code>, and <code>partition</code> ranging from the input <code>startPartition</code> and <code>endPartition</code>) and <a href="MapStatus.html#getSizeForBlock" class="page">estimated size for the reduce block</a> for every status and partitions.</p>
+<p>convertMapStatuses iterates over the input <code>statuses</code> array (of <a href="MapStatus.html" class="page">MapStatus</a> entries indexed by map id) and creates a collection of <a href="../storage/BlockManager.html#BlockManagerId" class="page">BlockManagerId</a> (for each <code>MapStatus</code> entry) with a <a href="../storage/BlockId.html#ShuffleBlockId" class="page">ShuffleBlockId</a> (with the input <code>shuffleId</code>, a <code>mapId</code>, and <code>partition</code> ranging from the input <code>startPartition</code> and <code>endPartition</code>) and <a href="MapStatus.html#getSizeForBlock" class="page">estimated size for the reduce block</a> for every status and partitions.</p>
 </div>
 <div class="paragraph">
 <p>For any empty <code>MapStatus</code>, you should see the following ERROR message in the logs:</p>

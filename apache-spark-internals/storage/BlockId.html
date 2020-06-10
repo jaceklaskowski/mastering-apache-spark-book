@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Spark on Mesos :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/spark-on-mesos/index.html">
+    <title>BlockId :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/storage/BlockId.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -432,73 +432,73 @@
     <span class="nav-text">Storage System</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/BlockManager.html">BlockManager</a>
+    <a class="nav-link" href="BlockManager.html">BlockManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/DiskBlockManager.html">DiskBlockManager</a>
+    <a class="nav-link" href="DiskBlockManager.html">DiskBlockManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/DiskStore.html">DiskStore</a>
+    <a class="nav-link" href="DiskStore.html">DiskStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/BlockData.html">BlockData</a>
+    <a class="nav-link" href="BlockData.html">BlockData</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/spark-BlockInfoManager.html">BlockInfoManager</a>
+    <a class="nav-link" href="spark-BlockInfoManager.html">BlockInfoManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/spark-BlockInfo.html">BlockInfo</a>
+    <a class="nav-link" href="spark-BlockInfo.html">BlockInfo</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/BlockManagerMaster.html">BlockManagerMaster</a>
+    <a class="nav-link" href="BlockManagerMaster.html">BlockManagerMaster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/spark-blockmanager-BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
+    <a class="nav-link" href="spark-blockmanager-BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/MemoryStore.html">MemoryStore</a>
+    <a class="nav-link" href="MemoryStore.html">MemoryStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
+    <a class="nav-link" href="spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-blockmanager-BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
+    <a class="nav-link" href="spark-blockmanager-BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
+    <a class="nav-link" href="DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockManager-BlockManagerSource.html">BlockManagerSource</a>
+    <a class="nav-link" href="spark-BlockManager-BlockManagerSource.html">BlockManagerSource</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockManager-ShuffleMetricsSource.html">ShuffleMetricsSource</a>
+    <a class="nav-link" href="spark-BlockManager-ShuffleMetricsSource.html">ShuffleMetricsSource</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-blockmanager-StorageStatus.html">StorageStatus</a>
+    <a class="nav-link" href="spark-blockmanager-StorageStatus.html">StorageStatus</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
+    <a class="nav-link" href="ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/RDDInfo.html">RDDInfo</a>
+    <a class="nav-link" href="RDDInfo.html">RDDInfo</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/StorageLevel.html">StorageLevel</a>
+    <a class="nav-link" href="StorageLevel.html">StorageLevel</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/demo-diskblockmanager-and-block-data.html">Demo: DiskBlockManager and Block Data</a>
+    <a class="nav-link" href="demo-diskblockmanager-and-block-data.html">Demo: DiskBlockManager and Block Data</a>
   </li>
 </ul>
   </li>
@@ -1835,18 +1835,18 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Spark on Mesos</a>
+    <a class="nav-link" href="../spark-on-mesos/index.html">Spark on Mesos</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mesos-MesosCoarseGrainedSchedulerBackend.html">MesosCoarseGrainedSchedulerBackend</a>
+    <a class="nav-link" href="../spark-on-mesos/spark-mesos-MesosCoarseGrainedSchedulerBackend.html">MesosCoarseGrainedSchedulerBackend</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-mesos-introduction.html">About Mesos</a>
+    <a class="nav-link" href="../spark-on-mesos/spark-mesos-introduction.html">About Mesos</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-executor-backends-MesosExecutorBackend.html">MesosExecutorBackend</a>
+    <a class="nav-link" href="../spark-on-mesos/spark-executor-backends-MesosExecutorBackend.html">MesosExecutorBackend</a>
   </li>
 </ul>
   </li>
@@ -1924,405 +1924,192 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Spark on Mesos</a></li>
+    <li>Storage System</li>
+    <li><a href="BlockId.html">BlockId</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/spark-on-mesos/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/storage/pages/BlockId.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Spark on Mesos</h1>
+<h1 class="page">BlockId</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/spark-mesos.png" alt="spark mesos">
+<div class="paragraph">
+<p><strong>BlockId</strong> is the <a href="#contract">abstraction</a> of <a href="#implementations">block data identifiers</a> that are uniquely identified by a <a href="#name">name</a>.</p>
 </div>
-<div class="title">Figure 1. Spark on Mesos Architecture</div>
+<div class="paragraph">
+<p>BlockId is a Scala sealed abstract class and so all the possible <a href="#implementations">implementations</a> are in the single Scala file alongside BlockId.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="running-spark-on-mesos"><a class="anchor" href="#running-spark-on-mesos"></a><a class="link" href="#running-spark-on-mesos">Running Spark on Mesos</a></h2>
+<h2 id="contract"><a class="anchor" href="#contract"></a><a class="link" href="#contract"><a id="contract"></a> Contract</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>A Mesos cluster needs at least one Mesos Master to coordinate and dispatch tasks onto Mesos Slaves.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>$ mesos-master --registry=in_memory --ip=127.0.0.1
-I0401 00:12:01.955883 1916461824 main.cpp:237] Build: 2016-03-17 14:20:58 by brew
-I0401 00:12:01.956457 1916461824 main.cpp:239] Version: 0.28.0
-I0401 00:12:01.956538 1916461824 main.cpp:260] Using 'HierarchicalDRF' allocator
-I0401 00:12:01.957381 1916461824 main.cpp:471] Starting Mesos master
-I0401 00:12:01.964118 1916461824 master.cpp:375] Master 9867c491-5370-48cc-8e25-e1aff1d86542 (localhost) started on 127.0.0.1:5050
-...</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Visit the management console at <a href="http://localhost:5050" class="bare">http://localhost:5050</a>.</p>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/mesos-console.png" alt="mesos console">
-</div>
-<div class="title">Figure 2. Mesos Management Console</div>
-</div>
-<div class="paragraph">
-<p>Run Mesos Slave onto which Master will dispatch jobs.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>$ mesos-slave --master=127.0.0.1:5050
-I0401 00:15:05.850455 1916461824 main.cpp:223] Build: 2016-03-17 14:20:58 by brew
-I0401 00:15:05.850772 1916461824 main.cpp:225] Version: 0.28.0
-I0401 00:15:05.852812 1916461824 containerizer.cpp:149] Using isolation: posix/cpu,posix/mem,filesystem/posix
-I0401 00:15:05.866186 1916461824 main.cpp:328] Starting Mesos slave
-I0401 00:15:05.869470 218980352 slave.cpp:193] Slave started on 1)@10.1.47.199:5051
-...
-I0401 00:15:05.906355 218980352 slave.cpp:832] Detecting new master
-I0401 00:15:06.762917 220590080 slave.cpp:971] Registered with master master@127.0.0.1:5050; given slave ID 9867c491-5370-48cc-8e25-e1aff1d86542-S0
-...</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Switch to the management console at <a href="http://localhost:5050/#/slaves" class="bare">http://localhost:5050/#/slaves</a> to see the slaves available.</p>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/mesos-console-slaves.png" alt="mesos console slaves">
-</div>
-<div class="title">Figure 3. Mesos Management Console (Slaves tab) with one slave running</div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>You have to export <code>MESOS_NATIVE_JAVA_LIBRARY</code> environment variable before connecting to the Mesos cluster.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>$ export MESOS_NATIVE_JAVA_LIBRARY=/usr/local/lib/libmesos.dylib</code></pre>
-</div>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The preferred approach to launch Spark on Mesos and to give the location of Spark binaries is through <a href="#settings">spark.executor.uri</a> setting.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>--conf spark.executor.uri=/Users/jacek/Downloads/spark-1.5.2-bin-hadoop2.6.tgz</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>For us, on a bleeding edge of Spark development, it is very convenient to use <a href="#settings">spark.mesos.executor.home</a> setting, instead.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>-c spark.mesos.executor.home=`pwd`</code></pre>
-</div>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>$ ./bin/spark-shell --master mesos://127.0.0.1:5050 -c spark.mesos.executor.home=`pwd`
-...
-I0401 00:17:41.806743 581939200 sched.cpp:222] Version: 0.28.0
-I0401 00:17:41.808825 579805184 sched.cpp:326] New master detected at master@127.0.0.1:5050
-I0401 00:17:41.808976 579805184 sched.cpp:336] No credentials provided. Attempting to register without authentication
-I0401 00:17:41.809605 579268608 sched.cpp:703] Framework registered with 9867c491-5370-48cc-8e25-e1aff1d86542-0001
-Spark context available as sc (master = mesos://127.0.0.1:5050, app id = 9867c491-5370-48cc-8e25-e1aff1d86542-0001).
-...</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In <a href="http://localhost:5050/#/frameworks">Frameworks tab</a> you should see a single active framework for <code>spark-shell</code>.</p>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/spark-mesos-frameworks-one-active.png" alt="spark mesos frameworks one active">
-</div>
-<div class="title">Figure 4. Mesos Management Console (Frameworks tab) with Spark shell active</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Consult slave logs under <code>/tmp/mesos/slaves</code> when facing troubles.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Ensure that the versions of Spark of <code>spark-shell</code> and as pointed out by <code>spark.executor.uri</code> are the same or compatible.
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>scala&gt; sc.parallelize(0 to 10, 8).count
-res0: Long = 11</code></pre>
-</div>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/spark-mesos-completed-tasks.png" alt="spark mesos completed tasks">
-</div>
-<div class="title">Figure 5. Completed tasks in Mesos Management Console</div>
-</div>
-<div class="paragraph">
-<p>Stop Spark shell.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>scala&gt; Stopping spark context.
-I1119 16:01:37.831179 206073856 sched.cpp:1771] Asked to stop the driver
-I1119 16:01:37.831310 698224640 sched.cpp:1040] Stopping framework '91979713-a32d-4e08-aaea-5dffbfd44e5d-0002'</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="coarsemesosschedulerbackend"><a class="anchor" href="#coarsemesosschedulerbackend"></a><a class="link" href="#coarsemesosschedulerbackend"><a id="CoarseMesosSchedulerBackend"></a> CoarseMesosSchedulerBackend</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><code>CoarseMesosSchedulerBackend</code> is the <a href="../scheduler/SchedulerBackend.html" class="page">scheduler backend</a> for Spark on Mesos.</p>
-</div>
-<div class="paragraph">
-<p>It requires a <a href="../scheduler/TaskScheduler.html" class="page">Task Scheduler</a>, <a href="../SparkContext.html" class="page">SparkContext</a>, <code>mesos://</code> master URL, and <a href="spark-security.adoc">Security Manager</a>.</p>
-</div>
-<div class="paragraph">
-<p>It is a specialized <a href="../scheduler/CoarseGrainedSchedulerBackend.html" class="page">CoarseGrainedSchedulerBackend</a> and implements Mesos&#8217;s <a href="http://mesos.apache.org/api/latest/java/org/apache/mesos/Scheduler.html">org.apache.mesos.Scheduler</a> interface.</p>
-</div>
-<div class="paragraph">
-<p>It accepts only two failures before blacklisting a Mesos slave (it is hardcoded and not configurable).</p>
-</div>
-<div class="paragraph">
-<p>It tracks:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>the number of tasks already submitted (<code>nextMesosTaskId</code>)</p>
-</li>
-<li>
-<p>the number of cores per task (<code>coresByTaskId</code>)</p>
-</li>
-<li>
-<p>the total number of cores acquired (<code>totalCoresAcquired</code>)</p>
-</li>
-<li>
-<p>slave ids with executors (<code>slaveIdsWithExecutors</code>)</p>
-</li>
-<li>
-<p>slave ids per host (<code>slaveIdToHost</code>)</p>
-</li>
-<li>
-<p>task ids per slave (<code>taskIdToSlaveId</code>)</p>
-</li>
-<li>
-<p>How many times tasks on each slave failed (<code>failuresBySlaveId</code>)</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<code>createSchedulerDriver</code> instantiates Mesos&#8217;s org.apache.mesos.MesosSchedulerDriver
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>CoarseMesosSchedulerBackend starts the <strong>MesosSchedulerUtils-mesos-driver</strong> daemon thread with Mesos&#8217;s <a href="http://mesos.apache.org/api/latest/java/org/apache/mesos/MesosSchedulerDriver.html">org.apache.mesos.MesosSchedulerDriver</a>.</p>
-</div>
 <div class="sect2">
-<h3 id="settings"><a class="anchor" href="#settings"></a><a class="link" href="#settings"><a id="settings"></a> Settings</a></h3>
-<div class="ulist">
-<ul>
-<li>
-<p><code>spark.cores.max</code> (default: <code>Int.MaxValue</code>) - maximum number of cores to acquire</p>
-</li>
-<li>
-<p><code>spark.mesos.extra.cores</code> (default: <code>0</code>) - extra cores per slave (<code>extraCoresPerSlave</code>) FIXME</p>
-</li>
-<li>
-<p><code>spark.mesos.constraints</code> (default: (empty)) - offer constraints FIXME <code>slaveOfferConstraints</code></p>
-</li>
-<li>
-<p><code>spark.mesos.rejectOfferDurationForUnmetConstraints</code> (default: <code>120s</code>) - reject offers with mismatched constraints in seconds</p>
-</li>
-<li>
-<p><code>spark.mesos.executor.home</code> (default: <code>SPARK_HOME</code>) - the home directory of Spark for executors. It is only required when no <code>spark.executor.uri</code> is set.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="mesosexternalshuffleclient"><a class="anchor" href="#mesosexternalshuffleclient"></a><a class="link" href="#mesosexternalshuffleclient"><a id="MesosExternalShuffleClient"></a> MesosExternalShuffleClient</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>FIXME</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="finemesosschedulerbackend"><a class="anchor" href="#finemesosschedulerbackend"></a><a class="link" href="#finemesosschedulerbackend"><a id="MesosSchedulerBackend"></a> (Fine)MesosSchedulerBackend</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>When <a href="#settings">spark.mesos.coarse</a> is <code>false</code>, Spark on Mesos uses <code>MesosSchedulerBackend</code></p>
-</div>
-<div class="sect2">
-<h3 id="reviveoffers"><a class="anchor" href="#reviveoffers"></a><a class="link" href="#reviveoffers"><a id="reviveOffers"></a> reviveOffers</a></h3>
-<div class="paragraph">
-<p>It calls <code>mesosDriver.reviveOffers()</code>.</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="settings-2"><a class="anchor" href="#settings-2"></a><a class="link" href="#settings-2"><a id="settings"></a> Settings</a></h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><code>spark.mesos.coarse</code> (default: <code>true</code>) controls whether the scheduler backend for Mesos works in coarse- (<code>CoarseMesosSchedulerBackend</code>) or fine-grained mode (<code>MesosSchedulerBackend</code>).</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>FIXME Review</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://github.com/apache/spark/blob/master/core/src/main/scala/org/apache/spark/scheduler/cluster/mesos/MesosClusterScheduler.scala">MesosClusterScheduler.scala</a></p>
-</li>
-<li>
-<p>MesosExternalShuffleService</p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="schedulers-in-mesos"><a class="anchor" href="#schedulers-in-mesos"></a><a class="link" href="#schedulers-in-mesos">Schedulers in Mesos</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Available scheduler modes:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>fine-grained mode</strong></p>
-</li>
-<li>
-<p><strong>coarse-grained mode</strong> - <code>spark.mesos.coarse=true</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The main difference between these two scheduler modes is the number of tasks per Spark executor per single Mesos executor. In fine-grained mode, there is a single task in a single Spark executor that shares a single Mesos executor with the other Spark executors. In coarse-grained mode, there is a single Spark executor per Mesos executor with many Spark tasks.</p>
-</div>
-<div class="paragraph">
-<p><strong>Coarse-grained mode</strong> pre-starts all the executor backends, e.g. <a href="../executor/ExecutorBackend.html" class="page">Executor Backends</a>, so it has the least overhead comparing to <strong>fine-grain mode</strong>. Since the executors are up before tasks get launched, it is better for interactive sessions. It also means that the resources are locked up in a task.</p>
-</div>
-<div class="paragraph">
-<p>Spark on Mesos supports <a href="../spark-dynamic-allocation.html" class="page">Dynamic Allocation of Executors</a> in the Mesos coarse-grained scheduler since Spark 1.5. It can add/remove executors based on load, i.e. kills idle executors and adds executors when tasks queue up. It needs an <a href="#ShuffleManager.adoc" class="page unresolved">external shuffle service</a> on each node.</p>
-</div>
-<div class="paragraph">
-<p>Mesos Fine-Grained Mode offers a better resource utilization. It has a slower startup for tasks and hence  it is fine for batch and relatively static streaming.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="commands"><a class="anchor" href="#commands"></a><a class="link" href="#commands">Commands</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following command is how you could execute a Spark application on Mesos:</p>
-</div>
+<h3 id="name-method"><a class="anchor" href="#name-method"></a><a class="link" href="#name-method"><a id="name"></a> name Method</a></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>./bin/spark-submit --master mesos://iq-cluster-master:5050 --total-executor-cores 2 --executor-memory 3G --conf spark.mesos.role=dev ./examples/src/main/python/pi.py 100</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">name: String</code></pre>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="other-findings"><a class="anchor" href="#other-findings"></a><a class="link" href="#other-findings">Other Findings</a></h2>
+<h2 id="available-blockids"><a class="anchor" href="#available-blockids"></a><a class="link" href="#available-blockids"><a id="implementations"></a> Available BlockIds</a></h2>
 <div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. BlockIds</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">BlockId</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BroadcastBlockId</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="BroadcastBlockId"></a> BlockId for <a href="../Broadcast.html" class="page">Broadcast Variable</a>s with <code>broadcastId</code> identifier and optional <code>field</code> name (default: <code>empty</code>)</p>
+</div>
 <div class="paragraph">
-<p>From <a href="https://developer.ibm.com/bluemix/2015/09/09/four-reasons-pay-attention-to-apache-mesos/">Four reasons to pay attention to Apache Mesos</a>:</p>
+<p>Uses <code>broadcast_</code> prefix for the <a href="#name">name</a></p>
 </div>
-<div class="quoteblock">
-<blockquote>
 <div class="paragraph">
-<p>Spark workloads can also be sensitive to the physical characteristics of the infrastructure, such as memory size of the node, access to fast solid state disk, or proximity to the data source.</p>
+<p>Used when:</p>
 </div>
-</blockquote>
+<div class="ulist">
+<ul>
+<li>
+<p>TorrentBroadcast is <a href="../core/TorrentBroadcast.html#broadcastId" class="page">created</a>, requested to <a href="../core/TorrentBroadcast.html#writeBlocks" class="page">store a broadcast and the blocks in a local BlockManager</a>, and <a href="#readBlocks">read blocks</a></p>
+</li>
+<li>
+<p>BlockManager is requested to <a href="BlockManager.html#removeBroadcast" class="page">remove all the blocks of a broadcast variable</a></p>
+</li>
+<li>
+<p>AppStatusListener is requested to <a href="../spark-SparkListener-AppStatusListener.html#updateBroadcastBlock" class="page">updateBroadcastBlock</a> (when <a href="../spark-SparkListener-AppStatusListener.html#onBlockUpdated" class="page">onBlockUpdated</a> for a <code>BroadcastBlockId</code>)</p>
+</li>
+</ul>
 </div>
-<div class="quoteblock">
-<blockquote>
 <div class="paragraph">
-<p>to run Spark workloads well you need a resource manager that not only can handle the rapid swings in load inherent in analytics processing, but one that can do to smartly. Matching of the task to the RIGHT resources is crucial and awareness of the physical environment is a must. Mesos is designed to manage this problem on behalf of workloads like Spark.</p>
+<p><a href="../serializer/SerializerManager.html#shouldCompress" class="page">Compressed</a> when <a href="../core/BroadcastManager.html#spark.broadcast.compress" class="page">spark.broadcast.compress</a> configuration property is enabled</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RDDBlockId</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="RDDBlockId"></a> BlockId for RDD partitions with <code>rddId</code> and <code>splitIndex</code> identifiers</p>
 </div>
-</blockquote>
+<div class="paragraph">
+<p>Uses <code>rdd_</code> prefix for the <a href="#name">name</a></p>
+</div>
+<div class="paragraph">
+<p>Used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>StorageStatus</code> is requested to <a href="spark-blockmanager-StorageStatus.html#addBlock" class="page">register the status of a data block</a>, <a href="spark-blockmanager-StorageStatus.html#getBlock" class="page">get the status of a data block</a>, <a href="spark-blockmanager-StorageStatus.html#updateStorageInfo" class="page">updateStorageInfo</a></p>
+</li>
+<li>
+<p><code>LocalCheckpointRDD</code> is requested to <code>compute</code> a partition</p>
+</li>
+<li>
+<p>LocalRDDCheckpointData is requested to <a href="../rdd/LocalRDDCheckpointData.html#doCheckpoint" class="page">doCheckpoint</a></p>
+</li>
+<li>
+<p><code>RDD</code> is requested to <a href="../rdd/RDD.html#getOrCompute" class="page">getOrCompute</a></p>
+</li>
+<li>
+<p><code>DAGScheduler</code> is requested for the <a href="../scheduler/DAGScheduler.html#getCacheLocs" class="page">BlockManagers (executors) for cached RDD partitions</a></p>
+</li>
+<li>
+<p><code>AppStatusListener</code> is requested to <a href="../spark-SparkListener-AppStatusListener.html#updateRDDBlock" class="page">updateRDDBlock</a> (when <a href="../spark-SparkListener-AppStatusListener.html#onBlockUpdated" class="page">onBlockUpdated</a> for a <code>RDDBlockId</code>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="../serializer/SerializerManager.html#shouldCompress" class="page">Compressed</a> when <a href="../configuration-properties.html#spark.rdd.compress" class="page">spark.rdd.compress</a> configuration property is enabled (default: <code>false</code>)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ShuffleBlockId</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="ShuffleBlockId"></a> BlockId for <em>FIXME</em> with <code>shuffleId</code>, <code>mapId</code>, and <code>reduceId</code> identifiers</p>
+</div>
+<div class="paragraph">
+<p>Uses <code>shuffle_</code> prefix for the <a href="#name">name</a></p>
+</div>
+<div class="paragraph">
+<p>Used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ShuffleBlockFetcherIterator</code> is requested to <a href="ShuffleBlockFetcherIterator.html#throwFetchFailedException" class="page">throwFetchFailedException</a></p>
+</li>
+<li>
+<p><code>MapOutputTracker</code> object is requested to <a href="../scheduler/MapOutputTracker.html#convertMapStatuses" class="page">convertMapStatuses</a></p>
+</li>
+<li>
+<p><code>SortShuffleWriter</code> is requested to <a href="../shuffle/SortShuffleWriter.html#write" class="page">write partition records</a></p>
+</li>
+<li>
+<p><code>ShuffleBlockResolver</code> is requested for a <a href="../shuffle/ShuffleBlockResolver.html#getBlockData" class="page">ManagedBuffer to read shuffle block data file</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="../serializer/SerializerManager.html#shouldCompress" class="page">Compressed</a> when <a href="../configuration-properties.html#spark.shuffle.compress" class="page">spark.shuffle.compress</a> configuration property is enabled (default: <code>true</code>)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ShuffleDataBlockId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="ShuffleDataBlockId"></a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ShuffleIndexBlockId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="ShuffleIndexBlockId"></a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">StreamBlockId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="StreamBlockId"></a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TaskResultBlockId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="TaskResultBlockId"></a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TempLocalBlockId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="TempLocalBlockId"></a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TempShuffleBlockId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="TempShuffleBlockId"></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-blockidapply-factory-method"><a class="anchor" href="#creating-blockidapply-factory-method"></a><a class="link" href="#creating-blockidapply-factory-method"><a id="apply"></a> Creating BlockId&#8201;&#8212;&#8201;apply Factory Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">apply(
+  name: String): BlockId</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>apply simply creates a concrete <a href="#implementations">BlockId</a> by the given name.</p>
+</div>
+<div class="paragraph">
+<p>apply is used when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>

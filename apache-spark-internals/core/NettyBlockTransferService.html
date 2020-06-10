@@ -441,10 +441,10 @@
     <a class="nav-link" href="../storage/DiskStore.html">DiskStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="../storage/BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockId.html">BlockId</a>
+    <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../storage/BlockData.html">BlockData</a>
@@ -2165,7 +2165,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>init creates a <a href="NettyBlockRpcServer.html" class="page">NettyBlockRpcServer</a> (for the <a href="../SparkConf.html#getAppId" class="page">application id</a>, a JavaSerializer and the given <a href="../storage/spark-BlockDataManager.html" class="page">BlockDataManager</a>) that is used to create a <a href="#transportContext">TransportContext</a>.</p>
+<p>init creates a <a href="NettyBlockRpcServer.html" class="page">NettyBlockRpcServer</a> (for the <a href="../SparkConf.html#getAppId" class="page">application id</a>, a JavaSerializer and the given <a href="../storage/BlockDataManager.html" class="page">BlockDataManager</a>) that is used to create a <a href="#transportContext">TransportContext</a>.</p>
 </div>
 <div class="paragraph">
 <p>init creates the internal <code>clientFactory</code> and a server.</p>
@@ -2238,7 +2238,7 @@ FIXME What&#8217;s the "a server"?
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>UploadBlock</code> message holds the <a href="#appId">application id</a>, the input <code>execId</code> and <code>blockId</code>. It also holds the serialized bytes for block metadata with <code>level</code> and <code>classTag</code> serialized (using the internal <code>JavaSerializer</code>) as well as the serialized bytes for the input <code>blockData</code> itself (this time however the serialization uses <a href="spark-BlockDataManager.adoc#ManagedBuffer"><code>ManagedBuffer.nioByteBuffer</code> method</a>).</p>
+<p>The <code>UploadBlock</code> message holds the <a href="#appId">application id</a>, the input <code>execId</code> and <code>blockId</code>. It also holds the serialized bytes for block metadata with <code>level</code> and <code>classTag</code> serialized (using the internal <code>JavaSerializer</code>) as well as the serialized bytes for the input <code>blockData</code> itself (this time however the serialization uses <a href="../storage/BlockDataManager.html#ManagedBuffer" class="page"><code>ManagedBuffer.nioByteBuffer</code> method</a>).</p>
 </div>
 <div class="paragraph">
 <p>The entire <code>UploadBlock</code> message is further serialized before sending (using <code>TransportClient.sendRpc</code>).</p>

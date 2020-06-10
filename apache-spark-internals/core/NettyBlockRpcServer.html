@@ -441,10 +441,10 @@
     <a class="nav-link" href="../storage/DiskStore.html">DiskStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="../storage/BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockId.html">BlockId</a>
+    <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../storage/BlockData.html">BlockData</a>
@@ -1962,7 +1962,7 @@
 <p><a id="serializer"></a> <a href="../serializer/Serializer.html" class="page">Serializer</a></p>
 </li>
 <li>
-<p><a id="blockManager"></a> <a href="../storage/spark-BlockDataManager.html" class="page">BlockDataManager</a></p>
+<p><a id="blockManager"></a> <a href="../storage/BlockDataManager.html" class="page">BlockDataManager</a></p>
 </li>
 </ul>
 </div>
@@ -2004,7 +2004,7 @@
 <div class="sect2">
 <h3 id="openblocks-message-handler"><a class="anchor" href="#openblocks-message-handler"></a><a class="link" href="#openblocks-message-handler"><a id="OpenBlocks"></a><a id="receive-OpenBlocks"></a> OpenBlocks Message Handler</a></h3>
 <div class="paragraph">
-<p>When OpenBlocks arrives, NettyBlockRpcServer requests the <a href="#blockManager">BlockDataManager</a> for <a href="../storage/spark-BlockDataManager.html#getBlockData" class="page">block data</a> for every block id in the message. The block data is a collection of <code>ManagedBuffer</code> for every block id in the incoming message.</p>
+<p>When OpenBlocks arrives, NettyBlockRpcServer requests the <a href="#blockManager">BlockDataManager</a> for <a href="../storage/BlockDataManager.html#getBlockData" class="page">block data</a> for every block id in the message. The block data is a collection of <code>ManagedBuffer</code> for every block id in the incoming message.</p>
 </div>
 <div class="paragraph">
 <p>NettyBlockRpcServer then <a href="../network/OneForOneStreamManager.html#registerStream" class="page">registers a stream of <code>ManagedBuffer</code>s (for the blocks) with the internal <code>StreamManager</code></a> under <code>streamId</code>.</p>
@@ -2039,7 +2039,7 @@ The internal <code>StreamManager</code> is <a href="../network/OneForOneStreamMa
 <p>When UploadBlock arrives, NettyBlockRpcServer deserializes the <code>metadata</code> of the input message to get the <a href="../storage/StorageLevel.html" class="page">StorageLevel</a> and <code>ClassTag</code> of the block being uploaded.</p>
 </div>
 <div class="paragraph">
-<p>NettyBlockRpcServer creates a <code>BlockId</code> for the block id and requests the <a href="#blockManager">BlockDataManager</a> to <a href="../storage/spark-BlockDataManager.html#putBlockData" class="page">store the block</a>.</p>
+<p>NettyBlockRpcServer creates a <a href="../storage/BlockId.html" class="page">BlockId</a> for the block id and requests the <a href="#blockManager">BlockDataManager</a> to <a href="../storage/BlockDataManager.html#putBlockData" class="page">store the block</a>.</p>
 </div>
 <div class="paragraph">
 <p>In the end, NettyBlockRpcServer responds with a <code>0</code>-capacity <code>ByteBuffer</code>.</p>

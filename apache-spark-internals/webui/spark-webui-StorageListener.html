@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>StorageListener :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/webui/spark-webui-StorageListener.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -441,10 +441,10 @@
     <a class="nav-link" href="../storage/DiskStore.html">DiskStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="../storage/BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockId.html">BlockId</a>
+    <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../storage/BlockData.html">BlockData</a>
@@ -1932,11 +1932,11 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="storagelistenerspark-listener-for-tracking-persistence-status-of-rdd-blocks"><a class="anchor" href="#storagelistenerspark-listener-for-tracking-persistence-status-of-rdd-blocks"></a><a class="link" href="#storagelistenerspark-listener-for-tracking-persistence-status-of-rdd-blocks"><a id="StorageListener"></a> StorageListener&#8201;&#8212;&#8201;Spark Listener for Tracking Persistence Status of RDD Blocks</a></h2>
+<h1 class="page">StorageListener</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>StorageListener</code> is a <a href="spark-webui-BlockStatusListener.adoc">BlockStatusListener</a> that uses <a href="#SparkListener-callbacks">SparkListener callbacks</a> to track changes in the persistence status of RDD blocks in a Spark application.</p>
+<p>StorageListener is a <a href="spark-webui-BlockStatusListener.html" class="page">BlockStatusListener</a> that uses <a href="#SparkListener-callbacks">SparkListener callbacks</a> to track changes in the persistence status of RDD blocks in a Spark application.</p>
 </div>
 <table id="SparkListener-callbacks" class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. StorageListener&#8217;s SparkListener Callbacks (in alphabetical order)</caption>
@@ -1989,10 +1989,13 @@
 </tr>
 </tbody>
 </table>
-<div class="sect2">
-<h3 id="creating-storagelistener-instance"><a class="anchor" href="#creating-storagelistener-instance"></a><a class="link" href="#creating-storagelistener-instance"><a id="creating-instance"></a> Creating StorageListener Instance</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-storagelistener-instance"><a class="anchor" href="#creating-storagelistener-instance"></a><a class="link" href="#creating-storagelistener-instance"><a id="creating-instance"></a> Creating StorageListener Instance</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p><code>StorageListener</code> takes the following when created:</p>
+<p>StorageListener takes the following when created:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2002,7 +2005,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p><code>StorageListener</code> initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
+<p>StorageListener initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2011,14 +2014,16 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>StorageListener</code> is created when <code>SparkUI</code> <a href="spark-webui-SparkUI.adoc#create">is created</a>.
+StorageListener is created when <code>SparkUI</code> <a href="spark-webui-SparkUI.adoc#create">is created</a>.
 </td>
 </tr>
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="finding-active-blockmanagersactivestoragestatuslist-method"><a class="anchor" href="#finding-active-blockmanagersactivestoragestatuslist-method"></a><a class="link" href="#finding-active-blockmanagersactivestoragestatuslist-method"><a id="activeStorageStatusList"></a> Finding Active BlockManagers&#8201;&#8212;&#8201;<code>activeStorageStatusList</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="finding-active-blockmanagersactivestoragestatuslist-method"><a class="anchor" href="#finding-active-blockmanagersactivestoragestatuslist-method"></a><a class="link" href="#finding-active-blockmanagersactivestoragestatuslist-method"><a id="activeStorageStatusList"></a> Finding Active BlockManagers&#8201;&#8212;&#8201;<code>activeStorageStatusList</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">activeStorageStatusList: Seq[StorageStatus]</code></pre>
@@ -2043,7 +2048,7 @@
 <p><code>AllRDDResource</code> does <code>rddList</code> and <code>getRDDStorageInfo</code></p>
 </li>
 <li>
-<p><code>StorageListener</code> <a href="#updateRDDInfo">updates registered RDDInfos (with block updates from BlockManagers)</a></p>
+<p>StorageListener <a href="#updateRDDInfo">updates registered RDDInfos (with block updates from BlockManagers)</a></p>
 </li>
 </ul>
 </div>
@@ -2052,15 +2057,17 @@
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="intercepting-block-status-update-eventsonblockupdated-callback"><a class="anchor" href="#intercepting-block-status-update-eventsonblockupdated-callback"></a><a class="link" href="#intercepting-block-status-update-eventsonblockupdated-callback"><a id="onBlockUpdated"></a> Intercepting Block Status Update Events&#8201;&#8212;&#8201;<code>onBlockUpdated</code> Callback</a></h3>
+</div>
+<div class="sect1">
+<h2 id="intercepting-block-status-update-eventsonblockupdated-callback"><a class="anchor" href="#intercepting-block-status-update-eventsonblockupdated-callback"></a><a class="link" href="#intercepting-block-status-update-eventsonblockupdated-callback"><a id="onBlockUpdated"></a> Intercepting Block Status Update Events&#8201;&#8212;&#8201;<code>onBlockUpdated</code> Callback</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">onBlockUpdated(blockUpdated: SparkListenerBlockUpdated): Unit</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>onBlockUpdated</code> creates a <code>BlockStatus</code> (from the input <code>SparkListenerBlockUpdated</code>) and <a href="#updateRDDInfo">updates registered RDDInfos (with block updates from BlockManagers)</a> (passing in <a href="spark-BlockDataManager.adoc#BlockId">BlockId</a> and <code>BlockStatus</code> as a single-element collection of updated blocks).</p>
+<p><code>onBlockUpdated</code> creates a <code>BlockStatus</code> (from the input <code>SparkListenerBlockUpdated</code>) and <a href="#updateRDDInfo">updates registered RDDInfos (with block updates from BlockManagers)</a> (passing in <a href="../storage/BlockId.html" class="page">BlockId</a> and <code>BlockStatus</code> as a single-element collection of updated blocks).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2075,8 +2082,10 @@
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="intercepting-stage-completed-eventsonstagecompleted-callback"><a class="anchor" href="#intercepting-stage-completed-eventsonstagecompleted-callback"></a><a class="link" href="#intercepting-stage-completed-eventsonstagecompleted-callback"><a id="onStageCompleted"></a> Intercepting Stage Completed Events&#8201;&#8212;&#8201;<code>onStageCompleted</code> Callback</a></h3>
+</div>
+<div class="sect1">
+<h2 id="intercepting-stage-completed-eventsonstagecompleted-callback"><a class="anchor" href="#intercepting-stage-completed-eventsonstagecompleted-callback"></a><a class="link" href="#intercepting-stage-completed-eventsonstagecompleted-callback"><a id="onStageCompleted"></a> Intercepting Stage Completed Events&#8201;&#8212;&#8201;<code>onStageCompleted</code> Callback</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">onStageCompleted(stageCompleted: SparkListenerStageCompleted): Unit</code></pre>
@@ -2098,8 +2107,10 @@
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="intercepting-stage-submitted-eventsonstagesubmitted-callback"><a class="anchor" href="#intercepting-stage-submitted-eventsonstagesubmitted-callback"></a><a class="link" href="#intercepting-stage-submitted-eventsonstagesubmitted-callback"><a id="onStageSubmitted"></a> Intercepting Stage Submitted Events&#8201;&#8212;&#8201;<code>onStageSubmitted</code> Callback</a></h3>
+</div>
+<div class="sect1">
+<h2 id="intercepting-stage-submitted-eventsonstagesubmitted-callback"><a class="anchor" href="#intercepting-stage-submitted-eventsonstagesubmitted-callback"></a><a class="link" href="#intercepting-stage-submitted-eventsonstagesubmitted-callback"><a id="onStageSubmitted"></a> Intercepting Stage Submitted Events&#8201;&#8212;&#8201;<code>onStageSubmitted</code> Callback</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">onStageSubmitted(stageSubmitted: SparkListenerStageSubmitted): Unit</code></pre>
@@ -2121,8 +2132,10 @@
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="intercepting-unpersist-rdd-eventsonunpersistrdd-callback"><a class="anchor" href="#intercepting-unpersist-rdd-eventsonunpersistrdd-callback"></a><a class="link" href="#intercepting-unpersist-rdd-eventsonunpersistrdd-callback"><a id="onUnpersistRDD"></a> Intercepting Unpersist RDD Events&#8201;&#8212;&#8201;<code>onUnpersistRDD</code> Callback</a></h3>
+</div>
+<div class="sect1">
+<h2 id="intercepting-unpersist-rdd-eventsonunpersistrdd-callback"><a class="anchor" href="#intercepting-unpersist-rdd-eventsonunpersistrdd-callback"></a><a class="link" href="#intercepting-unpersist-rdd-eventsonunpersistrdd-callback"><a id="onUnpersistRDD"></a> Intercepting Unpersist RDD Events&#8201;&#8212;&#8201;<code>onUnpersistRDD</code> Callback</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">onUnpersistRDD(unpersistRDD: SparkListenerUnpersistRDD): Unit</code></pre>
@@ -2144,15 +2157,17 @@
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="updating-registered-rddinfos-with-block-updates-from-blockmanagersupdaterddinfo-internal-method"><a class="anchor" href="#updating-registered-rddinfos-with-block-updates-from-blockmanagersupdaterddinfo-internal-method"></a><a class="link" href="#updating-registered-rddinfos-with-block-updates-from-blockmanagersupdaterddinfo-internal-method"><a id="updateRDDInfo"></a> Updating Registered RDDInfos (with Block Updates from BlockManagers)&#8201;&#8212;&#8201;<code>updateRDDInfo</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="updating-registered-rddinfos-with-block-updates-from-blockmanagers"><a class="anchor" href="#updating-registered-rddinfos-with-block-updates-from-blockmanagers"></a><a class="link" href="#updating-registered-rddinfos-with-block-updates-from-blockmanagers"><a id="updateRDDInfo"></a> Updating Registered RDDInfos (with Block Updates from BlockManagers)</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">updateRDDInfo(updatedBlocks: Seq[(BlockId, BlockStatus)]): Unit</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>updateRDDInfo</code> finds the RDDs for the input <code>updatedBlocks</code> (for <a href="spark-BlockDataManager.adoc#BlockId">BlockIds</a>).</p>
+<p><code>updateRDDInfo</code> finds the RDDs for the input <code>updatedBlocks</code> (for <a href="../storage/BlockId.html" class="page">BlockId</a>s).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2161,7 +2176,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>updateRDDInfo</code> finds <code>BlockIds</code> that are <a href="spark-BlockDataManager.adoc#RDDBlockId">RDDBlockIds</a>.
+<code>updateRDDInfo</code> finds <code>BlockIds</code> that are <a href="../storage/BlockId.html#RDDBlockId" class="page">RDDBlockIds</a>.
 </td>
 </tr>
 </table>
@@ -2176,14 +2191,16 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>updateRDDInfo</code> is used exclusively when <code>StorageListener</code> <a href="#onBlockUpdated">gets notified about a change in a block status (on a <code>BlockManager</code> on an executor)</a>.
+<code>updateRDDInfo</code> is used exclusively when StorageListener <a href="#onBlockUpdated">gets notified about a change in a block status (on a <code>BlockManager</code> on an executor)</a>.
 </td>
 </tr>
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="updating-rddinfos-using-storagestatusstorageutils-updaterddinfo-method"><a class="anchor" href="#updating-rddinfos-using-storagestatusstorageutils-updaterddinfo-method"></a><a class="link" href="#updating-rddinfos-using-storagestatusstorageutils-updaterddinfo-method"><a id="StorageUtils.updateRddInfo"></a> Updating RDDInfos (using StorageStatus)&#8201;&#8212;&#8201;<code>StorageUtils.updateRddInfo</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="updating-rddinfos-using-storagestatusstorageutils-updaterddinfo-method"><a class="anchor" href="#updating-rddinfos-using-storagestatusstorageutils-updaterddinfo-method"></a><a class="link" href="#updating-rddinfos-using-storagestatusstorageutils-updaterddinfo-method"><a id="StorageUtils.updateRddInfo"></a> Updating RDDInfos (using StorageStatus)&#8201;&#8212;&#8201;<code>StorageUtils.updateRddInfo</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">updateRddInfo(rddInfos: Seq[RDDInfo], statuses: Seq[StorageStatus]): Unit</code></pre>
@@ -2217,14 +2234,13 @@ FIXME
 <p><code>SparkContext</code> <a href="../SparkContext.html#getRDDStorageInfo" class="page">is requested for storage status of cached RDDs</a></p>
 </li>
 <li>
-<p><code>StorageListener</code> <a href="#updateRDDInfo">updates registered RDDInfos (with block updates from BlockManagers)</a></p>
+<p>StorageListener <a href="#updateRDDInfo">updates registered RDDInfos (with block updates from BlockManagers)</a></p>
 </li>
 </ul>
 </div>
 </td>
 </tr>
 </table>
-</div>
 </div>
 </div>
 </div>

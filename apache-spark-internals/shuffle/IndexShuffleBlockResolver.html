@@ -441,10 +441,10 @@
     <a class="nav-link" href="../storage/DiskStore.html">DiskStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="../storage/BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockId.html">BlockId</a>
+    <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../storage/BlockData.html">BlockData</a>
@@ -2087,7 +2087,7 @@ The offsets are the sizes in the input <code>lengths</code> exactly.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<a href="../storage/spark-BlockDataManager.html#ShuffleBlockId" class="page">ShuffleBlockId</a> knows <code>shuffleId</code> and <code>mapId</code>.
+<a href="../storage/BlockId.html#ShuffleBlockId" class="page">ShuffleBlockId</a> knows <code>shuffleId</code> and <code>mapId</code>.
 </td>
 </tr>
 </table>
@@ -2271,7 +2271,7 @@ The start and end offsets are the offset and the length of the file segment for 
 </div>
 </div>
 <div class="paragraph">
-<p><code>getDataFile</code> requests the <a href="#blockManager">BlockManager</a> for the <a href="../storage/BlockManager.html#diskBlockManager" class="page">DiskBlockManager</a> that is in turn requested for the <a href="../storage/DiskBlockManager.html#getFile" class="page">shuffle block data file</a> (for a <a href="../storage/spark-BlockDataManager.html#ShuffleDataBlockId" class="page">ShuffleDataBlockId</a>)</p>
+<p><code>getDataFile</code> requests the <a href="#blockManager">BlockManager</a> for the <a href="../storage/BlockManager.html#diskBlockManager" class="page">DiskBlockManager</a> that is in turn requested for the <a href="../storage/DiskBlockManager.html#getFile" class="page">shuffle block data file</a> (for a <a href="../storage/BlockId.html#ShuffleDataBlockId" class="page">ShuffleDataBlockId</a>)</p>
 </div>
 <div class="admonitionblock note">
 <table>

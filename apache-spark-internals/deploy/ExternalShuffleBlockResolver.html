@@ -441,10 +441,10 @@
     <a class="nav-link" href="../storage/DiskStore.html">DiskStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="../storage/BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockId.html">BlockId</a>
+    <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../storage/BlockData.html">BlockData</a>
@@ -1958,7 +1958,7 @@
 <p>getBlockData splits <code>blockId</code> to 4 parts using <code>_</code> (underscore). It works exclusively with <code>shuffle</code> block ids with the other three parts being <code>shuffleId</code>, <code>mapId</code>, and <code>reduceId</code>.</p>
 </div>
 <div class="paragraph">
-<p>It looks up an executor (i.e. a <code>ExecutorShuffleInfo</code> in <code>executors</code> private registry) for <code>appId</code> and <code>execId</code> to search for a <a href="../storage/spark-BlockDataManager.html#ManagedBuffer" class="page">ManagedBuffer</a>.</p>
+<p>It looks up an executor (i.e. a <code>ExecutorShuffleInfo</code> in <code>executors</code> private registry) for <code>appId</code> and <code>execId</code> to search for a <a href="../storage/BlockDataManager.html#ManagedBuffer" class="page">ManagedBuffer</a>.</p>
 </div>
 <div class="paragraph">
 <p>The <code>ManagedBuffer</code> is indexed using a binary file <code>shuffle_[shuffleId]_[mapId]_0.index</code> (that contains offset and length of the buffer) with a data file being <code>shuffle_[shuffleId]_[mapId]_0.data</code> (that is returned as <code>FileSegmentManagedBuffer</code>).</p>

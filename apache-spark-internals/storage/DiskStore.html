@@ -441,10 +441,10 @@
     <a class="nav-link" href="DiskStore.html">DiskStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-BlockId.html">BlockId</a>
+    <a class="nav-link" href="BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockData.html">BlockData</a>
@@ -1976,7 +1976,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>blockSizes is a Java <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentHashMap.html">java.util.concurrent.ConcurrentHashMap</a> that DiskStore uses to track <a href="spark-BlockId.html" class="page">BlockIds</a> by their size on disk.</p>
+<p>blockSizes is a Java <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentHashMap.html">java.util.concurrent.ConcurrentHashMap</a> that DiskStore uses to track <a href="BlockId.html" class="page">BlockId</a>s by their size on disk.</p>
 </div>
 </div>
 </div>
@@ -1990,7 +1990,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p><code>contains</code> requests the <a href="#diskManager">DiskBlockManager</a> for the <a href="DiskBlockManager.html#getFile" class="page">block file</a> by (the name of) the input <a href="spark-BlockId.html" class="page">BlockId</a> and check whether the file actually exists or not.</p>
+<p><code>contains</code> requests the <a href="#diskManager">DiskBlockManager</a> for the <a href="DiskBlockManager.html#getFile" class="page">block file</a> by (the name of) the input <a href="BlockId.html" class="page">BlockId</a> and check whether the file actually exists or not.</p>
 </div>
 <div class="paragraph">
 <p><code>contains</code> is used when:</p>
@@ -2026,7 +2026,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p><code>put</code> requests the <a href="#diskManager">DiskBlockManager</a> for the <a href="DiskBlockManager.html#getFile" class="page">block file</a> for the input <a href="spark-BlockId.html" class="page">BlockId</a>.</p>
+<p><code>put</code> requests the <a href="#diskManager">DiskBlockManager</a> for the <a href="DiskBlockManager.html#getFile" class="page">block file</a> for the input <a href="BlockId.html" class="page">BlockId</a>.</p>
 </div>
 <div class="paragraph">
 <p><code>put</code> <a href="#openForWrite">opens the block file for writing</a> (wrapped into a CountingWritableChannel to count the bytes written).</p>

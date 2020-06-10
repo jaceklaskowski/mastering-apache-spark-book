@@ -441,10 +441,10 @@
     <a class="nav-link" href="DiskStore.html">DiskStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-BlockId.html">BlockId</a>
+    <a class="nav-link" href="BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockData.html">BlockData</a>
@@ -1942,7 +1942,7 @@
 <p>BlockManager runs on every node in a Spark application, i.e. the <a href="../spark-driver.html" class="page">driver</a> and <a href="../executor/Executor.html" class="page">executors</a>.</p>
 </div>
 <div id="BlockDataManager" class="paragraph">
-<p>BlockManager is a <a href="spark-BlockDataManager.html" class="page">BlockDataManager</a> and manages the storage for blocks that with cached RDD partitions, intermediate shuffle outputs, broadcasts, etc.</p>
+<p>BlockManager is a <a href="BlockDataManager.html" class="page">BlockDataManager</a> and manages the storage for blocks that with cached RDD partitions, intermediate shuffle outputs, broadcasts, etc.</p>
 </div>
 <div class="paragraph">
 <p>BlockManager is a local cache.</p>
@@ -2556,13 +2556,13 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>getBlockData</code> is part of the <a href="spark-BlockDataManager.html#getBlockData" class="page">BlockDataManager</a> contract.
+<code>getBlockData</code> is part of the <a href="BlockDataManager.html#getBlockData" class="page">BlockDataManager</a> contract.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>For a <a href="spark-BlockId.html" class="page">BlockId</a> of a shuffle (a ShuffleBlockId), getBlockData requests the <a href="#shuffleManager">ShuffleManager</a> for the <a href="../shuffle/ShuffleManager.html#shuffleBlockResolver" class="page">ShuffleBlockResolver</a> that is then requested for <a href="../shuffle/ShuffleBlockResolver.html#getBlockData" class="page">getBlockData</a>.</p>
+<p>For a <a href="BlockId.html" class="page">BlockId</a> of a shuffle (a ShuffleBlockId), getBlockData requests the <a href="#shuffleManager">ShuffleManager</a> for the <a href="../shuffle/ShuffleManager.html#shuffleBlockResolver" class="page">ShuffleBlockResolver</a> that is then requested for <a href="../shuffle/ShuffleBlockResolver.html#getBlockData" class="page">getBlockData</a>.</p>
 </div>
 <div class="paragraph">
 <p>Otherwise, getBlockData <a href="#getLocalBytes">getLocalBytes</a> for the given BlockId.</p>
@@ -2708,7 +2708,7 @@ FIXME How is <code>shuffleClient</code> used?
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>putBlockData</code> is part of the <a href="spark-BlockDataManager.adoc#putBlockData">BlockDataManager Contract</a>.
+<code>putBlockData</code> is part of the <a href="BlockDataManager.html#putBlockData" class="page">BlockDataManager Contract</a>.
 </td>
 </tr>
 </table>
@@ -3034,7 +3034,7 @@ It is used by <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc#RemoveR
 </div>
 </div>
 <div class="paragraph">
-<p>It then requests all the <a href="spark-BlockDataManager.adoc#BroadcastBlockId">BroadcastBlockId</a> objects that belong to the <code>broadcastId</code> broadcast from <a href="spark-BlockInfoManager.adoc">BlockInfoManager</a> and <a href="#removeBlock">removes them (from memory and disk)</a>.</p>
+<p>It then requests all the <a href="BlockId.html#BroadcastBlockId" class="page">BroadcastBlockId</a> objects that belong to the <code>broadcastId</code> broadcast from <a href="spark-BlockInfoManager.adoc">BlockInfoManager</a> and <a href="#removeBlock">removes them (from memory and disk)</a>.</p>
 </div>
 <div class="paragraph">
 <p>The number of blocks removed is the final result.</p>

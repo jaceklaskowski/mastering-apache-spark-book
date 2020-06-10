@@ -441,10 +441,10 @@
     <a class="nav-link" href="../storage/DiskStore.html">DiskStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="../storage/BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockId.html">BlockId</a>
+    <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../storage/BlockData.html">BlockData</a>
@@ -2059,7 +2059,7 @@ val mm = SparkEnv.get.memoryManager</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>acquireStorageMemory</code> tries to acquire <code>numBytes</code> bytes of memory to cache the given <a href="../storage/spark-BlockId.html" class="page">block</a>, evicting existing ones if necessary.</p>
+<p><code>acquireStorageMemory</code> tries to acquire <code>numBytes</code> bytes of memory to cache the given <a href="../storage/BlockId.html" class="page">block</a>, evicting existing ones if necessary.</p>
 </div>
 <div class="paragraph">
 <p><code>acquireStorageMemory</code> is used when:</p>
@@ -2088,7 +2088,7 @@ val mm = SparkEnv.get.memoryManager</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>acquireUnrollMemory</code> tries to acquire <code>numBytes</code> bytes of memory to unroll the given <a href="../storage/spark-BlockId.html" class="page">block</a>, evicting existing ones if necessary.</p>
+<p><code>acquireUnrollMemory</code> tries to acquire <code>numBytes</code> bytes of memory to unroll the given <a href="../storage/BlockId.html" class="page">block</a>, evicting existing ones if necessary.</p>
 </div>
 <div class="paragraph">
 <p><code>acquireUnrollMemory</code> is used when MemoryStore is requested to <a href="../storage/MemoryStore.html#reserveUnrollMemoryForThisTask" class="page">reserveUnrollMemoryForThisTask</a>.</p>

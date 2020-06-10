@@ -441,10 +441,10 @@
     <a class="nav-link" href="DiskStore.html">DiskStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-BlockId.html">BlockId</a>
+    <a class="nav-link" href="BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockData.html">BlockData</a>
@@ -2096,7 +2096,7 @@
 <p>Internally, <code>removeBlock</code> <a href="#updateStorageInfo">updates block status</a> of <code>blockId</code> (to be empty, i.e. removed).</p>
 </div>
 <div class="paragraph">
-<p><code>removeBlock</code> branches off per the <a href="spark-BlockDataManager.adoc#BlockId">type of <code>BlockId</code></a>, i.e. <code>RDDBlockId</code> or not.</p>
+<p><code>removeBlock</code> branches off per the type of <a href="BlockId.html" class="page">BlockId</a>, i.e. <code>RDDBlockId</code> or not.</p>
 </div>
 <div class="paragraph">
 <p>For a <code>RDDBlockId</code>, <code>removeBlock</code> finds the RDD in <a href="#_rddBlocks">_rddBlocks</a> and removes the <code>blockId</code>. <code>removeBlock</code> removes the RDD (from <a href="#_rddBlocks">_rddBlocks</a>) completely, if there are no more blocks registered.</p>

@@ -441,10 +441,10 @@
     <a class="nav-link" href="DiskStore.html">DiskStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-BlockId.html">BlockId</a>
+    <a class="nav-link" href="BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockData.html">BlockData</a>
@@ -2374,7 +2374,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p>When created, MemoryStore creates a Java <a href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html">LinkedHashMap</a> of <code>MemoryEntries</code> per <a href="spark-BlockId.html" class="page">BlockId</a> (with the initial capacity of <code>32</code> and the load factor of <code>0.75</code>).</p>
+<p>When created, MemoryStore creates a Java <a href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html">LinkedHashMap</a> of <code>MemoryEntries</code> per <a href="BlockId.html" class="page">BlockId</a> (with the initial capacity of <code>32</code> and the load factor of <code>0.75</code>).</p>
 </div>
 <div class="paragraph">
 <p>entries uses <strong>access-order</strong> ordering mode where the order of iteration is the order in which the entries were last accessed (from least-recently accessed to most-recently). That gives <strong>LRU cache</strong> behaviour when <a href="#evictBlocksToFreeSpace">evicting blocks</a>.</p>

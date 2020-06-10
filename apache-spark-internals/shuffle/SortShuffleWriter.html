@@ -441,10 +441,10 @@
     <a class="nav-link" href="../storage/DiskStore.html">DiskStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="../storage/BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockId.html">BlockId</a>
+    <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../storage/BlockData.html">BlockData</a>
@@ -2001,7 +2001,7 @@
 <p>write requests the <a href="#shuffleBlockResolver">IndexShuffleBlockResolver</a> for a <a href="IndexShuffleBlockResolver.html#getDataFile" class="page">shuffle output file</a> (for the shuffle and the <a href="#mapId">map</a> IDs) and creates a temporary file alongside the shuffle output file (in the same directory).</p>
 </div>
 <div class="paragraph">
-<p>write creates a <a href="../storage/spark-BlockDataManager.html#ShuffleBlockId" class="page">ShuffleBlockId</a> (for the shuffle and the <a href="#mapId">map</a> IDs).</p>
+<p>write creates a <a href="../storage/BlockId.html#ShuffleBlockId" class="page">ShuffleBlockId</a> (for the shuffle and the <a href="#mapId">map</a> IDs).</p>
 </div>
 <div class="paragraph">
 <p>write requests ExternalSorter to <a href="ExternalSorter.html#writePartitionedFile" class="page">write all the records (previously inserted in) into the temporary partitioned file in the disk store</a>. ExternalSorter returns the length of every partition.</p>

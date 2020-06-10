@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>AppStatusListener :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/spark-SparkListener-AppStatusListener.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../_/css/site.css">
@@ -441,10 +441,10 @@
     <a class="nav-link" href="storage/DiskStore.html">DiskStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="storage/spark-BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="storage/BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="storage/spark-BlockId.html">BlockId</a>
+    <a class="nav-link" href="storage/BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="storage/BlockData.html">BlockData</a>
@@ -1933,14 +1933,14 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="appstatuslistener"><a class="anchor" href="#appstatuslistener"></a><a class="link" href="#appstatuslistener"><a id="AppStatusListener"></a> AppStatusListener</a></h2>
+<h1 class="page">AppStatusListener</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>AppStatusListener</code> is a <a href="spark-scheduler-SparkListener.adoc">SparkListener</a> that <code>AppStatusStore</code> <a href="spark-core-AppStatusStore.adoc#listener">uses</a> to&#8230;&#8203;FIXME</p>
+<p><strong>AppStatusListener</strong> is a <a href="spark-scheduler-SparkListener.html" class="page">SparkListener</a> that <code>AppStatusStore</code> <a href="spark-core-AppStatusStore.html#listener" class="page">uses</a> to&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p><code>AppStatusListener</code> is <a href="#creating-instance">created</a> when:</p>
+<p>AppStatusListener is <a href="#creating-instance">created</a> when:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2115,8 +2115,11 @@
 </tr>
 </tbody>
 </table>
-<div class="sect2">
-<h3 id="onstagesubmitted-method"><a class="anchor" href="#onstagesubmitted-method"></a><a class="link" href="#onstagesubmitted-method"><a id="onStageSubmitted"></a> <code>onStageSubmitted</code> Method</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="onstagesubmitted-method"><a class="anchor" href="#onstagesubmitted-method"></a><a class="link" href="#onstagesubmitted-method"><a id="onStageSubmitted"></a> <code>onStageSubmitted</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">onStageSubmitted(event: SparkListenerStageSubmitted): Unit</code></pre>
@@ -2138,8 +2141,10 @@
 <p><code>onStageSubmitted</code>&#8230;&#8203;FIXME</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="update-internal-method"><a class="anchor" href="#update-internal-method"></a><a class="link" href="#update-internal-method"><a id="update"></a> <code>update</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="update-internal-method"><a class="anchor" href="#update-internal-method"></a><a class="link" href="#update-internal-method"><a id="update"></a> <code>update</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">update(entity: LiveEntity, now: Long, last: Boolean = false): Unit</code></pre>
@@ -2161,8 +2166,10 @@
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="flush-internal-method"><a class="anchor" href="#flush-internal-method"></a><a class="link" href="#flush-internal-method"><a id="flush"></a> <code>flush</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="flush-internal-method"><a class="anchor" href="#flush-internal-method"></a><a class="link" href="#flush-internal-method"><a id="flush"></a> <code>flush</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">flush(): Unit</code></pre>
@@ -2184,8 +2191,10 @@
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="maybeupdate-internal-method"><a class="anchor" href="#maybeupdate-internal-method"></a><a class="link" href="#maybeupdate-internal-method"><a id="maybeUpdate"></a> <code>maybeUpdate</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="maybeupdate-internal-method"><a class="anchor" href="#maybeupdate-internal-method"></a><a class="link" href="#maybeupdate-internal-method"><a id="maybeUpdate"></a> <code>maybeUpdate</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">maybeUpdate(entity: LiveEntity, now: Long): Unit</code></pre>
@@ -2207,8 +2216,10 @@
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="liveupdate-internal-method"><a class="anchor" href="#liveupdate-internal-method"></a><a class="link" href="#liveupdate-internal-method"><a id="liveUpdate"></a> <code>liveUpdate</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="liveupdate-internal-method"><a class="anchor" href="#liveupdate-internal-method"></a><a class="link" href="#liveupdate-internal-method"><a id="liveUpdate"></a> <code>liveUpdate</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">liveUpdate(entity: LiveEntity, now: Long): Unit</code></pre>
@@ -2230,8 +2241,10 @@
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="updatestreamblock-internal-method"><a class="anchor" href="#updatestreamblock-internal-method"></a><a class="link" href="#updatestreamblock-internal-method"><a id="updateStreamBlock"></a> <code>updateStreamBlock</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="updatestreamblock-internal-method"><a class="anchor" href="#updatestreamblock-internal-method"></a><a class="link" href="#updatestreamblock-internal-method"><a id="updateStreamBlock"></a> <code>updateStreamBlock</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">updateStreamBlock(event: SparkListenerBlockUpdated, stream: StreamBlockId): Unit</code></pre>
@@ -2247,14 +2260,16 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>updateStreamBlock</code> is used exclusively when <code>AppStatusListener</code> is requested to <a href="#onBlockUpdated">handle a SparkListenerBlockUpdated event</a> (for a <a href="spark-BlockDataManager.adoc#StreamBlockId">StreamBlockId</a>).
+<code>updateStreamBlock</code> is used exclusively when AppStatusListener is requested to <a href="#onBlockUpdated">handle a SparkListenerBlockUpdated event</a> (for a <a href="storage/BlockId.html#StreamBlockId" class="page">StreamBlockId</a>).
 </td>
 </tr>
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="intercepting-sparklistenerblockupdated-eventsonblockupdated-handler-method"><a class="anchor" href="#intercepting-sparklistenerblockupdated-eventsonblockupdated-handler-method"></a><a class="link" href="#intercepting-sparklistenerblockupdated-eventsonblockupdated-handler-method"><a id="onBlockUpdated"></a> Intercepting SparkListenerBlockUpdated Events&#8201;&#8212;&#8201;<code>onBlockUpdated</code> Handler Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="intercepting-sparklistenerblockupdated-eventsonblockupdated-handler-method"><a class="anchor" href="#intercepting-sparklistenerblockupdated-eventsonblockupdated-handler-method"></a><a class="link" href="#intercepting-sparklistenerblockupdated-eventsonblockupdated-handler-method"><a id="onBlockUpdated"></a> Intercepting SparkListenerBlockUpdated Events&#8201;&#8212;&#8201;<code>onBlockUpdated</code> Handler Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">onBlockUpdated(event: SparkListenerBlockUpdated): Unit</code></pre>
@@ -2273,15 +2288,15 @@
 </table>
 </div>
 <div class="paragraph">
-<p><code>onBlockUpdated</code> simply dispatches to the following event-specific handlers (per <a href="spark-BlockDataManager.adoc#BlockId">BlockId</a> type):</p>
+<p><code>onBlockUpdated</code> simply dispatches to the following event-specific handlers (per <a href="storage/BlockId.html" class="page">BlockId</a> type):</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#updateRDDBlock">updateRDDBlock</a> for <a href="spark-BlockDataManager.adoc#RDDBlockId">RDDBlockIds</a></p>
+<p><a href="#updateRDDBlock">updateRDDBlock</a> for <a href="storage/BlockId.html#RDDBlockId" class="page">RDDBlockIds</a></p>
 </li>
 <li>
-<p><a href="#updateStreamBlock">updateStreamBlock</a> for <a href="spark-BlockDataManager.adoc#StreamBlockId">StreamBlockIds</a></p>
+<p><a href="#updateStreamBlock">updateStreamBlock</a> for <a href="storage/BlockId.html#StreamBlockId" class="page">StreamBlockIds</a></p>
 </li>
 <li>
 <p>Ignores (<em>swallows</em>) the <code>SparkListenerBlockUpdated</code> event for the other types</p>
@@ -2289,10 +2304,12 @@
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="creating-appstatuslistener-instance"><a class="anchor" href="#creating-appstatuslistener-instance"></a><a class="link" href="#creating-appstatuslistener-instance"><a id="creating-instance"></a> Creating AppStatusListener Instance</a></h3>
+</div>
+<div class="sect1">
+<h2 id="creating-appstatuslistener-instance"><a class="anchor" href="#creating-appstatuslistener-instance"></a><a class="link" href="#creating-appstatuslistener-instance"><a id="creating-instance"></a> Creating AppStatusListener Instance</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p><code>AppStatusListener</code> takes the following when created:</p>
+<p>AppStatusListener takes the following when created:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2311,11 +2328,13 @@
 </ul>
 </div>
 <div class="paragraph">
-<p><code>AppStatusListener</code> initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
+<p>AppStatusListener initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="updaterddblock-internal-method"><a class="anchor" href="#updaterddblock-internal-method"></a><a class="link" href="#updaterddblock-internal-method"><a id="updateRDDBlock"></a> <code>updateRDDBlock</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="updaterddblock-internal-method"><a class="anchor" href="#updaterddblock-internal-method"></a><a class="link" href="#updaterddblock-internal-method"><a id="updateRDDBlock"></a> <code>updateRDDBlock</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">updateRDDBlock(
@@ -2333,14 +2352,16 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>updateRDDBlock</code> is used exclusively when <code>AppStatusListener</code> is requested to <a href="#onBlockUpdated">handle a SparkListenerBlockUpdated event</a> (for a <a href="spark-BlockDataManager.adoc#RDDBlockId">RDDBlockId</a>).
+<code>updateRDDBlock</code> is used exclusively when AppStatusListener is requested to <a href="#onBlockUpdated">handle a SparkListenerBlockUpdated event</a> (for a <a href="storage/BlockId.html#RDDBlockId" class="page">RDDBlockId</a>).
 </td>
 </tr>
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="updatebroadcastblock-internal-method"><a class="anchor" href="#updatebroadcastblock-internal-method"></a><a class="link" href="#updatebroadcastblock-internal-method"><a id="updateBroadcastBlock"></a> <code>updateBroadcastBlock</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="updatebroadcastblock-internal-method"><a class="anchor" href="#updatebroadcastblock-internal-method"></a><a class="link" href="#updatebroadcastblock-internal-method"><a id="updateBroadcastBlock"></a> <code>updateBroadcastBlock</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">updateBroadcastBlock(
@@ -2362,7 +2383,6 @@
 </td>
 </tr>
 </table>
-</div>
 </div>
 </div>
 </div>
