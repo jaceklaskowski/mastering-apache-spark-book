@@ -463,7 +463,7 @@
     <a class="nav-link" href="BlockManagerMaster.html">BlockManagerMaster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-blockmanager-BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
+    <a class="nav-link" href="BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
   </li>
 </ul>
   </li>
@@ -487,6 +487,30 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-blockmanager-StorageStatus.html">StorageStatus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="BlockTransferService.html">BlockTransferService</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="NettyBlockTransferService.html">NettyBlockTransferService</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="NettyBlockRpcServer.html">NettyBlockRpcServer</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="ShuffleClient.html">ShuffleClient</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ExternalShuffleClient.html">ExternalShuffleClient</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
@@ -914,27 +938,6 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/ShuffleClient.html">ShuffleClient</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/BlockTransferService.html">BlockTransferService</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/ExternalShuffleClient.html">ExternalShuffleClient</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/NettyBlockTransferService.html">NettyBlockTransferService</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
   </li>
 </ul>
   </li>
@@ -1981,7 +1984,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>NettyBlockRpcServer is requested to <a href="../core/NettyBlockRpcServer.html#receive-OpenBlocks" class="page">handle a OpenBlocks message</a></p>
+<p>NettyBlockRpcServer is requested to <a href="NettyBlockRpcServer.html#receive-OpenBlocks" class="page">handle a OpenBlocks message</a></p>
 </li>
 <li>
 <p><code>ShuffleBlockFetcherIterator</code> is requested to <a href="ShuffleBlockFetcherIterator.html#fetchLocalBlocks" class="page">fetchLocalBlocks</a></p>
@@ -2004,7 +2007,7 @@
 <p>Stores (<em>puts</em>) a block data (as a <a href="../network/ManagedBuffer.html" class="page">ManagedBuffer</a>) for the given <a href="BlockId.html" class="page">BlockId</a>. Returns <code>true</code> when completed successfully or <code>false</code> when failed.</p>
 </div>
 <div class="paragraph">
-<p>Used when NettyBlockRpcServer is requested to <a href="../core/NettyBlockRpcServer.html#receive-UploadBlock" class="page">handle an UploadBlock message</a></p>
+<p>Used when NettyBlockRpcServer is requested to <a href="NettyBlockRpcServer.html#receive-UploadBlock" class="page">handle an UploadBlock message</a></p>
 </div></div></td>
 </tr>
 <tr>
@@ -2021,7 +2024,7 @@
 <p>Stores a block data that will be received as a stream</p>
 </div>
 <div class="paragraph">
-<p>Used when NettyBlockRpcServer is requested to <a href="../core/NettyBlockRpcServer.html#receiveStream" class="page">receiveStream</a></p>
+<p>Used when NettyBlockRpcServer is requested to <a href="NettyBlockRpcServer.html#receiveStream" class="page">receiveStream</a></p>
 </div></div></td>
 </tr>
 <tr>

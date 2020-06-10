@@ -463,7 +463,7 @@
     <a class="nav-link" href="storage/BlockManagerMaster.html">BlockManagerMaster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="storage/spark-blockmanager-BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
+    <a class="nav-link" href="storage/BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
   </li>
 </ul>
   </li>
@@ -487,6 +487,30 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="storage/spark-blockmanager-StorageStatus.html">StorageStatus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="storage/BlockTransferService.html">BlockTransferService</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="storage/NettyBlockTransferService.html">NettyBlockTransferService</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="storage/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="storage/ShuffleClient.html">ShuffleClient</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="storage/ExternalShuffleClient.html">ExternalShuffleClient</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="storage/ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
@@ -914,27 +938,6 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="core/CleanerListener.html">CleanerListener</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="core/ShuffleClient.html">ShuffleClient</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="core/BlockTransferService.html">BlockTransferService</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="core/ExternalShuffleClient.html">ExternalShuffleClient</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="core/NettyBlockTransferService.html">NettyBlockTransferService</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="core/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
   </li>
 </ul>
   </li>
@@ -2017,17 +2020,17 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="onBlockManagerAdded"></a> <code>onBlockManagerAdded</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="SparkListenerBlockManagerAdded"></a> <code>SparkListenerBlockManagerAdded</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BlockManagerMasterEndpoint</code> <a href="spark-blockmanager-BlockManagerMasterEndpoint.adoc#register">has registered a <code>BlockManager</code></a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BlockManagerMasterEndpoint</code> <a href="storage/BlockManagerMasterEndpoint.html#register" class="page">has registered a <code>BlockManager</code></a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="onBlockManagerRemoved"></a> <code>onBlockManagerRemoved</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="SparkListenerBlockManagerRemoved"></a> <code>SparkListenerBlockManagerRemoved</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BlockManagerMasterEndpoint</code> <a href="spark-blockmanager-BlockManagerMasterEndpoint.adoc#removeBlockManager">has removed a <code>BlockManager</code></a> (which is when&#8230;&#8203;FIXME)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BlockManagerMasterEndpoint</code> <a href="storage/BlockManagerMasterEndpoint.html#removeBlockManager" class="page">has removed a <code>BlockManager</code></a> (which is when&#8230;&#8203;FIXME)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="onBlockUpdated"></a> <code>onBlockUpdated</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="SparkListenerBlockUpdated"></a> <code>SparkListenerBlockUpdated</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BlockManagerMasterEndpoint</code> receives a <a href="spark-blockmanager-BlockManagerMasterEndpoint.adoc#UpdateBlockInfo">UpdateBlockInfo</a> event (which is when <code>BlockManager</code> <a href="storage/BlockManager.html#tryToReportBlockStatus" class="page">reports a block status update to driver</a>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BlockManagerMasterEndpoint</code> receives a <a href="storage/BlockManagerMasterEndpoint.html#UpdateBlockInfo" class="page">UpdateBlockInfo</a> event (which is when <code>BlockManager</code> <a href="storage/BlockManager.html#tryToReportBlockStatus" class="page">reports a block status update to driver</a>).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>onEnvironmentUpdate</code></p></td>

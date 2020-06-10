@@ -463,7 +463,7 @@
     <a class="nav-link" href="BlockManagerMaster.html">BlockManagerMaster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-blockmanager-BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
+    <a class="nav-link" href="BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
   </li>
 </ul>
   </li>
@@ -487,6 +487,30 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-blockmanager-StorageStatus.html">StorageStatus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="BlockTransferService.html">BlockTransferService</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="NettyBlockTransferService.html">NettyBlockTransferService</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="NettyBlockRpcServer.html">NettyBlockRpcServer</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="ShuffleClient.html">ShuffleClient</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ExternalShuffleClient.html">ExternalShuffleClient</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
@@ -914,27 +938,6 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/ShuffleClient.html">ShuffleClient</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/BlockTransferService.html">BlockTransferService</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/ExternalShuffleClient.html">ExternalShuffleClient</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/NettyBlockTransferService.html">NettyBlockTransferService</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
   </li>
 </ul>
   </li>
@@ -2080,7 +2083,7 @@ FIXME
 <p><a id="context"></a> <a href="spark-TaskContext.adoc">TaskContext</a></p>
 </li>
 <li>
-<p><a id="shuffleClient"></a> <a href="../core/ShuffleClient.html" class="page">ShuffleClient</a></p>
+<p><a id="shuffleClient"></a> <a href="ShuffleClient.html" class="page">ShuffleClient</a></p>
 </li>
 <li>
 <p><a id="blockManager"></a> <a href="BlockManager.html" class="page">BlockManager</a></p>
@@ -2197,7 +2200,7 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManager.ht
 </table>
 </div>
 <div class="paragraph">
-<p><code>sendRequest</code> <a href="../core/ShuffleClient.html#fetchBlocks" class="page">requests <code>ShuffleClient</code> to fetch shuffle blocks</a> (from the host, the port, and the executor as defined in the input <code>FetchRequest</code>).</p>
+<p><code>sendRequest</code> <a href="ShuffleClient.html#fetchBlocks" class="page">requests <code>ShuffleClient</code> to fetch shuffle blocks</a> (from the host, the port, and the executor as defined in the input <code>FetchRequest</code>).</p>
 </div>
 <div class="admonitionblock note">
 <table>

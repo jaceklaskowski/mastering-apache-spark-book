@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>ShuffleMetricsSource :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/storage/spark-BlockManager-ShuffleMetricsSource.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -463,7 +463,7 @@
     <a class="nav-link" href="BlockManagerMaster.html">BlockManagerMaster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-blockmanager-BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
+    <a class="nav-link" href="BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
   </li>
 </ul>
   </li>
@@ -487,6 +487,30 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-blockmanager-StorageStatus.html">StorageStatus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="BlockTransferService.html">BlockTransferService</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="NettyBlockTransferService.html">NettyBlockTransferService</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="NettyBlockRpcServer.html">NettyBlockRpcServer</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="ShuffleClient.html">ShuffleClient</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ExternalShuffleClient.html">ExternalShuffleClient</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
@@ -914,27 +938,6 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../core/CleanerListener.html">CleanerListener</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/ShuffleClient.html">ShuffleClient</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/BlockTransferService.html">BlockTransferService</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/ExternalShuffleClient.html">ExternalShuffleClient</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../core/NettyBlockTransferService.html">NettyBlockTransferService</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
   </li>
 </ul>
   </li>
@@ -1932,14 +1935,14 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="shufflemetricssourcemetrics-source-of-blockmanager-for-shuffle-related-metrics"><a class="anchor" href="#shufflemetricssourcemetrics-source-of-blockmanager-for-shuffle-related-metrics"></a><a class="link" href="#shufflemetricssourcemetrics-source-of-blockmanager-for-shuffle-related-metrics"><a id="ShuffleMetricsSource"></a> ShuffleMetricsSource&#8201;&#8212;&#8201;Metrics Source of BlockManager for Shuffle-Related Metrics</a></h2>
+<h1 class="page">ShuffleMetricsSource</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>ShuffleMetricsSource</code> is the <a href="spark-metrics-Source.adoc">metrics source</a> of a <a href="BlockManager.html" class="page">BlockManager</a> for <a href="#metrics">shuffle-related metrics</a>.</p>
+<p><strong>ShuffleMetricsSource</strong> is the <a href="../metrics/spark-metrics-Source.html" class="page">metrics source</a> of a <a href="BlockManager.html" class="page">BlockManager</a> for <a href="#metrics">shuffle-related metrics</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>ShuffleMetricsSource</code> lives on a Spark executor and is <a href="../executor/Executor.html#creating-instance-BlockManager-shuffleMetricsSource" class="page">registered only when a Spark application runs in a non-local / cluster mode</a>.</p>
+<p>ShuffleMetricsSource lives on a Spark executor and is <a href="../executor/Executor.html#creating-instance-BlockManager-shuffleMetricsSource" class="page">registered only when a Spark application runs in a non-local / cluster mode</a>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1948,13 +1951,13 @@
 <div class="title">Figure 1. Registering ShuffleMetricsSource with "executor" MetricsSystem</div>
 </div>
 <div class="paragraph">
-<p><code>ShuffleMetricsSource</code> is <a href="#creating-instance">created</a> exclusively when <code>BlockManager</code> is requested for the <a href="BlockManager.html#shuffleMetricsSource" class="page">shuffleMetricsSource</a>.</p>
+<p>ShuffleMetricsSource is <a href="#creating-instance">created</a> exclusively when <code>BlockManager</code> is requested for the <a href="BlockManager.html#shuffleMetricsSource" class="page">shuffleMetricsSource</a>.</p>
 </div>
 <div class="paragraph">
-<p>When <a href="#creating-instance">created</a>, <code>ShuffleMetricsSource</code> gets a <a href="#metricSet">MetricSet</a> that <code>BlockManager</code> requests from the <a href="../core/ShuffleClient.html#shuffleMetrics" class="page">ShuffleClient</a> (only <a href="../executor/Executor.html#creating-instance-BlockManager-shuffleMetricsSource" class="page">when in a non-local / cluster mode</a>).</p>
+<p>When <a href="#creating-instance">created</a>, ShuffleMetricsSource gets a <a href="#metricSet">MetricSet</a> that <code>BlockManager</code> requests from the <a href="ShuffleClient.html#shuffleMetrics" class="page">ShuffleClient</a> (only <a href="../executor/Executor.html#creating-instance-BlockManager-shuffleMetricsSource" class="page">when in a non-local / cluster mode</a>).</p>
 </div>
 <div class="paragraph">
-<p><code>ShuffleMetricsSource</code> is registered under the following source name per the type of a <code>BlockManager</code>:</p>
+<p>ShuffleMetricsSource is registered under the following source name per the type of a <code>BlockManager</code>:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1993,10 +1996,13 @@ Since <code>Executor</code> does not have a web UI attached you cannot access th
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="creating-shufflemetricssource-instance"><a class="anchor" href="#creating-shufflemetricssource-instance"></a><a class="link" href="#creating-shufflemetricssource-instance"><a id="creating-instance"></a> Creating ShuffleMetricsSource Instance</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-shufflemetricssource-instance"><a class="anchor" href="#creating-shufflemetricssource-instance"></a><a class="link" href="#creating-shufflemetricssource-instance"><a id="creating-instance"></a> Creating ShuffleMetricsSource Instance</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p><code>ShuffleMetricsSource</code> takes the following when created:</p>
+<p>ShuffleMetricsSource takes the following when created:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2007,7 +2013,6 @@ Since <code>Executor</code> does not have a web UI attached you cannot access th
 <p><a id="metricSet"></a> Dropwizard Metrics' <a href="https://metrics.dropwizard.io/3.1.0/apidocs/com/codahale/metrics/MetricSet.html">MetricSet</a></p>
 </li>
 </ul>
-</div>
 </div>
 </div>
 </div>
