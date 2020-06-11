@@ -432,7 +432,13 @@
     <span class="nav-text">Storage System</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../storage/BlockManager.html">BlockManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../storage/BlockManagerId.html">BlockManagerId</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
@@ -2107,7 +2113,7 @@ assert(SparkEnv.get.isInstanceOf[SparkEnv])</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-base-sparkenv"><a class="anchor" href="#creating-base-sparkenv"></a><a class="link" href="#creating-base-sparkenv"><a id="create"></a> Creating "Base" SparkEnv</a></h2>
+<h2 id="creating-base-sparkenv-for-driver-and-executors"><a class="anchor" href="#creating-base-sparkenv-for-driver-and-executors"></a><a class="link" href="#creating-base-sparkenv-for-driver-and-executors"><a id="create"></a> Creating "Base" SparkEnv (for Driver and Executors)</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">

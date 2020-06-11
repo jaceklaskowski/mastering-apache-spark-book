@@ -432,7 +432,13 @@
     <span class="nav-text">Storage System</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../storage/BlockManager.html">BlockManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../storage/BlockManagerId.html">BlockManagerId</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
@@ -2256,7 +2262,7 @@ FIXME <code>AppClientListener</code> &amp; <code>ApplicationDescription</code>
 <p><strong>AppClient</strong> RPC endpoint is started as part of <a href="#appclient-initialization">AppClient&#8217;s initialization</a> (that is in turn part of <a href="#SparkDeploySchedulerBackend">SparkDeploySchedulerBackend&#8217;s initialization, i.e. the scheduler backend for Spark Standalone</a>).</p>
 </div>
 <div class="paragraph">
-<p>It is a <a href="../rpc/index.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> that knows about the RPC endpoint of the primary active standalone Master (there can be a couple of them, but only one can be active and hence primary).</p>
+<p>It is a <a href="../rpc/RpcEndpoint.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> that knows about the RPC endpoint of the primary active standalone Master (there can be a couple of them, but only one can be active and hence primary).</p>
 </div>
 <div class="paragraph">
 <p>When it starts, it sends <a href="#RegisterApplication">RegisterApplication</a> message to register an application and itself.</p>

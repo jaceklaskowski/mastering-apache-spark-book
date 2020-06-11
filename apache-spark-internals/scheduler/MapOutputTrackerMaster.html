@@ -432,7 +432,13 @@
     <span class="nav-text">Storage System</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../storage/BlockManager.html">BlockManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../storage/BlockManagerId.html">BlockManagerId</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
@@ -2637,7 +2643,7 @@ The thresholds for the number of partitions in the RDD and of the partitioner wh
 </div>
 </div>
 <div class="paragraph">
-<p>getLocationsWithLargestOutputs returns <a href="../storage/BlockManager.html#BlockManagerId" class="page">BlockManagerId</a>s with the largest size (of all the shuffle blocks they manage) above the input <code>fractionThreshold</code> (given the total size of all the shuffle blocks for the shuffle across all <a href="../storage/BlockManager.html" class="page">BlockManagers</a>).</p>
+<p>getLocationsWithLargestOutputs returns <a href="../storage/BlockManagerId.html" class="page">BlockManagerId</a>s with the largest size (of all the shuffle blocks they manage) above the input <code>fractionThreshold</code> (given the total size of all the shuffle blocks for the shuffle across all <a href="../storage/BlockManager.html" class="page">BlockManagers</a>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2684,7 +2690,7 @@ The input <code>numReducers</code> is not used.
 </table>
 </div>
 <div class="paragraph">
-<p>getLocationsWithLargestOutputs iterates over the <code>MapStatus</code> array and builds an interim mapping between <a href="../storage/BlockManager.html#BlockManagerId" class="page">BlockManagerId</a> and the cumulative sum of shuffle blocks across <a href="../storage/BlockManager.html" class="page">BlockManagers</a>.</p>
+<p>getLocationsWithLargestOutputs iterates over the <code>MapStatus</code> array and builds an interim mapping between <a href="../storage/BlockManagerId.html" class="page">BlockManagerId</a> and the cumulative sum of shuffle blocks across <a href="../storage/BlockManager.html" class="page">BlockManagers</a>.</p>
 </div>
 <div class="paragraph">
 <p>getLocationsWithLargestOutputs is used when MapOutputTrackerMaster is requested for the <a href="#getPreferredLocationsForShuffle">preferred locations of a shuffle</a>.</p>

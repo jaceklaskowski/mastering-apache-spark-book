@@ -432,7 +432,13 @@
     <span class="nav-text">Storage System</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../storage/BlockManager.html">BlockManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../storage/BlockManagerId.html">BlockManagerId</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
@@ -1942,7 +1948,7 @@
 <p><strong>Standalone Worker</strong> (aka <em>standalone slave</em>) is a logical node in a Spark Standalone cluster.</p>
 </div>
 <div id="ENDPOINT_NAME" class="paragraph">
-<p><code>Worker</code> is a <a href="../rpc/index.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> that uses <strong>Worker</strong> for the RPC endpoint name when <a href="#startRpcEnvAndEndpoint">registered</a>.</p>
+<p><code>Worker</code> is a <a href="../rpc/RpcEndpoint.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> that uses <strong>Worker</strong> for the RPC endpoint name when <a href="#startRpcEnvAndEndpoint">registered</a>.</p>
 </div>
 <div class="paragraph">
 <p>You can have one or many standalone workers in a standalone cluster. They can be started and stopped using <a href="spark-standalone-worker-scripts.adoc">management scripts</a>.</p>

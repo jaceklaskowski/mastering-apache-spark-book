@@ -432,7 +432,13 @@
     <span class="nav-text">Storage System</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../storage/BlockManager.html">BlockManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../storage/BlockManagerId.html">BlockManagerId</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
@@ -2108,7 +2114,7 @@ FIXME
 <div class="title">Figure 1. sparkMaster - the RPC Environment for Spark Standalone&#8217;s master</div>
 </div>
 <div class="paragraph">
-<p>Master endpoint is a <a href="../rpc/index.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> and <code>LeaderElectable</code> (see <a href="#leader-election">Leader Election</a>).</p>
+<p>Master endpoint is a <a href="../rpc/RpcEndpoint.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> and <code>LeaderElectable</code> (see <a href="#leader-election">Leader Election</a>).</p>
 </div>
 <div class="paragraph">
 <p>The Master endpoint starts the daemon single-thread scheduler pool <code>master-forward-message-thread</code>. It is used for worker management, i.e. removing any timed-out workers.</p>

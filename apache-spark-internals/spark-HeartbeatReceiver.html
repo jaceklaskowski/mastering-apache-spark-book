@@ -432,7 +432,13 @@
     <span class="nav-text">Storage System</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="storage/BlockManager.html">BlockManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="storage/BlockManagerId.html">BlockManagerId</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="storage/BlockId.html">BlockId</a>
@@ -1939,7 +1945,7 @@
 <h2 id="heartbeatreceiver-rpc-endpoint"><a class="anchor" href="#heartbeatreceiver-rpc-endpoint"></a><a class="link" href="#heartbeatreceiver-rpc-endpoint"><a id="HeartbeatReceiver"></a> HeartbeatReceiver RPC Endpoint</a></h2>
 <div class="sectionbody">
 <div id="ENDPOINT_NAME" class="paragraph">
-<p><code>HeartbeatReceiver</code> is a <a href="rpc/index.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> registered on the driver under the name <strong>HeartbeatReceiver</strong>.</p>
+<p><code>HeartbeatReceiver</code> is a <a href="rpc/RpcEndpoint.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> registered on the driver under the name <strong>HeartbeatReceiver</strong>.</p>
 </div>
 <div class="paragraph">
 <p><code>HeartbeatReceiver</code> receives <a href="#Heartbeat">Heartbeat</a> messages from executors that Spark uses as the mechanism to receive accumulator updates (with task metrics and a Spark application&#8217;s accumulators) and <a href="scheduler/TaskScheduler.html#executorHeartbeatReceived" class="page">pass them along to <code>TaskScheduler</code></a>.</p>

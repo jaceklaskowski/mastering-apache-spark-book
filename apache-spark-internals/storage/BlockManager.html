@@ -432,7 +432,13 @@
     <span class="nav-text">Storage System</span>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="BlockManager.html">BlockManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="BlockManagerId.html">BlockManagerId</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockId.html">BlockId</a>
@@ -3132,7 +3138,7 @@ The method must be called before a BlockManager can be considered fully operable
 </div>
 </li>
 <li>
-<p>Sets <a href="#shuffleServerId">shuffleServerId</a> to an instance of <a href="#BlockManagerId">BlockManagerId</a> given an executor id, host name and port for <a href="BlockTransferService.html" class="page">BlockTransferService</a>.</p>
+<p>Sets <a href="#shuffleServerId">shuffleServerId</a> to an instance of <a href="BlockManagerId.html" class="page">BlockManagerId</a> given an executor id, host name and port for <a href="BlockTransferService.html" class="page">BlockTransferService</a>.</p>
 </li>
 <li>
 <p>It creates the address of the server that serves this executor&#8217;s shuffle files (using <a href="#shuffleServerId">shuffleServerId</a>)</p>
@@ -3172,7 +3178,7 @@ FIXME Describe <code>shuffleServerId</code>. Where is it used?
 </div>
 </div>
 <div class="paragraph">
-<p>It <a href="BlockManagerMaster.html#registerBlockManager" class="page">registers itself to the driver&#8217;s BlockManagerMaster</a> passing the <a href="#BlockManagerId">BlockManagerId</a>, the maximum memory (as <code>maxMemory</code>), and the <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc">BlockManagerSlaveEndpoint</a>.</p>
+<p>It <a href="BlockManagerMaster.html#registerBlockManager" class="page">registers itself to the driver&#8217;s BlockManagerMaster</a> passing the <a href="BlockManagerId.html" class="page">BlockManagerId</a>, the maximum memory (as <code>maxMemory</code>), and the <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc">BlockManagerSlaveEndpoint</a>.</p>
 </div>
 <div class="paragraph">
 <p>Ultimately, if the initialization happens on an executor and the <a href="#externalShuffleServiceEnabled">External Shuffle Service is used</a>, it <a href="#registerWithExternalShuffleServer">registers to the shuffle service</a>.</p>
@@ -3291,7 +3297,7 @@ registerWithExternalShuffleServer is used when BlockManager is requested to <a h
 </div>
 </div>
 <div class="paragraph">
-<p><code>reregister</code> then <a href="BlockManagerMaster.html#registerBlockManager" class="page">registers itself to the driver&#8217;s <code>BlockManagerMaster</code></a> (just as it was when <a href="#initialize">BlockManager was initializing</a>). It passes the <a href="#BlockManagerId">BlockManagerId</a>, the maximum memory (as <code>maxMemory</code>), and the <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc">BlockManagerSlaveEndpoint</a>.</p>
+<p><code>reregister</code> then <a href="BlockManagerMaster.html#registerBlockManager" class="page">registers itself to the driver&#8217;s <code>BlockManagerMaster</code></a> (just as it was when <a href="#initialize">BlockManager was initializing</a>). It passes the <a href="BlockManagerId.html" class="page">BlockManagerId</a>, the maximum memory (as <code>maxMemory</code>), and the <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc">BlockManagerSlaveEndpoint</a>.</p>
 </div>
 <div class="paragraph">
 <p><code>reregister</code> will then report all the local blocks to the <a href="BlockManagerMaster.html" class="page">BlockManagerMaster</a>.</p>
@@ -3507,14 +3513,6 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 <div class="content">
 <pre class="highlightjs highlight"><code>DEBUG Put block [blockId] locally took [startTimeMs]</code></pre>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="blockmanagerid"><a class="anchor" href="#blockmanagerid"></a><a class="link" href="#blockmanagerid"><a id="BlockManagerId"></a> BlockManagerId</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>FIXME</p>
 </div>
 </div>
 </div>

@@ -432,7 +432,13 @@
     <span class="nav-text">Storage System</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../storage/BlockManager.html">BlockManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../storage/BlockManagerId.html">BlockManagerId</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
@@ -2425,7 +2431,7 @@ closeAndWriteOutput creates a temporary file (along the data output file) and us
 <p><a href="../scheduler/MapStatus.html" class="page">MapStatus</a></p>
 </div>
 <div class="paragraph">
-<p>Created when UnsafeShuffleWriter is requested to <a href="#closeAndWriteOutput">close internal resources and merge spill files</a> (with the <a href="../storage/BlockManager.html#shuffleServerId" class="page">BlockManagerId</a> of the <a href="#blockManager">BlockManager</a> and <code>partitionLengths</code>)</p>
+<p>Created when UnsafeShuffleWriter is requested to <a href="#closeAndWriteOutput">close internal resources and merge spill files</a> (with the <a href="../storage/BlockManagerId.html" class="page">BlockManagerId</a> of the <a href="#blockManager">BlockManager</a> and <code>partitionLengths</code>)</p>
 </div>
 <div class="paragraph">
 <p>Returned when UnsafeShuffleWriter is requested to <a href="#stop">stop</a></p>

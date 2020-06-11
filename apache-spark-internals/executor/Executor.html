@@ -432,7 +432,13 @@
     <span class="nav-text">Storage System</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../storage/BlockManager.html">BlockManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../storage/BlockManagerId.html">BlockManagerId</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
@@ -2451,7 +2457,7 @@ Executors track the <a href="TaskRunner.html" class="page">TaskRunner</a> that r
 </table>
 </div>
 <div class="paragraph">
-<p>A blocking <a href="../spark-HeartbeatReceiver.html#Heartbeat" class="page">Heartbeat</a> message that holds the executor id, all accumulator updates (per task id), and <a href="../storage/BlockManager.html#BlockManagerId" class="page">BlockManagerId</a> is sent to <a href="../spark-HeartbeatReceiver.html" class="page">HeartbeatReceiver RPC endpoint</a> (with <a href="#spark.executor.heartbeatInterval">spark.executor.heartbeatInterval</a> timeout).</p>
+<p>A blocking <a href="../spark-HeartbeatReceiver.html#Heartbeat" class="page">Heartbeat</a> message that holds the executor id, all accumulator updates (per task id), and <a href="../storage/BlockManagerId.html" class="page">BlockManagerId</a> is sent to <a href="../spark-HeartbeatReceiver.html" class="page">HeartbeatReceiver RPC endpoint</a> (with <a href="#spark.executor.heartbeatInterval">spark.executor.heartbeatInterval</a> timeout).</p>
 </div>
 <div class="paragraph">
 <p>If the response <a href="../spark-HeartbeatReceiver.html#Heartbeat" class="page">requests to reregister BlockManager</a>, you should see the following INFO message in the logs:</p>

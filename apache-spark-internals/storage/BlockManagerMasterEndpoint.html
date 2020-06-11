@@ -432,7 +432,13 @@
     <span class="nav-text">Storage System</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="BlockManager.html">BlockManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="BlockManagerId.html">BlockManagerId</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockId.html">BlockId</a>
@@ -1940,372 +1946,450 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>BlockManagerMasterEndpoint</strong> is the <a href="../rpc/index.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> for <a href="BlockManagerMaster.html" class="page">BlockManagerMaster</a> under <strong>BlockManagerMaster</strong> name.</p>
+<p><strong>BlockManagerMasterEndpoint</strong> is a <a href="../rpc/RpcEndpoint.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> for <a href="BlockManagerMaster.html" class="page">BlockManagerMaster</a>.</p>
+</div>
+<div class="paragraph">
+<p>BlockManagerMasterEndpoint is registered under <strong>BlockManagerMaster</strong> name.</p>
 </div>
 <div class="paragraph">
 <p>BlockManagerMasterEndpoint tracks status of the <a href="BlockManager.html" class="page">BlockManagers</a> (on the executors) in a Spark application.</p>
 </div>
-<div class="paragraph">
-<p><a href="#creating-instance">BlockManagerMasterEndpoint is created</a> when <a href="../core/SparkEnv.html#create" class="page"><code>SparkEnv</code> is created</a> (for the driver and executors).</p>
 </div>
-<table id="messages" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. BlockManagerMaster RPC Endpoint&#8217;s Messages (in alphabetical order)</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Message</th>
-<th class="tableblock halign-left valign-top">When posted?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#RegisterBlockManager">RegisterBlockManager</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Posted when <code>BlockManagerMaster</code> <a href="BlockManagerMaster.html#registerBlockManager" class="page">registers a <code>BlockManager</code></a>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#UpdateBlockInfo">UpdateBlockInfo</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Posted when <code>BlockManagerMaster</code> <a href="BlockManagerMaster.html#updateBlockInfo" class="page">receives a block status update (from BlockManager on an executor)</a>.</p></td>
-</tr>
-</tbody>
-</table>
-<table id="internal-registries" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. BlockManagerMasterEndpoint&#8217;s Internal Registries and Counters</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="blockManagerIdByExecutor"></a> <code>blockManagerIdByExecutor</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">FIXME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="blockManagerInfo"></a> <code>blockManagerInfo</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lookup table of <code>BlockManagerInfo</code> per <a href="BlockManager.html#BlockManagerId" class="page">BlockManagerId</a></p>
-<p class="tableblock">Updated when BlockManagerMasterEndpoint <a href="#register">registers a new <code>BlockManager</code></a> or <a href="#removeBlockManager">removes a <code>BlockManager</code></a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="blockLocations"></a> <code>blockLocations</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Collection of <a href="BlockId.html" class="page">BlockId</a> and their locations (as <code>BlockManagerId</code>).</p>
-<p class="tableblock">Used in <code>removeRdd</code> to remove blocks for a RDD, <code>removeBlockManager</code> to remove blocks after a BlockManager gets removed, <code>removeBlockFromWorkers</code>, <code>updateBlockInfo</code>, and <a href="#getLocations">getLocations</a>.</p></td>
-</tr>
-</tbody>
-</table>
-<div id="logging" class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
+</div>
+<div class="sect1">
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Enable <code>INFO</code> logging level for <code>org.apache.spark.storage.BlockManagerMasterEndpoint</code> logger to see what happens inside.</p>
+<p>BlockManagerMasterEndpoint takes the following to be created:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="rpcEnv"></a> <a href="../rpc/RpcEnv.html" class="page">RpcEnv</a></p>
+</li>
+<li>
+<p><a id="isLocal"></a> Flag whether BlockManagerMasterEndpoint works in local or cluster mode</p>
+</li>
+<li>
+<p><a id="conf"></a> <a href="../SparkConf.html" class="page">SparkConf</a></p>
+</li>
+<li>
+<p><a id="listenerBus"></a> <a href="../spark-scheduler-LiveListenerBus.html" class="page">LiveListenerBus</a></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Add the following line to <code>conf/log4j.properties</code>:</p>
+<p>BlockManagerMasterEndpoint is created when SparkEnv utility is used to <a href="../core/SparkEnv.html#create" class="page">create a SparkEnv</a> for the driver and executors (and creates a <a href="BlockManagerMaster.html" class="page">BlockManagerMaster</a> for a <a href="BlockManager.html#master" class="page">BlockManager</a>).</p>
+</div>
+<div class="paragraph">
+<p>When created, BlockManagerMasterEndpoint prints out the following INFO message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.storage.BlockManagerMasterEndpoint=INFO</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">BlockManagerMasterEndpoint up</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="messages"><a class="anchor" href="#messages"></a><a class="link" href="#messages"><a id="messages"></a> Messages</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="registerblockmanager"><a class="anchor" href="#registerblockmanager"></a><a class="link" href="#registerblockmanager"><a id="RegisterBlockManager"></a> RegisterBlockManager</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RegisterBlockManager(
+  blockManagerId: BlockManagerId,
+  maxOnHeapMemSize: Long,
+  maxOffHeapMemSize: Long,
+  sender: RpcEndpointRef)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Refer to <a href="spark-logging.adoc">Logging</a>.</p>
+<p>Posted when <code>BlockManagerMaster</code> <a href="BlockManagerMaster.html#registerBlockManager" class="page">registers a <code>BlockManager</code></a></p>
 </div>
-</td>
-</tr>
-</table>
-</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint <a href="#register">registers the <code>BlockManager</code></a>.</p>
 </div>
 </div>
-<div class="sect1">
-<h2 id="storagestatus-internal-method"><a class="anchor" href="#storagestatus-internal-method"></a><a class="link" href="#storagestatus-internal-method"><a id="storageStatus"></a> <code>storageStatus</code> Internal Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="getlocationsmultipleblockids-method"><a class="anchor" href="#getlocationsmultipleblockids-method"></a><a class="link" href="#getlocationsmultipleblockids-method"><a id="getLocationsMultipleBlockIds"></a> <code>getLocationsMultipleBlockIds</code> Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="removing-shuffle-blocksremoveshuffle-internal-method"><a class="anchor" href="#removing-shuffle-blocksremoveshuffle-internal-method"></a><a class="link" href="#removing-shuffle-blocksremoveshuffle-internal-method"><a id="removeShuffle"></a> Removing Shuffle Blocks&#8201;&#8212;&#8201;<code>removeShuffle</code> Internal Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="updateblockinfo"><a class="anchor" href="#updateblockinfo"></a><a class="link" href="#updateblockinfo"><a id="UpdateBlockInfo"></a> UpdateBlockInfo</a></h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="updateblockinfo"><a class="anchor" href="#updateblockinfo"></a><a class="link" href="#updateblockinfo"><a id="UpdateBlockInfo"></a> UpdateBlockInfo</a></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">class UpdateBlockInfo(
-  var blockManagerId: BlockManagerId,
-  var blockId: BlockId,
-  var storageLevel: StorageLevel,
-  var memSize: Long,
-  var diskSize: Long)</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">UpdateBlockInfo(
+  blockManagerId: BlockManagerId,
+  blockId: BlockId,
+  storageLevel: StorageLevel,
+  memSize: Long,
+  diskSize: Long)</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
 </div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="removeexecutor"><a class="anchor" href="#removeexecutor"></a><a class="link" href="#removeexecutor"><a id="RemoveExecutor"></a> RemoveExecutor</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RemoveExecutor(execId: String)</code></pre>
-</div>
-</div>
 <div class="paragraph">
-<p>When received, <a href="#removeExecutor">executor <code>execId</code> is removed</a> and the response <code>true</code> sent back.</p>
+<p>Posted when <code>BlockManagerMaster</code> <a href="BlockManagerMaster.html#updateBlockInfo" class="page">receives a block status update (from BlockManager on an executor)</a>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>RemoveExecutor</code> is posted when <a href="BlockManagerMaster.html#removeExecutor" class="page"><code>BlockManagerMaster</code> removes an executor</a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="finding-peers-of-blockmanagergetpeers-internal-method"><a class="anchor" href="#finding-peers-of-blockmanagergetpeers-internal-method"></a><a class="link" href="#finding-peers-of-blockmanagergetpeers-internal-method"><a id="getPeers"></a> Finding Peers of BlockManager&#8201;&#8212;&#8201;<code>getPeers</code> Internal Method</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getPeers(blockManagerId: BlockManagerId): Seq[BlockManagerId]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>getPeers</code> finds all the registered <code>BlockManagers</code> (using <a href="#blockManagerInfo">blockManagerInfo</a> internal registry) and checks if the input <code>blockManagerId</code> is amongst them.</p>
-</div>
-<div class="paragraph">
-<p>If the input <code>blockManagerId</code> is registered, <code>getPeers</code> returns all the registered <code>BlockManagers</code> but the one on the driver and <code>blockManagerId</code>.</p>
-</div>
-<div class="paragraph">
-<p>Otherwise, <code>getPeers</code> returns no <code>BlockManagers</code>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<strong>Peers</strong> of a <a href="BlockManager.html" class="page">BlockManager</a> are the other BlockManagers in a cluster (except the driver&#8217;s BlockManager). Peers are used to know the available executors in a Spark application.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>getPeers</code> is used exclusively when BlockManagerMasterEndpoint <a href="#GetPeers">handles <code>GetPeers</code> message</a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="finding-peers-of-blockmanagergetpeers-message"><a class="anchor" href="#finding-peers-of-blockmanagergetpeers-message"></a><a class="link" href="#finding-peers-of-blockmanagergetpeers-message"><a id="GetPeers"></a> Finding Peers of BlockManager&#8201;&#8212;&#8201;<code>GetPeers</code> Message</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetPeers(blockManagerId: BlockManagerId)
-extends ToBlockManagerMaster</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>GetPeers</code> replies with the <a href="#getPeers">peers</a> of <code>blockManagerId</code>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<strong>Peers</strong> of a <a href="BlockManager.html" class="page">BlockManager</a> are the other BlockManagers in a cluster (except the driver&#8217;s BlockManager). Peers are used to know the available executors in a Spark application.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>GetPeers</code> is posted when <a href="BlockManagerMaster.html#getPeers" class="page"><code>BlockManagerMaster</code> requests the peers of a <code>BlockManager</code></a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="blockmanagerheartbeat"><a class="anchor" href="#blockmanagerheartbeat"></a><a class="link" href="#blockmanagerheartbeat"><a id="BlockManagerHeartbeat"></a> BlockManagerHeartbeat</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="getlocations-message"><a class="anchor" href="#getlocations-message"></a><a class="link" href="#getlocations-message"><a id="GetLocations"></a> <code>GetLocations</code> Message</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetLocations(blockId: BlockId)
-extends ToBlockManagerMaster</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>GetLocations</code> replies with the <a href="#getLocations">locations</a> of <code>blockId</code>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>GetLocations</code> is posted when <a href="BlockManagerMaster.html#getLocations-block" class="page"><code>BlockManagerMaster</code> requests the block locations of a single block</a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="getlocationsmultipleblockids-message"><a class="anchor" href="#getlocationsmultipleblockids-message"></a><a class="link" href="#getlocationsmultipleblockids-message"><a id="GetLocationsMultipleBlockIds"></a> <code>GetLocationsMultipleBlockIds</code> Message</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetLocationsMultipleBlockIds(blockIds: Array[BlockId])
-extends ToBlockManagerMaster</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>GetLocationsMultipleBlockIds</code> replies with the <a href="#getLocationsMultipleBlockIds">getLocationsMultipleBlockIds</a> for the given <a href="BlockId.html" class="page">BlockId</a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>GetLocationsMultipleBlockIds</code> is posted when <a href="BlockManagerMaster.html#getLocations" class="page"><code>BlockManagerMaster</code> requests the block locations for multiple blocks</a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="registerblockmanager-event"><a class="anchor" href="#registerblockmanager-event"></a><a class="link" href="#registerblockmanager-event"><a id="RegisterBlockManager"></a> RegisterBlockManager Event</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RegisterBlockManager(
-  blockManagerId: BlockManagerId,
-  maxMemSize: Long,
-  sender: RpcEndpointRef)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When received, BlockManagerMasterEndpoint <a href="#register">registers the <code>BlockManager</code></a>.</p>
 </div>
 <div class="sect2">
-<h3 id="registering-blockmanager-on-executorregister-internal-method"><a class="anchor" href="#registering-blockmanager-on-executorregister-internal-method"></a><a class="link" href="#registering-blockmanager-on-executorregister-internal-method"><a id="register"></a> Registering BlockManager (on Executor)&#8201;&#8212;&#8201;<code>register</code> Internal Method</a></h3>
+<h3 id="getlocations"><a class="anchor" href="#getlocations"></a><a class="link" href="#getlocations"><a id="GetLocations"></a> GetLocations</a></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">register(id: BlockManagerId, maxMemSize: Long, slaveEndpoint: RpcEndpointRef): Unit</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetLocations(
+  blockId: BlockId)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>register</code> records the current time and registers <code>BlockManager</code> (using <a href="BlockManager.html#BlockManagerId" class="page">BlockManagerId</a>) unless it has been registered already (in <a href="#blockManagerInfo">blockManagerInfo</a> internal registry).</p>
+<p>When received, BlockManagerMasterEndpoint replies with the <a href="#getLocations">locations</a> of <code>blockId</code>.</p>
+</div>
+<div class="paragraph">
+<p>Posted when <a href="BlockManagerMaster.html#getLocations-block" class="page"><code>BlockManagerMaster</code> requests the block locations of a single block</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getlocationsandstatus"><a class="anchor" href="#getlocationsandstatus"></a><a class="link" href="#getlocationsandstatus"><a id="GetLocationsAndStatus"></a> GetLocationsAndStatus</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetLocationsAndStatus(
+  blockId: BlockId)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>Posted when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getlocationsmultipleblockids"><a class="anchor" href="#getlocationsmultipleblockids"></a><a class="link" href="#getlocationsmultipleblockids"><a id="GetLocationsMultipleBlockIds"></a> GetLocationsMultipleBlockIds</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetLocationsMultipleBlockIds(
+  blockIds: Array[BlockId])</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint replies with the <a href="#getLocationsMultipleBlockIds">getLocationsMultipleBlockIds</a> for the given <a href="BlockId.html" class="page">BlockId</a>.</p>
+</div>
+<div class="paragraph">
+<p>Posted when <a href="BlockManagerMaster.html#getLocations" class="page"><code>BlockManagerMaster</code> requests the block locations for multiple blocks</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getpeers"><a class="anchor" href="#getpeers"></a><a class="link" href="#getpeers"><a id="GetPeers"></a> GetPeers</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetPeers(
+  blockManagerId: BlockManagerId)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint replies with the <a href="#getPeers">peers</a> of <code>blockManagerId</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Peers</strong> of a <a href="BlockManager.html" class="page">BlockManager</a> are the other BlockManagers in a cluster (except the driver&#8217;s BlockManager). Peers are used to know the available executors in a Spark application.</p>
+</div>
+<div class="paragraph">
+<p>Posted when <a href="BlockManagerMaster.html#getPeers" class="page"><code>BlockManagerMaster</code> requests the peers of a <code>BlockManager</code></a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getexecutorendpointref"><a class="anchor" href="#getexecutorendpointref"></a><a class="link" href="#getexecutorendpointref"><a id="GetExecutorEndpointRef"></a> GetExecutorEndpointRef</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetExecutorEndpointRef(
+  executorId: String)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>Posted when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getmemorystatus"><a class="anchor" href="#getmemorystatus"></a><a class="link" href="#getmemorystatus"><a id="GetMemoryStatus"></a> GetMemoryStatus</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetMemoryStatus</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>Posted when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getstoragestatus"><a class="anchor" href="#getstoragestatus"></a><a class="link" href="#getstoragestatus"><a id="GetStorageStatus"></a> GetStorageStatus</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetStorageStatus</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>Posted when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getblockstatus"><a class="anchor" href="#getblockstatus"></a><a class="link" href="#getblockstatus"><a id="GetBlockStatus"></a> GetBlockStatus</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetBlockStatus(
+  blockId: BlockId,
+  askSlaves: Boolean = true)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>Posted when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getmatchingblockids"><a class="anchor" href="#getmatchingblockids"></a><a class="link" href="#getmatchingblockids"><a id="GetMatchingBlockIds"></a> GetMatchingBlockIds</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetMatchingBlockIds(
+  filter: BlockId =&gt; Boolean,
+  askSlaves: Boolean = true)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>Posted when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removerdd"><a class="anchor" href="#removerdd"></a><a class="link" href="#removerdd"><a id="RemoveRdd"></a> RemoveRdd</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RemoveRdd(
+  rddId: Int)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>Posted when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removeshuffle"><a class="anchor" href="#removeshuffle"></a><a class="link" href="#removeshuffle"><a id="RemoveShuffle"></a> RemoveShuffle</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RemoveShuffle(
+  shuffleId: Int)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>Posted when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removebroadcast"><a class="anchor" href="#removebroadcast"></a><a class="link" href="#removebroadcast"><a id="RemoveBroadcast"></a> RemoveBroadcast</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RemoveBroadcast(
+  broadcastId: Long,
+  removeFromDriver: Boolean = true)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>Posted when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removeblock"><a class="anchor" href="#removeblock"></a><a class="link" href="#removeblock"><a id="RemoveBlock"></a> RemoveBlock</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RemoveBlock(
+  blockId: BlockId)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>Posted when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removeexecutor"><a class="anchor" href="#removeexecutor"></a><a class="link" href="#removeexecutor"><a id="RemoveExecutor"></a> RemoveExecutor</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RemoveExecutor(
+  execId: String)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint <a href="#removeExecutor">executor <code>execId</code> is removed</a> and the response <code>true</code> sent back.</p>
+</div>
+<div class="paragraph">
+<p>Posted when <a href="BlockManagerMaster.html#removeExecutor" class="page"><code>BlockManagerMaster</code> removes an executor</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stopblockmanagermaster"><a class="anchor" href="#stopblockmanagermaster"></a><a class="link" href="#stopblockmanagermaster"><a id="StopBlockManagerMaster"></a> StopBlockManagerMaster</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">StopBlockManagerMaster</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>Posted when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="blockmanagerheartbeat"><a class="anchor" href="#blockmanagerheartbeat"></a><a class="link" href="#blockmanagerheartbeat"><a id="BlockManagerHeartbeat"></a> BlockManagerHeartbeat</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">BlockManagerHeartbeat(
+  blockManagerId: BlockManagerId)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>Posted when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="hascachedblocks"><a class="anchor" href="#hascachedblocks"></a><a class="link" href="#hascachedblocks"><a id="HasCachedBlocks"></a> HasCachedBlocks</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">HasCachedBlocks(
+  executorId: String)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>Posted when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="storagestatus-internal-method"><a class="anchor" href="#storagestatus-internal-method"></a><a class="link" href="#storagestatus-internal-method"><a id="storageStatus"></a> storageStatus Internal Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">storageStatus: Array[StorageStatus]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>storageStatus&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>storageStatus is used when BlockManagerMasterEndpoint is requested to handle <a href="#GetStorageStatus">GetStorageStatus</a> message.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getlocationsmultipleblockids-internal-method"><a class="anchor" href="#getlocationsmultipleblockids-internal-method"></a><a class="link" href="#getlocationsmultipleblockids-internal-method"><a id="getLocationsMultipleBlockIds"></a> getLocationsMultipleBlockIds Internal Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getLocationsMultipleBlockIds(
+  blockIds: Array[BlockId]): IndexedSeq[Seq[BlockManagerId]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getLocationsMultipleBlockIds&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>getLocationsMultipleBlockIds is used when BlockManagerMasterEndpoint is requested to handle <a href="#GetLocationsMultipleBlockIds">GetLocationsMultipleBlockIds</a> message.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="removeshuffle-internal-method"><a class="anchor" href="#removeshuffle-internal-method"></a><a class="link" href="#removeshuffle-internal-method"><a id="removeShuffle"></a> removeShuffle Internal Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">removeShuffle(
+  shuffleId: Int): Future[Seq[Boolean]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>removeShuffle&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>removeShuffle is used when BlockManagerMasterEndpoint is requested to handle <a href="#RemoveShuffle">RemoveShuffle</a> message.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getpeers-internal-method"><a class="anchor" href="#getpeers-internal-method"></a><a class="link" href="#getpeers-internal-method"><a id="getPeers"></a> getPeers Internal Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getPeers(
+  blockManagerId: BlockManagerId): Seq[BlockManagerId]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getPeers finds all the registered <code>BlockManagers</code> (using <a href="#blockManagerInfo">blockManagerInfo</a> internal registry) and checks if the input <code>blockManagerId</code> is amongst them.</p>
+</div>
+<div class="paragraph">
+<p>If the input <code>blockManagerId</code> is registered, getPeers returns all the registered <code>BlockManagers</code> but the one on the driver and <code>blockManagerId</code>.</p>
+</div>
+<div class="paragraph">
+<p>Otherwise, getPeers returns no <code>BlockManagers</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>Peers</strong> of a <a href="BlockManager.html" class="page">BlockManager</a> are the other BlockManagers in a cluster (except the driver&#8217;s BlockManager). Peers are used to know the available executors in a Spark application.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>getPeers is used when BlockManagerMasterEndpoint is requested to handle <a href="#GetPeers">GetPeers</a> message.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="register-internal-method"><a class="anchor" href="#register-internal-method"></a><a class="link" href="#register-internal-method"><a id="register"></a> register Internal Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">register(
+  idWithoutTopologyInfo: BlockManagerId,
+  maxOnHeapMemSize: Long,
+  maxOffHeapMemSize: Long,
+  slaveEndpoint: RpcEndpointRef): BlockManagerId</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>register records the current time and registers <code>BlockManager</code> (using <a href="BlockManagerId.html" class="page">BlockManagerId</a>) unless it has been registered already (in <a href="#blockManagerInfo">blockManagerInfo</a> internal registry).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2315,18 +2399,6 @@ extends ToBlockManagerMaster</code></pre>
 </td>
 <td class="content">
 The input <code>maxMemSize</code> is the <a href="BlockManager.html#maxMemory" class="page">total available on-heap and off-heap memory for storage on a <code>BlockManager</code></a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>register</code> is executed when <a href="#RegisterBlockManager"><code>RegisterBlockManager</code> has been received</a>.
 </td>
 </tr>
 </table>
@@ -2348,7 +2420,7 @@ Registering a <code>BlockManager</code> can only happen once for an executor (id
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>ERROR Got two different block manager registrations on same executor - will replace old one [oldId] with new one [id]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Got two different block manager registrations on same executor - will replace old one [oldId] with new one [id]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2359,7 +2431,7 @@ Registering a <code>BlockManager</code> can only happen once for an executor (id
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>INFO Registering block manager [hostPort] with [bytes] RAM, [id]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Registering block manager [hostPort] with [bytes] RAM, [id]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2414,95 +2486,47 @@ FIXME Describe <code>listenerBus</code> + omnigraffle it.
 </tr>
 </table>
 </div>
-</div>
-<div class="sect2">
-<h3 id="other-rpc-messages"><a class="anchor" href="#other-rpc-messages"></a><a class="link" href="#other-rpc-messages">Other RPC Messages</a></h3>
-<div class="ulist">
-<ul>
-<li>
-<p>GetLocationsMultipleBlockIds</p>
-</li>
-<li>
-<p>GetRpcHostPortForExecutor</p>
-</li>
-<li>
-<p>GetMemoryStatus</p>
-</li>
-<li>
-<p>GetStorageStatus</p>
-</li>
-<li>
-<p>GetBlockStatus</p>
-</li>
-<li>
-<p>GetMatchingBlockIds</p>
-</li>
-<li>
-<p>RemoveShuffle</p>
-</li>
-<li>
-<p>RemoveBroadcast</p>
-</li>
-<li>
-<p>RemoveBlock</p>
-</li>
-<li>
-<p>StopBlockManagerMaster</p>
-</li>
-<li>
-<p>BlockManagerHeartbeat</p>
-</li>
-<li>
-<p>HasCachedBlocks</p>
-</li>
-</ul>
-</div>
+<div class="paragraph">
+<p>register is used when BlockManagerMasterEndpoint is requested to handle <a href="#RegisterBlockManager">RegisterBlockManager</a> message.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="removing-executorremoveexecutor-internal-method"><a class="anchor" href="#removing-executorremoveexecutor-internal-method"></a><a class="link" href="#removing-executorremoveexecutor-internal-method"><a id="removeExecutor"></a> Removing Executor&#8201;&#8212;&#8201;<code>removeExecutor</code> Internal Method</a></h2>
+<h2 id="removeexecutor-internal-method"><a class="anchor" href="#removeexecutor-internal-method"></a><a class="link" href="#removeexecutor-internal-method"><a id="removeExecutor"></a> removeExecutor Internal Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">removeExecutor(execId: String)</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">removeExecutor(
+  execId: String): Unit</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>removeExecutor</code> prints the following INFO message to the logs:</p>
+<p>removeExecutor prints the following INFO message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>INFO BlockManagerMasterEndpoint: Trying to remove executor [execId] from BlockManagerMaster.</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Trying to remove executor [execId] from BlockManagerMaster.</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If the <code>execId</code> executor is registered (in the internal <a href="#blockManagerIdByExecutor">blockManagerIdByExecutor</a> internal registry), <code>removeExecutor</code> <a href="#removeBlockManager">removes the corresponding <code>BlockManager</code></a>.</p>
+<p>If the <code>execId</code> executor is registered (in the internal <a href="#blockManagerIdByExecutor">blockManagerIdByExecutor</a> internal registry), removeExecutor <a href="#removeBlockManager">removes the corresponding <code>BlockManager</code></a>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>removeExecutor</code> is executed when BlockManagerMasterEndpoint <a href="#RemoveExecutor">receives a <code>RemoveExecutor</code></a> or <a href="#register">registers a new <code>BlockManager</code></a> (and another <code>BlockManager</code> was already registered that is replaced by the new one).
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>removeExecutor is used when BlockManagerMasterEndpoint is requested to handle <a href="#RemoveExecutor">RemoveExecutor</a> or <a href="#RegisterBlockManager">RegisterBlockManager</a> messages.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="removing-blockmanagerremoveblockmanager-internal-method"><a class="anchor" href="#removing-blockmanagerremoveblockmanager-internal-method"></a><a class="link" href="#removing-blockmanagerremoveblockmanager-internal-method"><a id="removeBlockManager"></a> Removing BlockManager&#8201;&#8212;&#8201;<code>removeBlockManager</code> Internal Method</a></h2>
+<h2 id="removeblockmanager-internal-method"><a class="anchor" href="#removeblockmanager-internal-method"></a><a class="link" href="#removeblockmanager-internal-method"><a id="removeBlockManager"></a> removeBlockManager Internal Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">removeBlockManager(blockManagerId: BlockManagerId)</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">removeBlockManager(
+  blockManagerId: BlockManagerId): Unit</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>removeBlockManager</code> looks up <code>blockManagerId</code> and removes the executor it was working on from the internal registries:</p>
+<p>removeBlockManager looks up <code>blockManagerId</code> and removes the executor it was working on from the internal registries:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2525,60 +2549,86 @@ FIXME Describe <code>listenerBus</code> + omnigraffle it.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>INFO BlockManagerMasterEndpoint: Removing block manager [blockManagerId]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Removing block manager [blockManagerId]</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>removeBlockManager</code> is used exclusively when BlockManagerMasterEndpoint <a href="#removeExecutor">removes an executor</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>removeBlockManager is used when BlockManagerMasterEndpoint is requested to <a href="#removeExecutor">removeExecutor</a> (to handle <a href="#RemoveExecutor">RemoveExecutor</a> or <a href="#RegisterBlockManager">RegisterBlockManager</a> messages).</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="get-block-locationsgetlocations-method"><a class="anchor" href="#get-block-locationsgetlocations-method"></a><a class="link" href="#get-block-locationsgetlocations-method"><a id="getLocations"></a> Get Block Locations&#8201;&#8212;&#8201;<code>getLocations</code> Method</a></h2>
+<h2 id="getlocations-internal-method"><a class="anchor" href="#getlocations-internal-method"></a><a class="link" href="#getlocations-internal-method"><a id="getLocations"></a> getLocations Internal Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getLocations(blockId: BlockId): Seq[BlockManagerId]</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getLocations(
+  blockId: BlockId): Seq[BlockManagerId]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>When executed, <code>getLocations</code> looks up the given <a href="BlockId.html" class="page">BlockId</a> in the <code>blockLocations</code> internal registry and returns the locations (as a collection of <code>BlockManagerId</code>) or an empty collection.</p>
+<p>getLocations looks up the given <a href="BlockId.html" class="page">BlockId</a> in the <code>blockLocations</code> internal registry and returns the locations (as a collection of <code>BlockManagerId</code>) or an empty collection.</p>
+</div>
+<div class="paragraph">
+<p>getLocations is used when BlockManagerMasterEndpoint is requested to handle <a href="#GetLocations">GetLocations</a> and <a href="#GetLocationsMultipleBlockIds">GetLocationsMultipleBlockIds</a> messages.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-blockmanagermasterendpoint-instance"><a class="anchor" href="#creating-blockmanagermasterendpoint-instance"></a><a class="link" href="#creating-blockmanagermasterendpoint-instance"><a id="creating-instance"></a> Creating BlockManagerMasterEndpoint Instance</a></h2>
+<h2 id="logging"><a class="anchor" href="#logging"></a><a class="link" href="#logging"><a id="logging"></a> Logging</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>BlockManagerMasterEndpoint takes the following when created:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a id="rpcEnv"></a> <a href="../rpc/index.html" class="page">RpcEnv</a></p>
-</li>
-<li>
-<p><a id="isLocal"></a> Flag whether BlockManagerMasterEndpoint works in local or cluster mode</p>
-</li>
-<li>
-<p><a id="conf"></a> <a href="../SparkConf.html" class="page">SparkConf</a></p>
-</li>
-<li>
-<p><a id="listenerBus"></a> <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a></p>
-</li>
-</ul>
+<p>Enable <code>ALL</code> logging level for <code>org.apache.spark.storage.BlockManagerMasterEndpoint</code> logger to see what happens inside.</p>
 </div>
 <div class="paragraph">
-<p>BlockManagerMasterEndpoint initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
+<p>Add the following line to <code>conf/log4j.properties</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.storage.BlockManagerMasterEndpoint=ALL</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Refer to <a href="../spark-logging.html" class="page">Logging</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="internal-properties"><a class="anchor" href="#internal-properties"></a><a class="link" href="#internal-properties"><a id="internal-properties"></a> Internal Properties</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="blockmanageridbyexecutor"><a class="anchor" href="#blockmanageridbyexecutor"></a><a class="link" href="#blockmanageridbyexecutor"><a id="blockManagerIdByExecutor"></a> blockManagerIdByExecutor</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">blockManagerIdByExecutor: Map[String, BlockManagerId]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Lookup table of <a href="BlockManagerId.html" class="page">BlockManagerId</a>s by executor ID</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="blockmanagerinfo"><a class="anchor" href="#blockmanagerinfo"></a><a class="link" href="#blockmanagerinfo"><a id="blockManagerInfo"></a> blockManagerInfo</a></h3>
+<div class="paragraph">
+<p>Lookup table of <code>BlockManagerInfo</code> per <a href="BlockManagerId.html" class="page">BlockManagerId</a></p>
+</div>
+<div class="paragraph">
+<p>Updated when BlockManagerMasterEndpoint <a href="#register">registers a new <code>BlockManager</code></a> or <a href="#removeBlockManager">removes a <code>BlockManager</code></a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="blocklocations"><a class="anchor" href="#blocklocations"></a><a class="link" href="#blocklocations"><a id="blockLocations"></a> blockLocations</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">blockLocations: Map[BlockId, Set[BlockManagerId]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Collection of <a href="BlockId.html" class="page">BlockId</a> and their locations (as <code>BlockManagerId</code>).</p>
+</div>
+<div class="paragraph">
+<p>Used in <code>removeRdd</code> to remove blocks for a RDD, removeBlockManager to remove blocks after a BlockManager gets removed, <code>removeBlockFromWorkers</code>, <code>updateBlockInfo</code>, and <a href="#getLocations">getLocations</a>.</p>
+</div>
 </div>
 </div>
 </div>

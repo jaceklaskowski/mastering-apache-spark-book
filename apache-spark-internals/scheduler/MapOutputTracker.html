@@ -432,7 +432,13 @@
     <span class="nav-text">Storage System</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../storage/BlockManager.html">BlockManager</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../storage/BlockManagerId.html">BlockManagerId</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
@@ -2101,7 +2107,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>getMapSizesByExecutorId returns a collection of <a href="../storage/BlockManager.html#BlockManagerId" class="page">BlockManagerId</a>s with their blocks and sizes.</p>
+<p>getMapSizesByExecutorId returns a collection of <a href="../storage/BlockManagerId.html" class="page">BlockManagerId</a>s with their blocks and sizes.</p>
 </div>
 <div class="paragraph">
 <p>When executed, you should see the following DEBUG message in the logs:</p>
@@ -2127,7 +2133,7 @@ getMapSizesByExecutorId gets the map outputs for all the partitions (despite the
 </table>
 </div>
 <div class="paragraph">
-<p>In the end, getMapSizesByExecutorId <a href="#convertMapStatuses">converts shuffle map outputs</a> (as <code>MapStatuses</code>) into the collection of <a href="../storage/BlockManager.html#BlockManagerId" class="page">BlockManagerId</a>s with their blocks and sizes.</p>
+<p>In the end, getMapSizesByExecutorId <a href="#convertMapStatuses">converts shuffle map outputs</a> (as <code>MapStatuses</code>) into the collection of <a href="../storage/BlockManagerId.html" class="page">BlockManagerId</a>s with their blocks and sizes.</p>
 </div>
 <div class="paragraph">
 <p>getMapSizesByExecutorId is used when BlockStoreShuffleReader is requested to <a href="../shuffle/BlockStoreShuffleReader.html#read" class="page">read combined records for a reduce task</a>.</p>
@@ -2190,7 +2196,7 @@ getMapSizesByExecutorId gets the map outputs for all the partitions (despite the
 </div>
 </div>
 <div class="paragraph">
-<p>convertMapStatuses iterates over the input <code>statuses</code> array (of <a href="MapStatus.html" class="page">MapStatus</a> entries indexed by map id) and creates a collection of <a href="../storage/BlockManager.html#BlockManagerId" class="page">BlockManagerId</a> (for each <code>MapStatus</code> entry) with a <a href="../storage/BlockId.html#ShuffleBlockId" class="page">ShuffleBlockId</a> (with the input <code>shuffleId</code>, a <code>mapId</code>, and <code>partition</code> ranging from the input <code>startPartition</code> and <code>endPartition</code>) and <a href="MapStatus.html#getSizeForBlock" class="page">estimated size for the reduce block</a> for every status and partitions.</p>
+<p>convertMapStatuses iterates over the input <code>statuses</code> array (of <a href="MapStatus.html" class="page">MapStatus</a> entries indexed by map id) and creates a collection of <a href="../storage/BlockManagerId.html" class="page">BlockManagerId</a>s (for each <code>MapStatus</code> entry) with a <a href="../storage/BlockId.html#ShuffleBlockId" class="page">ShuffleBlockId</a> (with the input <code>shuffleId</code>, a <code>mapId</code>, and <code>partition</code> ranging from the input <code>startPartition</code> and <code>endPartition</code>) and <a href="MapStatus.html#getSizeForBlock" class="page">estimated size for the reduce block</a> for every status and partitions.</p>
 </div>
 <div class="paragraph">
 <p>For any empty <code>MapStatus</code>, you should see the following ERROR message in the logs:</p>
