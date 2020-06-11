@@ -438,6 +438,15 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="BlockManagerId.html">BlockManagerId</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="BlockManagerMaster.html">BlockManagerMaster</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
+  </li>
+</ul>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -461,15 +470,6 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="spark-BlockInfo.html">BlockInfo</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="BlockManagerMaster.html">BlockManagerMaster</a>
-<ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
   </li>
 </ul>
   </li>
@@ -1934,6 +1934,7 @@
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
     <li>Storage System</li>
+    <li><a href="BlockManager.html">BlockManager</a></li>
     <li><a href="BlockManagerMaster.html">BlockManagerMaster</a></li>
     <li><a href="BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a></li>
   </ul>
@@ -1995,40 +1996,18 @@
 <h2 id="messages"><a class="anchor" href="#messages"></a><a class="link" href="#messages"><a id="messages"></a> Messages</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="registerblockmanager"><a class="anchor" href="#registerblockmanager"></a><a class="link" href="#registerblockmanager"><a id="RegisterBlockManager"></a> RegisterBlockManager</a></h3>
+<h3 id="blockmanagerheartbeat"><a class="anchor" href="#blockmanagerheartbeat"></a><a class="link" href="#blockmanagerheartbeat"><a id="BlockManagerHeartbeat"></a> BlockManagerHeartbeat</a></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RegisterBlockManager(
-  blockManagerId: BlockManagerId,
-  maxOnHeapMemSize: Long,
-  maxOffHeapMemSize: Long,
-  sender: RpcEndpointRef)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Posted when <code>BlockManagerMaster</code> <a href="BlockManagerMaster.html#registerBlockManager" class="page">registers a <code>BlockManager</code></a></p>
-</div>
-<div class="paragraph">
-<p>When received, BlockManagerMasterEndpoint <a href="#register">registers the <code>BlockManager</code></a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="updateblockinfo"><a class="anchor" href="#updateblockinfo"></a><a class="link" href="#updateblockinfo"><a id="UpdateBlockInfo"></a> UpdateBlockInfo</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">UpdateBlockInfo(
-  blockManagerId: BlockManagerId,
-  blockId: BlockId,
-  storageLevel: StorageLevel,
-  memSize: Long,
-  diskSize: Long)</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">BlockManagerHeartbeat(
+  blockManagerId: BlockManagerId)</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p>Posted when <code>BlockManagerMaster</code> <a href="BlockManagerMaster.html#updateBlockInfo" class="page">receives a block status update (from BlockManager on an executor)</a>.</p>
+<p>Posted when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 <div class="sect2">
@@ -2170,6 +2149,39 @@
 </div>
 </div>
 <div class="sect2">
+<h3 id="hascachedblocks"><a class="anchor" href="#hascachedblocks"></a><a class="link" href="#hascachedblocks"><a id="HasCachedBlocks"></a> HasCachedBlocks</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">HasCachedBlocks(
+  executorId: String)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>Posted when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="registerblockmanager"><a class="anchor" href="#registerblockmanager"></a><a class="link" href="#registerblockmanager"><a id="RegisterBlockManager"></a> RegisterBlockManager</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RegisterBlockManager(
+  blockManagerId: BlockManagerId,
+  maxOnHeapMemSize: Long,
+  maxOffHeapMemSize: Long,
+  sender: RpcEndpointRef)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerMasterEndpoint <a href="#register">registers the BlockManager</a> (by the given <a href="BlockManagerId.html" class="page">BlockManagerId</a>).</p>
+</div>
+<div class="paragraph">
+<p>Posted when BlockManagerMaster is requested to <a href="BlockManagerMaster.html#registerBlockManager" class="page">register a BlockManager</a></p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="removerdd"><a class="anchor" href="#removerdd"></a><a class="link" href="#removerdd"><a id="RemoveRdd"></a> RemoveRdd</a></h3>
 <div class="listingblock">
 <div class="content">
@@ -2260,33 +2272,22 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="blockmanagerheartbeat"><a class="anchor" href="#blockmanagerheartbeat"></a><a class="link" href="#blockmanagerheartbeat"><a id="BlockManagerHeartbeat"></a> BlockManagerHeartbeat</a></h3>
+<h3 id="updateblockinfo"><a class="anchor" href="#updateblockinfo"></a><a class="link" href="#updateblockinfo"><a id="UpdateBlockInfo"></a> UpdateBlockInfo</a></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">BlockManagerHeartbeat(
-  blockManagerId: BlockManagerId)</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">UpdateBlockInfo(
+  blockManagerId: BlockManagerId,
+  blockId: BlockId,
+  storageLevel: StorageLevel,
+  memSize: Long,
+  diskSize: Long)</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p>Posted when&#8230;&#8203;FIXME</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="hascachedblocks"><a class="anchor" href="#hascachedblocks"></a><a class="link" href="#hascachedblocks"><a id="HasCachedBlocks"></a> HasCachedBlocks</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">HasCachedBlocks(
-  executorId: String)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
-</div>
-<div class="paragraph">
-<p>Posted when&#8230;&#8203;FIXME</p>
+<p>Posted when <code>BlockManagerMaster</code> <a href="BlockManagerMaster.html#updateBlockInfo" class="page">receives a block status update (from BlockManager on an executor)</a>.</p>
 </div>
 </div>
 </div>
@@ -2597,7 +2598,7 @@ FIXME Describe <code>listenerBus</code> + omnigraffle it.
 <h2 id="internal-properties"><a class="anchor" href="#internal-properties"></a><a class="link" href="#internal-properties"><a id="internal-properties"></a> Internal Properties</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="blockmanageridbyexecutor"><a class="anchor" href="#blockmanageridbyexecutor"></a><a class="link" href="#blockmanageridbyexecutor"><a id="blockManagerIdByExecutor"></a> blockManagerIdByExecutor</a></h3>
+<h3 id="blockmanageridbyexecutor-lookup-table"><a class="anchor" href="#blockmanageridbyexecutor-lookup-table"></a><a class="link" href="#blockmanageridbyexecutor-lookup-table"><a id="blockManagerIdByExecutor"></a> blockManagerIdByExecutor Lookup Table</a></h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">blockManagerIdByExecutor: Map[String, BlockManagerId]</code></pre>
@@ -2605,6 +2606,15 @@ FIXME Describe <code>listenerBus</code> + omnigraffle it.
 </div>
 <div class="paragraph">
 <p>Lookup table of <a href="BlockManagerId.html" class="page">BlockManagerId</a>s by executor ID</p>
+</div>
+<div class="paragraph">
+<p>An executor is added when BlockManagerMasterEndpoint is requested to handle a <a href="#RegisterBlockManager">RegisterBlockManager</a> message (via <a href="#register">register</a>).</p>
+</div>
+<div class="paragraph">
+<p>An executor is removed when BlockManagerMasterEndpoint is requested to handle a <a href="#RemoveExecutor">RemoveExecutor</a> and a <a href="#RegisterBlockManager">RegisterBlockManager</a> messages (via <a href="#removeBlockManager">removeBlockManager</a>)</p>
+</div>
+<div class="paragraph">
+<p>Used when BlockManagerMasterEndpoint is requested to handle <a href="#HasCachedBlocks">HasCachedBlocks</a> message, <a href="#removeExecutor">removeExecutor</a>, <a href="#register">register</a> and <a href="#getExecutorEndpointRef">getExecutorEndpointRef</a>.</p>
 </div>
 </div>
 <div class="sect2">
