@@ -363,6 +363,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="LiveListenerBus.html">LiveListenerBus</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -852,9 +855,6 @@
     <a class="nav-link" href="../spark-SparkListener-StatsReportListener.html">StatsReportListener</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-scheduler-LiveListenerBus.html">LiveListenerBus</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -2253,7 +2253,7 @@ INFO DAGScheduler: Missing parents: [missingStages]</code></pre>
 <p>handleMapStageSubmitted <a href="DAGScheduler.html#jobIdToStageIds" class="page">finds all the registered stages for the input <code>jobId</code></a> and collects <a href="Stage.html#latestInfo" class="page">their latest <code>StageInfo</code></a>.</p>
 </div>
 <div class="paragraph">
-<p>In the end, handleMapStageSubmitted posts <a href="spark-scheduler-SparkListener.adoc#SparkListenerJobStart">SparkListenerJobStart</a> message to <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a> and <a href="DAGScheduler.html#submitStage" class="page">submits the <code>ShuffleMapStage</code></a>.</p>
+<p>In the end, handleMapStageSubmitted posts <a href="spark-scheduler-SparkListener.adoc#SparkListenerJobStart">SparkListenerJobStart</a> message to <a href="LiveListenerBus.html" class="page">LiveListenerBus</a> and <a href="DAGScheduler.html#submitStage" class="page">submits the <code>ShuffleMapStage</code></a>.</p>
 </div>
 <div class="paragraph">
 <p>In case the <a href="ShuffleMapStage.html#isAvailable" class="page"><code>ShuffleMapStage</code> could be available</a> already, handleMapStageSubmitted <a href="DAGScheduler.html#markMapStageJobAsFinished" class="page">marks the job finished</a>.</p>
@@ -2644,7 +2644,7 @@ FIXME Review what&#8217;s <code>filesLost</code>.
 </table>
 </div>
 <div class="paragraph">
-<p><code>handleTaskCompletion</code> announces task completion application-wide (by posting a <a href="spark-scheduler-SparkListener.adoc#SparkListenerTaskEnd">SparkListenerTaskEnd</a> to <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a>).</p>
+<p><code>handleTaskCompletion</code> announces task completion application-wide (by posting a <a href="spark-scheduler-SparkListener.adoc#SparkListenerTaskEnd">SparkListenerTaskEnd</a> to <a href="LiveListenerBus.html" class="page">LiveListenerBus</a>).</p>
 </div>
 <div class="paragraph">
 <p><code>handleTaskCompletion</code> checks the stage of the task out in the <a href="DAGScheduler.html#stageIdToStage" class="page"><code>stageIdToStage</code> internal registry</a> and if not found, it simply exits.</p>
@@ -2811,7 +2811,7 @@ FIXME Describe why could a partition has more <code>ResultTask</code> running.
 <p><a href="DAGScheduler.html#cleanupStateForJobAndIndependentStages" class="page">Cleans up after <code>ActiveJob</code> and independent stages</a>.</p>
 </li>
 <li>
-<p>Announces the job completion application-wide (by posting a <a href="spark-scheduler-SparkListener.adoc#SparkListenerJobEnd">SparkListenerJobEnd</a> to <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a>).</p>
+<p>Announces the job completion application-wide (by posting a <a href="spark-scheduler-SparkListener.adoc#SparkListenerJobEnd">SparkListenerJobEnd</a> to <a href="LiveListenerBus.html" class="page">LiveListenerBus</a>).</p>
 </li>
 </ol>
 </div>

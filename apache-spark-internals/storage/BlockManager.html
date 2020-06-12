@@ -363,6 +363,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../scheduler/ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/LiveListenerBus.html">LiveListenerBus</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -852,9 +855,6 @@
     <a class="nav-link" href="../spark-SparkListener-StatsReportListener.html">StatsReportListener</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-scheduler-LiveListenerBus.html">LiveListenerBus</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -2012,7 +2012,7 @@ Use <a href="../tools/spark-submit.html" class="page">spark-submit</a>'s command
 <p><a id="rpcEnv"></a> <a href="../rpc/RpcEnv.html" class="page">RpcEnv</a></p>
 </li>
 <li>
-<p><a id="master"></a> <a href="BlockManagerMaster.html" class="page">BlockManagerMaster</a></p>
+<p><a href="#master">BlockManagerMaster</a></p>
 </li>
 <li>
 <p><a id="serializerManager"></a> <a href="../serializer/SerializerManager.html" class="page">SerializerManager</a></p>
@@ -2085,6 +2085,14 @@ It is computed specially in Spark on YARN.
 </div>
 </div>
 <div class="sect1">
+<h2 id="blockmanager-and-blockmanagermaster"><a class="anchor" href="#blockmanager-and-blockmanagermaster"></a><a class="link" href="#blockmanager-and-blockmanagermaster"><a id="master"></a> BlockManager and BlockManagerMaster</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>BlockManager is given a <a href="BlockManagerMaster.html" class="page">BlockManagerMaster</a> when <a href="#creating-instance">created</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="blockmanager-as-blockdatamanager"><a class="anchor" href="#blockmanager-as-blockdatamanager"></a><a class="link" href="#blockmanager-as-blockdatamanager"><a id="BlockDataManager"></a> BlockManager as BlockDataManager</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -2125,7 +2133,7 @@ It is computed specially in Spark on YARN.
 <h2 id="blockmanagerendpoint-rpc-endpoint"><a class="anchor" href="#blockmanagerendpoint-rpc-endpoint"></a><a class="link" href="#blockmanagerendpoint-rpc-endpoint"><a id="slaveEndpoint"></a> BlockManagerEndpoint RPC Endpoint</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>While being <a href="#creating-instance">created</a>, BlockManager requests the <a href="#rpcEnv">RpcEnv</a> to <a href="../rpc/RpcEnv.html#setupEndpoint" class="page">register an RPC endpoint</a> for <a href="BlockManagerSlaveEndpoint.html" class="page">BlockManagerSlaveEndpoint</a> under the name <strong>BlockManagerEndpoint[ID]</strong>.</p>
+<p>While being <a href="#creating-instance">created</a>, BlockManager requests the <a href="#rpcEnv">RpcEnv</a> to <a href="../rpc/RpcEnv.html#setupEndpoint" class="page">register</a> a <a href="BlockManagerSlaveEndpoint.html" class="page">BlockManagerMaster RPC Endpoint</a> under the name <strong>BlockManagerEndpoint[ID]</strong>.</p>
 </div>
 <div class="paragraph">
 <p>The RPC endpoint is used when BlockManager is requested to <a href="#initialize">initialize</a> and <a href="#reregister">reregister</a>.</p>

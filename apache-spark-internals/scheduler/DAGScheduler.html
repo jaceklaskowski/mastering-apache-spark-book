@@ -363,6 +363,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="LiveListenerBus.html">LiveListenerBus</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -852,9 +855,6 @@
     <a class="nav-link" href="../spark-SparkListener-StatsReportListener.html">StatsReportListener</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-scheduler-LiveListenerBus.html">LiveListenerBus</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -2043,7 +2043,7 @@
 <p>DAGScheduler runs stages in topological order.</p>
 </div>
 <div class="paragraph">
-<p>DAGScheduler uses <a href="../SparkContext.html" class="page">SparkContext</a>, <a href="TaskScheduler.html" class="page">TaskScheduler</a>, <a href="../spark-scheduler-LiveListenerBus.html" class="page">LiveListenerBus</a>, <a href="MapOutputTracker.html" class="page">MapOutputTracker</a> and <a href="../storage/BlockManager.html" class="page">BlockManager</a> for its services. However, at the very minimum, DAGScheduler takes a <code>SparkContext</code> only (and requests <code>SparkContext</code> for the other services).</p>
+<p>DAGScheduler uses <a href="../SparkContext.html" class="page">SparkContext</a>, <a href="TaskScheduler.html" class="page">TaskScheduler</a>, <a href="LiveListenerBus.html" class="page">LiveListenerBus</a>, <a href="MapOutputTracker.html" class="page">MapOutputTracker</a> and <a href="../storage/BlockManager.html" class="page">BlockManager</a> for its services. However, at the very minimum, DAGScheduler takes a <code>SparkContext</code> only (and requests <code>SparkContext</code> for the other services).</p>
 </div>
 <div class="paragraph">
 <p>When DAGScheduler schedules a job as a result of <a href="../rdd/index.html#actions" class="page">executing an action on a RDD</a> or <a href="../SparkContext.html#runJob" class="page">calling SparkContext.runJob() method directly</a>, it spawns parallel tasks to compute (partial) results per partition.</p>
@@ -2065,7 +2065,7 @@
 <p><a href="#taskScheduler">TaskScheduler</a></p>
 </li>
 <li>
-<p><a id="listenerBus"></a> <a href="../spark-scheduler-LiveListenerBus.html" class="page">LiveListenerBus</a></p>
+<p><a id="listenerBus"></a> <a href="LiveListenerBus.html" class="page">LiveListenerBus</a></p>
 </li>
 <li>
 <p><a id="mapOutputTracker"></a> <a href="MapOutputTrackerMaster.html" class="page">MapOutputTrackerMaster</a></p>
@@ -2509,7 +2509,7 @@
 <p>The <a href="#cleanupStateForJobAndIndependentStages">state of the <code>job</code> and independent stages are cleaned up</a>.</p>
 </div>
 <div class="paragraph">
-<p>Ultimately, <a href="../spark-scheduler-SparkListener.html#SparkListenerJobEnd" class="page">SparkListenerJobEnd</a> is posted to <a href="../spark-scheduler-LiveListenerBus.html" class="page">LiveListenerBus</a> (as <a href="#listenerBus">listenerBus</a>) for the <code>job</code>, the current time (in millis) and <code>JobSucceeded</code> job result.</p>
+<p>Ultimately, <a href="../spark-scheduler-SparkListener.html#SparkListenerJobEnd" class="page">SparkListenerJobEnd</a> is posted to <a href="LiveListenerBus.html" class="page">LiveListenerBus</a> (as <a href="#listenerBus">listenerBus</a>) for the <code>job</code>, the current time (in millis) and <code>JobSucceeded</code> job result.</p>
 </div>
 <div class="paragraph">
 <p>markMapStageJobAsFinished is used in <a href="DAGSchedulerEventProcessLoop.html#handleMapStageSubmitted" class="page">handleMapStageSubmitted</a> and <a href="DAGSchedulerEventProcessLoop.html#handleTaskCompletion" class="page">handleTaskCompletion</a>.</p>
@@ -3117,7 +3117,7 @@ FIXME&#8230;&#8203;IMAGE with ShuffleDependencies queried
 <p>submitMissingTasks requests the stage for a <a href="Stage.html#makeNewStageAttempt" class="page">new stage attempt</a>.</p>
 </div>
 <div class="paragraph">
-<p>submitMissingTasks requests the <a href="#listenerBus">LiveListenerBus</a> to <a href="../spark-scheduler-LiveListenerBus.html#post" class="page">post</a> a <a href="../spark-scheduler-SparkListener.html#SparkListenerStageSubmitted" class="page">SparkListenerStageSubmitted</a> event.</p>
+<p>submitMissingTasks requests the <a href="#listenerBus">LiveListenerBus</a> to <a href="LiveListenerBus.html#post" class="page">post</a> a <a href="../spark-scheduler-SparkListener.html#SparkListenerStageSubmitted" class="page">SparkListenerStageSubmitted</a> event.</p>
 </div>
 <div class="paragraph">
 <p>submitMissingTasks uses the <a href="#closureSerializer">closure Serializer</a> to <a href="../serializer/Serializer.html#serialize" class="page">serialize</a> the stage and create a so-called task binary. submitMissingTasks serializes the RDD (of the stage) and either the ShuffleDependency or the compute function based on the type of the stage, i.e. ShuffleMapStage and ResultStage, respectively.</p>
@@ -3755,7 +3755,7 @@ Missing parents: [missingStages]</code></pre>
 <p>handleJobSubmitted <a href="#jobIdToStageIds">finds all the registered stages for the input <code>jobId</code></a> and collects <a href="Stage.html#latestInfo" class="page">their latest <code>StageInfo</code></a>.</p>
 </div>
 <div class="paragraph">
-<p>In the end, handleJobSubmitted posts  <a href="../spark-scheduler-SparkListener.html#SparkListenerJobStart" class="page">SparkListenerJobStart</a> message to <a href="../spark-scheduler-LiveListenerBus.html" class="page">LiveListenerBus</a> and <a href="#submitStage">submits the stage</a>.</p>
+<p>In the end, handleJobSubmitted posts  <a href="../spark-scheduler-SparkListener.html#SparkListenerJobStart" class="page">SparkListenerJobStart</a> message to <a href="LiveListenerBus.html" class="page">LiveListenerBus</a> and <a href="#submitStage">submits the stage</a>.</p>
 </div>
 <div class="paragraph">
 <p>handleJobSubmitted is used when DAGSchedulerEventProcessLoop is requested to handle a <a href="DAGSchedulerEvent.html#JobSubmitted" class="page">JobSubmitted</a> event.</p>

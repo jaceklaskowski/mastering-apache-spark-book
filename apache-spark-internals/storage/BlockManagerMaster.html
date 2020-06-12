@@ -363,6 +363,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../scheduler/ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/LiveListenerBus.html">LiveListenerBus</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -852,9 +855,6 @@
     <a class="nav-link" href="../spark-SparkListener-StatsReportListener.html">StatsReportListener</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-scheduler-LiveListenerBus.html">LiveListenerBus</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1951,7 +1951,7 @@
 <p>BlockManagerMaster <a href="../core/SparkEnv.html#BlockManagerMaster" class="page">runs on the driver</a>.</p>
 </div>
 <div class="paragraph">
-<p>BlockManagerMaster uses <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint</a> registered under <strong>BlockManagerMaster</strong> RPC endpoint name on the driver (with the endpoint references on executors) to allow executors for sending block status updates to it and hence keep track of block statuses.</p>
+<p>BlockManagerMaster uses <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint&#8201;&#8212;&#8201;BlockManagerMaster RPC Endpoint</a> registered under <strong>BlockManagerMaster</strong> RPC endpoint name on the driver (with the endpoint references on executors) to allow executors for sending block status updates to it and hence keep track of block statuses.</p>
 </div>
 </div>
 </div>
@@ -2063,7 +2063,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p><code>removeBlock</code> simply posts a <code>RemoveBlock</code> blocking message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint</a> (and ultimately disregards the reponse).</p>
+<p><code>removeBlock</code> simply posts a <code>RemoveBlock</code> blocking message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint&#8201;&#8212;&#8201;BlockManagerMaster RPC Endpoint</a> (and ultimately disregards the reponse).</p>
 </div>
 </div>
 </div>
@@ -2079,7 +2079,7 @@ FIXME
 <p><code>removeRdd</code> removes all the blocks of <code>rddId</code> RDD, possibly in <code>blocking</code> fashion.</p>
 </div>
 <div class="paragraph">
-<p>Internally, <code>removeRdd</code> posts a <code>RemoveRdd(rddId)</code> message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint</a> on a separate thread.</p>
+<p>Internally, <code>removeRdd</code> posts a <code>RemoveRdd(rddId)</code> message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint&#8201;&#8212;&#8201;BlockManagerMaster RPC Endpoint</a> on a separate thread.</p>
 </div>
 <div class="paragraph">
 <p>If there is an issue, you should see the following WARN message in the logs and the entire exception:</p>
@@ -2106,7 +2106,7 @@ FIXME
 <p><code>removeShuffle</code> removes all the blocks of <code>shuffleId</code> shuffle, possibly in a <code>blocking</code> fashion.</p>
 </div>
 <div class="paragraph">
-<p>It posts a <code>RemoveShuffle(shuffleId)</code> message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint</a> on a separate thread.</p>
+<p>It posts a <code>RemoveShuffle(shuffleId)</code> message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint&#8201;&#8212;&#8201;BlockManagerMaster RPC Endpoint</a> on a separate thread.</p>
 </div>
 <div class="paragraph">
 <p>If there is an issue, you should see the following WARN message in the logs and the entire exception:</p>
@@ -2145,7 +2145,7 @@ FIXME
 <p><code>removeBroadcast</code> removes all the blocks of <code>broadcastId</code> broadcast, possibly in a <code>blocking</code> fashion.</p>
 </div>
 <div class="paragraph">
-<p>It posts a <code>RemoveBroadcast(broadcastId, removeFromMaster)</code> message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint</a> on a separate thread.</p>
+<p>It posts a <code>RemoveBroadcast(broadcastId, removeFromMaster)</code> message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint&#8201;&#8212;&#8201;BlockManagerMaster RPC Endpoint</a> on a separate thread.</p>
 </div>
 <div class="paragraph">
 <p>If there is an issue, you should see the following WARN message in the logs and the entire exception:</p>
@@ -2169,7 +2169,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p><code>stop</code> sends a <code>StopBlockManagerMaster</code> message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint</a> and waits for a response.</p>
+<p><code>stop</code> sends a <code>StopBlockManagerMaster</code> message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint&#8201;&#8212;&#8201;BlockManagerMaster RPC Endpoint</a> and waits for a response.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2394,7 +2394,7 @@ The input <code>maxMemSize</code> is the <a href="BlockManager.html#maxMemory" c
 </div>
 </div>
 <div class="paragraph">
-<p><code>getExecutorEndpointRef</code> posts <code>GetExecutorEndpointRef(executorId)</code> message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint</a> and waits for a response which becomes the return value.</p>
+<p><code>getExecutorEndpointRef</code> posts <code>GetExecutorEndpointRef(executorId)</code> message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint&#8201;&#8212;&#8201;BlockManagerMaster RPC Endpoint</a> and waits for a response which becomes the return value.</p>
 </div>
 </div>
 </div>
@@ -2407,7 +2407,7 @@ The input <code>maxMemSize</code> is the <a href="BlockManager.html#maxMemory" c
 </div>
 </div>
 <div class="paragraph">
-<p><code>getMemoryStatus</code> posts a <code>GetMemoryStatus</code> message <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint</a> and waits for a response which becomes the return value.</p>
+<p><code>getMemoryStatus</code> posts a <code>GetMemoryStatus</code> message <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint&#8201;&#8212;&#8201;BlockManagerMaster RPC Endpoint</a> and waits for a response which becomes the return value.</p>
 </div>
 </div>
 </div>
@@ -2420,7 +2420,7 @@ The input <code>maxMemSize</code> is the <a href="BlockManager.html#maxMemory" c
 </div>
 </div>
 <div class="paragraph">
-<p><code>getStorageStatus</code> posts a <code>GetStorageStatus</code> message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint</a> and waits for a response which becomes the return value.</p>
+<p><code>getStorageStatus</code> posts a <code>GetStorageStatus</code> message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint&#8201;&#8212;&#8201;BlockManagerMaster RPC Endpoint</a> and waits for a response which becomes the return value.</p>
 </div>
 </div>
 </div>
@@ -2435,7 +2435,7 @@ The input <code>maxMemSize</code> is the <a href="BlockManager.html#maxMemory" c
 </div>
 </div>
 <div class="paragraph">
-<p><code>getBlockStatus</code> posts a <code>GetBlockStatus(blockId, askSlaves)</code> message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint</a> and waits for a response (of type <code>Map[BlockManagerId, Future[Option[BlockStatus]]]</code>).</p>
+<p><code>getBlockStatus</code> posts a <code>GetBlockStatus(blockId, askSlaves)</code> message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint&#8201;&#8212;&#8201;BlockManagerMaster RPC Endpoint</a> and waits for a response (of type <code>Map[BlockManagerId, Future[Option[BlockStatus]]]</code>).</p>
 </div>
 <div class="paragraph">
 <p>It then builds a sequence of future results that are <code>BlockStatus</code> statuses and waits for a result for <a href="../rpc/index.html#spark.rpc.askTimeout" class="page">spark.rpc.askTimeout</a>, <a href="../rpc/index.html#spark.network.timeout" class="page">spark.network.timeout</a> or <code>120</code> secs.</p>
@@ -2461,7 +2461,7 @@ The input <code>maxMemSize</code> is the <a href="BlockManager.html#maxMemory" c
 </div>
 </div>
 <div class="paragraph">
-<p><code>getMatchingBlockIds</code> posts a <code>GetMatchingBlockIds(filter, askSlaves)</code> message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint</a> and waits for a response which becomes the result for <a href="../rpc/index.html#spark.rpc.askTimeout" class="page">spark.rpc.askTimeout</a>, <a href="../rpc/index.html#spark.network.timeout" class="page">spark.network.timeout</a> or <code>120</code> secs.</p>
+<p><code>getMatchingBlockIds</code> posts a <code>GetMatchingBlockIds(filter, askSlaves)</code> message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint&#8201;&#8212;&#8201;BlockManagerMaster RPC Endpoint</a> and waits for a response which becomes the result for <a href="../rpc/index.html#spark.rpc.askTimeout" class="page">spark.rpc.askTimeout</a>, <a href="../rpc/index.html#spark.network.timeout" class="page">spark.network.timeout</a> or <code>120</code> secs.</p>
 </div>
 </div>
 </div>
@@ -2474,7 +2474,7 @@ The input <code>maxMemSize</code> is the <a href="BlockManager.html#maxMemory" c
 </div>
 </div>
 <div class="paragraph">
-<p><code>hasCachedBlocks</code> posts a <code>HasCachedBlocks(executorId)</code> message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint</a> and waits for a response which becomes the result.</p>
+<p><code>hasCachedBlocks</code> posts a <code>HasCachedBlocks(executorId)</code> message to <a href="BlockManagerMasterEndpoint.html" class="page">BlockManagerMasterEndpoint&#8201;&#8212;&#8201;BlockManagerMaster RPC Endpoint</a> and waits for a response which becomes the result.</p>
 </div>
 </div>
 </div>

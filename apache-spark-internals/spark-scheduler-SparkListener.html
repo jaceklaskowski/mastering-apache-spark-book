@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>SparkListener :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/spark-scheduler-SparkListener.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../_/css/site.css">
@@ -362,6 +362,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="scheduler/ExternalClusterManager.html">ExternalClusterManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="scheduler/LiveListenerBus.html">LiveListenerBus</a>
   </li>
 </ul>
   </li>
@@ -852,9 +855,6 @@
     <a class="nav-link" href="spark-SparkListener-StatsReportListener.html">StatsReportListener</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-LiveListenerBus.html">LiveListenerBus</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1944,23 +1944,23 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="spark-listenersintercepting-events-from-spark-scheduler"><a class="anchor" href="#spark-listenersintercepting-events-from-spark-scheduler"></a><a class="link" href="#spark-listenersintercepting-events-from-spark-scheduler"><a id="SparkListener"></a> Spark Listeners&#8201;&#8212;&#8201;Intercepting Events from Spark Scheduler</a></h2>
+<h1 class="page">SparkListener</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>SparkListener</code> is a mechanism in Spark to intercept events from the Spark scheduler that are emitted over the course of execution of a Spark application.</p>
+<p><strong>SparkListener</strong> is a mechanism in Spark to intercept events from the Spark scheduler that are emitted over the course of execution of a Spark application.</p>
 </div>
 <div class="paragraph">
-<p><code>SparkListener</code> extends <a href="#SparkListenerInterface">SparkListenerInterface</a> with all the <em>callback methods</em> being no-op/do-nothing.</p>
+<p>SparkListener extends <a href="#SparkListenerInterface">SparkListenerInterface</a> with all the <em>callback methods</em> being no-op/do-nothing.</p>
 </div>
 <div class="paragraph">
 <p>Spark <a href="#builtin-implementations">relies on <code>SparkListeners</code> internally</a> to manage communication between internal components in the distributed environment for a Spark application, e.g. <a href="spark-webui.adoc">web UI</a>, <a href="spark-history-server/EventLoggingListener.html" class="page">event persistence</a> (for History Server), <a href="spark-ExecutorAllocationManager.adoc">dynamic allocation of executors</a>, <a href="spark-HeartbeatReceiver.adoc">keeping track of executors (using <code>HeartbeatReceiver</code>)</a> and others.</p>
 </div>
 <div class="paragraph">
-<p>You can develop your own custom <code>SparkListener</code> and register it using <a href="SparkContext.html#addSparkListener" class="page">SparkContext.addSparkListener</a> method or <a href="spark-scheduler-LiveListenerBus.adoc#spark_extraListeners">spark.extraListeners</a> Spark property.</p>
+<p>You can develop your own custom SparkListener and register it using <a href="SparkContext.html#addSparkListener" class="page">SparkContext.addSparkListener</a> method or <a href="configuration-properties.html#spark.extraListeners" class="page">spark.extraListeners</a> configuration property.</p>
 </div>
 <div class="paragraph">
-<p>With <code>SparkListener</code> you can focus on Spark events of your liking and process a subset of all scheduling events.</p>
+<p>With SparkListener you can focus on Spark events of your liking and process a subset of all scheduling events.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1984,8 +1984,11 @@
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="sparklistenerinterfaceinternal-contract-for-spark-listeners"><a class="anchor" href="#sparklistenerinterfaceinternal-contract-for-spark-listeners"></a><a class="link" href="#sparklistenerinterfaceinternal-contract-for-spark-listeners"><a id="SparkListenerInterface"></a> SparkListenerInterface&#8201;&#8212;&#8201;Internal Contract for Spark Listeners</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sparklistenerinterfaceinternal-contract-for-spark-listeners"><a class="anchor" href="#sparklistenerinterfaceinternal-contract-for-spark-listeners"></a><a class="link" href="#sparklistenerinterfaceinternal-contract-for-spark-listeners"><a id="SparkListenerInterface"></a> SparkListenerInterface&#8201;&#8212;&#8201;Internal Contract for Spark Listeners</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><code>SparkListenerInterface</code> is an <code>private[spark]</code> contract for Spark listeners to intercept events from the Spark scheduler.</p>
 </div>
@@ -2130,8 +2133,10 @@
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="built-in-spark-listeners"><a class="anchor" href="#built-in-spark-listeners"></a><a class="link" href="#built-in-spark-listeners"><a id="builtin-implementations"></a> Built-In Spark Listeners</a></h3>
+</div>
+<div class="sect1">
+<h2 id="built-in-spark-listeners"><a class="anchor" href="#built-in-spark-listeners"></a><a class="link" href="#built-in-spark-listeners"><a id="builtin-implementations"></a> Built-In Spark Listeners</a></h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 2. Built-In Spark Listeners</caption>
 <colgroup>
@@ -2203,7 +2208,6 @@
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 </div>
 </article>

@@ -363,6 +363,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="LiveListenerBus.html">LiveListenerBus</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -852,9 +855,6 @@
     <a class="nav-link" href="../spark-SparkListener-StatsReportListener.html">StatsReportListener</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-scheduler-LiveListenerBus.html">LiveListenerBus</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -2619,7 +2619,7 @@ DriverEndpoint uses the input <code>executorRef</code> as the executor&#8217;s <
 <p>DriverEndpoint replies <code>true</code> (to acknowledge the message).</p>
 </div>
 <div class="paragraph">
-<p>DriverEndpoint then announces the new executor by posting <a href="spark-scheduler-SparkListener.adoc#SparkListenerExecutorAdded">SparkListenerExecutorAdded</a> to <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a> (with the current time, executor id, and <code>ExecutorData</code>).</p>
+<p>DriverEndpoint then announces the new executor by posting <a href="spark-scheduler-SparkListener.adoc#SparkListenerExecutorAdded">SparkListenerExecutorAdded</a> to <a href="LiveListenerBus.html" class="page">LiveListenerBus</a> (with the current time, executor id, and <code>ExecutorData</code>).</p>
 </div>
 <div class="paragraph">
 <p>In the end, DriverEndpoint <a href="#makeOffers">makes executor resource offers (for launching tasks)</a>.</p>
@@ -2813,7 +2813,7 @@ extends CoarseGrainedClusterMessage</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p><code>removeExecutor</code> posts <a href="spark-scheduler-SparkListener.adoc#SparkListenerExecutorRemoved">SparkListenerExecutorRemoved</a> to <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a> (with the <code>executorId</code> executor).</p>
+<p><code>removeExecutor</code> posts <a href="spark-scheduler-SparkListener.adoc#SparkListenerExecutorRemoved">SparkListenerExecutorRemoved</a> to <a href="LiveListenerBus.html" class="page">LiveListenerBus</a> (with the <code>executorId</code> executor).</p>
 </div>
 <div class="paragraph">
 <p>If however the <code>executorId</code> executor could not be found, <code>removeExecutor</code> <a href="../storage/BlockManagerMaster.html#removeExecutorAsync" class="page">requests <code>BlockManagerMaster</code> to remove the executor asynchronously</a>.</p>

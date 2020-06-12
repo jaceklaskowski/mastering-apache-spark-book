@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>TransportClientFactory :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/network/TransportClientFactory.html">
+    <title>LiveListenerBus :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/scheduler/LiveListenerBus.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -193,82 +193,82 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/index.html">Scheduler</a>
+    <a class="nav-link" href="index.html">Scheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/DAGScheduler.html">DAGScheduler</a>
+    <a class="nav-link" href="DAGScheduler.html">DAGScheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/DAGSchedulerEvent.html">DAGScheduler Events</a>
+    <a class="nav-link" href="DAGSchedulerEvent.html">DAGScheduler Events</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/DAGSchedulerEventProcessLoop.html">DAGScheduler Event Bus</a>
+    <a class="nav-link" href="DAGSchedulerEventProcessLoop.html">DAGScheduler Event Bus</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/Stage.html">Stage</a>
+    <a class="nav-link" href="Stage.html">Stage</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/ResultStage.html">ResultStage</a>
+    <a class="nav-link" href="ResultStage.html">ResultStage</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/ShuffleMapStage.html">ShuffleMapStage</a>
+    <a class="nav-link" href="ShuffleMapStage.html">ShuffleMapStage</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/MapOutputTracker.html">MapOutputTracker</a>
+    <a class="nav-link" href="MapOutputTracker.html">MapOutputTracker</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/MapOutputTrackerMaster.html">MapOutputTrackerMaster</a>
+    <a class="nav-link" href="MapOutputTrackerMaster.html">MapOutputTrackerMaster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../scheduler/ShuffleStatus.html">ShuffleStatus</a>
+    <a class="nav-link" href="ShuffleStatus.html">ShuffleStatus</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../scheduler/MapOutputTrackerMasterEndpoint.html">MapOutputTrackerMasterEndpoint</a>
+    <a class="nav-link" href="MapOutputTrackerMasterEndpoint.html">MapOutputTrackerMasterEndpoint</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/MapOutputTrackerWorker.html">MapOutputTrackerWorker</a>
+    <a class="nav-link" href="MapOutputTrackerWorker.html">MapOutputTrackerWorker</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/spark-scheduler-StageInfo.html">StageInfo</a>
+    <a class="nav-link" href="spark-scheduler-StageInfo.html">StageInfo</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/spark-scheduler-JobListener.html">JobListener</a>
+    <a class="nav-link" href="spark-scheduler-JobListener.html">JobListener</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/spark-scheduler-JobWaiter.html">JobWaiter</a>
+    <a class="nav-link" href="spark-scheduler-JobWaiter.html">JobWaiter</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/TaskScheduler.html">TaskScheduler</a>
+    <a class="nav-link" href="TaskScheduler.html">TaskScheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/TaskSchedulerImpl.html">TaskSchedulerImpl</a>
+    <a class="nav-link" href="TaskSchedulerImpl.html">TaskSchedulerImpl</a>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/SchedulerBackend.html">SchedulerBackend</a>
+    <a class="nav-link" href="SchedulerBackend.html">SchedulerBackend</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/CoarseGrainedSchedulerBackend.html">CoarseGrainedSchedulerBackend</a>
+    <a class="nav-link" href="CoarseGrainedSchedulerBackend.html">CoarseGrainedSchedulerBackend</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../scheduler/CoarseGrainedSchedulerBackend-DriverEndpoint.html">DriverEndpoint</a>
+    <a class="nav-link" href="CoarseGrainedSchedulerBackend-DriverEndpoint.html">DriverEndpoint</a>
   </li>
 </ul>
   </li>
@@ -278,93 +278,93 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/Task.html">Task</a>
+    <a class="nav-link" href="Task.html">Task</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/ShuffleMapTask.html">ShuffleMapTask</a>
+    <a class="nav-link" href="ShuffleMapTask.html">ShuffleMapTask</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/ResultTask.html">ResultTask</a>
+    <a class="nav-link" href="ResultTask.html">ResultTask</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/TaskSet.html">TaskSet</a>
+    <a class="nav-link" href="TaskSet.html">TaskSet</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/TaskSetManager.html">TaskSetManager</a>
+    <a class="nav-link" href="TaskSetManager.html">TaskSetManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/spark-scheduler-ActiveJob.html">Jobs</a>
+    <a class="nav-link" href="spark-scheduler-ActiveJob.html">Jobs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/spark-scheduler-SchedulableBuilder.html">SchedulableBuilder</a>
+    <a class="nav-link" href="spark-scheduler-SchedulableBuilder.html">SchedulableBuilder</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/spark-scheduler-FIFOSchedulableBuilder.html">FIFOSchedulableBuilder</a>
+    <a class="nav-link" href="spark-scheduler-FIFOSchedulableBuilder.html">FIFOSchedulableBuilder</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/spark-scheduler-FairSchedulableBuilder.html">FairSchedulableBuilder</a>
+    <a class="nav-link" href="spark-scheduler-FairSchedulableBuilder.html">FairSchedulableBuilder</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/spark-scheduler-Schedulable.html">Schedulable Entities</a>
+    <a class="nav-link" href="spark-scheduler-Schedulable.html">Schedulable Entities</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/spark-scheduler-Pool.html">Schedulable Pool</a>
+    <a class="nav-link" href="spark-scheduler-Pool.html">Schedulable Pool</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/spark-scheduler-SchedulingMode.html">Scheduling Mode</a>
+    <a class="nav-link" href="spark-scheduler-SchedulingMode.html">Scheduling Mode</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/spark-scheduler-TaskInfo.html">TaskInfo</a>
+    <a class="nav-link" href="spark-scheduler-TaskInfo.html">TaskInfo</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/MapStatus.html">MapStatus</a>
+    <a class="nav-link" href="MapStatus.html">MapStatus</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/spark-scheduler-TaskDescription.html">TaskDescription</a>
+    <a class="nav-link" href="spark-scheduler-TaskDescription.html">TaskDescription</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/spark-taskschedulerimpl-speculative-execution.html">Speculative Execution of Tasks</a>
+    <a class="nav-link" href="spark-taskschedulerimpl-speculative-execution.html">Speculative Execution of Tasks</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/TaskResultGetter.html">TaskResultGetter</a>
+    <a class="nav-link" href="TaskResultGetter.html">TaskResultGetter</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../scheduler/spark-TaskContext.html">TaskContext</a>
+    <a class="nav-link" href="spark-TaskContext.html">TaskContext</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/spark-BarrierTaskContext.html">BarrierTaskContext</a>
+    <a class="nav-link" href="spark-BarrierTaskContext.html">BarrierTaskContext</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scheduler/spark-TaskContextImpl.html">TaskContextImpl</a>
+    <a class="nav-link" href="spark-TaskContextImpl.html">TaskContextImpl</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/spark-scheduler-TaskResult.html">TaskResults</a>
+    <a class="nav-link" href="spark-scheduler-TaskResult.html">TaskResults</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/spark-scheduler-TaskSetBlacklist.html">TaskSetBlacklist</a>
+    <a class="nav-link" href="spark-scheduler-TaskSetBlacklist.html">TaskSetBlacklist</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/OutputCommitCoordinator.html">OutputCommitCoordinator</a>
+    <a class="nav-link" href="OutputCommitCoordinator.html">OutputCommitCoordinator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/TaskLocation.html">TaskLocation</a>
+    <a class="nav-link" href="TaskLocation.html">TaskLocation</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/ExternalClusterManager.html">ExternalClusterManager</a>
+    <a class="nav-link" href="ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scheduler/LiveListenerBus.html">LiveListenerBus</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="LiveListenerBus.html">LiveListenerBus</a>
   </li>
 </ul>
   </li>
@@ -1069,48 +1069,48 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="TransportContext.html">TransportContext</a>
+    <a class="nav-link" href="../network/TransportContext.html">TransportContext</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="MessageHandler.html">MessageHandler</a>
+    <a class="nav-link" href="../network/MessageHandler.html">MessageHandler</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="TransportRequestHandler.html">TransportRequestHandler</a>
+    <a class="nav-link" href="../network/TransportRequestHandler.html">TransportRequestHandler</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="TransportConf.html">TransportConf</a>
+    <a class="nav-link" href="../network/TransportConf.html">TransportConf</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="SparkTransportConf.html">SparkTransportConf</a>
+    <a class="nav-link" href="../network/SparkTransportConf.html">SparkTransportConf</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="TransportClientFactory.html">TransportClientFactory</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network/TransportClientFactory.html">TransportClientFactory</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="TransportServer.html">TransportServer</a>
+    <a class="nav-link" href="../network/TransportServer.html">TransportServer</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="RpcHandler.html">RpcHandler</a>
+    <a class="nav-link" href="../network/RpcHandler.html">RpcHandler</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="StreamManager.html">StreamManager</a>
+    <a class="nav-link" href="../network/StreamManager.html">StreamManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="OneForOneStreamManager.html">OneForOneStreamManager</a>
+    <a class="nav-link" href="../network/OneForOneStreamManager.html">OneForOneStreamManager</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ManagedBuffer.html">ManagedBuffer</a>
+    <a class="nav-link" href="../network/ManagedBuffer.html">ManagedBuffer</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="RpcResponseCallback.html">RpcResponseCallback</a>
+    <a class="nav-link" href="../network/RpcResponseCallback.html">RpcResponseCallback</a>
   </li>
 </ul>
   </li>
@@ -1936,33 +1936,28 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li>Network System</li>
-    <li><a href="TransportClientFactory.html">TransportClientFactory</a></li>
+    <li><a href="index.html">Scheduler</a></li>
+    <li><a href="LiveListenerBus.html">LiveListenerBus</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/network/pages/TransportClientFactory.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/scheduler/pages/LiveListenerBus.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">TransportClientFactory</h1>
+<h1 class="page">LiveListenerBus</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>TransportClientFactory</strong> is&#8230;&#8203;FIXME</p>
+<p><strong>LiveListenerBus</strong> is an event bus to announce application-wide events in a Spark application. It asynchronously passes <a href="#events">listener events</a> to registered <a href="../spark-scheduler-SparkListener.html" class="page">SparkListener</a>s (based on <a href="../configuration-properties.html#spark.extraListeners" class="page">spark.extraListeners</a> configuration property).</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="createunmanagedclient-method"><a class="anchor" href="#createunmanagedclient-method"></a><a class="link" href="#createunmanagedclient-method"><a id="createUnmanagedClient"></a> <code>createUnmanagedClient</code> Method</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
+<div class="imageblock text-center">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">TransportClient createUnmanagedClient(String remoteHost, int remotePort)
-  throws IOException, InterruptedException</code></pre>
+<img src="_images/spark-sparklistener-event-senders.png" alt="spark sparklistener event senders">
 </div>
+<div class="title">Figure 1. LiveListenerBus, SparkListenerEvents, and Senders</div>
 </div>
 <div class="paragraph">
-<p><code>createUnmanagedClient</code>&#8230;&#8203;FIXME</p>
+<p>LiveListenerBus is a single-JVM <a href="spark-SparkListenerBus.adoc">SparkListenerBus</a> that uses <a href="#listenerThread">listenerThread to poll events</a>. Emitters are supposed to use <a href="#post"><code>post</code> method to post <code>SparkListenerEvent</code> events</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1971,7 +1966,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>createUnmanagedClient</code> is used when&#8230;&#8203;FIXME
+The event queue is <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/LinkedBlockingQueue.html">java.util.concurrent.LinkedBlockingQueue</a> with capacity of 10000 <code>SparkListenerEvent</code> events.
 </td>
 </tr>
 </table>
@@ -1979,51 +1974,195 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="createclient-internal-method"><a class="anchor" href="#createclient-internal-method"></a><a class="link" href="#createclient-internal-method"><a id="createClient"></a> <code>createClient</code> Internal Method</a></h2>
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
 <div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">TransportClient createClient(String remoteHost, int remotePort)
-  throws IOException, InterruptedException
-TransportClient createClient(InetSocketAddress address)
-  throws IOException, InterruptedException</code></pre>
-</div>
-</div>
 <div class="paragraph">
-<p><code>createClient</code>&#8230;&#8203;FIXME</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p><code>createClient</code> is used when:</p>
+<p>LiveListenerBus takes the following to be created:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>NettyBlockTransferService</code> is requested to <a href="../storage/NettyBlockTransferService.html#fetchBlocks" class="page">fetchBlocks</a> and <a href="../storage/NettyBlockTransferService.html#uploadBlock" class="page">uploadBlock</a></p>
-</li>
-<li>
-<p><code>NettyRpcEnv</code> is requested to <code>createClient</code> and <code>downloadClient</code></p>
-</li>
-<li>
-<p>TransportClientFactory is requested to <a href="#createUnmanagedClient">createUnmanagedClient</a>.</p>
-</li>
-<li>
-<p><code>ExternalShuffleClient</code> is requested to <a href="../storage/ExternalShuffleClient.html#fetchBlocks" class="page">fetchBlocks</a></p>
-</li>
-<li>
-<p>Spark on Mesos' <code>MesosExternalShuffleClient</code> is requested to <code>registerDriverWithShuffleService</code></p>
+<p><a id="conf"></a> <a href="../SparkConf.html" class="page">SparkConf</a></p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>LiveListenerBus is created (and <a href="#start">started</a>) when SparkContext is requested to <a href="../SparkContext.html#listenerBus" class="page">initialize</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="starting-livelistenerbus"><a class="anchor" href="#starting-livelistenerbus"></a><a class="link" href="#starting-livelistenerbus"><a id="start"></a> Starting LiveListenerBus</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">start(
+  sc: SparkContext): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>start</code> starts <a href="#listenerThread">processing events</a>.</p>
+</div>
+<div class="paragraph">
+<p>Internally, it saves the input <code>SparkContext</code> for later use and starts <a href="#listenerThread">listenerThread</a>. It makes sure that it only happens when LiveListenerBus has not been started before (i.e. <code>started</code> is disabled).</p>
+</div>
+<div class="paragraph">
+<p>If however LiveListenerBus has already been started, a <code>IllegalStateException</code> is thrown:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>[name] already started!</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="posting-sparklistenerevent-event"><a class="anchor" href="#posting-sparklistenerevent-event"></a><a class="link" href="#posting-sparklistenerevent-event"><a id="post"></a> Posting SparkListenerEvent Event</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">post(
+  event: SparkListenerEvent): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>post</code> puts the input <code>event</code> onto the internal <code>eventQueue</code> queue and releases the internal <code>eventLock</code> semaphore. If the event placement was not successful (and it could happen since it is tapped at 10000 events) <a href="#onDropEvent">onDropEvent</a> method is called.</p>
+</div>
+<div class="paragraph">
+<p>The event publishing is only possible when <code>stopped</code> flag has been enabled.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME Who&#8217;s enabling the <code>stopped</code> flag and when/why?
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>If LiveListenerBus has been stopped, the following ERROR appears in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>[name] has already stopped! Dropping event [event]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="event-dropped-callback"><a class="anchor" href="#event-dropped-callback"></a><a class="link" href="#event-dropped-callback"><a id="onDropEvent"></a> Event Dropped Callback</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">onDropEvent(
+  event: SparkListenerEvent): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>onDropEvent</code> is called when no further events can be added to the internal <code>eventQueue</code> queue (while <a href="#post">posting a SparkListenerEvent event</a>).</p>
+</div>
+<div class="paragraph">
+<p>It simply prints out the following ERROR message to the logs and ensures that it happens only once.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>ERROR Dropping SparkListenerEvent because no remaining room in event queue. This likely means one of the SparkListeners is too slow and cannot keep up with the rate at which tasks are being started by the scheduler.</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It uses the internal <code>logDroppedEvent</code> atomic variable to track the state.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stopping-livelistenerbus"><a class="anchor" href="#stopping-livelistenerbus"></a><a class="link" href="#stopping-livelistenerbus"><a id="stop"></a> Stopping LiveListenerBus</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">stop(): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>stop</code> releases the internal <code>eventLock</code> semaphore and waits until <a href="#listenerThread">listenerThread</a> dies. It can only happen after all events were posted (and polling <code>eventQueue</code> gives nothing).</p>
+</div>
+<div class="paragraph">
+<p>It checks that <code>started</code> flag is enabled (i.e. <code>true</code>) and throws a <code>IllegalStateException</code> otherwise.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>Attempted to stop [name] that has not yet started!</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>stopped</code> flag is enabled.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="listenerthread-for-event-polling"><a class="anchor" href="#listenerthread-for-event-polling"></a><a class="link" href="#listenerthread-for-event-polling"><a id="listenerThread"></a> listenerThread for Event Polling</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>LiveListenerBus uses <a href="../spark-SparkListenerBus.html" class="page">SparkListenerBus</a> single-daemon thread that ensures that the polling events from the event queue is only after <a href="#start">the listener was started</a> and only one event at a time.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME There is some logic around no events in the queue.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="registering-sparklistenerinterface-with-application-status-queue"><a class="anchor" href="#registering-sparklistenerinterface-with-application-status-queue"></a><a class="link" href="#registering-sparklistenerinterface-with-application-status-queue"><a id="addToStatusQueue"></a> Registering SparkListenerInterface with Application Status Queue</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">addToStatusQueue(
+  listener: SparkListenerInterface): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>addToStatusQueue simply <a href="#addToQueue">adds the SparkListenerInterface</a> to <a href="#EVENT_LOG_QUEUE">eventLog</a> queue.</p>
+</div>
+<div class="paragraph">
+<p>addToStatusQueue is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="registering-sparklistenerinterface-with-queue"><a class="anchor" href="#registering-sparklistenerinterface-with-queue"></a><a class="link" href="#registering-sparklistenerinterface-with-queue"><a id="addToQueue"></a> Registering SparkListenerInterface with Queue</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">addToQueue(
+  listener: SparkListenerInterface,
+  queue: String): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>addToQueue&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>addToQueue is used when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>

@@ -363,6 +363,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../scheduler/ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/LiveListenerBus.html">LiveListenerBus</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -852,9 +855,6 @@
     <a class="nav-link" href="../spark-SparkListener-StatsReportListener.html">StatsReportListener</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-scheduler-LiveListenerBus.html">LiveListenerBus</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -2062,7 +2062,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>listenerBus</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="listenerBus"></a> <a href="#../spark-scheduler-LiveListenerBus.adoc" class="page unresolved">LiveListenerBus</a> that is used exclusively when LocalSchedulerBackend is requested to <a href="#start">start</a></p>
+<p><a id="listenerBus"></a> <a href="../scheduler/LiveListenerBus.html" class="page">LiveListenerBus</a> that is used exclusively when LocalSchedulerBackend is requested to <a href="#start">start</a></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -2121,7 +2121,7 @@
 <p><code>start</code> then creates a <a href="spark-LocalEndpoint.html" class="page">LocalEndpoint</a> and requests the <code>RpcEnv</code> to <a href="../rpc/RpcEnv.html#setupEndpoint" class="page">register it</a> as <strong>LocalSchedulerBackendEndpoint</strong> RPC endpoint.</p>
 </div>
 <div class="paragraph">
-<p><code>start</code> requests the <a href="#listenerBus">LiveListenerBus</a> to <a href="#../spark-scheduler-LiveListenerBus.adoc#post" class="page unresolved">post</a> a <a href="#../spark-scheduler-SparkListener.adoc#SparkListenerExecutorAdded" class="page unresolved">SparkListenerExecutorAdded</a> event.</p>
+<p><code>start</code> requests the <a href="#listenerBus">LiveListenerBus</a> to <a href="../scheduler/LiveListenerBus.html#post" class="page">post</a> a <a href="#../spark-scheduler-SparkListener.adoc#SparkListenerExecutorAdded" class="page unresolved">SparkListenerExecutorAdded</a> event.</p>
 </div>
 <div class="paragraph">
 <p>In the end, <code>start</code> requests the <a href="#launcherBackend">LauncherBackend</a> to <a href="spark-LauncherBackend.html#setAppId" class="page">setAppId</a> as the <a href="#appId">appId</a> and <a href="spark-LauncherBackend.html#setState" class="page">setState</a> as <code>RUNNING</code>.</p>

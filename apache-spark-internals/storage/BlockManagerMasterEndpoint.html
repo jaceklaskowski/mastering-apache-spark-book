@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>BlockManagerMasterEndpoint :: The Internals Of Apache Spark</title>
+    <title>BlockManagerMasterEndpoint&#8201;&#8212;&#8201;BlockManagerMaster RPC Endpoint :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/storage/BlockManagerMasterEndpoint.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -362,6 +362,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../scheduler/ExternalClusterManager.html">ExternalClusterManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../scheduler/LiveListenerBus.html">LiveListenerBus</a>
   </li>
 </ul>
   </li>
@@ -852,9 +855,6 @@
     <a class="nav-link" href="../spark-SparkListener-StatsReportListener.html">StatsReportListener</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-scheduler-LiveListenerBus.html">LiveListenerBus</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1945,7 +1945,7 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">BlockManagerMasterEndpoint</h1>
+<h1 class="page">BlockManagerMasterEndpoint&#8201;&#8212;&#8201;BlockManagerMaster RPC Endpoint</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
@@ -1977,12 +1977,12 @@
 <p><a id="conf"></a> <a href="../SparkConf.html" class="page">SparkConf</a></p>
 </li>
 <li>
-<p><a id="listenerBus"></a> <a href="../spark-scheduler-LiveListenerBus.html" class="page">LiveListenerBus</a></p>
+<p><a id="listenerBus"></a> <a href="../scheduler/LiveListenerBus.html" class="page">LiveListenerBus</a></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>BlockManagerMasterEndpoint is created when SparkEnv utility is used to <a href="../core/SparkEnv.html#create" class="page">create a SparkEnv</a> for the driver and executors (and creates a <a href="BlockManagerMaster.html" class="page">BlockManagerMaster</a> for a <a href="BlockManager.html#master" class="page">BlockManager</a>).</p>
+<p>BlockManagerMasterEndpoint is created for the <a href="../core/SparkEnv.html#create" class="page">SparkEnv</a> on the driver (to create a <a href="BlockManagerMaster.html" class="page">BlockManagerMaster</a> for a <a href="BlockManager.html#master" class="page">BlockManager</a>).</p>
 </div>
 <div class="paragraph">
 <p>When created, BlockManagerMasterEndpoint prints out the following INFO message to the logs:</p>
@@ -1995,8 +1995,11 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="messages"><a class="anchor" href="#messages"></a><a class="link" href="#messages"><a id="messages"></a> Messages</a></h2>
+<h2 id="messages"><a class="anchor" href="#messages"></a><a class="link" href="#messages"><a id="messages"></a><a id="receiveAndReply"></a> Messages</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>As an <a href="../rpc/RpcEndpoint.html" class="page">RpcEndpoint</a>, BlockManagerMasterEndpoint handles RPC messages.</p>
+</div>
 <div class="sect2">
 <h3 id="blockmanagerheartbeat"><a class="anchor" href="#blockmanagerheartbeat"></a><a class="link" href="#blockmanagerheartbeat"><a id="BlockManagerHeartbeat"></a> BlockManagerHeartbeat</a></h3>
 <div class="listingblock">
@@ -2128,7 +2131,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>When received, BlockManagerMasterEndpoint&#8230;&#8203;FIXME</p>
+<p>When received, BlockManagerMasterEndpoint is requested to <a href="#blockStatus">blockStatus</a>.</p>
 </div>
 <div class="paragraph">
 <p>Posted when&#8230;&#8203;FIXME</p>
@@ -2451,7 +2454,7 @@ Registering a <code>BlockManager</code> can only happen once for an executor (id
 </ul>
 </div>
 <div class="paragraph">
-<p>In the end, register requests the <a href="#listenerBus">LiveListenerBus</a> to <a href="../spark-scheduler-LiveListenerBus.html#post" class="page">post</a> a <a href="../spark-scheduler-SparkListener.html#SparkListenerBlockManagerAdded" class="page">SparkListenerBlockManagerAdded</a> message.</p>
+<p>In the end, register requests the <a href="#listenerBus">LiveListenerBus</a> to <a href="../scheduler/LiveListenerBus.html#post" class="page">post</a> a <a href="../spark-scheduler-SparkListener.html#SparkListenerBlockManagerAdded" class="page">SparkListenerBlockManagerAdded</a> message.</p>
 </div>
 <div class="paragraph">
 <p>register is used when BlockManagerMasterEndpoint is requested to handle <a href="#RegisterBlockManager">RegisterBlockManager</a> message.</p>

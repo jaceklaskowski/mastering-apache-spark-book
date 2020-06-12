@@ -363,6 +363,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="scheduler/ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="scheduler/LiveListenerBus.html">LiveListenerBus</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -852,9 +855,6 @@
     <a class="nav-link" href="spark-SparkListener-StatsReportListener.html">StatsReportListener</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-LiveListenerBus.html">LiveListenerBus</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -2028,7 +2028,7 @@ You can use <a href="SparkContext.html#version" class="page">version</a> method 
 </table>
 </div>
 <div class="paragraph">
-<p>A <a href="spark-scheduler-LiveListenerBus.adoc#creating-instance">LiveListenerBus instance is created</a> (as <code>listenerBus</code>).</p>
+<p>A <a href="scheduler/LiveListenerBus.html#creating-instance" class="page">LiveListenerBus instance is created</a> (as <code>listenerBus</code>).</p>
 </div>
 <div id="sparkUser" class="paragraph">
 <p>The <a href="SparkContext.html#sparkUser" class="page">current user name</a> is computed.</p>
@@ -2165,13 +2165,13 @@ Read about compression codecs in <a href="core/BroadcastManager.html#compression
 <div class="sect2">
 <h3 id="creating-livelistenerbus"><a class="anchor" href="#creating-livelistenerbus"></a><a class="link" href="#creating-livelistenerbus"><a id="_listenerBus"></a> Creating LiveListenerBus</a></h3>
 <div class="paragraph">
-<p><code>SparkContext</code> creates a <a href="spark-scheduler-LiveListenerBus.adoc#creating-instance">LiveListenerBus</a>.</p>
+<p><code>SparkContext</code> creates a <a href="scheduler/LiveListenerBus.html#creating-instance" class="page">LiveListenerBus</a>.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="creating-live-appstatusstore"><a class="anchor" href="#creating-live-appstatusstore"></a><a class="link" href="#creating-live-appstatusstore"><a id="_statusStore"></a> Creating Live AppStatusStore</a></h3>
 <div class="paragraph">
-<p><code>SparkContext</code> requests <code>AppStatusStore</code> to create a <a href="spark-core-AppStatusStore.adoc#createLiveStore">live store</a> (i.e. the <code>AppStatusStore</code> for a live Spark application) and requests <a href="#listenerBus">LiveListenerBus</a> to add the <a href="spark-core-AppStatusStore.adoc#listener">AppStatusListener</a> to the <a href="spark-scheduler-LiveListenerBus.adoc#addToStatusQueue">status queue</a>.</p>
+<p><code>SparkContext</code> requests <code>AppStatusStore</code> to create a <a href="spark-core-AppStatusStore.adoc#createLiveStore">live store</a> (i.e. the <code>AppStatusStore</code> for a live Spark application) and requests <a href="#listenerBus">LiveListenerBus</a> to add the <a href="spark-core-AppStatusStore.adoc#listener">AppStatusListener</a> to the <a href="scheduler/LiveListenerBus.html#addToStatusQueue" class="page">status queue</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2433,7 +2433,7 @@ The unique identifier of a Spark application is used to initialize <a href="spar
 <p><code>SparkContext</code> requests the <code>MetricsSystem</code> for a <a href="spark-metrics-MetricsSystem.adoc#getServletHandlers">JSON servlet handler</a> and requests the <a href="#_ui">SparkUI</a> to <a href="spark-webui-WebUI.adoc#attachHandler">attach it</a>.</p>
 </div>
 <div id="_eventLogger" class="paragraph">
-<p><code>_eventLogger</code> is created and started if <code>isEventLogEnabled</code>. It uses <a href="spark-history-server/EventLoggingListener.html" class="page">EventLoggingListener</a> that gets registered to <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a>.</p>
+<p><code>_eventLogger</code> is created and started if <code>isEventLogEnabled</code>. It uses <a href="spark-history-server/EventLoggingListener.html" class="page">EventLoggingListener</a> that gets registered to <a href="scheduler/LiveListenerBus.html" class="page">LiveListenerBus</a>.</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -2482,10 +2482,10 @@ FIXME It&#8217;d be quite useful to have all the properties with their default v
 <p>It <a href="#setupAndStartListenerBus">registers user-defined listeners and starts <code>SparkListenerEvent</code> event delivery to the listeners</a>.</p>
 </div>
 <div id="postEnvironmentUpdate" class="paragraph">
-<p><code>postEnvironmentUpdate</code> is called that posts <a href="spark-scheduler-SparkListener.adoc#SparkListenerEnvironmentUpdate">SparkListenerEnvironmentUpdate</a> message on <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a> with information about Task Scheduler&#8217;s scheduling mode, added jar and file paths, and other environmental details. They are displayed in web UI&#8217;s <a href="spark-webui-environment.adoc">Environment tab</a>.</p>
+<p><code>postEnvironmentUpdate</code> is called that posts <a href="spark-scheduler-SparkListener.adoc#SparkListenerEnvironmentUpdate">SparkListenerEnvironmentUpdate</a> message on <a href="scheduler/LiveListenerBus.html" class="page">LiveListenerBus</a> with information about Task Scheduler&#8217;s scheduling mode, added jar and file paths, and other environmental details. They are displayed in web UI&#8217;s <a href="spark-webui-environment.adoc">Environment tab</a>.</p>
 </div>
 <div id="postApplicationStart" class="paragraph">
-<p><a href="spark-scheduler-SparkListener.adoc#SparkListenerApplicationStart">SparkListenerApplicationStart</a> message is posted to <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a> (using the internal <code>postApplicationStart</code> method).</p>
+<p><a href="spark-scheduler-SparkListener.adoc#SparkListenerApplicationStart">SparkListenerApplicationStart</a> message is posted to <a href="scheduler/LiveListenerBus.html" class="page">LiveListenerBus</a> (using the internal <code>postApplicationStart</code> method).</p>
 </div>
 <div id="postStartHook" class="paragraph">
 <p><code>TaskScheduler</code> <a href="scheduler/TaskScheduler.html#postStartHook" class="page">is notified that <code>SparkContext</code> is almost fully initialized</a>.</p>
@@ -2647,7 +2647,7 @@ FIXME Where are <code>nextShuffleId</code> and <code>nextRddId</code> used?
 </div>
 </div>
 <div class="paragraph">
-<p><code>setupAndStartListenerBus</code> is an internal method that reads <a href="spark-scheduler-LiveListenerBus.adoc#spark_extraListeners">spark.extraListeners</a> setting from the current <a href="SparkConf.html" class="page">SparkConf</a> to create and register <a href="spark-scheduler-SparkListener.adoc#SparkListenerInterface">SparkListenerInterface</a> listeners.</p>
+<p><code>setupAndStartListenerBus</code> is an internal method that reads <a href="configuration-properties.html#spark.extraListeners" class="page">spark.extraListeners</a> configuration property from the current <a href="SparkConf.html" class="page">SparkConf</a> to create and register <a href="spark-scheduler-SparkListener.adoc#SparkListenerInterface">SparkListenerInterface</a> listeners.</p>
 </div>
 <div class="paragraph">
 <p>It expects that the class name represents a <code>SparkListenerInterface</code> listener with one of the following constructors (in this order):</p>
@@ -2663,7 +2663,7 @@ FIXME Where are <code>nextShuffleId</code> and <code>nextRddId</code> used?
 </ul>
 </div>
 <div class="paragraph">
-<p><code>setupAndStartListenerBus</code> <a href="spark-scheduler-LiveListenerBus.adoc#ListenerBus-addListener">registers every listener class</a>.</p>
+<p><code>setupAndStartListenerBus</code> <a href="scheduler/LiveListenerBus.html#ListenerBus-addListener" class="page">registers every listener class</a>.</p>
 </div>
 <div class="paragraph">
 <p>You should see the following INFO message in the logs:</p>
@@ -2674,10 +2674,10 @@ FIXME Where are <code>nextShuffleId</code> and <code>nextRddId</code> used?
 </div>
 </div>
 <div class="paragraph">
-<p>It <a href="spark-scheduler-LiveListenerBus.adoc#start">starts LiveListenerBus</a> and records it in the internal <code>_listenerBusStarted</code>.</p>
+<p>It <a href="scheduler/LiveListenerBus.html#start" class="page">starts LiveListenerBus</a> and records it in the internal <code>_listenerBusStarted</code>.</p>
 </div>
 <div class="paragraph">
-<p>When no single-<code>SparkConf</code> or zero-argument constructor could be found for a class name in <a href="spark-scheduler-LiveListenerBus.adoc#spark_extraListeners">spark.extraListeners</a> setting, a <code>SparkException</code> is thrown with the message:</p>
+<p>When no single-<code>SparkConf</code> or zero-argument constructor could be found for a class name in <a href="configuration-properties.html#spark.extraListeners" class="page">spark.extraListeners</a> configuration property, a <code>SparkException</code> is thrown with the message:</p>
 </div>
 <div class="listingblock">
 <div class="content">

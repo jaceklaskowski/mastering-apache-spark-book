@@ -363,6 +363,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="scheduler/ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="scheduler/LiveListenerBus.html">LiveListenerBus</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -852,9 +855,6 @@
     <a class="nav-link" href="spark-SparkListener-StatsReportListener.html">StatsReportListener</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-LiveListenerBus.html">LiveListenerBus</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -1954,7 +1954,7 @@
 <p>It intercepts Spark events using the internal <a href="spark-SparkListener-ExecutorAllocationListener.adoc">ExecutorAllocationListener</a> that keeps track of the workload (changing the <a href="#internal-registries">internal registries</a> that the allocation manager uses for executors management).</p>
 </div>
 <div class="paragraph">
-<p>It uses <a href="spark-service-ExecutorAllocationClient.adoc">ExecutorAllocationClient</a>, <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a>, and <a href="SparkConf.html" class="page">SparkConf</a> (that are all passed in when <code>ExecutorAllocationManager</code> is created).</p>
+<p>It uses <a href="spark-service-ExecutorAllocationClient.adoc">ExecutorAllocationClient</a>, <a href="scheduler/LiveListenerBus.html" class="page">LiveListenerBus</a>, and <a href="SparkConf.html" class="page">SparkConf</a> (that are all passed in when <code>ExecutorAllocationManager</code> is created).</p>
 </div>
 <div class="paragraph">
 <p><code>ExecutorAllocationManager</code> is created when <a href="spark-SparkContext-creating-instance-internals.adoc#ExecutorAllocationManager"><code>SparkContext</code> is created and dynamic allocation of executors is enabled</a>.</p>
@@ -2123,7 +2123,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p><code>start</code> registers <a href="spark-SparkListener-ExecutorAllocationListener.adoc">ExecutorAllocationListener</a> (with <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a>) to monitor scheduler events and make decisions when to add and remove executors. It then immediately starts <a href="#spark-dynamic-executor-allocation">spark-dynamic-executor-allocation allocation executor</a> that is responsible for the <a href="#schedule">scheduling</a> every <code>100</code> milliseconds.</p>
+<p><code>start</code> registers <a href="spark-SparkListener-ExecutorAllocationListener.adoc">ExecutorAllocationListener</a> (with <a href="scheduler/LiveListenerBus.html" class="page">LiveListenerBus</a>) to monitor scheduler events and make decisions when to add and remove executors. It then immediately starts <a href="#spark-dynamic-executor-allocation">spark-dynamic-executor-allocation allocation executor</a> that is responsible for the <a href="#schedule">scheduling</a> every <code>100</code> milliseconds.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2245,7 +2245,7 @@ FIXME
 <p><a id="client"></a> <a href="spark-service-ExecutorAllocationClient.adoc">ExecutorAllocationClient</a></p>
 </li>
 <li>
-<p><a id="listenerBus"></a> <a href="spark-scheduler-LiveListenerBus.adoc">LiveListenerBus</a></p>
+<p><a id="listenerBus"></a> <a href="scheduler/LiveListenerBus.html" class="page">LiveListenerBus</a></p>
 </li>
 <li>
 <p><a id="conf"></a> <a href="SparkConf.html" class="page">SparkConf</a></p>
