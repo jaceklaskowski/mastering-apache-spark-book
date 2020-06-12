@@ -441,14 +441,14 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="BlockManagerInfo.html">BlockManagerInfo</a>
   </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="BlockManagerMaster.html">BlockManagerMaster</a>
-<ul class="nav-list">
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
   </li>
 </ul>
   </li>
@@ -456,10 +456,13 @@
     <a class="nav-link" href="BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="DiskStore.html">DiskStore</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="DiskBlockManager.html">DiskBlockManager</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="DiskStore.html">DiskStore</a>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
@@ -481,9 +484,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
@@ -2133,10 +2133,10 @@ It is computed specially in Spark on YARN.
 <h2 id="blockmanagerendpoint-rpc-endpoint"><a class="anchor" href="#blockmanagerendpoint-rpc-endpoint"></a><a class="link" href="#blockmanagerendpoint-rpc-endpoint"><a id="slaveEndpoint"></a> BlockManagerEndpoint RPC Endpoint</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>While being <a href="#creating-instance">created</a>, BlockManager requests the <a href="#rpcEnv">RpcEnv</a> to <a href="../rpc/RpcEnv.html#setupEndpoint" class="page">register</a> a <a href="BlockManagerSlaveEndpoint.html" class="page">BlockManagerMaster RPC Endpoint</a> under the name <strong>BlockManagerEndpoint[ID]</strong>.</p>
+<p>BlockManager requests the <a href="#rpcEnv">RpcEnv</a> to <a href="../rpc/RpcEnv.html#setupEndpoint" class="page">register</a> a <a href="BlockManagerSlaveEndpoint.html" class="page">BlockManagerSlaveEndpoint</a> under the name <strong>BlockManagerEndpoint[ID]</strong>.</p>
 </div>
 <div class="paragraph">
-<p>The RPC endpoint is used when BlockManager is requested to <a href="#initialize">initialize</a> and <a href="#reregister">reregister</a>.</p>
+<p>The RPC endpoint is used when BlockManager is requested to <a href="#initialize">initialize</a> and <a href="#reregister">reregister</a> (to register the BlockManager on an executor with the <a href="#master">BlockManagerMaster</a> on the driver).</p>
 </div>
 <div class="paragraph">
 <p>The endpoint is stopped (by requesting the <a href="#rpcEnv">RpcEnv</a> to <a href="../rpc/RpcEnv.html#stop" class="page">stop the reference</a>) when BlockManager is requested to <a href="#stop">stop</a>.</p>
@@ -3001,7 +3001,7 @@ It is used by <a href="BlockManagerSlaveEndpoint.html#RemoveRdd" class="page"><c
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>DEBUG Removing broadcast [broadcastId]</code></pre>
+<pre class="highlightjs highlight"><code>Removing broadcast [broadcastId]</code></pre>
 </div>
 </div>
 <div class="paragraph">

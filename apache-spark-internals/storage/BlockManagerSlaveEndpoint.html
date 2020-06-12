@@ -441,14 +441,14 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="BlockManagerInfo.html">BlockManagerInfo</a>
   </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="BlockManagerMaster.html">BlockManagerMaster</a>
-<ul class="nav-list">
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
   </li>
 </ul>
   </li>
@@ -456,10 +456,13 @@
     <a class="nav-link" href="BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="DiskStore.html">DiskStore</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="DiskBlockManager.html">DiskBlockManager</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="DiskStore.html">DiskStore</a>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
@@ -481,9 +484,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
@@ -1937,6 +1937,7 @@
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
     <li>Storage System</li>
+    <li><a href="BlockManager.html">BlockManager</a></li>
     <li><a href="BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a></li>
   </ul>
 </nav>
@@ -1948,10 +1949,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>BlockManagerSlaveEndpoint</strong> is a <a href="../rpc/RpcEndpoint.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> for remote communication between executors and the driver.</p>
-</div>
-<div class="paragraph">
-<p>While a <a href="#creating-instance">BlockManager is being created</a> so is the BlockManagerSlaveEndpoint RPC endpoint with the name <strong>BlockManagerEndpoint[randomId]</strong> to handle <a href="#messages">RPC messages</a>.</p>
+<p><strong>BlockManagerSlaveEndpoint</strong> is a <a href="../rpc/RpcEndpoint.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> for <a href="BlockManager.html#slaveEndpoint" class="page">BlockManager</a>.</p>
 </div>
 </div>
 </div>
@@ -1967,7 +1965,7 @@
 <p><a id="rpcEnv"></a> <a href="../rpc/RpcEnv.html" class="page">RpcEnv</a></p>
 </li>
 <li>
-<p><a id="blockManager"></a> <a href="BlockManager.html" class="page">BlockManager</a></p>
+<p><a id="blockManager"></a> Parent <a href="BlockManager.html" class="page">BlockManager</a></p>
 </li>
 <li>
 <p><a id="mapOutputTracker"></a> <a href="../scheduler/MapOutputTracker.html" class="page">MapOutputTracker</a></p>
@@ -1975,7 +1973,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>BlockManagerSlaveEndpoint is created for <a href="BlockManager.html#slaveEndpoint" class="page">BlockManager</a>.</p>
+<p>BlockManagerSlaveEndpoint is created for <a href="BlockManager.html#slaveEndpoint" class="page">BlockManager</a> (and registered under the name <strong>BlockManagerEndpoint[ID]</strong>).</p>
 </div>
 </div>
 </div>
@@ -1983,7 +1981,39 @@
 <h2 id="messages"><a class="anchor" href="#messages"></a><a class="link" href="#messages"><a id="messages"></a> Messages</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="removeblock-message"><a class="anchor" href="#removeblock-message"></a><a class="link" href="#removeblock-message"><a id="RemoveBlock"></a> RemoveBlock Message</a></h3>
+<h3 id="getblockstatus"><a class="anchor" href="#getblockstatus"></a><a class="link" href="#getblockstatus"><a id="GetBlockStatus"></a> GetBlockStatus</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetBlockStatus(
+  blockId: BlockId,
+  askSlaves: Boolean = true)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerSlaveEndpoint requests the <a href="#blockManager">BlockManager</a> for the <a href="BlockManager.html#getStatus" class="page">status of a given block</a> (by <a href="BlockId.html" class="page">BlockId</a>) and sends it back to a sender.</p>
+</div>
+<div class="paragraph">
+<p>Posted when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getmatchingblockids"><a class="anchor" href="#getmatchingblockids"></a><a class="link" href="#getmatchingblockids"><a id="GetMatchingBlockIds"></a> GetMatchingBlockIds</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetMatchingBlockIds(
+  filter: BlockId =&gt; Boolean,
+  askSlaves: Boolean = true)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerSlaveEndpoint requests the <a href="#blockManager">BlockManager</a> to <a href="BlockManager.html#getMatchingBlockIds" class="page">find IDs of existing blocks for a given filter</a> and sends them back to a sender.</p>
+</div>
+<div class="paragraph">
+<p>Posted when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removeblock"><a class="anchor" href="#removeblock"></a><a class="link" href="#removeblock"><a id="RemoveBlock"></a> RemoveBlock</a></h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RemoveBlock(
@@ -1991,34 +2021,22 @@
 </div>
 </div>
 <div class="paragraph">
-<p>When a <code>RemoveBlock</code> message comes in, you should see the following DEBUG message in the logs:</p>
+<p>When received, BlockManagerSlaveEndpoint prints out the following DEBUG message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>removing block [blockId]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">removing block [blockId]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>It then calls <a href="#removeBlock">BlockManager to remove <code>blockId</code> block</a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Handling <code>RemoveBlock</code> messages happens on a separate thread. See <a href="#asyncThreadPool">BlockManagerSlaveEndpoint Thread Pool</a>.
-</td>
-</tr>
-</table>
+<p>BlockManagerSlaveEndpoint then <a href="#removeBlock">BlockManager to remove <code>blockId</code> block</a>.</p>
 </div>
 <div class="paragraph">
 <p>When the computation is successful, you should see the following DEBUG in the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>DEBUG BlockManagerSlaveEndpoint: Done removing block [blockId], response is [response]</code></pre>
+<pre class="highlightjs highlight"><code>Done removing block [blockId], response is [response]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2026,7 +2044,7 @@ Handling <code>RemoveBlock</code> messages happens on a separate thread. See <a 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>DEBUG BlockManagerSlaveEndpoint: Sent response: true to [senderAddress]</code></pre>
+<pre class="highlightjs highlight"><code>Sent response: true to [senderAddress]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2034,26 +2052,69 @@ Handling <code>RemoveBlock</code> messages happens on a separate thread. See <a 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>ERROR BlockManagerSlaveEndpoint: Error in removing block [blockId]</code></pre>
+<pre class="highlightjs highlight"><code>Error in removing block [blockId]</code></pre>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="removerdd-message"><a class="anchor" href="#removerdd-message"></a><a class="link" href="#removerdd-message"><a id="RemoveRdd"></a> RemoveRdd Message</a></h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="removebroadcast"><a class="anchor" href="#removebroadcast"></a><a class="link" href="#removebroadcast"><a id="RemoveBroadcast"></a> RemoveBroadcast</a></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RemoveRdd(rddId: Int)</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RemoveBroadcast(
+  broadcastId: Long,
+  removeFromDriver: Boolean = true)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>When a <code>RemoveRdd</code> message comes in, you should see the following DEBUG message in the logs:</p>
+<p>When received, BlockManagerSlaveEndpoint prints out the following DEBUG message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>DEBUG BlockManagerSlaveEndpoint: removing RDD [rddId]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">removing broadcast [broadcastId]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It then calls <a href="#removeBroadcast">BlockManager to remove the <code>broadcastId</code> broadcast</a>.</p>
+</div>
+<div class="paragraph">
+<p>When the computation is successful, you should see the following DEBUG in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>Done removing broadcast [broadcastId], response is [response]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And the result is sent back. You should see the following DEBUG in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>Sent response: [response] to [senderAddress]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In case of failure, you should see the following ERROR in the logs and the stack trace.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>Error in removing broadcast [broadcastId]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removerdd"><a class="anchor" href="#removerdd"></a><a class="link" href="#removerdd"><a id="RemoveRdd"></a> RemoveRdd</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RemoveRdd(
+  rddId: Int)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When received, BlockManagerSlaveEndpoint prints out the following DEBUG message to the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>removing RDD [rddId]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2076,7 +2137,7 @@ Handling <code>RemoveRdd</code> messages happens on a separate thread. See <a hr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>DEBUG BlockManagerSlaveEndpoint: Done removing RDD [rddId], response is [response]</code></pre>
+<pre class="highlightjs highlight"><code>Done removing RDD [rddId], response is [response]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2084,7 +2145,7 @@ Handling <code>RemoveRdd</code> messages happens on a separate thread. See <a hr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>DEBUG BlockManagerSlaveEndpoint: Sent response: [#blocks] to [senderAddress]</code></pre>
+<pre class="highlightjs highlight"><code>Sent response: [#blocks] to [senderAddress]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2092,25 +2153,24 @@ Handling <code>RemoveRdd</code> messages happens on a separate thread. See <a hr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>ERROR BlockManagerSlaveEndpoint: Error in removing RDD [rddId]</code></pre>
+<pre class="highlightjs highlight"><code>Error in removing RDD [rddId]</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="removeshuffle-message"><a class="anchor" href="#removeshuffle-message"></a><a class="link" href="#removeshuffle-message"><a id="RemoveShuffle"></a> RemoveShuffle Message</a></h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="removeshuffle"><a class="anchor" href="#removeshuffle"></a><a class="link" href="#removeshuffle"><a id="RemoveShuffle"></a> RemoveShuffle</a></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RemoveShuffle(shuffleId: Int)</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RemoveShuffle(
+  shuffleId: Int)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>When a <code>RemoveShuffle</code> message comes in, you should see the following DEBUG message in the logs:</p>
+<p>When received, BlockManagerSlaveEndpoint prints out the following DEBUG message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>DEBUG BlockManagerSlaveEndpoint: removing shuffle [shuffleId]</code></pre>
+<pre class="highlightjs highlight"><code>removing shuffle [shuffleId]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2136,7 +2196,7 @@ Handling <code>RemoveShuffle</code> messages happens on a separate thread. See <
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>DEBUG BlockManagerSlaveEndpoint: Done removing shuffle [shuffleId], response is [response]</code></pre>
+<pre class="highlightjs highlight"><code>Done removing shuffle [shuffleId], response is [response]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2144,7 +2204,7 @@ Handling <code>RemoveShuffle</code> messages happens on a separate thread. See <
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>DEBUG BlockManagerSlaveEndpoint: Sent response: [response] to [senderAddress]</code></pre>
+<pre class="highlightjs highlight"><code>Sent response: [response] to [senderAddress]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2152,134 +2212,98 @@ Handling <code>RemoveShuffle</code> messages happens on a separate thread. See <
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>ERROR BlockManagerSlaveEndpoint: Error in removing shuffle [shuffleId]</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>RemoveShuffle</code> is posted when <a href="BlockManagerMaster.html#removeShuffle" class="page">BlockManagerMaster</a> and <a href="BlockManagerMasterEndpoint.html#removeShuffle" class="page">BlockManagerMasterEndpoint</a> remove all blocks for a shuffle.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="removebroadcast-message"><a class="anchor" href="#removebroadcast-message"></a><a class="link" href="#removebroadcast-message"><a id="RemoveBroadcast"></a> RemoveBroadcast Message</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RemoveBroadcast(broadcastId: Long)</code></pre>
+<pre class="highlightjs highlight"><code>Error in removing shuffle [shuffleId]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>When a <code>RemoveBroadcast</code> message comes in, you should see the following DEBUG message in the logs:</p>
+<p>Posted when <a href="BlockManagerMaster.html#removeShuffle" class="page">BlockManagerMaster</a> and <a href="BlockManagerMasterEndpoint.html#removeShuffle" class="page">BlockManagerMasterEndpoint</a> are requested to remove all blocks of a shuffle.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="replicateblock"><a class="anchor" href="#replicateblock"></a><a class="link" href="#replicateblock"><a id="ReplicateBlock"></a> ReplicateBlock</a></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>DEBUG BlockManagerSlaveEndpoint: removing broadcast [broadcastId]</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">ReplicateBlock(
+  blockId: BlockId,
+  replicas: Seq[BlockManagerId],
+  maxReplicas: Int)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>It then calls <a href="#removeBroadcast">BlockManager to remove the <code>broadcastId</code> broadcast</a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Handling <code>RemoveBroadcast</code> messages happens on a separate thread. See <a href="#asyncThreadPool">BlockManagerSlaveEndpoint Thread Pool</a>.
-</td>
-</tr>
-</table>
+<p>When received, BlockManagerSlaveEndpoint&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p>When the computation is successful, you should see the following DEBUG in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>DEBUG BlockManagerSlaveEndpoint: Done removing broadcast [broadcastId], response is [response]</code></pre>
+<p>Posted when&#8230;&#8203;FIXME</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="triggerthreaddump"><a class="anchor" href="#triggerthreaddump"></a><a class="link" href="#triggerthreaddump"><a id="TriggerThreadDump"></a> TriggerThreadDump</a></h3>
 <div class="paragraph">
-<p>And the result is sent back. You should see the following DEBUG in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>DEBUG BlockManagerSlaveEndpoint: Sent response: [response] to [senderAddress]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In case of failure, you should see the following ERROR in the logs and the stack trace.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>ERROR BlockManagerSlaveEndpoint: Error in removing broadcast [broadcastId]</code></pre>
+<p>When received, BlockManagerSlaveEndpoint is requested for the thread info for all live threads with stack trace and synchronization information.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="getblockstatus-message"><a class="anchor" href="#getblockstatus-message"></a><a class="link" href="#getblockstatus-message"><a id="GetBlockStatus"></a> GetBlockStatus Message</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetBlockStatus(blockId: BlockId)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When a <code>GetBlockStatus</code> message comes in, it responds with the result of <a href="#getStatus">calling BlockManager about the status of <code>blockId</code></a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="getmatchingblockids-message"><a class="anchor" href="#getmatchingblockids-message"></a><a class="link" href="#getmatchingblockids-message"><a id="GetMatchingBlockIds"></a> <code>GetMatchingBlockIds</code> Message</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetMatchingBlockIds(filter: BlockId =&gt; Boolean, askSlaves: Boolean = true)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When received a <code>GetMatchingBlockIds</code>, BlockManagerSlaveEndpoint requests <a href="#blockManager">BlockManager</a> to <a href="BlockManager.html#getMatchingBlockIds" class="page">find IDs of existing blocks for a given filter</a> and sends them back.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="triggerthreaddump-message"><a class="anchor" href="#triggerthreaddump-message"></a><a class="link" href="#triggerthreaddump-message"><a id="TriggerThreadDump"></a> TriggerThreadDump Message</a></h2>
+<h2 id="block-manager-slave-async-thread-pool-thread-pool"><a class="anchor" href="#block-manager-slave-async-thread-pool-thread-pool"></a><a class="link" href="#block-manager-slave-async-thread-pool-thread-pool"><a id="asyncThreadPool"></a><a id="asyncExecutionContext"></a> block-manager-slave-async-thread-pool Thread Pool</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When a <code>TriggerThreadDump</code> message comes in, a thread dump is generated and sent back.</p>
+<p>BlockManagerSlaveEndpoint creates a thread pool of maximum 100 daemon threads with <strong>block-manager-slave-async-thread-pool</strong> thread prefix (using <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ThreadPoolExecutor.html">java.util.concurrent.ThreadPoolExecutor</a>).</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="blockmanagerslaveendpoint-thread-pool"><a class="anchor" href="#blockmanagerslaveendpoint-thread-pool"></a><a class="link" href="#blockmanagerslaveendpoint-thread-pool"><a id="asyncThreadPool"></a> BlockManagerSlaveEndpoint Thread Pool</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>BlockManagerSlaveEndpoint uses <strong>block-manager-slave-async-thread-pool</strong> daemon thread pool (<code>asyncThreadPool</code>) for some messages to talk to other Spark services, i.e. <code>BlockManager</code>, <a href="../scheduler/MapOutputTracker.html" class="page">MapOutputTracker</a>, <a href="../shuffle/ShuffleManager.html" class="page">ShuffleManager</a> in a non-blocking, asynchronous way.</p>
+<p>BlockManagerSlaveEndpoint uses the thread pool (as a Scala implicit value) when requested to <a href="#doAsync">doAsync</a> to communicate in a non-blocking, asynchronous way.</p>
+</div>
+<div class="paragraph">
+<p>The thread pool is shut down when BlockManagerSlaveEndpoint is requested to <a href="#onStop">stop</a>.</p>
 </div>
 <div class="paragraph">
 <p>The reason for the async thread pool is that the block-related operations might take quite some time and to release the main RPC thread other threads are spawned to talk to the external services and pass responses on to the clients.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-BlockManagerSlaveEndpoint uses Java&#8217;s <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ThreadPoolExecutor.html">java.util.concurrent.ThreadPoolExecutor</a>.
-</td>
-</tr>
-</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="doasync-internal-method"><a class="anchor" href="#doasync-internal-method"></a><a class="link" href="#doasync-internal-method"><a id="doAsync"></a> doAsync Internal Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">doAsync[T](
+  actionMessage: String,
+  context: RpcCallContext)(
+  body: =&gt; T)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>doAsync creates a Scala Future to execute the following asynchronously (i.e. on a separate thread from the <a href="#asyncThreadPool">Thread Pool</a>):</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Prints out the given <code>actionMessage</code> as a DEBUG message to the logs</p>
+</li>
+<li>
+<p>Executes the given <code>body</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>When completed successfully, doAsync prints out the following DEBUG messages to the logs and requests the given RpcCallContext to reply the response to the sender.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Done [actionMessage], response is [response]
+Sent response: [response] to [senderAddress]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In case of a failure, doAsync prints out the following ERROR message to the logs and requests the given RpcCallContext to send the failure to the sender.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Error in [actionMessage]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>doAsync is used when BlockManagerSlaveEndpoint is requested to handle <a href="#RemoveBlock">RemoveBlock</a>, <a href="#RemoveRdd">RemoveRdd</a>, <a href="#RemoveShuffle">RemoveShuffle</a> and <a href="#RemoveBroadcast">RemoveBroadcast</a> messages.</p>
 </div>
 </div>
 </div>

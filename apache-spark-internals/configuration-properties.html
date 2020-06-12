@@ -441,14 +441,14 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="storage/BlockManagerInfo.html">BlockManagerInfo</a>
   </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="storage/BlockManagerMaster.html">BlockManagerMaster</a>
-<ul class="nav-list">
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="storage/BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="storage/BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
   </li>
 </ul>
   </li>
@@ -456,10 +456,13 @@
     <a class="nav-link" href="storage/BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="storage/DiskStore.html">DiskStore</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="storage/DiskBlockManager.html">DiskBlockManager</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="storage/DiskStore.html">DiskStore</a>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="storage/BlockDataManager.html">BlockDataManager</a>
@@ -481,9 +484,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="storage/spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="storage/BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="storage/DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
@@ -3091,7 +3091,7 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 <p>The time interval to use before checking for speculative tasks in <a href="speculative-execution-of-tasks.html" class="page">Speculative Execution of Tasks</a>.</p>
 </div>
 <div class="paragraph">
-<p>Default: 100ms</p>
+<p>Default: <code>100ms</code></p>
 </div>
 </div>
 </div>
@@ -3099,7 +3099,7 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 <h2 id="spark-speculation-multiplier"><a class="anchor" href="#spark-speculation-multiplier"></a><a class="link" href="#spark-speculation-multiplier"><a id="spark.speculation.multiplier"></a> spark.speculation.multiplier</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Default: 1.5`</p>
+<p>Default: <code>1.5</code></p>
 </div>
 </div>
 </div>
@@ -3110,7 +3110,7 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 <p>The percentage of tasks that has not finished yet at which to start speculation in <a href="speculative-execution-of-tasks.html" class="page">Speculative Execution of Tasks</a>.</p>
 </div>
 <div class="paragraph">
-<p>Default: 0.75</p>
+<p>Default: <code>0.75</code></p>
 </div>
 </div>
 </div>
