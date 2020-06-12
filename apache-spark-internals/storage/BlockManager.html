@@ -1945,22 +1945,16 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>BlockManager</strong> is a block storage of blocks of data identified by a block ID.</p>
+<p><strong>BlockManager</strong> is a storage of chunks of data (<em>blocks</em>) that are identified by a block ID.</p>
 </div>
 <div class="paragraph">
-<p>BlockManager runs on every node in a Spark application, i.e. the <a href="../spark-driver.html" class="page">driver</a> and <a href="../executor/Executor.html" class="page">executors</a>.</p>
-</div>
-<div id="BlockDataManager" class="paragraph">
-<p>BlockManager is a <a href="BlockDataManager.html" class="page">BlockDataManager</a> and manages the storage for blocks that with cached RDD partitions, intermediate shuffle outputs, broadcasts, etc.</p>
+<p>BlockManager runs on the <a href="../spark-driver.html" class="page">driver</a> and <a href="../executor/Executor.html" class="page">executors</a>.</p>
 </div>
 <div class="paragraph">
 <p>BlockManager is a local cache.</p>
 </div>
 <div class="paragraph">
 <p>BlockManager provides interface for uploading and fetching blocks both locally and remotely using various stores, i.e. <a href="#stores">memory, disk, and off-heap</a>.</p>
-</div>
-<div class="paragraph">
-<p>BlockManager is <a href="#creating-instance">created</a> exclusively when <code>SparkEnv</code> is <a href="../core/SparkEnv.html#create-BlockManager" class="page">created</a> (for the driver and executors). BlockManager gets a <a href="#diskBlockManager">DiskBlockManager</a>, a <a href="#blockInfoManager">BlockInfoManager</a>, a <a href="#memoryStore">MemoryStore</a> and a <a href="#diskStore">DiskStore</a> (and wires them up together).</p>
 </div>
 <div id="futureExecutionContext" class="paragraph">
 <p>BlockManager uses a Scala <a href="https://www.scala-lang.org/api/current/scala/concurrent/ExecutionContextExecutorService.html">ExecutionContextExecutorService</a> to execute <strong>FIXME</strong> asynchronously (on a thread pool with <strong>block-manager-future</strong> prefix and maximum of 128 threads).</p>
@@ -1996,9 +1990,6 @@ Use <a href="../tools/spark-submit.html" class="page">spark-submit</a>'s command
 </table>
 </div>
 <div class="paragraph">
-<p>A <a href="#creating-instance">BlockManager is created</a> when a <a href="../core/SparkEnv.html#create" class="page">Spark application starts</a> and must be <a href="#initialize">initialized</a> before it is fully operable.</p>
-</div>
-<div class="paragraph">
 <p>When <a href="#externalShuffleServiceEnabled">External Shuffle Service is enabled</a>, BlockManager uses <a href="ExternalShuffleClient.html" class="page">ExternalShuffleClient</a> to read other executors' shuffle files.</p>
 </div>
 </div>
@@ -2012,10 +2003,10 @@ Use <a href="../tools/spark-submit.html" class="page">spark-submit</a>'s command
 <div class="ulist">
 <ul>
 <li>
-<p><a id="executorId"></a> Executor ID</p>
+<p><a href="#executorId">Executor ID</a></p>
 </li>
 <li>
-<p><a id="rpcEnv"></a> <a href="../index.html" class="page">RpcEnv</a></p>
+<p><a id="rpcEnv"></a> <a href="../rpc/RpcEnv.html" class="page">RpcEnv</a></p>
 </li>
 <li>
 <p><a id="master"></a> <a href="BlockManagerMaster.html" class="page">BlockManagerMaster</a></p>
@@ -2030,7 +2021,7 @@ Use <a href="../tools/spark-submit.html" class="page">spark-submit</a>'s command
 <p><a href="#memoryManager">MemoryManager</a></p>
 </li>
 <li>
-<p><a id="mapOutputTracker"></a> <a href="../scheduler/MapOutputTracker.html" class="page">MapOutputTracker</a></p>
+<p><a href="#mapOutputTracker">MapOutputTracker</a></p>
 </li>
 <li>
 <p><a href="#shuffleManager">ShuffleManager</a></p>
@@ -2042,21 +2033,9 @@ Use <a href="../tools/spark-submit.html" class="page">spark-submit</a>'s command
 <p><a id="securityManager"></a> SecurityManager</p>
 </li>
 <li>
-<p><a id="numUsableCores"></a> CPU cores</p>
+<p><a id="numUsableCores"></a> Number of CPU cores</p>
 </li>
 </ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>executorId</code> is <code>SparkContext.DRIVER_IDENTIFIER</code>, i.e. <code>driver</code> for the driver, and the value of <a href="../executor/CoarseGrainedExecutorBackend.html#executor-id" class="page">--executor-id</a> command-line argument for <a href="../executor/CoarseGrainedExecutorBackend.html" class="page">CoarseGrainedExecutorBackend</a> executors (or <a href="../spark-on-mesos/spark-executor-backends-MesosExecutorBackend.html" class="page">MesosExecutorBackend</a>).
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p>When created, BlockManager sets <a href="#externalShuffleServiceEnabled">externalShuffleServiceEnabled</a> internal flag based on <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property.</p>
@@ -2097,6 +2076,46 @@ It is computed specially in Spark on YARN.
 <div class="paragraph">
 <p>BlockManager registers <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc">BlockManagerSlaveEndpoint</a> with the input <a href="../index.html" class="page">RpcEnv</a>, itself, and <a href="../scheduler/MapOutputTracker.html" class="page">MapOutputTracker</a> (as <code>slaveEndpoint</code>).</p>
 </div>
+<div class="paragraph">
+<p>BlockManager is created when SparkEnv is <a href="../core/SparkEnv.html#create-BlockManager" class="page">created</a> (for the driver and executors) when a Spark application starts.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="blockmanager-as-blockdatamanager"><a class="anchor" href="#blockmanager-as-blockdatamanager"></a><a class="link" href="#blockmanager-as-blockdatamanager"><a id="BlockDataManager"></a> BlockManager as BlockDataManager</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>BlockManager is a <a href="BlockDataManager.html" class="page">BlockDataManager</a> and manages the storage for blocks that with cached RDD partitions, intermediate shuffle outputs, broadcasts, etc.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="blockmanager-and-mapoutputtracker"><a class="anchor" href="#blockmanager-and-mapoutputtracker"></a><a class="link" href="#blockmanager-and-mapoutputtracker"><a id="mapOutputTracker"></a> BlockManager and MapOutputTracker</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>BlockManager is given a <a href="../scheduler/MapOutputTracker.html" class="page">MapOutputTracker</a> when <a href="#creating-instance">created</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="executor-id"><a class="anchor" href="#executor-id"></a><a class="link" href="#executor-id"><a id="executorId"></a> Executor ID</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>BlockManager is given an Executor ID when <a href="#creating-instance">created</a>.</p>
+</div>
+<div class="paragraph">
+<p>The Executor ID is one of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>driver</strong> (<code>SparkContext.DRIVER_IDENTIFIER</code>) for the driver</p>
+</li>
+<li>
+<p>Value of <a href="../executor/CoarseGrainedExecutorBackend.html#executor-id" class="page">--executor-id</a> command-line argument for <a href="../executor/CoarseGrainedExecutorBackend.html" class="page">CoarseGrainedExecutorBackend</a> executors (or <a href="../spark-on-mesos/spark-executor-backends-MesosExecutorBackend.html" class="page">MesosExecutorBackend</a>)</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2115,8 +2134,11 @@ It is computed specially in Spark on YARN.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">import org.apache.spark.SparkEnv
-SparkEnv.get.blockManager</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">import org.apache.spark.SparkEnv
+val bm = SparkEnv.get.blockManager
+
+scala&gt; :type bm
+org.apache.spark.storage.BlockManager</code></pre>
 </div>
 </div>
 </div>
@@ -2274,87 +2296,36 @@ SparkEnv.get.blockManager.memoryStore</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="getlocations-method"><a class="anchor" href="#getlocations-method"></a><a class="link" href="#getlocations-method"><a id="getLocations"></a> <code>getLocations</code> Method</a></h2>
+<h2 id="getpeers-internal-method"><a class="anchor" href="#getpeers-internal-method"></a><a class="link" href="#getpeers-internal-method"><a id="getPeers"></a> getPeers Internal Method</a></h2>
 <div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getPeers(
+  forceFetch: Boolean): Seq[BlockManagerId]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getPeers&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>getPeers is used when BlockManager is requested to <a href="#replicateBlock">replicateBlock</a> and <a href="#replicate">replicate</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="blockidstohosts-method"><a class="anchor" href="#blockidstohosts-method"></a><a class="link" href="#blockidstohosts-method"><a id="blockIdsToHosts"></a> <code>blockIdsToHosts</code> Method</a></h2>
+<h2 id="releasing-all-locks-for-task"><a class="anchor" href="#releasing-all-locks-for-task"></a><a class="link" href="#releasing-all-locks-for-task"><a id="releaseAllLocksForTask"></a> Releasing All Locks For Task</a></h2>
 <div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">releaseAllLocksForTask(
+  taskAttemptId: Long): Seq[BlockId]</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>releaseAllLocksForTask&#8230;&#8203;FIXME</p>
 </div>
-<div class="sect1">
-<h2 id="getlocationblockids-method"><a class="anchor" href="#getlocationblockids-method"></a><a class="link" href="#getlocationblockids-method"><a id="getLocationBlockIds"></a> <code>getLocationBlockIds</code> Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="getpeers-method"><a class="anchor" href="#getpeers-method"></a><a class="link" href="#getpeers-method"><a id="getPeers"></a> <code>getPeers</code> Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="releasealllocksfortask-method"><a class="anchor" href="#releasealllocksfortask-method"></a><a class="link" href="#releasealllocksfortask-method"><a id="releaseAllLocksForTask"></a> <code>releaseAllLocksForTask</code> Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>releaseAllLocksForTask is used when TaskRunner is requested to <a href="../executor/TaskRunner.html#run" class="page">run</a> (after a task is finished successfully or not).</p>
 </div>
 </div>
 </div>
@@ -2367,19 +2338,10 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p><code>stop</code>&#8230;&#8203;FIXME</p>
+<p>stop&#8230;&#8203;FIXME</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>stop</code> is used exclusively when <code>SparkEnv</code> is requested to <a href="../core/SparkEnv.html#stop" class="page">stop</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>stop is used when SparkEnv is requested to <a href="../core/SparkEnv.html#stop" class="page">stop</a>.</p>
 </div>
 </div>
 </div>
@@ -2388,23 +2350,15 @@ FIXME
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getMatchingBlockIds(filter: BlockId =&gt; Boolean): Seq[BlockId]</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getMatchingBlockIds(
+  filter: BlockId =&gt; Boolean): Seq[BlockId]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>getMatchingBlockIds</code>&#8230;&#8203;FIXME</p>
+<p>getMatchingBlockIds&#8230;&#8203;FIXME</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>getMatchingBlockIds</code> is used exclusively when <code>BlockManagerSlaveEndpoint</code> is requested to <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc#GetMatchingBlockIds">handle a GetMatchingBlockIds message</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>getMatchingBlockIds is used when BlockManagerSlaveEndpoint is requested to <a href="spark-blockmanager-BlockManagerSlaveEndpoint.html#GetMatchingBlockIds" class="page">handle a GetMatchingBlockIds message</a>.</p>
 </div>
 </div>
 </div>
@@ -2418,7 +2372,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p><code>getLocalValues</code> prints out the following DEBUG message to the logs:</p>
+<p>getLocalValues prints out the following DEBUG message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2426,10 +2380,10 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p><code>getLocalValues</code> <a href="spark-BlockInfoManager.adoc#lockForReading">obtains a read lock for <code>blockId</code></a>.</p>
+<p>getLocalValues <a href="spark-BlockInfoManager.adoc#lockForReading">obtains a read lock for <code>blockId</code></a>.</p>
 </div>
 <div class="paragraph">
-<p>When no <code>blockId</code> block was found, you should see the following DEBUG message in the logs and <code>getLocalValues</code> returns "nothing" (i.e. <code>NONE</code>).</p>
+<p>When no <code>blockId</code> block was found, you should see the following DEBUG message in the logs and getLocalValues returns "nothing" (i.e. <code>NONE</code>).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2445,7 +2399,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p>If <code>blockId</code> block has memory level and <a href="MemoryStore.html#contains" class="page">is registered in <code>MemoryStore</code></a>, <code>getLocalValues</code> returns a <a href="#BlockResult">BlockResult</a> as <code>Memory</code> read method and with a <code>CompletionIterator</code> for an interator:</p>
+<p>If <code>blockId</code> block has memory level and <a href="MemoryStore.html#contains" class="page">is registered in <code>MemoryStore</code></a>, getLocalValues returns a <a href="#BlockResult">BlockResult</a> as <code>Memory</code> read method and with a <code>CompletionIterator</code> for an interator:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -2457,17 +2411,8 @@ FIXME
 </li>
 </ol>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>getLocalValues</code> is used when <a href="../core/TorrentBroadcast.html#readBroadcastBlock" class="page"><code>TorrentBroadcast</code> reads the blocks of a broadcast variable and stores them in a local BlockManager</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>getLocalValues is used when <a href="../core/TorrentBroadcast.html#readBroadcastBlock" class="page"><code>TorrentBroadcast</code> reads the blocks of a broadcast variable and stores them in a local BlockManager</a>.</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -3645,7 +3590,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="paragraph">
-<p><code>shuffleMetricsSource</code> requests the <a href="#shuffleClient">ShuffleClient</a> for the <a href="ShuffleClient.html#shuffleMetrics" class="page">shuffle-related metrics</a> and creates a <a href="spark-BlockManager-ShuffleMetricsSource.adoc">ShuffleMetricsSource</a> with the <a href="spark-BlockManager-ShuffleMetricsSource.adoc#sourceName">source name</a> per <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property:</p>
+<p>shuffleMetricsSource requests the <a href="#shuffleClient">ShuffleClient</a> for the <a href="ShuffleClient.html#shuffleMetrics" class="page">shuffle-related metrics</a> and creates a <a href="spark-BlockManager-ShuffleMetricsSource.adoc">ShuffleMetricsSource</a> with the <a href="spark-BlockManager-ShuffleMetricsSource.adoc#sourceName">source name</a> per <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3657,17 +3602,8 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </li>
 </ul>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>shuffleMetricsSource</code> is used exclusively when <code>Executor</code> is <a href="../executor/Executor.html#creating-instance" class="page">created</a> (for non-local / cluster modes).
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>shuffleMetricsSource is used when Executor is <a href="../executor/Executor.html#creating-instance" class="page">created</a> (for non-local / cluster modes).</p>
 </div>
 </div>
 </div>
@@ -3685,24 +3621,15 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="paragraph">
-<p><code>replicate</code>&#8230;&#8203;FIXME</p>
+<p>replicate&#8230;&#8203;FIXME</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>replicate</code> is used when BlockManager is requested to <a href="#doPutBytes">doPutBytes</a>, <a href="#doPutIterator">doPutIterator</a> and <a href="#replicateBlock">replicateBlock</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>replicate is used when BlockManager is requested to <a href="#doPutBytes">doPutBytes</a>, <a href="#doPutIterator">doPutIterator</a> and <a href="#replicateBlock">replicateBlock</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="replicateblock-method"><a class="anchor" href="#replicateblock-method"></a><a class="link" href="#replicateblock-method"><a id="replicateBlock"></a> <code>replicateBlock</code> Method</a></h2>
+<h2 id="replicateblock-method"><a class="anchor" href="#replicateblock-method"></a><a class="link" href="#replicateblock-method"><a id="replicateBlock"></a> replicateBlock Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3713,19 +3640,10 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="paragraph">
-<p><code>replicateBlock</code>&#8230;&#8203;FIXME</p>
+<p>replicateBlock&#8230;&#8203;FIXME</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>replicateBlock</code> is used exclusively when <code>BlockManagerSlaveEndpoint</code> is requested to <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc#receiveAndReply-ReplicateBlock">handle ReplicateBlock messages</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>replicateBlock is used when BlockManagerSlaveEndpoint is requested to <a href="spark-blockmanager-BlockManagerSlaveEndpoint.html#receiveAndReply-ReplicateBlock" class="page">handle a ReplicateBlock message</a>.</p>
 </div>
 </div>
 </div>
@@ -4239,6 +4157,40 @@ FIXME When would <code>info.tellMaster</code> be <code>true</code>?
 </div>
 <div class="paragraph">
 <p>releaseLockAndDispose is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="blockidstolocations-utility"><a class="anchor" href="#blockidstolocations-utility"></a><a class="link" href="#blockidstolocations-utility"><a id="blockIdsToLocations"></a> blockIdsToLocations Utility</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">blockIdsToLocations(
+  blockIds: Array[BlockId],
+  env: SparkEnv,
+  blockManagerMaster: BlockManagerMaster = null): Map[BlockId, Seq[String]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>blockIdsToLocations&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>blockIdsToLocations is used in the <em>now defunct</em> Spark Streaming (when BlockRDD is requested for _locations).</p>
+</div>
+<div class="sect2">
+<h3 id="getlocationblockids-internal-method"><a class="anchor" href="#getlocationblockids-internal-method"></a><a class="link" href="#getlocationblockids-internal-method"><a id="getLocationBlockIds"></a> getLocationBlockIds Internal Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getLocationBlockIds(
+  blockIds: Array[BlockId]): Array[Seq[BlockManagerId]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getLocationBlockIds&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>getLocationBlockIds is used when BlockManager utility is requested to <a href="#blockIdsToLocations">blockIdsToLocations</a> (for the <em>now defunct</em> Spark Streaming).</p>
+</div>
 </div>
 </div>
 </div>

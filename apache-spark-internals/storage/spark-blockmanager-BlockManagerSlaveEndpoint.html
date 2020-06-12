@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>BlockManagerSlaveEndpoint :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/storage/spark-blockmanager-BlockManagerSlaveEndpoint.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -1941,26 +1941,14 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="blockmanagerslaveendpoint"><a class="anchor" href="#blockmanagerslaveendpoint"></a><a class="link" href="#blockmanagerslaveendpoint"><a id="BlockManagerSlaveEndpoint"></a> BlockManagerSlaveEndpoint</a></h2>
+<h1 class="page">BlockManagerSlaveEndpoint</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>BlockManagerSlaveEndpoint</code> is a <a href="../rpc/index.html#ThreadSafeRpcEndpoint" class="page">thread-safe RPC endpoint</a> for remote communication between executors and the driver.</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME the intro needs more love.
-</td>
-</tr>
-</table>
+<p><strong>BlockManagerSlaveEndpoint</strong> is a <a href="../rpc/RpcEndpoint.html#ThreadSafeRpcEndpoint" class="page">ThreadSafeRpcEndpoint</a> for remote communication between executors and the driver.</p>
 </div>
 <div class="paragraph">
-<p>While a <a href="#creating-instance">BlockManager is being created</a> so is the <code>BlockManagerSlaveEndpoint</code> RPC endpoint with the name <strong>BlockManagerEndpoint[randomId]</strong> to handle <a href="#messages">RPC messages</a>.</p>
+<p>While a <a href="#creating-instance">BlockManager is being created</a> so is the BlockManagerSlaveEndpoint RPC endpoint with the name <strong>BlockManagerEndpoint[randomId]</strong> to handle <a href="#messages">RPC messages</a>.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1987,8 +1975,11 @@ FIXME the intro needs more love.
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="removeblock-message"><a class="anchor" href="#removeblock-message"></a><a class="link" href="#removeblock-message"><a id="RemoveBlock"></a> RemoveBlock Message</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="removeblock-message"><a class="anchor" href="#removeblock-message"></a><a class="link" href="#removeblock-message"><a id="RemoveBlock"></a> RemoveBlock Message</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RemoveBlock(blockId: BlockId)</code></pre>
@@ -2042,8 +2033,10 @@ Handling <code>RemoveBlock</code> messages happens on a separate thread. See <a 
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="removerdd-message"><a class="anchor" href="#removerdd-message"></a><a class="link" href="#removerdd-message"><a id="RemoveRdd"></a> RemoveRdd Message</a></h3>
+</div>
+<div class="sect1">
+<h2 id="removerdd-message"><a class="anchor" href="#removerdd-message"></a><a class="link" href="#removerdd-message"><a id="RemoveRdd"></a> RemoveRdd Message</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RemoveRdd(rddId: Int)</code></pre>
@@ -2097,8 +2090,10 @@ Handling <code>RemoveRdd</code> messages happens on a separate thread. See <a hr
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="removeshuffle-message"><a class="anchor" href="#removeshuffle-message"></a><a class="link" href="#removeshuffle-message"><a id="RemoveShuffle"></a> RemoveShuffle Message</a></h3>
+</div>
+<div class="sect1">
+<h2 id="removeshuffle-message"><a class="anchor" href="#removeshuffle-message"></a><a class="link" href="#removeshuffle-message"><a id="RemoveShuffle"></a> RemoveShuffle Message</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RemoveShuffle(shuffleId: Int)</code></pre>
@@ -2167,8 +2162,10 @@ Handling <code>RemoveShuffle</code> messages happens on a separate thread. See <
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="removebroadcast-message"><a class="anchor" href="#removebroadcast-message"></a><a class="link" href="#removebroadcast-message"><a id="RemoveBroadcast"></a> RemoveBroadcast Message</a></h3>
+</div>
+<div class="sect1">
+<h2 id="removebroadcast-message"><a class="anchor" href="#removebroadcast-message"></a><a class="link" href="#removebroadcast-message"><a id="RemoveBroadcast"></a> RemoveBroadcast Message</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">RemoveBroadcast(broadcastId: Long)</code></pre>
@@ -2222,8 +2219,10 @@ Handling <code>RemoveBroadcast</code> messages happens on a separate thread. See
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="getblockstatus-message"><a class="anchor" href="#getblockstatus-message"></a><a class="link" href="#getblockstatus-message"><a id="GetBlockStatus"></a> GetBlockStatus Message</a></h3>
+</div>
+<div class="sect1">
+<h2 id="getblockstatus-message"><a class="anchor" href="#getblockstatus-message"></a><a class="link" href="#getblockstatus-message"><a id="GetBlockStatus"></a> GetBlockStatus Message</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetBlockStatus(blockId: BlockId)</code></pre>
@@ -2233,27 +2232,33 @@ Handling <code>RemoveBroadcast</code> messages happens on a separate thread. See
 <p>When a <code>GetBlockStatus</code> message comes in, it responds with the result of <a href="#getStatus">calling BlockManager about the status of <code>blockId</code></a>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="getmatchingblockids-message"><a class="anchor" href="#getmatchingblockids-message"></a><a class="link" href="#getmatchingblockids-message"><a id="GetMatchingBlockIds"></a> <code>GetMatchingBlockIds</code> Message</a></h3>
+</div>
+<div class="sect1">
+<h2 id="getmatchingblockids-message"><a class="anchor" href="#getmatchingblockids-message"></a><a class="link" href="#getmatchingblockids-message"><a id="GetMatchingBlockIds"></a> <code>GetMatchingBlockIds</code> Message</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">GetMatchingBlockIds(filter: BlockId =&gt; Boolean, askSlaves: Boolean = true)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>When received a <code>GetMatchingBlockIds</code>, <code>BlockManagerSlaveEndpoint</code> requests <a href="#blockManager">BlockManager</a> to <a href="BlockManager.html#getMatchingBlockIds" class="page">find IDs of existing blocks for a given filter</a> and sends them back.</p>
+<p>When received a <code>GetMatchingBlockIds</code>, BlockManagerSlaveEndpoint requests <a href="#blockManager">BlockManager</a> to <a href="BlockManager.html#getMatchingBlockIds" class="page">find IDs of existing blocks for a given filter</a> and sends them back.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="triggerthreaddump-message"><a class="anchor" href="#triggerthreaddump-message"></a><a class="link" href="#triggerthreaddump-message"><a id="TriggerThreadDump"></a> TriggerThreadDump Message</a></h3>
+</div>
+<div class="sect1">
+<h2 id="triggerthreaddump-message"><a class="anchor" href="#triggerthreaddump-message"></a><a class="link" href="#triggerthreaddump-message"><a id="TriggerThreadDump"></a> TriggerThreadDump Message</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>When a <code>TriggerThreadDump</code> message comes in, a thread dump is generated and sent back.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="blockmanagerslaveendpoint-thread-pool"><a class="anchor" href="#blockmanagerslaveendpoint-thread-pool"></a><a class="link" href="#blockmanagerslaveendpoint-thread-pool"><a id="asyncThreadPool"></a> BlockManagerSlaveEndpoint Thread Pool</a></h3>
+</div>
+<div class="sect1">
+<h2 id="blockmanagerslaveendpoint-thread-pool"><a class="anchor" href="#blockmanagerslaveendpoint-thread-pool"></a><a class="link" href="#blockmanagerslaveendpoint-thread-pool"><a id="asyncThreadPool"></a> BlockManagerSlaveEndpoint Thread Pool</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p><code>BlockManagerSlaveEndpoint</code> uses <strong>block-manager-slave-async-thread-pool</strong> daemon thread pool (<code>asyncThreadPool</code>) for some messages to talk to other Spark services, i.e. <code>BlockManager</code>, <a href="../scheduler/MapOutputTracker.html" class="page">MapOutputTracker</a>, <a href="../shuffle/ShuffleManager.html" class="page">ShuffleManager</a> in a non-blocking, asynchronous way.</p>
+<p>BlockManagerSlaveEndpoint uses <strong>block-manager-slave-async-thread-pool</strong> daemon thread pool (<code>asyncThreadPool</code>) for some messages to talk to other Spark services, i.e. <code>BlockManager</code>, <a href="../scheduler/MapOutputTracker.html" class="page">MapOutputTracker</a>, <a href="../shuffle/ShuffleManager.html" class="page">ShuffleManager</a> in a non-blocking, asynchronous way.</p>
 </div>
 <div class="paragraph">
 <p>The reason for the async thread pool is that the block-related operations might take quite some time and to release the main RPC thread other threads are spawned to talk to the external services and pass responses on to the clients.</p>
@@ -2265,11 +2270,10 @@ Handling <code>RemoveBroadcast</code> messages happens on a separate thread. See
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>BlockManagerSlaveEndpoint</code> uses Java&#8217;s <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ThreadPoolExecutor.html">java.util.concurrent.ThreadPoolExecutor</a>.
+BlockManagerSlaveEndpoint uses Java&#8217;s <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ThreadPoolExecutor.html">java.util.concurrent.ThreadPoolExecutor</a>.
 </td>
 </tr>
 </table>
-</div>
 </div>
 </div>
 </div>
