@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>RDD shuffling :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/rdd/spark-rdd-shuffle.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -1913,14 +1913,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Apache Spark</span>
-    <span class="version">2.4.5</span>
+    <span class="version">2.4.6</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">Apache Spark</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="../index.html">2.4.5</a>
+          <a href="../index.html">2.4.6</a>
         </li>
       </ul>
     </li>
@@ -1944,8 +1944,8 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="rdd-shuffling"><a class="anchor" href="#rdd-shuffling"></a><a class="link" href="#rdd-shuffling">RDD shuffling</a></h2>
+<h1 class="page">RDD shuffling</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="admonitionblock tip">
 <table>
@@ -1954,7 +1954,7 @@
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Read the official documentation about the topic <a href="https://spark.apache.org/docs/2.4.5/rdd-programming-guide.html#shuffle-operations">Shuffle operations</a>. It is <em>still</em> better than this page.
+Read the official documentation about the topic <a href="https://spark.apache.org/docs/2.4.6/rdd-programming-guide.html#shuffle-operations">Shuffle operations</a>. It is <em>still</em> better than this page.
 </td>
 </tr>
 </table>
@@ -1997,8 +1997,11 @@ Avoid shuffling at all cost. Think about ways to leverage existing partitions. L
 </li>
 </ul>
 </div>
-<div class="sect2">
-<h3 id="example-join"><a class="anchor" href="#example-join"></a><a class="link" href="#example-join">Example - join</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="example-join"><a class="anchor" href="#example-join"></a><a class="link" href="#example-join">Example - join</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>PairRDD offers <a href="http://people.apache.org/~pwendell/spark-nightly/spark-master-docs/latest/programming-guide.html#JoinLink">join</a> transformation that (quoting the official documentation):</p>
 </div>
@@ -2082,7 +2085,6 @@ FIXME the default parallelism of scheduler backend
 </td>
 </tr>
 </table>
-</div>
 </div>
 </div>
 </div>
