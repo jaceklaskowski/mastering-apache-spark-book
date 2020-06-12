@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Untitled :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/spark-on-yarn/spark-yarn-yarnclusterscheduler.html">
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/storage/BlockInfo.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -433,80 +433,80 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/BlockManager.html">BlockManager</a>
+    <a class="nav-link" href="BlockManager.html">BlockManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerId.html">BlockManagerId</a>
+    <a class="nav-link" href="BlockManagerId.html">BlockManagerId</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerInfo.html">BlockManagerInfo</a>
+    <a class="nav-link" href="BlockManagerInfo.html">BlockManagerInfo</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerMaster.html">BlockManagerMaster</a>
+    <a class="nav-link" href="BlockManagerMaster.html">BlockManagerMaster</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
+    <a class="nav-link" href="BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
+    <a class="nav-link" href="BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
+    <a class="nav-link" href="BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/DiskStore.html">DiskStore</a>
+    <a class="nav-link" href="DiskStore.html">DiskStore</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/DiskBlockManager.html">DiskBlockManager</a>
+    <a class="nav-link" href="DiskBlockManager.html">DiskBlockManager</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/MemoryStore.html">MemoryStore</a>
+    <a class="nav-link" href="MemoryStore.html">MemoryStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/BlockData.html">BlockData</a>
+    <a class="nav-link" href="BlockData.html">BlockData</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/BlockInfoManager.html">BlockInfoManager</a>
+    <a class="nav-link" href="BlockInfoManager.html">BlockInfoManager</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockInfo.html">BlockInfo.adoc</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="BlockInfo.html">BlockInfo.adoc</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
+    <a class="nav-link" href="spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
+    <a class="nav-link" href="DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockManager-BlockManagerSource.html">BlockManagerSource</a>
+    <a class="nav-link" href="spark-BlockManager-BlockManagerSource.html">BlockManagerSource</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockManager-ShuffleMetricsSource.html">ShuffleMetricsSource</a>
+    <a class="nav-link" href="spark-BlockManager-ShuffleMetricsSource.html">ShuffleMetricsSource</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-blockmanager-StorageStatus.html">StorageStatus</a>
+    <a class="nav-link" href="spark-blockmanager-StorageStatus.html">StorageStatus</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/BlockTransferService.html">BlockTransferService</a>
+    <a class="nav-link" href="BlockTransferService.html">BlockTransferService</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/NettyBlockTransferService.html">NettyBlockTransferService</a>
+    <a class="nav-link" href="NettyBlockTransferService.html">NettyBlockTransferService</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../storage/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
+    <a class="nav-link" href="NettyBlockRpcServer.html">NettyBlockRpcServer</a>
   </li>
 </ul>
   </li>
@@ -514,24 +514,24 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/ShuffleClient.html">ShuffleClient</a>
+    <a class="nav-link" href="ShuffleClient.html">ShuffleClient</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/ExternalShuffleClient.html">ExternalShuffleClient</a>
+    <a class="nav-link" href="ExternalShuffleClient.html">ExternalShuffleClient</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
+    <a class="nav-link" href="ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/RDDInfo.html">RDDInfo</a>
+    <a class="nav-link" href="RDDInfo.html">RDDInfo</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/StorageLevel.html">StorageLevel</a>
+    <a class="nav-link" href="StorageLevel.html">StorageLevel</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/demo-diskblockmanager-and-block-data.html">Demo: DiskBlockManager and Block Data</a>
+    <a class="nav-link" href="demo-diskblockmanager-and-block-data.html">Demo: DiskBlockManager and Block Data</a>
   </li>
 </ul>
   </li>
@@ -1663,88 +1663,88 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Spark on YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/index.html">Spark on YARN</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-YarnShuffleService.html">YarnShuffleService&#8201;&#8212;&#8201;ExternalShuffleService on YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnShuffleService.html">YarnShuffleService&#8201;&#8212;&#8201;ExternalShuffleService on YARN</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-ExecutorRunnable.html">ExecutorRunnable</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-ExecutorRunnable.html">ExecutorRunnable</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-client.html">Client</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-client.html">Client</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-yarnrmclient.html">YarnRMClient</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnrmclient.html">YarnRMClient</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-yarn-applicationmaster.html">ApplicationMaster</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-applicationmaster.html">ApplicationMaster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-AMEndpoint.html">AMEndpoint&#8201;&#8212;&#8201;ApplicationMaster RPC Endpoint</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-AMEndpoint.html">AMEndpoint&#8201;&#8212;&#8201;ApplicationMaster RPC Endpoint</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-YarnClusterManager.html">YarnClusterManager&#8201;&#8212;&#8201;ExternalClusterManager for YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnClusterManager.html">YarnClusterManager&#8201;&#8212;&#8201;ExternalClusterManager for YARN</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-yarn-taskschedulers.html">TaskSchedulers for YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-taskschedulers.html">TaskSchedulers for YARN</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-yarnscheduler.html">YarnScheduler</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnscheduler.html">YarnScheduler</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="spark-yarn-yarnclusterscheduler.html">YarnClusterScheduler</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnclusterscheduler.html">YarnClusterScheduler</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-yarn-schedulerbackends.html">SchedulerBackends for YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-schedulerbackends.html">SchedulerBackends for YARN</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-yarnschedulerbackend.html">YarnSchedulerBackend</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnschedulerbackend.html">YarnSchedulerBackend</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-client-yarnclientschedulerbackend.html">YarnClientSchedulerBackend</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-client-yarnclientschedulerbackend.html">YarnClientSchedulerBackend</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-cluster-yarnclusterschedulerbackend.html">YarnClusterSchedulerBackend</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-cluster-yarnclusterschedulerbackend.html">YarnClusterSchedulerBackend</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-cluster-YarnSchedulerEndpoint.html">YarnSchedulerEndpoint RPC Endpoint</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-cluster-YarnSchedulerEndpoint.html">YarnSchedulerEndpoint RPC Endpoint</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-YarnAllocator.html">YarnAllocator</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnAllocator.html">YarnAllocator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-introduction.html">Introduction to Hadoop YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-introduction.html">Introduction to Hadoop YARN</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-cluster-setup.html">Setting up YARN Cluster</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-cluster-setup.html">Setting up YARN Cluster</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-yarn-kerberos.html">Kerberos</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-kerberos.html">Kerberos</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-ConfigurableCredentialManager.html">ConfigurableCredentialManager</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-ConfigurableCredentialManager.html">ConfigurableCredentialManager</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-ClientDistributedCacheManager.html">ClientDistributedCacheManager</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-ClientDistributedCacheManager.html">ClientDistributedCacheManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-YarnSparkHadoopUtil.html">YarnSparkHadoopUtil</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnSparkHadoopUtil.html">YarnSparkHadoopUtil</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-settings.html">Settings</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-settings.html">Settings</a>
   </li>
 </ul>
   </li>
@@ -1936,75 +1936,100 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Spark on YARN</a></li>
-    <li><a href="spark-yarn-taskschedulers.html">TaskSchedulers for YARN</a></li>
-    <li><a href="spark-yarn-yarnclusterscheduler.html">YarnClusterScheduler</a></li>
+    <li>Storage System</li>
+    <li><a href="BlockInfoManager.html">BlockInfoManager</a></li>
+    <li><a href="BlockInfo.html">BlockInfo.adoc</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/spark-on-yarn/pages/spark-yarn-yarnclusterscheduler.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/storage/pages/BlockInfo.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
 <div class="sect1">
-<h2 id="yarnclusterschedulertaskscheduler-for-cluster-deploy-mode"><a class="anchor" href="#yarnclusterschedulertaskscheduler-for-cluster-deploy-mode"></a><a class="link" href="#yarnclusterschedulertaskscheduler-for-cluster-deploy-mode"><a id="YarnClusterScheduler"></a> YarnClusterScheduler&#8201;&#8212;&#8201;TaskScheduler for Cluster Deploy Mode</a></h2>
+<h2 id="blockinfometadata-of-memory-block"><a class="anchor" href="#blockinfometadata-of-memory-block"></a><a class="link" href="#blockinfometadata-of-memory-block"><a id="BlockInfo"></a> BlockInfo&#8201;&#8212;&#8201;Metadata of Memory Block</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>YarnClusterScheduler</code> is the <a href="../scheduler/TaskScheduler.html" class="page">TaskScheduler</a> for <a href="README.adoc">Spark on YARN</a> in <a href="spark-submit.adoc#deploy-mode">cluster deploy mode</a>.</p>
+<p><code>BlockInfo</code> is a metadata of <a href="BlockId.html" class="page">memory block</a> (aka <em>memory page</em>)&#8201;&#8212;&#8201;the memory block&#8217;s <a href="#size">size</a>, the <a href="#readerCount">number of readers</a> and the <a href="#writerTask">id of the writer task</a>.</p>
 </div>
 <div class="paragraph">
-<p>It is a custom <a href="spark-yarn-yarnscheduler.adoc">YarnScheduler</a> that makes sure that appropriate initialization of <a href="spark-yarn-applicationmaster.adoc">ApplicationMaster</a> is performed, i.e. <a href="#postStartHook">SparkContext is initialized</a> and <a href="#stop">stopped</a>.</p>
-</div>
-<div class="paragraph">
-<p>While being created, you should see the following INFO message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>INFO YarnClusterScheduler: Created YarnClusterScheduler</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Enable <code>INFO</code> logging level for <code>org.apache.spark.scheduler.cluster.YarnClusterScheduler</code> to see what happens inside <code>YarnClusterScheduler</code>.</p>
-</div>
-<div class="paragraph">
-<p>Add the following line to <code>conf/log4j.properties</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.scheduler.cluster.YarnClusterScheduler=INFO</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Refer to <a href="../spark-logging.adoc">Logging</a>.</p>
-</div>
-</td>
-</tr>
-</table>
+<p><code>BlockInfo</code> has a <a href="StorageLevel.html" class="page">StorageLevel</a>, <code>ClassTag</code> and <code>tellMaster</code> flag.</p>
 </div>
 <div class="sect2">
-<h3 id="poststarthook-callback"><a class="anchor" href="#poststarthook-callback"></a><a class="link" href="#poststarthook-callback"><a id="postStartHook"></a> <code>postStartHook</code> Callback</a></h3>
+<h3 id="sizesize-attribute"><a class="anchor" href="#sizesize-attribute"></a><a class="link" href="#sizesize-attribute"><a id="size"></a> Size&#8201;&#8212;&#8201;<code>size</code> Attribute</a></h3>
 <div class="paragraph">
-<p><code>postStartHook</code> calls <a href="spark-yarn-applicationmaster.adoc#sparkContextInitialized">ApplicationMaster.sparkContextInitialized</a> before the <a href="../scheduler/TaskSchedulerImpl.html#postStartHook" class="page">parent&#8217;s <code>postStartHook</code></a>.</p>
+<p><code>size</code> attribute is the size of the memory block. It starts with <code>0</code>.</p>
 </div>
 <div class="paragraph">
-<p>You should see the following INFO message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>INFO YarnClusterScheduler: YarnClusterScheduler.postStartHook done</code></pre>
-</div>
+<p>It represents the number of bytes that <a href="BlockManager.html#putBytes" class="page"><code>BlockManager</code> saved</a> or <a href="BlockManager.html#doPutIterator" class="page">BlockManager.doPutIterator</a>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="stopping-yarnclusterscheduler-stop-method"><a class="anchor" href="#stopping-yarnclusterscheduler-stop-method"></a><a class="link" href="#stopping-yarnclusterscheduler-stop-method"><a id="stop"></a> Stopping YarnClusterScheduler (stop method)</a></h3>
+<h3 id="reader-countreadercount-counter"><a class="anchor" href="#reader-countreadercount-counter"></a><a class="link" href="#reader-countreadercount-counter"><a id="readerCount"></a> Reader Count&#8201;&#8212;&#8201;<code>readerCount</code> Counter</a></h3>
 <div class="paragraph">
-<p><code>stop</code> calls the <a href="../scheduler/TaskSchedulerImpl.html#stop" class="page">parent&#8217;s <code>stop</code></a> followed by <a href="spark-yarn-applicationmaster.adoc#sparkContextStopped">ApplicationMaster.sparkContextStopped</a>.</p>
+<p><code>readerCount</code> counter is the number of readers of the memory block, i.e. the number of read locks. It starts with <code>0</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>readerCount</code> is incremented when a <a href="BlockInfoManager.html#lockForReading" class="page">read lock is acquired</a> and decreases when the following happens:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <a href="BlockManager.html#unlock" class="page">memory block is unlocked</a></p>
+</li>
+<li>
+<p><a href="BlockInfoManager.html#releaseAllLocksForTask" class="page">All locks for the memory block obtained by a task are released</a>.</p>
+</li>
+<li>
+<p><a href="BlockInfoManager.html#removeBlock" class="page">memory block is removed</a></p>
+</li>
+<li>
+<p><a href="BlockInfoManager.html#clear" class="page">Clearing the current state of <code>BlockInfoManager</code></a>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="writer-taskwritertask-attribute"><a class="anchor" href="#writer-taskwritertask-attribute"></a><a class="link" href="#writer-taskwritertask-attribute"><a id="writerTask"></a> Writer Task&#8201;&#8212;&#8201;<code>writerTask</code> Attribute</a></h3>
+<div class="paragraph">
+<p><code>writerTask</code> attribute is the task that owns the write lock for the memory block.</p>
+</div>
+<div class="paragraph">
+<p>A writer task can be one of the three possible identifiers:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="NO_WRITER"></a> <code>NO_WRITER</code> (i.e. <code>-1</code>) to denote no writers and hence no write lock in use.</p>
+</li>
+<li>
+<p><a id="NON_TASK_WRITER"></a> <code>NON_TASK_WRITER</code> (i.e. <code>-1024</code>) for non-task threads, e.g. by a driver thread or by unit test code.</p>
+</li>
+<li>
+<p>the task attempt id of the task which currently holds the write lock for this block.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The writer task is assigned in the following scenarios:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <a href="BlockInfoManager.html#lockForWriting" class="page">write lock is requested for a memory block (with no writer and readers)</a></p>
+</li>
+<li>
+<p>A <a href="BlockInfoManager.html#unlock" class="page">memory block is unlocked</a></p>
+</li>
+<li>
+<p><a href="BlockInfoManager.html#releaseAllLocksForTask" class="page">All locks obtained by a task are released</a></p>
+</li>
+<li>
+<p>A <a href="BlockInfoManager.html#removeBlock" class="page">memory block is removed</a></p>
+</li>
+<li>
+<p><a href="BlockInfoManager.html#clear" class="page">Clearing the current state of <code>BlockInfoManager</code></a>.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

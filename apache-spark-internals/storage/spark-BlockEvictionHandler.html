@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>BlockEvictionHandler :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/storage/spark-BlockEvictionHandler.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -456,6 +456,9 @@
     <a class="nav-link" href="BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="DiskStore.html">DiskStore</a>
 <ul class="nav-list">
@@ -465,22 +468,19 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="MemoryStore.html">MemoryStore</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockData.html">BlockData</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-BlockInfoManager.html">BlockInfoManager</a>
+    <a class="nav-link" href="BlockInfoManager.html">BlockInfoManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-BlockInfo.html">BlockInfo</a>
+    <a class="nav-link" href="BlockInfo.html">BlockInfo.adoc</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="MemoryStore.html">MemoryStore</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
@@ -1944,9 +1944,7 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="blockevictionhandler"><a class="anchor" href="#blockevictionhandler"></a><a class="link" href="#blockevictionhandler"><a id="BlockEvictionHandler"></a> BlockEvictionHandler</a></h2>
-<div class="sectionbody">
+<h1 class="page">BlockEvictionHandler</h1>
 <div class="paragraph">
 <p><code>BlockEvictionHandler</code> is a <a href="#contract">contract</a> of <a href="#implementations">FIXME</a> that <a href="#dropFromMemory">dropFromMemory</a>.</p>
 </div>
@@ -2003,8 +2001,6 @@ trait BlockEvictionHandler {
 </td>
 </tr>
 </table>
-</div>
-</div>
 </div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

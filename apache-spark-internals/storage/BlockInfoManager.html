@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/spark-on-yarn/spark-yarn-yarnclusterscheduler.html">
+    <title>BlockInfoManager :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/storage/BlockInfoManager.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -433,80 +433,80 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/BlockManager.html">BlockManager</a>
+    <a class="nav-link" href="BlockManager.html">BlockManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerId.html">BlockManagerId</a>
+    <a class="nav-link" href="BlockManagerId.html">BlockManagerId</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerInfo.html">BlockManagerInfo</a>
+    <a class="nav-link" href="BlockManagerInfo.html">BlockManagerInfo</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerMaster.html">BlockManagerMaster</a>
+    <a class="nav-link" href="BlockManagerMaster.html">BlockManagerMaster</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
+    <a class="nav-link" href="BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
+    <a class="nav-link" href="BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
+    <a class="nav-link" href="BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/DiskStore.html">DiskStore</a>
+    <a class="nav-link" href="DiskStore.html">DiskStore</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/DiskBlockManager.html">DiskBlockManager</a>
+    <a class="nav-link" href="DiskBlockManager.html">DiskBlockManager</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/MemoryStore.html">MemoryStore</a>
+    <a class="nav-link" href="MemoryStore.html">MemoryStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/BlockData.html">BlockData</a>
+    <a class="nav-link" href="BlockData.html">BlockData</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/BlockInfoManager.html">BlockInfoManager</a>
+    <a class="nav-link" href="BlockInfoManager.html">BlockInfoManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockInfo.html">BlockInfo.adoc</a>
+    <a class="nav-link" href="BlockInfo.html">BlockInfo.adoc</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
+    <a class="nav-link" href="spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
+    <a class="nav-link" href="DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockManager-BlockManagerSource.html">BlockManagerSource</a>
+    <a class="nav-link" href="spark-BlockManager-BlockManagerSource.html">BlockManagerSource</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockManager-ShuffleMetricsSource.html">ShuffleMetricsSource</a>
+    <a class="nav-link" href="spark-BlockManager-ShuffleMetricsSource.html">ShuffleMetricsSource</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-blockmanager-StorageStatus.html">StorageStatus</a>
+    <a class="nav-link" href="spark-blockmanager-StorageStatus.html">StorageStatus</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/BlockTransferService.html">BlockTransferService</a>
+    <a class="nav-link" href="BlockTransferService.html">BlockTransferService</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/NettyBlockTransferService.html">NettyBlockTransferService</a>
+    <a class="nav-link" href="NettyBlockTransferService.html">NettyBlockTransferService</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../storage/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
+    <a class="nav-link" href="NettyBlockRpcServer.html">NettyBlockRpcServer</a>
   </li>
 </ul>
   </li>
@@ -514,24 +514,24 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/ShuffleClient.html">ShuffleClient</a>
+    <a class="nav-link" href="ShuffleClient.html">ShuffleClient</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/ExternalShuffleClient.html">ExternalShuffleClient</a>
+    <a class="nav-link" href="ExternalShuffleClient.html">ExternalShuffleClient</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
+    <a class="nav-link" href="ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/RDDInfo.html">RDDInfo</a>
+    <a class="nav-link" href="RDDInfo.html">RDDInfo</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/StorageLevel.html">StorageLevel</a>
+    <a class="nav-link" href="StorageLevel.html">StorageLevel</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/demo-diskblockmanager-and-block-data.html">Demo: DiskBlockManager and Block Data</a>
+    <a class="nav-link" href="demo-diskblockmanager-and-block-data.html">Demo: DiskBlockManager and Block Data</a>
   </li>
 </ul>
   </li>
@@ -1663,88 +1663,88 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Spark on YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/index.html">Spark on YARN</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-YarnShuffleService.html">YarnShuffleService&#8201;&#8212;&#8201;ExternalShuffleService on YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnShuffleService.html">YarnShuffleService&#8201;&#8212;&#8201;ExternalShuffleService on YARN</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-ExecutorRunnable.html">ExecutorRunnable</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-ExecutorRunnable.html">ExecutorRunnable</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-client.html">Client</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-client.html">Client</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-yarnrmclient.html">YarnRMClient</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnrmclient.html">YarnRMClient</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-yarn-applicationmaster.html">ApplicationMaster</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-applicationmaster.html">ApplicationMaster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-AMEndpoint.html">AMEndpoint&#8201;&#8212;&#8201;ApplicationMaster RPC Endpoint</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-AMEndpoint.html">AMEndpoint&#8201;&#8212;&#8201;ApplicationMaster RPC Endpoint</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-YarnClusterManager.html">YarnClusterManager&#8201;&#8212;&#8201;ExternalClusterManager for YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnClusterManager.html">YarnClusterManager&#8201;&#8212;&#8201;ExternalClusterManager for YARN</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-yarn-taskschedulers.html">TaskSchedulers for YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-taskschedulers.html">TaskSchedulers for YARN</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-yarnscheduler.html">YarnScheduler</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnscheduler.html">YarnScheduler</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="spark-yarn-yarnclusterscheduler.html">YarnClusterScheduler</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnclusterscheduler.html">YarnClusterScheduler</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-yarn-schedulerbackends.html">SchedulerBackends for YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-schedulerbackends.html">SchedulerBackends for YARN</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-yarnschedulerbackend.html">YarnSchedulerBackend</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-yarnschedulerbackend.html">YarnSchedulerBackend</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-client-yarnclientschedulerbackend.html">YarnClientSchedulerBackend</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-client-yarnclientschedulerbackend.html">YarnClientSchedulerBackend</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-cluster-yarnclusterschedulerbackend.html">YarnClusterSchedulerBackend</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-cluster-yarnclusterschedulerbackend.html">YarnClusterSchedulerBackend</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-cluster-YarnSchedulerEndpoint.html">YarnSchedulerEndpoint RPC Endpoint</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-cluster-YarnSchedulerEndpoint.html">YarnSchedulerEndpoint RPC Endpoint</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-YarnAllocator.html">YarnAllocator</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnAllocator.html">YarnAllocator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-introduction.html">Introduction to Hadoop YARN</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-introduction.html">Introduction to Hadoop YARN</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-cluster-setup.html">Setting up YARN Cluster</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-cluster-setup.html">Setting up YARN Cluster</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-yarn-kerberos.html">Kerberos</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-kerberos.html">Kerberos</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-yarn-ConfigurableCredentialManager.html">ConfigurableCredentialManager</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-ConfigurableCredentialManager.html">ConfigurableCredentialManager</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-ClientDistributedCacheManager.html">ClientDistributedCacheManager</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-ClientDistributedCacheManager.html">ClientDistributedCacheManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-YarnSparkHadoopUtil.html">YarnSparkHadoopUtil</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-YarnSparkHadoopUtil.html">YarnSparkHadoopUtil</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-yarn-settings.html">Settings</a>
+    <a class="nav-link" href="../spark-on-yarn/spark-yarn-settings.html">Settings</a>
   </li>
 </ul>
   </li>
@@ -1936,75 +1936,398 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Spark on YARN</a></li>
-    <li><a href="spark-yarn-taskschedulers.html">TaskSchedulers for YARN</a></li>
-    <li><a href="spark-yarn-yarnclusterscheduler.html">YarnClusterScheduler</a></li>
+    <li>Storage System</li>
+    <li><a href="BlockInfoManager.html">BlockInfoManager</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/spark-on-yarn/pages/spark-yarn-yarnclusterscheduler.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/storage/pages/BlockInfoManager.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="yarnclusterschedulertaskscheduler-for-cluster-deploy-mode"><a class="anchor" href="#yarnclusterschedulertaskscheduler-for-cluster-deploy-mode"></a><a class="link" href="#yarnclusterschedulertaskscheduler-for-cluster-deploy-mode"><a id="YarnClusterScheduler"></a> YarnClusterScheduler&#8201;&#8212;&#8201;TaskScheduler for Cluster Deploy Mode</a></h2>
+<h1 class="page">BlockInfoManager</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>YarnClusterScheduler</code> is the <a href="../scheduler/TaskScheduler.html" class="page">TaskScheduler</a> for <a href="README.adoc">Spark on YARN</a> in <a href="spark-submit.adoc#deploy-mode">cluster deploy mode</a>.</p>
+<p><strong>BlockInfoManager</strong> manages <a href="#infos">memory blocks</a> (<em>memory pages</em>). It controls concurrent access to memory blocks by <a href="#lockForReading">read</a> and <a href="#lockForWriting">write</a> locks (for existing and <a href="#lockNewBlockForWriting">new ones</a>).</p>
 </div>
-<div class="paragraph">
-<p>It is a custom <a href="spark-yarn-yarnscheduler.adoc">YarnScheduler</a> that makes sure that appropriate initialization of <a href="spark-yarn-applicationmaster.adoc">ApplicationMaster</a> is performed, i.e. <a href="#postStartHook">SparkContext is initialized</a> and <a href="#stop">stopped</a>.</p>
-</div>
-<div class="paragraph">
-<p>While being created, you should see the following INFO message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>INFO YarnClusterScheduler: Created YarnClusterScheduler</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
+<strong>Locks</strong> are the mechanism to control concurrent access to data and prevent destructive interaction between operations that use the same resource.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Enable <code>INFO</code> logging level for <code>org.apache.spark.scheduler.cluster.YarnClusterScheduler</code> to see what happens inside <code>YarnClusterScheduler</code>.</p>
+<p>BlockInfoManager takes no parameters to be created.</p>
+</div>
+<div class="paragraph">
+<p>BlockInfoManager is created for <a href="BlockManager.html#blockInfoManager" class="page">BlockManager</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="registertask-method"><a class="anchor" href="#registertask-method"></a><a class="link" href="#registertask-method"><a id="registerTask"></a> <code>registerTask</code> Method</a></h2>
+<div class="sectionbody">
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="downgrading-exclusive-write-lock-for-block-to-shared-read-lockdowngradelock-method"><a class="anchor" href="#downgrading-exclusive-write-lock-for-block-to-shared-read-lockdowngradelock-method"></a><a class="link" href="#downgrading-exclusive-write-lock-for-block-to-shared-read-lockdowngradelock-method"><a id="downgradeLock"></a> Downgrading Exclusive Write Lock For Block to Shared Read Lock&#8201;&#8212;&#8201;<code>downgradeLock</code> Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">downgradeLock(blockId: BlockId): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>downgradeLock</code>&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="obtaining-read-lock-for-blocklockforreading-method"><a class="anchor" href="#obtaining-read-lock-for-blocklockforreading-method"></a><a class="link" href="#obtaining-read-lock-for-blocklockforreading-method"><a id="lockForReading"></a> Obtaining Read Lock For Block&#8201;&#8212;&#8201;<code>lockForReading</code> Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">lockForReading(
+  blockId: BlockId,
+  blocking: Boolean = true): Option[BlockInfo]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>lockForReading</code> locks <code>blockId</code> memory block for reading when the block was registered earlier and no writer tasks use it.</p>
+</div>
+<div class="paragraph">
+<p>When executed, <code>lockForReading</code> prints out the following TRACE message to the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>TRACE BlockInfoManager: Task [currentTaskAttemptId] trying to acquire read lock for [blockId]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>lockForReading</code> looks up the metadata of the <code>blockId</code> block (in <a href="#infos">infos</a> registry).</p>
+</div>
+<div class="paragraph">
+<p>If no metadata could be found, it returns <code>None</code> which means that the block does not exist or was removed (and anybody could acquire a write lock).</p>
+</div>
+<div class="paragraph">
+<p>Otherwise, when the metadata was found, i.e. registered, it checks so-called <em>writerTask</em>. Only when the <a href="BlockInfo.html#NO_WRITER" class="page">block has no writer tasks</a>, a read lock can be acquired. If so, the <code>readerCount</code> of the block metadata is incremented and the block is recorded (in the internal <a href="#readLocksByTask">readLocksByTask</a> registry). You should see the following TRACE message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>TRACE BlockInfoManager: Task [taskAttemptId] acquired read lock for [blockId]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>BlockInfo</code> for the <code>blockId</code> block is returned.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>-1024</code> is a special <code>taskAttemptId</code>, <em>aka</em> <a href="BlockInfo.html#NON_TASK_WRITER" class="page">NON_TASK_WRITER</a>, used to mark a non-task thread, e.g. by a driver thread or by unit test code.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For blocks with <a href="BlockInfo.html#NO_WRITER" class="page"><code>writerTask</code> other than <code>NO_WRITER</code></a>, when <code>blocking</code> is enabled, <code>lockForReading</code> waits (until another thread invokes the <code>Object.notify</code> method or the <code>Object.notifyAll</code> methods for this object).</p>
+</div>
+<div class="paragraph">
+<p>With <code>blocking</code> enabled, it will repeat the waiting-for-read-lock sequence until either <code>None</code> or the lock is obtained.</p>
+</div>
+<div class="paragraph">
+<p>When <code>blocking</code> is disabled and the lock could not be obtained, <code>None</code> is returned immediately.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>lockForReading</code> is a <code>synchronized</code> method, i.e. no two objects can use this and other instance methods.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="obtaining-write-lock-for-blocklockforwriting-method"><a class="anchor" href="#obtaining-write-lock-for-blocklockforwriting-method"></a><a class="link" href="#obtaining-write-lock-for-blocklockforwriting-method"><a id="lockForWriting"></a> Obtaining Write Lock for Block&#8201;&#8212;&#8201;<code>lockForWriting</code> Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">lockForWriting(
+  blockId: BlockId,
+  blocking: Boolean = true): Option[BlockInfo]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When executed, <code>lockForWriting</code> prints out the following TRACE message to the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>TRACE Task [currentTaskAttemptId] trying to acquire write lock for [blockId]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It looks up <code>blockId</code> in the internal <a href="#infos">infos</a> registry. When no <a href="BlockInfo.html" class="page">storage:BlockInfo.adoc</a> could be found, <code>None</code> is returned. Otherwise, <a href="BlockInfo.html#NO_WRITER" class="page"><code>blockId</code> block is checked for <code>writerTask</code> to be <code>BlockInfo.NO_WRITER</code></a> with no readers (i.e. <code>readerCount</code> is <code>0</code>) and only then the lock is returned.</p>
+</div>
+<div class="paragraph">
+<p>When the write lock can be returned, <code>BlockInfo.writerTask</code> is set to <code>currentTaskAttemptId</code> and a new binding is added to the internal <a href="#writeLocksByTask">writeLocksByTask</a> registry. You should see the following TRACE message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>TRACE Task [currentTaskAttemptId] acquired write lock for [blockId]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If, for some reason, <a href="BlockInfo.html#writerTask" class="page"><code>blockId</code> has a writer</a> or the number of readers is positive (i.e. <code>BlockInfo.readerCount</code> is greater than <code>0</code>), the method will wait (based on the input <code>blocking</code> flag) and attempt the write lock acquisition process until it finishes with a write lock.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+(deadlock possible) The method is <code>synchronized</code> and can block, i.e. <code>wait</code> that causes the current thread to wait until another thread invokes <code>Object.notify</code> or <code>Object.notifyAll</code> methods for this object.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>lockForWriting</code> return <code>None</code> for no <code>blockId</code> in the internal <a href="#infos">infos</a> registry or when <code>blocking</code> flag is disabled and the write lock could not be acquired.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="obtaining-write-lock-for-new-blocklocknewblockforwriting-method"><a class="anchor" href="#obtaining-write-lock-for-new-blocklocknewblockforwriting-method"></a><a class="link" href="#obtaining-write-lock-for-new-blocklocknewblockforwriting-method"><a id="lockNewBlockForWriting"></a> Obtaining Write Lock for New Block&#8201;&#8212;&#8201;<code>lockNewBlockForWriting</code> Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">lockNewBlockForWriting(
+  blockId: BlockId,
+  newBlockInfo: BlockInfo): Boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>lockNewBlockForWriting</code> obtains a write lock for <code>blockId</code> but only when the method could register the block.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>lockNewBlockForWriting</code> is similar to <a href="#lockForWriting">lockForWriting</a> method but for brand new blocks.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When executed, <code>lockNewBlockForWriting</code> prints out the following TRACE message to the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>TRACE Task [currentTaskAttemptId] trying to put [blockId]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If <a href="#lockForReading">some other thread has already created the block</a>, it finishes returning <code>false</code>. Otherwise, when the block does not exist, <code>newBlockInfo</code> is recorded in the internal <a href="#infos">infos</a> registry and <a href="#lockForWriting">the block is locked for this client for writing</a>. It then returns <code>true</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>lockNewBlockForWriting</code> executes itself in <code>synchronized</code> block so once the BlockInfoManager is locked the other internal registries should be available only for the currently-executing thread.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="currenttaskattemptid-method"><a class="anchor" href="#currenttaskattemptid-method"></a><a class="link" href="#currenttaskattemptid-method"><a id="currentTaskAttemptId"></a> <code>currentTaskAttemptId</code> Method</a></h2>
+<div class="sectionbody">
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="releasing-lock-on-blockunlock-method"><a class="anchor" href="#releasing-lock-on-blockunlock-method"></a><a class="link" href="#releasing-lock-on-blockunlock-method"><a id="unlock"></a> Releasing Lock on Block&#8201;&#8212;&#8201;<code>unlock</code> Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">unlock(blockId: BlockId): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>unlock</code> releases&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>When executed, <code>unlock</code> starts by printing out the following TRACE message to the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>TRACE BlockInfoManager: Task [currentTaskAttemptId] releasing lock for [blockId]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>unlock</code> gets the metadata for <code>blockId</code>. It may throw a <code>IllegalStateException</code> if the block was not found.</p>
+</div>
+<div class="paragraph">
+<p>If the <a href="BlockInfo.html#writerTask" class="page">writer task</a> for the block is not <a href="BlockInfo.html#NO_WRITER" class="page">NO_WRITER</a>, it becomes so and the <code>blockId</code> block is removed from the internal <a href="#writeLocksByTask">writeLocksByTask</a> registry for the <a href="#currentTaskAttemptId">current task attempt</a>.</p>
+</div>
+<div class="paragraph">
+<p>Otherwise, if the writer task is indeed <code>NO_WRITER</code>, it is assumed that the <a href="BlockInfo.html#readerCount" class="page"><code>blockId</code> block is locked for reading</a>. The <code>readerCount</code> counter is decremented for the <code>blockId</code> block and the read lock removed from the internal <a href="#readLocksByTask">readLocksByTask</a> registry for the <a href="#currentTaskAttemptId">current task attempt</a>.</p>
+</div>
+<div class="paragraph">
+<p>In the end, <code>unlock</code> wakes up all the threads waiting for the BlockInfoManager (using Java&#8217;s <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#notifyAll--">Object.notifyAll</a>).</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME What threads could wait?
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="releasing-all-locks-obtained-by-taskreleasealllocksfortask-method"><a class="anchor" href="#releasing-all-locks-obtained-by-taskreleasealllocksfortask-method"></a><a class="link" href="#releasing-all-locks-obtained-by-taskreleasealllocksfortask-method"><a id="releaseAllLocksForTask"></a> Releasing All Locks Obtained by Task&#8201;&#8212;&#8201;<code>releaseAllLocksForTask</code> Method</a></h2>
+<div class="sectionbody">
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="removing-memory-blockremoveblock-method"><a class="anchor" href="#removing-memory-blockremoveblock-method"></a><a class="link" href="#removing-memory-blockremoveblock-method"><a id="removeBlock"></a> Removing Memory Block&#8201;&#8212;&#8201;<code>removeBlock</code> Method</a></h2>
+<div class="sectionbody">
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="assertblockislockedforwriting-method"><a class="anchor" href="#assertblockislockedforwriting-method"></a><a class="link" href="#assertblockislockedforwriting-method"><a id="assertBlockIsLockedForWriting"></a> <code>assertBlockIsLockedForWriting</code> Method</a></h2>
+<div class="sectionbody">
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="logging"><a class="anchor" href="#logging"></a><a class="link" href="#logging"><a id="logging"></a> Logging</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Enable <code>ALL</code> logging level for <code>org.apache.spark.storage.BlockInfoManager</code> logger to see what happens inside.</p>
 </div>
 <div class="paragraph">
 <p>Add the following line to <code>conf/log4j.properties</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.scheduler.cluster.YarnClusterScheduler=INFO</code></pre>
+<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.storage.BlockInfoManager=ALL</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Refer to <a href="../spark-logging.adoc">Logging</a>.</p>
+<p>Refer to <a href="../spark-logging.html" class="page">Logging</a>.</p>
 </div>
-</td>
-</tr>
-</table>
 </div>
+</div>
+<div class="sect1">
+<h2 id="internal-properties"><a class="anchor" href="#internal-properties"></a><a class="link" href="#internal-properties"><a id="internal-properties"></a> Internal Properties</a></h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="poststarthook-callback"><a class="anchor" href="#poststarthook-callback"></a><a class="link" href="#poststarthook-callback"><a id="postStartHook"></a> <code>postStartHook</code> Callback</a></h3>
+<h3 id="infos"><a class="anchor" href="#infos"></a><a class="link" href="#infos"><a id="infos"></a> infos</a></h3>
 <div class="paragraph">
-<p><code>postStartHook</code> calls <a href="spark-yarn-applicationmaster.adoc#sparkContextInitialized">ApplicationMaster.sparkContextInitialized</a> before the <a href="../scheduler/TaskSchedulerImpl.html#postStartHook" class="page">parent&#8217;s <code>postStartHook</code></a>.</p>
-</div>
-<div class="paragraph">
-<p>You should see the following INFO message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>INFO YarnClusterScheduler: YarnClusterScheduler.postStartHook done</code></pre>
-</div>
+<p>Tracks <a href="BlockInfo.html" class="page">storage:BlockInfo.adoc</a>s per block (as <a href="BlockId.html" class="page">BlockId</a>).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="stopping-yarnclusterscheduler-stop-method"><a class="anchor" href="#stopping-yarnclusterscheduler-stop-method"></a><a class="link" href="#stopping-yarnclusterscheduler-stop-method"><a id="stop"></a> Stopping YarnClusterScheduler (stop method)</a></h3>
+<h3 id="readlocksbytask"><a class="anchor" href="#readlocksbytask"></a><a class="link" href="#readlocksbytask"><a id="readLocksByTask"></a> readLocksByTask</a></h3>
 <div class="paragraph">
-<p><code>stop</code> calls the <a href="../scheduler/TaskSchedulerImpl.html#stop" class="page">parent&#8217;s <code>stop</code></a> followed by <a href="spark-yarn-applicationmaster.adoc#sparkContextStopped">ApplicationMaster.sparkContextStopped</a>.</p>
+<p>Tracks tasks (by TaskAttemptId) and the blocks they locked for reading (as <a href="BlockId.html" class="page">BlockId</a>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="writelocksbytask"><a class="anchor" href="#writelocksbytask"></a><a class="link" href="#writelocksbytask"><a id="writeLocksByTask"></a> writeLocksByTask</a></h3>
+<div class="paragraph">
+<p>Tracks tasks (by <code>TaskAttemptId</code>) and the blocks they locked for writing (as <a href="BlockId.html" class="page">BlockId</a>).</p>
 </div>
 </div>
 </div>

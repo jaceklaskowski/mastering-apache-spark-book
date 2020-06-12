@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>ShuffleBlockFetcherIterator :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/storage/ShuffleBlockFetcherIterator.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -456,6 +456,9 @@
     <a class="nav-link" href="BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="DiskStore.html">DiskStore</a>
 <ul class="nav-list">
@@ -465,22 +468,19 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="MemoryStore.html">MemoryStore</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockData.html">BlockData</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-BlockInfoManager.html">BlockInfoManager</a>
+    <a class="nav-link" href="BlockInfoManager.html">BlockInfoManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-BlockInfo.html">BlockInfo</a>
+    <a class="nav-link" href="BlockInfo.html">BlockInfo.adoc</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="MemoryStore.html">MemoryStore</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
@@ -1944,8 +1944,8 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="shuffleblockfetcheriterator"><a class="anchor" href="#shuffleblockfetcheriterator"></a><a class="link" href="#shuffleblockfetcheriterator"><a id="ShuffleBlockFetcherIterator"></a> ShuffleBlockFetcherIterator</a></h2>
+<h1 class="page">ShuffleBlockFetcherIterator</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p><code>ShuffleBlockFetcherIterator</code> is a Scala <a href="http://www.scala-lang.org/api/current/scala/collection/Iterator.html">Iterator</a> that fetches shuffle blocks (aka <em>shuffle map outputs</em>) from block managers.</p>
@@ -2066,8 +2066,11 @@
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="fetchuptomaxbytes-method"><a class="anchor" href="#fetchuptomaxbytes-method"></a><a class="link" href="#fetchuptomaxbytes-method"><a id="fetchUpToMaxBytes"></a> <code>fetchUpToMaxBytes</code> Method</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="fetchuptomaxbytes-method"><a class="anchor" href="#fetchuptomaxbytes-method"></a><a class="link" href="#fetchuptomaxbytes-method"><a id="fetchUpToMaxBytes"></a> <code>fetchUpToMaxBytes</code> Method</a></h2>
+<div class="sectionbody">
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -2081,8 +2084,10 @@ FIXME
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="creating-shuffleblockfetcheriterator-instance"><a class="anchor" href="#creating-shuffleblockfetcheriterator-instance"></a><a class="link" href="#creating-shuffleblockfetcheriterator-instance"><a id="creating-instance"></a> Creating ShuffleBlockFetcherIterator Instance</a></h3>
+</div>
+<div class="sect1">
+<h2 id="creating-shuffleblockfetcheriterator-instance"><a class="anchor" href="#creating-shuffleblockfetcheriterator-instance"></a><a class="link" href="#creating-shuffleblockfetcheriterator-instance"><a id="creating-instance"></a> Creating ShuffleBlockFetcherIterator Instance</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>When created, <code>ShuffleBlockFetcherIterator</code> takes the following:</p>
 </div>
@@ -2121,8 +2126,10 @@ FIXME
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="initializing-shuffleblockfetcheriteratorinitialize-internal-method"><a class="anchor" href="#initializing-shuffleblockfetcheriteratorinitialize-internal-method"></a><a class="link" href="#initializing-shuffleblockfetcheriteratorinitialize-internal-method"><a id="initialize"></a> Initializing ShuffleBlockFetcherIterator&#8201;&#8212;&#8201;<code>initialize</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="initializing-shuffleblockfetcheriteratorinitialize-internal-method"><a class="anchor" href="#initializing-shuffleblockfetcheriteratorinitialize-internal-method"></a><a class="link" href="#initializing-shuffleblockfetcheriteratorinitialize-internal-method"><a id="initialize"></a> Initializing ShuffleBlockFetcherIterator&#8201;&#8212;&#8201;<code>initialize</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">initialize(): Unit</code></pre>
@@ -2178,8 +2185,10 @@ FIXME
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="sending-remote-shuffle-block-fetch-requestsendrequest-internal-method"><a class="anchor" href="#sending-remote-shuffle-block-fetch-requestsendrequest-internal-method"></a><a class="link" href="#sending-remote-shuffle-block-fetch-requestsendrequest-internal-method"><a id="sendRequest"></a> Sending Remote Shuffle Block Fetch Request&#8201;&#8212;&#8201;<code>sendRequest</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="sending-remote-shuffle-block-fetch-requestsendrequest-internal-method"><a class="anchor" href="#sending-remote-shuffle-block-fetch-requestsendrequest-internal-method"></a><a class="link" href="#sending-remote-shuffle-block-fetch-requestsendrequest-internal-method"><a id="sendRequest"></a> Sending Remote Shuffle Block Fetch Request&#8201;&#8212;&#8201;<code>sendRequest</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">sendRequest(req: FetchRequest): Unit</code></pre>
@@ -2248,8 +2257,8 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManagerId.
 </tr>
 </table>
 </div>
-<div class="sect3">
-<h4 id="onblockfetchsuccess-callback"><a class="anchor" href="#onblockfetchsuccess-callback"></a><a class="link" href="#onblockfetchsuccess-callback"><a id="sendRequest-BlockFetchingListener-onBlockFetchSuccess"></a> onBlockFetchSuccess Callback</a></h4>
+<div class="sect2">
+<h3 id="onblockfetchsuccess-callback"><a class="anchor" href="#onblockfetchsuccess-callback"></a><a class="link" href="#onblockfetchsuccess-callback"><a id="sendRequest-BlockFetchingListener-onBlockFetchSuccess"></a> onBlockFetchSuccess Callback</a></h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">onBlockFetchSuccess(blockId: String, buf: ManagedBuffer): Unit</code></pre>
@@ -2281,8 +2290,8 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManagerId.
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="onblockfetchfailure-callback"><a class="anchor" href="#onblockfetchfailure-callback"></a><a class="link" href="#onblockfetchfailure-callback"><a id="sendRequest-BlockFetchingListener-onBlockFetchFailure"></a> onBlockFetchFailure Callback</a></h4>
+<div class="sect2">
+<h3 id="onblockfetchfailure-callback"><a class="anchor" href="#onblockfetchfailure-callback"></a><a class="link" href="#onblockfetchfailure-callback"><a id="sendRequest-BlockFetchingListener-onBlockFetchFailure"></a> onBlockFetchFailure Callback</a></h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">onBlockFetchFailure(blockId: String, e: Throwable): Unit</code></pre>
@@ -2301,8 +2310,10 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManagerId.
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="throwing-fetchfailedexception-for-shuffleblockidthrowfetchfailedexception-internal-method"><a class="anchor" href="#throwing-fetchfailedexception-for-shuffleblockidthrowfetchfailedexception-internal-method"></a><a class="link" href="#throwing-fetchfailedexception-for-shuffleblockidthrowfetchfailedexception-internal-method"><a id="throwFetchFailedException"></a> Throwing FetchFailedException (for ShuffleBlockId)&#8201;&#8212;&#8201;<code>throwFetchFailedException</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="throwing-fetchfailedexception-for-shuffleblockidthrowfetchfailedexception-internal-method"><a class="anchor" href="#throwing-fetchfailedexception-for-shuffleblockidthrowfetchfailedexception-internal-method"></a><a class="link" href="#throwing-fetchfailedexception-for-shuffleblockidthrowfetchfailedexception-internal-method"><a id="throwFetchFailedException"></a> Throwing FetchFailedException (for ShuffleBlockId)&#8201;&#8212;&#8201;<code>throwFetchFailedException</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">throwFetchFailedException(
@@ -2347,8 +2358,10 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManagerId.
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="releasing-resourcescleanup-internal-method"><a class="anchor" href="#releasing-resourcescleanup-internal-method"></a><a class="link" href="#releasing-resourcescleanup-internal-method"><a id="cleanup"></a> Releasing Resources&#8201;&#8212;&#8201;<code>cleanup</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="releasing-resourcescleanup-internal-method"><a class="anchor" href="#releasing-resourcescleanup-internal-method"></a><a class="link" href="#releasing-resourcescleanup-internal-method"><a id="cleanup"></a> Releasing Resources&#8201;&#8212;&#8201;<code>cleanup</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">cleanup(): Unit</code></pre>
@@ -2376,8 +2389,10 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManagerId.
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="decrementing-reference-count-of-and-releasing-result-buffer-for-successfetchresultreleasecurrentresultbuffer-internal-method"><a class="anchor" href="#decrementing-reference-count-of-and-releasing-result-buffer-for-successfetchresultreleasecurrentresultbuffer-internal-method"></a><a class="link" href="#decrementing-reference-count-of-and-releasing-result-buffer-for-successfetchresultreleasecurrentresultbuffer-internal-method"><a id="releaseCurrentResultBuffer"></a> Decrementing Reference Count Of and Releasing Result Buffer (for SuccessFetchResult)&#8201;&#8212;&#8201;<code>releaseCurrentResultBuffer</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="decrementing-reference-count-of-and-releasing-result-buffer-for-successfetchresultreleasecurrentresultbuffer-internal-method"><a class="anchor" href="#decrementing-reference-count-of-and-releasing-result-buffer-for-successfetchresultreleasecurrentresultbuffer-internal-method"></a><a class="link" href="#decrementing-reference-count-of-and-releasing-result-buffer-for-successfetchresultreleasecurrentresultbuffer-internal-method"><a id="releaseCurrentResultBuffer"></a> Decrementing Reference Count Of and Releasing Result Buffer (for SuccessFetchResult)&#8201;&#8212;&#8201;<code>releaseCurrentResultBuffer</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">releaseCurrentResultBuffer(): Unit</code></pre>
@@ -2402,8 +2417,10 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManagerId.
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="fetchlocalblocks-internal-method"><a class="anchor" href="#fetchlocalblocks-internal-method"></a><a class="link" href="#fetchlocalblocks-internal-method"><a id="fetchLocalBlocks"></a> <code>fetchLocalBlocks</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="fetchlocalblocks-internal-method"><a class="anchor" href="#fetchlocalblocks-internal-method"></a><a class="link" href="#fetchlocalblocks-internal-method"><a id="fetchLocalBlocks"></a> <code>fetchLocalBlocks</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">fetchLocalBlocks(): Unit</code></pre>
@@ -2425,8 +2442,10 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManagerId.
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="hasnext-method"><a class="anchor" href="#hasnext-method"></a><a class="link" href="#hasnext-method"><a id="hasNext"></a> <code>hasNext</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="hasnext-method"><a class="anchor" href="#hasnext-method"></a><a class="link" href="#hasnext-method"><a id="hasNext"></a> <code>hasNext</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">hasNext: Boolean</code></pre>
@@ -2451,8 +2470,10 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManagerId.
 <p>Otherwise, <code>hasNext</code> is negative (<code>false</code>).</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="splitlocalremoteblocks-internal-method"><a class="anchor" href="#splitlocalremoteblocks-internal-method"></a><a class="link" href="#splitlocalremoteblocks-internal-method"><a id="splitLocalRemoteBlocks"></a> <code>splitLocalRemoteBlocks</code> Internal Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="splitlocalremoteblocks-internal-method"><a class="anchor" href="#splitlocalremoteblocks-internal-method"></a><a class="link" href="#splitlocalremoteblocks-internal-method"><a id="splitLocalRemoteBlocks"></a> <code>splitLocalRemoteBlocks</code> Internal Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">splitLocalRemoteBlocks(): ArrayBuffer[FetchRequest]</code></pre>
@@ -2474,8 +2495,10 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManagerId.
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="retrieving-next-elementnext-method"><a class="anchor" href="#retrieving-next-elementnext-method"></a><a class="link" href="#retrieving-next-elementnext-method"><a id="next"></a> Retrieving Next Element&#8201;&#8212;&#8201;<code>next</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="retrieving-next-elementnext-method"><a class="anchor" href="#retrieving-next-elementnext-method"></a><a class="link" href="#retrieving-next-elementnext-method"><a id="next"></a> Retrieving Next Element&#8201;&#8212;&#8201;<code>next</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">next(): (BlockId, InputStream)</code></pre>
@@ -2495,7 +2518,6 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManagerId.
 </div>
 <div class="paragraph">
 <p><code>next</code>&#8230;&#8203;FIXME</p>
-</div>
 </div>
 </div>
 </div>

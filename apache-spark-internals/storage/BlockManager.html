@@ -456,6 +456,9 @@
     <a class="nav-link" href="BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="DiskStore.html">DiskStore</a>
 <ul class="nav-list">
@@ -465,22 +468,19 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="MemoryStore.html">MemoryStore</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockData.html">BlockData</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-BlockInfoManager.html">BlockInfoManager</a>
+    <a class="nav-link" href="BlockInfoManager.html">BlockInfoManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-BlockInfo.html">BlockInfo</a>
+    <a class="nav-link" href="BlockInfo.html">BlockInfo.adoc</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="MemoryStore.html">MemoryStore</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
@@ -2047,9 +2047,6 @@ Use <a href="../tools/spark-submit.html" class="page">spark-submit</a>'s command
 <p>BlockManager then creates an instance of <a href="DiskBlockManager.html" class="page">DiskBlockManager</a> (requesting <code>deleteFilesOnStop</code> when an external shuffle service is not in use).</p>
 </div>
 <div class="paragraph">
-<p>BlockManager creates an instance of <a href="spark-BlockInfoManager.adoc">BlockInfoManager</a> (as <code>blockInfoManager</code>).</p>
-</div>
-<div class="paragraph">
 <p>BlockManager creates <strong>block-manager-future</strong> daemon cached thread pool with 128 threads maximum (as <code>futureExecutionContext</code>).</p>
 </div>
 <div class="paragraph">
@@ -2081,6 +2078,20 @@ It is computed specially in Spark on YARN.
 </div>
 <div class="paragraph">
 <p>BlockManager is created when SparkEnv is <a href="../core/SparkEnv.html#create-BlockManager" class="page">created</a> (for the driver and executors) when a Spark application starts.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="blockinfomanager"><a class="anchor" href="#blockinfomanager"></a><a class="link" href="#blockinfomanager"><a id="blockInfoManager"></a> BlockInfoManager</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>BlockManager creates a <a href="BlockInfoManager.html" class="page">BlockInfoManager</a> when <a href="#creating-instance">created</a>.</p>
+</div>
+<div class="paragraph">
+<p>BlockManager uses the BlockInfoManager to create a <a href="#memoryStore">MemoryStore</a>.</p>
+</div>
+<div class="paragraph">
+<p>BlockManager uses the BlockInfoManager for&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>
@@ -2397,7 +2408,7 @@ SparkEnv.get.blockManager.memoryStore</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>getLocalValues <a href="spark-BlockInfoManager.adoc#lockForReading">obtains a read lock for <code>blockId</code></a>.</p>
+<p>getLocalValues <a href="BlockInfoManager.html#lockForReading" class="page">obtains a read lock for <code>blockId</code></a>.</p>
 </div>
 <div class="paragraph">
 <p>When no <code>blockId</code> block was found, you should see the following DEBUG message in the logs and getLocalValues returns "nothing" (i.e. <code>NONE</code>).</p>
@@ -2845,10 +2856,10 @@ FIXME
 <p><code>doPut</code> is an internal helper method for <a href="#doPutBytes">doPutBytes</a> and <a href="#doPutIterator">doPutIterator</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>doPut</code> executes the input <code>putBody</code> function with a <a href="spark-BlockInfo.adoc">BlockInfo</a> being a new <code>BlockInfo</code> object (with <code>level</code> storage level) that <a href="spark-BlockInfoManager.adoc#lockNewBlockForWriting"><code>BlockInfoManager</code> managed to create a write lock for</a>.</p>
+<p><code>doPut</code> executes the input <code>putBody</code> function with a <a href="BlockInfo.html" class="page">storage:BlockInfo.adoc</a> being a new <code>BlockInfo</code> object (with <code>level</code> storage level) that <a href="BlockInfoManager.html#lockNewBlockForWriting" class="page"><code>BlockInfoManager</code> managed to create a write lock for</a>.</p>
 </div>
 <div class="paragraph">
-<p>If the block has already been created (and <a href="spark-BlockInfoManager.adoc#lockNewBlockForWriting"><code>BlockInfoManager</code> did not manage to create a write lock for</a>), the following WARN message is printed out to the logs:</p>
+<p>If the block has already been created (and <a href="BlockInfoManager.html#lockNewBlockForWriting" class="page"><code>BlockInfoManager</code> did not manage to create a write lock for</a>), the following WARN message is printed out to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2865,10 +2876,10 @@ FIXME
 <p>If the result of <code>putBody</code> is <code>None</code> the block is considered saved successfully.</p>
 </div>
 <div class="paragraph">
-<p>For successful save and <code>keepReadLock</code> enabled, <a href="spark-BlockInfoManager.adoc#downgradeLock"><code>BlockInfoManager</code> is requested to downgrade an exclusive write lock for <code>blockId</code> to a shared read lock</a>.</p>
+<p>For successful save and <code>keepReadLock</code> enabled, <a href="BlockInfoManager.html#downgradeLock" class="page"><code>BlockInfoManager</code> is requested to downgrade an exclusive write lock for <code>blockId</code> to a shared read lock</a>.</p>
 </div>
 <div class="paragraph">
-<p>For successful save and <code>keepReadLock</code> disabled, <a href="spark-BlockInfoManager.adoc#unlock"><code>BlockInfoManager</code> is requested to release lock on <code>blockId</code></a>.</p>
+<p>For successful save and <code>keepReadLock</code> disabled, <a href="BlockInfoManager.html#unlock" class="page"><code>BlockInfoManager</code> is requested to release lock on <code>blockId</code></a>.</p>
 </div>
 <div class="paragraph">
 <p>For unsuccessful save, <a href="#removeBlockInternal">the block is removed from memory and disk stores</a> and the following WARN message is printed out to the logs:</p>
@@ -2908,7 +2919,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p>It requests <a href="spark-BlockInfoManager.adoc">BlockInfoManager</a> for lock for writing for the <code>blockId</code> block. If it receives none, it prints out the following WARN message to the logs and quits.</p>
+<p>It requests <a href="BlockInfoManager.html" class="page">BlockInfoManager</a> for lock for writing for the <code>blockId</code> block. If it receives none, it prints out the following WARN message to the logs and quits.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2927,7 +2938,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p>The block is removed from <a href="spark-BlockInfoManager.adoc">BlockInfoManager</a>.</p>
+<p>The block is removed from <a href="BlockInfoManager.html" class="page">BlockInfoManager</a>.</p>
 </div>
 <div class="paragraph">
 <p>It then <a href="#getCurrentBlockStatus">calculates the current block status</a> that is used to <a href="#reportBlockStatus">report the block status to the driver</a> (if the input <code>tellMaster</code> and the info&#8217;s <code>tellMaster</code> are both enabled, i.e. <code>true</code>) and the <a href="../executor/TaskMetrics.html#incUpdatedBlockStatuses" class="page">current TaskContext metrics are updated with the change</a>.</p>
@@ -2966,7 +2977,7 @@ It is used to <a href="#removeRdd">remove RDDs</a> and <a href="#removeBroadcast
 </div>
 </div>
 <div class="paragraph">
-<p>It then requests RDD blocks from <a href="spark-BlockInfoManager.adoc">BlockInfoManager</a> and <a href="#removeBlock">removes them (from memory and disk)</a> (without informing the driver).</p>
+<p>It then requests RDD blocks from <a href="BlockInfoManager.html" class="page">BlockInfoManager</a> and <a href="#removeBlock">removes them (from memory and disk)</a> (without informing the driver).</p>
 </div>
 <div class="paragraph">
 <p>The number of blocks removed is the final result.</p>
@@ -3005,7 +3016,7 @@ It is used by <a href="BlockManagerSlaveEndpoint.html#RemoveRdd" class="page"><c
 </div>
 </div>
 <div class="paragraph">
-<p>It then requests all the <a href="BlockId.html#BroadcastBlockId" class="page">BroadcastBlockId</a> objects that belong to the <code>broadcastId</code> broadcast from <a href="spark-BlockInfoManager.adoc">BlockInfoManager</a> and <a href="#removeBlock">removes them (from memory and disk)</a>.</p>
+<p>It then requests all the <a href="BlockId.html#BroadcastBlockId" class="page">BroadcastBlockId</a> objects that belong to the <code>broadcastId</code> broadcast from <a href="BlockInfoManager.html" class="page">BlockInfoManager</a> and <a href="#removeBlock">removes them (from memory and disk)</a>.</p>
 </div>
 <div class="paragraph">
 <p>The number of blocks removed is the final result.</p>
@@ -3264,7 +3275,7 @@ registerWithExternalShuffleServer is used when BlockManager is requested to <a h
 </div>
 </div>
 <div class="paragraph">
-<p>For each block metadata (in <a href="spark-BlockInfoManager.adoc">BlockInfoManager</a>) it <a href="#getCurrentBlockStatus">gets block current status</a> and <a href="#tryToReportBlockStatus">tries to send it to the BlockManagerMaster</a>.</p>
+<p>For each block metadata (in <a href="BlockInfoManager.html" class="page">BlockInfoManager</a>) it <a href="#getCurrentBlockStatus">gets block current status</a> and <a href="#tryToReportBlockStatus">tries to send it to the BlockManagerMaster</a>.</p>
 </div>
 <div class="paragraph">
 <p>If there is an issue communicating to the <a href="BlockManagerMaster.html" class="page">BlockManagerMaster</a>, you should see the following ERROR message in the logs:</p>
@@ -3315,7 +3326,7 @@ Most of the information to build <code>BlockStatus</code> is already in <code>Bl
 </table>
 </div>
 <div class="paragraph">
-<p>Internally, it uses the input <a href="spark-BlockInfo.adoc">BlockInfo</a> to know about the block&#8217;s storage level. If the storage level is not set (i.e. <code>null</code>), the returned <code>BlockStatus</code> assumes the <a href="StorageLevel.html" class="page">default <code>NONE</code> storage level</a> and the memory and disk sizes being <code>0</code>.</p>
+<p>Internally, it uses the input <a href="BlockInfo.html" class="page">storage:BlockInfo.adoc</a> to know about the block&#8217;s storage level. If the storage level is not set (i.e. <code>null</code>), the returned <code>BlockStatus</code> assumes the <a href="StorageLevel.html" class="page">default <code>NONE</code> storage level</a> and the memory and disk sizes being <code>0</code>.</p>
 </div>
 <div class="paragraph">
 <p>If however the storage level is set, <code>getCurrentBlockStatus</code> uses <a href="MemoryStore.html" class="page">MemoryStore</a> and <a href="DiskStore.html" class="page">DiskStore</a> to check whether the block is stored in the storages or not and request for their sizes in the storages respectively (using their <code>getSize</code> or assume <code>0</code>).</p>
@@ -3505,7 +3516,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="paragraph">
-<p><code>registerTask</code> <a href="spark-BlockInfoManager.adoc#registerTask">registers the input <code>taskAttemptId</code> with <code>BlockInfoManager</code></a>.</p>
+<p><code>registerTask</code> <a href="BlockInfoManager.html#registerTask" class="page">registers the input <code>taskAttemptId</code> with <code>BlockInfoManager</code></a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -4068,7 +4079,7 @@ FIXME Figure
 </div>
 </div>
 <div class="paragraph">
-<p>It then asserts that the <code>blockId</code> block is <a href="spark-BlockInfoManager.adoc#assertBlockIsLockedForWriting">locked for writing</a>.</p>
+<p>It then asserts that the <code>blockId</code> block is <a href="BlockInfoManager.html#assertBlockIsLockedForWriting" class="page">locked for writing</a>.</p>
 </div>
 <div class="paragraph">
 <p>If the block&#8217;s <a href="StorageLevel.html" class="page">StorageLevel</a> uses disks and the internal <a href="DiskStore.html" class="page">DiskStore</a> object (<code>diskStore</code>) does not contain the block, it is saved then. You should see the following INFO message in the logs:</p>
@@ -4224,12 +4235,6 @@ FIXME When would <code>info.tellMaster</code> be <code>true</code>?
 <div class="sect1">
 <h2 id="internal-properties"><a class="anchor" href="#internal-properties"></a><a class="link" href="#internal-properties"><a id="internal-properties"></a> Internal Properties</a></h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="blockinfomanager"><a class="anchor" href="#blockinfomanager"></a><a class="link" href="#blockinfomanager"><a id="blockInfoManager"></a> BlockInfoManager</a></h3>
-<div class="paragraph">
-<p><a href="spark-BlockInfoManager.adoc">BlockInfoManager</a> for&#8230;&#8203;FIXME</p>
-</div>
-</div>
 <div class="sect2">
 <h3 id="maximum-memory"><a class="anchor" href="#maximum-memory"></a><a class="link" href="#maximum-memory"><a id="maxMemory"></a> Maximum Memory</a></h3>
 <div class="paragraph">

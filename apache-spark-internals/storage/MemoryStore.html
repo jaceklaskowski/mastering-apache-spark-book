@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title> MemoryStore :: The Internals Of Apache Spark</title>
+    <title>MemoryStore :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/storage/MemoryStore.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -456,6 +456,9 @@
     <a class="nav-link" href="BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="DiskStore.html">DiskStore</a>
 <ul class="nav-list">
@@ -464,23 +467,20 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="MemoryStore.html">MemoryStore</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockData.html">BlockData</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-BlockInfoManager.html">BlockInfoManager</a>
+    <a class="nav-link" href="BlockInfoManager.html">BlockInfoManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-BlockInfo.html">BlockInfo</a>
+    <a class="nav-link" href="BlockInfo.html">BlockInfo.adoc</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="MemoryStore.html">MemoryStore</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
@@ -1944,11 +1944,11 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page"><a id="MemoryStore"></a> MemoryStore</h1>
+<h1 class="page">MemoryStore</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>MemoryStore is the <strong>memory store</strong> for blocks of data for <a href="BlockManager.html#memoryStore" class="page">BlockManager</a>.</p>
+<p><strong>MemoryStore</strong> is the <strong>memory store</strong> for blocks of data for <a href="BlockManager.html#memoryStore" class="page">BlockManager</a>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1987,7 +1987,7 @@
 <p><a id="conf"></a> <a href="../SparkConf.html" class="page">SparkConf</a></p>
 </li>
 <li>
-<p><a id="blockInfoManager"></a> <a href="spark-BlockInfoManager.html" class="page">BlockInfoManager</a></p>
+<p><a id="blockInfoManager"></a> <a href="BlockInfoManager.html" class="page">BlockInfoManager</a></p>
 </li>
 <li>
 <p><a id="serializerManager"></a> <a href="../serializer/SerializerManager.html" class="page">SerializerManager</a></p>
