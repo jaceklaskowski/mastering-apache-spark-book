@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/spark-SparkListenerBus-AsyncEventQueue.html">
+    <title>Speculative Execution of Tasks :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/speculative-execution-of-tasks.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -684,7 +684,7 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="speculative-execution-of-tasks.html">Speculative Execution of Tasks</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -860,7 +860,7 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="spark-SparkListenerBus.html">SparkListenerBus</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="spark-SparkListenerBus-AsyncEventQueue.html">AsyncEventQueue</a>
   </li>
 </ul>
@@ -1936,22 +1936,51 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Apache Spark</a></li>
-    <li>Monitoring, Tuning, Debugging and Testing</li>
-    <li><a href="spark-SparkListenerBus.html">SparkListenerBus</a></li>
-    <li><a href="spark-SparkListenerBus-AsyncEventQueue.html">AsyncEventQueue</a></li>
+    <li><a href="speculative-execution-of-tasks.html">Speculative Execution of Tasks</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/ROOT/pages/spark-SparkListenerBus-AsyncEventQueue.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/ROOT/pages/speculative-execution-of-tasks.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="asynceventqueue"><a class="anchor" href="#asynceventqueue"></a><a class="link" href="#asynceventqueue"><a id="AsyncEventQueue"></a> AsyncEventQueue</a></h2>
-<div class="sectionbody">
+<h1 class="page">Speculative Execution of Tasks</h1>
 <div class="paragraph">
-<p><code>AsyncEventQueue</code> is&#8230;&#8203;FIXME</p>
+<p><strong>Speculative tasks</strong> (also <strong>speculatable tasks</strong> or <strong>task strugglers</strong>) are tasks that run slower than most (FIXME the setting) of the all tasks in a job.</p>
+</div>
+<div class="paragraph">
+<p><strong>Speculative execution of tasks</strong> is a health-check procedure that checks for tasks to be <strong>speculated</strong>, i.e. running slower in a stage than the median of all successfully completed tasks in a taskset (FIXME the setting). Such slow tasks will be re-submitted to another worker. It will not stop the slow tasks, but run a new copy in parallel.</p>
+</div>
+<div class="paragraph">
+<p>The thread starts as <code>TaskSchedulerImpl</code> starts in <a href="spark-cluster.html" class="page">clustered deployment modes</a> with <a href="configuration-properties.html#spark.speculation" class="page">spark.speculation</a> enabled. It executes periodically every <a href="configuration-properties.html#spark.speculation.interval" class="page">spark.speculation.interval</a> after the initial <code>spark.speculation.interval</code> passes.</p>
+</div>
+<div class="paragraph">
+<p>When enabled, you should see the following INFO message in the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Starting speculative execution thread</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>It works as <a href="scheduler/TaskSchedulerImpl.html#task-scheduler-speculation" class="page"><code>task-scheduler-speculation</code> daemon thread pool</a> (using <code>j.u.c.ScheduledThreadPoolExecutor</code> with core pool size of 1).</p>
+</div>
+<div class="paragraph">
+<p>The job with speculatable tasks should finish while speculative tasks are running, and it will leave these tasks running - no KILL command yet.</p>
+</div>
+<div class="paragraph">
+<p>It uses <code>checkSpeculatableTasks</code> method that asks <code>rootPool</code> to check for speculatable tasks. If there are any, <code>SchedulerBackend</code> is called for <a href="scheduler/SchedulerBackend.html#reviveOffers" class="page">reviveOffers</a>.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+FIXME How does Spark handle repeated results of speculative tasks since there are copies launched?
+</td>
+</tr>
+</table>
 </div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

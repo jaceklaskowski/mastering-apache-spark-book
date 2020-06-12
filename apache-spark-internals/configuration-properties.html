@@ -331,9 +331,6 @@
     <a class="nav-link" href="scheduler/spark-scheduler-TaskDescription.html">TaskDescription</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="scheduler/spark-taskschedulerimpl-speculative-execution.html">Speculative Execution of Tasks</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="scheduler/TaskResultGetter.html">TaskResultGetter</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -686,6 +683,9 @@
     <a class="nav-link" href="spark-service-ExecutorAllocationManagerSource.html">ExecutorAllocationManagerSource</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="speculative-execution-of-tasks.html">Speculative Execution of Tasks</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
@@ -3070,6 +3070,47 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 </div>
 <div class="paragraph">
 <p>Default: (empty)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-speculation"><a class="anchor" href="#spark-speculation"></a><a class="link" href="#spark-speculation"><a id="spark.speculation"></a> spark.speculation</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Enables (<code>true</code>) or disables (<code>false</code>) <a href="speculative-execution-of-tasks.html" class="page">Speculative Execution of Tasks</a></p>
+</div>
+<div class="paragraph">
+<p>Default: <code>false</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-speculation-interval"><a class="anchor" href="#spark-speculation-interval"></a><a class="link" href="#spark-speculation-interval"><a id="spark.speculation.interval"></a> spark.speculation.interval</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The time interval to use before checking for speculative tasks in <a href="speculative-execution-of-tasks.html" class="page">Speculative Execution of Tasks</a>.</p>
+</div>
+<div class="paragraph">
+<p>Default: 100ms</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-speculation-multiplier"><a class="anchor" href="#spark-speculation-multiplier"></a><a class="link" href="#spark-speculation-multiplier"><a id="spark.speculation.multiplier"></a> spark.speculation.multiplier</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Default: 1.5`</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-speculation-quantile"><a class="anchor" href="#spark-speculation-quantile"></a><a class="link" href="#spark-speculation-quantile"><a id="spark.speculation.quantile"></a> spark.speculation.quantile</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The percentage of tasks that has not finished yet at which to start speculation in <a href="speculative-execution-of-tasks.html" class="page">Speculative Execution of Tasks</a>.</p>
+</div>
+<div class="paragraph">
+<p>Default: 0.75</p>
 </div>
 </div>
 </div>

@@ -331,9 +331,6 @@
     <a class="nav-link" href="spark-scheduler-TaskDescription.html">TaskDescription</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-taskschedulerimpl-speculative-execution.html">Speculative Execution of Tasks</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="TaskResultGetter.html">TaskResultGetter</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -686,6 +683,9 @@
     <a class="nav-link" href="../spark-service-ExecutorAllocationManagerSource.html">ExecutorAllocationManagerSource</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../speculative-execution-of-tasks.html">Speculative Execution of Tasks</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
@@ -2645,10 +2645,10 @@ FIXME image with scheduler backends calling <code>TaskSchedulerImpl.statusUpdate
 <h2 id="task-scheduler-speculation-scheduled-executor-servicespeculationscheduler-internal-attribute"><a class="anchor" href="#task-scheduler-speculation-scheduled-executor-servicespeculationscheduler-internal-attribute"></a><a class="link" href="#task-scheduler-speculation-scheduled-executor-servicespeculationscheduler-internal-attribute"><a id="speculationScheduler"></a><a id="task-scheduler-speculation"></a> task-scheduler-speculation Scheduled Executor Service&#8201;&#8212;&#8201;<code>speculationScheduler</code> Internal Attribute</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>speculationScheduler</code> is a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html">java.util.concurrent.ScheduledExecutorService</a> with the name <strong>task-scheduler-speculation</strong> for <a href="spark-taskschedulerimpl-speculative-execution.html" class="page">speculative execution of tasks</a>.</p>
+<p><code>speculationScheduler</code> is a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html">java.util.concurrent.ScheduledExecutorService</a> with the name <strong>task-scheduler-speculation</strong> for <a href="../speculative-execution-of-tasks.html" class="page">Speculative Execution of Tasks</a>.</p>
 </div>
 <div class="paragraph">
-<p>When <a href="#start">TaskSchedulerImpl starts</a> (in non-local run mode) with <a href="spark-taskschedulerimpl-speculative-execution.html#spark_speculation" class="page">spark.speculation</a> enabled, <code>speculationScheduler</code> is used to schedule <a href="#checkSpeculatableTasks">checkSpeculatableTasks</a> to execute periodically every <a href="spark-taskschedulerimpl-speculative-execution.html#spark_speculation_interval" class="page">spark.speculation.interval</a> after the initial <code>spark.speculation.interval</code> passes.</p>
+<p>When <a href="#start">TaskSchedulerImpl starts</a> (in non-local run mode) with <a href="../configuration-properties.html#spark.speculation" class="page">spark.speculation</a> enabled, <code>speculationScheduler</code> is used to schedule <a href="#checkSpeculatableTasks">checkSpeculatableTasks</a> to execute periodically every <a href="../configuration-properties.html#spark.speculation.interval" class="page">spark.speculation.interval</a> after the initial <code>spark.speculation.interval</code> passes.</p>
 </div>
 <div class="paragraph">
 <p><code>speculationScheduler</code> is shut down when <a href="#stop">TaskSchedulerImpl stops</a>.</p>
@@ -2656,7 +2656,7 @@ FIXME image with scheduler backends calling <code>TaskSchedulerImpl.statusUpdate
 </div>
 </div>
 <div class="sect1">
-<h2 id="checking-for-speculatable-taskscheckspeculatabletasks-method"><a class="anchor" href="#checking-for-speculatable-taskscheckspeculatabletasks-method"></a><a class="link" href="#checking-for-speculatable-taskscheckspeculatabletasks-method"><a id="checkSpeculatableTasks"></a> Checking for Speculatable Tasks&#8201;&#8212;&#8201;<code>checkSpeculatableTasks</code> Method</a></h2>
+<h2 id="checking-for-speculatable-tasks"><a class="anchor" href="#checking-for-speculatable-tasks"></a><a class="link" href="#checking-for-speculatable-tasks"><a id="checkSpeculatableTasks"></a> Checking for Speculatable Tasks</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2673,7 +2673,7 @@ FIXME image with scheduler backends calling <code>TaskSchedulerImpl.statusUpdate
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>checkSpeculatableTasks</code> is executed periodically as part of <a href="spark-taskschedulerimpl-speculative-execution.html" class="page">speculative execution of tasks</a>.
+<code>checkSpeculatableTasks</code> is executed periodically as part of <a href="../speculative-execution-of-tasks.html" class="page">Speculative Execution of Tasks</a>.
 </td>
 </tr>
 </table>
