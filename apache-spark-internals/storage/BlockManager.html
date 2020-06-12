@@ -478,7 +478,7 @@
     <a class="nav-link" href="BlockInfoManager.html">BlockInfoManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="BlockInfo.html">BlockInfo.adoc</a>
+    <a class="nav-link" href="BlockInfo.html">BlockInfo</a>
   </li>
 </ul>
   </li>
@@ -2856,7 +2856,7 @@ FIXME
 <p><code>doPut</code> is an internal helper method for <a href="#doPutBytes">doPutBytes</a> and <a href="#doPutIterator">doPutIterator</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>doPut</code> executes the input <code>putBody</code> function with a <a href="BlockInfo.html" class="page">storage:BlockInfo.adoc</a> being a new <code>BlockInfo</code> object (with <code>level</code> storage level) that <a href="BlockInfoManager.html#lockNewBlockForWriting" class="page"><code>BlockInfoManager</code> managed to create a write lock for</a>.</p>
+<p><code>doPut</code> executes the input <code>putBody</code> function with a <a href="BlockInfo.html" class="page">BlockInfo</a> being a new <code>BlockInfo</code> object (with <code>level</code> storage level) that <a href="BlockInfoManager.html#lockNewBlockForWriting" class="page"><code>BlockInfoManager</code> managed to create a write lock for</a>.</p>
 </div>
 <div class="paragraph">
 <p>If the block has already been created (and <a href="BlockInfoManager.html#lockNewBlockForWriting" class="page"><code>BlockInfoManager</code> did not manage to create a write lock for</a>), the following WARN message is printed out to the logs:</p>
@@ -3326,7 +3326,7 @@ Most of the information to build <code>BlockStatus</code> is already in <code>Bl
 </table>
 </div>
 <div class="paragraph">
-<p>Internally, it uses the input <a href="BlockInfo.html" class="page">storage:BlockInfo.adoc</a> to know about the block&#8217;s storage level. If the storage level is not set (i.e. <code>null</code>), the returned <code>BlockStatus</code> assumes the <a href="StorageLevel.html" class="page">default <code>NONE</code> storage level</a> and the memory and disk sizes being <code>0</code>.</p>
+<p>Internally, it uses the input <a href="BlockInfo.html" class="page">BlockInfo</a> to know about the block&#8217;s storage level. If the storage level is not set (i.e. <code>null</code>), the returned <code>BlockStatus</code> assumes the <a href="StorageLevel.html" class="page">default <code>NONE</code> storage level</a> and the memory and disk sizes being <code>0</code>.</p>
 </div>
 <div class="paragraph">
 <p>If however the storage level is set, <code>getCurrentBlockStatus</code> uses <a href="MemoryStore.html" class="page">MemoryStore</a> and <a href="DiskStore.html" class="page">DiskStore</a> to check whether the block is stored in the storages or not and request for their sizes in the storages respectively (using their <code>getSize</code> or assume <code>0</code>).</p>

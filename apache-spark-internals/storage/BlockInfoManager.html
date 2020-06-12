@@ -478,7 +478,7 @@
     <a class="nav-link" href="BlockInfoManager.html">BlockInfoManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="BlockInfo.html">BlockInfo.adoc</a>
+    <a class="nav-link" href="BlockInfo.html">BlockInfo</a>
   </li>
 </ul>
   </li>
@@ -2097,7 +2097,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p>It looks up <code>blockId</code> in the internal <a href="#infos">infos</a> registry. When no <a href="BlockInfo.html" class="page">storage:BlockInfo.adoc</a> could be found, <code>None</code> is returned. Otherwise, <a href="BlockInfo.html#NO_WRITER" class="page"><code>blockId</code> block is checked for <code>writerTask</code> to be <code>BlockInfo.NO_WRITER</code></a> with no readers (i.e. <code>readerCount</code> is <code>0</code>) and only then the lock is returned.</p>
+<p>It looks up <code>blockId</code> in the internal <a href="#infos">infos</a> registry. When no <a href="BlockInfo.html" class="page">BlockInfo</a> could be found, <code>None</code> is returned. Otherwise, <a href="BlockInfo.html#NO_WRITER" class="page"><code>blockId</code> block is checked for <code>writerTask</code> to be <code>BlockInfo.NO_WRITER</code></a> with no readers (i.e. <code>readerCount</code> is <code>0</code>) and only then the lock is returned.</p>
 </div>
 <div class="paragraph">
 <p>When the write lock can be returned, <code>BlockInfo.writerTask</code> is set to <code>currentTaskAttemptId</code> and a new binding is added to the internal <a href="#writeLocksByTask">writeLocksByTask</a> registry. You should see the following TRACE message in the logs:</p>
@@ -2315,7 +2315,7 @@ FIXME
 <div class="sect2">
 <h3 id="infos"><a class="anchor" href="#infos"></a><a class="link" href="#infos"><a id="infos"></a> infos</a></h3>
 <div class="paragraph">
-<p>Tracks <a href="BlockInfo.html" class="page">storage:BlockInfo.adoc</a>s per block (as <a href="BlockId.html" class="page">BlockId</a>).</p>
+<p>Tracks <a href="BlockInfo.html" class="page">BlockInfo</a>s per block (as <a href="BlockId.html" class="page">BlockId</a>).</p>
 </div>
 </div>
 <div class="sect2">

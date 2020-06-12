@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>BlockInfo :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/storage/BlockInfo.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -478,7 +478,7 @@
     <a class="nav-link" href="BlockInfoManager.html">BlockInfoManager</a>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="BlockInfo.html">BlockInfo.adoc</a>
+    <a class="nav-link" href="BlockInfo.html">BlockInfo</a>
   </li>
 </ul>
   </li>
@@ -1938,24 +1938,27 @@
     <li><a href="../index.html">Apache Spark</a></li>
     <li>Storage System</li>
     <li><a href="BlockInfoManager.html">BlockInfoManager</a></li>
-    <li><a href="BlockInfo.html">BlockInfo.adoc</a></li>
+    <li><a href="BlockInfo.html">BlockInfo</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/storage/pages/BlockInfo.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="blockinfometadata-of-memory-block"><a class="anchor" href="#blockinfometadata-of-memory-block"></a><a class="link" href="#blockinfometadata-of-memory-block"><a id="BlockInfo"></a> BlockInfo&#8201;&#8212;&#8201;Metadata of Memory Block</a></h2>
+<h1 class="page">BlockInfo</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>BlockInfo</code> is a metadata of <a href="BlockId.html" class="page">memory block</a> (aka <em>memory page</em>)&#8201;&#8212;&#8201;the memory block&#8217;s <a href="#size">size</a>, the <a href="#readerCount">number of readers</a> and the <a href="#writerTask">id of the writer task</a>.</p>
+<p><strong>BlockInfo</strong> is a metadata of <a href="BlockId.html" class="page">memory block</a> (<em>memory page</em>)&#8201;&#8212;&#8201;the memory block&#8217;s <a href="#size">size</a>, the <a href="#readerCount">number of readers</a> and the <a href="#writerTask">id of the writer task</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>BlockInfo</code> has a <a href="StorageLevel.html" class="page">StorageLevel</a>, <code>ClassTag</code> and <code>tellMaster</code> flag.</p>
+<p>BlockInfo has a <a href="StorageLevel.html" class="page">StorageLevel</a>, <code>ClassTag</code> and <code>tellMaster</code> flag.</p>
 </div>
-<div class="sect2">
-<h3 id="sizesize-attribute"><a class="anchor" href="#sizesize-attribute"></a><a class="link" href="#sizesize-attribute"><a id="size"></a> Size&#8201;&#8212;&#8201;<code>size</code> Attribute</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="size"><a class="anchor" href="#size"></a><a class="link" href="#size"><a id="size"></a> Size</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><code>size</code> attribute is the size of the memory block. It starts with <code>0</code>.</p>
 </div>
@@ -1963,8 +1966,10 @@
 <p>It represents the number of bytes that <a href="BlockManager.html#putBytes" class="page"><code>BlockManager</code> saved</a> or <a href="BlockManager.html#doPutIterator" class="page">BlockManager.doPutIterator</a>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="reader-countreadercount-counter"><a class="anchor" href="#reader-countreadercount-counter"></a><a class="link" href="#reader-countreadercount-counter"><a id="readerCount"></a> Reader Count&#8201;&#8212;&#8201;<code>readerCount</code> Counter</a></h3>
+</div>
+<div class="sect1">
+<h2 id="reader-countreadercount-counter"><a class="anchor" href="#reader-countreadercount-counter"></a><a class="link" href="#reader-countreadercount-counter"><a id="readerCount"></a> Reader Count&#8201;&#8212;&#8201;<code>readerCount</code> Counter</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><code>readerCount</code> counter is the number of readers of the memory block, i.e. the number of read locks. It starts with <code>0</code>.</p>
 </div>
@@ -1988,8 +1993,10 @@
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="writer-taskwritertask-attribute"><a class="anchor" href="#writer-taskwritertask-attribute"></a><a class="link" href="#writer-taskwritertask-attribute"><a id="writerTask"></a> Writer Task&#8201;&#8212;&#8201;<code>writerTask</code> Attribute</a></h3>
+</div>
+<div class="sect1">
+<h2 id="writer-taskwritertask-attribute"><a class="anchor" href="#writer-taskwritertask-attribute"></a><a class="link" href="#writer-taskwritertask-attribute"><a id="writerTask"></a> Writer Task&#8201;&#8212;&#8201;<code>writerTask</code> Attribute</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><code>writerTask</code> attribute is the task that owns the write lock for the memory block.</p>
 </div>
@@ -2030,7 +2037,6 @@
 <p><a href="BlockInfoManager.html#clear" class="page">Clearing the current state of <code>BlockInfoManager</code></a>.</p>
 </li>
 </ul>
-</div>
 </div>
 </div>
 </div>
