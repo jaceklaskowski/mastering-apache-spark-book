@@ -439,13 +439,16 @@
     <a class="nav-link" href="BlockManagerId.html">BlockManagerId</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="BlockManagerInfo.html">BlockManagerInfo</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="BlockManagerMaster.html">BlockManagerMaster</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="4">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -480,7 +483,7 @@
     <a class="nav-link" href="spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-blockmanager-BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
+    <a class="nav-link" href="BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
@@ -1934,7 +1937,6 @@
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
     <li>Storage System</li>
-    <li><a href="BlockManager.html">BlockManager</a></li>
     <li><a href="BlockManagerMaster.html">BlockManagerMaster</a></li>
     <li><a href="BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a></li>
   </ul>
@@ -2175,7 +2177,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>When received, BlockManagerMasterEndpoint <a href="#register">registers the BlockManager</a> (by the given <a href="BlockManagerId.html" class="page">BlockManagerId</a>).</p>
+<p>When received, BlockManagerMasterEndpoint is requested to <a href="#register">register the BlockManager</a> (by the given <a href="BlockManagerId.html" class="page">BlockManagerId</a>).</p>
 </div>
 <div class="paragraph">
 <p>Posted when BlockManagerMaster is requested to <a href="BlockManagerMaster.html#registerBlockManager" class="page">register a BlockManager</a></p>
@@ -2390,7 +2392,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>register records the current time and registers <code>BlockManager</code> (using <a href="BlockManagerId.html" class="page">BlockManagerId</a>) unless it has been registered already (in <a href="#blockManagerInfo">blockManagerInfo</a> internal registry).</p>
+<p>register registers a <a href="BlockManager.html" class="page">BlockManager</a> (based on the given <a href="BlockManagerId.html" class="page">BlockManagerId</a>) in the <a href="#blockManagerIdByExecutor">blockManagerIdByExecutor</a> and <a href="#blockManagerInfo">blockManagerInfo</a> registries and posts a SparkListenerBlockManagerAdded message (to the <a href="#listenerBus">LiveListenerBus</a>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2428,7 +2430,7 @@ Registering a <code>BlockManager</code> can only happen once for an executor (id
 <p>And then <a href="#removeExecutor">executor is removed</a>.</p>
 </div>
 <div class="paragraph">
-<p>You should see the following INFO message in the logs:</p>
+<p>register prints out the following INFO message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2448,44 +2450,8 @@ Registering a <code>BlockManager</code> can only happen once for an executor (id
 </li>
 </ul>
 </div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME Why does <code>blockManagerInfo</code> require a new <code>System.currentTimeMillis()</code> since <code>time</code> was already recorded?
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
-<p>In either case, <a href="spark-scheduler-SparkListener.adoc#SparkListenerBlockManagerAdded">SparkListenerBlockManagerAdded</a> is posted (to <a href="../SparkContext.html#listenerBus" class="page">listenerBus</a>).</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The method can only be executed on the driver where <code>listenerBus</code> is available.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME Describe <code>listenerBus</code> + omnigraffle it.
-</td>
-</tr>
-</table>
+<p>In the end, register requests the <a href="#listenerBus">LiveListenerBus</a> to <a href="../spark-scheduler-LiveListenerBus.html#post" class="page">post</a> a <a href="../spark-scheduler-SparkListener.html#SparkListenerBlockManagerAdded" class="page">SparkListenerBlockManagerAdded</a> message.</p>
 </div>
 <div class="paragraph">
 <p>register is used when BlockManagerMasterEndpoint is requested to handle <a href="#RegisterBlockManager">RegisterBlockManager</a> message.</p>
@@ -2608,7 +2574,7 @@ FIXME Describe <code>listenerBus</code> + omnigraffle it.
 <p>Lookup table of <a href="BlockManagerId.html" class="page">BlockManagerId</a>s by executor ID</p>
 </div>
 <div class="paragraph">
-<p>An executor is added when BlockManagerMasterEndpoint is requested to handle a <a href="#RegisterBlockManager">RegisterBlockManager</a> message (via <a href="#register">register</a>).</p>
+<p>A new executor is added when BlockManagerMasterEndpoint is requested to handle a <a href="#RegisterBlockManager">RegisterBlockManager</a> message (and <a href="#register">registers a new BlockManager</a>).</p>
 </div>
 <div class="paragraph">
 <p>An executor is removed when BlockManagerMasterEndpoint is requested to handle a <a href="#RemoveExecutor">RemoveExecutor</a> and a <a href="#RegisterBlockManager">RegisterBlockManager</a> messages (via <a href="#removeBlockManager">removeBlockManager</a>)</p>
@@ -2618,12 +2584,20 @@ FIXME Describe <code>listenerBus</code> + omnigraffle it.
 </div>
 </div>
 <div class="sect2">
-<h3 id="blockmanagerinfo"><a class="anchor" href="#blockmanagerinfo"></a><a class="link" href="#blockmanagerinfo"><a id="blockManagerInfo"></a> blockManagerInfo</a></h3>
-<div class="paragraph">
-<p>Lookup table of <code>BlockManagerInfo</code> per <a href="BlockManagerId.html" class="page">BlockManagerId</a></p>
+<h3 id="blockmanagerinfo-lookup-table"><a class="anchor" href="#blockmanagerinfo-lookup-table"></a><a class="link" href="#blockmanagerinfo-lookup-table"><a id="blockManagerInfo"></a> blockManagerInfo Lookup Table</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">blockManagerIdByExecutor: Map[String, BlockManagerId]</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Updated when BlockManagerMasterEndpoint <a href="#register">registers a new <code>BlockManager</code></a> or <a href="#removeBlockManager">removes a <code>BlockManager</code></a></p>
+<p>Lookup table of <a href="BlockManagerInfo.html" class="page">BlockManagerInfo</a> by <a href="BlockManagerId.html" class="page">BlockManagerId</a></p>
+</div>
+<div class="paragraph">
+<p>A new BlockManagerInfo is added when BlockManagerMasterEndpoint is requested to handle a <a href="#RegisterBlockManager">RegisterBlockManager</a> message (and <a href="#register">registers a new BlockManager</a>).</p>
+</div>
+<div class="paragraph">
+<p>A BlockManagerInfo is removed when BlockManagerMasterEndpoint is requested to <a href="#removeBlockManager">remove a BlockManager</a> (to handle <a href="#RemoveExecutor">RemoveExecutor</a> and <a href="#RegisterBlockManager">RegisterBlockManager</a> messages).</p>
 </div>
 </div>
 <div class="sect2">

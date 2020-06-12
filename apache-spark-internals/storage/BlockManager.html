@@ -439,13 +439,16 @@
     <a class="nav-link" href="BlockManagerId.html">BlockManagerId</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="BlockManagerInfo.html">BlockManagerInfo</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="BlockManagerMaster.html">BlockManagerMaster</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -480,7 +483,7 @@
     <a class="nav-link" href="spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-blockmanager-BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
+    <a class="nav-link" href="BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
@@ -2074,7 +2077,7 @@ It is computed specially in Spark on YARN.
 <p>BlockManager sets the <a href="../configuration-properties.html#spark.block.failures.beforeLocationRefresh" class="page">maximum number of failures</a> before this block manager refreshes the block locations from the driver (as <code>maxFailuresBeforeLocationRefresh</code>).</p>
 </div>
 <div class="paragraph">
-<p>BlockManager registers <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc">BlockManagerSlaveEndpoint</a> with the input <a href="../index.html" class="page">RpcEnv</a>, itself, and <a href="../scheduler/MapOutputTracker.html" class="page">MapOutputTracker</a> (as <code>slaveEndpoint</code>).</p>
+<p>BlockManager registers a <a href="BlockManagerSlaveEndpoint.html" class="page">BlockManagerSlaveEndpoint</a> with the input <a href="../index.html" class="page">RpcEnv</a>, itself, and <a href="../scheduler/MapOutputTracker.html" class="page">MapOutputTracker</a> (as <code>slaveEndpoint</code>).</p>
 </div>
 <div class="paragraph">
 <p>BlockManager is created when SparkEnv is <a href="../core/SparkEnv.html#create-BlockManager" class="page">created</a> (for the driver and executors) when a Spark application starts.</p>
@@ -2122,7 +2125,13 @@ It is computed specially in Spark on YARN.
 <h2 id="blockmanagerendpoint-rpc-endpoint"><a class="anchor" href="#blockmanagerendpoint-rpc-endpoint"></a><a class="link" href="#blockmanagerendpoint-rpc-endpoint"><a id="slaveEndpoint"></a> BlockManagerEndpoint RPC Endpoint</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When created, BlockManager requests the <a href="#rpcEnv">RpcEnv</a> to <a href="../rpc/RpcEnv.html#setupEndpoint" class="page">register BlockManagerEndpoint RPC endpoint</a>.</p>
+<p>While being <a href="#creating-instance">created</a>, BlockManager requests the <a href="#rpcEnv">RpcEnv</a> to <a href="../rpc/RpcEnv.html#setupEndpoint" class="page">register an RPC endpoint</a> for <a href="BlockManagerSlaveEndpoint.html" class="page">BlockManagerSlaveEndpoint</a> under the name <strong>BlockManagerEndpoint[ID]</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The RPC endpoint is used when BlockManager is requested to <a href="#initialize">initialize</a> and <a href="#reregister">reregister</a>.</p>
+</div>
+<div class="paragraph">
+<p>The endpoint is stopped (by requesting the <a href="#rpcEnv">RpcEnv</a> to <a href="../rpc/RpcEnv.html#stop" class="page">stop the reference</a>) when BlockManager is requested to <a href="#stop">stop</a>.</p>
 </div>
 </div>
 </div>
@@ -2358,7 +2367,7 @@ SparkEnv.get.blockManager.memoryStore</code></pre>
 <p>getMatchingBlockIds&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p>getMatchingBlockIds is used when BlockManagerSlaveEndpoint is requested to <a href="spark-blockmanager-BlockManagerSlaveEndpoint.html#GetMatchingBlockIds" class="page">handle a GetMatchingBlockIds message</a>.</p>
+<p>getMatchingBlockIds is used when BlockManagerSlaveEndpoint is requested to <a href="BlockManagerSlaveEndpoint.html#GetMatchingBlockIds" class="page">handle a GetMatchingBlockIds message</a>.</p>
 </div>
 </div>
 </div>
@@ -2922,7 +2931,7 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-It is used to <a href="#removeRdd">remove RDDs</a> and <a href="#removeBroadcast">broadcast</a> as well as in <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc#RemoveBlock"><code>BlockManagerSlaveEndpoint</code> while handling <code>RemoveBlock</code> messages</a>.
+It is used to <a href="#removeRdd">remove RDDs</a> and <a href="#removeBroadcast">broadcast</a> as well as in <a href="BlockManagerSlaveEndpoint.html#RemoveBlock" class="page"><code>BlockManagerSlaveEndpoint</code> while handling <code>RemoveBlock</code> messages</a>.
 </td>
 </tr>
 </table>
@@ -2961,7 +2970,7 @@ It is used to <a href="#removeRdd">remove RDDs</a> and <a href="#removeBroadcast
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-It is used by <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc#RemoveRdd"><code>BlockManagerSlaveEndpoint</code> while handling <code>RemoveRdd</code> messages</a>.
+It is used by <a href="BlockManagerSlaveEndpoint.html#RemoveRdd" class="page"><code>BlockManagerSlaveEndpoint</code> while handling <code>RemoveRdd</code> messages</a>.
 </td>
 </tr>
 </table>
@@ -3000,7 +3009,7 @@ It is used by <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc#RemoveR
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-It is used by <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc#RemoveBroadcast"><code>BlockManagerSlaveEndpoint</code> while handling <code>RemoveBroadcast</code> messages</a>.
+It is used by <a href="BlockManagerSlaveEndpoint.html#RemoveBroadcast" class="page"><code>BlockManagerSlaveEndpoint</code> while handling <code>RemoveBroadcast</code> messages</a>.
 </td>
 </tr>
 </table>
@@ -3115,30 +3124,21 @@ FIXME Describe <code>shuffleServerId</code>. Where is it used?
 </table>
 </div>
 <div class="paragraph">
-<p>If the <a href="#externalShuffleServiceEnabled">External Shuffle Service is used</a>, the following INFO appears in the logs:</p>
+<p>If the <a href="#externalShuffleServiceEnabled">External Shuffle Service is used</a>, initialize prints out the following INFO message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>INFO external shuffle service port = [externalShuffleServicePort]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">external shuffle service port = [externalShuffleServicePort]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>It <a href="BlockManagerMaster.html#registerBlockManager" class="page">registers itself to the driver&#8217;s BlockManagerMaster</a> passing the <a href="BlockManagerId.html" class="page">BlockManagerId</a>, the maximum memory (as <code>maxMemory</code>), and the <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc">BlockManagerSlaveEndpoint</a>.</p>
+<p>It <a href="BlockManagerMaster.html#registerBlockManager" class="page">registers itself to the driver&#8217;s BlockManagerMaster</a> passing the <a href="BlockManagerId.html" class="page">BlockManagerId</a>, the maximum memory (as <code>maxMemory</code>), and the <a href="BlockManagerSlaveEndpoint.html" class="page">BlockManagerSlaveEndpoint</a>.</p>
 </div>
 <div class="paragraph">
 <p>Ultimately, if the initialization happens on an executor and the <a href="#externalShuffleServiceEnabled">External Shuffle Service is used</a>, it <a href="#registerWithExternalShuffleServer">registers to the shuffle service</a>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-initialize is called when the <a href="spark-SparkContext-creating-instance-internals.adoc#BlockManager-initialization">driver is launched (and <code>SparkContext</code> is created)</a> and when an <a href="../executor/Executor.html#creating-instance" class="page"><code>Executor</code> is created</a> (for <a href="../executor/CoarseGrainedExecutorBackend.html#RegisteredExecutor" class="page">CoarseGrainedExecutorBackend</a> and <a href="../spark-on-mesos/spark-executor-backends-MesosExecutorBackend.html" class="page">MesosExecutorBackend</a>).
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>initialize is used when the <a href="spark-SparkContext-creating-instance-internals.adoc#BlockManager-initialization">driver is launched (and <code>SparkContext</code> is created)</a> and when an <a href="../executor/Executor.html#creating-instance" class="page"><code>Executor</code> is created</a> (for <a href="../executor/CoarseGrainedExecutorBackend.html#RegisteredExecutor" class="page">CoarseGrainedExecutorBackend</a> and <a href="../spark-on-mesos/spark-executor-backends-MesosExecutorBackend.html" class="page">MesosExecutorBackend</a>).</p>
 </div>
 </div>
 </div>
@@ -3242,7 +3242,7 @@ registerWithExternalShuffleServer is used when BlockManager is requested to <a h
 </div>
 </div>
 <div class="paragraph">
-<p><code>reregister</code> then <a href="BlockManagerMaster.html#registerBlockManager" class="page">registers itself to the driver&#8217;s <code>BlockManagerMaster</code></a> (just as it was when <a href="#initialize">BlockManager was initializing</a>). It passes the <a href="BlockManagerId.html" class="page">BlockManagerId</a>, the maximum memory (as <code>maxMemory</code>), and the <a href="spark-blockmanager-BlockManagerSlaveEndpoint.adoc">BlockManagerSlaveEndpoint</a>.</p>
+<p><code>reregister</code> then <a href="BlockManagerMaster.html#registerBlockManager" class="page">registers itself to the driver&#8217;s <code>BlockManagerMaster</code></a> (just as it was when <a href="#initialize">BlockManager was initializing</a>). It passes the <a href="BlockManagerId.html" class="page">BlockManagerId</a>, the maximum memory (as <code>maxMemory</code>), and the <a href="BlockManagerSlaveEndpoint.html" class="page">BlockManagerSlaveEndpoint</a>.</p>
 </div>
 <div class="paragraph">
 <p><code>reregister</code> will then report all the local blocks to the <a href="BlockManagerMaster.html" class="page">BlockManagerMaster</a>.</p>
@@ -3643,7 +3643,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 <p>replicateBlock&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p>replicateBlock is used when BlockManagerSlaveEndpoint is requested to <a href="spark-blockmanager-BlockManagerSlaveEndpoint.html#receiveAndReply-ReplicateBlock" class="page">handle a ReplicateBlock message</a>.</p>
+<p>replicateBlock is used when BlockManagerSlaveEndpoint is requested to <a href="BlockManagerSlaveEndpoint.html#ReplicateBlock" class="page">handle a ReplicateBlock message</a>.</p>
 </div>
 </div>
 </div>

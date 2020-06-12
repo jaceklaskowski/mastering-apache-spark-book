@@ -438,14 +438,17 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="BlockManagerId.html">BlockManagerId</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="BlockManagerInfo.html">BlockManagerInfo</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="BlockManagerMaster.html">BlockManagerMaster</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -480,7 +483,7 @@
     <a class="nav-link" href="spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-blockmanager-BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
+    <a class="nav-link" href="BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
@@ -1934,7 +1937,6 @@
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
     <li>Storage System</li>
-    <li><a href="BlockManager.html">BlockManager</a></li>
     <li><a href="BlockManagerMaster.html">BlockManagerMaster</a></li>
   </ul>
 </nav>
@@ -2215,7 +2217,7 @@ It is only executed for the driver.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>Registering BlockManager [blockManagerId]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Registering BlockManager [blockManagerId]</code></pre>
 </div>
 </div>
 <div class="imageblock text-center">
@@ -2225,7 +2227,7 @@ It is only executed for the driver.
 <div class="title">Figure 1. Registering BlockManager with the Driver</div>
 </div>
 <div class="paragraph">
-<p>registerBlockManager then notifies the driver that the <code>blockManagerId</code> <a href="BlockManager.html" class="page">BlockManager</a> tries to register. registerBlockManager posts a <a href="BlockManagerMasterEndpoint.html#RegisterBlockManager" class="page">blocking <code>RegisterBlockManager</code> message to BlockManagerMaster RPC endpoint</a>.</p>
+<p>registerBlockManager then notifies the driver that the <a href="BlockManagerId.html" class="page">BlockManagerId</a> is registering itself. registerBlockManager posts a <a href="BlockManagerMasterEndpoint.html#RegisterBlockManager" class="page">blocking <code>RegisterBlockManager</code> message to BlockManagerMaster RPC endpoint</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2240,14 +2242,14 @@ The input <code>maxMemSize</code> is the <a href="BlockManager.html#maxMemory" c
 </table>
 </div>
 <div class="paragraph">
-<p>registerBlockManager waits until a confirmation comes (as <a href="BlockManagerId.html" class="page">BlockManagerId</a>) that becomes the return value.</p>
+<p>registerBlockManager waits until a confirmation comes (as <a href="BlockManagerId.html" class="page">BlockManagerId</a>).</p>
 </div>
 <div class="paragraph">
-<p>You should see the following INFO message in the logs:</p>
+<p>In the end, registerBlockManager prints the following INFO message to the logs and returns the <a href="BlockManagerId.html" class="page">BlockManagerId</a> received.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>Registered BlockManager [updatedId]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Registered BlockManager [updatedId]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2256,7 +2258,7 @@ The input <code>maxMemSize</code> is the <a href="BlockManager.html#maxMemory" c
 </div>
 </div>
 <div class="sect1">
-<h2 id="relaying-block-status-update-from-blockmanager-to-driver-by-sending-blocking-updateblockinfo-to-blockmanagermaster-rpc-endpointupdateblockinfo-method"><a class="anchor" href="#relaying-block-status-update-from-blockmanager-to-driver-by-sending-blocking-updateblockinfo-to-blockmanagermaster-rpc-endpointupdateblockinfo-method"></a><a class="link" href="#relaying-block-status-update-from-blockmanager-to-driver-by-sending-blocking-updateblockinfo-to-blockmanagermaster-rpc-endpointupdateblockinfo-method"><a id="updateBlockInfo"></a> Relaying Block Status Update From BlockManager to Driver (by Sending Blocking UpdateBlockInfo to BlockManagerMaster RPC Endpoint)&#8201;&#8212;&#8201;<code>updateBlockInfo</code> Method</a></h2>
+<h2 id="relaying-block-status-update-from-blockmanager-to-driver"><a class="anchor" href="#relaying-block-status-update-from-blockmanager-to-driver"></a><a class="link" href="#relaying-block-status-update-from-blockmanager-to-driver"><a id="updateBlockInfo"></a> Relaying Block Status Update From BlockManager to Driver</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
