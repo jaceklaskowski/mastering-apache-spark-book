@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/scheduler/spark-scheduler-FairSchedulableBuilder.html">
+    <title>ShuffleMetricsSource :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/storage/ShuffleMetricsSource.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -193,82 +193,82 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Scheduler</a>
+    <a class="nav-link" href="../scheduler/index.html">Scheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="DAGScheduler.html">DAGScheduler</a>
+    <a class="nav-link" href="../scheduler/DAGScheduler.html">DAGScheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="DAGSchedulerEvent.html">DAGScheduler Events</a>
+    <a class="nav-link" href="../scheduler/DAGSchedulerEvent.html">DAGScheduler Events</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="DAGSchedulerEventProcessLoop.html">DAGScheduler Event Bus</a>
+    <a class="nav-link" href="../scheduler/DAGSchedulerEventProcessLoop.html">DAGScheduler Event Bus</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="Stage.html">Stage</a>
+    <a class="nav-link" href="../scheduler/Stage.html">Stage</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ResultStage.html">ResultStage</a>
+    <a class="nav-link" href="../scheduler/ResultStage.html">ResultStage</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ShuffleMapStage.html">ShuffleMapStage</a>
+    <a class="nav-link" href="../scheduler/ShuffleMapStage.html">ShuffleMapStage</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="MapOutputTracker.html">MapOutputTracker</a>
+    <a class="nav-link" href="../scheduler/MapOutputTracker.html">MapOutputTracker</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="MapOutputTrackerMaster.html">MapOutputTrackerMaster</a>
+    <a class="nav-link" href="../scheduler/MapOutputTrackerMaster.html">MapOutputTrackerMaster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="ShuffleStatus.html">ShuffleStatus</a>
+    <a class="nav-link" href="../scheduler/ShuffleStatus.html">ShuffleStatus</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="MapOutputTrackerMasterEndpoint.html">MapOutputTrackerMasterEndpoint</a>
+    <a class="nav-link" href="../scheduler/MapOutputTrackerMasterEndpoint.html">MapOutputTrackerMasterEndpoint</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="MapOutputTrackerWorker.html">MapOutputTrackerWorker</a>
+    <a class="nav-link" href="../scheduler/MapOutputTrackerWorker.html">MapOutputTrackerWorker</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-StageInfo.html">StageInfo</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-StageInfo.html">StageInfo</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-scheduler-JobListener.html">JobListener</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-JobListener.html">JobListener</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-scheduler-JobWaiter.html">JobWaiter</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-JobWaiter.html">JobWaiter</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="TaskScheduler.html">TaskScheduler</a>
+    <a class="nav-link" href="../scheduler/TaskScheduler.html">TaskScheduler</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="TaskSchedulerImpl.html">TaskSchedulerImpl</a>
+    <a class="nav-link" href="../scheduler/TaskSchedulerImpl.html">TaskSchedulerImpl</a>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="SchedulerBackend.html">SchedulerBackend</a>
+    <a class="nav-link" href="../scheduler/SchedulerBackend.html">SchedulerBackend</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="CoarseGrainedSchedulerBackend.html">CoarseGrainedSchedulerBackend</a>
+    <a class="nav-link" href="../scheduler/CoarseGrainedSchedulerBackend.html">CoarseGrainedSchedulerBackend</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="CoarseGrainedSchedulerBackend-DriverEndpoint.html">DriverEndpoint</a>
+    <a class="nav-link" href="../scheduler/CoarseGrainedSchedulerBackend-DriverEndpoint.html">DriverEndpoint</a>
   </li>
 </ul>
   </li>
@@ -278,90 +278,90 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="Task.html">Task</a>
+    <a class="nav-link" href="../scheduler/Task.html">Task</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ShuffleMapTask.html">ShuffleMapTask</a>
+    <a class="nav-link" href="../scheduler/ShuffleMapTask.html">ShuffleMapTask</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ResultTask.html">ResultTask</a>
+    <a class="nav-link" href="../scheduler/ResultTask.html">ResultTask</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="TaskSet.html">TaskSet</a>
+    <a class="nav-link" href="../scheduler/TaskSet.html">TaskSet</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="TaskSetManager.html">TaskSetManager</a>
+    <a class="nav-link" href="../scheduler/TaskSetManager.html">TaskSetManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-ActiveJob.html">Jobs</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-ActiveJob.html">Jobs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-scheduler-SchedulableBuilder.html">SchedulableBuilder</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-SchedulableBuilder.html">SchedulableBuilder</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-scheduler-FIFOSchedulableBuilder.html">FIFOSchedulableBuilder</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-FIFOSchedulableBuilder.html">FIFOSchedulableBuilder</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="spark-scheduler-FairSchedulableBuilder.html">FairSchedulableBuilder</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../scheduler/spark-scheduler-FairSchedulableBuilder.html">FairSchedulableBuilder</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-scheduler-Schedulable.html">Schedulable Entities</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-Schedulable.html">Schedulable Entities</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-scheduler-Pool.html">Schedulable Pool</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-Pool.html">Schedulable Pool</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-SchedulingMode.html">Scheduling Mode</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-SchedulingMode.html">Scheduling Mode</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-TaskInfo.html">TaskInfo</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-TaskInfo.html">TaskInfo</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="MapStatus.html">MapStatus</a>
+    <a class="nav-link" href="../scheduler/MapStatus.html">MapStatus</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-TaskDescription.html">TaskDescription</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-TaskDescription.html">TaskDescription</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="TaskResultGetter.html">TaskResultGetter</a>
+    <a class="nav-link" href="../scheduler/TaskResultGetter.html">TaskResultGetter</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-TaskContext.html">TaskContext</a>
+    <a class="nav-link" href="../scheduler/spark-TaskContext.html">TaskContext</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-BarrierTaskContext.html">BarrierTaskContext</a>
+    <a class="nav-link" href="../scheduler/spark-BarrierTaskContext.html">BarrierTaskContext</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-TaskContextImpl.html">TaskContextImpl</a>
+    <a class="nav-link" href="../scheduler/spark-TaskContextImpl.html">TaskContextImpl</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-TaskResult.html">TaskResults</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-TaskResult.html">TaskResults</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-scheduler-TaskSetBlacklist.html">TaskSetBlacklist</a>
+    <a class="nav-link" href="../scheduler/spark-scheduler-TaskSetBlacklist.html">TaskSetBlacklist</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="OutputCommitCoordinator.html">OutputCommitCoordinator</a>
+    <a class="nav-link" href="../scheduler/OutputCommitCoordinator.html">OutputCommitCoordinator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="TaskLocation.html">TaskLocation</a>
+    <a class="nav-link" href="../scheduler/TaskLocation.html">TaskLocation</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ExternalClusterManager.html">ExternalClusterManager</a>
+    <a class="nav-link" href="../scheduler/ExternalClusterManager.html">ExternalClusterManager</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="LiveListenerBus.html">LiveListenerBus</a>
+    <a class="nav-link" href="../scheduler/LiveListenerBus.html">LiveListenerBus</a>
   </li>
 </ul>
   </li>
@@ -433,80 +433,80 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/BlockManager.html">BlockManager</a>
+    <a class="nav-link" href="BlockManager.html">BlockManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerId.html">BlockManagerId</a>
+    <a class="nav-link" href="BlockManagerId.html">BlockManagerId</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerInfo.html">BlockManagerInfo</a>
+    <a class="nav-link" href="BlockManagerInfo.html">BlockManagerInfo</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerMaster.html">BlockManagerMaster</a>
+    <a class="nav-link" href="BlockManagerMaster.html">BlockManagerMaster</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
+    <a class="nav-link" href="BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
+    <a class="nav-link" href="BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
+    <a class="nav-link" href="BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/DiskStore.html">DiskStore</a>
+    <a class="nav-link" href="DiskStore.html">DiskStore</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/DiskBlockManager.html">DiskBlockManager</a>
+    <a class="nav-link" href="DiskBlockManager.html">DiskBlockManager</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/MemoryStore.html">MemoryStore</a>
+    <a class="nav-link" href="MemoryStore.html">MemoryStore</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/BlockData.html">BlockData</a>
+    <a class="nav-link" href="BlockData.html">BlockData</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/BlockInfoManager.html">BlockInfoManager</a>
+    <a class="nav-link" href="BlockInfoManager.html">BlockInfoManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockInfo.html">BlockInfo</a>
+    <a class="nav-link" href="BlockInfo.html">BlockInfo</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
+    <a class="nav-link" href="spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
+    <a class="nav-link" href="DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockManager-BlockManagerSource.html">BlockManagerSource</a>
+    <a class="nav-link" href="spark-BlockManager-BlockManagerSource.html">BlockManagerSource</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="ShuffleMetricsSource.html">ShuffleMetricsSource</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/ShuffleMetricsSource.html">ShuffleMetricsSource</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-blockmanager-StorageStatus.html">StorageStatus</a>
+    <a class="nav-link" href="spark-blockmanager-StorageStatus.html">StorageStatus</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/BlockTransferService.html">BlockTransferService</a>
+    <a class="nav-link" href="BlockTransferService.html">BlockTransferService</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/NettyBlockTransferService.html">NettyBlockTransferService</a>
+    <a class="nav-link" href="NettyBlockTransferService.html">NettyBlockTransferService</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../storage/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
+    <a class="nav-link" href="NettyBlockRpcServer.html">NettyBlockRpcServer</a>
   </li>
 </ul>
   </li>
@@ -514,24 +514,24 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/ShuffleClient.html">ShuffleClient</a>
+    <a class="nav-link" href="ShuffleClient.html">ShuffleClient</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/ExternalShuffleClient.html">ExternalShuffleClient</a>
+    <a class="nav-link" href="ExternalShuffleClient.html">ExternalShuffleClient</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
+    <a class="nav-link" href="ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/RDDInfo.html">RDDInfo</a>
+    <a class="nav-link" href="RDDInfo.html">RDDInfo</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/StorageLevel.html">StorageLevel</a>
+    <a class="nav-link" href="StorageLevel.html">StorageLevel</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/demo-diskblockmanager-and-block-data.html">Demo: DiskBlockManager and Block Data</a>
+    <a class="nav-link" href="demo-diskblockmanager-and-block-data.html">Demo: DiskBlockManager and Block Data</a>
   </li>
 </ul>
   </li>
@@ -1936,58 +1936,63 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Scheduler</a></li>
-    <li><a href="spark-scheduler-SchedulableBuilder.html">SchedulableBuilder</a></li>
-    <li><a href="spark-scheduler-FairSchedulableBuilder.html">FairSchedulableBuilder</a></li>
+    <li>Storage System</li>
+    <li><a href="ShuffleMetricsSource.html">ShuffleMetricsSource</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/scheduler/pages/spark-scheduler-FairSchedulableBuilder.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/storage/pages/ShuffleMetricsSource.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="fairschedulablebuilderschedulablebuilder-for-fair-scheduling-mode"><a class="anchor" href="#fairschedulablebuilderschedulablebuilder-for-fair-scheduling-mode"></a><a class="link" href="#fairschedulablebuilderschedulablebuilder-for-fair-scheduling-mode"><a id="FairSchedulableBuilder"></a> FairSchedulableBuilder&#8201;&#8212;&#8201;SchedulableBuilder for FAIR Scheduling Mode</a></h2>
+<h1 class="page">ShuffleMetricsSource</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>FairSchedulableBuilder</code> is a <a href="spark-scheduler-SchedulableBuilder.html" class="page">SchedulableBuilder</a> that is <a href="#creating-instance">created</a> exclusively for <a href="TaskSchedulerImpl.html" class="page">TaskSchedulerImpl</a> for <strong>FAIR scheduling mode</strong> (when <a href="../configuration-properties.html#spark.scheduler.mode" class="page">spark.scheduler.mode</a> configuration property is <code>FAIR</code>).</p>
+<p><strong>ShuffleMetricsSource</strong> is the <a href="../metrics/spark-metrics-Source.html" class="page">metrics source</a> of a <a href="BlockManager.html" class="page">BlockManager</a> for <a href="#metrics">shuffle metrics</a>.</p>
 </div>
-<div id="creating-instance" class="paragraph">
-<p><code>FairSchedulableBuilder</code> takes the following to be created:</p>
+<div class="paragraph">
+<p>ShuffleMetricsSource lives on a Spark executor and is <a href="../executor/Executor.html#creating-instance-BlockManager-shuffleMetricsSource" class="page">registered only when a Spark application runs in a non-local / cluster mode</a>.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/ShuffleMetricsSource.png" alt="ShuffleMetricsSource">
+</div>
+<div class="title">Figure 1. Registering ShuffleMetricsSource with "executor" MetricsSystem</div>
+</div>
+<div class="paragraph">
+<p>ShuffleMetricsSource is <a href="#creating-instance">created</a> exclusively when <code>BlockManager</code> is requested for the <a href="BlockManager.html#shuffleMetricsSource" class="page">shuffleMetricsSource</a>.</p>
+</div>
+<div class="paragraph">
+<p>When <a href="#creating-instance">created</a>, ShuffleMetricsSource gets a <a href="#metricSet">MetricSet</a> that <code>BlockManager</code> requests from the <a href="ShuffleClient.html#shuffleMetrics" class="page">ShuffleClient</a> (only <a href="../executor/Executor.html#creating-instance-BlockManager-shuffleMetricsSource" class="page">when in a non-local / cluster mode</a>).</p>
+</div>
+<div class="paragraph">
+<p>ShuffleMetricsSource is registered under the following source name per the type of a <code>BlockManager</code>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a id="rootPool"></a> <a href="spark-scheduler-Pool.html" class="page">Root pool of schedulables</a></p>
+<p><strong>NettyBlockTransfer</strong> when <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property is off (<code>false</code>)</p>
 </li>
 <li>
-<p><a id="conf"></a> <a href="../SparkConf.html" class="page">SparkConf</a></p>
+<p><strong>ExternalShuffle</strong> when <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property is on (<code>true</code>)</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Once <a href="#creating-instance">created</a>, <code>TaskSchedulerImpl</code> requests the <code>FairSchedulableBuilder</code> to <a href="#buildPools">build the pools</a>.</p>
-</div>
-<div id="DEFAULT_SCHEDULER_FILE" class="paragraph">
-<p><code>FairSchedulableBuilder</code> uses the pools defined in an <a href="#allocations-file">allocation pools configuration file</a> that is assumed to be the value of the <a href="../configuration-properties.html#spark.scheduler.allocation.file" class="page">spark.scheduler.allocation.file</a> configuration property or the default <strong>fairscheduler.xml</strong> (that is <a href="#buildPools">expected to be available on a Spark application&#8217;s class path</a>).</p>
-</div>
-<div class="admonitionblock tip">
-<table>
+<table id="metrics" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. ShuffleMetricsSource&#8217;s Gauge Metrics (in alphabetical order)</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
 <tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Use <strong>conf/fairscheduler.xml.template</strong> as a template for the <a href="#allocations-file">allocation pools configuration file</a>.
-</td>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
 </tr>
+</thead>
 </table>
-</div>
-<div id="DEFAULT_POOL_NAME" class="paragraph">
-<p><code>FairSchedulableBuilder</code> always has the <strong>default</strong> pool defined (and <a href="#buildDefaultPool">registers it</a> unless done in the <a href="#allocations-file">allocation pools configuration file</a>).</p>
-</div>
-<div id="spark.scheduler.pool" class="paragraph">
-<p><code>FairSchedulableBuilder</code> uses <strong>spark.scheduler.pool</strong> local property for the name of the pool to use when requested to <a href="#addTaskSetManager">addTaskSetManager</a> (default: <a href="#DEFAULT_POOL_NAME">default</a>).</p>
-</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1995,277 +2000,28 @@ Use <strong>conf/fairscheduler.xml.template</strong> as a template for the <a hr
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Use <a href="spark-sparkcontext-local-properties.adoc#setLocalProperty">SparkContext.setLocalProperty</a> to set properties per thread (aka <strong>local properties</strong>) to group jobs in logical groups, e.g. to allow <code>FairSchedulableBuilder</code> to use <code>spark.scheduler.pool</code> property and to group jobs from different threads to be submitted for execution on a non-<a href="#DEFAULT_POOL_NAME">default</a> pool.
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">scala&gt; :type sc
-org.apache.spark.SparkContext
-
-sc.setLocalProperty("spark.scheduler.pool", "production")
-
-// whatever is executed afterwards is submitted to production pool</code></pre>
-</div>
-</div>
-<div id="logging" class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Enable <code>ALL</code> logging level for <code>org.apache.spark.scheduler.FairSchedulableBuilder</code> logger to see what happens inside.</p>
-</div>
-<div class="paragraph">
-<p>Add the following line to <code>conf/log4j.properties</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>log4j.logger.org.apache.spark.scheduler.FairSchedulableBuilder=ALL</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Refer to <a href="#spark-logging.adoc" class="page unresolved">Logging</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="allocation-pools-configuration-file"><a class="anchor" href="#allocation-pools-configuration-file"></a><a class="link" href="#allocation-pools-configuration-file"><a id="allocations-file"></a> Allocation Pools Configuration File</a></h3>
-<div class="paragraph">
-<p>The <strong>allocation pools configuration file</strong> is an XML file.</p>
-</div>
-<div class="paragraph">
-<p>The default <code>conf/fairscheduler.xml.template</code> is as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0"?&gt;
-&lt;allocations&gt;
-  &lt;pool name="production"&gt;
-    &lt;schedulingMode&gt;FAIR&lt;/schedulingMode&gt;
-    &lt;weight&gt;1&lt;/weight&gt;
-    &lt;minShare&gt;2&lt;/minShare&gt;
-  &lt;/pool&gt;
-  &lt;pool name="test"&gt;
-    &lt;schedulingMode&gt;FIFO&lt;/schedulingMode&gt;
-    &lt;weight&gt;2&lt;/weight&gt;
-    &lt;minShare&gt;3&lt;/minShare&gt;
-  &lt;/pool&gt;
-&lt;/allocations&gt;</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The top-level element&#8217;s name <code>allocations</code> can be anything. Spark does not insist on <code>allocations</code> and accepts any name.
+Since <code>Executor</code> does not have a web UI attached you cannot access the <a href="#metrics">metrics</a> using the HTTP protocol (through <a href="spark-metrics-MetricsServlet.adoc">MetricsServlet JSON metrics sink</a>).
 </td>
 </tr>
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="building-tree-of-pools-of-schedulablesbuildpools-method"><a class="anchor" href="#building-tree-of-pools-of-schedulablesbuildpools-method"></a><a class="link" href="#building-tree-of-pools-of-schedulablesbuildpools-method"><a id="buildPools"></a> Building (Tree of) Pools of Schedulables&#8201;&#8212;&#8201;<code>buildPools</code> Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">buildPools(): Unit</code></pre>
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>buildPools</code> is part of the <a href="spark-scheduler-SchedulableBuilder.html#buildPools" class="page">SchedulableBuilder Contract</a> to build a tree of <a href="spark-scheduler-Pool.html" class="page">pools (of Schedulables)</a>.
-</td>
-</tr>
-</table>
-</div>
+<div class="sect1">
+<h2 id="creating-shufflemetricssource-instance"><a class="anchor" href="#creating-shufflemetricssource-instance"></a><a class="link" href="#creating-shufflemetricssource-instance"><a id="creating-instance"></a> Creating ShuffleMetricsSource Instance</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p><code>buildPools</code> <a href="#buildFairSchedulerPool">creates Fair Scheduler pools from a configuration file</a> if available and then <a href="#buildDefaultPool">builds the default pool</a>.</p>
-</div>
-<div class="paragraph">
-<p><code>buildPools</code> prints out the following INFO message to the logs when the configuration file (per the <a href="../configuration-properties.html#spark.scheduler.allocation.file" class="page">spark.scheduler.allocation.file</a> configuration property) could be read:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>Creating Fair Scheduler pools from [file]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>buildPools</code> prints out the following INFO message to the logs when the <a href="../configuration-properties.html#spark.scheduler.allocation.file" class="page">spark.scheduler.allocation.file</a> configuration property was not used to define the configuration file and the <a href="#DEFAULT_SCHEDULER_FILE">default configuration file</a> is used instead:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>Creating Fair Scheduler pools from default file: [DEFAULT_SCHEDULER_FILE]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When neither <a href="../configuration-properties.html#spark.scheduler.allocation.file" class="page">spark.scheduler.allocation.file</a> configuration property nor the <a href="#DEFAULT_SCHEDULER_FILE">default configuration file</a> could be used, <code>buildPools</code> prints out the following WARN message to the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>Fair Scheduler configuration file not found so jobs will be scheduled in FIFO order. To use fair scheduling, configure pools in [DEFAULT_SCHEDULER_FILE] or set spark.scheduler.allocation.file to a file that contains the configuration.</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="addtasksetmanager-method"><a class="anchor" href="#addtasksetmanager-method"></a><a class="link" href="#addtasksetmanager-method"><a id="addTaskSetManager"></a> <code>addTaskSetManager</code> Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">addTaskSetManager(manager: Schedulable, properties: Properties): Unit</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>addTaskSetManager</code> is part of the <a href="spark-scheduler-SchedulableBuilder.html#addTaskSetManager" class="page">SchedulableBuilder Contract</a> to register a new <a href="spark-scheduler-Schedulable.html" class="page">Schedulable</a> with the <a href="#rootPool">rootPool</a>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><code>addTaskSetManager</code> finds the pool by name (in the given <code>Properties</code>) under the <a href="#FAIR_SCHEDULER_PROPERTIES">spark.scheduler.pool</a> property or defaults to the <a href="#DEFAULT_POOL_NAME">default</a> pool if undefined.</p>
-</div>
-<div class="paragraph">
-<p><code>addTaskSetManager</code> then requests the <a href="#rootPool">root pool</a> to <a href="spark-scheduler-Pool.html#getSchedulableByName" class="page">find the Schedulable by that name</a>.</p>
-</div>
-<div class="paragraph">
-<p>Unless found, <code>addTaskSetManager</code> creates a new <a href="spark-scheduler-Pool.html" class="page">Pool</a> with the <a href="#buildDefaultPool">default configuration</a> (as if the <a href="#DEFAULT_POOL_NAME">default</a> pool were used) and requests the <a href="#rootPool">Pool</a> to <a href="spark-scheduler-Pool.html#addSchedulable" class="page">register it</a>. In the end, <code>addTaskSetManager</code> prints out the following WARN message to the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>A job was submitted with scheduler pool [poolName], which has not been configured. This can happen when the file that pools are read from isn't set, or when that file doesn't contain [poolName]. Created [poolName] with default configuration (schedulingMode: [mode], minShare: [minShare], weight: [weight])</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>addTaskSetManager</code> then requests the pool (found or newly-created) to <a href="spark-scheduler-Pool.html#addSchedulable" class="page">register</a> the given <a href="spark-scheduler-Schedulable.html" class="page">Schedulable</a>.</p>
-</div>
-<div class="paragraph">
-<p>In the end, <code>addTaskSetManager</code> prints out the following INFO message to the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>Added task set [name] tasks to pool [poolName]</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="registering-default-poolbuilddefaultpool-method"><a class="anchor" href="#registering-default-poolbuilddefaultpool-method"></a><a class="link" href="#registering-default-poolbuilddefaultpool-method"><a id="buildDefaultPool"></a> Registering Default Pool&#8201;&#8212;&#8201;<code>buildDefaultPool</code> Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">buildDefaultPool(): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>buildDefaultPool</code> requests the <a href="#rootPool">root pool</a> to <a href="#getSchedulableByName">find the default pool</a> (one with the <a href="#DEFAULT_POOL_NAME">default</a> name).</p>
-</div>
-<div class="paragraph">
-<p>Unless already available, <code>buildDefaultPool</code> creates a <a href="spark-scheduler-Pool.html" class="page">schedulable pool</a> with the following:</p>
+<p>ShuffleMetricsSource takes the following when created:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#DEFAULT_POOL_NAME">default</a> pool name</p>
+<p><a id="sourceName"></a> Source name</p>
 </li>
 <li>
-<p><code>FIFO</code> scheduling mode</p>
-</li>
-<li>
-<p><code>0</code> for the initial minimum share</p>
-</li>
-<li>
-<p><code>1</code> for the initial weight</p>
+<p><a id="metricSet"></a> Dropwizard Metrics' <a href="https://metrics.dropwizard.io/3.1.0/apidocs/com/codahale/metrics/MetricSet.html">MetricSet</a></p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>In the end, <code>buildDefaultPool</code> requests the <a href="#rootPool">Pool</a> to <a href="spark-scheduler-Pool.html#addSchedulable" class="page">register the pool</a> followed by the INFO message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>Created default pool: [name], schedulingMode: [mode], minShare: [minShare], weight: [weight]</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>buildDefaultPool</code> is used exclusively when <code>FairSchedulableBuilder</code> is requested to <a href="#buildPools">build the pools</a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="building-pools-from-xml-allocations-filebuildfairschedulerpool-internal-method"><a class="anchor" href="#building-pools-from-xml-allocations-filebuildfairschedulerpool-internal-method"></a><a class="link" href="#building-pools-from-xml-allocations-filebuildfairschedulerpool-internal-method"><a id="buildFairSchedulerPool"></a> Building Pools from XML Allocations File&#8201;&#8212;&#8201;<code>buildFairSchedulerPool</code> Internal Method</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">buildFairSchedulerPool(
-  is: InputStream,
-  fileName: String): Unit</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>buildFairSchedulerPool</code> starts by loading the XML file from the given <code>InputStream</code>.</p>
-</div>
-<div class="paragraph">
-<p>For every <strong>pool</strong> element, <code>buildFairSchedulerPool</code> creates a <a href="spark-scheduler-Pool.html" class="page">schedulable pool</a> with the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Pool name per <strong>name</strong> attribute</p>
-</li>
-<li>
-<p>Scheduling mode per <strong>schedulingMode</strong> element (case-insensitive with <code>FIFO</code> as the default)</p>
-</li>
-<li>
-<p>Initial minimum share per <strong>minShare</strong> element (default: <code>0</code>)</p>
-</li>
-<li>
-<p>Initial weight per <strong>weight</strong> element (default: <code>1</code>)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>In the end, <code>buildFairSchedulerPool</code> requests the <a href="#rootPool">Pool</a> to <a href="spark-scheduler-Pool.html#addSchedulable" class="page">register the pool</a> followed by the INFO message in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>Created pool: [name], schedulingMode: [mode], minShare: [minShare], weight: [weight]</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>buildFairSchedulerPool</code> is used exclusively when <code>FairSchedulableBuilder</code> is requested to <a href="#buildPools">build the pools</a>.
-</td>
-</tr>
-</table>
-</div>
 </div>
 </div>
 </div>

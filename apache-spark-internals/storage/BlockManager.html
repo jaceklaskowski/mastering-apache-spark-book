@@ -492,7 +492,7 @@
     <a class="nav-link" href="spark-BlockManager-BlockManagerSource.html">BlockManagerSource</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-BlockManager-ShuffleMetricsSource.html">ShuffleMetricsSource</a>
+    <a class="nav-link" href="ShuffleMetricsSource.html">ShuffleMetricsSource</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-blockmanager-StorageStatus.html">StorageStatus</a>
@@ -2216,7 +2216,7 @@ org.apache.spark.storage.BlockManager</code></pre>
 <h2 id="blocktransferservice"><a class="anchor" href="#blocktransferservice"></a><a class="link" href="#blocktransferservice"><a id="blockTransferService"></a> BlockTransferService</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>BlockManager is given a <a href="BlockTransferService.html" class="page">BlockTransferService</a> to be created.</p>
+<p>BlockManager is given a <a href="BlockTransferService.html" class="page">BlockTransferService</a> when <a href="#creating-instance">created</a>.</p>
 </div>
 <div class="paragraph">
 <p>BlockTransferService is used as the <a href="#shuffleClient">ShuffleClient</a> when BlockManager is configured to use no external shuffle service (based on <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property).</p>
@@ -2236,7 +2236,7 @@ org.apache.spark.storage.BlockManager</code></pre>
 <h2 id="memorymanager"><a class="anchor" href="#memorymanager"></a><a class="link" href="#memorymanager"><a id="memoryManager"></a> MemoryManager</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>BlockManager is given a <a href="../memory/MemoryManager.html" class="page">MemoryManager</a> to be <a href="#creating-instance">created</a>.</p>
+<p>BlockManager is given a <a href="../memory/MemoryManager.html" class="page">MemoryManager</a> when <a href="#creating-instance">created</a>.</p>
 </div>
 <div class="paragraph">
 <p>BlockManager uses the MemoryManager for the following:</p>
@@ -3057,36 +3057,43 @@ It is used by <a href="BlockManagerSlaveEndpoint.html#RemoveBroadcast" class="pa
 </div>
 </div>
 <div class="sect1">
-<h2 id="getting-block-status"><a class="anchor" href="#getting-block-status"></a><a class="link" href="#getting-block-status"><a id="getStatus"></a> Getting Block Status</a></h2>
+<h2 id="blockmanagerid-of-shuffle-server"><a class="anchor" href="#blockmanagerid-of-shuffle-server"></a><a class="link" href="#blockmanagerid-of-shuffle-server"><a id="shuffleServerId"></a> BlockManagerId of Shuffle Server</a></h2>
 <div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>BlockManager uses <a href="BlockManagerId.html" class="page">BlockManagerId</a> for the location (address) of the server that serves shuffle files of this executor.</p>
+</div>
+<div class="paragraph">
+<p>The BlockManagerId is either the BlockManagerId of the external shuffle service (when <a href="#externalShuffleServiceEnabled">enabled</a>) or the <a href="#blockManagerId">blockManagerId</a>.</p>
+</div>
+<div class="paragraph">
+<p>The BlockManagerId of the Shuffle Server is used for the location of a <a href="../scheduler/MapStatus.html" class="page">shuffle map output</a> when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>BypassMergeSortShuffleWriter is requested to <a href="../shuffle/BypassMergeSortShuffleWriter.html#write" class="page">write partition records to a shuffle file</a></p>
+</li>
+<li>
+<p>UnsafeShuffleWriter is requested to <a href="../shuffle/UnsafeShuffleWriter.html#closeAndWriteOutput" class="page">close and write output</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="shuffleserverid"><a class="anchor" href="#shuffleserverid"></a><a class="link" href="#shuffleserverid"><a id="shuffleServerId"></a> <code>shuffleServerId</code></a></h2>
+<h2 id="getstatus-method"><a class="anchor" href="#getstatus-method"></a><a class="link" href="#getstatus-method"><a id="getStatus"></a> getStatus Method</a></h2>
 <div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getStatus(
+  blockId: BlockId): Option[BlockStatus]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getStatus&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>getStatus is used when BlockManagerSlaveEndpoint is requested to handle <a href="BlockManagerSlaveEndpoint.html#GetBlockStatus" class="page">GetBlockStatus</a> message.</p>
 </div>
 </div>
 </div>
@@ -3191,7 +3198,7 @@ FIXME Describe <code>shuffleServerId</code>. Where is it used?
 </div>
 </div>
 <div class="paragraph">
-<p><code>registerWithExternalShuffleServer</code> is an internal helper method to register the BlockManager for an executor with an <a href="../deploy/ExternalShuffleService.html" class="page">external shuffle server</a>.</p>
+<p>registerWithExternalShuffleServer is an internal helper method to register the BlockManager for an executor with an <a href="../deploy/ExternalShuffleService.html" class="page">external shuffle server</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3210,7 +3217,7 @@ It is executed when a <a href="#initialize">BlockManager is initialized on an ex
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>INFO Registering executor with local external shuffle service.</code></pre>
+<pre class="highlightjs highlight"><code>Registering executor with local external shuffle service.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3248,20 +3255,11 @@ The maximum number of attempts and the sleep time in-between are hard-coded, i.e
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>ERROR Failed to connect to external shuffle server, will retry [#attempts] more times after waiting 5 seconds...</code></pre>
+<pre class="highlightjs highlight"><code>Failed to connect to external shuffle server, will retry [#attempts] more times after waiting 5 seconds...</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-registerWithExternalShuffleServer is used when BlockManager is requested to <a href="#initialize">initialize</a> (when executed on an executor with <a href="#externalShuffleServiceEnabled">externalShuffleServiceEnabled</a>).
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>registerWithExternalShuffleServer is used when BlockManager is requested to <a href="#initialize">initialize</a> (when executed on an executor with <a href="#externalShuffleServiceEnabled">externalShuffleServiceEnabled</a>).</p>
 </div>
 </div>
 </div>
@@ -3274,25 +3272,25 @@ registerWithExternalShuffleServer is used when BlockManager is requested to <a h
 </div>
 </div>
 <div class="paragraph">
-<p>When executed, <code>reregister</code> prints the following INFO message to the logs:</p>
+<p>When executed, reregister prints the following INFO message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>INFO BlockManager: BlockManager [blockManagerId] re-registering with master</code></pre>
+<pre class="highlightjs highlight"><code>BlockManager [blockManagerId] re-registering with master</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>reregister</code> then <a href="BlockManagerMaster.html#registerBlockManager" class="page">registers itself to the driver&#8217;s <code>BlockManagerMaster</code></a> (just as it was when <a href="#initialize">BlockManager was initializing</a>). It passes the <a href="BlockManagerId.html" class="page">BlockManagerId</a>, the maximum memory (as <code>maxMemory</code>), and the <a href="BlockManagerSlaveEndpoint.html" class="page">BlockManagerSlaveEndpoint</a>.</p>
+<p>reregister then <a href="BlockManagerMaster.html#registerBlockManager" class="page">registers itself to the driver&#8217;s <code>BlockManagerMaster</code></a> (just as it was when <a href="#initialize">BlockManager was initializing</a>). It passes the <a href="BlockManagerId.html" class="page">BlockManagerId</a>, the maximum memory (as <code>maxMemory</code>), and the <a href="BlockManagerSlaveEndpoint.html" class="page">BlockManagerSlaveEndpoint</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>reregister</code> will then report all the local blocks to the <a href="BlockManagerMaster.html" class="page">BlockManagerMaster</a>.</p>
+<p>reregister will then report all the local blocks to the <a href="BlockManagerMaster.html" class="page">BlockManagerMaster</a>.</p>
 </div>
 <div class="paragraph">
 <p>You should see the following INFO message in the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>INFO BlockManager: Reporting [blockInfoManager.size] blocks to the master.</code></pre>
+<pre class="highlightjs highlight"><code>Reporting [blockInfoManager.size] blocks to the master.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3303,23 +3301,14 @@ registerWithExternalShuffleServer is used when BlockManager is requested to <a h
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>ERROR BlockManager: Failed to report [blockId] to master; giving up.</code></pre>
+<pre class="highlightjs highlight"><code>Failed to report [blockId] to master; giving up.</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>After the ERROR message, <code>reregister</code> stops reporting.</p>
+<p>After the ERROR message, reregister stops reporting.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>reregister</code> is called when a <a href="../executor/Executor.html#heartbeats-and-active-task-metrics" class="page"><code>Executor</code> was informed to re-register while sending heartbeats</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>reregister is used when a <a href="../executor/Executor.html#heartbeats-and-active-task-metrics" class="page"><code>Executor</code> was informed to re-register while sending heartbeats</a>.</p>
 </div>
 </div>
 </div>
@@ -3328,11 +3317,13 @@ registerWithExternalShuffleServer is used when BlockManager is requested to <a h
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getCurrentBlockStatus(blockId: BlockId, info: BlockInfo): BlockStatus</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getCurrentBlockStatus(
+  blockId: BlockId,
+  info: BlockInfo): BlockStatus</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>getCurrentBlockStatus</code> returns the current <code>BlockStatus</code> of the <code>BlockId</code> block (with the block&#8217;s current <a href="StorageLevel.html" class="page">StorageLevel</a>, memory and disk sizes). It uses <a href="MemoryStore.html" class="page">MemoryStore</a> and <a href="DiskStore.html" class="page">DiskStore</a> for size and other information.</p>
+<p>getCurrentBlockStatus gives the current <code>BlockStatus</code> of the <code>BlockId</code> block (with the block&#8217;s current <a href="StorageLevel.html" class="page">StorageLevel</a>, memory and disk sizes). It uses <a href="MemoryStore.html" class="page">MemoryStore</a> and <a href="DiskStore.html" class="page">DiskStore</a> for size and other information.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3350,7 +3341,7 @@ Most of the information to build <code>BlockStatus</code> is already in <code>Bl
 <p>Internally, it uses the input <a href="BlockInfo.html" class="page">BlockInfo</a> to know about the block&#8217;s storage level. If the storage level is not set (i.e. <code>null</code>), the returned <code>BlockStatus</code> assumes the <a href="StorageLevel.html" class="page">default <code>NONE</code> storage level</a> and the memory and disk sizes being <code>0</code>.</p>
 </div>
 <div class="paragraph">
-<p>If however the storage level is set, <code>getCurrentBlockStatus</code> uses <a href="MemoryStore.html" class="page">MemoryStore</a> and <a href="DiskStore.html" class="page">DiskStore</a> to check whether the block is stored in the storages or not and request for their sizes in the storages respectively (using their <code>getSize</code> or assume <code>0</code>).</p>
+<p>If however the storage level is set, getCurrentBlockStatus uses <a href="MemoryStore.html" class="page">MemoryStore</a> and <a href="DiskStore.html" class="page">DiskStore</a> to check whether the block is stored in the storages or not and request for their sizes in the storages respectively (using their <code>getSize</code> or assume <code>0</code>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3364,22 +3355,13 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </tr>
 </table>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>getCurrentBlockStatus</code> is used when <a href="#reregister">executor&#8217;s BlockManager is requested to report the current status of the local blocks to the master</a>, <a href="#doPutBytes">saving a block to a storage</a> or <a href="#dropFromMemory">removing a block from memory only</a> or <a href="#removeBlock">both, i.e. from memory and disk</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>getCurrentBlockStatus is used when <a href="#reregister">executor&#8217;s BlockManager is requested to report the current status of the local blocks to the master</a>, <a href="#doPutBytes">saving a block to a storage</a> or <a href="#dropFromMemory">removing a block from memory only</a> or <a href="#removeBlock">both, i.e. from memory and disk</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="reportallblocks-internal-method"><a class="anchor" href="#reportallblocks-internal-method"></a><a class="link" href="#reportallblocks-internal-method"><a id="reportAllBlocks"></a> <code>reportAllBlocks</code> Internal Method</a></h2>
+<h2 id="reportallblocks-internal-method"><a class="anchor" href="#reportallblocks-internal-method"></a><a class="link" href="#reportallblocks-internal-method"><a id="reportAllBlocks"></a> reportAllBlocks Internal Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3387,19 +3369,10 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="paragraph">
-<p><code>reportAllBlocks</code>&#8230;&#8203;FIXME</p>
+<p>reportAllBlocks&#8230;&#8203;FIXME</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>reportAllBlocks</code> is used when BlockManager is requested to <a href="#reregister">re-register all blocks to the driver</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>reportAllBlocks is used when BlockManager is requested to <a href="#reregister">re-register all blocks to the driver</a>.</p>
 </div>
 </div>
 </div>
@@ -3416,11 +3389,11 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="paragraph">
-<p><code>reportBlockStatus</code> is an internal method for <a href="#tryToReportBlockStatus">reporting a block status to the driver</a> and if told to re-register it prints out the following INFO message to the logs:</p>
+<p>reportBlockStatus is an internal method for <a href="#tryToReportBlockStatus">reporting a block status to the driver</a> and if told to re-register it prints out the following INFO message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>INFO BlockManager: Got told to re-register updating block [blockId]</code></pre>
+<pre class="highlightjs highlight"><code>Got told to re-register updating block [blockId]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3431,20 +3404,11 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>DEBUG BlockManager: Told master about block [blockId]</code></pre>
+<pre class="highlightjs highlight"><code>Told master about block [blockId]</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>reportBlockStatus</code> is used when BlockManager is requested to <a href="#getBlockData">getBlockData</a>, <a href="#doPutBytes">doPutBytes</a>, <a href="#doPutIterator">doPutIterator</a>, <a href="#dropFromMemory">dropFromMemory</a> and <a href="#removeBlockInternal">removeBlockInternal</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>reportBlockStatus is used when BlockManager is requested to <a href="#getBlockData">getBlockData</a>, <a href="#doPutBytes">doPutBytes</a>, <a href="#doPutIterator">doPutIterator</a>, <a href="#dropFromMemory">dropFromMemory</a> and <a href="#removeBlockInternal">removeBlockInternal</a>.</p>
 </div>
 </div>
 </div>
@@ -3461,43 +3425,10 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="paragraph">
-<p><code>tryToReportBlockStatus</code> <a href="BlockManagerMaster.html#updateBlockInfo" class="page">reports block status update</a> to <a href="#master">BlockManagerMaster</a> and returns its response.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>tryToReportBlockStatus</code> is used when BlockManager is requested to <a href="#reportAllBlocks">reportAllBlocks</a> or <a href="#reportBlockStatus">reportBlockStatus</a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="broadcast-values"><a class="anchor" href="#broadcast-values"></a><a class="link" href="#broadcast-values"><a id="broadcast"></a> Broadcast Values</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>When a new broadcast value is created, <a href="../core/TorrentBroadcast.html" class="page">TorrentBroadcast</a> blocks are put in the block manager.</p>
+<p>tryToReportBlockStatus <a href="BlockManagerMaster.html#updateBlockInfo" class="page">reports block status update</a> to <a href="#master">BlockManagerMaster</a> and returns its response.</p>
 </div>
 <div class="paragraph">
-<p>You should see the following <code>TRACE</code> message:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>TRACE Put for block [blockId] took [startTimeMs] to get into synchronized block</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>It puts the data in the memory first and drop to disk if the memory store can&#8217;t hold it.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>DEBUG Put block [blockId] locally took [startTimeMs]</code></pre>
-</div>
+<p>tryToReportBlockStatus is used when BlockManager is requested to <a href="#reportAllBlocks">reportAllBlocks</a> or <a href="#reportBlockStatus">reportBlockStatus</a>.</p>
 </div>
 </div>
 </div>
@@ -3510,13 +3441,10 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="sect1">
-<h2 id="misc"><a class="anchor" href="#misc"></a><a class="link" href="#misc">Misc</a></h2>
+<h2 id="bytebuffer"><a class="anchor" href="#bytebuffer"></a><a class="link" href="#bytebuffer"><a id="ByteBuffer"></a> ByteBuffer</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The underlying abstraction for blocks in Spark is a <code>ByteBuffer</code> that limits the size of a block to 2GB (<code>Integer.MAX_VALUE</code> - see <a href="http://stackoverflow.com/q/8076472/1305344">Why does FileChannel.map take up to Integer.MAX_VALUE of data?</a> and <a href="https://issues.apache.org/jira/browse/SPARK-1476">SPARK-1476 2GB limit in spark for blocks</a>). This has implication not just for managed blocks in use, but also for shuffle blocks (memory mapped blocks are limited to 2GB, even though the API allows for <code>long</code>), ser-deser via byte array-backed output streams.</p>
-</div>
-<div class="paragraph">
-<p>When a non-local executor starts, it initializes a BlockManager object using <a href="../SparkConf.html#spark.app.id" class="page">spark.app.id</a> Spark property for the id.</p>
 </div>
 </div>
 </div>
@@ -3533,23 +3461,15 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">registerTask(taskAttemptId: Long): Unit</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">registerTask(
+  taskAttemptId: Long): Unit</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>registerTask</code> <a href="BlockInfoManager.html#registerTask" class="page">registers the input <code>taskAttemptId</code> with <code>BlockInfoManager</code></a>.</p>
+<p>registerTask <a href="BlockInfoManager.html#registerTask" class="page">registers the input <code>taskAttemptId</code> with <code>BlockInfoManager</code></a>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>registerTask</code> is used exclusively when <a href="../scheduler/Task.html#run" class="page"><code>Task</code> runs</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>registerTask is used when Task is requested to <a href="../scheduler/Task.html#run" class="page">run</a>.</p>
 </div>
 </div>
 </div>
@@ -3601,23 +3521,16 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">addUpdatedBlockStatusToTaskMetrics(blockId: BlockId, status: BlockStatus): Unit</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">addUpdatedBlockStatusToTaskMetrics(
+  blockId: BlockId,
+  status: BlockStatus): Unit</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>addUpdatedBlockStatusToTaskMetrics</code> <a href="spark-TaskContext.adoc#get">takes an active <code>TaskContext</code></a> (if available) and <a href="../executor/TaskMetrics.html#incUpdatedBlockStatuses" class="page">records updated <code>BlockStatus</code> for <code>Block</code></a> (in the <a href="spark-TaskContext.adoc#taskMetrics">task&#8217;s <code>TaskMetrics</code></a>).</p>
+<p>addUpdatedBlockStatusToTaskMetrics <a href="spark-TaskContext.adoc#get">takes an active <code>TaskContext</code></a> (if available) and <a href="../executor/TaskMetrics.html#incUpdatedBlockStatuses" class="page">records updated <code>BlockStatus</code> for <code>Block</code></a> (in the <a href="spark-TaskContext.adoc#taskMetrics">task&#8217;s <code>TaskMetrics</code></a>).</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>addUpdatedBlockStatusToTaskMetrics</code> is used when BlockManager <a href="#doPutBytes">doPutBytes</a> (for a block that was successfully stored), <a href="#doPut">doPut</a>, <a href="#doPutIterator">doPutIterator</a>, <a href="#dropFromMemory">removes blocks from memory</a> (possibly spilling it to disk) and <a href="#removeBlock">removes block from memory and disk</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>addUpdatedBlockStatusToTaskMetrics is used when BlockManager <a href="#doPutBytes">doPutBytes</a> (for a block that was successfully stored), <a href="#doPut">doPut</a>, <a href="#doPutIterator">doPutIterator</a>, <a href="#dropFromMemory">removes blocks from memory</a> (possibly spilling it to disk) and <a href="#removeBlock">removes block from memory and disk</a>.</p>
 </div>
 </div>
 </div>
@@ -3630,7 +3543,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="paragraph">
-<p>shuffleMetricsSource requests the <a href="#shuffleClient">ShuffleClient</a> for the <a href="ShuffleClient.html#shuffleMetrics" class="page">shuffle-related metrics</a> and creates a <a href="spark-BlockManager-ShuffleMetricsSource.adoc">ShuffleMetricsSource</a> with the <a href="spark-BlockManager-ShuffleMetricsSource.adoc#sourceName">source name</a> per <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property:</p>
+<p>shuffleMetricsSource requests the <a href="#shuffleClient">ShuffleClient</a> for the <a href="ShuffleClient.html#shuffleMetrics" class="page">shuffle metrics</a> and creates a <a href="ShuffleMetricsSource.html" class="page">ShuffleMetricsSource</a> with the <a href="ShuffleMetricsSource.html#sourceName" class="page">source name</a> based on <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property:</p>
 </div>
 <div class="ulist">
 <ul>
