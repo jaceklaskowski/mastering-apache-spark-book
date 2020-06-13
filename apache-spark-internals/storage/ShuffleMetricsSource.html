@@ -483,7 +483,7 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
+    <a class="nav-link" href="BlockEvictionHandler.html">BlockEvictionHandler</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
@@ -499,23 +499,20 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="BlockTransferService.html">BlockTransferService</a>
+    <a class="nav-link" href="ShuffleClient.html">ShuffleClient</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="NettyBlockTransferService.html">NettyBlockTransferService</a>
+    <a class="nav-link" href="BlockTransferService.html">BlockTransferService</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="NettyBlockTransferService.html">NettyBlockTransferService</a>
+  </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="NettyBlockRpcServer.html">NettyBlockRpcServer</a>
   </li>
 </ul>
   </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="ShuffleClient.html">ShuffleClient</a>
-<ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="ExternalShuffleClient.html">ExternalShuffleClient</a>
   </li>
@@ -1959,14 +1956,45 @@
 </div>
 <div class="title">Figure 1. Registering ShuffleMetricsSource with "executor" MetricsSystem</div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>ShuffleMetricsSource is <a href="#creating-instance">created</a> exclusively when <code>BlockManager</code> is requested for the <a href="BlockManager.html#shuffleMetricsSource" class="page">shuffleMetricsSource</a>.</p>
+<p>ShuffleMetricsSource takes the following to be created:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#sourceName">Source Name</a></p>
+</li>
+<li>
+<p><a href="#metricSet">MetricSet</a></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>When <a href="#creating-instance">created</a>, ShuffleMetricsSource gets a <a href="#metricSet">MetricSet</a> that <code>BlockManager</code> requests from the <a href="ShuffleClient.html#shuffleMetrics" class="page">ShuffleClient</a> (only <a href="../executor/Executor.html#creating-instance-BlockManager-shuffleMetricsSource" class="page">when in a non-local / cluster mode</a>).</p>
+<p>ShuffleMetricsSource is created when BlockManager is requested for the <a href="BlockManager.html#shuffleMetricsSource" class="page">shuffle metrics source</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="metricset"><a class="anchor" href="#metricset"></a><a class="link" href="#metricset"><a id="metricSet"></a> MetricSet</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ShuffleMetricsSource is given a Dropwizard Metrics <a href="https://metrics.dropwizard.io/3.1.0/apidocs/com/codahale/metrics/MetricSet.html">MetricSet</a> when <a href="#creating-instance">created</a>.</p>
 </div>
 <div class="paragraph">
-<p>ShuffleMetricsSource is registered under the following source name per the type of a <code>BlockManager</code>:</p>
+<p>The MetricSet is requested from the <a href="ShuffleClient.html#shuffleMetrics" class="page">ShuffleClient</a> (of <a href="BlockManager.html#shuffleClient" class="page">BlockManager</a>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="source-name"><a class="anchor" href="#source-name"></a><a class="link" href="#source-name"><a id="sourceName"></a> Source Name</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ShuffleMetricsSource is given a name when <a href="#creating-instance">created</a> that is one of the following:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1975,51 +2003,6 @@
 </li>
 <li>
 <p><strong>ExternalShuffle</strong> when <a href="../configuration-properties.html#spark.shuffle.service.enabled" class="page">spark.shuffle.service.enabled</a> configuration property is on (<code>true</code>)</p>
-</li>
-</ul>
-</div>
-<table id="metrics" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. ShuffleMetricsSource&#8217;s Gauge Metrics (in alphabetical order)</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-</table>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Since <code>Executor</code> does not have a web UI attached you cannot access the <a href="#metrics">metrics</a> using the HTTP protocol (through <a href="spark-metrics-MetricsServlet.adoc">MetricsServlet JSON metrics sink</a>).
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="creating-shufflemetricssource-instance"><a class="anchor" href="#creating-shufflemetricssource-instance"></a><a class="link" href="#creating-shufflemetricssource-instance"><a id="creating-instance"></a> Creating ShuffleMetricsSource Instance</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>ShuffleMetricsSource takes the following when created:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a id="sourceName"></a> Source name</p>
-</li>
-<li>
-<p><a id="metricSet"></a> Dropwizard Metrics' <a href="https://metrics.dropwizard.io/3.1.0/apidocs/com/codahale/metrics/MetricSet.html">MetricSet</a></p>
 </li>
 </ul>
 </div>

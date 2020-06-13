@@ -483,7 +483,7 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-BlockEvictionHandler.html">BlockEvictionHandler</a>
+    <a class="nav-link" href="BlockEvictionHandler.html">BlockEvictionHandler</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
@@ -499,23 +499,20 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="BlockTransferService.html">BlockTransferService</a>
+    <a class="nav-link" href="ShuffleClient.html">ShuffleClient</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="NettyBlockTransferService.html">NettyBlockTransferService</a>
+    <a class="nav-link" href="BlockTransferService.html">BlockTransferService</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="NettyBlockTransferService.html">NettyBlockTransferService</a>
+  </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="NettyBlockRpcServer.html">NettyBlockRpcServer</a>
   </li>
 </ul>
   </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="ShuffleClient.html">ShuffleClient</a>
-<ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="ExternalShuffleClient.html">ExternalShuffleClient</a>
   </li>
@@ -1962,9 +1959,6 @@
 <div id="futureExecutionContext" class="paragraph">
 <p>BlockManager uses a Scala <a href="https://www.scala-lang.org/api/current/scala/concurrent/ExecutionContextExecutorService.html">ExecutionContextExecutorService</a> to execute <strong>FIXME</strong> asynchronously (on a thread pool with <strong>block-manager-future</strong> prefix and maximum of 128 threads).</p>
 </div>
-<div id="BlockEvictionHandler" class="paragraph">
-<p>BlockManager is a <a href="spark-BlockEvictionHandler.adoc">BlockEvictionHandler</a> that can <a href="#dropFromMemory">drop a block from memory and store it on a disk</a> if required.</p>
-</div>
 <div class="paragraph">
 <p><strong>Cached blocks</strong> are blocks with non-zero sum of memory and disk sizes.</p>
 </div>
@@ -2078,6 +2072,14 @@ It is computed specially in Spark on YARN.
 </div>
 <div class="paragraph">
 <p>BlockManager is created when SparkEnv is <a href="../core/SparkEnv.html#create-BlockManager" class="page">created</a> (for the driver and executors) when a Spark application starts.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="blockevictionhandler"><a class="anchor" href="#blockevictionhandler"></a><a class="link" href="#blockevictionhandler"><a id="BlockEvictionHandler"></a> BlockEvictionHandler</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>BlockManager is a <a href="BlockEvictionHandler.html" class="page">BlockEvictionHandler</a> that can <a href="#dropFromMemory">drop a block from memory and store it on a disk</a> if required.</p>
 </div>
 </div>
 </div>
@@ -2317,7 +2319,7 @@ SparkEnv.get.blockManager.diskBlockManager</code></pre>
 <h2 id="memorystore"><a class="anchor" href="#memorystore"></a><a class="link" href="#memorystore"><a id="memoryStore"></a> MemoryStore</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When <a href="#creating-instance">created</a>, BlockManager creates a <a href="MemoryStore.html" class="page">MemoryStore</a> (with the <a href="#blockInfoManager">BlockInfoManager</a>, the <a href="#serializerManager">SerializerManager</a>, the <a href="#memoryManager">MemoryManager</a> and itself as a <a href="spark-BlockEvictionHandler.html" class="page">BlockEvictionHandler</a>).</p>
+<p>When <a href="#creating-instance">created</a>, BlockManager creates a <a href="MemoryStore.html" class="page">MemoryStore</a> (with the <a href="#blockInfoManager">BlockInfoManager</a>, the <a href="#serializerManager">SerializerManager</a>, the <a href="#memoryManager">MemoryManager</a> and itself as a <a href="BlockEvictionHandler.html" class="page">BlockEvictionHandler</a>).</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -3948,24 +3950,12 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
   data: () =&gt; Either[Array[T], ChunkedByteBuffer]): StorageLevel</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>dropFromMemory</code> is part of the <a href="spark-BlockEvictionHandler.adoc#dropFromMemory">BlockEvictionHandler Contract</a> to&#8230;&#8203;FIXME
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
-<p>When <code>dropFromMemory</code> is executed, you should see the following INFO message in the logs:</p>
+<p>When dropFromMemory is executed, you should see the following INFO message in the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>INFO BlockManager: Dropping block [blockId] from memory</code></pre>
+<pre class="highlightjs highlight"><code>Dropping block [blockId] from memory</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3976,7 +3966,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>INFO BlockManager: Writing block [blockId] to disk</code></pre>
+<pre class="highlightjs highlight"><code>Writing block [blockId] to disk</code></pre>
 </div>
 </div>
 <div class="admonitionblock caution">
@@ -3999,7 +3989,7 @@ FIXME Describe the case with saving a block to disk.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>WARN BlockManager: Block [blockId] could not be dropped from memory as it does not exist</code></pre>
+<pre class="highlightjs highlight"><code>Block [blockId] could not be dropped from memory as it does not exist</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4021,7 +4011,10 @@ FIXME When would <code>info.tellMaster</code> be <code>true</code>?
 <p>A block is considered updated when it was written to disk or removed from memory or both. If either happened, the <a href="../executor/TaskMetrics.html#incUpdatedBlockStatuses" class="page">current TaskContext metrics are updated with the change</a>.</p>
 </div>
 <div class="paragraph">
-<p>Ultimately, <code>dropFromMemory</code> returns the current storage level of the block.</p>
+<p>In the end, dropFromMemory returns the current storage level of the block.</p>
+</div>
+<div class="paragraph">
+<p>dropFromMemory is part of the <a href="BlockEvictionHandler.html#dropFromMemory" class="page">BlockEvictionHandler</a> abstraction.</p>
 </div>
 </div>
 </div>
