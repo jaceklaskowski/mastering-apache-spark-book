@@ -1948,7 +1948,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>MemoryManager</strong> is an abstraction of <a href="#implementations">memory managers</a> that manage shared memory for task execution (using <a href="TaskMemoryManager.html#memoryManager" class="page">TaskMemoryManager</a>) and block storage (using <a href="../storage/BlockManager.html#memoryManager" class="page">BlockManager</a>).</p>
+<p><strong>MemoryManager</strong> is an <a href="#contract">abstraction</a> of <a href="#implementations">memory managers</a> that manage shared memory for task execution (<a href="TaskMemoryManager.html#memoryManager" class="page">TaskMemoryManager</a>) and block storage (<a href="../storage/BlockManager.html#memoryManager" class="page">BlockManager</a>).</p>
 </div>
 <div class="paragraph">
 <p>MemoryManager splits available memory into two regions:</p>
@@ -1964,7 +1964,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>MemoryManager is used to create <a href="../storage/BlockManager.html#memoryManager" class="page">BlockManager</a> (and then <a href="../storage/MemoryStore.html#memoryManager" class="page">MemoryStore</a>) and <a href="TaskMemoryManager.html#memoryManager" class="page">TaskMemoryManager</a>.</p>
+<p>MemoryManager is used to create <a href="../storage/BlockManager.html#memoryManager" class="page">BlockManager</a> (and <a href="../storage/MemoryStore.html#memoryManager" class="page">MemoryStore</a>) and <a href="TaskMemoryManager.html#memoryManager" class="page">TaskMemoryManager</a>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1972,22 +1972,139 @@
 </div>
 <div class="title">Figure 1. MemoryManager and Core Services</div>
 </div>
-<div class="paragraph">
-<p>MemoryManager is available as <a href="../core/SparkEnv.html#memoryManager" class="page">SparkEnv.memoryManager</a>.</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="contract"><a class="anchor" href="#contract"></a><a class="link" href="#contract"><a id="contract"></a> Contract</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="acquiring-execution-memory-for-task"><a class="anchor" href="#acquiring-execution-memory-for-task"></a><a class="link" href="#acquiring-execution-memory-for-task"><a id="acquireExecutionMemory"></a> Acquiring Execution Memory for Task</a></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">import org.apache.spark.SparkEnv
-val mm = SparkEnv.get.memoryManager</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">acquireExecutionMemory(
+  numBytes: Long,
+  taskAttemptId: Long,
+  memoryMode: MemoryMode): Long</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A <a href="#implementations">concrete MemoryManager</a> is chosen based on <a href="../configuration-properties.html#spark.memory.useLegacyMode" class="page">spark.memory.useLegacyMode</a> configuration property (for <a href="../core/SparkEnv.html#memoryManager" class="page">SparkEnv</a> for the driver and executors).</p>
+<p>acquireExecutionMemory tries to acquire up to <code>numBytes</code> of execution memory for the current task (by <code>taskAttemptId</code>) and return the number of bytes obtained, or 0 if none can be allocated.</p>
+</div>
+<div class="paragraph">
+<p>acquireExecutionMemory is used when TaskMemoryManager is requested to <a href="TaskMemoryManager.html#acquireExecutionMemory" class="page">acquire execution memory</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="acquiring-storage-memory-for-block"><a class="anchor" href="#acquiring-storage-memory-for-block"></a><a class="link" href="#acquiring-storage-memory-for-block"><a id="acquireStorageMemory"></a> Acquiring Storage Memory for Block</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">acquireStorageMemory(
+  blockId: BlockId,
+  numBytes: Long,
+  memoryMode: MemoryMode): Boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>acquireStorageMemory tries to acquire <code>numBytes</code> bytes of memory to cache the given <a href="../storage/BlockId.html" class="page">block</a>, evicting existing ones if necessary.</p>
+</div>
+<div class="paragraph">
+<p>acquireStorageMemory is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>UnifiedMemoryManager is requested to <a href="UnifiedMemoryManager.html#acquireUnrollMemory" class="page">acquireUnrollMemory</a></p>
+</li>
+<li>
+<p><code>MemoryStore</code> is requested to <a href="../storage/MemoryStore.html#putBytes" class="page">putBytes</a> and <a href="../storage/MemoryStore.html#putIterator" class="page">putIterator</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="acquiring-unroll-memory-for-block"><a class="anchor" href="#acquiring-unroll-memory-for-block"></a><a class="link" href="#acquiring-unroll-memory-for-block"><a id="acquireUnrollMemory"></a> Acquiring Unroll Memory for Block</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">acquireUnrollMemory(
+  blockId: BlockId,
+  numBytes: Long,
+  memoryMode: MemoryMode): Boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>acquireUnrollMemory tries to acquire <code>numBytes</code> bytes of memory to unroll the given <a href="../storage/BlockId.html" class="page">block</a>, evicting existing ones if necessary.</p>
+</div>
+<div class="paragraph">
+<p>acquireUnrollMemory is used when MemoryStore is requested to <a href="../storage/MemoryStore.html#reserveUnrollMemoryForThisTask" class="page">reserveUnrollMemoryForThisTask</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="total-available-off-heap-storage-memory"><a class="anchor" href="#total-available-off-heap-storage-memory"></a><a class="link" href="#total-available-off-heap-storage-memory"><a id="maxOffHeapStorageMemory"></a> Total Available Off-Heap Storage Memory</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">maxOffHeapStorageMemory: Long</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>maxOffHeapStorageMemory is the total available off-heap memory for storage (in bytes).</p>
+</div>
+<div class="paragraph">
+<p>maxOffHeapStorageMemory may vary over time.</p>
+</div>
+<div class="paragraph">
+<p>maxOffHeapStorageMemory is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>UnifiedMemoryManager is requested to <a href="UnifiedMemoryManager.html#acquireStorageMemory" class="page">acquireStorageMemory</a></p>
+</li>
+<li>
+<p>BlockManager is <a href="../storage/BlockManager.html#maxOffHeapMemory" class="page">created</a></p>
+</li>
+<li>
+<p>MemoryStore is requested for the <a href="../storage/MemoryStore.html#maxMemory" class="page">total amount of memory available</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="total-available-on-heap-storage-memory"><a class="anchor" href="#total-available-on-heap-storage-memory"></a><a class="link" href="#total-available-on-heap-storage-memory"><a id="maxOnHeapStorageMemory"></a> Total Available On-Heap Storage Memory</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">maxOnHeapStorageMemory: Long</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>maxOnHeapStorageMemory is the total available on-heap memory for storage (in bytes).</p>
+</div>
+<div class="paragraph">
+<p>maxOnHeapStorageMemory may vary over time.</p>
+</div>
+<div class="paragraph">
+<p>maxOnHeapStorageMemory is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>UnifiedMemoryManager is requested to <a href="UnifiedMemoryManager.html#acquireStorageMemory" class="page">acquireStorageMemory</a></p>
+</li>
+<li>
+<p>BlockManager is <a href="../storage/BlockManager.html#maxOnHeapMemory" class="page">created</a></p>
+</li>
+<li>
+<p>MemoryStore is requested for the <a href="../storage/MemoryStore.html#maxMemory" class="page">total amount of memory available</a></p>
+</li>
+<li>
+<p>(legacy) StaticMemoryManager is <a href="StaticMemoryManager.html#maxOnHeapStorageMemory" class="page">created</a> and requested to <a href="StaticMemoryManager.html#acquireStorageMemory" class="page">acquireStorageMemory</a></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="memorymanagers"><a class="anchor" href="#memorymanagers"></a><a class="link" href="#memorymanagers"><a id="implementations"></a> MemoryManagers</a></h2>
+<h2 id="available-memorymanagers"><a class="anchor" href="#available-memorymanagers"></a><a class="link" href="#available-memorymanagers"><a id="implementations"></a> Available MemoryManagers</a></h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -2003,11 +2120,11 @@ val mm = SparkEnv.get.memoryManager</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="StaticMemoryManager.html" class="page">StaticMemoryManager</a></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="StaticMemoryManager"></a> (legacy)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="StaticMemoryManager"></a> Legacy memory manager</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="UnifiedMemoryManager.html" class="page">UnifiedMemoryManager</a></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="UnifiedMemoryManager"></a> The default memory manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="UnifiedMemoryManager"></a> Default memory manager</p></td>
 </tr>
 </tbody>
 </table>
@@ -2036,141 +2153,99 @@ val mm = SparkEnv.get.memoryManager</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>MemoryManager initializes the <a href="#internal-properties">internal properties</a>.</p>
+<p>MemoryManager is an abstract class and cannot be created directly. It is created indirectly for the <a href="#implementations">concrete MemoryManagers</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="acquiring-execution-memory-for-task"><a class="anchor" href="#acquiring-execution-memory-for-task"></a><a class="link" href="#acquiring-execution-memory-for-task"><a id="acquireExecutionMemory"></a> Acquiring Execution Memory for Task</a></h2>
+<h2 id="accessing-memorymanager-using-sparkenv"><a class="anchor" href="#accessing-memorymanager-using-sparkenv"></a><a class="link" href="#accessing-memorymanager-using-sparkenv"><a id="SparkEnv"></a> Accessing MemoryManager Using SparkEnv</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MemoryManager is available as <a href="../core/SparkEnv.html#memoryManager" class="page">SparkEnv</a> on the driver and executors.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">import org.apache.spark.SparkEnv
+val mm = SparkEnv.get.memoryManager
+
+scala&gt; :type mm
+org.apache.spark.memory.MemoryManager</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-memory-uselegacymode-configuration-property"><a class="anchor" href="#spark-memory-uselegacymode-configuration-property"></a><a class="link" href="#spark-memory-uselegacymode-configuration-property"><a id="spark.memory.useLegacyMode"></a> spark.memory.useLegacyMode Configuration Property</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <a href="#implementations">concrete MemoryManager</a> is chosen based on <a href="../configuration-properties.html#spark.memory.useLegacyMode" class="page">spark.memory.useLegacyMode</a> configuration property (when <a href="../core/SparkEnv.html#memoryManager" class="page">SparkEnv</a> is created for the driver and executors).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="executionmemoryused-method"><a class="anchor" href="#executionmemoryused-method"></a><a class="link" href="#executionmemoryused-method"><a id="executionMemoryUsed"></a> executionMemoryUsed Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">acquireExecutionMemory(
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">executionMemoryUsed: Long</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>executionMemoryUsed&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>executionMemoryUsed is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="releaseallstoragememory-method"><a class="anchor" href="#releaseallstoragememory-method"></a><a class="link" href="#releaseallstoragememory-method"><a id="releaseAllStorageMemory"></a> releaseAllStorageMemory Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">releaseAllStorageMemory(): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>releaseAllStorageMemory&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>releaseAllStorageMemory is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="releaseunrollmemory-method"><a class="anchor" href="#releaseunrollmemory-method"></a><a class="link" href="#releaseunrollmemory-method"><a id="releaseUnrollMemory"></a> releaseUnrollMemory Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">releaseUnrollMemory(
   numBytes: Long,
-  taskAttemptId: Long,
-  memoryMode: MemoryMode): Long</code></pre>
+  memoryMode: MemoryMode): Unit</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>acquireExecutionMemory</code> tries to acquire up to <code>numBytes</code> of execution memory for the current task (by <code>taskAttemptId</code>) and return the number of bytes obtained, or 0 if none can be allocated.</p>
+<p>releaseUnrollMemory&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p><code>acquireExecutionMemory</code> is used when TaskMemoryManager is requested to <a href="TaskMemoryManager.html#acquireExecutionMemory" class="page">acquire execution memory</a>.</p>
+<p>releaseUnrollMemory is used when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="acquiring-storage-memory-for-block"><a class="anchor" href="#acquiring-storage-memory-for-block"></a><a class="link" href="#acquiring-storage-memory-for-block"><a id="acquireStorageMemory"></a> Acquiring Storage Memory for Block</a></h2>
+<h2 id="setmemorystore-method"><a class="anchor" href="#setmemorystore-method"></a><a class="link" href="#setmemorystore-method"><a id="setMemoryStore"></a> setMemoryStore Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">acquireStorageMemory(
-  blockId: BlockId,
-  numBytes: Long,
-  memoryMode: MemoryMode): Boolean</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">setMemoryStore(
+  store: MemoryStore): Unit</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>acquireStorageMemory</code> tries to acquire <code>numBytes</code> bytes of memory to cache the given <a href="../storage/BlockId.html" class="page">block</a>, evicting existing ones if necessary.</p>
+<p>setMemoryStore&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p><code>acquireStorageMemory</code> is used when:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>UnifiedMemoryManager is requested to <a href="UnifiedMemoryManager.html#acquireUnrollMemory" class="page">acquireUnrollMemory</a></p>
-</li>
-<li>
-<p><code>MemoryStore</code> is requested to <a href="../storage/MemoryStore.html#putBytes" class="page">putBytes</a> and <a href="../storage/MemoryStore.html#putIterator" class="page">putIterator</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="acquiring-unroll-memory-for-block"><a class="anchor" href="#acquiring-unroll-memory-for-block"></a><a class="link" href="#acquiring-unroll-memory-for-block"><a id="acquireUnrollMemory"></a> Acquiring Unroll Memory for Block</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">acquireUnrollMemory(
-  blockId: BlockId,
-  numBytes: Long,
-  memoryMode: MemoryMode): Boolean</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>acquireUnrollMemory</code> tries to acquire <code>numBytes</code> bytes of memory to unroll the given <a href="../storage/BlockId.html" class="page">block</a>, evicting existing ones if necessary.</p>
-</div>
-<div class="paragraph">
-<p><code>acquireUnrollMemory</code> is used when MemoryStore is requested to <a href="../storage/MemoryStore.html#reserveUnrollMemoryForThisTask" class="page">reserveUnrollMemoryForThisTask</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="total-available-off-heap-storage-memory"><a class="anchor" href="#total-available-off-heap-storage-memory"></a><a class="link" href="#total-available-off-heap-storage-memory"><a id="maxOffHeapStorageMemory"></a> Total Available Off-Heap Storage Memory</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">maxOffHeapStorageMemory: Long</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>maxOffHeapStorageMemory</code> is the total available off-heap memory for storage (in bytes).</p>
-</div>
-<div class="paragraph">
-<p><code>maxOffHeapStorageMemory</code> may vary over time.</p>
-</div>
-<div class="paragraph">
-<p><code>maxOffHeapStorageMemory</code> is used when:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>UnifiedMemoryManager is requested to <a href="UnifiedMemoryManager.html#acquireStorageMemory" class="page">acquireStorageMemory</a></p>
-</li>
-<li>
-<p>BlockManager is <a href="../storage/BlockManager.html#maxOffHeapMemory" class="page">created</a></p>
-</li>
-<li>
-<p>MemoryStore is requested for the <a href="../storage/MemoryStore.html#maxMemory" class="page">total amount of memory available</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="total-available-on-heap-storage-memory"><a class="anchor" href="#total-available-on-heap-storage-memory"></a><a class="link" href="#total-available-on-heap-storage-memory"><a id="maxOnHeapStorageMemory"></a> Total Available On-Heap Storage Memory</a></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">maxOnHeapStorageMemory: Long</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>maxOnHeapStorageMemory</code> is the total available on-heap memory for storage (in bytes).</p>
-</div>
-<div class="paragraph">
-<p><code>maxOnHeapStorageMemory</code> may vary over time.</p>
-</div>
-<div class="paragraph">
-<p><code>maxOnHeapStorageMemory</code> is used when:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>UnifiedMemoryManager is requested to <a href="UnifiedMemoryManager.html#acquireStorageMemory" class="page">acquireStorageMemory</a></p>
-</li>
-<li>
-<p>BlockManager is <a href="../storage/BlockManager.html#maxOnHeapMemory" class="page">created</a></p>
-</li>
-<li>
-<p>MemoryStore is requested for the <a href="../storage/MemoryStore.html#maxMemory" class="page">total amount of memory available</a></p>
-</li>
-<li>
-<p>(legacy) StaticMemoryManager is <a href="StaticMemoryManager.html#maxOnHeapStorageMemory" class="page">created</a> and requested to <a href="StaticMemoryManager.html#acquireStorageMemory" class="page">acquireStorageMemory</a></p>
-</li>
-</ul>
+<p>setMemoryStore is used when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>
@@ -2330,7 +2405,7 @@ Given that <a href="../configuration-properties.html#spark.memory.offHeap.enable
 </div>
 </div>
 <div class="sect1">
-<h2 id="storagememoryused-method"><a class="anchor" href="#storagememoryused-method"></a><a class="link" href="#storagememoryused-method"><a id="storageMemoryUsed"></a> <code>storageMemoryUsed</code> Method</a></h2>
+<h2 id="storagememoryused-method"><a class="anchor" href="#storagememoryused-method"></a><a class="link" href="#storagememoryused-method"><a id="storageMemoryUsed"></a> storageMemoryUsed Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2340,17 +2415,8 @@ Given that <a href="../configuration-properties.html#spark.memory.offHeap.enable
 <div class="paragraph">
 <p>storageMemoryUsed gives the total of the memory used by the <a href="#onHeapStorageMemoryPool">on-heap StorageMemoryPool</a> and <a href="#offHeapStorageMemoryPool">off-heap StorageMemoryPool</a>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-storageMemoryUsed is used when&#8230;&#8203;FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>storageMemoryUsed is used when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>
@@ -2379,6 +2445,39 @@ storageMemoryUsed is used when&#8230;&#8203;FIXME
 <p>MemoryStore is requested to <a href="../storage/MemoryStore.html#remove" class="page">remove a block</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getexecutionmemoryusagefortask-method"><a class="anchor" href="#getexecutionmemoryusagefortask-method"></a><a class="link" href="#getexecutionmemoryusagefortask-method"><a id="getExecutionMemoryUsageForTask"></a> getExecutionMemoryUsageForTask Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getExecutionMemoryUsageForTask(
+  taskAttemptId: Long): Long</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>getExecutionMemoryUsageForTask&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>getExecutionMemoryUsageForTask is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="maxoffheapmemory"><a class="anchor" href="#maxoffheapmemory"></a><a class="link" href="#maxoffheapmemory"><a id="maxOffHeapMemory"></a> maxOffHeapMemory</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">maxOffHeapMemory: Long</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>maxOffHeapMemory&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>maxOffHeapMemory is used when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>
