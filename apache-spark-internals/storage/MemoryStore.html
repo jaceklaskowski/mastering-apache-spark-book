@@ -468,7 +468,13 @@
 </ul>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="MemoryStore.html">MemoryStore</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="BlockEvictionHandler.html">BlockEvictionHandler</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockData.html">BlockData</a>
@@ -481,9 +487,6 @@
     <a class="nav-link" href="BlockInfo.html">BlockInfo</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="BlockEvictionHandler.html">BlockEvictionHandler</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
@@ -2178,7 +2181,7 @@ res1: Boolean = true</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="evicting-blocks-from-memory"><a class="anchor" href="#evicting-blocks-from-memory"></a><a class="link" href="#evicting-blocks-from-memory"><a id="evictBlocksToFreeSpace"></a> Evicting Blocks From Memory</a></h2>
+<h2 id="evicting-blocks"><a class="anchor" href="#evicting-blocks"></a><a class="link" href="#evicting-blocks"><a id="evictBlocksToFreeSpace"></a> Evicting Blocks</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2189,19 +2192,10 @@ res1: Boolean = true</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>evictBlocksToFreeSpace</code>&#8230;&#8203;FIXME</p>
+<p>evictBlocksToFreeSpace&#8230;&#8203;FIXME</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>evictBlocksToFreeSpace</code> is used when <code>StorageMemoryPool</code> is requested to <a href="../memory/StorageMemoryPool.html#acquireMemory" class="page">acquireMemory</a> and <a href="../memory/StorageMemoryPool.html#freeSpaceToShrinkPool" class="page">freeSpaceToShrinkPool</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>evictBlocksToFreeSpace is used when StorageMemoryPool is requested to <a href="../memory/StorageMemoryPool.html#acquireMemory" class="page">acquireMemory</a> and <a href="../memory/StorageMemoryPool.html#freeSpaceToShrinkPool" class="page">freeSpaceToShrinkPool</a>.</p>
 </div>
 </div>
 </div>
@@ -2210,7 +2204,8 @@ res1: Boolean = true</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">contains(blockId: BlockId): Boolean</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">contains(
+  blockId: BlockId): Boolean</code></pre>
 </div>
 </div>
 <div class="paragraph">

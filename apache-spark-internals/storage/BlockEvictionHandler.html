@@ -468,7 +468,13 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="MemoryStore.html">MemoryStore</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="BlockEvictionHandler.html">BlockEvictionHandler</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockData.html">BlockData</a>
@@ -481,9 +487,6 @@
     <a class="nav-link" href="BlockInfo.html">BlockInfo</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="BlockEvictionHandler.html">BlockEvictionHandler</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
@@ -1934,6 +1937,7 @@
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
     <li>Storage System</li>
+    <li><a href="MemoryStore.html">MemoryStore</a></li>
     <li><a href="BlockEvictionHandler.html">BlockEvictionHandler</a></li>
   </ul>
 </nav>
@@ -1942,62 +1946,38 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">BlockEvictionHandler</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p><code>BlockEvictionHandler</code> is a <a href="#contract">contract</a> of <a href="#implementations">FIXME</a> that <a href="#dropFromMemory">dropFromMemory</a>.</p>
+<p><strong>BlockEvictionHandler</strong> is an <a href="#contract">abstraction</a> of <a href="#implementations">eviction handlers</a> that can <a href="#dropFromMemory">drop a block from memory</a>.</p>
 </div>
-<div id="contract" class="listingblock">
+</div>
+</div>
+<div class="sect1">
+<h2 id="contract"><a class="anchor" href="#contract"></a><a class="link" href="#contract"><a id="contract"></a> Contract</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="dropfrommemory-method"><a class="anchor" href="#dropfrommemory-method"></a><a class="link" href="#dropfrommemory-method"><a id="dropFromMemory"></a> dropFromMemory Method</a></h3>
+<div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">package org.apache.spark.storage.memory
-
-trait BlockEvictionHandler {
-  def dropFromMemory[T: ClassTag](
-    blockId: BlockId,
-    data: () =&gt; Either[Array[T], ChunkedByteBuffer]): StorageLevel
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">dropFromMemory[T: ClassTag](
+  blockId: BlockId,
+  data: () =&gt; Either[Array[T], ChunkedByteBuffer]): StorageLevel</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>BlockEvictionHandler</code> is a <code>private[storage]</code> contract.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Used when MemoryStore is requested to <a href="MemoryStore.html#evictBlocksToFreeSpace" class="page">evictBlocksToFreeSpace</a>.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. BlockEvictionHandler Contract</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Method</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dropFromMemory</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="dropFromMemory"></a> Used exclusively when <code>MemoryStore</code> is requested to <a href="MemoryStore.html#evictBlocksToFreeSpace" class="page">evictBlocksToFreeSpace</a>.</p></td>
-</tr>
-</tbody>
-</table>
-<div id="implementations" class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<a href="BlockManager.html" class="page">BlockManager</a> is the one and only known implementation of <a href="#contract">BlockEvictionHandler Contract</a> in Apache Spark.
-</td>
-</tr>
-</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="available-blockevictionhandlers"><a class="anchor" href="#available-blockevictionhandlers"></a><a class="link" href="#available-blockevictionhandlers"><a id="implementations"></a> Available BlockEvictionHandlers</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="BlockManager.html" class="page">BlockManager</a> is the default and only known BlockEvictionHandler in Apache Spark.</p>
+</div>
+</div>
 </div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

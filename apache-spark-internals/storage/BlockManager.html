@@ -468,7 +468,13 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="MemoryStore.html">MemoryStore</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="BlockEvictionHandler.html">BlockEvictionHandler</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BlockData.html">BlockData</a>
@@ -481,9 +487,6 @@
     <a class="nav-link" href="BlockInfo.html">BlockInfo</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="BlockEvictionHandler.html">BlockEvictionHandler</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
@@ -2079,7 +2082,7 @@ It is computed specially in Spark on YARN.
 <h2 id="blockevictionhandler"><a class="anchor" href="#blockevictionhandler"></a><a class="link" href="#blockevictionhandler"><a id="BlockEvictionHandler"></a> BlockEvictionHandler</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>BlockManager is a <a href="BlockEvictionHandler.html" class="page">BlockEvictionHandler</a> that can <a href="#dropFromMemory">drop a block from memory and store it on a disk</a> if required.</p>
+<p>BlockManager is a <a href="BlockEvictionHandler.html" class="page">BlockEvictionHandler</a> that can <a href="#dropFromMemory">drop a block from memory</a> (and store it on a disk when needed).</p>
 </div>
 </div>
 </div>
