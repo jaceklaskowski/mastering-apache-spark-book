@@ -2322,7 +2322,7 @@ SparkEnv.get.blockManager.diskBlockManager</code></pre>
 <h2 id="memorystore"><a class="anchor" href="#memorystore"></a><a class="link" href="#memorystore"><a id="memoryStore"></a> MemoryStore</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When <a href="#creating-instance">created</a>, BlockManager creates a <a href="MemoryStore.html" class="page">MemoryStore</a> (with the <a href="#blockInfoManager">BlockInfoManager</a>, the <a href="#serializerManager">SerializerManager</a>, the <a href="#memoryManager">MemoryManager</a> and itself as a <a href="BlockEvictionHandler.html" class="page">BlockEvictionHandler</a>).</p>
+<p>BlockManager creates a <a href="MemoryStore.html" class="page">MemoryStore</a> when <a href="#creating-instance">created</a> (with the <a href="#blockInfoManager">BlockInfoManager</a>, the <a href="#serializerManager">SerializerManager</a>, the <a href="#memoryManager">MemoryManager</a> and itself as a <a href="BlockEvictionHandler.html" class="page">BlockEvictionHandler</a>).</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -2331,16 +2331,50 @@ SparkEnv.get.blockManager.diskBlockManager</code></pre>
 <div class="title">Figure 2. MemoryStore and BlockManager</div>
 </div>
 <div class="paragraph">
-<p>BlockManager uses the MemoryStore when requested to <a href="#doGetLocalBytes">doGetLocalBytes</a>.</p>
+<p>BlockManager requests the <a href="#memoryManager">MemoryManager</a> to <a href="../memory/MemoryManager.html#setMemoryStore" class="page">use</a> the MemoryStore.</p>
 </div>
 <div class="paragraph">
-<p>The MemoryStore is available as <code>memoryStore</code> reference to other Spark systems.</p>
+<p>BlockManager uses the MemoryStore for the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#getStatus">getStatus</a> and <a href="#getCurrentBlockStatus">getCurrentBlockStatus</a></p>
+</li>
+<li>
+<p><a href="#getLocalValues">getLocalValues</a></p>
+</li>
+<li>
+<p><a href="#doGetLocalBytes">doGetLocalBytes</a></p>
+</li>
+<li>
+<p><a href="#doPutBytes">doPutBytes</a> and <a href="#doPutIterator">doPutIterator</a></p>
+</li>
+<li>
+<p><a href="#maybeCacheDiskBytesInMemory">maybeCacheDiskBytesInMemory</a> and <a href="#maybeCacheDiskValuesInMemory">maybeCacheDiskValuesInMemory</a></p>
+</li>
+<li>
+<p><a href="#dropFromMemory">dropFromMemory</a></p>
+</li>
+<li>
+<p><a href="#removeBlockInternal">removeBlockInternal</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The MemoryStore is requested to <a href="MemoryStore.html#clear" class="page">clear</a> when BlockManager is requested to <a href="#stop">stop</a>.</p>
+</div>
+<div class="paragraph">
+<p>The MemoryStore is available as <code>memoryStore</code> private reference to other Spark services.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">import org.apache.spark.SparkEnv
 SparkEnv.get.blockManager.memoryStore</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The MemoryStore is used (via <code>SparkEnv.get.blockManager.memoryStore</code> reference) when Task is requested to <a href="../scheduler/Task.html#run" class="page">run</a> (that has finished and requests the MemoryStore to <a href="MemoryStore.html#releaseUnrollMemoryForThisTask" class="page">releaseUnrollMemoryForThisTask</a>).</p>
 </div>
 </div>
 </div>
@@ -2437,7 +2471,7 @@ SparkEnv.get.blockManager.memoryStore</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="getlocalvalues-method"><a class="anchor" href="#getlocalvalues-method"></a><a class="link" href="#getlocalvalues-method"><a id="getLocalValues"></a> getLocalValues Method</a></h2>
+<h2 id="getting-local-block"><a class="anchor" href="#getting-local-block"></a><a class="link" href="#getting-local-block"><a id="getLocalValues"></a> Getting Local Block</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2486,19 +2520,35 @@ SparkEnv.get.blockManager.memoryStore</code></pre>
 </ol>
 </div>
 <div class="paragraph">
-<p>getLocalValues is used when <a href="../core/TorrentBroadcast.html#readBroadcastBlock" class="page"><code>TorrentBroadcast</code> reads the blocks of a broadcast variable and stores them in a local BlockManager</a>.</p>
+<p>getLocalValues is used when:</p>
 </div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="ulist">
+<ul>
+<li>
+<p>TorrentBroadcast is requested to <a href="../core/TorrentBroadcast.html#readBroadcastBlock" class="page">readBroadcastBlock</a></p>
+</li>
+<li>
+<p>BlockManager is requested to <a href="#get">get</a> and <a href="#getOrElseUpdate">getOrElseUpdate</a></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="maybecachediskvaluesinmemory-internal-method"><a class="anchor" href="#maybecachediskvaluesinmemory-internal-method"></a><a class="link" href="#maybecachediskvaluesinmemory-internal-method"><a id="maybeCacheDiskValuesInMemory"></a> maybeCacheDiskValuesInMemory Internal Method</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">maybeCacheDiskValuesInMemory[T](
+  blockInfo: BlockInfo,
+  blockId: BlockId,
+  level: StorageLevel,
+  diskIterator: Iterator[T]): Iterator[T]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>maybeCacheDiskValuesInMemory&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>maybeCacheDiskValuesInMemory is used when BlockManager is requested to <a href="#getLocalValues">getLocalValues</a>.</p>
+</div>
 </div>
 </div>
 </div>
@@ -2654,19 +2704,20 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="removeblockinternal-method"><a class="anchor" href="#removeblockinternal-method"></a><a class="link" href="#removeblockinternal-method"><a id="removeBlockInternal"></a> <code>removeBlockInternal</code> Method</a></h2>
+<h2 id="removeblockinternal-internal-method"><a class="anchor" href="#removeblockinternal-internal-method"></a><a class="link" href="#removeblockinternal-internal-method"><a id="removeBlockInternal"></a> removeBlockInternal Internal Method</a></h2>
 <div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">removeBlockInternal(
+  blockId: BlockId,
+  tellMaster: Boolean): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>removeBlockInternal&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>removeBlockInternal is used when BlockManager is requested to <a href="#doPut">doPut</a> and <a href="#removeBlock">removeBlock</a>.</p>
 </div>
 </div>
 </div>
@@ -2849,23 +2900,6 @@ FIXME
 </div>
 </div>
 <div class="sect1">
-<h2 id="maybecachediskvaluesinmemory-method"><a class="anchor" href="#maybecachediskvaluesinmemory-method"></a><a class="link" href="#maybecachediskvaluesinmemory-method"><a id="maybeCacheDiskValuesInMemory"></a> <code>maybeCacheDiskValuesInMemory</code> Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="doput-internal-method"><a class="anchor" href="#doput-internal-method"></a><a class="link" href="#doput-internal-method"><a id="doPut"></a> <code>doPut</code> Internal Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
@@ -2930,18 +2964,20 @@ FIXME
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">removeBlock(blockId: BlockId, tellMaster: Boolean = true): Unit</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">removeBlock(
+  blockId: BlockId,
+  tellMaster: Boolean = true): Unit</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>removeBlock</code> removes the <code>blockId</code> block from the <a href="MemoryStore.html" class="page">MemoryStore</a> and <a href="DiskStore.html" class="page">DiskStore</a>.</p>
+<p>removeBlock removes the <code>blockId</code> block from the <a href="MemoryStore.html" class="page">MemoryStore</a> and <a href="DiskStore.html" class="page">DiskStore</a>.</p>
 </div>
 <div class="paragraph">
 <p>When executed, it prints out the following DEBUG message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>DEBUG Removing block [blockId]</code></pre>
+<pre class="highlightjs highlight"><code>Removing block [blockId]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2949,7 +2985,7 @@ FIXME
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>WARN Asked to remove block [blockId], which does not exist</code></pre>
+<pre class="highlightjs highlight"><code>Asked to remove block [blockId], which does not exist</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2960,26 +2996,27 @@ FIXME
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>WARN Block [blockId] could not be removed as it was not found in either the disk, memory, or external block store</code></pre>
+<pre class="highlightjs highlight"><code>Block [blockId] could not be removed as it was not found in either the disk, memory, or external block store</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>The block is removed from <a href="BlockInfoManager.html" class="page">BlockInfoManager</a>.</p>
 </div>
 <div class="paragraph">
-<p>It then <a href="#getCurrentBlockStatus">calculates the current block status</a> that is used to <a href="#reportBlockStatus">report the block status to the driver</a> (if the input <code>tellMaster</code> and the info&#8217;s <code>tellMaster</code> are both enabled, i.e. <code>true</code>) and the <a href="../executor/TaskMetrics.html#incUpdatedBlockStatuses" class="page">current TaskContext metrics are updated with the change</a>.</p>
+<p>removeBlock then <a href="#getCurrentBlockStatus">calculates the current block status</a> that is used to <a href="#reportBlockStatus">report the block status to the driver</a> (if the input <code>tellMaster</code> and the info&#8217;s <code>tellMaster</code> are both enabled, i.e. <code>true</code>) and the <a href="../executor/TaskMetrics.html#incUpdatedBlockStatuses" class="page">current TaskContext metrics are updated with the change</a>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-It is used to <a href="#removeRdd">remove RDDs</a> and <a href="#removeBroadcast">broadcast</a> as well as in <a href="BlockManagerSlaveEndpoint.html#RemoveBlock" class="page"><code>BlockManagerSlaveEndpoint</code> while handling <code>RemoveBlock</code> messages</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>removeBlock is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>BlockManager is requested to <a href="#handleLocalReadFailure">handleLocalReadFailure</a>, <a href="#removeRdd">remove an RDD</a> and <a href="#removeBroadcast">broadcast</a></p>
+</li>
+<li>
+<p>BlockManagerSlaveEndpoint is requested to handle a <a href="BlockManagerSlaveEndpoint.html#RemoveBlock" class="page">RemoveBlock</a> message</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -3849,7 +3886,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="sect1">
-<h2 id="doputiterator-internal-method"><a class="anchor" href="#doputiterator-internal-method"></a><a class="link" href="#doputiterator-internal-method"><a id="doPutIterator"></a> <code>doPutIterator</code> Internal Method</a></h2>
+<h2 id="doputiterator-internal-method"><a class="anchor" href="#doputiterator-internal-method"></a><a class="link" href="#doputiterator-internal-method"><a id="doPutIterator"></a> doPutIterator Internal Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3944,7 +3981,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="sect1">
-<h2 id="removing-blocks-from-memory-only"><a class="anchor" href="#removing-blocks-from-memory-only"></a><a class="link" href="#removing-blocks-from-memory-only"><a id="dropFromMemory"></a> Removing Blocks From Memory Only</a></h2>
+<h2 id="dropping-block-from-memory"><a class="anchor" href="#dropping-block-from-memory"></a><a class="link" href="#dropping-block-from-memory"><a id="dropFromMemory"></a> Dropping Block from Memory</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">

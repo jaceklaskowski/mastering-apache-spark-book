@@ -1948,7 +1948,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>MemoryStore</strong> is the <strong>memory store</strong> for blocks of data for <a href="BlockManager.html#memoryStore" class="page">BlockManager</a>.</p>
+<p><strong>MemoryStore</strong> is responsible for managing blocks of data for <a href="BlockManager.html#memoryStore" class="page">BlockManager</a>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1956,22 +1956,11 @@
 </div>
 <div class="title">Figure 1. MemoryStore and BlockManager</div>
 </div>
-<div class="paragraph">
-<p>The "idiom" to access the current MemoryStore is to request <code>SparkEnv</code> for the <a href="../core/SparkEnv.html#blockManager" class="page">BlockManager</a> that manages the <a href="BlockManager.html#memoryStore" class="page">MemoryStore</a>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">SparkEnv.get.blockManager.memoryStore</code></pre>
-</div>
-</div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="_images/spark-MemoryStore.png" alt="spark MemoryStore">
 </div>
 <div class="title">Figure 2. Creating MemoryStore</div>
-</div>
-<div id="unrollMemoryThreshold" class="paragraph">
-<p>MemoryStore uses <a href="../configuration-properties.html#spark.storage.unrollMemoryThreshold" class="page">spark.storage.unrollMemoryThreshold</a> configuration property when requested to <a href="#putIteratorAsValues">putIteratorAsValues</a> and <a href="#putIteratorAsBytes">putIteratorAsBytes</a>.</p>
 </div>
 </div>
 </div>
@@ -2000,10 +1989,35 @@
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>MemoryStore is created for <a href="BlockManager.html#memoryStore" class="page">BlockManager</a>.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="releaseunrollmemoryforthistask-method"><a class="anchor" href="#releaseunrollmemoryforthistask-method"></a><a class="link" href="#releaseunrollmemoryforthistask-method"><a id="releaseUnrollMemoryForThisTask"></a> <code>releaseUnrollMemoryForThisTask</code> Method</a></h2>
+<h2 id="accessing-memorystore"><a class="anchor" href="#accessing-memorystore"></a><a class="link" href="#accessing-memorystore"><a id="memoryStore"></a> Accessing MemoryStore</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MemoryStore is available using <a href="BlockManager.html#memoryStore" class="page">BlockManager.memoryStore</a> reference to other Spark services.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">import org.apache.spark.SparkEnv
+SparkEnv.get.blockManager.memoryStore</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-storage-unrollmemorythreshold-configuration-property"><a class="anchor" href="#spark-storage-unrollmemorythreshold-configuration-property"></a><a class="link" href="#spark-storage-unrollmemorythreshold-configuration-property"><a id="unrollMemoryThreshold"></a><a id="spark.storage.unrollMemoryThreshold"></a> spark.storage.unrollMemoryThreshold Configuration Property</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MemoryStore uses <a href="../configuration-properties.html#spark.storage.unrollMemoryThreshold" class="page">spark.storage.unrollMemoryThreshold</a> configuration property for <a href="#putIterator">putIterator</a> and <a href="#putIteratorAsBytes">putIteratorAsBytes</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="releaseunrollmemoryforthistask-method"><a class="anchor" href="#releaseunrollmemoryforthistask-method"></a><a class="link" href="#releaseunrollmemoryforthistask-method"><a id="releaseUnrollMemoryForThisTask"></a> releaseUnrollMemoryForThisTask Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2013,68 +2027,65 @@
 </div>
 </div>
 <div class="paragraph">
-<p><code>releaseUnrollMemoryForThisTask</code>&#8230;&#8203;FIXME</p>
+<p>releaseUnrollMemoryForThisTask&#8230;&#8203;FIXME</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
 <div class="paragraph">
-<p><code>releaseUnrollMemoryForThisTask</code> is used when:</p>
+<p>releaseUnrollMemoryForThisTask is used when:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Task</code> is requested to <a href="../scheduler/Task.html#run" class="page">run</a> (and cleans up after itself)</p>
+<p>Task is requested to <a href="../scheduler/Task.html#run" class="page">run</a> (and cleans up after itself)</p>
 </li>
 <li>
-<p>MemoryStore is requested to <a href="#putIteratorAsValues">putIteratorAsValues</a> and <a href="#putIteratorAsBytes">putIteratorAsBytes</a></p>
+<p>MemoryStore is requested to <a href="#putIterator">putIterator</a></p>
 </li>
 <li>
-<p><code>PartiallyUnrolledIterator</code> is requested to <code>releaseUnrollMemory</code></p>
+<p>PartiallyUnrolledIterator is requested to releaseUnrollMemory</p>
 </li>
 <li>
-<p><code>PartiallySerializedBlock</code> is requested to <code>discard</code> and <code>finishWritingToStream</code></p>
+<p>PartiallySerializedBlock is requested to discard and finishWritingToStream</p>
 </li>
 </ul>
 </div>
-</td>
-</tr>
-</table>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="getvalues-method"><a class="anchor" href="#getvalues-method"></a><a class="link" href="#getvalues-method"><a id="getValues"></a> <code>getValues</code> Method</a></h2>
+<h2 id="getvalues-method"><a class="anchor" href="#getvalues-method"></a><a class="link" href="#getvalues-method"><a id="getValues"></a> getValues Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getValues(blockId: BlockId): Option[Iterator[_]]</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getValues(
+  blockId: BlockId): Option[Iterator[_]]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>getValues</code> does&#8230;&#8203;FIXME</p>
+<p>getValues&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>getValues is used when BlockManager is requested to <a href="BlockManager.html#doGetLocalBytes" class="page">doGetLocalBytes</a>, <a href="BlockManager.html#getLocalValues" class="page">getLocalValues</a> and <a href="BlockManager.html#maybeCacheDiskBytesInMemory" class="page">maybeCacheDiskBytesInMemory</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="getbytes-method"><a class="anchor" href="#getbytes-method"></a><a class="link" href="#getbytes-method"><a id="getBytes"></a> <code>getBytes</code> Method</a></h2>
+<h2 id="getbytes-method"><a class="anchor" href="#getbytes-method"></a><a class="link" href="#getbytes-method"><a id="getBytes"></a> getBytes Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getBytes(blockId: BlockId): Option[ChunkedByteBuffer]</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getBytes(
+  blockId: BlockId): Option[ChunkedByteBuffer]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>getBytes</code> does&#8230;&#8203;FIXME</p>
+<p>getBytes&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>getBytes is used when BlockManager is requested to <a href="BlockManager.html#doGetLocalBytes" class="page">doGetLocalBytes</a>, <a href="BlockManager.html#getLocalValues" class="page">getLocalValues</a> and <a href="BlockManager.html#maybeCacheDiskBytesInMemory" class="page">maybeCacheDiskBytesInMemory</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="putiteratorasbytes-method"><a class="anchor" href="#putiteratorasbytes-method"></a><a class="link" href="#putiteratorasbytes-method"><a id="putIteratorAsBytes"></a> <code>putIteratorAsBytes</code> Method</a></h2>
+<h2 id="putiteratorasbytes-method"><a class="anchor" href="#putiteratorasbytes-method"></a><a class="link" href="#putiteratorasbytes-method"><a id="putIteratorAsBytes"></a> putIteratorAsBytes Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2086,36 +2097,50 @@
 </div>
 </div>
 <div class="paragraph">
-<p><code>putIteratorAsBytes</code> tries to put the <code>blockId</code> block in memory store as bytes.</p>
+<p>putIteratorAsBytes&#8230;&#8203;FIXME</p>
 </div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>putIteratorAsBytes is used when BlockManager is requested to <a href="BlockManager.html#doPutIterator" class="page">doPutIterator</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="removing-block"><a class="anchor" href="#removing-block"></a><a class="link" href="#removing-block"><a id="remove"></a> Removing Block</a></h2>
+<h2 id="dropping-block-from-memory"><a class="anchor" href="#dropping-block-from-memory"></a><a class="link" href="#dropping-block-from-memory"><a id="remove"></a> Dropping Block from Memory</a></h2>
 <div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">remove(
+  blockId: BlockId): Boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>remove removes the given <a href="BlockId.html" class="page">BlockId</a> from the <a href="#entries">entries</a> internal registry and branches off based on whether the <a href="#remove-block-removed">block was found and removed</a> or <a href="#remove-no-block">not</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="block-removed"><a class="anchor" href="#block-removed"></a><a class="link" href="#block-removed"><a id="remove-block-removed"></a> Block Removed</a></h3>
+<div class="paragraph">
+<p>When found and removed, remove requests the <a href="#memoryManager">MemoryManager</a> to <a href="../memory/MemoryManager.html#releaseStorageMemory" class="page">releaseStorageMemory</a> and prints out the following DEBUG message to the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Block [blockId] of size [size] dropped from memory (free [memory])</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>remove returns <code>true</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="no-block-removed"><a class="anchor" href="#no-block-removed"></a><a class="link" href="#no-block-removed"><a id="remove-no-block"></a> No Block Removed</a></h3>
+<div class="paragraph">
+<p>If no BlockId was registered and removed, remove returns <code>false</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="usage"><a class="anchor" href="#usage"></a><a class="link" href="#usage"><a id="remove-usage"></a> Usage</a></h3>
+<div class="paragraph">
+<p>remove is used when BlockManager is requested to <a href="BlockManager.html#dropFromMemory" class="page">dropFromMemory</a> and <a href="BlockManager.html#removeBlockInternal" class="page">removeBlockInternal</a>.</p>
+</div>
 </div>
 </div>
 </div>
@@ -2124,7 +2149,7 @@ FIXME
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">putBytes[T](
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">putBytes[T: ClassTag](
   blockId: BlockId,
   size: Long,
   memoryMode: MemoryMode,
@@ -2132,13 +2157,13 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p><code>putBytes</code> requests <a href="../memory/MemoryManager.html#acquireStorageMemory" class="page">storage memory  for <code>blockId</code> from <code>MemoryManager</code></a> and registers the block in <a href="#entries">entries</a> internal registry.</p>
+<p>putBytes requests <a href="../memory/MemoryManager.html#acquireStorageMemory" class="page">storage memory  for <code>blockId</code> from <code>MemoryManager</code></a> and registers the block in <a href="#entries">entries</a> internal registry.</p>
 </div>
 <div class="paragraph">
-<p>Internally, <code>putBytes</code> first makes sure that <code>blockId</code> block has not been registered already in <a href="#entries">entries</a> internal registry.</p>
+<p>Internally, putBytes first makes sure that <code>blockId</code> block has not been registered already in <a href="#entries">entries</a> internal registry.</p>
 </div>
 <div class="paragraph">
-<p><code>putBytes</code> then requests <a href="../memory/MemoryManager.html#acquireStorageMemory" class="page"><code>size</code> memory for the <code>blockId</code> block in a given <code>memoryMode</code> from the current <code>MemoryManager</code></a>.</p>
+<p>putBytes then requests <a href="../memory/MemoryManager.html#acquireStorageMemory" class="page"><code>size</code> memory for the <code>blockId</code> block in a given <code>memoryMode</code> from the current <code>MemoryManager</code></a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2165,18 +2190,21 @@ res1: Boolean = true</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>If successful, <code>putBytes</code> "materializes" <code>_bytes</code> byte buffer and makes sure that the size is exactly <code>size</code>. It then registers a <code>SerializedMemoryEntry</code> (for the bytes and <code>memoryMode</code>) for <code>blockId</code> in the internal <a href="#entries">entries</a> registry.</p>
+<p>If successful, putBytes "materializes" <code>_bytes</code> byte buffer and makes sure that the size is exactly <code>size</code>. It then registers a <code>SerializedMemoryEntry</code> (for the bytes and <code>memoryMode</code>) for <code>blockId</code> in the internal <a href="#entries">entries</a> registry.</p>
 </div>
 <div class="paragraph">
 <p>You should see the following INFO message in the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>INFO Block [blockId] stored as bytes in memory (estimated size [size], free [bytes])</code></pre>
+<pre class="highlightjs highlight"><code>Block [blockId] stored as bytes in memory (estimated size [size], free [bytes])</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>putBytes</code> returns <code>true</code> only after <code>blockId</code> was successfully registered in the internal <a href="#entries">entries</a> registry.</p>
+<p>putBytes returns <code>true</code> only after <code>blockId</code> was successfully registered in the internal <a href="#entries">entries</a> registry.</p>
+</div>
+<div class="paragraph">
+<p>putBytes is used when BlockManager is requested to <a href="BlockManager.html#doPutBytes" class="page">doPutBytes</a> and <a href="BlockManager.html#maybeCacheDiskBytesInMemory" class="page">maybeCacheDiskBytesInMemory</a>.</p>
 </div>
 </div>
 </div>
@@ -2209,24 +2237,15 @@ res1: Boolean = true</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>contains</code> is positive (<code>true</code>) when the <a href="#entries">entries</a> internal registry contains <code>blockId</code> key.</p>
+<p>contains is positive (<code>true</code>) when the <a href="#entries">entries</a> internal registry contains <code>blockId</code> key.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>contains</code> is used when&#8230;&#8203;FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>contains is used when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="putiteratorasvalues-method"><a class="anchor" href="#putiteratorasvalues-method"></a><a class="link" href="#putiteratorasvalues-method"><a id="putIteratorAsValues"></a> <code>putIteratorAsValues</code> Method</a></h2>
+<h2 id="putiteratorasvalues-method"><a class="anchor" href="#putiteratorasvalues-method"></a><a class="link" href="#putiteratorasvalues-method"><a id="putIteratorAsValues"></a> putIteratorAsValues Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2237,7 +2256,7 @@ res1: Boolean = true</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>putIteratorAsValues</code> makes sure that the <code>BlockId</code> does not exist or throws an <code>IllegalArgumentException</code>:</p>
+<p>putIteratorAsValues makes sure that the <code>BlockId</code> does not exist or throws an <code>IllegalArgumentException</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2245,7 +2264,7 @@ res1: Boolean = true</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>putIteratorAsValues</code> <a href="#reserveUnrollMemoryForThisTask">reserveUnrollMemoryForThisTask</a> (with the <a href="#unrollMemoryThreshold">initial memory threshold</a> and <code>ON_HEAP</code> memory mode).</p>
+<p>putIteratorAsValues <a href="#reserveUnrollMemoryForThisTask">reserveUnrollMemoryForThisTask</a> (with the <a href="#unrollMemoryThreshold">initial memory threshold</a> and <code>ON_HEAP</code> memory mode).</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -2260,19 +2279,10 @@ FIXME
 </table>
 </div>
 <div class="paragraph">
-<p><code>putIteratorAsValues</code> tries to put the <code>blockId</code> block in memory store as <code>values</code>.</p>
+<p>putIteratorAsValues tries to put the <code>blockId</code> block in memory store as <code>values</code>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>putIteratorAsValues</code> is used when <code>BlockManager</code> stores  <a href="BlockManager.html#doPutBytes" class="page">bytes of a block</a> or <a href="BlockManager.html#doPutIterator" class="page">iterator of values of a block</a> or when <a href="BlockManager.html#maybeCacheDiskValuesInMemory" class="page">attempting to cache spilled values read from disk</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>putIteratorAsValues is used when BlockManager is requested to store <a href="BlockManager.html#doPutBytes" class="page">bytes</a> or <a href="BlockManager.html#doPutIterator" class="page">values</a> of a block or when <a href="BlockManager.html#maybeCacheDiskValuesInMemory" class="page">attempting to cache spilled values read from disk</a>.</p>
 </div>
 </div>
 </div>
@@ -2349,6 +2359,27 @@ FIXME
 </div>
 </div>
 <div class="sect1">
+<h2 id="putiterator-internal-method"><a class="anchor" href="#putiterator-internal-method"></a><a class="link" href="#putiterator-internal-method"><a id="putIterator"></a> putIterator Internal Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">putIterator[T](
+  blockId: BlockId,
+  values: Iterator[T],
+  classTag: ClassTag[T],
+  memoryMode: MemoryMode,
+  valuesHolder: ValuesHolder[T]): Either[Long, Long]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>putIterator&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>putIterator is used when MemoryStore is requested to <a href="#putIteratorAsValues">putIteratorAsValues</a> and <a href="#putIteratorAsBytes">putIteratorAsBytes</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="logging"><a class="anchor" href="#logging"></a><a class="link" href="#logging"><a id="logging"></a> Logging</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -2378,10 +2409,10 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p>When created, MemoryStore creates a Java <a href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html">LinkedHashMap</a> of <code>MemoryEntries</code> per <a href="BlockId.html" class="page">BlockId</a> (with the initial capacity of <code>32</code> and the load factor of <code>0.75</code>).</p>
+<p>MemoryStore creates a Java <a href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html">LinkedHashMap</a> of <code>MemoryEntries</code> per <a href="BlockId.html" class="page">BlockId</a> (with the initial capacity of <code>32</code> and the load factor of <code>0.75</code>) when <a href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a>.</p>
 </div>
 <div class="paragraph">
-<p>entries uses <strong>access-order</strong> ordering mode where the order of iteration is the order in which the entries were last accessed (from least-recently accessed to most-recently). That gives <strong>LRU cache</strong> behaviour when <a href="#evictBlocksToFreeSpace">evicting blocks</a>.</p>
+<p>entries uses <strong>access-order</strong> ordering mode where the order of iteration is the order in which the entries were last accessed (from least-recently accessed to most-recently). That gives <strong>LRU cache</strong> behaviour when MemoryStore is requested to <a href="#evictBlocksToFreeSpace">evict blocks</a>.</p>
 </div>
 </div>
 </div>

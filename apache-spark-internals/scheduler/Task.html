@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>Task :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/scheduler/Task.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -1944,11 +1944,11 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="tasksmallest-individual-unit-of-execution"><a class="anchor" href="#tasksmallest-individual-unit-of-execution"></a><a class="link" href="#tasksmallest-individual-unit-of-execution"><a id="Task"></a> Task&#8201;&#8212;&#8201;Smallest Individual Unit of Execution</a></h2>
+<h1 class="page">Task</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>Task</code> is the <a href="#contract">abstraction</a> of smallest individual <a href="#implementations">units of execution</a> that <a href="#run">compute an RDD partition</a>.</p>
+<p><strong>Task</strong> is the <a href="#contract">abstraction</a> of smallest individual <a href="#implementations">units of execution</a> that <a href="#run">compute an RDD partition</a>.</p>
 </div>
 <table id="contract" class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. Task Contract</caption>
@@ -1974,13 +1974,13 @@
 <p>Runs the task</p>
 </div>
 <div class="paragraph">
-<p>Used exclusively when <code>Task</code> is requested to <a href="#run">run</a></p>
+<p>Used exclusively when Task is requested to <a href="#run">run</a></p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p><code>Task</code> is <a href="#creating-instance">created</a> when <code>DAGScheduler</code> is requested to <a href="DAGScheduler.html#submitMissingTasks" class="page">submit missing tasks of a stage</a>.</p>
+<p>Task is <a href="#creating-instance">created</a> when <code>DAGScheduler</code> is requested to <a href="DAGScheduler.html#submitMissingTasks" class="page">submit missing tasks of a stage</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1989,7 +1989,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>Task</code> is a Scala abstract class and cannot be <a href="#creating-instance">created</a> directly. It is created indirectly for the <a href="#implementations">concrete Tasks</a>.
+Task is a Scala abstract class and cannot be <a href="#creating-instance">created</a> directly. It is created indirectly for the <a href="#implementations">concrete Tasks</a>.
 </td>
 </tr>
 </table>
@@ -2001,7 +2001,7 @@
 <div class="title">Figure 1. Tasks Are Runtime Representation of RDD Partitions</div>
 </div>
 <div id="creating-instance" class="paragraph">
-<p><code>Task</code> is described by the following:</p>
+<p>Task is described by the following:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2035,7 +2035,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p><code>Task</code> can be <a href="#runTask">run</a> (possibly on <a href="#preferredLocations">preferred executor</a>).</p>
+<p>Task can be <a href="#runTask">run</a> (possibly on <a href="#preferredLocations">preferred executor</a>).</p>
 </div>
 <div class="paragraph">
 <p>Tasks are <a href="../executor/Executor.html#launchTask" class="page">launched on executors</a> and <a href="#run">ran when <code>TaskRunner</code> starts</a>.</p>
@@ -2050,7 +2050,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-In Scala <code>Task</code> is actually <code>Task[T]</code> in which <code>T</code> is the type of the result of a task (i.e. the type of the value computed).
+In Scala Task is actually <code>Task[T]</code> in which <code>T</code> is the type of the result of a task (i.e. the type of the value computed).
 </td>
 </tr>
 </table>
@@ -2099,8 +2099,11 @@ It is possible to have one or more <a href="ShuffleMapTask.html" class="page">Sh
 <div class="paragraph">
 <p>Tasks are spawned one by one for each stage and partition.</p>
 </div>
-<div class="sect2">
-<h3 id="preferredlocations-method"><a class="anchor" href="#preferredlocations-method"></a><a class="link" href="#preferredlocations-method"><a id="preferredLocations"></a> <code>preferredLocations</code> Method</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="preferredlocations-method"><a class="anchor" href="#preferredlocations-method"></a><a class="link" href="#preferredlocations-method"><a id="preferredLocations"></a> <code>preferredLocations</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">preferredLocations: Seq[TaskLocation] = Nil</code></pre>
@@ -2137,8 +2140,10 @@ Defined by the <a href="#implementations">concrete tasks</a>, i.e. <a href="Shuf
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="running-task-threadrun-final-method"><a class="anchor" href="#running-task-threadrun-final-method"></a><a class="link" href="#running-task-threadrun-final-method"><a id="run"></a> Running Task Thread&#8201;&#8212;&#8201;<code>run</code> Final Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="running-task-threadrun-final-method"><a class="anchor" href="#running-task-threadrun-final-method"></a><a class="link" href="#running-task-threadrun-final-method"><a id="run"></a> Running Task Thread&#8201;&#8212;&#8201;<code>run</code> Final Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">run(
@@ -2193,7 +2198,7 @@ Defined by the <a href="#implementations">concrete tasks</a>, i.e. <a href="Shuf
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This is the moment when the custom <code>Task</code>'s <a href="#runTask">runTask</a> is executed.
+This is the moment when the custom `Task&#8217;s <a href="#runTask">runTask</a> is executed.
 </td>
 </tr>
 </table>
@@ -2249,13 +2254,15 @@ This is the moment when the custom <code>Task</code>'s <a href="#runTask">runTas
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The <code>Task</code> instance has just been deserialized from <code>taskBytes</code> that were sent over the wire to an executor. <code>localProperties</code> and <a href="../memory/TaskMemoryManager.html" class="page">TaskMemoryManager</a> are already assigned.</p>
+<p>The Task instance has just been deserialized from <code>taskBytes</code> that were sent over the wire to an executor. <code>localProperties</code> and <a href="../memory/TaskMemoryManager.html" class="page">TaskMemoryManager</a> are already assigned.</p>
 </li>
 </ol>
 </div>
 </div>
-<div class="sect2">
-<h3 id="task-states"><a class="anchor" href="#task-states"></a><a class="link" href="#task-states"><a id="states"></a><a id="TaskState"></a> Task States</a></h3>
+</div>
+<div class="sect1">
+<h2 id="task-states"><a class="anchor" href="#task-states"></a><a class="link" href="#task-states"><a id="states"></a><a id="TaskState"></a> Task States</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>A task can be in one of the following states (as described by <code>TaskState</code> enumeration):</p>
 </div>
@@ -2315,8 +2322,10 @@ Task states correspond to <a href="https://github.com/apache/mesos/blob/master/i
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="collect-latest-values-of-internal-and-external-accumulatorscollectaccumulatorupdates-method"><a class="anchor" href="#collect-latest-values-of-internal-and-external-accumulatorscollectaccumulatorupdates-method"></a><a class="link" href="#collect-latest-values-of-internal-and-external-accumulatorscollectaccumulatorupdates-method"><a id="collectAccumulatorUpdates"></a> Collect Latest Values of (Internal and External) Accumulators&#8201;&#8212;&#8201;<code>collectAccumulatorUpdates</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="collect-latest-values-of-internal-and-external-accumulatorscollectaccumulatorupdates-method"><a class="anchor" href="#collect-latest-values-of-internal-and-external-accumulatorscollectaccumulatorupdates-method"></a><a class="link" href="#collect-latest-values-of-internal-and-external-accumulatorscollectaccumulatorupdates-method"><a id="collectAccumulatorUpdates"></a> Collect Latest Values of (Internal and External) Accumulators&#8201;&#8212;&#8201;<code>collectAccumulatorUpdates</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">collectAccumulatorUpdates(taskFailed: Boolean = false): Seq[AccumulableInfo]</code></pre>
@@ -2369,8 +2378,10 @@ Task states correspond to <a href="https://github.com/apache/mesos/blob/master/i
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="killing-taskkill-method"><a class="anchor" href="#killing-taskkill-method"></a><a class="link" href="#killing-taskkill-method"><a id="kill"></a> Killing Task&#8201;&#8212;&#8201;<code>kill</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="killing-taskkill-method"><a class="anchor" href="#killing-taskkill-method"></a><a class="link" href="#killing-taskkill-method"><a id="kill"></a> Killing Task&#8201;&#8212;&#8201;<code>kill</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">kill(interruptThread: Boolean)</code></pre>
@@ -2398,8 +2409,10 @@ FIXME When could <code>context</code> and <code>interruptThread</code> not be se
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="internal-properties"><a class="anchor" href="#internal-properties"></a><a class="link" href="#internal-properties"><a id="internal-registries"></a> Internal Properties</a></h3>
+</div>
+<div class="sect1">
+<h2 id="internal-properties"><a class="anchor" href="#internal-properties"></a><a class="link" href="#internal-properties"><a id="internal-registries"></a> Internal Properties</a></h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 3. Task&#8217;s Internal Properties (e.g. Registries, Counters and Flags)</caption>
 <colgroup>
@@ -2432,7 +2445,7 @@ FIXME When could <code>context</code> and <code>interruptThread</code> not be se
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>context</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="context"></a> <a href="spark-TaskContext.html" class="page">TaskContext</a></p>
-<p class="tableblock">Set to be a <a href="spark-BarrierTaskContext.html" class="page">BarrierTaskContext</a> or <a href="spark-TaskContextImpl.html" class="page">TaskContextImpl</a> when the <a href="#isBarrier">isBarrier</a> flag is enabled or not, respectively, when <code>Task</code> is requested to <a href="#run">run</a></p></td>
+<p class="tableblock">Set to be a <a href="spark-BarrierTaskContext.html" class="page">BarrierTaskContext</a> or <a href="spark-TaskContextImpl.html" class="page">TaskContextImpl</a> when the <a href="#isBarrier">isBarrier</a> flag is enabled or not, respectively, when Task is requested to <a href="#run">run</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>epoch</code></p></td>
@@ -2443,7 +2456,7 @@ FIXME When could <code>context</code> and <code>interruptThread</code> not be se
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>metrics</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="metrics"></a> <a href="../executor/TaskMetrics.html" class="page">TaskMetrics</a></p>
-<p class="tableblock">Created lazily when <a href="#creating-instance"><code>Task</code> is created</a> from <a href="#serializedTaskMetrics">serializedTaskMetrics</a>.</p></td>
+<p class="tableblock">Created lazily when <a href="#creating-instance">Task is created</a> from <a href="#serializedTaskMetrics">serializedTaskMetrics</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>taskMemoryManager</code></p></td>
@@ -2455,7 +2468,6 @@ FIXME When could <code>context</code> and <code>interruptThread</code> not be se
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 </div>
 </article>

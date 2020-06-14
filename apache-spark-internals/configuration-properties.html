@@ -2157,21 +2157,6 @@ Introduced in <a href="https://issues.apache.org/jira/browse/SPARK-13522">SPARK-
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.storage.unrollMemoryThreshold</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="spark.storage.unrollMemoryThreshold"></a> Initial per-task memory size needed to store a block in memory.</p>
-</div>
-<div class="paragraph">
-<p>Default: <code>1024 * 1024</code></p>
-</div>
-<div class="paragraph">
-<p>Should be at most the <a href="storage/MemoryStore.html#maxMemory" class="page">total amount of memory available for storage</a></p>
-</div>
-<div class="paragraph">
-<p>Used when MemoryStore is requested to <a href="storage/MemoryStore.html#putIteratorAsValues" class="page">putIteratorAsValues</a> and <a href="storage/MemoryStore.html#putIteratorAsBytes" class="page">putIteratorAsBytes</a></p>
-</div></div></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.task.maxDirectResultSize</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div id="spark.task.maxDirectResultSize" class="paragraph">
 <p>Default: <code>1048576B</code></p>
@@ -3111,6 +3096,23 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 </div>
 <div class="paragraph">
 <p>Default: <code>0.75</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spark-storage-unrollmemorythreshold"><a class="anchor" href="#spark-storage-unrollmemorythreshold"></a><a class="link" href="#spark-storage-unrollmemorythreshold"><a id="spark.storage.unrollMemoryThreshold"></a> spark.storage.unrollMemoryThreshold</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Initial per-task memory size needed to store a block in memory.</p>
+</div>
+<div class="paragraph">
+<p>Default: <code>1024 * 1024</code></p>
+</div>
+<div class="paragraph">
+<p>Must be at most the <a href="storage/MemoryStore.html#maxMemory" class="page">total amount of memory available for storage</a></p>
+</div>
+<div class="paragraph">
+<p>Used when MemoryStore is requested to <a href="storage/MemoryStore.html#putIterator" class="page">putIterator</a> and <a href="storage/MemoryStore.html#putIteratorAsBytes" class="page">putIteratorAsBytes</a></p>
 </div>
 </div>
 </div>
