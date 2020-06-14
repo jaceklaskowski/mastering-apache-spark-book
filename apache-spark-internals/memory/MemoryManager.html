@@ -1959,7 +1959,7 @@
 <p><strong>Execution memory</strong> for computations in shuffles, joins, sorts and aggregations</p>
 </li>
 <li>
-<p><strong>Storage memory</strong> for caching and propagating internal data across Spark nodes</p>
+<p><strong>Storage memory</strong> for caching and propagating internal data across Spark nodes (in <a href="#onHeapStorageMemoryPool">on&#8594;&gt; and &lt;&lt;offHeapStorageMemoryPool, off-heap</a> mode)</p>
 </li>
 </ul>
 </div>
@@ -2158,6 +2158,39 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="memorypools-for-storage"><a class="anchor" href="#memorypools-for-storage"></a><a class="link" href="#memorypools-for-storage"><a id="onHeapStorageMemoryPool"></a><a id="offHeapStorageMemoryPool"></a> MemoryPools for Storage</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MemoryManager creates two <a href="StorageMemoryPool.html" class="page">StorageMemoryPool</a>s for on- and off-heap storage (ON_HEAP and OFF_HEAP memory modes, respectively) when <a href="#creating-instance">created</a>.</p>
+</div>
+<div class="paragraph">
+<p>MemoryManager immediately requests them to <a href="MemoryPool.html#incrementPoolSize" class="page">incrementPoolSize</a> as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On-heap storage memory pool is initialized to the assigned <a href="#onHeapStorageMemory">onHeapStorageMemory</a> size</p>
+</li>
+<li>
+<p>Off-heap storage memory pool is initialized to the <a href="../configuration-properties.html#spark.memory.storageFraction" class="page">spark.memory.storageFraction</a> of <a href="../configuration-properties.html#spark.memory.offHeap.size" class="page">spark.memory.offHeap.size</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>MemoryManager requests the MemoryPools to <a href="StorageMemoryPool.html#setMemoryStore" class="page">use a given MemoryStore</a> when requested to <a href="#setMemoryStore">setMemoryStore</a>.</p>
+</div>
+<div class="paragraph">
+<p>MemoryManager requests the MemoryPools to <a href="StorageMemoryPool.html#releaseMemory" class="page">releaseMemory</a> when requested to <a href="#releaseStorageMemory">releaseStorageMemory</a>.</p>
+</div>
+<div class="paragraph">
+<p>MemoryManager requests the MemoryPools to <a href="StorageMemoryPool.html#releaseAllMemory" class="page">releaseAllMemory</a> when requested to <a href="#releaseAllStorageMemory">releaseAllStorageMemory</a>.</p>
+</div>
+<div class="paragraph">
+<p>MemoryManager requests the MemoryPools for the <a href="StorageMemoryPool.html#memoryUsed" class="page">memoryUsed</a> when requested for <a href="#storageMemoryUsed">storageMemoryUsed</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="accessing-memorymanager-using-sparkenv"><a class="anchor" href="#accessing-memorymanager-using-sparkenv"></a><a class="link" href="#accessing-memorymanager-using-sparkenv"><a id="SparkEnv"></a> Accessing MemoryManager Using SparkEnv</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -2233,7 +2266,7 @@ org.apache.spark.memory.MemoryManager</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="setmemorystore-method"><a class="anchor" href="#setmemorystore-method"></a><a class="link" href="#setmemorystore-method"><a id="setMemoryStore"></a> setMemoryStore Method</a></h2>
+<h2 id="associating-memorystore-with-storage-memorypools"><a class="anchor" href="#associating-memorystore-with-storage-memorypools"></a><a class="link" href="#associating-memorystore-with-storage-memorypools"><a id="setMemoryStore"></a> Associating MemoryStore with Storage MemoryPools</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2242,10 +2275,10 @@ org.apache.spark.memory.MemoryManager</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>setMemoryStore&#8230;&#8203;FIXME</p>
+<p>setMemoryStore requests the <a href="#onHeapStorageMemoryPool">onHeapStorageMemoryPool</a> and <a href="#offHeapStorageMemoryPool">offHeapStorageMemoryPool</a> to <a href="StorageMemoryPool.html#setMemoryStore" class="page">use</a> the given <a href="../storage/MemoryStore.html" class="page">MemoryStore</a>.</p>
 </div>
 <div class="paragraph">
-<p>setMemoryStore is used when&#8230;&#8203;FIXME</p>
+<p>setMemoryStore is used when <a href="../storage/BlockManager.html" class="page">BlockManager</a> is created.</p>
 </div>
 </div>
 </div>
@@ -2413,10 +2446,20 @@ Given that <a href="../configuration-properties.html#spark.memory.offHeap.enable
 </div>
 </div>
 <div class="paragraph">
-<p>storageMemoryUsed gives the total of the memory used by the <a href="#onHeapStorageMemoryPool">on-heap StorageMemoryPool</a> and <a href="#offHeapStorageMemoryPool">off-heap StorageMemoryPool</a>.</p>
+<p>storageMemoryUsed gives the total of the memory used by the <a href="#onHeapStorageMemoryPool">on-heap</a> and <a href="#offHeapStorageMemoryPool">off-heap</a> StorageMemoryPools.</p>
 </div>
 <div class="paragraph">
-<p>storageMemoryUsed is used when&#8230;&#8203;FIXME</p>
+<p>storageMemoryUsed is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>MemoryStore is requested for <a href="../storage/MemoryStore.html#memoryUsed" class="page">memoryUsed</a></p>
+</li>
+<li>
+<p>TaskMemoryManager is requested to <a href="TaskMemoryManager.html#showMemoryUsage" class="page">showMemoryUsage</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2496,14 +2539,6 @@ Given that <a href="../configuration-properties.html#spark.memory.offHeap.enable
 </tr>
 </thead>
 <tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>onHeapStorageMemoryPool</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="onHeapStorageMemoryPool"></a> FIXME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>offHeapStorageMemoryPool</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="offHeapStorageMemoryPool"></a> FIXME</p></td>
-</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageSizeBytes</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="pageSizeBytes"></a> FIXME</p></td>

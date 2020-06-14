@@ -2382,10 +2382,13 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 <h2 id="spark-memory-offheap-size"><a class="anchor" href="#spark-memory-offheap-size"></a><a class="link" href="#spark-memory-offheap-size"><a id="spark.memory.offHeap.size"></a><a id="MEMORY_OFFHEAP_SIZE"></a> spark.memory.offHeap.size</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>spark.memory.offHeap.size</code> is the absolute amount of memory in bytes which can be used for off-heap allocation. This setting has no impact on heap memory usage, so if your executors' total memory consumption must fit within some hard limit then be sure to shrink your JVM heap size accordingly.</p>
+<p>Maximum memory (in bytes) for off-heap memory allocation.</p>
 </div>
 <div class="paragraph">
 <p>Default: <code>0</code></p>
+</div>
+<div class="paragraph">
+<p>This setting has no impact on heap memory usage, so if your executors' total memory consumption must fit within some hard limit then be sure to shrink your JVM heap size accordingly.</p>
 </div>
 <div class="paragraph">
 <p>Must be set to a positive value when <a href="#spark.memory.offHeap.enabled">spark.memory.offHeap.enabled</a> is enabled (<code>true</code>).</p>
@@ -2399,7 +2402,7 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 <h2 id="spark-memory-storagefraction"><a class="anchor" href="#spark-memory-storagefraction"></a><a class="link" href="#spark-memory-storagefraction"><a id="spark.memory.storageFraction"></a> spark.memory.storageFraction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>spark.memory.storageFraction</code> controls the fraction of the memory to use for storage region.</p>
+<p>Fraction of the memory to use for off-heap storage region.</p>
 </div>
 <div class="paragraph">
 <p>Default: <code>0.5</code></p>

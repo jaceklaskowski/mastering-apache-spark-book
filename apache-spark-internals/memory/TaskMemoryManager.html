@@ -2463,36 +2463,36 @@ FIXME Why is there a hope for being able to allocate a page?
 </div>
 </div>
 <div class="paragraph">
-<p><code>showMemoryUsage</code> prints out the following INFO message to the logs (with the <a href="#taskAttemptId">taskAttemptId</a>):</p>
+<p>showMemoryUsage prints out the following INFO message to the logs (with the <a href="#taskAttemptId">taskAttemptId</a>):</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>Memory used in task [taskAttemptId]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Memory used in task [taskAttemptId]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>showMemoryUsage</code> requests every <a href="#consumers">MemoryConsumer</a> to <a href="MemoryConsumer.html#getUsed" class="page">report memory used</a>. <code>showMemoryUsage</code> prints out the following INFO message to the logs for a MemoryConsumer with some memory usage (and excludes zero-memory consumers):</p>
+<p>showMemoryUsage requests every <a href="#consumers">MemoryConsumer</a> to <a href="MemoryConsumer.html#getUsed" class="page">report memory used</a>. showMemoryUsage prints out the following INFO message to the logs for a MemoryConsumer with some memory usage (and excludes zero-memory consumers):</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>Acquired by [consumer]: [memUsage]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Acquired by [consumer]: [memUsage]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>showMemoryUsage</code> prints out the following INFO messages to the logs:</p>
+<p>showMemoryUsage prints out the following INFO messages to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>[amount] bytes of memory were used by task [taskAttemptId] but are not associated with specific consumers</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">[amount] bytes of memory were used by task [taskAttemptId] but are not associated with specific consumers</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>[executionMemoryUsed] bytes of memory are used for execution and [storageMemoryUsed] bytes of memory are used for storage</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">[executionMemoryUsed] bytes of memory are used for execution and [storageMemoryUsed] bytes of memory are used for storage</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>showMemoryUsage</code> is used when MemoryConsumer is requested to <a href="MemoryConsumer.html#throwOom" class="page">throw an OutOfMemoryError</a>.</p>
+<p>showMemoryUsage is used when MemoryConsumer is requested to <a href="MemoryConsumer.html#throwOom" class="page">throw an OutOfMemoryError</a>.</p>
 </div>
 </div>
 </div>

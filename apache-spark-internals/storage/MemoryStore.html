@@ -1948,19 +1948,13 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>MemoryStore</strong> is responsible for managing blocks of data for <a href="BlockManager.html#memoryStore" class="page">BlockManager</a>.</p>
+<p><strong>MemoryStore</strong> manages blocks of data in memory for <a href="BlockManager.html#memoryStore" class="page">BlockManager</a>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="_images/MemoryStore-BlockManager.png" alt="MemoryStore BlockManager">
 </div>
 <div class="title">Figure 1. MemoryStore and BlockManager</div>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/spark-MemoryStore.png" alt="spark MemoryStore">
-</div>
-<div class="title">Figure 2. Creating MemoryStore</div>
 </div>
 </div>
 </div>
@@ -1991,6 +1985,12 @@
 </div>
 <div class="paragraph">
 <p>MemoryStore is created for <a href="BlockManager.html#memoryStore" class="page">BlockManager</a>.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/spark-MemoryStore.png" alt="spark MemoryStore">
+</div>
+<div class="title">Figure 2. Creating MemoryStore</div>
 </div>
 </div>
 </div>
@@ -2376,6 +2376,72 @@ FIXME
 </div>
 <div class="paragraph">
 <p>putIterator is used when MemoryStore is requested to <a href="#putIteratorAsValues">putIteratorAsValues</a> and <a href="#putIteratorAsBytes">putIteratorAsBytes</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="logunrollfailuremessage-internal-method"><a class="anchor" href="#logunrollfailuremessage-internal-method"></a><a class="link" href="#logunrollfailuremessage-internal-method"><a id="logUnrollFailureMessage"></a> logUnrollFailureMessage Internal Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">logUnrollFailureMessage(
+  blockId: BlockId,
+  finalVectorSize: Long): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>logUnrollFailureMessage&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>logUnrollFailureMessage is used when MemoryStore is requested to <a href="#putIterator">putIterator</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="logmemoryusage-internal-method"><a class="anchor" href="#logmemoryusage-internal-method"></a><a class="link" href="#logmemoryusage-internal-method"><a id="logMemoryUsage"></a> logMemoryUsage Internal Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">logMemoryUsage(): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>logMemoryUsage&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>logMemoryUsage is used when MemoryStore is requested to <a href="#logUnrollFailureMessage">logUnrollFailureMessage</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="total-memory-used"><a class="anchor" href="#total-memory-used"></a><a class="link" href="#total-memory-used"><a id="memoryUsed"></a> Total Memory Used</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">memoryUsed: Long</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>memoryUsed requests the <a href="#memoryManager">MemoryManager</a> for the <a href="../memory/MemoryManager.html#storageMemoryUsed" class="page">storageMemoryUsed</a>.</p>
+</div>
+<div class="paragraph">
+<p>memoryUsed is used when MemoryStore is requested for <a href="#blocksMemoryUsed">blocksMemoryUsed</a> and to <a href="#logMemoryUsage">logMemoryUsage</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="memory-used-for-caching-blocks"><a class="anchor" href="#memory-used-for-caching-blocks"></a><a class="link" href="#memory-used-for-caching-blocks"><a id="blocksMemoryUsed"></a> Memory Used for Caching Blocks</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">blocksMemoryUsed: Long</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>blocksMemoryUsed is the <a href="#memoryUsed">total memory used</a> without the <a href="#currentUnrollMemory">current memory used for unrolling</a>.</p>
+</div>
+<div class="paragraph">
+<p>blocksMemoryUsed is used for logging purposes when MemoryStore is requested to <a href="#putBytes">putBytes</a>, <a href="#putIterator">putIterator</a>, <a href="#remove">remove</a>, <a href="#evictBlocksToFreeSpace">evictBlocksToFreeSpace</a> and <a href="#logMemoryUsage">logMemoryUsage</a>.</p>
 </div>
 </div>
 </div>

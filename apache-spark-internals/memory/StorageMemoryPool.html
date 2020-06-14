@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title> StorageMemoryPool :: The Internals Of Apache Spark</title>
+    <title>StorageMemoryPool :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/memory/StorageMemoryPool.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -1945,14 +1945,14 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page"><a id="StorageMemoryPool"></a> StorageMemoryPool</h1>
+<h1 class="page">StorageMemoryPool</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>StorageMemoryPool</code> is a <a href="MemoryPool.html" class="page">MemoryPool</a>.</p>
+<p><strong>StorageMemoryPool</strong> is a <a href="MemoryPool.html" class="page">MemoryPool</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>StorageMemoryPool</code> is <a href="#creating-instance">created</a> along with <a href="MemoryManager.adoc#creating-instance">MemoryManager</a> (as <a href="MemoryManager.adoc#onHeapStorageMemoryPool">onHeapStorageMemoryPool</a> and <a href="MemoryManager.adoc#offHeapStorageMemoryPool">offHeapStorageMemoryPool</a> pools).</p>
+<p>StorageMemoryPool is <a href="#creating-instance">created</a> along with <a href="MemoryManager.adoc#creating-instance">MemoryManager</a> (as <a href="MemoryManager.adoc#onHeapStorageMemoryPool">onHeapStorageMemoryPool</a> and <a href="MemoryManager.adoc#offHeapStorageMemoryPool">offHeapStorageMemoryPool</a> pools).</p>
 </div>
 <table id="internal-registries" class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. StorageMemoryPool&#8217;s Internal Properties (e.g. Registries, Counters and Flags)</caption>
@@ -2089,7 +2089,7 @@ acquireMemory(
 <h2 id="creating-storagememorypool-instance"><a class="anchor" href="#creating-storagememorypool-instance"></a><a class="link" href="#creating-storagememorypool-instance"><a id="creating-instance"></a> Creating StorageMemoryPool Instance</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>StorageMemoryPool</code> takes the following when created:</p>
+<p>StorageMemoryPool takes the following when created:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2102,7 +2102,7 @@ acquireMemory(
 </ul>
 </div>
 <div class="paragraph">
-<p><code>StorageMemoryPool</code> initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
+<p>StorageMemoryPool initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
 </div>
 </div>
 </div>
