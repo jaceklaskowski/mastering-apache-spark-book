@@ -1948,7 +1948,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>BlockManager</strong> manages blocks (<em>chunks</em>) of data stored in <a href="#memoryStore">memory</a> and on <a href="#diskStore">disk</a>.</p>
+<p><strong>BlockManager</strong> manages the storage for blocks (<em>chunks of data</em> ) that can be stored in <a href="#memoryStore">memory</a> and on <a href="#diskStore">disk</a>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -2162,7 +2162,7 @@ It is computed specially in Spark on YARN.
 <h2 id="blockmanager-as-blockdatamanager"><a class="anchor" href="#blockmanager-as-blockdatamanager"></a><a class="link" href="#blockmanager-as-blockdatamanager"><a id="BlockDataManager"></a> BlockManager as BlockDataManager</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>BlockManager is a <a href="BlockDataManager.html" class="page">BlockDataManager</a> and manages the storage for blocks that with cached RDD partitions, intermediate shuffle outputs, broadcasts, etc.</p>
+<p>BlockManager is a <a href="BlockDataManager.html" class="page">BlockDataManager</a>.</p>
 </div>
 </div>
 </div>
@@ -2295,7 +2295,7 @@ org.apache.spark.storage.BlockManager</code></pre>
 <h2 id="diskblockmanager"><a class="anchor" href="#diskblockmanager"></a><a class="link" href="#diskblockmanager"><a id="diskBlockManager"></a> DiskBlockManager</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When <a href="#creating-instance">created</a>, BlockManager creates a <a href="DiskBlockManager.html" class="page">DiskBlockManager</a>.</p>
+<p>BlockManager creates a <a href="DiskBlockManager.html" class="page">DiskBlockManager</a> when <a href="#creating-instance">created</a>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -2391,7 +2391,7 @@ SparkEnv.get.blockManager.memoryStore</code></pre>
 <h2 id="diskstore"><a class="anchor" href="#diskstore"></a><a class="link" href="#diskstore"><a id="diskStore"></a> DiskStore</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When <a href="#creating-instance">created</a>, BlockManager creates a <a href="DiskStore.html" class="page">DiskStore</a> (with the <a href="#diskBlockManager">DiskBlockManager</a>).</p>
+<p>BlockManager creates a <a href="DiskStore.html" class="page">DiskStore</a> (with the <a href="#diskBlockManager">DiskBlockManager</a>) when <a href="#creating-instance">created</a>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
