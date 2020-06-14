@@ -1948,13 +1948,16 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>BlockManager</strong> is a storage of chunks of data (<em>blocks</em>) that are identified by a block ID.</p>
+<p><strong>BlockManager</strong> manages blocks (<em>chunks</em>) of data stored in <a href="#memoryStore">memory</a> and on <a href="#diskStore">disk</a>.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/BlockManager.png" alt="BlockManager">
+</div>
+<div class="title">Figure 1. BlockManager and Stores</div>
 </div>
 <div class="paragraph">
 <p>BlockManager runs on the <a href="../spark-driver.html" class="page">driver</a> and <a href="../executor/Executor.html" class="page">executors</a>.</p>
-</div>
-<div class="paragraph">
-<p>BlockManager is a local cache.</p>
 </div>
 <div class="paragraph">
 <p>BlockManager provides interface for uploading and fetching blocks both locally and remotely using various stores, i.e. <a href="#stores">memory, disk, and off-heap</a>.</p>
@@ -2075,6 +2078,12 @@ It is computed specially in Spark on YARN.
 </div>
 <div class="paragraph">
 <p>BlockManager is created when SparkEnv is <a href="../core/SparkEnv.html#create-BlockManager" class="page">created</a> (for the driver and executors) when a Spark application starts.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/BlockManager-SparkEnv.png" alt="BlockManager SparkEnv">
+</div>
+<div class="title">Figure 2. BlockManager and SparkEnv</div>
 </div>
 </div>
 </div>
@@ -2292,7 +2301,7 @@ org.apache.spark.storage.BlockManager</code></pre>
 <div class="content">
 <img src="_images/DiskBlockManager-BlockManager.png" alt="DiskBlockManager BlockManager">
 </div>
-<div class="title">Figure 1. DiskBlockManager and BlockManager</div>
+<div class="title">Figure 3. DiskBlockManager and BlockManager</div>
 </div>
 <div class="paragraph">
 <p>BlockManager uses the BlockManager for the following:</p>
@@ -2328,7 +2337,7 @@ SparkEnv.get.blockManager.diskBlockManager</code></pre>
 <div class="content">
 <img src="_images/MemoryStore-BlockManager.png" alt="MemoryStore BlockManager">
 </div>
-<div class="title">Figure 2. MemoryStore and BlockManager</div>
+<div class="title">Figure 4. MemoryStore and BlockManager</div>
 </div>
 <div class="paragraph">
 <p>BlockManager requests the <a href="#memoryManager">MemoryManager</a> to <a href="../memory/MemoryManager.html#setMemoryStore" class="page">use</a> the MemoryStore.</p>
@@ -2388,7 +2397,7 @@ SparkEnv.get.blockManager.memoryStore</code></pre>
 <div class="content">
 <img src="_images/DiskStore-BlockManager.png" alt="DiskStore BlockManager">
 </div>
-<div class="title">Figure 3. DiskStore and BlockManager</div>
+<div class="title">Figure 5. DiskStore and BlockManager</div>
 </div>
 <div class="paragraph">
 <p>BlockManager uses the DiskStore when requested to <a href="#getStatus">getStatus</a>, <a href="#getCurrentBlockStatus">getCurrentBlockStatus</a>, <a href="#getLocalValues">getLocalValues</a>, <a href="#doGetLocalBytes">doGetLocalBytes</a>, <a href="#doPutBytes">doPutBytes</a>, <a href="#doPutIterator">doPutIterator</a>, <a href="#dropFromMemory">dropFromMemory</a>, <a href="#removeBlockInternal">removeBlockInternal</a>.</p>
@@ -3991,15 +4000,15 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="paragraph">
-<p>When dropFromMemory is executed, you should see the following INFO message in the logs:</p>
+<p>dropFromMemory prints out the following INFO message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>Dropping block [blockId] from memory</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Dropping block [blockId] from memory</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>It then asserts that the <code>blockId</code> block is <a href="BlockInfoManager.html#assertBlockIsLockedForWriting" class="page">locked for writing</a>.</p>
+<p>dropFromMemory then asserts that the given block is <a href="BlockInfoManager.html#assertBlockIsLockedForWriting" class="page">locked for writing</a>.</p>
 </div>
 <div class="paragraph">
 <p>If the block&#8217;s <a href="StorageLevel.html" class="page">StorageLevel</a> uses disks and the internal <a href="DiskStore.html" class="page">DiskStore</a> object (<code>diskStore</code>) does not contain the block, it is saved then. You should see the following INFO message in the logs:</p>
