@@ -1949,124 +1949,117 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>BlockTransferService</strong> is the <a href="#contract">base</a> for <a href="ShuffleClient.html" class="page">ShuffleClient</a>s that can <a href="#fetchBlocks">fetch</a> and <a href="#uploadBlock">upload</a> blocks of data synchronously or asynchronously.</p>
+<p><strong>BlockTransferService</strong> is an <a href="#contract">extension</a> of the <a href="ShuffleClient.html" class="page">ShuffleClient</a> abstraction for <a href="#implementations">shuffle clients</a> that can <a href="#fetchBlocks">fetch</a> and <a href="#uploadBlock">upload</a> blocks of data synchronously or asynchronously.</p>
 </div>
 <div class="paragraph">
-<p>BlockTransferService is a networking service available by the name of a host and a port.</p>
-</div>
-<div id="contract" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">package org.apache.spark.network
-
-abstract class BlockTransferService extends ShuffleClient {
-  // only required methods that have no implementation
-  // the others follow
-  def init(blockDataManager: BlockDataManager): Unit
-  def close(): Unit
-  def port: Int
-  def hostName: String
-  def fetchBlocks(
-    host: String,
-    port: Int,
-    execId: String,
-    blockIds: Array[String],
-    listener: BlockFetchingListener,
-    tempFileManager: TempFileManager): Unit
-  def uploadBlock(
-    hostname: String,
-    port: Int,
-    execId: String,
-    blockId: BlockId,
-    blockData: ManagedBuffer,
-    level: StorageLevel,
-    classTag: ClassTag[_]): Future[Unit]
-}</code></pre>
-</div>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. (Subset of) BlockTransferService Contract</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Method</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>init</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="init"></a> Used when BlockManager is requested to <a href="BlockManager.html#initialize" class="page">initialize</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>close</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="close"></a> Used when&#8230;&#8203;FIXME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>port</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="port"></a> Used when&#8230;&#8203;FIXME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hostName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="hostName"></a> Used when&#8230;&#8203;FIXME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fetchBlocks</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="fetchBlocks"></a> Fetches a sequence of blocks from a remote node asynchronously</p>
+<p>BlockTransferService is a networking service available by a <a href="#hostName">host name</a> and a <a href="#port">port</a>.</p>
 </div>
 <div class="paragraph">
-<p>Used exclusively when BlockTransferService is requested to <a href="#fetchBlockSync">fetch only one block (in a blocking fashion)</a></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>fetchBlocks</code> is part of <a href="ShuffleClient.html#fetchBlocks" class="page">ShuffleClient Contract</a> to&#8230;&#8203;FIXME.
-</td>
-</tr>
-</table>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>uploadBlock</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="uploadBlock"></a> Used exclusively when BlockTransferService is requested to <a href="#uploadBlockSync">upload a single block to a remote node (in a blocking fashion)</a>.</p></td>
-</tr>
-</tbody>
-</table>
-<div id="implementations" class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<a href="NettyBlockTransferService.html" class="page">NettyBlockTransferService</a> is the one and only known implementation of <a href="#contract">BlockTransferService Contract</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-BlockTransferService was introduced in <a href="https://issues.apache.org/jira/browse/SPARK-3019">SPARK-3019 Pluggable block transfer interface (BlockTransferService)</a> and is available since Spark 1.2.0.
-</td>
-</tr>
-</table>
+<p>BlockTransferService was introduced in <a href="https://issues.apache.org/jira/browse/SPARK-3019">SPARK-3019 Pluggable block transfer interface (BlockTransferService)</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="fetchblocksync-method"><a class="anchor" href="#fetchblocksync-method"></a><a class="link" href="#fetchblocksync-method"><a id="fetchBlockSync"></a> <code>fetchBlockSync</code> Method</a></h2>
+<h2 id="contract"><a class="anchor" href="#contract"></a><a class="link" href="#contract"><a id="contract"></a> Contract</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="close"><a class="anchor" href="#close"></a><a class="link" href="#close"><a id="close"></a> close</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">close(): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Used when BlockManager is requested to <a href="BlockManager.html#stop" class="page">stop</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="fetchblocks"><a class="anchor" href="#fetchblocks"></a><a class="link" href="#fetchblocks"><a id="fetchBlocks"></a> fetchBlocks</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">fetchBlocks(
+  host: String,
+  port: Int,
+  execId: String,
+  blockIds: Array[String],
+  listener: BlockFetchingListener,
+  tempFileManager: DownloadFileManager): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Fetches a sequence of blocks from a remote node asynchronously</p>
+</div>
+<div class="paragraph">
+<p>fetchBlocks is part of the <a href="ShuffleClient.html#fetchBlocks" class="page">ShuffleClient</a> abstraction.</p>
+</div>
+<div class="paragraph">
+<p>Used when BlockTransferService is requested to <a href="#fetchBlockSync">fetch only one block (in a blocking fashion)</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="hostname"><a class="anchor" href="#hostname"></a><a class="link" href="#hostname"><a id="hostName"></a> hostName</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">hostName: String</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Used when BlockManager is requested to <a href="BlockManager.html#initialize" class="page">initialize</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="init"><a class="anchor" href="#init"></a><a class="link" href="#init"><a id="init"></a> init</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">init(
+  blockDataManager: BlockDataManager): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Used when BlockManager is requested to <a href="BlockManager.html#initialize" class="page">initialize</a> (with the <a href="BlockDataManager.html" class="page">BlockDataManager</a> being the BlockManager itself)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="port"><a class="anchor" href="#port"></a><a class="link" href="#port"><a id="port"></a> port</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">port: Int</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Used when BlockManager is requested to <a href="BlockManager.html#initialize" class="page">initialize</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="uploadblock"><a class="anchor" href="#uploadblock"></a><a class="link" href="#uploadblock"><a id="uploadBlock"></a> uploadBlock</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">uploadBlock(
+  hostname: String,
+  port: Int,
+  execId: String,
+  blockId: BlockId,
+  blockData: ManagedBuffer,
+  level: StorageLevel,
+  classTag: ClassTag[_]): Future[Unit]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Used when BlockTransferService is requested to <a href="#uploadBlockSync">upload a single block to a remote node (in a blocking fashion)</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="blocktransferservices"><a class="anchor" href="#blocktransferservices"></a><a class="link" href="#blocktransferservices"><a id="implementations"></a> BlockTransferServices</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="NettyBlockTransferService.html" class="page">NettyBlockTransferService</a> is the default and only known BlockTransferService.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="fetchblocksync-method"><a class="anchor" href="#fetchblocksync-method"></a><a class="link" href="#fetchblocksync-method"><a id="fetchBlockSync"></a> fetchBlockSync Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2079,30 +2072,21 @@ BlockTransferService was introduced in <a href="https://issues.apache.org/jira/b
 </div>
 </div>
 <div class="paragraph">
-<p><code>fetchBlockSync</code>&#8230;&#8203;FIXME</p>
+<p>fetchBlockSync&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p>Synchronous (and hence blocking) <code>fetchBlockSync</code> to fetch one block <code>blockId</code> (that corresponds to the <a href="ShuffleClient.html" class="page">ShuffleClient</a> parent&#8217;s asynchronous <a href="ShuffleClient.html#fetchBlocks" class="page">fetchBlocks</a>).</p>
+<p>Synchronous (and hence blocking) fetchBlockSync to fetch one block <code>blockId</code> (that corresponds to the <a href="ShuffleClient.html" class="page">ShuffleClient</a> parent&#8217;s asynchronous <a href="ShuffleClient.html#fetchBlocks" class="page">fetchBlocks</a>).</p>
 </div>
 <div class="paragraph">
-<p><code>fetchBlockSync</code> is a mere wrapper around <a href="ShuffleClient.html#fetchBlocks" class="page">fetchBlocks</a> to fetch one <code>blockId</code> block that waits until the fetch finishes.</p>
+<p>fetchBlockSync is a mere wrapper around <a href="ShuffleClient.html#fetchBlocks" class="page">fetchBlocks</a> to fetch one <code>blockId</code> block that waits until the fetch finishes.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>fetchBlockSync</code> is used when&#8230;&#8203;FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>fetchBlockSync is used when&#8230;&#8203;FIXME</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="uploading-single-block-to-remote-node-blocking-fashionuploadblocksync-method"><a class="anchor" href="#uploading-single-block-to-remote-node-blocking-fashionuploadblocksync-method"></a><a class="link" href="#uploading-single-block-to-remote-node-blocking-fashionuploadblocksync-method"><a id="uploadBlockSync"></a> Uploading Single Block to Remote Node (Blocking Fashion)&#8201;&#8212;&#8201;<code>uploadBlockSync</code> Method</a></h2>
+<h2 id="uploading-single-block-to-remote-node-blocking-fashion"><a class="anchor" href="#uploading-single-block-to-remote-node-blocking-fashion"></a><a class="link" href="#uploading-single-block-to-remote-node-blocking-fashion"><a id="uploadBlockSync"></a> Uploading Single Block to Remote Node (Blocking Fashion)</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2117,22 +2101,13 @@ BlockTransferService was introduced in <a href="https://issues.apache.org/jira/b
 </div>
 </div>
 <div class="paragraph">
-<p><code>uploadBlockSync</code>&#8230;&#8203;FIXME</p>
+<p>uploadBlockSync&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p><code>uploadBlockSync</code> is a mere blocking wrapper around <a href="#uploadBlock">uploadBlock</a> that waits until the upload finishes.</p>
+<p>uploadBlockSync is a mere blocking wrapper around <a href="#uploadBlock">uploadBlock</a> that waits until the upload finishes.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>uploadBlockSync</code> is used exclusively when <code>BlockManager</code> is requested to <a href="BlockManager.html#replicate" class="page">replicate</a> (when a <a href="StorageLevel.html" class="page">replication level is greater than 1</a>).
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>uploadBlockSync is used when BlockManager is requested to <a href="BlockManager.html#replicate" class="page">replicate</a> (when a <a href="StorageLevel.html" class="page">replication level is greater than 1</a>).</p>
 </div>
 </div>
 </div>
