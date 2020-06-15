@@ -522,6 +522,9 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="OneForOneBlockFetcher.html">OneForOneBlockFetcher</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -2012,12 +2015,20 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="nettyblockrpcserver-messages"><a class="anchor" href="#nettyblockrpcserver-messages"></a><a class="link" href="#nettyblockrpcserver-messages"><a id="messages"></a> NettyBlockRpcServer Messages</a></h2>
+<h2 id="messages"><a class="anchor" href="#messages"></a><a class="link" href="#messages"><a id="messages"></a> Messages</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="openblocks-message-handler"><a class="anchor" href="#openblocks-message-handler"></a><a class="link" href="#openblocks-message-handler"><a id="OpenBlocks"></a><a id="receive-OpenBlocks"></a> OpenBlocks Message Handler</a></h3>
+<h3 id="openblocks"><a class="anchor" href="#openblocks"></a><a class="link" href="#openblocks"><a id="OpenBlocks"></a> OpenBlocks</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">OpenBlocks(
+  String appId,
+  String execId,
+  String[] blockIds)</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>When OpenBlocks arrives, NettyBlockRpcServer requests the <a href="#blockManager">BlockDataManager</a> for <a href="BlockDataManager.html#getBlockData" class="page">block data</a> for every block id in the message. The block data is a collection of <code>ManagedBuffer</code> for every block id in the incoming message.</p>
+<p>When received, NettyBlockRpcServer requests the <a href="#blockManager">BlockDataManager</a> for <a href="BlockDataManager.html#getBlockData" class="page">block data</a> for every block id in the message. The block data is a collection of <a href="../network/ManagedBuffer.html" class="page">ManagedBuffer</a> for every block id in the incoming message.</p>
 </div>
 <div class="paragraph">
 <p>NettyBlockRpcServer then <a href="../network/OneForOneStreamManager.html#registerStream" class="page">registers a stream of <code>ManagedBuffer</code>s (for the blocks) with the internal <code>StreamManager</code></a> under <code>streamId</code>.</p>
@@ -2045,11 +2056,24 @@ The internal <code>StreamManager</code> is <a href="../network/OneForOneStreamMa
 <div class="paragraph">
 <p>In the end, NettyBlockRpcServer responds with a <code>StreamHandle</code> (with the <code>streamId</code> and the number of blocks). The response is serialized as a <code>ByteBuffer</code>.</p>
 </div>
+<div class="paragraph">
+<p>Posted when OneForOneBlockFetcher is requested to <a href="OneForOneBlockFetcher.html#start" class="page">start</a>.</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="uploadblock-message-handler"><a class="anchor" href="#uploadblock-message-handler"></a><a class="link" href="#uploadblock-message-handler"><a id="UploadBlock"></a><a id="receive-UploadBlock"></a> UploadBlock Message Handler</a></h3>
+<h3 id="uploadblock"><a class="anchor" href="#uploadblock"></a><a class="link" href="#uploadblock"><a id="UploadBlock"></a> UploadBlock</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">UploadBlock(
+  String appId,
+  String execId,
+  String blockId,
+  byte[] metadata,
+  byte[] blockData)</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>When UploadBlock arrives, NettyBlockRpcServer deserializes the <code>metadata</code> of the input message to get the <a href="StorageLevel.html" class="page">StorageLevel</a> and <code>ClassTag</code> of the block being uploaded.</p>
+<p>When received, NettyBlockRpcServer deserializes the <code>metadata</code> of the input message to get the <a href="StorageLevel.html" class="page">StorageLevel</a> and <code>ClassTag</code> of the block being uploaded.</p>
 </div>
 <div class="paragraph">
 <p>NettyBlockRpcServer creates a <a href="BlockId.html" class="page">BlockId</a> for the block id and requests the <a href="#blockManager">BlockDataManager</a> to <a href="BlockDataManager.html#putBlockData" class="page">store the block</a>.</p>
@@ -2058,7 +2082,7 @@ The internal <code>StreamManager</code> is <a href="../network/OneForOneStreamMa
 <p>In the end, NettyBlockRpcServer responds with a <code>0</code>-capacity <code>ByteBuffer</code>.</p>
 </div>
 <div class="paragraph">
-<p>UploadBlock is sent when NettyBlockTransferService is requested to <a href="NettyBlockTransferService.html#uploadBlock" class="page">upload a block</a>.</p>
+<p>Posted when NettyBlockTransferService is requested to <a href="NettyBlockTransferService.html#uploadBlock" class="page">upload a block</a>.</p>
 </div>
 </div>
 </div>

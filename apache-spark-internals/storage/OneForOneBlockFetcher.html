@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
-    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/spark-history-server/ApplicationCacheOperations.html">
+    <title>OneForOneBlockFetcher :: The Internals Of Apache Spark</title>
+    <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/storage/OneForOneBlockFetcher.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86782445-1"></script>
@@ -433,108 +433,108 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/BlockManager.html">BlockManager</a>
+    <a class="nav-link" href="BlockManager.html">BlockManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerId.html">BlockManagerId</a>
+    <a class="nav-link" href="BlockManagerId.html">BlockManagerId</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerInfo.html">BlockManagerInfo</a>
+    <a class="nav-link" href="BlockManagerInfo.html">BlockManagerInfo</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerMaster.html">BlockManagerMaster</a>
+    <a class="nav-link" href="BlockManagerMaster.html">BlockManagerMaster</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
+    <a class="nav-link" href="BlockManagerMasterEndpoint.html">BlockManagerMasterEndpoint</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
+    <a class="nav-link" href="BlockManagerSlaveEndpoint.html">BlockManagerSlaveEndpoint</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/BlockId.html">BlockId</a>
+    <a class="nav-link" href="BlockId.html">BlockId</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/BlockDataManager.html">BlockDataManager</a>
+    <a class="nav-link" href="BlockDataManager.html">BlockDataManager</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/DiskStore.html">DiskStore</a>
+    <a class="nav-link" href="DiskStore.html">DiskStore</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/DiskBlockManager.html">DiskBlockManager</a>
+    <a class="nav-link" href="DiskBlockManager.html">DiskBlockManager</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/MemoryStore.html">MemoryStore</a>
+    <a class="nav-link" href="MemoryStore.html">MemoryStore</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockEvictionHandler.html">BlockEvictionHandler</a>
+    <a class="nav-link" href="BlockEvictionHandler.html">BlockEvictionHandler</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/BlockData.html">BlockData</a>
+    <a class="nav-link" href="BlockData.html">BlockData</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/BlockInfoManager.html">BlockInfoManager</a>
+    <a class="nav-link" href="BlockInfoManager.html">BlockInfoManager</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/BlockInfo.html">BlockInfo</a>
+    <a class="nav-link" href="BlockInfo.html">BlockInfo</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
+    <a class="nav-link" href="DiskBlockObjectWriter.html">DiskBlockObjectWriter</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-BlockManager-BlockManagerSource.html">BlockManagerSource</a>
+    <a class="nav-link" href="spark-BlockManager-BlockManagerSource.html">BlockManagerSource</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/ShuffleMetricsSource.html">ShuffleMetricsSource</a>
+    <a class="nav-link" href="ShuffleMetricsSource.html">ShuffleMetricsSource</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/spark-blockmanager-StorageStatus.html">StorageStatus</a>
+    <a class="nav-link" href="spark-blockmanager-StorageStatus.html">StorageStatus</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/ShuffleClient.html">ShuffleClient</a>
+    <a class="nav-link" href="ShuffleClient.html">ShuffleClient</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../storage/BlockTransferService.html">BlockTransferService</a>
+    <a class="nav-link" href="BlockTransferService.html">BlockTransferService</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../storage/NettyBlockTransferService.html">NettyBlockTransferService</a>
+    <a class="nav-link" href="NettyBlockTransferService.html">NettyBlockTransferService</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../storage/NettyBlockRpcServer.html">NettyBlockRpcServer</a>
+    <a class="nav-link" href="NettyBlockRpcServer.html">NettyBlockRpcServer</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../storage/ExternalShuffleClient.html">ExternalShuffleClient</a>
+    <a class="nav-link" href="ExternalShuffleClient.html">ExternalShuffleClient</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/OneForOneBlockFetcher.html">OneForOneBlockFetcher</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="OneForOneBlockFetcher.html">OneForOneBlockFetcher</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
+    <a class="nav-link" href="ShuffleBlockFetcherIterator.html">ShuffleBlockFetcherIterator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/RDDInfo.html">RDDInfo</a>
+    <a class="nav-link" href="RDDInfo.html">RDDInfo</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/StorageLevel.html">StorageLevel</a>
+    <a class="nav-link" href="StorageLevel.html">StorageLevel</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../storage/demo-diskblockmanager-and-block-data.html">Demo: DiskBlockManager and Block Data</a>
+    <a class="nav-link" href="demo-diskblockmanager-and-block-data.html">Demo: DiskBlockManager and Block Data</a>
   </li>
 </ul>
   </li>
@@ -1601,43 +1601,43 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Spark History Server</a>
+    <a class="nav-link" href="../spark-history-server/index.html">Spark History Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../configuration-properties.html">Configuration Properties</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="HistoryServer.html">HistoryServer</a>
+    <a class="nav-link" href="../spark-history-server/HistoryServer.html">HistoryServer</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="EventLoggingListener.html">EventLoggingListener</a>
+    <a class="nav-link" href="../spark-history-server/EventLoggingListener.html">EventLoggingListener</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="SQLHistoryListener.html">SQLHistoryListener</a>
+    <a class="nav-link" href="../spark-history-server/SQLHistoryListener.html">SQLHistoryListener</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="ApplicationHistoryProvider.html">ApplicationHistoryProvider</a>
+    <a class="nav-link" href="../spark-history-server/ApplicationHistoryProvider.html">ApplicationHistoryProvider</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="FsHistoryProvider.html">FsHistoryProvider</a>
+    <a class="nav-link" href="../spark-history-server/FsHistoryProvider.html">FsHistoryProvider</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="HistoryServerArguments.html">HistoryServerArguments</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="ApplicationCacheOperations.html">ApplicationCacheOperations</a>
+    <a class="nav-link" href="../spark-history-server/HistoryServerArguments.html">HistoryServerArguments</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ApplicationCache.html">ApplicationCache</a>
+    <a class="nav-link" href="../spark-history-server/ApplicationCacheOperations.html">ApplicationCacheOperations</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ReplayListenerBus.html">ReplayListenerBus</a>
+    <a class="nav-link" href="../spark-history-server/ApplicationCache.html">ApplicationCache</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="JsonProtocol.html">JsonProtocol</a>
+    <a class="nav-link" href="../spark-history-server/ReplayListenerBus.html">ReplayListenerBus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spark-history-server/JsonProtocol.html">JsonProtocol</a>
   </li>
 </ul>
   </li>
@@ -1939,88 +1939,82 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Apache Spark</a></li>
-    <li><a href="index.html">Spark History Server</a></li>
-    <li><a href="ApplicationCacheOperations.html">ApplicationCacheOperations</a></li>
+    <li>Storage System</li>
+    <li><a href="OneForOneBlockFetcher.html">OneForOneBlockFetcher</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/spark-history-server/pages/ApplicationCacheOperations.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/japila-books/apache-spark-internals/edit/master/modules/storage/pages/OneForOneBlockFetcher.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="applicationcacheoperations"><a class="anchor" href="#applicationcacheoperations"></a><a class="link" href="#applicationcacheoperations"><a id="ApplicationCacheOperations"></a> ApplicationCacheOperations</a></h2>
+<h1 class="page">OneForOneBlockFetcher</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>ApplicationCacheOperations</code> is the <a href="#contract">contract</a> of&#8230;&#8203;FIXME</p>
+<p><strong>OneForOneBlockFetcher</strong> is&#8230;&#8203;FIXME</p>
 </div>
-<div id="contract" class="listingblock">
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>OneForOneBlockFetcher takes the following to be created:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="client"></a> TransportClient</p>
+</li>
+<li>
+<p><a id="appId"></a> Application ID</p>
+</li>
+<li>
+<p><a id="execId"></a> Executor ID</p>
+</li>
+<li>
+<p><a id="blockIds"></a> Block IDs</p>
+</li>
+<li>
+<p><a id="listener"></a> <a href="../core/BlockFetchingListener.html" class="page">BlockFetchingListener</a></p>
+</li>
+<li>
+<p><a id="transportConf"></a> <a href="../network/TransportConf.html" class="page">TransportConf</a></p>
+</li>
+<li>
+<p><a id="downloadFileManager"></a> DownloadFileManager</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>OneForOneBlockFetcher is created when <a href="NettyBlockTransferService.html#fetchBlocks" class="page">NettyBlockTransferService</a> and <a href="ExternalShuffleClient.html#fetchBlocks" class="page">ExternalShuffleClient</a> are requested to fetch blocks.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="openblocks-message"><a class="anchor" href="#openblocks-message"></a><a class="link" href="#openblocks-message"><a id="openMessage"></a> OpenBlocks Message</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>OneForOneBlockFetcher creates a OpenBlocks message (for the given <a href="#appId">application</a>, <a href="#execId">executor</a> and <a href="#blockIds">blocks</a>) when <a href="#creating-instance">created</a>.</p>
+</div>
+<div class="paragraph">
+<p>The OpenBlocks message is posted when OneForOneBlockFetcher is requested to <a href="#start">start</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="start-method"><a class="anchor" href="#start-method"></a><a class="link" href="#start-method"><a id="start"></a> start Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">package org.apache.spark.deploy.history
-
-trait ApplicationCacheOperations {
-  // only required methods that have no implementation
-  // the others follow
-  def getAppUI(appId: String, attemptId: Option[String]): Option[LoadedAppUI]
-  def attachSparkUI(
-    appId: String,
-    attemptId: Option[String],
-    ui: SparkUI,
-    completed: Boolean): Unit
-  def detachSparkUI(appId: String, attemptId: Option[String], ui: SparkUI): Unit
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void start()</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>ApplicationCacheOperations</code> is a <code>private[history]</code> contract.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>start&#8230;&#8203;FIXME</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. (Subset of) ApplicationCacheOperations Contract</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Method</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>getAppUI</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="getAppUI"></a> <a href="spark-webui-SparkUI.adoc">SparkUI</a> (the UI of a Spark application)</p>
-<p class="tableblock">Used exclusively when <code>ApplicationCache</code> is requested for <a href="ApplicationCache.html#loadApplicationEntry" class="page">loadApplicationEntry</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>attachSparkUI</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="attachSparkUI"></a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>detachSparkUI</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="detachSparkUI"></a></p></td>
-</tr>
-</tbody>
-</table>
-<div id="implementations" class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<a href="HistoryServer.html" class="page">HistoryServer</a> is the one and only known implementation of <a href="#contract">ApplicationCacheOperations contract</a> in Apache Spark.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>start is used when <a href="NettyBlockTransferService.html#fetchBlocks" class="page">NettyBlockTransferService</a> and <a href="ExternalShuffleClient.html#fetchBlocks" class="page">ExternalShuffleClient</a> are requested to fetch blocks.</p>
 </div>
 </div>
 </div>
