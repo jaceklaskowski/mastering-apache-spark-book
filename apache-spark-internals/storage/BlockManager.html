@@ -4146,6 +4146,24 @@ FIXME When would <code>info.tellMaster</code> be <code>true</code>?
 </div>
 </div>
 <div class="sect1">
+<h2 id="releaselock-method"><a class="anchor" href="#releaselock-method"></a><a class="link" href="#releaselock-method"><a id="releaseLock"></a> releaseLock Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">releaseLock(
+  blockId: BlockId,
+  taskAttemptId: Option[Long] = None): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>releaseLock requests the <a href="#blockInfoManager">BlockInfoManager</a> to <a href="BlockInfoManager.html#unlock" class="page">unlock the given block</a>.</p>
+</div>
+<div class="paragraph">
+<p>releaseLock is part of the <a href="BlockDataManager.html#releaseLock" class="page">BlockDataManager</a> abstraction.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="downgradelock-method"><a class="anchor" href="#downgradelock-method"></a><a class="link" href="#downgradelock-method"><a id="downgradeLock"></a> downgradeLock Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
