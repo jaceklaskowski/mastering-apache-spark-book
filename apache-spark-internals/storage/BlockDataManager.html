@@ -1945,40 +1945,28 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">BlockDataManager</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p><strong>BlockDataManager</strong> is the <a href="#contract">abstraction</a> of <a href="#implementations">block data managers</a> that manage storage for blocks of data (aka <em>block storage management API</em>).</p>
+<p><strong>BlockDataManager</strong> is an <a href="#contract">abstraction</a> of <a href="#implementations">block data managers</a> that manage storage for blocks of data (aka <em>block storage management API</em>).</p>
 </div>
 <div class="paragraph">
-<p>BlockDataManager uses <a href="BlockId.html" class="page">BlockId</a> to uniquely identify blocks of data and <a href="../network/ManagedBuffer.html" class="page">ManagedBuffer</a> to refer to them.</p>
+<p>BlockDataManager uses <a href="BlockId.html" class="page">BlockId</a> to uniquely identify blocks of data and <a href="../network/ManagedBuffer.html" class="page">ManagedBuffer</a> to represent them.</p>
 </div>
-<div id="implementations" class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<a href="BlockManager.html" class="page">BlockManager</a> is the default and only implementation of the <a href="#contract">BlockDataManager Contract</a> in Apache Spark.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>BlockDataManager is used to initialize a <a href="BlockTransferService.html#init" class="page">storage:BlockTransferService.adoc#init</a>.</p>
 </div>
-<table id="contract" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. BlockDataManager Contract</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 75%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Method</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>getBlockData</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div id="getBlockData" class="listingblock">
+<div class="paragraph">
+<p>BlockDataManager is used to create a <a href="NettyBlockRpcServer.html" class="page">NettyBlockRpcServer</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contract"><a class="anchor" href="#contract"></a><a class="link" href="#contract"><a id="contract"></a> Contract</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="getblockdata"><a class="anchor" href="#getblockdata"></a><a class="link" href="#getblockdata"><a id="getBlockData"></a> getBlockData</a></h3>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getBlockData(
   blockId: BlockId): ManagedBuffer</code></pre>
@@ -1996,14 +1984,14 @@
 <p>NettyBlockRpcServer is requested to <a href="NettyBlockRpcServer.html#receive-OpenBlocks" class="page">handle a OpenBlocks message</a></p>
 </li>
 <li>
-<p><code>ShuffleBlockFetcherIterator</code> is requested to <a href="ShuffleBlockFetcherIterator.html#fetchLocalBlocks" class="page">fetchLocalBlocks</a></p>
+<p>ShuffleBlockFetcherIterator is requested to <a href="ShuffleBlockFetcherIterator.html#fetchLocalBlocks" class="page">fetchLocalBlocks</a></p>
 </li>
 </ul>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>putBlockData</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div id="putBlockData" class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="putblockdata"><a class="anchor" href="#putblockdata"></a><a class="link" href="#putblockdata"><a id="putBlockData"></a> putBlockData</a></h3>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">putBlockData(
   blockId: BlockId,
@@ -2017,11 +2005,11 @@
 </div>
 <div class="paragraph">
 <p>Used when NettyBlockRpcServer is requested to <a href="NettyBlockRpcServer.html#receive-UploadBlock" class="page">handle an UploadBlock message</a></p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>putBlockDataAsStream</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div id="putBlockDataAsStream" class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="putblockdataasstream"><a class="anchor" href="#putblockdataasstream"></a><a class="link" href="#putblockdataasstream"><a id="putBlockDataAsStream"></a> putBlockDataAsStream</a></h3>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">putBlockDataAsStream(
   blockId: BlockId,
@@ -2034,11 +2022,11 @@
 </div>
 <div class="paragraph">
 <p>Used when NettyBlockRpcServer is requested to <a href="NettyBlockRpcServer.html#receiveStream" class="page">receiveStream</a></p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>releaseLock</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div id="releaseLock" class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="releaselock"><a class="anchor" href="#releaselock"></a><a class="link" href="#releaselock"><a id="releaseLock"></a> releaseLock</a></h3>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">releaseLock(
   blockId: BlockId,
@@ -2060,10 +2048,18 @@
 <p>BlockManager is requested to <a href="BlockManager.html#handleLocalReadFailure" class="page">handleLocalReadFailure</a>, <a href="BlockManager.html#getLocalValues" class="page">getLocalValues</a>, <a href="BlockManager.html#getOrElseUpdate" class="page">getOrElseUpdate</a>, <a href="BlockManager.html#doPut" class="page">doPut</a>, and <a href="BlockManager.html#releaseLockAndDispose" class="page">releaseLockAndDispose</a></p>
 </li>
 </ul>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="available-blockdatamanagers"><a class="anchor" href="#available-blockdatamanagers"></a><a class="link" href="#available-blockdatamanagers"><a id="implementations"></a> Available BlockDataManagers</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="BlockManager.html" class="page">BlockManager</a> is the default and only known BlockDataManager in Apache Spark.</p>
+</div>
+</div>
+</div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>

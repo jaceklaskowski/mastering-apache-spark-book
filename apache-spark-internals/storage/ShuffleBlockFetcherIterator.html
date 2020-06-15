@@ -1948,19 +1948,19 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>ShuffleBlockFetcherIterator</code> is a Scala <a href="http://www.scala-lang.org/api/current/scala/collection/Iterator.html">Iterator</a> that fetches shuffle blocks (aka <em>shuffle map outputs</em>) from block managers.</p>
+<p><strong>ShuffleBlockFetcherIterator</strong> is a Scala <a href="http://www.scala-lang.org/api/current/scala/collection/Iterator.html">Iterator</a> that fetches shuffle blocks (aka <em>shuffle map outputs</em>) from block managers.</p>
 </div>
 <div class="paragraph">
-<p><code>ShuffleBlockFetcherIterator</code> is <a href="#creating-instance">created</a> exclusively when <code>BlockStoreShuffleReader</code> is requested to <a href="../shuffle/BlockStoreShuffleReader.html#read" class="page">read combined key-value records for a reduce task</a>.</p>
+<p>ShuffleBlockFetcherIterator is <a href="#creating-instance">created</a> exclusively when <code>BlockStoreShuffleReader</code> is requested to <a href="../shuffle/BlockStoreShuffleReader.html#read" class="page">read combined key-value records for a reduce task</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>ShuffleBlockFetcherIterator</code> allows for <a href="#next">iterating over a sequence of blocks</a> as <code>(BlockId, InputStream)</code> pairs so a caller can handle shuffle blocks in a pipelined fashion as they are received.</p>
+<p>ShuffleBlockFetcherIterator allows for <a href="#next">iterating over a sequence of blocks</a> as <code>(BlockId, InputStream)</code> pairs so a caller can handle shuffle blocks in a pipelined fashion as they are received.</p>
 </div>
 <div class="paragraph">
-<p><code>ShuffleBlockFetcherIterator</code> is exhausted (i.e. <a href="#hasNext">can provide no elements</a>) when the <a href="#numBlocksProcessed">number of blocks already processed</a> is at least the <a href="#numBlocksToFetch">total number of blocks to fetch</a>.</p>
+<p>ShuffleBlockFetcherIterator is exhausted (i.e. <a href="#hasNext">can provide no elements</a>) when the <a href="#numBlocksProcessed">number of blocks already processed</a> is at least the <a href="#numBlocksToFetch">total number of blocks to fetch</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>ShuffleBlockFetcherIterator</code> <a href="#fetchUpToMaxBytes">throttles the remote fetches</a> to avoid consuming too much memory.</p>
+<p>ShuffleBlockFetcherIterator <a href="#fetchUpToMaxBytes">throttles the remote fetches</a> to avoid consuming too much memory.</p>
 </div>
 <table id="internal-registries" class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. ShuffleBlockFetcherIterator&#8217;s Internal Registries and Counters</caption>
@@ -1985,10 +1985,10 @@
 <p><a id="numBlocksToFetch"></a> Total number of blocks to <a href="#next">fetch and consume</a>.</p>
 </div>
 <div class="paragraph">
-<p><code>ShuffleBlockFetcherIterator</code> can <a href="#hasNext">produce</a> up to <code>numBlocksToFetch</code> elements.</p>
+<p>ShuffleBlockFetcherIterator can <a href="#hasNext">produce</a> up to <code>numBlocksToFetch</code> elements.</p>
 </div>
 <div class="paragraph">
-<p><code>numBlocksToFetch</code> is increased every time <code>ShuffleBlockFetcherIterator</code> is requested to <a href="#splitLocalRemoteBlocks">splitLocalRemoteBlocks</a> that prints it out as the INFO message to the logs:</p>
+<p><code>numBlocksToFetch</code> is increased every time ShuffleBlockFetcherIterator is requested to <a href="#splitLocalRemoteBlocks">splitLocalRemoteBlocks</a> that prints it out as the INFO message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2008,36 +2008,36 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="maxBytesInFlight"></a> <code>maxBytesInFlight</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The maximum size (in bytes) of all the remote shuffle blocks to fetch.</p>
-<p class="tableblock">Set when <a href="#creating-instance"><code>ShuffleBlockFetcherIterator</code> is created</a>.</p></td>
+<p class="tableblock">Set when <a href="#creating-instance">ShuffleBlockFetcherIterator is created</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="maxReqsInFlight"></a> <code>maxReqsInFlight</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of remote requests to fetch shuffle blocks.</p>
-<p class="tableblock">Set when <a href="#creating-instance"><code>ShuffleBlockFetcherIterator</code> is created</a>.</p></td>
+<p class="tableblock">Set when <a href="#creating-instance">ShuffleBlockFetcherIterator is created</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="bytesInFlight"></a> <code>bytesInFlight</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The bytes of fetched remote shuffle blocks in flight</p>
-<p class="tableblock">Starts at <code>0</code> when <a href="#creating-instance"><code>ShuffleBlockFetcherIterator</code> is created</a>.</p>
+<p class="tableblock">Starts at <code>0</code> when <a href="#creating-instance">ShuffleBlockFetcherIterator is created</a>.</p>
 <p class="tableblock">Incremented every <a href="#sendRequest">sendRequest</a> and decremented every <a href="#next">next</a>.</p>
-<p class="tableblock"><code>ShuffleBlockFetcherIterator</code> makes sure that the invariant of <code>bytesInFlight</code> below <a href="#maxBytesInFlight">maxBytesInFlight</a> holds every <a href="#fetchUpToMaxBytes">remote shuffle block fetch</a>.</p></td>
+<p class="tableblock">ShuffleBlockFetcherIterator makes sure that the invariant of <code>bytesInFlight</code> below <a href="#maxBytesInFlight">maxBytesInFlight</a> holds every <a href="#fetchUpToMaxBytes">remote shuffle block fetch</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="reqsInFlight"></a> <code>reqsInFlight</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The number of remote shuffle block fetch requests in flight.</p>
-<p class="tableblock">Starts at <code>0</code> when <a href="#creating-instance"><code>ShuffleBlockFetcherIterator</code> is created</a>.</p>
+<p class="tableblock">Starts at <code>0</code> when <a href="#creating-instance">ShuffleBlockFetcherIterator is created</a>.</p>
 <p class="tableblock">Incremented every <a href="#sendRequest">sendRequest</a> and decremented every <a href="#next">next</a>.</p>
-<p class="tableblock"><code>ShuffleBlockFetcherIterator</code> makes sure that the invariant of <code>reqsInFlight</code> below <a href="#maxReqsInFlight">maxReqsInFlight</a> holds every <a href="#fetchUpToMaxBytes">remote shuffle block fetch</a>.</p></td>
+<p class="tableblock">ShuffleBlockFetcherIterator makes sure that the invariant of <code>reqsInFlight</code> below <a href="#maxReqsInFlight">maxReqsInFlight</a> holds every <a href="#fetchUpToMaxBytes">remote shuffle block fetch</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="isZombie"></a> <code>isZombie</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Flag whether <code>ShuffleBlockFetcherIterator</code> is still active. It is disabled, i.e. <code>false</code>, when <a href="#creating-instance"><code>ShuffleBlockFetcherIterator</code> is created</a>.</p>
-<p class="tableblock"><a href="#cleanup">When enabled</a> (when the task using <code>ShuffleBlockFetcherIterator</code> finishes), the <a href="#sendRequest-BlockFetchingListener-onBlockFetchSuccess">block fetch successful callback</a> (registered in <code>sendRequest</code>) will no longer add fetched remote shuffle blocks into <a href="#results">results</a> internal queue.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flag whether ShuffleBlockFetcherIterator is still active. It is disabled, i.e. <code>false</code>, when <a href="#creating-instance">ShuffleBlockFetcherIterator is created</a>.</p>
+<p class="tableblock"><a href="#cleanup">When enabled</a> (when the task using ShuffleBlockFetcherIterator finishes), the <a href="#sendRequest-BlockFetchingListener-onBlockFetchSuccess">block fetch successful callback</a> (registered in <code>sendRequest</code>) will no longer add fetched remote shuffle blocks into <a href="#results">results</a> internal queue.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="currentResult"></a> <code>currentResult</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The currently-processed <code>SuccessFetchResult</code></p>
-<p class="tableblock">Set when <code>ShuffleBlockFetcherIterator</code> <a href="#next">returns the next <code>(BlockId, InputStream)</code> tuple</a> and <a href="#releaseCurrentResultBuffer">released</a> (on <a href="#cleanup">cleanup</a>).</p></td>
+<p class="tableblock">Set when ShuffleBlockFetcherIterator <a href="#next">returns the next <code>(BlockId, InputStream)</code> tuple</a> and <a href="#releaseCurrentResultBuffer">released</a> (on <a href="#cleanup">cleanup</a>).</p></td>
 </tr>
 </tbody>
 </table>
@@ -2049,7 +2049,7 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Enable <code>ERROR</code>, <code>WARN</code>, <code>INFO</code>, <code>DEBUG</code> or <code>TRACE</code> logging levels for <code>org.apache.spark.storage.ShuffleBlockFetcherIterator</code> logger to see what happens in <code>ShuffleBlockFetcherIterator</code>.</p>
+<p>Enable <code>ERROR</code>, <code>WARN</code>, <code>INFO</code>, <code>DEBUG</code> or <code>TRACE</code> logging levels for <code>org.apache.spark.storage.ShuffleBlockFetcherIterator</code> logger to see what happens in ShuffleBlockFetcherIterator.</p>
 </div>
 <div class="paragraph">
 <p>Add the following line to <code>conf/log4j.properties</code>:</p>
@@ -2089,7 +2089,7 @@ FIXME
 <h2 id="creating-shuffleblockfetcheriterator-instance"><a class="anchor" href="#creating-shuffleblockfetcheriterator-instance"></a><a class="link" href="#creating-shuffleblockfetcheriterator-instance"><a id="creating-instance"></a> Creating ShuffleBlockFetcherIterator Instance</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When created, <code>ShuffleBlockFetcherIterator</code> takes the following:</p>
+<p>When created, ShuffleBlockFetcherIterator takes the following:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2148,7 +2148,7 @@ FIXME
 <p><code>initialize</code> <a href="#fetchRequests">registers the new remote fetch requests (with <code>fetchRequests</code> internal registry)</a>.</p>
 </div>
 <div class="paragraph">
-<p>As <code>ShuffleBlockFetcherIterator</code> is in initialization phase, <code>initialize</code> makes sure that <a href="#reqsInFlight">reqsInFlight</a> and <a href="#bytesInFlight">bytesInFlight</a> internal counters are both <code>0</code>. Otherwise, <code>initialize</code> throws an exception.</p>
+<p>As ShuffleBlockFetcherIterator is in initialization phase, <code>initialize</code> makes sure that <a href="#reqsInFlight">reqsInFlight</a> and <a href="#bytesInFlight">bytesInFlight</a> internal counters are both <code>0</code>. Otherwise, <code>initialize</code> throws an exception.</p>
 </div>
 <div class="paragraph">
 <p><code>initialize</code> <a href="#fetchUpToMaxBytes">fetches shuffle blocks</a> (from remote <a href="BlockManager.html" class="page">BlockManagers</a>).</p>
@@ -2179,7 +2179,7 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>initialize</code> is used exclusively when <code>ShuffleBlockFetcherIterator</code> is <a href="#creating-instance">created</a>.
+<code>initialize</code> is used exclusively when ShuffleBlockFetcherIterator is <a href="#creating-instance">created</a>.
 </td>
 </tr>
 </table>
@@ -2227,7 +2227,7 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManagerId.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>ShuffleClient</code> was defined when <a href="#creating-instance"><code>ShuffleBlockFetcherIterator</code> was created</a>.
+<code>ShuffleClient</code> was defined when <a href="#creating-instance">ShuffleBlockFetcherIterator was created</a>.
 </td>
 </tr>
 </table>
@@ -2252,7 +2252,7 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManagerId.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>sendRequest</code> is used exclusively when <code>ShuffleBlockFetcherIterator</code> is requested to <a href="#fetchUpToMaxBytes">fetch remote shuffle blocks</a>.
+<code>sendRequest</code> is used exclusively when ShuffleBlockFetcherIterator is requested to <a href="#fetchUpToMaxBytes">fetch remote shuffle blocks</a>.
 </td>
 </tr>
 </table>
@@ -2282,7 +2282,7 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManagerId.
 </div>
 </div>
 <div class="paragraph">
-<p>Regardless of zombie state of <code>ShuffleBlockFetcherIterator</code>, you should see the following TRACE message in the logs:</p>
+<p>Regardless of zombie state of ShuffleBlockFetcherIterator, you should see the following TRACE message in the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2352,7 +2352,7 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManagerId.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>throwFetchFailedException</code> is used when <code>ShuffleBlockFetcherIterator</code> is requested for the <a href="#next">next element</a>.
+<code>throwFetchFailedException</code> is used when ShuffleBlockFetcherIterator is requested for the <a href="#next">next element</a>.
 </td>
 </tr>
 </table>
@@ -2368,7 +2368,7 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManagerId.
 </div>
 </div>
 <div class="paragraph">
-<p>Internally, <code>cleanup</code> marks <code>ShuffleBlockFetcherIterator</code> a <a href="#isZombie">zombie</a>.</p>
+<p>Internally, <code>cleanup</code> marks ShuffleBlockFetcherIterator a <a href="#isZombie">zombie</a>.</p>
 </div>
 <div class="paragraph">
 <p><code>cleanup</code> <a href="#releaseCurrentResultBuffer">releases the current result buffer</a>.</p>
@@ -2383,7 +2383,7 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManagerId.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>cleanup</code> is used when <a href="#initialize"><code>ShuffleBlockFetcherIterator</code> initializes itself</a>.
+<code>cleanup</code> is used when <a href="#initialize">ShuffleBlockFetcherIterator initializes itself</a>.
 </td>
 </tr>
 </table>
@@ -2411,7 +2411,7 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManagerId.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>releaseCurrentResultBuffer</code> is used when <a href="#cleanup"><code>ShuffleBlockFetcherIterator</code> releases resources</a> and <code>BufferReleasingInputStream</code> closes.
+<code>releaseCurrentResultBuffer</code> is used when <a href="#cleanup">ShuffleBlockFetcherIterator releases resources</a> and <code>BufferReleasingInputStream</code> closes.
 </td>
 </tr>
 </table>
@@ -2489,7 +2489,7 @@ The input <code>FetchRequest</code> contains the remote <a href="BlockManagerId.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>splitLocalRemoteBlocks</code> is used exclusively when <code>ShuffleBlockFetcherIterator</code> is requested to <a href="#initialize">initialize</a>.
+<code>splitLocalRemoteBlocks</code> is used exclusively when ShuffleBlockFetcherIterator is requested to <a href="#initialize">initialize</a>.
 </td>
 </tr>
 </table>
