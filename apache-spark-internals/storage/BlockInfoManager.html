@@ -1948,7 +1948,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>BlockInfoManager</strong> manages <a href="#infos">memory blocks</a> (<em>memory pages</em>). It controls concurrent access to memory blocks by <a href="#lockForReading">read</a> and <a href="#lockForWriting">write</a> locks (for existing and <a href="#lockNewBlockForWriting">new ones</a>).</p>
+<p><strong>BlockInfoManager</strong> manages <a href="#infos">metadata of memory blocks</a> and controls concurrent access by locks for <a href="#lockForReading">reading</a> and <a href="#lockForWriting">writing</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1962,6 +1962,9 @@
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>BlockInfoManager is used to create a <a href="MemoryStore.html#blockInfoManager" class="page">MemoryStore</a> and a BlockManagerManagedBuffer.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1973,40 +1976,92 @@
 <div class="paragraph">
 <p>BlockInfoManager is created for <a href="BlockManager.html#blockInfoManager" class="page">BlockManager</a>.</p>
 </div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/BlockInfoManager-BlockManager.png" alt="BlockInfoManager BlockManager">
 </div>
-</div>
-<div class="sect1">
-<h2 id="registertask-method"><a class="anchor" href="#registertask-method"></a><a class="link" href="#registertask-method"><a id="registerTask"></a> <code>registerTask</code> Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="title">Figure 1. BlockInfoManager and BlockManager</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="downgrading-exclusive-write-lock-for-block-to-shared-read-lockdowngradelock-method"><a class="anchor" href="#downgrading-exclusive-write-lock-for-block-to-shared-read-lockdowngradelock-method"></a><a class="link" href="#downgrading-exclusive-write-lock-for-block-to-shared-read-lockdowngradelock-method"><a id="downgradeLock"></a> Downgrading Exclusive Write Lock For Block to Shared Read Lock&#8201;&#8212;&#8201;<code>downgradeLock</code> Method</a></h2>
+<h2 id="block-metadata"><a class="anchor" href="#block-metadata"></a><a class="link" href="#block-metadata"><a id="infos"></a> Block Metadata</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">downgradeLock(blockId: BlockId): Unit</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">infos: Map[BlockId, BlockInfo]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>downgradeLock</code>&#8230;&#8203;FIXME</p>
+<p>BlockInfoManager uses a registry of <a href="BlockInfo.html" class="page">block metadata</a>s per <a href="BlockId.html" class="page">block</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="obtaining-read-lock-for-blocklockforreading-method"><a class="anchor" href="#obtaining-read-lock-for-blocklockforreading-method"></a><a class="link" href="#obtaining-read-lock-for-blocklockforreading-method"><a id="lockForReading"></a> Obtaining Read Lock For Block&#8201;&#8212;&#8201;<code>lockForReading</code> Method</a></h2>
+<h2 id="read-and-write-locks-by-task"><a class="anchor" href="#read-and-write-locks-by-task"></a><a class="link" href="#read-and-write-locks-by-task"><a id="readLocksByTask"></a><a id="writeLocksByTask"></a> Read and Write Locks By Task</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tracks tasks (by TaskAttemptId) and the blocks they locked for reading (as <a href="BlockId.html" class="page">BlockId</a>).</p>
+</div>
+<div class="paragraph">
+<p>Tracks tasks (by <code>TaskAttemptId</code>) and the blocks they locked for writing (as <a href="BlockId.html" class="page">BlockId</a>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="registering-task-start-of-execution"><a class="anchor" href="#registering-task-start-of-execution"></a><a class="link" href="#registering-task-start-of-execution"><a id="registerTask"></a> Registering Task (Start of Execution)</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">registerTask(
+  taskAttemptId: Long): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>registerTask merely adds a new "empty" entry for the given task (by the task attempt ID) to <a href="#readLocksByTask">readLocksByTask</a> internal registry.</p>
+</div>
+<div class="paragraph">
+<p>registerTask is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>BlockInfoManager is <a href="#creating-instance">created</a></p>
+</li>
+<li>
+<p>BlockManager is requested to <a href="BlockManager.html#registerTask" class="page">registerTask</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="downgrading-exclusive-write-lock-for-block-to-shared-read-lock"><a class="anchor" href="#downgrading-exclusive-write-lock-for-block-to-shared-read-lock"></a><a class="link" href="#downgrading-exclusive-write-lock-for-block-to-shared-read-lock"><a id="downgradeLock"></a> Downgrading Exclusive Write Lock For Block to Shared Read Lock</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">downgradeLock(
+  blockId: BlockId): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>downgradeLock prints out the following TRACE message to the logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Task [currentTaskAttemptId] downgrading write lock for [blockId]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>downgradeLock&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>downgradeLock is used when BlockManager is requested to <a href="BlockManager.html#doPut" class="page">doPut</a> and <a href="BlockManager.html#downgradeLock" class="page">downgradeLock</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="obtaining-read-lock-for-block"><a class="anchor" href="#obtaining-read-lock-for-block"></a><a class="link" href="#obtaining-read-lock-for-block"><a id="lockForReading"></a> Obtaining Read Lock For Block</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2016,18 +2071,18 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p><code>lockForReading</code> locks <code>blockId</code> memory block for reading when the block was registered earlier and no writer tasks use it.</p>
+<p>lockForReading locks <code>blockId</code> memory block for reading when the block was registered earlier and no writer tasks use it.</p>
 </div>
 <div class="paragraph">
-<p>When executed, <code>lockForReading</code> prints out the following TRACE message to the logs:</p>
+<p>When executed, lockForReading prints out the following TRACE message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>TRACE BlockInfoManager: Task [currentTaskAttemptId] trying to acquire read lock for [blockId]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Task [currentTaskAttemptId] trying to acquire read lock for [blockId]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>lockForReading</code> looks up the metadata of the <code>blockId</code> block (in <a href="#infos">infos</a> registry).</p>
+<p>lockForReading looks up the metadata of the <code>blockId</code> block (in <a href="#infos">infos</a> registry).</p>
 </div>
 <div class="paragraph">
 <p>If no metadata could be found, it returns <code>None</code> which means that the block does not exist or was removed (and anybody could acquire a write lock).</p>
@@ -2037,7 +2092,7 @@ FIXME
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>TRACE BlockInfoManager: Task [taskAttemptId] acquired read lock for [blockId]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Task [taskAttemptId] acquired read lock for [blockId]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2056,7 +2111,7 @@ FIXME
 </table>
 </div>
 <div class="paragraph">
-<p>For blocks with <a href="BlockInfo.html#NO_WRITER" class="page"><code>writerTask</code> other than <code>NO_WRITER</code></a>, when <code>blocking</code> is enabled, <code>lockForReading</code> waits (until another thread invokes the <code>Object.notify</code> method or the <code>Object.notifyAll</code> methods for this object).</p>
+<p>For blocks with <a href="BlockInfo.html#NO_WRITER" class="page"><code>writerTask</code> other than <code>NO_WRITER</code></a>, when <code>blocking</code> is enabled, lockForReading waits (until another thread invokes the <code>Object.notify</code> method or the <code>Object.notifyAll</code> methods for this object).</p>
 </div>
 <div class="paragraph">
 <p>With <code>blocking</code> enabled, it will repeat the waiting-for-read-lock sequence until either <code>None</code> or the lock is obtained.</p>
@@ -2071,15 +2126,31 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>lockForReading</code> is a <code>synchronized</code> method, i.e. no two objects can use this and other instance methods.
+lockForReading is a <code>synchronized</code> method, i.e. no two objects can use this and other instance methods.
 </td>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>lockForReading is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>BlockInfoManager is requested to <a href="#downgradeLock">downgradeLock</a> and <a href="#lockNewBlockForWriting">lockNewBlockForWriting</a></p>
+</li>
+<li>
+<p>BlockManager is requested to <a href="BlockManager.html#getLocalValues" class="page">getLocalValues</a>, <a href="BlockManager.html#getLocalBytes" class="page">getLocalBytes</a> and <a href="BlockManager.html#replicateBlock" class="page">replicateBlock</a></p>
+</li>
+<li>
+<p>BlockManagerManagedBuffer is requested to retain</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="obtaining-write-lock-for-blocklockforwriting-method"><a class="anchor" href="#obtaining-write-lock-for-blocklockforwriting-method"></a><a class="link" href="#obtaining-write-lock-for-blocklockforwriting-method"><a id="lockForWriting"></a> Obtaining Write Lock for Block&#8201;&#8212;&#8201;<code>lockForWriting</code> Method</a></h2>
+<h2 id="obtaining-write-lock-for-block"><a class="anchor" href="#obtaining-write-lock-for-block"></a><a class="link" href="#obtaining-write-lock-for-block"><a id="lockForWriting"></a> Obtaining Write Lock for Block</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2089,22 +2160,22 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p>When executed, <code>lockForWriting</code> prints out the following TRACE message to the logs:</p>
+<p>lockForWriting prints out the following TRACE message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>TRACE Task [currentTaskAttemptId] trying to acquire write lock for [blockId]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Task [currentTaskAttemptId] trying to acquire write lock for [blockId]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>It looks up <code>blockId</code> in the internal <a href="#infos">infos</a> registry. When no <a href="BlockInfo.html" class="page">BlockInfo</a> could be found, <code>None</code> is returned. Otherwise, <a href="BlockInfo.html#NO_WRITER" class="page"><code>blockId</code> block is checked for <code>writerTask</code> to be <code>BlockInfo.NO_WRITER</code></a> with no readers (i.e. <code>readerCount</code> is <code>0</code>) and only then the lock is returned.</p>
+<p>lockForWriting looks up <code>blockId</code> in the internal <a href="#infos">infos</a> registry. When no <a href="BlockInfo.html" class="page">BlockInfo</a> could be found, <code>None</code> is returned. Otherwise, <a href="BlockInfo.html#NO_WRITER" class="page"><code>blockId</code> block is checked for <code>writerTask</code> to be <code>BlockInfo.NO_WRITER</code></a> with no readers (i.e. <code>readerCount</code> is <code>0</code>) and only then the lock is returned.</p>
 </div>
 <div class="paragraph">
 <p>When the write lock can be returned, <code>BlockInfo.writerTask</code> is set to <code>currentTaskAttemptId</code> and a new binding is added to the internal <a href="#writeLocksByTask">writeLocksByTask</a> registry. You should see the following TRACE message in the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>TRACE Task [currentTaskAttemptId] acquired write lock for [blockId]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Task [currentTaskAttemptId] acquired write lock for [blockId]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2123,12 +2194,28 @@ FIXME
 </table>
 </div>
 <div class="paragraph">
-<p><code>lockForWriting</code> return <code>None</code> for no <code>blockId</code> in the internal <a href="#infos">infos</a> registry or when <code>blocking</code> flag is disabled and the write lock could not be acquired.</p>
+<p>lockForWriting returns <code>None</code> for no <code>blockId</code> in the internal <a href="#infos">infos</a> registry or when <code>blocking</code> flag is disabled and the write lock could not be acquired.</p>
+</div>
+<div class="paragraph">
+<p>lockForWriting is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>BlockInfoManager is requested to <a href="#lockNewBlockForWriting">lockNewBlockForWriting</a></p>
+</li>
+<li>
+<p>BlockManager is requested to <a href="BlockManager.html#removeBlock" class="page">removeBlock</a></p>
+</li>
+<li>
+<p>MemoryStore is requested to <a href="MemoryStore.html#evictBlocksToFreeSpace" class="page">evictBlocksToFreeSpace</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="obtaining-write-lock-for-new-blocklocknewblockforwriting-method"><a class="anchor" href="#obtaining-write-lock-for-new-blocklocknewblockforwriting-method"></a><a class="link" href="#obtaining-write-lock-for-new-blocklocknewblockforwriting-method"><a id="lockNewBlockForWriting"></a> Obtaining Write Lock for New Block&#8201;&#8212;&#8201;<code>lockNewBlockForWriting</code> Method</a></h2>
+<h2 id="obtaining-write-lock-for-new-block"><a class="anchor" href="#obtaining-write-lock-for-new-block"></a><a class="link" href="#obtaining-write-lock-for-new-block"><a id="lockNewBlockForWriting"></a> Obtaining Write Lock for New Block</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2138,7 +2225,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p><code>lockNewBlockForWriting</code> obtains a write lock for <code>blockId</code> but only when the method could register the block.</p>
+<p>lockNewBlockForWriting obtains a write lock for <code>blockId</code> but only when the method could register the block.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2147,17 +2234,17 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>lockNewBlockForWriting</code> is similar to <a href="#lockForWriting">lockForWriting</a> method but for brand new blocks.
+lockNewBlockForWriting is similar to <a href="#lockForWriting">lockForWriting</a> method but for brand new blocks.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>When executed, <code>lockNewBlockForWriting</code> prints out the following TRACE message to the logs:</p>
+<p>When executed, lockNewBlockForWriting prints out the following TRACE message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>TRACE Task [currentTaskAttemptId] trying to put [blockId]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Task [currentTaskAttemptId] trying to put [blockId]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2170,51 +2257,35 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>lockNewBlockForWriting</code> executes itself in <code>synchronized</code> block so once the BlockInfoManager is locked the other internal registries should be available only for the currently-executing thread.
+lockNewBlockForWriting executes itself in <code>synchronized</code> block so once the BlockInfoManager is locked the other internal registries should be available only for the currently-executing thread.
 </td>
 </tr>
 </table>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="currenttaskattemptid-method"><a class="anchor" href="#currenttaskattemptid-method"></a><a class="link" href="#currenttaskattemptid-method"><a id="currentTaskAttemptId"></a> <code>currentTaskAttemptId</code> Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>lockNewBlockForWriting is used when BlockManager is requested to <a href="BlockManager.html#doPut" class="page">doPut</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="releasing-lock-on-blockunlock-method"><a class="anchor" href="#releasing-lock-on-blockunlock-method"></a><a class="link" href="#releasing-lock-on-blockunlock-method"><a id="unlock"></a> Releasing Lock on Block&#8201;&#8212;&#8201;<code>unlock</code> Method</a></h2>
+<h2 id="releasing-lock-on-block"><a class="anchor" href="#releasing-lock-on-block"></a><a class="link" href="#releasing-lock-on-block"><a id="unlock"></a> Releasing Lock on Block</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">unlock(blockId: BlockId): Unit</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">unlock(
+  blockId: BlockId): Unit</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>unlock</code> releases&#8230;&#8203;FIXME</p>
-</div>
-<div class="paragraph">
-<p>When executed, <code>unlock</code> starts by printing out the following TRACE message to the logs:</p>
+<p>unlock prints out the following TRACE message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>TRACE BlockInfoManager: Task [currentTaskAttemptId] releasing lock for [blockId]</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Task [currentTaskAttemptId] releasing lock for [blockId]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>unlock</code> gets the metadata for <code>blockId</code>. It may throw a <code>IllegalStateException</code> if the block was not found.</p>
+<p>unlock gets the metadata for <code>blockId</code>. It may throw a <code>IllegalStateException</code> if the block was not found.</p>
 </div>
 <div class="paragraph">
 <p>If the <a href="BlockInfo.html#writerTask" class="page">writer task</a> for the block is not <a href="BlockInfo.html#NO_WRITER" class="page">NO_WRITER</a>, it becomes so and the <code>blockId</code> block is removed from the internal <a href="#writeLocksByTask">writeLocksByTask</a> registry for the <a href="#currentTaskAttemptId">current task attempt</a>.</p>
@@ -2223,7 +2294,7 @@ FIXME
 <p>Otherwise, if the writer task is indeed <code>NO_WRITER</code>, it is assumed that the <a href="BlockInfo.html#readerCount" class="page"><code>blockId</code> block is locked for reading</a>. The <code>readerCount</code> counter is decremented for the <code>blockId</code> block and the read lock removed from the internal <a href="#readLocksByTask">readLocksByTask</a> registry for the <a href="#currentTaskAttemptId">current task attempt</a>.</p>
 </div>
 <div class="paragraph">
-<p>In the end, <code>unlock</code> wakes up all the threads waiting for the BlockInfoManager (using Java&#8217;s <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#notifyAll--">Object.notifyAll</a>).</p>
+<p>In the end, unlock wakes up all the threads waiting for the BlockInfoManager (using Java&#8217;s <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#notifyAll--">Object.notifyAll</a>).</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -2237,56 +2308,117 @@ FIXME What threads could wait?
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>unlock is used when:</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="releasing-all-locks-obtained-by-taskreleasealllocksfortask-method"><a class="anchor" href="#releasing-all-locks-obtained-by-taskreleasealllocksfortask-method"></a><a class="link" href="#releasing-all-locks-obtained-by-taskreleasealllocksfortask-method"><a id="releaseAllLocksForTask"></a> Releasing All Locks Obtained by Task&#8201;&#8212;&#8201;<code>releaseAllLocksForTask</code> Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="removing-memory-blockremoveblock-method"><a class="anchor" href="#removing-memory-blockremoveblock-method"></a><a class="link" href="#removing-memory-blockremoveblock-method"><a id="removeBlock"></a> Removing Memory Block&#8201;&#8212;&#8201;<code>removeBlock</code> Method</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="ulist">
+<ul>
+<li>
+<p>BlockInfoManager is requested to <a href="#downgradeLock">downgradeLock</a></p>
+</li>
+<li>
+<p>BlockManager is requested to <a href="BlockManager.html#releaseLock" class="page">releaseLock</a> and <a href="BlockManager.html#doPut" class="page">doPut</a></p>
+</li>
+<li>
+<p>BlockManagerManagedBuffer is requested to release</p>
+</li>
+<li>
+<p>MemoryStore is requested to <a href="MemoryStore.html#evictBlocksToFreeSpace" class="page">evictBlocksToFreeSpace</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="assertblockislockedforwriting-method"><a class="anchor" href="#assertblockislockedforwriting-method"></a><a class="link" href="#assertblockislockedforwriting-method"><a id="assertBlockIsLockedForWriting"></a> <code>assertBlockIsLockedForWriting</code> Method</a></h2>
+<h2 id="releasing-all-locks-obtained-by-task"><a class="anchor" href="#releasing-all-locks-obtained-by-task"></a><a class="link" href="#releasing-all-locks-obtained-by-task"><a id="releaseAllLocksForTask"></a> Releasing All Locks Obtained by Task</a></h2>
 <div class="sectionbody">
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-FIXME
-</td>
-</tr>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">releaseAllLocksForTask(
+  taskAttemptId: TaskAttemptId): Seq[BlockId]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>releaseAllLocksForTask&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>releaseAllLocksForTask is used when BlockManager is requested to <a href="BlockManager.html#releaseAllLocksForTask" class="page">releaseAllLocksForTask</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="removing-block"><a class="anchor" href="#removing-block"></a><a class="link" href="#removing-block"><a id="removeBlock"></a> Removing Block</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">removeBlock(
+  blockId: BlockId): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>removeBlock&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>removeBlock is used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>BlockManager is requested to <a href="BlockManager.html#removeBlockInternal" class="page">removeBlockInternal</a></p>
+</li>
+<li>
+<p>MemoryStore is requested to <a href="MemoryStore.html#evictBlocksToFreeSpace" class="page">evictBlocksToFreeSpace</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="assertblockislockedforwriting-method"><a class="anchor" href="#assertblockislockedforwriting-method"></a><a class="link" href="#assertblockislockedforwriting-method"><a id="assertBlockIsLockedForWriting"></a> assertBlockIsLockedForWriting Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">assertBlockIsLockedForWriting(
+  blockId: BlockId): BlockInfo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>assertBlockIsLockedForWriting&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>assertBlockIsLockedForWriting is used when BlockManager is requested to <a href="BlockManager.html#dropFromMemory" class="page">dropFromMemory</a> and <a href="BlockManager.html#removeBlockInternal" class="page">removeBlockInternal</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="currenttaskattemptid-internal-method"><a class="anchor" href="#currenttaskattemptid-internal-method"></a><a class="link" href="#currenttaskattemptid-internal-method"><a id="currentTaskAttemptId"></a> currentTaskAttemptId Internal Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">currentTaskAttemptId: Long /* TaskAttemptId */</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>currentTaskAttemptId&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>currentTaskAttemptId is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deleting-all-state"><a class="anchor" href="#deleting-all-state"></a><a class="link" href="#deleting-all-state"><a id="clear"></a> Deleting All State</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">clear(): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>clear&#8230;&#8203;FIXME</p>
+</div>
+<div class="paragraph">
+<p>clear is used when BlockManager is requested to <a href="#stop">stop</a>.</p>
 </div>
 </div>
 </div>
@@ -2306,29 +2438,6 @@ FIXME
 </div>
 <div class="paragraph">
 <p>Refer to <a href="../spark-logging.html" class="page">Logging</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="internal-properties"><a class="anchor" href="#internal-properties"></a><a class="link" href="#internal-properties"><a id="internal-properties"></a> Internal Properties</a></h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="infos"><a class="anchor" href="#infos"></a><a class="link" href="#infos"><a id="infos"></a> infos</a></h3>
-<div class="paragraph">
-<p>Tracks <a href="BlockInfo.html" class="page">BlockInfo</a>s per block (as <a href="BlockId.html" class="page">BlockId</a>).</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="readlocksbytask"><a class="anchor" href="#readlocksbytask"></a><a class="link" href="#readlocksbytask"><a id="readLocksByTask"></a> readLocksByTask</a></h3>
-<div class="paragraph">
-<p>Tracks tasks (by TaskAttemptId) and the blocks they locked for reading (as <a href="BlockId.html" class="page">BlockId</a>).</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="writelocksbytask"><a class="anchor" href="#writelocksbytask"></a><a class="link" href="#writelocksbytask"><a id="writeLocksByTask"></a> writeLocksByTask</a></h3>
-<div class="paragraph">
-<p>Tracks tasks (by <code>TaskAttemptId</code>) and the blocks they locked for writing (as <a href="BlockId.html" class="page">BlockId</a>).</p>
-</div>
 </div>
 </div>
 </div>

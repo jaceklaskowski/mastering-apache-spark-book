@@ -1970,7 +1970,7 @@
 <p><a id="conf"></a> <a href="../SparkConf.html" class="page">SparkConf</a></p>
 </li>
 <li>
-<p><a id="blockInfoManager"></a> <a href="BlockInfoManager.html" class="page">BlockInfoManager</a></p>
+<p><a href="#blockInfoManager">BlockInfoManager</a></p>
 </li>
 <li>
 <p><a id="serializerManager"></a> <a href="../serializer/SerializerManager.html" class="page">SerializerManager</a></p>
@@ -1991,6 +1991,17 @@
 <img src="_images/spark-MemoryStore.png" alt="spark MemoryStore">
 </div>
 <div class="title">Figure 2. Creating MemoryStore</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="blockinfomanager"><a class="anchor" href="#blockinfomanager"></a><a class="link" href="#blockinfomanager"><a id="blockInfoManager"></a> BlockInfoManager</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MemoryStore is given a <a href="BlockInfoManager.html" class="page">BlockInfoManager</a> when <a href="#creating-instance">created</a>.</p>
+</div>
+<div class="paragraph">
+<p>MemoryStore uses the BlockInfoManager when requested to <a href="#evictBlocksToFreeSpace">evictBlocksToFreeSpace</a>.</p>
 </div>
 </div>
 </div>

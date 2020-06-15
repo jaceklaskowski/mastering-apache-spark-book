@@ -2143,10 +2143,44 @@ It is computed specially in Spark on YARN.
 <p>BlockManager creates a <a href="BlockInfoManager.html" class="page">BlockInfoManager</a> when <a href="#creating-instance">created</a>.</p>
 </div>
 <div class="paragraph">
+<p>BlockManager requests the BlockInfoManager to <a href="BlockInfoManager.html#clear" class="page">clear</a> when requested to <a href="#stop">stop</a>.</p>
+</div>
+<div class="paragraph">
 <p>BlockManager uses the BlockInfoManager to create a <a href="#memoryStore">MemoryStore</a>.</p>
 </div>
 <div class="paragraph">
-<p>BlockManager uses the BlockInfoManager for&#8230;&#8203;FIXME</p>
+<p>BlockManager uses the BlockInfoManager when requested for the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#reportAllBlocks">reportAllBlocks</a></p>
+</li>
+<li>
+<p><a href="#getStatus">getStatus</a></p>
+</li>
+<li>
+<p><a href="#getMatchingBlockIds">getMatchingBlockIds</a></p>
+</li>
+<li>
+<p><a href="#getLocalValues">getLocalValues</a> and <a href="#getLocalBytes">getLocalBytes</a></p>
+</li>
+<li>
+<p><a href="#doPut">doPut</a></p>
+</li>
+<li>
+<p><a href="#replicateBlock">replicateBlock</a></p>
+</li>
+<li>
+<p><a href="#dropFromMemory">dropFromMemory</a></p>
+</li>
+<li>
+<p><a href="#removeRdd">removeRdd</a>, <a href="#removeBroadcast">removeBroadcast</a>, <a href="#removeBlock">removeBlock</a>, <a href="#removeBlockInternal">removeBlockInternal</a></p>
+</li>
+<li>
+<p><a href="#downgradeLock">downgradeLock</a>, <a href="#releaseLock">releaseLock</a>, <a href="#registerTask">registerTask</a>, <a href="#releaseAllLocksForTask">releaseAllLocksForTask</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2442,7 +2476,7 @@ SparkEnv.get.blockManager.memoryStore</code></pre>
 <p>releaseAllLocksForTask&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p>releaseAllLocksForTask is used when TaskRunner is requested to <a href="../executor/TaskRunner.html#run" class="page">run</a> (after a task is finished successfully or not).</p>
+<p>releaseAllLocksForTask is used when TaskRunner is requested to <a href="../executor/TaskRunner.html#run" class="page">run</a> (at the end of a task).</p>
 </div>
 </div>
 </div>
@@ -2909,7 +2943,7 @@ SparkEnv.get.blockManager.memoryStore</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="doput-internal-method"><a class="anchor" href="#doput-internal-method"></a><a class="link" href="#doput-internal-method"><a id="doPut"></a> <code>doPut</code> Internal Method</a></h2>
+<h2 id="doput-internal-method"><a class="anchor" href="#doput-internal-method"></a><a class="link" href="#doput-internal-method"><a id="doPut"></a> doPut Internal Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -2922,24 +2956,21 @@ SparkEnv.get.blockManager.memoryStore</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>doPut</code> is an internal helper method for <a href="#doPutBytes">doPutBytes</a> and <a href="#doPutIterator">doPutIterator</a>.</p>
-</div>
-<div class="paragraph">
-<p><code>doPut</code> executes the input <code>putBody</code> function with a <a href="BlockInfo.html" class="page">BlockInfo</a> being a new <code>BlockInfo</code> object (with <code>level</code> storage level) that <a href="BlockInfoManager.html#lockNewBlockForWriting" class="page"><code>BlockInfoManager</code> managed to create a write lock for</a>.</p>
+<p>doPut executes the input <code>putBody</code> function with a <a href="BlockInfo.html" class="page">BlockInfo</a> being a new <code>BlockInfo</code> object (with <code>level</code> storage level) that <a href="BlockInfoManager.html#lockNewBlockForWriting" class="page"><code>BlockInfoManager</code> managed to create a write lock for</a>.</p>
 </div>
 <div class="paragraph">
 <p>If the block has already been created (and <a href="BlockInfoManager.html#lockNewBlockForWriting" class="page"><code>BlockInfoManager</code> did not manage to create a write lock for</a>), the following WARN message is printed out to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>WARN Block [blockId] already exists on this machine; not re-adding it</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Block [blockId] already exists on this machine; not re-adding it</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>doPut</code> <a href="#releaseLock">releases the read lock for the block</a> when <code>keepReadLock</code> flag is disabled and returns <code>None</code> immediately.</p>
+<p>doPut <a href="#releaseLock">releases the read lock for the block</a> when <code>keepReadLock</code> flag is disabled and returns <code>None</code> immediately.</p>
 </div>
 <div class="paragraph">
-<p>If however the write lock has been given, <code>doPut</code> executes <code>putBody</code>.</p>
+<p>If however the write lock has been given, doPut executes <code>putBody</code>.</p>
 </div>
 <div class="paragraph">
 <p>If the result of <code>putBody</code> is <code>None</code> the block is considered saved successfully.</p>
@@ -2955,16 +2986,19 @@ SparkEnv.get.blockManager.memoryStore</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>WARN Putting block [blockId] failed</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Putting block [blockId] failed</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Ultimately, the following DEBUG message is printed out to the logs:</p>
+<p>In the end, doPut prints out the following DEBUG message to the logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>DEBUG Putting block [blockId] [withOrWithout] replication took [usedTime] ms</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">Putting block [blockId] [withOrWithout] replication took [usedTime] ms</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>doPut is used when BlockManager is requested to <a href="#doPutBytes">doPutBytes</a> and <a href="#doPutIterator">doPutIterator</a>.</p>
 </div>
 </div>
 </div>
@@ -3508,7 +3542,7 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="sect1">
-<h2 id="registering-task-with-blockinfomanager"><a class="anchor" href="#registering-task-with-blockinfomanager"></a><a class="link" href="#registering-task-with-blockinfomanager"><a id="registerTask"></a> Registering Task with BlockInfoManager</a></h2>
+<h2 id="registering-task"><a class="anchor" href="#registering-task"></a><a class="link" href="#registering-task"><a id="registerTask"></a> Registering Task</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3517,10 +3551,10 @@ It is acceptable that the <code>BlockInfo</code> says to use memory or disk yet 
 </div>
 </div>
 <div class="paragraph">
-<p>registerTask <a href="BlockInfoManager.html#registerTask" class="page">registers the input <code>taskAttemptId</code> with <code>BlockInfoManager</code></a>.</p>
+<p>registerTask requests the <a href="#blockInfoManager">BlockInfoManager</a> to <a href="BlockInfoManager.html#registerTask" class="page">register a given task</a>.</p>
 </div>
 <div class="paragraph">
-<p>registerTask is used when Task is requested to <a href="../scheduler/Task.html#run" class="page">run</a>.</p>
+<p>registerTask is used when Task is requested to <a href="../scheduler/Task.html#run" class="page">run</a> (at the start of a task).</p>
 </div>
 </div>
 </div>
@@ -4108,6 +4142,23 @@ FIXME When would <code>info.tellMaster</code> be <code>true</code>?
 </div>
 <div class="paragraph">
 <p>releaseLockAndDispose is used when&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="downgradelock-method"><a class="anchor" href="#downgradelock-method"></a><a class="link" href="#downgradelock-method"><a id="downgradeLock"></a> downgradeLock Method</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">downgradeLock(
+  blockId: BlockId): Unit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>downgradeLock requests the <a href="#blockInfoManager">BlockInfoManager</a> to <a href="BlockInfoManager.html#downgradeLock" class="page">downgradeLock</a> for the given <a href="BlockId.html" class="page">block</a>.</p>
+</div>
+<div class="paragraph">
+<p>downgradeLock seems <em>not</em> to be used.</p>
 </div>
 </div>
 </div>
