@@ -1970,7 +1970,7 @@
 <p><a id="conf"></a> <a href="../SparkConf.html" class="page">SparkConf</a></p>
 </li>
 <li>
-<p><a id="live"></a> live Flag</p>
+<p><a href="#live">live Flag</a></p>
 </li>
 <li>
 <p><a id="lastUpdateTime"></a> Optional lastUpdateTime (default: <code>None</code>)</p>
@@ -1989,6 +1989,14 @@
 <p>FsHistoryProvider is requested to <a href="../spark-history-server/FsHistoryProvider.html#rebuildAppStore" class="page">rebuildAppStore</a> (with the <a href="#live">live</a> flag disabled)</p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="live-flag"><a class="anchor" href="#live-flag"></a><a class="link" href="#live-flag"><a id="live"></a> live Flag</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>AppStatusListener is given a flag that indicates whether it is created for a live Spark application (for <a href="AppStatusStore.html" class="page">AppStatusStore</a>) or when replaying Spark applications for <a href="../spark-history-server/index.html" class="page">Spark History Server</a> (for <a href="../spark-history-server/FsHistoryProvider.html" class="page">FsHistoryProvider</a>).</p>
 </div>
 </div>
 </div>
