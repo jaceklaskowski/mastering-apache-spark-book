@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="../SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -1955,7 +1955,7 @@
 <p><code>LiveRDD</code> is a <a href="spark-core-LiveEntity.adoc">LiveEntity</a> that&#8230;&#8203;FIXME</p>
 </div>
 <div class="paragraph">
-<p><code>LiveRDD</code> is <a href="#creating-instance">created</a> exclusively when <code>AppStatusListener</code> is requested to <a href="../spark-SparkListener-AppStatusListener.html#onStageSubmitted" class="page">handle onStageSubmitted event</a></p>
+<p><code>LiveRDD</code> is <a href="#creating-instance">created</a> exclusively when <code>AppStatusListener</code> is requested to <a href="../core/AppStatusListener.html#onStageSubmitted" class="page">handle onStageSubmitted event</a></p>
 </div>
 <div id="info" class="paragraph">
 <p><code>LiveRDD</code> takes a <a href="../storage/RDDInfo.html" class="page">RDDInfo</a> when created.</p>

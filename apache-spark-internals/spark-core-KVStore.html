@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>KVStore :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/spark-core-KVStore.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../_/css/site.css">
@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -1947,11 +1947,9 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="kvstore"><a class="anchor" href="#kvstore"></a><a class="link" href="#kvstore"><a id="KVStore"></a> KVStore</a></h2>
-<div class="sectionbody">
+<h1 class="page">KVStore</h1>
 <div class="paragraph">
-<p><code>KVStore</code> is the <a href="#contract">contract</a> of&#8230;&#8203;FIXME</p>
+<p><strong>KVStore</strong> is the <a href="#contract">contract</a> of&#8230;&#8203;FIXME</p>
 </div>
 <div id="contract" class="listingblock">
 <div class="content">
@@ -1968,18 +1966,6 @@ public interface KVStore extends Closeable {
   void write(Object value) throws Exception;
 }</code></pre>
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>KVStore</code> is a <code>@Private</code> contract that is to mark a Java interface as if it were <code>private[spark]</code>.
-</td>
-</tr>
-</table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. KVStore Contract</caption>
@@ -2027,8 +2013,6 @@ public interface KVStore extends Closeable {
 </tr>
 </tbody>
 </table>
-</div>
-</div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>ElementTrackingStore :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/spark-core-ElementTrackingStore.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../_/css/site.css">
@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -1948,52 +1948,38 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="elementtrackingstore"><a class="anchor" href="#elementtrackingstore"></a><a class="link" href="#elementtrackingstore"><a id="ElementTrackingStore"></a> ElementTrackingStore</a></h2>
+<h1 class="page">ElementTrackingStore</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>ElementTrackingStore</code> is a <a href="spark-core-KVStore.adoc">KVStore</a> that&#8230;&#8203;FIXME</p>
+<p><strong>ElementTrackingStore</strong> is a <a href="spark-core-KVStore.html" class="page">KVStore</a> that&#8230;&#8203;FIXME</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ElementTrackingStore takes the following to be created:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="store"></a> <a href="spark-core-KVStore.html" class="page">KVStore</a></p>
+</li>
+<li>
+<p><a id="conf"></a> <a href="SparkConf.html" class="page">SparkConf</a></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p><code>ElementTrackingStore</code> is <a href="#creating-instance">created</a> when&#8230;&#8203;FIXME</p>
+<p>ElementTrackingStore is created when&#8230;&#8203;FIXME</p>
 </div>
-<table id="internal-registries" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. ElementTrackingStore&#8217;s Internal Properties (e.g. Registries, Counters and Flags)</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>triggers</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="triggers"></a> <a href="#Trigger">Triggers</a> per class</p>
-<p class="tableblock">Used when&#8230;&#8203;FIXME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>flushTriggers</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="flushTriggers"></a> Functions that&#8230;&#8203;FIXME</p>
-<p class="tableblock">Used when&#8230;&#8203;FIXME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>executor</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="executor"></a> Java <code>ExecutorService</code> that&#8230;&#8203;FIXME</p>
-<p class="tableblock">Used when&#8230;&#8203;FIXME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>stopped</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="stopped"></a> <code>stopped</code> flag to control&#8230;&#8203;FIXME</p>
-<p class="tableblock">Used when&#8230;&#8203;FIXME</p></td>
-</tr>
-</tbody>
-</table>
-<div class="sect2">
-<h3 id="write-method"><a class="anchor" href="#write-method"></a><a class="link" href="#write-method"><a id="write"></a> <code>write</code> Method</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="write-method"><a class="anchor" href="#write-method"></a><a class="link" href="#write-method"><a id="write"></a> <code>write</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">write(value: Any, checkTriggers: Boolean): Unit</code></pre>
@@ -2027,31 +2013,52 @@
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="trigger"><a class="anchor" href="#trigger"></a><a class="link" href="#trigger"><a id="Trigger"></a> Trigger</a></h3>
+</div>
+<div class="sect1">
+<h2 id="trigger"><a class="anchor" href="#trigger"></a><a class="link" href="#trigger"><a id="Trigger"></a> Trigger</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><code>Trigger</code> is&#8230;&#8203;FIXME</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="creating-elementtrackingstore-instance"><a class="anchor" href="#creating-elementtrackingstore-instance"></a><a class="link" href="#creating-elementtrackingstore-instance"><a id="creating-instance"></a> Creating ElementTrackingStore Instance</a></h3>
-<div class="paragraph">
-<p><code>ElementTrackingStore</code> takes the following when created:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a id="store"></a> <a href="spark-core-KVStore.adoc">KVStore</a></p>
-</li>
-<li>
-<p><a id="conf"></a> <a href="SparkConf.html" class="page">SparkConf</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><code>ElementTrackingStore</code> initializes the <a href="#internal-registries">internal registries and counters</a>.</p>
-</div>
-</div>
+<div class="sect1">
+<h2 id="internal-properties"><a class="anchor" href="#internal-properties"></a><a class="link" href="#internal-properties"><a id="internal-properties"></a> Internal Properties</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>triggers</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="triggers"></a> <a href="#Trigger">Triggers</a> per class</p>
+<p class="tableblock">Used when&#8230;&#8203;FIXME</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>flushTriggers</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="flushTriggers"></a> Functions that&#8230;&#8203;FIXME</p>
+<p class="tableblock">Used when&#8230;&#8203;FIXME</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>executor</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="executor"></a> Java <code>ExecutorService</code> that&#8230;&#8203;FIXME</p>
+<p class="tableblock">Used when&#8230;&#8203;FIXME</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>stopped</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="stopped"></a> <code>stopped</code> flag to control&#8230;&#8203;FIXME</p>
+<p class="tableblock">Used when&#8230;&#8203;FIXME</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </article>

@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -1940,7 +1940,7 @@
   <ul>
     <li><a href="index.html">Apache Spark</a></li>
     <li>Monitoring, Tuning, Debugging and Testing</li>
-    <li><a href="spark-scheduler-SparkListener.html">SparkListener</a></li>
+    <li><a href="SparkListener.html">SparkListener</a></li>
     <li><a href="spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a></li>
   </ul>
 </nav>
@@ -1964,7 +1964,7 @@ FIXME
 </table>
 </div>
 <div class="paragraph">
-<p><code>ExecutorAllocationListener</code> is a <a href="spark-scheduler-SparkListener.adoc">SparkListener</a> that intercepts events about stages, tasks, and executors, i.e. onStageSubmitted, onStageCompleted, onTaskStart, onTaskEnd, onExecutorAdded, and onExecutorRemoved. Using the events <a href="spark-ExecutorAllocationManager.adoc">ExecutorAllocationManager</a> can manage the pool of dynamically managed executors.</p>
+<p><code>ExecutorAllocationListener</code> is a <a href="SparkListener.html" class="page">SparkListener</a> that intercepts events about stages, tasks, and executors, i.e. onStageSubmitted, onStageCompleted, onTaskStart, onTaskEnd, onExecutorAdded, and onExecutorRemoved. Using the events <a href="spark-ExecutorAllocationManager.adoc">ExecutorAllocationManager</a> can manage the pool of dynamically managed executors.</p>
 </div>
 <div class="admonitionblock note">
 <table>

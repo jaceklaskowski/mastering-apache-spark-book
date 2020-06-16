@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -1951,7 +1951,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>SparkListenerBus</code> is a <code>private[spark]</code> <a href="#ListenerBus">ListenerBus</a> for <a href="spark-scheduler-SparkListener.adoc#SparkListenerInterface">SparkListenerInterface</a> listeners that process <a href="spark-scheduler-SparkListener.adoc#SparkListenerEvent">SparkListenerEvent</a> events.</p>
+<p><code>SparkListenerBus</code> is a <code>private[spark]</code> <a href="#ListenerBus">ListenerBus</a> for <a href="SparkListener.html#SparkListenerInterface" class="page">SparkListenerInterface</a> listeners that process <a href="SparkListener.html#SparkListenerEvent" class="page">SparkListenerEvent</a> events.</p>
 </div>
 <div class="paragraph">
 <p><code>SparkListenerBus</code> comes with a custom <code>doPostEvent</code> method that simply relays <code>SparkListenerEvent</code> events to appropriate <code>SparkListenerInterface</code> methods.</p>
@@ -2010,7 +2010,7 @@ There are two custom <code>SparkListenerBus</code> listeners: <a href="scheduler
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>onTaskGettingResult</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="spark-scheduler-SparkListener.adoc#SparkListenerTaskEnd">SparkListenerTaskEnd</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="SparkListener.html#SparkListenerTaskEnd" class="page">SparkListenerTaskEnd</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>onTaskEnd</code></p></td>
 </tr>
 <tr>

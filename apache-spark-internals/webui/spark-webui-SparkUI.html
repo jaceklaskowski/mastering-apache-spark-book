@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="../SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -1978,7 +1978,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Live <a href="spark-SparkContext-creating-instance-internals.adoc#_statusStore">AppStatusStore</a> (with a <a href="spark-core-ElementTrackingStore.adoc">ElementTrackingStore</a> using an <a href="spark-core-InMemoryStore.adoc">InMemoryStore</a> and a live <a href="../spark-SparkListener-AppStatusListener.html" class="page">AppStatusListener</a>)</p>
+<p>Live <a href="spark-SparkContext-creating-instance-internals.adoc#_statusStore">AppStatusStore</a> (with a <a href="spark-core-ElementTrackingStore.adoc">ElementTrackingStore</a> using an <a href="spark-core-InMemoryStore.adoc">InMemoryStore</a> and a <a href="../core/AppStatusListener.html" class="page">AppStatusListener</a> for a live Spark application)</p>
 </li>
 <li>
 <p>Name of the Spark application that is exactly the value of <a href="../SparkConf.html#spark.app.name" class="page">spark.app.name</a> configuration property</p>
@@ -2273,7 +2273,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p><code>create</code> creates a <code>SparkUI</code> backed by a <a href="spark-core-AppStatusStore.adoc">AppStatusStore</a>.</p>
+<p><code>create</code> creates a <code>SparkUI</code> backed by a <a href="../core/AppStatusStore.html" class="page">AppStatusStore</a>.</p>
 </div>
 <div class="paragraph">
 <p>Internally, <code>create</code> simply creates a new <a href="#creating-instance">SparkUI</a> (with the predefined Spark version).</p>
@@ -2311,7 +2311,7 @@ FIXME
 <div class="ulist">
 <ul>
 <li>
-<p><a id="store"></a> <a href="spark-core-AppStatusStore.adoc">AppStatusStore</a></p>
+<p><a id="store"></a> <a href="../core/AppStatusStore.html" class="page">AppStatusStore</a></p>
 </li>
 <li>
 <p><a id="sc"></a> <a href="../SparkContext.html" class="page">SparkContext</a></p>

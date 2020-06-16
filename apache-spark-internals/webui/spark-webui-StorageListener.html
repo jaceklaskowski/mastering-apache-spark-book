@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="../SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -2091,7 +2091,7 @@ StorageListener is created when <code>SparkUI</code> <a href="spark-webui-SparkU
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>onBlockUpdated</code> is part of <a href="spark-scheduler-SparkListener.adoc#onBlockUpdated">SparkListener contract</a> to announce that there was a change in a block status (on a <code>BlockManager</code> on an executor).
+<code>onBlockUpdated</code> is part of <a href="../SparkListener.html#onBlockUpdated" class="page">SparkListener contract</a> to announce that there was a change in a block status (on a <code>BlockManager</code> on an executor).
 </td>
 </tr>
 </table>
@@ -2116,7 +2116,7 @@ StorageListener is created when <code>SparkUI</code> <a href="spark-webui-SparkU
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>onStageCompleted</code> is part of <a href="spark-scheduler-SparkListener.adoc#onStageCompleted">SparkListener contract</a> to announce that a stage has finished.
+<code>onStageCompleted</code> is part of <a href="../SparkListener.html#onStageCompleted" class="page">SparkListener contract</a> to announce that a stage has finished.
 </td>
 </tr>
 </table>
@@ -2141,7 +2141,7 @@ StorageListener is created when <code>SparkUI</code> <a href="spark-webui-SparkU
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>onStageSubmitted</code> is part of <a href="spark-scheduler-SparkListener.adoc#onStageSubmitted">SparkListener contract</a> to announce that the missing tasks of a stage were submitted for execution.
+<code>onStageSubmitted</code> is part of <a href="../SparkListener.html#onStageSubmitted" class="page">SparkListener contract</a> to announce that the missing tasks of a stage were submitted for execution.
 </td>
 </tr>
 </table>
@@ -2166,7 +2166,7 @@ StorageListener is created when <code>SparkUI</code> <a href="spark-webui-SparkU
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>onUnpersistRDD</code> is part of <a href="spark-scheduler-SparkListener.adoc#onUnpersistRDD">SparkListener contract</a> to announce that an RDD has been unpersisted.
+<code>onUnpersistRDD</code> is part of <a href="../SparkListener.html#onUnpersistRDD" class="page">SparkListener contract</a> to announce that an RDD has been unpersisted.
 </td>
 </tr>
 </table>

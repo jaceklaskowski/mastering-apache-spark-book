@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="../SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -2512,7 +2512,7 @@
 <p>The <a href="#cleanupStateForJobAndIndependentStages">state of the <code>job</code> and independent stages are cleaned up</a>.</p>
 </div>
 <div class="paragraph">
-<p>Ultimately, <a href="../spark-scheduler-SparkListener.html#SparkListenerJobEnd" class="page">SparkListenerJobEnd</a> is posted to <a href="LiveListenerBus.html" class="page">LiveListenerBus</a> (as <a href="#listenerBus">listenerBus</a>) for the <code>job</code>, the current time (in millis) and <code>JobSucceeded</code> job result.</p>
+<p>Ultimately, <a href="../SparkListener.html#SparkListenerJobEnd" class="page">SparkListenerJobEnd</a> is posted to <a href="LiveListenerBus.html" class="page">LiveListenerBus</a> (as <a href="#listenerBus">listenerBus</a>) for the <code>job</code>, the current time (in millis) and <code>JobSucceeded</code> job result.</p>
 </div>
 <div class="paragraph">
 <p>markMapStageJobAsFinished is used in <a href="DAGSchedulerEventProcessLoop.html#handleMapStageSubmitted" class="page">handleMapStageSubmitted</a> and <a href="DAGSchedulerEventProcessLoop.html#handleTaskCompletion" class="page">handleTaskCompletion</a>.</p>
@@ -3120,7 +3120,7 @@ FIXME&#8230;&#8203;IMAGE with ShuffleDependencies queried
 <p>submitMissingTasks requests the stage for a <a href="Stage.html#makeNewStageAttempt" class="page">new stage attempt</a>.</p>
 </div>
 <div class="paragraph">
-<p>submitMissingTasks requests the <a href="#listenerBus">LiveListenerBus</a> to <a href="LiveListenerBus.html#post" class="page">post</a> a <a href="../spark-scheduler-SparkListener.html#SparkListenerStageSubmitted" class="page">SparkListenerStageSubmitted</a> event.</p>
+<p>submitMissingTasks requests the <a href="#listenerBus">LiveListenerBus</a> to <a href="LiveListenerBus.html#post" class="page">post</a> a <a href="../SparkListener.html#SparkListenerStageSubmitted" class="page">SparkListenerStageSubmitted</a> event.</p>
 </div>
 <div class="paragraph">
 <p>submitMissingTasks uses the <a href="#closureSerializer">closure Serializer</a> to <a href="../serializer/Serializer.html#serialize" class="page">serialize</a> the stage and create a so-called task binary. submitMissingTasks serializes the RDD (of the stage) and either the ShuffleDependency or the compute function based on the type of the stage, i.e. ShuffleMapStage and ResultStage, respectively.</p>
@@ -3537,7 +3537,7 @@ FIXME Where are <code>Stage.latestInfo.accumulables</code> and <code>CompletionE
 </div>
 </div>
 <div class="paragraph">
-<p>executorHeartbeatReceived posts a <a href="../spark-scheduler-SparkListener.html#SparkListenerExecutorMetricsUpdate" class="page">SparkListenerExecutorMetricsUpdate</a> (to <a href="#listenerBus">listenerBus</a>) and informs <a href="../storage/BlockManagerMaster.html" class="page">BlockManagerMaster</a> that <code>blockManagerId</code> block manager is alive (by posting <a href="../storage/BlockManagerMaster.html#BlockManagerHeartbeat" class="page">BlockManagerHeartbeat</a>).</p>
+<p>executorHeartbeatReceived posts a <a href="../SparkListener.html#SparkListenerExecutorMetricsUpdate" class="page">SparkListenerExecutorMetricsUpdate</a> (to <a href="#listenerBus">listenerBus</a>) and informs <a href="../storage/BlockManagerMaster.html" class="page">BlockManagerMaster</a> that <code>blockManagerId</code> block manager is alive (by posting <a href="../storage/BlockManagerMaster.html#BlockManagerHeartbeat" class="page">BlockManagerHeartbeat</a>).</p>
 </div>
 <div class="paragraph">
 <p>executorHeartbeatReceived is used when TaskSchedulerImpl is requested to <a href="TaskSchedulerImpl.html#executorHeartbeatReceived" class="page">handle an executor heartbeat</a>.</p>
@@ -3758,7 +3758,7 @@ Missing parents: [missingStages]</code></pre>
 <p>handleJobSubmitted <a href="#jobIdToStageIds">finds all the registered stages for the input <code>jobId</code></a> and collects <a href="Stage.html#latestInfo" class="page">their latest <code>StageInfo</code></a>.</p>
 </div>
 <div class="paragraph">
-<p>In the end, handleJobSubmitted posts  <a href="../spark-scheduler-SparkListener.html#SparkListenerJobStart" class="page">SparkListenerJobStart</a> message to <a href="LiveListenerBus.html" class="page">LiveListenerBus</a> and <a href="#submitStage">submits the stage</a>.</p>
+<p>In the end, handleJobSubmitted posts  <a href="../SparkListener.html#SparkListenerJobStart" class="page">SparkListenerJobStart</a> message to <a href="LiveListenerBus.html" class="page">LiveListenerBus</a> and <a href="#submitStage">submits the stage</a>.</p>
 </div>
 <div class="paragraph">
 <p>handleJobSubmitted is used when DAGSchedulerEventProcessLoop is requested to handle a <a href="DAGSchedulerEvent.html#JobSubmitted" class="page">JobSubmitted</a> event.</p>

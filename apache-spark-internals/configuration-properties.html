@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -2343,7 +2343,7 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 <p><code>TaskSchedulerImpl</code> is <a href="scheduler/TaskSchedulerImpl.html#CPUS_PER_TASK" class="page">created</a></p>
 </li>
 <li>
-<p><code>AppStatusListener</code> is requested to <a href="spark-SparkListener-AppStatusListener.html#onEnvironmentUpdate" class="page">handle an SparkListenerEnvironmentUpdate event</a></p>
+<p>AppStatusListener is requested to <a href="core/AppStatusListener.html#onEnvironmentUpdate" class="page">handle an SparkListenerEnvironmentUpdate event</a></p>
 </li>
 <li>
 <p><code>LocalityPreferredContainerPlacementStrategy</code> is requested to <code>numExecutorsPending</code></p>
@@ -3057,7 +3057,7 @@ Use web UI to know the current scheduling mode (e.g. <a href="#spark-webui-envir
 <h2 id="spark-extralisteners"><a class="anchor" href="#spark-extralisteners"></a><a class="link" href="#spark-extralisteners"><a id="spark.extraListeners"></a> spark.extraListeners</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A comma-separated list of fully-qualified class names of <a href="spark-scheduler-SparkListener.html" class="page">SparkListener</a>s (to be registered when SparkContext is <a href="spark-SparkContext-creating-instance-internals.html#registering_SparkListeners" class="page">created</a>)</p>
+<p>A comma-separated list of fully-qualified class names of <a href="SparkListener.html" class="page">SparkListener</a>s (to be registered when SparkContext is <a href="spark-SparkContext-creating-instance-internals.html#registering_SparkListeners" class="page">created</a>)</p>
 </div>
 <div class="paragraph">
 <p>Default: (empty)</p>

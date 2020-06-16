@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="../SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -1951,7 +1951,7 @@
 <h2 id="storagestatus"><a class="anchor" href="#storagestatus"></a><a class="link" href="#storagestatus"><a id="StorageStatus"></a> StorageStatus</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>StorageStatus</code> is a developer API that Spark uses to pass "just enough" information about registered <a href="BlockManager.html" class="page">BlockManagers</a> in a Spark application between Spark services (mostly for monitoring purposes like <a href="spark-webui.adoc">web UI</a> or <a href="spark-scheduler-SparkListener.adoc">SparkListeners</a>).</p>
+<p><code>StorageStatus</code> is a developer API that Spark uses to pass "just enough" information about registered <a href="BlockManager.html" class="page">BlockManagers</a> in a Spark application between Spark services (mostly for monitoring purposes like <a href="spark-webui.adoc">web UI</a> or <a href="../SparkListener.html" class="page">SparkListener</a>s).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1969,7 +1969,7 @@
 <p><a href="../SparkContext.html#getExecutorStorageStatus" class="page">SparkContext.getExecutorStorageStatus</a></p>
 </li>
 <li>
-<p>Being a <a href="spark-scheduler-SparkListener.adoc">SparkListener</a> and intercepting <a href="spark-scheduler-SparkListener.adoc#onBlockManagerAdded">onBlockManagerAdded</a> and <a href="spark-scheduler-SparkListener.adoc#onBlockManagerRemoved">onBlockManagerRemoved</a> events</p>
+<p>Being a <a href="../SparkListener.html" class="page">SparkListener</a> and intercepting <a href="../SparkListener.html#onBlockManagerAdded" class="page">onBlockManagerAdded</a> and <a href="../SparkListener.html#onBlockManagerRemoved" class="page">onBlockManagerRemoved</a> events</p>
 </li>
 </ul>
 </div>

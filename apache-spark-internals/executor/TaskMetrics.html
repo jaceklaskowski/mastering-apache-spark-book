@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="../SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -1978,7 +1978,7 @@
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Use <a href="#spark-scheduler-SparkListener.adoc#onTaskEnd" class="page unresolved">SparkListener.onTaskEnd</a> to intercept <a href="#spark-scheduler-SparkListener.adoc#SparkListenerTaskEnd" class="page unresolved">SparkListenerTaskEnd</a> events to access the <a href="#TaskMetrics">TaskMetrics</a> of a task that has finished successfully.
+Use <a href="../SparkListener.html#onTaskEnd" class="page">SparkListener.onTaskEnd</a> to intercept <a href="../SparkListener.html#SparkListenerTaskEnd" class="page">SparkListenerTaskEnd</a> events to access the <a href="#TaskMetrics">TaskMetrics</a> of a task that has finished successfully.
 </td>
 </tr>
 </table>
@@ -2497,7 +2497,7 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>fromAccumulatorInfos</code> is used exclusively when <code>AppStatusListener</code> is requested to <a href="../spark-SparkListener-AppStatusListener.html#onExecutorMetricsUpdate" class="page">onExecutorMetricsUpdate</a> (for <a href="../spark-history-server/index.html" class="page">Spark History Server</a> only).
+<code>fromAccumulatorInfos</code> is used exclusively when <code>AppStatusListener</code> is requested to <a href="../core/AppStatusListener.html#onExecutorMetricsUpdate" class="page">onExecutorMetricsUpdate</a> (for <a href="../spark-history-server/index.html" class="page">Spark History Server</a> only).
 </td>
 </tr>
 </table>

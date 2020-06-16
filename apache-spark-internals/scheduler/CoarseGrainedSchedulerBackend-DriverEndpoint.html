@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="../SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -2622,7 +2622,7 @@ DriverEndpoint uses the input <code>executorRef</code> as the executor&#8217;s <
 <p>DriverEndpoint replies <code>true</code> (to acknowledge the message).</p>
 </div>
 <div class="paragraph">
-<p>DriverEndpoint then announces the new executor by posting <a href="spark-scheduler-SparkListener.adoc#SparkListenerExecutorAdded">SparkListenerExecutorAdded</a> to <a href="LiveListenerBus.html" class="page">LiveListenerBus</a> (with the current time, executor id, and <code>ExecutorData</code>).</p>
+<p>DriverEndpoint then announces the new executor by posting <a href="../SparkListener.html#SparkListenerExecutorAdded" class="page">SparkListenerExecutorAdded</a> to <a href="LiveListenerBus.html" class="page">LiveListenerBus</a> (with the current time, executor id, and <code>ExecutorData</code>).</p>
 </div>
 <div class="paragraph">
 <p>In the end, DriverEndpoint <a href="#makeOffers">makes executor resource offers (for launching tasks)</a>.</p>
@@ -2816,7 +2816,7 @@ extends CoarseGrainedClusterMessage</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p><code>removeExecutor</code> posts <a href="spark-scheduler-SparkListener.adoc#SparkListenerExecutorRemoved">SparkListenerExecutorRemoved</a> to <a href="LiveListenerBus.html" class="page">LiveListenerBus</a> (with the <code>executorId</code> executor).</p>
+<p><code>removeExecutor</code> posts <a href="../SparkListener.html#SparkListenerExecutorRemoved" class="page">SparkListenerExecutorRemoved</a> to <a href="LiveListenerBus.html" class="page">LiveListenerBus</a> (with the <code>executorId</code> executor).</p>
 </div>
 <div class="paragraph">
 <p>If however the <code>executorId</code> executor could not be found, <code>removeExecutor</code> <a href="../storage/BlockManagerMaster.html#removeExecutorAsync" class="page">requests <code>BlockManagerMaster</code> to remove the executor asynchronously</a>.</p>

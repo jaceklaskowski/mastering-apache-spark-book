@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="../SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -2457,7 +2457,7 @@ Registering a <code>BlockManager</code> can only happen once for an executor (id
 </ul>
 </div>
 <div class="paragraph">
-<p>In the end, register requests the <a href="#listenerBus">LiveListenerBus</a> to <a href="../scheduler/LiveListenerBus.html#post" class="page">post</a> a <a href="../spark-scheduler-SparkListener.html#SparkListenerBlockManagerAdded" class="page">SparkListenerBlockManagerAdded</a> message.</p>
+<p>In the end, register requests the <a href="#listenerBus">LiveListenerBus</a> to <a href="../scheduler/LiveListenerBus.html#post" class="page">post</a> a <a href="../SparkListener.html#SparkListenerBlockManagerAdded" class="page">SparkListenerBlockManagerAdded</a> message.</p>
 </div>
 <div class="paragraph">
 <p>register is used when BlockManagerMasterEndpoint is requested to handle <a href="#RegisterBlockManager">RegisterBlockManager</a> message.</p>
@@ -2515,7 +2515,7 @@ Registering a <code>BlockManager</code> can only happen once for an executor (id
 <p>It then goes over all the blocks for the <code>BlockManager</code>, and removes the executor for each block from <code>blockLocations</code> registry.</p>
 </div>
 <div class="paragraph">
-<p><a href="spark-scheduler-SparkListener.adoc#SparkListenerBlockManagerRemoved">SparkListenerBlockManagerRemoved(System.currentTimeMillis(), blockManagerId)</a> is posted to <a href="../SparkContext.html#listenerBus" class="page">listenerBus</a>.</p>
+<p><a href="../SparkListener.html#SparkListenerBlockManagerRemoved" class="page">SparkListenerBlockManagerRemoved(System.currentTimeMillis(), blockManagerId)</a> is posted to <a href="../SparkContext.html#listenerBus" class="page">listenerBus</a>.</p>
 </div>
 <div class="paragraph">
 <p>You should then see the following INFO message in the logs:</p>

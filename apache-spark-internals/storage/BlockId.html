@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="../SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -1977,7 +1977,7 @@
 <p>NettyBlockTransferService is requested to <a href="NettyBlockTransferService.html#uploadBlock" class="page">upload a block</a></p>
 </li>
 <li>
-<p>AppStatusListener is requested to <a href="../spark-SparkListener-AppStatusListener.html#updateRDDBlock" class="page">updateRDDBlock</a>, <a href="../spark-SparkListener-AppStatusListener.html#updateStreamBlock" class="page">updateStreamBlock</a></p>
+<p>AppStatusListener is requested to <a href="../core/AppStatusListener.html#updateRDDBlock" class="page">updateRDDBlock</a>, <a href="../core/AppStatusListener.html#updateStreamBlock" class="page">updateStreamBlock</a></p>
 </li>
 <li>
 <p>BlockManager is requested to <a href="BlockManager.html#putBlockDataAsStream" class="page">putBlockDataAsStream</a></p>
@@ -2019,7 +2019,7 @@
 <p>BlockManager is requested to <a href="BlockManager.html#removeBroadcast" class="page">remove all the blocks of a broadcast variable</a></p>
 </li>
 <li>
-<p>AppStatusListener is requested to <a href="../spark-SparkListener-AppStatusListener.html#updateBroadcastBlock" class="page">updateBroadcastBlock</a> (when <a href="../spark-SparkListener-AppStatusListener.html#onBlockUpdated" class="page">onBlockUpdated</a> for a <code>BroadcastBlockId</code>)</p>
+<p>AppStatusListener is requested to <a href="../core/AppStatusListener.html#updateBroadcastBlock" class="page">updateBroadcastBlock</a> (when <a href="../core/AppStatusListener.html#onBlockUpdated" class="page">onBlockUpdated</a> for a <code>BroadcastBlockId</code>)</p>
 </li>
 </ul>
 </div>
@@ -2056,7 +2056,7 @@
 <p><code>DAGScheduler</code> is requested for the <a href="../scheduler/DAGScheduler.html#getCacheLocs" class="page">BlockManagers (executors) for cached RDD partitions</a></p>
 </li>
 <li>
-<p><code>AppStatusListener</code> is requested to <a href="../spark-SparkListener-AppStatusListener.html#updateRDDBlock" class="page">updateRDDBlock</a> (when <a href="../spark-SparkListener-AppStatusListener.html#onBlockUpdated" class="page">onBlockUpdated</a> for a <code>RDDBlockId</code>)</p>
+<p><code>AppStatusListener</code> is requested to <a href="../core/AppStatusListener.html#updateRDDBlock" class="page">updateRDDBlock</a> (when <a href="../core/AppStatusListener.html#onBlockUpdated" class="page">onBlockUpdated</a> for a <code>RDDBlockId</code>)</p>
 </li>
 </ul>
 </div>

@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -2207,7 +2207,7 @@ addFile(
 <p><code>unpersistRDD</code> removes <code>rddId</code> from <a href="#persistentRdds">persistentRdds</a> registry.</p>
 </div>
 <div class="paragraph">
-<p>In the end, <code>unpersistRDD</code> posts a <a href="spark-scheduler-SparkListener.adoc#SparkListenerUnpersistRDD">SparkListenerUnpersistRDD</a> (with <code>rddId</code>) to <a href="#listenerBus">LiveListenerBus Event Bus</a>.</p>
+<p>In the end, <code>unpersistRDD</code> posts a <a href="SparkListener.html#SparkListenerUnpersistRDD" class="page">SparkListenerUnpersistRDD</a> (with <code>rddId</code>) to <a href="#listenerBus">LiveListenerBus Event Bus</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3084,7 +3084,7 @@ FIXME
 <p><code>unpersist</code> removes an RDD from the master&#8217;s <a href="storage/BlockManager.html" class="page">Block Manager</a> (calls <code>removeRdd(rddId: Int, blocking: Boolean)</code>) and the internal <a href="#persistentRdds">persistentRdds</a> mapping.</p>
 </div>
 <div class="paragraph">
-<p>It finally posts <a href="spark-scheduler-SparkListener.adoc#SparkListenerUnpersistRDD">SparkListenerUnpersistRDD</a> message to <code>listenerBus</code>.</p>
+<p>It finally posts <a href="SparkListener.html#SparkListenerUnpersistRDD" class="page">SparkListenerUnpersistRDD</a> message to <code>listenerBus</code>.</p>
 </div>
 </div>
 </div>
@@ -3582,7 +3582,7 @@ Read <a href="spark-TaskContext.adoc">TaskContext</a>.
 </div>
 </div>
 <div class="paragraph">
-<p>You can register a custom <a href="spark-scheduler-SparkListener.adoc#SparkListenerInterface">SparkListenerInterface</a> using <code>addSparkListener</code> method</p>
+<p>You can register a custom <a href="SparkListener.html#SparkListenerInterface" class="page">SparkListenerInterface</a> using <code>addSparkListener</code> method</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3625,7 +3625,7 @@ FIXME Make it an advanced exercise.
 <h2 id="events"><a class="anchor" href="#events"></a><a class="link" href="#events"><a id="events"></a> Events</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When a Spark context starts, it triggers <a href="spark-scheduler-SparkListener.adoc#SparkListenerEnvironmentUpdate">SparkListenerEnvironmentUpdate</a> and <a href="spark-scheduler-SparkListener.adoc#SparkListenerApplicationStart">SparkListenerApplicationStart</a> messages.</p>
+<p>When a Spark context starts, it triggers <a href="SparkListener.html#SparkListenerEnvironmentUpdate" class="page">SparkListenerEnvironmentUpdate</a> and <a href="SparkListener.html#SparkListenerApplicationStart" class="page">SparkListenerApplicationStart</a> messages.</p>
 </div>
 <div class="paragraph">
 <p>Refer to the section <a href="#creating-instance">SparkContext&#8217;s initialization</a>.</p>

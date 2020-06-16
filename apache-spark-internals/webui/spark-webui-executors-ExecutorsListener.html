@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="../SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -1951,7 +1951,7 @@
 <h2 id="executorslistener-spark-listener"><a class="anchor" href="#executorslistener-spark-listener"></a><a class="link" href="#executorslistener-spark-listener"><a id="ExecutorsListener"></a> ExecutorsListener Spark Listener</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>ExecutorsListener</code> is a  <a href="spark-scheduler-SparkListener.adoc">SparkListener</a> that tracks <a href="#internal-registries">executors and their tasks</a> in a Spark application for <a href="spark-webui-StagePage.adoc">Stage Details</a> page, <a href="spark-webui-jobs.adoc">Jobs</a> tab and <code>/allexecutors</code> REST endpoint.</p>
+<p><code>ExecutorsListener</code> is a <a href="../SparkListener.html" class="page">SparkListener</a> that tracks <a href="#internal-registries">executors and their tasks</a> in a Spark application for <a href="spark-webui-StagePage.adoc">Stage Details</a> page, <a href="spark-webui-jobs.adoc">Jobs</a> tab and <code>/allexecutors</code> REST endpoint.</p>
 </div>
 <table id="SparkListener-callbacks" class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. ExecutorsListener&#8217;s SparkListener Callbacks (in alphabetical order)</caption>
@@ -2029,7 +2029,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="executorEvents"></a> <code>executorEvents</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A collection of <a href="spark-scheduler-SparkListener.adoc#SparkListenerEvent">SparkListenerEvent</a>s.</p>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A collection of <a href="../SparkListener.html#SparkListenerEvent" class="page">SparkListenerEvent</a>s.</p>
 <p class="tableblock">Used to build the event timeline in <a href="spark-webui-AllJobsPage.adoc">AllJobsPage</a> and <a href="spark-webui-jobs.adoc#JobPage">Details for Job</a> pages.</p></td>
 </tr>
 </tbody>
@@ -2123,7 +2123,7 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>onApplicationStart</code> is part of <a href="spark-scheduler-SparkListener.adoc#onApplicationStart">SparkListener contract</a> to announce that a Spark application has been started.
+<code>onApplicationStart</code> is part of <a href="../SparkListener.html#onApplicationStart" class="page">SparkListener contract</a> to announce that a Spark application has been started.
 </td>
 </tr>
 </table>
@@ -2165,7 +2165,7 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>onExecutorAdded</code> is part of <a href="spark-scheduler-SparkListener.adoc#onExecutorAdded">SparkListener contract</a> to announce that a new executor has been registered with the Spark application.
+<code>onExecutorAdded</code> is part of <a href="../SparkListener.html#onExecutorAdded" class="page">SparkListener contract</a> to announce that a new executor has been registered with the Spark application.
 </td>
 </tr>
 </table>
@@ -2221,7 +2221,7 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>onExecutorRemoved</code> is part of <a href="spark-scheduler-SparkListener.adoc#onExecutorRemoved">SparkListener contract</a> to announce that an executor has been unregistered with the Spark application.
+<code>onExecutorRemoved</code> is part of <a href="../SparkListener.html#onExecutorRemoved" class="page">SparkListener contract</a> to announce that an executor has been unregistered with the Spark application.
 </td>
 </tr>
 </table>
@@ -2247,7 +2247,7 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>onTaskStart</code> is part of <a href="spark-scheduler-SparkListener.adoc#onTaskStart">SparkListener contract</a> to announce that a task has been started.
+<code>onTaskStart</code> is part of <a href="../SparkListener.html#onTaskStart" class="page">SparkListener contract</a> to announce that a task has been started.
 </td>
 </tr>
 </table>
@@ -2289,7 +2289,7 @@ FIXME
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>onTaskEnd</code> is part of <a href="spark-scheduler-SparkListener.adoc#onTaskEnd">SparkListener contract</a> to announce that a task has ended.
+<code>onTaskEnd</code> is part of <a href="../SparkListener.html#onTaskEnd" class="page">SparkListener contract</a> to announce that a task has ended.
 </td>
 </tr>
 </table>

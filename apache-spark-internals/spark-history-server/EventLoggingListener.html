@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="../SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="../core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -1951,13 +1951,13 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>EventLoggingListener</strong> is a <a href="../spark-scheduler-SparkListener.html" class="page">SparkListener</a> that <a href="#logEvent">writes out JSON-encoded events</a> of a Spark application with event logging enabled (based on <a href="../configuration-properties.html#spark.eventLog.enabled" class="page">spark.eventLog.enabled</a> configuration property).</p>
+<p><strong>EventLoggingListener</strong> is a <a href="../SparkListener.html" class="page">SparkListener</a> that <a href="#logEvent">writes out JSON-encoded events</a> of a Spark application with event logging enabled (based on <a href="../configuration-properties.html#spark.eventLog.enabled" class="page">spark.eventLog.enabled</a> configuration property).</p>
 </div>
 <div class="paragraph">
 <p>EventLoggingListener supports custom <a href="configuration-properties.html#EventLoggingListener" class="page">configuration properties</a>.</p>
 </div>
 <div class="paragraph">
-<p>EventLoggingListener writes out log files to a directory (based on <a href="../configuration-properties.html#spark.eventLog.dir" class="page">spark.eventLog.dir</a> configuration property). All <a href="../spark-scheduler-SparkListener.html" class="page">Spark events</a> are logged (but <a href="../spark-scheduler-SparkListener.html#SparkListenerBlockUpdated" class="page">SparkListenerBlockUpdated</a> and <a href="../spark-scheduler-SparkListener.html#SparkListenerExecutorMetricsUpdate" class="page">SparkListenerExecutorMetricsUpdate</a>).</p>
+<p>EventLoggingListener writes out log files to a directory (based on <a href="../configuration-properties.html#spark.eventLog.dir" class="page">spark.eventLog.dir</a> configuration property). All <a href="../SparkListener.html" class="page">SparkListener</a>s are logged (but <a href="../SparkListener.html#SparkListenerBlockUpdated" class="page">SparkListenerBlockUpdated</a> and <a href="../SparkListener.html#SparkListenerExecutorMetricsUpdate" class="page">SparkListenerExecutorMetricsUpdate</a>).</p>
 </div>
 <div class="admonitionblock tip">
 <table>

@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -1975,7 +1975,7 @@
 </table>
 </div>
 <div class="paragraph">
-<p><code>HeartbeatReceiver</code> is a <a href="spark-scheduler-SparkListener.adoc">SparkListener</a> to get notified when <a href="#onExecutorAdded">a new executor is added</a> to or <a href="#onExecutorRemoved">no longer available</a> in a Spark application. <code>HeartbeatReceiver</code> tracks executors (in <a href="#executorLastSeen">executorLastSeen</a> registry) to handle <a href="#Heartbeat">Heartbeat</a> and <a href="#ExpireDeadHosts">ExpireDeadHosts</a> messages from executors that are assigned to the Spark application.</p>
+<p><code>HeartbeatReceiver</code> is a <a href="SparkListener.html" class="page">SparkListener</a> to get notified when <a href="#onExecutorAdded">a new executor is added</a> to or <a href="#onExecutorRemoved">no longer available</a> in a Spark application. <code>HeartbeatReceiver</code> tracks executors (in <a href="#executorLastSeen">executorLastSeen</a> registry) to handle <a href="#Heartbeat">Heartbeat</a> and <a href="#ExpireDeadHosts">ExpireDeadHosts</a> messages from executors that are assigned to the Spark application.</p>
 </div>
 <table id="messages" class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. HeartbeatReceiver RPC Endpoint&#8217;s Messages (in alphabetical order)</caption>
@@ -2282,7 +2282,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>onExecutorAdded</code> is part of <a href="spark-scheduler-SparkListener.adoc#onExecutorAdded">SparkListener contract</a> to announce that a new executor was registered with a Spark application.
+<code>onExecutorAdded</code> is part of <a href="SparkListener.html#onExecutorAdded" class="page">SparkListener contract</a> to announce that a new executor was registered with a Spark application.
 </td>
 </tr>
 </table>
@@ -2328,7 +2328,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>onExecutorRemoved</code> is part of <a href="spark-scheduler-SparkListener.adoc#onExecutorRemoved">SparkListener contract</a> to announce that an executor is no longer available for a Spark application.
+<code>onExecutorRemoved</code> is part of <a href="SparkListener.html#onExecutorRemoved" class="page">SparkListener contract</a> to announce that an executor is no longer available for a Spark application.
 </td>
 </tr>
 </table>

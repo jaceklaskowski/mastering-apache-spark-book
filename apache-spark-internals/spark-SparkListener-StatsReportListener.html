@@ -773,9 +773,6 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-core-AppStatusStore.html">AppStatusStore</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -843,11 +840,8 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-scheduler-SparkListener.html">SparkListener</a>
+    <a class="nav-link" href="SparkListener.html">SparkListener</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-SparkListener-AppStatusListener.html">AppStatusListener</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="spark-SparkListener-ExecutorAllocationListener.html">ExecutorAllocationListener</a>
   </li>
@@ -964,6 +958,12 @@
     <a class="nav-link" href="core/BlockFetchStarter.html">BlockFetchStarter</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/AppStatusListener.html">AppStatusListener</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core/AppStatusStore.html">AppStatusStore</a>
   </li>
 </ul>
   </li>
@@ -1940,7 +1940,7 @@
   <ul>
     <li><a href="index.html">Apache Spark</a></li>
     <li>Monitoring, Tuning, Debugging and Testing</li>
-    <li><a href="spark-scheduler-SparkListener.html">SparkListener</a></li>
+    <li><a href="SparkListener.html">SparkListener</a></li>
     <li><a href="spark-SparkListener-StatsReportListener.html">StatsReportListener</a></li>
   </ul>
 </nav>
@@ -1952,10 +1952,10 @@
 <h2 id="statsreportlistenerlogging-summary-statistics"><a class="anchor" href="#statsreportlistenerlogging-summary-statistics"></a><a class="link" href="#statsreportlistenerlogging-summary-statistics"><a id="StatsReportListener"></a> StatsReportListener&#8201;&#8212;&#8201;Logging Summary Statistics</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>org.apache.spark.scheduler.StatsReportListener</code> (see <a href="https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.scheduler.StatsReportListener">the listener&#8217;s scaladoc</a>) is a <a href="spark-scheduler-SparkListener.adoc">SparkListener</a> that logs summary statistics when each stage completes.</p>
+<p><code>org.apache.spark.scheduler.StatsReportListener</code> (see <a href="https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.scheduler.StatsReportListener">the listener&#8217;s scaladoc</a>) is a <a href="SparkListener.html" class="page">SparkListener</a> that logs summary statistics when each stage completes.</p>
 </div>
 <div class="paragraph">
-<p><code>StatsReportListener</code> listens to <a href="spark-scheduler-SparkListener.adoc#SparkListenerTaskEnd">SparkListenerTaskEnd</a> and <a href="spark-scheduler-SparkListener.adoc#SparkListenerStageCompleted">SparkListenerStageCompleted</a> events and prints them out at <code>INFO</code> logging level.</p>
+<p><code>StatsReportListener</code> listens to <a href="SparkListener.html#SparkListenerTaskEnd" class="page">SparkListenerTaskEnd</a> and <a href="SparkListener.html#SparkListenerStageCompleted" class="page">SparkListenerStageCompleted</a> events and prints them out at <code>INFO</code> logging level.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
