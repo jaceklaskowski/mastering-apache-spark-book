@@ -773,23 +773,11 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-core-KVStore.html">KVStore</a>
+    <a class="nav-link" href="spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="spark-core-KVStoreView.html">KVStoreView</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-core-ElementTrackingStore.html">ElementTrackingStore</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-core-InMemoryStore.html">InMemoryStore</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-core-LevelDB.html">LevelDB</a>
   </li>
 </ul>
   </li>
@@ -964,6 +952,21 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="core/AppStatusStore.html">AppStatusStore</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/KVStore.html">KVStore</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/ElementTrackingStore.html">ElementTrackingStore</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/InMemoryStore.html">InMemoryStore</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/LevelDB.html">LevelDB</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -4192,7 +4195,7 @@ It&#8217;s not guaranteed that Spark will work properly with two or more SparkCo
 </div>
 </div>
 <div class="sect1">
-<h2 id="accessing-appstatusstorestatusstore-method"><a class="anchor" href="#accessing-appstatusstorestatusstore-method"></a><a class="link" href="#accessing-appstatusstorestatusstore-method"><a id="statusStore"></a> Accessing AppStatusStore&#8201;&#8212;&#8201;<code>statusStore</code> Method</a></h2>
+<h2 id="accessing-appstatusstore"><a class="anchor" href="#accessing-appstatusstore"></a><a class="link" href="#accessing-appstatusstore"><a id="statusStore"></a> Accessing AppStatusStore</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -4200,31 +4203,23 @@ It&#8217;s not guaranteed that Spark will work properly with two or more SparkCo
 </div>
 </div>
 <div class="paragraph">
-<p><code>statusStore</code> gives the current <a href="spark-SparkContext-creating-instance-internals.adoc#_statusStore">AppStatusStore</a>.</p>
+<p>statusStore gives the current <a href="core/AppStatusStore.html" class="page">AppStatusStore</a>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
 <div class="paragraph">
-<p><code>statusStore</code> is used when:</p>
+<p>statusStore is used when:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>ConsoleProgressBar</code> is requested to <a href="spark-sparkcontext-ConsoleProgressBar.adoc#refresh">refresh</a></p>
+<p>SparkContext is requested to <a href="#getRDDStorageInfo">getRDDStorageInfo</a></p>
 </li>
 <li>
-<p>Spark SQL&#8217;s <code>SharedState</code> is requested for a <code>SQLAppStatusStore</code> (as <code>statusStore</code>)</p>
+<p>ConsoleProgressBar is requested to <a href="spark-sparkcontext-ConsoleProgressBar.html#refresh" class="page">refresh</a></p>
+</li>
+<li>
+<p>SharedState (Spark SQL) is requested for a SQLAppStatusStore</p>
 </li>
 </ul>
-</div>
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>

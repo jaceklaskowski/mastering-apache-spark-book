@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>SparkStatusTracker :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/spark-sparkcontext-SparkStatusTracker.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../_/css/site.css">
@@ -773,23 +773,11 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spark-core-KVStore.html">KVStore</a>
+    <a class="nav-link" href="spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="spark-core-KVStoreView.html">KVStoreView</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-core-ElementTrackingStore.html">ElementTrackingStore</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-core-InMemoryStore.html">InMemoryStore</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spark-core-LevelDB.html">LevelDB</a>
   </li>
 </ul>
   </li>
@@ -964,6 +952,21 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="core/AppStatusStore.html">AppStatusStore</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="core/KVStore.html">KVStore</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/ElementTrackingStore.html">ElementTrackingStore</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/InMemoryStore.html">InMemoryStore</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="core/LevelDB.html">LevelDB</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -1947,8 +1950,8 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="sparkstatustracker"><a class="anchor" href="#sparkstatustracker"></a><a class="link" href="#sparkstatustracker"><a id="SparkStatusTracker"></a> SparkStatusTracker</a></h2>
+<h1 class="page">SparkStatusTracker</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p><code>SparkStatusTracker</code> is&#8230;&#8203;FIXME</p>
@@ -1956,8 +1959,11 @@
 <div class="paragraph">
 <p><code>SparkStatusTracker</code> is <a href="#creating-instance">created</a> when <code>SparkContext</code> <a href="spark-SparkContext-creating-instance-internals.adoc#_statusTracker">is created</a>.</p>
 </div>
-<div class="sect2">
-<h3 id="creating-sparkstatustracker-instance"><a class="anchor" href="#creating-sparkstatustracker-instance"></a><a class="link" href="#creating-sparkstatustracker-instance"><a id="creating-instance"></a> Creating SparkStatusTracker Instance</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-sparkstatustracker-instance"><a class="anchor" href="#creating-sparkstatustracker-instance"></a><a class="link" href="#creating-sparkstatustracker-instance"><a id="creating-instance"></a> Creating SparkStatusTracker Instance</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><code>SparkStatusTracker</code> takes the following when created:</p>
 </div>
@@ -1970,7 +1976,6 @@
 <p><a id="store"></a> <a href="core/AppStatusStore.html" class="page">AppStatusStore</a></p>
 </li>
 </ul>
-</div>
 </div>
 </div>
 </div>

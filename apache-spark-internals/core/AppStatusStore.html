@@ -773,23 +773,11 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-core-KVStore.html">KVStore</a>
+    <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../spark-core-KVStoreView.html">KVStoreView</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-core-ElementTrackingStore.html">ElementTrackingStore</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-core-InMemoryStore.html">InMemoryStore</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-core-LevelDB.html">LevelDB</a>
   </li>
 </ul>
   </li>
@@ -964,6 +952,21 @@
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="AppStatusStore.html">AppStatusStore</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="KVStore.html">KVStore</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ElementTrackingStore.html">ElementTrackingStore</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="InMemoryStore.html">InMemoryStore</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="LevelDB.html">LevelDB</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -1955,25 +1958,43 @@
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<img src="_images/spark-core-AppStatusStore-createLiveStore.png" alt="spark core AppStatusStore createLiveStore">
+<img src="_images/AppStatusStore-createLiveStore.png" alt="AppStatusStore createLiveStore">
 </div>
 <div class="title">Figure 1. AppStatusStore in Spark Application</div>
 </div>
 <div class="paragraph">
-<p>AppStatusStore is <a href="#creating-instance">created</a> when:</p>
+<p>AppStatusStore is available as <a href="../SparkContext.html#statusStore" class="page">SparkContext.statusStore</a> to other Spark services.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-instance"><a class="anchor" href="#creating-instance"></a><a class="link" href="#creating-instance"><a id="creating-instance"></a> Creating Instance</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>AppStatusStore takes the following to be created:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>SparkContext</code> is <a href="spark-SparkContext-creating-instance-internals.adoc#_statusStore">created</a> (that triggers <a href="#createLiveStore">creating a live store (i.e. an AppStatusStore for an active Spark application)</a>)</p>
+<p><a id="store"></a> <a href="KVStore.html" class="page">KVStore</a></p>
 </li>
 <li>
-<p><code>FsHistoryProvider</code> is requested to <a href="../spark-history-server/FsHistoryProvider.html#getAppUI" class="page">create a LoadedAppUI</a></p>
+<p><a id="listener"></a> Optional <a href="AppStatusListener.html" class="page">AppStatusListener</a> (default: <code>None</code>)</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>When <a href="#createLiveStore">created</a> for a live Spark application, AppStatusStore creates a <a href="AppStatusListener.html" class="page">AppStatusListener</a> that is later used to <a href="#activeStages">get the active stages</a>.</p>
+<p>AppStatusStore is created when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>SparkContext is <a href="../spark-SparkContext-creating-instance-internals.html#_statusStore" class="page">created</a> (that triggers <a href="#createLiveStore">creating an AppStatusStore for an active Spark application</a>)</p>
+</li>
+<li>
+<p>FsHistoryProvider is requested to <a href="../spark-history-server/FsHistoryProvider.html#getAppUI" class="page">create a LoadedAppUI</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2028,24 +2049,6 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-appstatusstore-instance"><a class="anchor" href="#creating-appstatusstore-instance"></a><a class="link" href="#creating-appstatusstore-instance"><a id="creating-instance"></a> Creating AppStatusStore Instance</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>AppStatusStore takes the following when created:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a id="store"></a> <a href="../spark-core-KVStore.html" class="page">KVStore</a></p>
-</li>
-<li>
-<p><a id="listener"></a> Optional <a href="AppStatusListener.html" class="page">AppStatusListener</a> (default: <code>None</code>)</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="creating-event-store"><a class="anchor" href="#creating-event-store"></a><a class="link" href="#creating-event-store"><a id="createLiveStore"></a> Creating Event Store</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
@@ -2058,7 +2061,7 @@
 <p>createLiveStore creates a fully-initialized AppStatusStore.</p>
 </div>
 <div class="paragraph">
-<p>Internally, createLiveStore creates a <a href="spark-core-ElementTrackingStore.adoc#creating-instance">ElementTrackingStore</a> (with a new <a href="spark-core-InMemoryStore.adoc#">InMemoryStore</a> and the input <a href="../SparkConf.html" class="page">SparkConf</a>).</p>
+<p>Internally, createLiveStore creates a <a href="ElementTrackingStore.html" class="page">ElementTrackingStore</a> (with a new <a href="InMemoryStore.html" class="page">InMemoryStore</a> and the input <a href="../SparkConf.html" class="page">SparkConf</a>).</p>
 </div>
 <div class="paragraph">
 <p>createLiveStore creates a <a href="AppStatusListener.html" class="page">AppStatusListener</a> (with the <code>ElementTrackingStore</code> created, the input <code>SparkConf</code> and the <code>live</code> flag enabled).</p>
@@ -2080,7 +2083,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p><code>close</code> simply requests <a href="#store">KVStore</a> to <a href="spark-core-KVStore.adoc#close">close</a>.</p>
+<p><code>close</code> simply requests <a href="#store">KVStore</a> to <a href="KVStore.html#close" class="page">close</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2105,7 +2108,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p><code>rddList</code> requests the <a href="#store">KVStore</a> for a <a href="spark-core-KVStore.adoc#view">view</a> over <code>RDDStorageInfoWrapper</code> entities.</p>
+<p><code>rddList</code> requests the <a href="#store">KVStore</a> for a <a href="KVStore.html#view" class="page">view</a> over <code>RDDStorageInfoWrapper</code> entities.</p>
 </div>
 <div class="paragraph">
 <p>In the end, <code>rddList</code> takes <code>RDDStorageInfos</code> with at least one <a href="spark-webui-RDDStorageInfo.adoc#numCachedPartitions">partition cached</a> (when <code>cachedOnly</code> flag is on) or all <code>RDDStorageInfos</code> (when <code>cachedOnly</code> flag is off).</p>

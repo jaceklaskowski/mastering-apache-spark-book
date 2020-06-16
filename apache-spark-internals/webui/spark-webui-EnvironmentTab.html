@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>EnvironmentTab :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/webui/spark-webui-EnvironmentTab.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -773,23 +773,11 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-core-KVStore.html">KVStore</a>
+    <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../spark-core-KVStoreView.html">KVStoreView</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-core-ElementTrackingStore.html">ElementTrackingStore</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-core-InMemoryStore.html">InMemoryStore</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-core-LevelDB.html">LevelDB</a>
   </li>
 </ul>
   </li>
@@ -964,6 +952,21 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../core/AppStatusStore.html">AppStatusStore</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/KVStore.html">KVStore</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/ElementTrackingStore.html">ElementTrackingStore</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/InMemoryStore.html">InMemoryStore</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/LevelDB.html">LevelDB</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -1947,9 +1950,7 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="environmenttab"><a class="anchor" href="#environmenttab"></a><a class="link" href="#environmenttab"><a id="EnvironmentTab"></a> EnvironmentTab</a></h2>
-<div class="sectionbody">
+<h1 class="page">EnvironmentTab</h1>
 <div id="prefix" class="paragraph">
 <p><code>EnvironmentTab</code> is a <a href="spark-webui-SparkUITab.adoc">SparkUITab</a> with <strong>environment</strong> <a href="spark-webui-SparkUITab.adoc#prefix">prefix</a>.</p>
 </div>
@@ -1971,8 +1972,6 @@
 </div>
 <div class="paragraph">
 <p>When created, <code>EnvironmentTab</code> creates the <a href="spark-webui-EnvironmentPage.adoc#creating-instance">EnvironmentPage</a> page and <a href="spark-webui-WebUITab.adoc#attachPage">attaches</a> it immediately.</p>
-</div>
-</div>
 </div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

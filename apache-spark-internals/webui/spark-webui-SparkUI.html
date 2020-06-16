@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: The Internals Of Apache Spark</title>
+    <title>SparkUI :: The Internals Of Apache Spark</title>
     <link rel="canonical" href="https://books.japila.pl/apache-spark-internals/apache-spark-internals/webui/spark-webui-SparkUI.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -773,23 +773,11 @@
     <span class="nav-text">Misc</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spark-core-KVStore.html">KVStore</a>
+    <a class="nav-link" href="../spark-core-AppStatusPlugin.html">AppStatusPlugin</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../spark-core-KVStoreView.html">KVStoreView</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-core-ElementTrackingStore.html">ElementTrackingStore</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-core-InMemoryStore.html">InMemoryStore</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spark-core-LevelDB.html">LevelDB</a>
   </li>
 </ul>
   </li>
@@ -964,6 +952,21 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../core/AppStatusStore.html">AppStatusStore</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/KVStore.html">KVStore</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/ElementTrackingStore.html">ElementTrackingStore</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/InMemoryStore.html">InMemoryStore</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/LevelDB.html">LevelDB</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -1947,14 +1950,14 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="sparkuiweb-ui-of-spark-application"><a class="anchor" href="#sparkuiweb-ui-of-spark-application"></a><a class="link" href="#sparkuiweb-ui-of-spark-application"><a id="SparkUI"></a> SparkUI&#8201;&#8212;&#8201;Web UI of Spark Application</a></h2>
+<h1 class="page">SparkUI</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>SparkUI</code> is the <a href="spark-webui-WebUI.adoc">web UI</a> of a Spark application (aka <strong>Application UI</strong>).</p>
+<p><strong>SparkUI</strong> is the <a href="spark-webui-WebUI.adoc">web UI</a> of a Spark application (aka <strong>Application UI</strong>).</p>
 </div>
 <div class="paragraph">
-<p><code>SparkUI</code> is <a href="#creating-instance">created</a> along with the following:</p>
+<p>SparkUI is <a href="#creating-instance">created</a> along with the following:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1973,12 +1976,12 @@
 <div class="title">Figure 1. Creating SparkUI for Live Spark Application</div>
 </div>
 <div class="paragraph">
-<p>When <a href="#create">created</a> (while <code>SparkContext</code> is created for a live Spark application), <code>SparkUI</code> gets the following:</p>
+<p>When <a href="#create">created</a> (while <code>SparkContext</code> is created for a live Spark application), SparkUI gets the following:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Live <a href="spark-SparkContext-creating-instance-internals.adoc#_statusStore">AppStatusStore</a> (with a <a href="spark-core-ElementTrackingStore.adoc">ElementTrackingStore</a> using an <a href="spark-core-InMemoryStore.adoc">InMemoryStore</a> and a <a href="../core/AppStatusListener.html" class="page">AppStatusListener</a> for a live Spark application)</p>
+<p>Live <a href="spark-SparkContext-creating-instance-internals.adoc#_statusStore">AppStatusStore</a> (with a <a href="../core/ElementTrackingStore.html" class="page">ElementTrackingStore</a> using an <a href="../core/InMemoryStore.html" class="page">InMemoryStore</a> and a <a href="../core/AppStatusListener.html" class="page">AppStatusListener</a> for a live Spark application)</p>
 </li>
 <li>
 <p>Name of the Spark application that is exactly the value of <a href="../SparkConf.html#spark.app.name" class="page">spark.app.name</a> configuration property</p>
@@ -1989,7 +1992,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>When started, <code>SparkUI</code> binds to <a href="#appUIAddress">appUIAddress</a> address that you can control using <code>SPARK_PUBLIC_DNS</code> environment variable or <a href="spark-driver.adoc#spark_driver_host">spark.driver.host</a> Spark property.</p>
+<p>When started, SparkUI binds to <a href="#appUIAddress">appUIAddress</a> address that you can control using <code>SPARK_PUBLIC_DNS</code> environment variable or <a href="spark-driver.adoc#spark_driver_host">spark.driver.host</a> Spark property.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1998,13 +2001,13 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-With <a href="spark-webui-properties.adoc#spark.ui.killEnabled">spark.ui.killEnabled</a> configuration property turned on, <code>SparkUI</code> <a href="#initialize">allows to kill jobs and stages</a> (subject to <code>SecurityManager.checkModifyPermissions</code> permissions).
+With <a href="spark-webui-properties.adoc#spark.ui.killEnabled">spark.ui.killEnabled</a> configuration property turned on, SparkUI <a href="#initialize">allows to kill jobs and stages</a> (subject to <code>SecurityManager.checkModifyPermissions</code> permissions).
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p><code>SparkUI</code> gets an <a href="#store">AppStatusStore</a> that is then used for the following:</p>
+<p>SparkUI gets an <a href="#store">AppStatusStore</a> that is then used for the following:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2018,7 +2021,7 @@ With <a href="spark-webui-properties.adoc#spark.ui.killEnabled">spark.ui.killEna
 <p><code>StagesResource</code> is requested for <a href="spark-api-StagesResource.adoc#stageList">stageList</a>, <a href="spark-api-StagesResource.adoc#stageData">stageData</a>, <a href="spark-api-StagesResource.adoc#oneAttemptData">oneAttemptData</a>, <a href="spark-api-StagesResource.adoc#taskSummary">taskSummary</a>, <a href="spark-api-StagesResource.adoc#taskList">taskList</a></p>
 </li>
 <li>
-<p><code>SparkUI</code> is requested for the current <a href="#getSparkUser">Spark user</a></p>
+<p>SparkUI is requested for the current <a href="#getSparkUser">Spark user</a></p>
 </li>
 <li>
 <p>Creating Spark SQL&#8217;s <code>SQLTab</code> (when <code>SQLHistoryServerPlugin</code> is requested to <code>setupUI</code>)</p>
@@ -2072,8 +2075,11 @@ With <a href="spark-webui-properties.adoc#spark.ui.killEnabled">spark.ui.killEna
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="assigning-unique-identifier-of-spark-applicationsetappid-method"><a class="anchor" href="#assigning-unique-identifier-of-spark-applicationsetappid-method"></a><a class="link" href="#assigning-unique-identifier-of-spark-applicationsetappid-method"><a id="setAppId"></a> Assigning Unique Identifier of Spark Application&#8201;&#8212;&#8201;<code>setAppId</code> Method</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="assigning-unique-identifier-of-spark-applicationsetappid-method"><a class="anchor" href="#assigning-unique-identifier-of-spark-applicationsetappid-method"></a><a class="link" href="#assigning-unique-identifier-of-spark-applicationsetappid-method"><a id="setAppId"></a> Assigning Unique Identifier of Spark Application&#8201;&#8212;&#8201;<code>setAppId</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">setAppId(id: String): Unit</code></pre>
@@ -2095,8 +2101,10 @@ With <a href="spark-webui-properties.adoc#spark.ui.killEnabled">spark.ui.killEna
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="stopping-sparkuistop-method"><a class="anchor" href="#stopping-sparkuistop-method"></a><a class="link" href="#stopping-sparkuistop-method"><a id="stop"></a> Stopping <code>SparkUI</code>&#8201;&#8212;&#8201;<code>stop</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="stopping-sparkuistop-method"><a class="anchor" href="#stopping-sparkuistop-method"></a><a class="link" href="#stopping-sparkuistop-method"><a id="stop"></a> Stopping SparkUI&#8201;&#8212;&#8201;<code>stop</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">stop(): Unit</code></pre>
@@ -2123,8 +2131,10 @@ With <a href="spark-webui-properties.adoc#spark.ui.killEnabled">spark.ui.killEna
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="appuiaddress-method"><a class="anchor" href="#appuiaddress-method"></a><a class="link" href="#appuiaddress-method"><a id="appUIAddress"></a> <code>appUIAddress</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="appuiaddress-method"><a class="anchor" href="#appuiaddress-method"></a><a class="link" href="#appuiaddress-method"><a id="appUIAddress"></a> <code>appUIAddress</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">appUIAddress: String</code></pre>
@@ -2137,8 +2147,10 @@ With <a href="spark-webui-properties.adoc#spark.ui.killEnabled">spark.ui.killEna
 <p>Internally, <code>appUIAddress</code> uses <a href="#appUIHostPort">appUIHostPort</a>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="accessing-spark-usergetsparkuser-method"><a class="anchor" href="#accessing-spark-usergetsparkuser-method"></a><a class="link" href="#accessing-spark-usergetsparkuser-method"><a id="getSparkUser"></a> Accessing Spark User&#8201;&#8212;&#8201;<code>getSparkUser</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="accessing-spark-usergetsparkuser-method"><a class="anchor" href="#accessing-spark-usergetsparkuser-method"></a><a class="link" href="#accessing-spark-usergetsparkuser-method"><a id="getSparkUser"></a> Accessing Spark User&#8201;&#8212;&#8201;<code>getSparkUser</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getSparkUser: String</code></pre>
@@ -2163,8 +2175,10 @@ With <a href="spark-webui-properties.adoc#spark.ui.killEnabled">spark.ui.killEna
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="createliveui-method"><a class="anchor" href="#createliveui-method"></a><a class="link" href="#createliveui-method"><a id="createLiveUI"></a> <code>createLiveUI</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="createliveui-method"><a class="anchor" href="#createliveui-method"></a><a class="link" href="#createliveui-method"><a id="createLiveUI"></a> <code>createLiveUI</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">createLiveUI(
@@ -2178,7 +2192,7 @@ With <a href="spark-webui-properties.adoc#spark.ui.killEnabled">spark.ui.killEna
 </div>
 </div>
 <div class="paragraph">
-<p><code>createLiveUI</code> creates a <code>SparkUI</code> for a live running Spark application.</p>
+<p><code>createLiveUI</code> creates a SparkUI for a live running Spark application.</p>
 </div>
 <div class="paragraph">
 <p>Internally, <code>createLiveUI</code> simply forwards the call to <a href="#create">create</a>.</p>
@@ -2196,8 +2210,10 @@ With <a href="spark-webui-properties.adoc#spark.ui.killEnabled">spark.ui.killEna
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="createhistoryui-method"><a class="anchor" href="#createhistoryui-method"></a><a class="link" href="#createhistoryui-method"><a id="createHistoryUI"></a> <code>createHistoryUI</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="createhistoryui-method"><a class="anchor" href="#createhistoryui-method"></a><a class="link" href="#createhistoryui-method"><a id="createHistoryUI"></a> <code>createHistoryUI</code> Method</a></h2>
+<div class="sectionbody">
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -2211,8 +2227,10 @@ FIXME
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="appuihostport-method"><a class="anchor" href="#appuihostport-method"></a><a class="link" href="#appuihostport-method"><a id="appUIHostPort"></a> <code>appUIHostPort</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="appuihostport-method"><a class="anchor" href="#appuihostport-method"></a><a class="link" href="#appuihostport-method"><a id="appUIHostPort"></a> <code>appUIHostPort</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">appUIHostPort: String</code></pre>
@@ -2234,15 +2252,17 @@ FIXME
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="getappname-method"><a class="anchor" href="#getappname-method"></a><a class="link" href="#getappname-method"><a id="getAppName"></a> <code>getAppName</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="getappname-method"><a class="anchor" href="#getappname-method"></a><a class="link" href="#getappname-method"><a id="getAppName"></a> <code>getAppName</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">getAppName: String</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>getAppName</code> returns the name of the Spark application (of a <code>SparkUI</code> instance).</p>
+<p><code>getAppName</code> returns the name of the Spark application (of a SparkUI instance).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2257,8 +2277,10 @@ FIXME
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="creating-sparkui-instancecreate-factory-method"><a class="anchor" href="#creating-sparkui-instancecreate-factory-method"></a><a class="link" href="#creating-sparkui-instancecreate-factory-method"><a id="create"></a> Creating SparkUI Instance&#8201;&#8212;&#8201;<code>create</code> Factory Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="creating-sparkui-instancecreate-factory-method"><a class="anchor" href="#creating-sparkui-instancecreate-factory-method"></a><a class="link" href="#creating-sparkui-instancecreate-factory-method"><a id="create"></a> Creating SparkUI Instance&#8201;&#8212;&#8201;<code>create</code> Factory Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">create(
@@ -2273,7 +2295,7 @@ FIXME
 </div>
 </div>
 <div class="paragraph">
-<p><code>create</code> creates a <code>SparkUI</code> backed by a <a href="../core/AppStatusStore.html" class="page">AppStatusStore</a>.</p>
+<p><code>create</code> creates a SparkUI backed by a <a href="../core/AppStatusStore.html" class="page">AppStatusStore</a>.</p>
 </div>
 <div class="paragraph">
 <p>Internally, <code>create</code> simply creates a new <a href="#creating-instance">SparkUI</a> (with the predefined Spark version).</p>
@@ -2303,10 +2325,12 @@ FIXME
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="creating-sparkui-instance"><a class="anchor" href="#creating-sparkui-instance"></a><a class="link" href="#creating-sparkui-instance"><a id="creating-instance"></a> Creating SparkUI Instance</a></h3>
+</div>
+<div class="sect1">
+<h2 id="creating-sparkui-instance"><a class="anchor" href="#creating-sparkui-instance"></a><a class="link" href="#creating-sparkui-instance"><a id="creating-instance"></a> Creating SparkUI Instance</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p><code>SparkUI</code> takes the following when created:</p>
+<p>SparkUI takes the following when created:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2337,11 +2361,13 @@ FIXME
 </ul>
 </div>
 <div class="paragraph">
-<p><code>SparkUI</code> initializes the <a href="#internal-registries">internal registries and counters</a> and <a href="#initialize">the tabs and handlers</a>.</p>
+<p>SparkUI initializes the <a href="#internal-registries">internal registries and counters</a> and <a href="#initialize">the tabs and handlers</a>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="attaching-tabs-and-context-handlersinitialize-method"><a class="anchor" href="#attaching-tabs-and-context-handlersinitialize-method"></a><a class="link" href="#attaching-tabs-and-context-handlersinitialize-method"><a id="initialize"></a> Attaching Tabs and Context Handlers&#8201;&#8212;&#8201;<code>initialize</code> Method</a></h3>
+</div>
+<div class="sect1">
+<h2 id="attaching-tabs-and-context-handlersinitialize-method"><a class="anchor" href="#attaching-tabs-and-context-handlersinitialize-method"></a><a class="link" href="#attaching-tabs-and-context-handlersinitialize-method"><a id="initialize"></a> Attaching Tabs and Context Handlers&#8201;&#8212;&#8201;<code>initialize</code> Method</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">initialize(): Unit</code></pre>
@@ -2360,7 +2386,7 @@ FIXME
 </table>
 </div>
 <div class="paragraph">
-<p><code>initialize</code> creates and <a href="#attachTab">attaches</a> the following tabs (with the reference to the <code>SparkUI</code> and its <a href="#store">AppStatusStore</a>):</p>
+<p><code>initialize</code> creates and <a href="#attachTab">attaches</a> the following tabs (with the reference to the SparkUI and its <a href="#store">AppStatusStore</a>):</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -2402,7 +2428,6 @@ FIXME
 <p><a href="spark-webui-JettyUtils.adoc#createRedirectHandler">Creates a redirect handler</a> to redirect <code>/stages/stage/kill</code> to <code>/stages/</code> and request the <code>StagesTab</code> to execute <a href="spark-webui-StagesTab.adoc#handleKillRequest">handleKillRequest</a> before redirection</p>
 </li>
 </ol>
-</div>
 </div>
 </div>
 </div>
