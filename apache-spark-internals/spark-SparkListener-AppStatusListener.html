@@ -1967,8 +1967,12 @@
 </li>
 </ul>
 </div>
-<table id="AppStatusListener-handlers" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. AppStatusListener&#8217;s Event Handlers</caption>
+</div>
+</div>
+<div class="sect1">
+<h2 id="event-handlers"><a class="anchor" href="#event-handlers"></a><a class="link" href="#event-handlers"><a id="AppStatusListener-handlers"></a> Event Handlers</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2067,66 +2071,6 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>SparkListenerUnpersistRDD</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#onUnpersistRDD">onUnpersistRDD</a></p></td>
-</tr>
-</tbody>
-</table>
-<table id="internal-registries" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. AppStatusListener&#8217;s Internal Properties (e.g. Registries, Counters and Flags)</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>appInfo</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="appInfo"></a> <code>v1.ApplicationInfo</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>appSummary</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="appSummary"></a> <code>AppSummary</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liveUpdatePeriodNs</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="liveUpdatePeriodNs"></a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>coresPerTask</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="coresPerTask"></a></p>
-<p class="tableblock">Default: <code>1</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liveRDDs</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="liveRDDs"></a> <a href="webui/spark-core-LiveRDD.html" class="page">LiveRDDs</a> by RDD ID</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liveStages</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="liveStages"></a> <code>LiveStages</code> by <code>(Int, Int)</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liveTasks</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="liveTasks"></a> <code>LiveTask</code> by task ID</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liveJobs</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="liveJobs"></a> <code>LiveJob</code> by job ID</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liveExecutors</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="liveExecutors"></a> <code>LiveExecutor</code> by executor ID</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pools</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="pools"></a> <code>SchedulerPool</code> by FIXME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>activeExecutorCount</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="activeExecutorCount"></a> Number of active executors</p></td>
 </tr>
 </tbody>
 </table>
@@ -2399,6 +2343,66 @@
 </tr>
 </table>
 </div>
+<table id="internal-registries" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. AppStatusListener&#8217;s Internal Properties (e.g. Registries, Counters and Flags)</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>appInfo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="appInfo"></a> <code>v1.ApplicationInfo</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>appSummary</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="appSummary"></a> <code>AppSummary</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liveUpdatePeriodNs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="liveUpdatePeriodNs"></a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>coresPerTask</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="coresPerTask"></a></p>
+<p class="tableblock">Default: <code>1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liveRDDs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="liveRDDs"></a> <a href="webui/spark-core-LiveRDD.html" class="page">LiveRDDs</a> by RDD ID</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liveStages</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="liveStages"></a> <code>LiveStages</code> by <code>(Int, Int)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liveTasks</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="liveTasks"></a> <code>LiveTask</code> by task ID</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liveJobs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="liveJobs"></a> <code>LiveJob</code> by job ID</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liveExecutors</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="liveExecutors"></a> <code>LiveExecutor</code> by executor ID</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pools</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="pools"></a> <code>SchedulerPool</code> by FIXME</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>activeExecutorCount</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="activeExecutorCount"></a> Number of active executors</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </article>

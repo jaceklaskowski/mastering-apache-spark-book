@@ -1951,7 +1951,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>BlockId</strong> is an <a href="#contract">abstraction</a> of <a href="#implementations">block data identifiers</a> that are uniquely identified by a <a href="#name">name</a>.</p>
+<p><strong>BlockId</strong> is an <a href="#contract">abstraction</a> of <a href="#implementations">data block identifiers</a> based on an unique <a href="#name">name</a>.</p>
 </div>
 <div class="paragraph">
 <p>BlockId is a Scala sealed abstract class and so all the possible <a href="#implementations">implementations</a> are in the single Scala file alongside BlockId.</p>
@@ -1962,11 +1962,36 @@
 <h2 id="contract"><a class="anchor" href="#contract"></a><a class="link" href="#contract"><a id="contract"></a> Contract</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="name-method"><a class="anchor" href="#name-method"></a><a class="link" href="#name-method"><a id="name"></a> name Method</a></h3>
+<h3 id="unique-name"><a class="anchor" href="#unique-name"></a><a class="link" href="#unique-name"><a id="name"></a><a id="toString"></a> Unique Name</a></h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">name: String</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Used when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>NettyBlockTransferService is requested to <a href="NettyBlockTransferService.html#uploadBlock" class="page">upload a block</a></p>
+</li>
+<li>
+<p>AppStatusListener is requested to <a href="../spark-SparkListener-AppStatusListener.html#updateRDDBlock" class="page">updateRDDBlock</a>, <a href="../spark-SparkListener-AppStatusListener.html#updateStreamBlock" class="page">updateStreamBlock</a></p>
+</li>
+<li>
+<p>BlockManager is requested to <a href="BlockManager.html#putBlockDataAsStream" class="page">putBlockDataAsStream</a></p>
+</li>
+<li>
+<p>UpdateBlockInfo is requested to <a href="BlockManagerMasterEndpoint.html#UpdateBlockInfo" class="page">writeExternal</a></p>
+</li>
+<li>
+<p>DiskBlockManager is requested to <a href="DiskBlockManager.html#getFile" class="page">getFile</a> and <a href="DiskBlockManager.html#containsBlock" class="page">containsBlock</a></p>
+</li>
+<li>
+<p>DiskStore is requested to <a href="DiskStore.html#getBytes" class="page">getBytes</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2097,7 +2122,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-blockid-based-on-block-nameapply-factory-method"><a class="anchor" href="#creating-blockid-based-on-block-nameapply-factory-method"></a><a class="link" href="#creating-blockid-based-on-block-nameapply-factory-method"><a id="apply"></a> Creating BlockId (Based on Block Name)&#8201;&#8212;&#8201;apply Factory Method</a></h2>
+<h2 id="apply-factory-method"><a class="anchor" href="#apply-factory-method"></a><a class="link" href="#apply-factory-method"><a id="apply"></a> apply Factory Method</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
