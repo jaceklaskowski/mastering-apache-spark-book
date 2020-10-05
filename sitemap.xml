@@ -8,6 +8,34 @@
      <lastmod>2020-10-05</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/SparkEnv/</loc>
+     <lastmod>2020-10-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/SparkConf/</loc>
+     <lastmod>2020-10-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/SparkContext/</loc>
+     <lastmod>2020-10-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/spark-SparkContext-creating-instance-internals/</loc>
+     <lastmod>2020-10-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/spark-logging/</loc>
+     <lastmod>2020-10-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/scheduler/DAGScheduler/</loc>
+     <lastmod>2020-10-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/tools/spark-shell/</loc>
+     <lastmod>2020-10-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/</loc>
      <lastmod>2020-10-05</lastmod>
      <changefreq>daily</changefreq>
