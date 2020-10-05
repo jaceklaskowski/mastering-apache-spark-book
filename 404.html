@@ -42,7 +42,7 @@
     
       
         
-<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview",document.location.pathname)})</script>
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-151208281-5","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview",document.location.pathname)})</script>
 <script async src="https://www.google-analytics.com/analytics.js"></script>
       
     
@@ -169,6 +169,19 @@
   
     <li class="md-tabs__item">
       
+        <a href="/apache-spark-internals/rdd/" class="md-tabs__link">
+          RDD
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
         <a href="/apache-spark-internals/metrics/" class="md-tabs__link">
           Metrics
         </a>
@@ -275,11 +288,487 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
     
     <label class="md-nav__link" for="nav-2">
+      RDD
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="RDD" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        RDD
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/" class="md-nav__link">
+      Resilient Distributed Dataset
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/RDD/" class="md-nav__link">
+      RDD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      RDDs
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="RDDs" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        <span class="md-nav__icon md-icon"></span>
+        RDDs
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/spark-rdd-CoGroupedRDD/" class="md-nav__link">
+      CoGroupedRDD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/spark-rdd-HadoopRDD/" class="md-nav__link">
+      HadoopRDD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/spark-rdd-MapPartitionsRDD/" class="md-nav__link">
+      MapPartitionsRDD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/spark-rdd-NewHadoopRDD/" class="md-nav__link">
+      NewHadoopRDD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/spark-rdd-OrderedRDDFunctions/" class="md-nav__link">
+      OrderedRDDFunctions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/spark-rdd-ParallelCollectionRDD/" class="md-nav__link">
+      ParallelCollectionRDD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/CheckpointRDD/" class="md-nav__link">
+      CheckpointRDD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/ReliableCheckpointRDD/" class="md-nav__link">
+      ReliableCheckpointRDD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/ShuffledRDD/" class="md-nav__link">
+      ShuffledRDD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/spark-rdd-SubtractedRDD/" class="md-nav__link">
+      SubtractedRDD
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      Operators
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Operators" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-4">
+        <span class="md-nav__icon md-icon"></span>
+        Operators
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/spark-rdd-operations/" class="md-nav__link">
+      Operators
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/spark-rdd-transformations/" class="md-nav__link">
+      Transformations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/PairRDDFunctions/" class="md-nav__link">
+      PairRDDFunctions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/spark-rdd-actions/" class="md-nav__link">
+      Actions
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/Partitioner/" class="md-nav__link">
+      Partitioner
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/spark-rdd-lineage/" class="md-nav__link">
+      RDD Lineage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/spark-rdd-caching/" class="md-nav__link">
+      Caching and Persistence
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/spark-rdd-partitions/" class="md-nav__link">
+      Partitions and Partitioning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/spark-rdd-Partition/" class="md-nav__link">
+      Partition
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/RDDCheckpointData/" class="md-nav__link">
+      RDDCheckpointData
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/LocalRDDCheckpointData/" class="md-nav__link">
+      LocalRDDCheckpointData
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/ReliableRDDCheckpointData/" class="md-nav__link">
+      ReliableRDDCheckpointData
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/spark-rdd-shuffle/" class="md-nav__link">
+      Shuffling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/spark-rdd-Dependency/" class="md-nav__link">
+      Dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/spark-rdd-NarrowDependency/" class="md-nav__link">
+      NarrowDependency
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/ShuffleDependency/" class="md-nav__link">
+      ShuffleDependency
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/Aggregator/" class="md-nav__link">
+      Aggregator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-18" type="checkbox" id="nav-2-18">
+    
+    <label class="md-nav__link" for="nav-2-18">
+      Partitioners
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Partitioners" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-18">
+        <span class="md-nav__icon md-icon"></span>
+        Partitioners
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/HashPartitioner/" class="md-nav__link">
+      HashPartitioner
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/apache-spark-internals/rdd/RangePartitioner/" class="md-nav__link">
+      RangePartitioner
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
       Metrics
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Metrics" data-md-level="1">
-      <label class="md-nav__title" for="nav-2">
+      <label class="md-nav__title" for="nav-3">
         <span class="md-nav__icon md-icon"></span>
         Metrics
       </label>
@@ -365,14 +854,14 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-7" type="checkbox" id="nav-2-7">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-7" type="checkbox" id="nav-3-7">
     
-    <label class="md-nav__link" for="nav-2-7">
+    <label class="md-nav__link" for="nav-3-7">
       Sources
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Sources" data-md-level="2">
-      <label class="md-nav__title" for="nav-2-7">
+      <label class="md-nav__title" for="nav-3-7">
         <span class="md-nav__icon md-icon"></span>
         Sources
       </label>
@@ -415,14 +904,14 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-8" type="checkbox" id="nav-2-8">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-8" type="checkbox" id="nav-3-8">
     
-    <label class="md-nav__link" for="nav-2-8">
+    <label class="md-nav__link" for="nav-3-8">
       Sinks
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Sinks" data-md-level="2">
-      <label class="md-nav__title" for="nav-2-8">
+      <label class="md-nav__title" for="nav-3-8">
         <span class="md-nav__icon md-icon"></span>
         Sinks
       </label>
