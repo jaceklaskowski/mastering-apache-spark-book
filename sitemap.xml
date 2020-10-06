@@ -28,6 +28,66 @@
      <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/core/BroadcastManager/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/core/BroadcastFactory/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/core/TorrentBroadcastFactory/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/core/TorrentBroadcast/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/core/ContextCleaner/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/core/CleanerListener/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/core/BlockFetchingListener/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/core/RetryingBlockFetcher/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/core/BlockFetchStarter/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/core/AppStatusListener/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/core/AppStatusStore/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/core/KVStore/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/core/ElementTrackingStore/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/core/InMemoryStore/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/core/LevelDB/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/scheduler/DAGScheduler/</loc>
      <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
