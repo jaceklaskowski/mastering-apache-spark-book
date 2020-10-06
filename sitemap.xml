@@ -1,199 +1,315 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
      <loc>https://books.japila.pl/apache-spark-internals/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/overview/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/SparkEnv/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/SparkConf/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/SparkContext/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/spark-SparkContext-creating-instance-internals/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/spark-logging/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/scheduler/DAGScheduler/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/BlockManager/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/BlockManagerId/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/BlockManagerInfo/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/BlockManagerMaster/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/BlockManagerMasterEndpoint/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/BlockManagerSlaveEndpoint/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/BlockId/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/BlockDataManager/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/DiskStore/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/DiskBlockManager/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/MemoryStore/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/BlockEvictionHandler/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/BlockData/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/BlockInfoManager/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/BlockInfo/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/DiskBlockObjectWriter/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/BlockManagerSource/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/ShuffleMetricsSource/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/ShuffleClient/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/BlockTransferService/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/NettyBlockTransferService/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/NettyBlockRpcServer/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/ExternalShuffleClient/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/OneForOneBlockFetcher/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/ShuffleBlockFetcherIterator/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/RDDInfo/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/StorageLevel/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/StorageStatus/</loc>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/tools/spark-shell/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/RDD/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-CoGroupedRDD/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-HadoopRDD/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-MapPartitionsRDD/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-NewHadoopRDD/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-OrderedRDDFunctions/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-ParallelCollectionRDD/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/CheckpointRDD/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/ReliableCheckpointRDD/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/ShuffledRDD/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-SubtractedRDD/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-operations/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-transformations/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/PairRDDFunctions/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-actions/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/Partitioner/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-lineage/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-caching/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-partitions/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-Partition/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/RDDCheckpointData/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/LocalRDDCheckpointData/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/ReliableRDDCheckpointData/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-shuffle/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-Dependency/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-NarrowDependency/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/ShuffleDependency/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/Aggregator/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/HashPartitioner/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/RangePartitioner/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/metrics/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/metrics/configuration-properties/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/metrics/MetricsSystem/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/metrics/MetricsConfig/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/metrics/Source/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/metrics/Sink/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/metrics/JvmSource/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/metrics/DAGSchedulerSource/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/metrics/MetricsServlet/</loc>
-     <lastmod>2020-10-05</lastmod>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/demo/diskblockmanager-and-block-data/</loc>
+     <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
