@@ -1240,6 +1240,18 @@
      <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/webui/WebUI/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/webui/WebUIPage/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/webui/WebUITab/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/webui/SparkUI/</loc>
      <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
@@ -1261,6 +1273,10 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/webui/spark-webui-JobPage/</loc>
+     <lastmod>2020-10-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/webui/stages/</loc>
      <lastmod>2020-10-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
