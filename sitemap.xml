@@ -992,6 +992,10 @@
      <lastmod>2020-10-08</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/plugins/</loc>
+     <lastmod>2020-10-08</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/plugins/PluginContainer/</loc>
      <lastmod>2020-10-08</lastmod>
      <changefreq>daily</changefreq>
@@ -1001,6 +1005,18 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/plugins/ExecutorPluginContainer/</loc>
+     <lastmod>2020-10-08</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/plugins/SparkPlugin/</loc>
+     <lastmod>2020-10-08</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/plugins/DriverPlugin/</loc>
+     <lastmod>2020-10-08</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/plugins/ExecutorPlugin/</loc>
      <lastmod>2020-10-08</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
