@@ -328,7 +328,7 @@
      <lastmod>2020-10-11</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/scheduler/spark-scheduler-JobWaiter/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/scheduler/JobWaiter/</loc>
      <lastmod>2020-10-11</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -900,6 +900,10 @@
      <lastmod>2020-10-11</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/SparkListenerEvent/</loc>
+     <lastmod>2020-10-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/SparkListener/</loc>
      <lastmod>2020-10-11</lastmod>
      <changefreq>daily</changefreq>
@@ -1137,6 +1141,10 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/PairRDDFunctions/</loc>
+     <lastmod>2020-10-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/rdd/AsyncRDDActions/</loc>
      <lastmod>2020-10-11</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
