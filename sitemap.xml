@@ -280,14 +280,6 @@
      <lastmod>2020-10-12</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/scheduler/DAGSchedulerEvent/</loc>
-     <lastmod>2020-10-12</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/scheduler/DAGSchedulerEventProcessLoop/</loc>
-     <lastmod>2020-10-12</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/scheduler/Stage/</loc>
      <lastmod>2020-10-12</lastmod>
      <changefreq>daily</changefreq>
@@ -449,6 +441,18 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/scheduler/LiveListenerBus/</loc>
+     <lastmod>2020-10-12</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/scheduler/DAGSchedulerEvent/</loc>
+     <lastmod>2020-10-12</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/scheduler/DAGSchedulerEventProcessLoop/</loc>
+     <lastmod>2020-10-12</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/scheduler/DAGSchedulerSource/</loc>
      <lastmod>2020-10-12</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -1237,10 +1241,6 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/metrics/JvmSource/</loc>
-     <lastmod>2020-10-12</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/metrics/DAGSchedulerSource/</loc>
      <lastmod>2020-10-12</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
