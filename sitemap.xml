@@ -316,7 +316,7 @@
      <lastmod>2020-11-23</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/scheduler/spark-scheduler-StageInfo/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/scheduler/StageInfo/</loc>
      <lastmod>2020-11-23</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -1176,7 +1176,7 @@
      <lastmod>2020-11-23</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-Partition/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/rdd/Partition/</loc>
      <lastmod>2020-11-23</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
