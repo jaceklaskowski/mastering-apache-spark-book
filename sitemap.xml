@@ -132,6 +132,10 @@
      <lastmod>2020-11-23</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/shuffle/ShuffleWriteMetricsReporter/</loc>
+     <lastmod>2020-11-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/spark-deploy-mode/</loc>
      <lastmod>2020-11-23</lastmod>
      <changefreq>daily</changefreq>
