@@ -1172,6 +1172,14 @@
      <lastmod>2020-11-25</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/rdd/HashPartitioner/</loc>
+     <lastmod>2020-11-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/rdd/RangePartitioner/</loc>
+     <lastmod>2020-11-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-lineage/</loc>
      <lastmod>2020-11-25</lastmod>
      <changefreq>daily</changefreq>
@@ -1217,14 +1225,6 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/Aggregator/</loc>
-     <lastmod>2020-11-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/rdd/HashPartitioner/</loc>
-     <lastmod>2020-11-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/rdd/RangePartitioner/</loc>
      <lastmod>2020-11-25</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
