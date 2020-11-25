@@ -1124,10 +1124,6 @@
      <lastmod>2020-11-25</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-OrderedRDDFunctions/</loc>
-     <lastmod>2020-11-25</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-ParallelCollectionRDD/</loc>
      <lastmod>2020-11-25</lastmod>
      <changefreq>daily</changefreq>
@@ -1153,6 +1149,10 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-transformations/</loc>
+     <lastmod>2020-11-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/rdd/OrderedRDDFunctions/</loc>
      <lastmod>2020-11-25</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
