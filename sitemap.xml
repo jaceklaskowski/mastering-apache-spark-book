@@ -768,7 +768,15 @@
      <lastmod>2020-11-25</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/AccumulatorContext/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/accumulators/AccumulatorV2/</loc>
+     <lastmod>2020-11-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/accumulators/AccumulatorContext/</loc>
+     <lastmod>2020-11-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/accumulators/InternalAccumulator/</loc>
      <lastmod>2020-11-25</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
