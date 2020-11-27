@@ -132,19 +132,27 @@
      <lastmod>2020-11-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/spark-dynamic-allocation/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/dynamic-allocation/</loc>
      <lastmod>2020-11-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/ExecutorAllocationManager/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/dynamic-allocation/configuration-properties/</loc>
      <lastmod>2020-11-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/ExecutorAllocationClient/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/dynamic-allocation/ExecutorAllocationManager/</loc>
      <lastmod>2020-11-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/ExecutorAllocationManagerSource/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/dynamic-allocation/ExecutorAllocationClient/</loc>
+     <lastmod>2020-11-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/dynamic-allocation/ExecutorAllocationManagerSource/</loc>
+     <lastmod>2020-11-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/dynamic-allocation/ExecutorAllocationListener/</loc>
      <lastmod>2020-11-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -929,10 +937,6 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/SparkListenerInterface/</loc>
-     <lastmod>2020-11-27</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/ExecutorAllocationListener/</loc>
      <lastmod>2020-11-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
