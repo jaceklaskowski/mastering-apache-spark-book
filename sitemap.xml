@@ -24,10 +24,6 @@
      <lastmod>2020-11-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/HeartbeatReceiver/</loc>
-     <lastmod>2020-11-27</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/spark-sparkcontext-SparkStatusTracker/</loc>
      <lastmod>2020-11-27</lastmod>
      <changefreq>daily</changefreq>
@@ -136,14 +132,6 @@
      <lastmod>2020-11-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/spark-deploy-mode/</loc>
-     <lastmod>2020-11-27</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/rdd-checkpointing/</loc>
-     <lastmod>2020-11-27</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/spark-dynamic-allocation/</loc>
      <lastmod>2020-11-27</lastmod>
      <changefreq>daily</changefreq>
@@ -157,14 +145,6 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/ExecutorAllocationManagerSource/</loc>
-     <lastmod>2020-11-27</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/speculative-execution-of-tasks/</loc>
-     <lastmod>2020-11-27</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/CompressionCodec/</loc>
      <lastmod>2020-11-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -788,7 +768,7 @@
      <lastmod>2020-11-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/data-locality/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/speculative-execution-of-tasks/</loc>
      <lastmod>2020-11-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -844,15 +824,27 @@
      <lastmod>2020-11-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/AppStatusPlugin/</loc>
-     <lastmod>2020-11-27</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/KVStoreView/</loc>
      <lastmod>2020-11-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/InterruptibleIterator/</loc>
+     <lastmod>2020-11-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/spark-deploy-mode/</loc>
+     <lastmod>2020-11-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/HeartbeatReceiver/</loc>
+     <lastmod>2020-11-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/data-locality/</loc>
+     <lastmod>2020-11-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/CompressionCodec/</loc>
      <lastmod>2020-11-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -1209,6 +1201,10 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/Partition/</loc>
+     <lastmod>2020-11-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/rdd/checkpointing/</loc>
      <lastmod>2020-11-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
