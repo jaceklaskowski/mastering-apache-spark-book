@@ -240,7 +240,7 @@
      <lastmod>2020-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/core/AppStatusListener/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/AppStatusListener/</loc>
      <lastmod>2020-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -772,6 +772,10 @@
      <lastmod>2020-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/accumulators/AccumulableInfo/</loc>
+     <lastmod>2020-11-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/barrier-execution-mode/</loc>
      <lastmod>2020-11-29</lastmod>
      <changefreq>daily</changefreq>
@@ -857,6 +861,18 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/CompressionCodec/</loc>
+     <lastmod>2020-11-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/LiveEntityHelpers/</loc>
+     <lastmod>2020-11-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/LiveTask/</loc>
+     <lastmod>2020-11-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/LiveStage/</loc>
      <lastmod>2020-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
