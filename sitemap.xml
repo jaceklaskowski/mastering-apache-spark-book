@@ -836,6 +836,18 @@
      <lastmod>2020-12-04</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/stage-level-scheduling/</loc>
+     <lastmod>2020-12-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/stage-level-scheduling/ResourceProfile/</loc>
+     <lastmod>2020-12-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/stage-level-scheduling/ResourceProfileBuilder/</loc>
+     <lastmod>2020-12-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/spark-deployment-environments/</loc>
      <lastmod>2020-12-04</lastmod>
      <changefreq>daily</changefreq>
@@ -881,10 +893,6 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/Utils/</loc>
-     <lastmod>2020-12-04</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/ResourceProfile/</loc>
      <lastmod>2020-12-04</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
