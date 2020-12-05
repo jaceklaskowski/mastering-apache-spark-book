@@ -940,6 +940,14 @@
      <lastmod>2020-12-05</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/</loc>
+     <lastmod>2020-12-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/configuration-properties/</loc>
+     <lastmod>2020-12-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/kubernetes/KubernetesClusterManager/</loc>
      <lastmod>2020-12-05</lastmod>
      <changefreq>daily</changefreq>
@@ -960,7 +968,27 @@
      <lastmod>2020-12-05</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/configuration-properties/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/BasicDriverFeatureStep/</loc>
+     <lastmod>2020-12-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/ExecutorPodsWatchSnapshotSource/</loc>
+     <lastmod>2020-12-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/ExecutorPodsSnapshotsStoreImpl/</loc>
+     <lastmod>2020-12-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/ExecutorPodsWatcher/</loc>
+     <lastmod>2020-12-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/ExecutorPodsAllocator/</loc>
+     <lastmod>2020-12-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/KubernetesExecutorBuilder/</loc>
      <lastmod>2020-12-05</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
