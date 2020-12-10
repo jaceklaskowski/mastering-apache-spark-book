@@ -980,6 +980,10 @@
      <lastmod>2020-12-10</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/KubernetesConf/</loc>
+     <lastmod>2020-12-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/kubernetes/Client/</loc>
      <lastmod>2020-12-10</lastmod>
      <changefreq>daily</changefreq>
@@ -1001,6 +1005,10 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/kubernetes/BasicExecutorFeatureStep/</loc>
+     <lastmod>2020-12-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/DriverServiceFeatureStep/</loc>
      <lastmod>2020-12-10</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
