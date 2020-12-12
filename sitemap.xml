@@ -1240,6 +1240,14 @@
      <lastmod>2020-12-12</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/tools/SparkSubmitOperation/</loc>
+     <lastmod>2020-12-12</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/tools/SparkSubmitUtils/</loc>
+     <lastmod>2020-12-12</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/tools/spark-class/</loc>
      <lastmod>2020-12-12</lastmod>
      <changefreq>daily</changefreq>
