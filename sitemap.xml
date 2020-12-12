@@ -1016,6 +1016,10 @@
      <lastmod>2020-12-12</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/ExecutorPodsPollingSnapshotSource/</loc>
+     <lastmod>2020-12-12</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/kubernetes/ExecutorPodsSnapshotsStoreImpl/</loc>
      <lastmod>2020-12-12</lastmod>
      <changefreq>daily</changefreq>
