@@ -908,14 +908,6 @@
      <lastmod>2020-12-12</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/SparkApplication/</loc>
-     <lastmod>2020-12-12</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/JavaMainApplication/</loc>
-     <lastmod>2020-12-12</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/spark-tips-and-tricks/</loc>
      <lastmod>2020-12-12</lastmod>
      <changefreq>daily</changefreq>
@@ -1228,10 +1220,6 @@
      <lastmod>2020-12-12</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/tools/spark-shell/</loc>
-     <lastmod>2020-12-12</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/tools/spark-submit/</loc>
      <lastmod>2020-12-12</lastmod>
      <changefreq>daily</changefreq>
@@ -1245,6 +1233,18 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/tools/SparkSubmitUtils/</loc>
+     <lastmod>2020-12-12</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/tools/SparkApplication/</loc>
+     <lastmod>2020-12-12</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/tools/JavaMainApplication/</loc>
+     <lastmod>2020-12-12</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/tools/spark-shell/</loc>
      <lastmod>2020-12-12</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
