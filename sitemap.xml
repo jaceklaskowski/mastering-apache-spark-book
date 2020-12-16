@@ -40,6 +40,26 @@
      <lastmod>2020-12-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/external-shuffle-service/</loc>
+     <lastmod>2020-12-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/external-shuffle-service/ExternalShuffleService/</loc>
+     <lastmod>2020-12-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/external-shuffle-service/ExternalBlockHandler/</loc>
+     <lastmod>2020-12-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/deploy/ExternalShuffleBlockHandler/</loc>
+     <lastmod>2020-12-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/deploy/ExternalShuffleBlockResolver/</loc>
+     <lastmod>2020-12-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/scheduler/MapOutputTracker/</loc>
      <lastmod>2020-12-16</lastmod>
      <changefreq>daily</changefreq>
@@ -700,6 +720,10 @@
      <lastmod>2020-12-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/StorageUtils/</loc>
+     <lastmod>2020-12-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/serializer/</loc>
      <lastmod>2020-12-16</lastmod>
      <changefreq>daily</changefreq>
@@ -721,18 +745,6 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/serializer/DeserializationStream/</loc>
-     <lastmod>2020-12-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/deploy/ExternalShuffleService/</loc>
-     <lastmod>2020-12-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/deploy/ExternalShuffleBlockHandler/</loc>
-     <lastmod>2020-12-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/deploy/ExternalShuffleBlockResolver/</loc>
      <lastmod>2020-12-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
