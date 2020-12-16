@@ -692,6 +692,14 @@
      <lastmod>2020-12-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/BlockStoreClient/</loc>
+     <lastmod>2020-12-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/ExternalBlockStoreClient/</loc>
+     <lastmod>2020-12-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/serializer/</loc>
      <lastmod>2020-12-16</lastmod>
      <changefreq>daily</changefreq>
