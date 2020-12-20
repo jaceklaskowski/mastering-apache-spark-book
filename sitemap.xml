@@ -60,6 +60,10 @@
      <lastmod>2020-12-20</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/external-shuffle-service/ExecutorShuffleInfo/</loc>
+     <lastmod>2020-12-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/scheduler/MapOutputTracker/</loc>
      <lastmod>2020-12-20</lastmod>
      <changefreq>daily</changefreq>
