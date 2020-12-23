@@ -10,11 +10,11 @@
       
       
       
-      
         <meta name="author" content="Jacek Laskowski">
       
+      
       <link rel="shortcut icon" href="/apache-spark-internals/assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.7">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.2">
     
     
       
@@ -22,10 +22,10 @@
       
     
     
-      <link rel="stylesheet" href="/apache-spark-internals/assets/stylesheets/main.19753c6b.min.css">
+      <link rel="stylesheet" href="/apache-spark-internals/assets/stylesheets/main.73f7c429.min.css">
       
         
-        <link rel="stylesheet" href="/apache-spark-internals/assets/stylesheets/palette.196e0c26.min.css">
+        <link rel="stylesheet" href="/apache-spark-internals/assets/stylesheets/palette.39b8e14a.min.css">
         
       
     
@@ -33,7 +33,7 @@
     
       
         
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
@@ -59,6 +59,7 @@
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
       
   
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
@@ -83,18 +84,20 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
     </label>
     <div class="md-header-nav__title" data-md-component="header-title">
-      
-        <div class="md-header-nav__ellipsis">
-          <span class="md-header-nav__topic md-ellipsis">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
             The Internals of Apache Spark
           </span>
-          <span class="md-header-nav__topic md-ellipsis">
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
             
               
             
           </span>
         </div>
-      
+      </div>
     </div>
     
       <label class="md-header-nav__button md-icon" for="__search">
@@ -149,7 +152,6 @@
       
         
           
-
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
@@ -157,9 +159,12 @@
         
   
   
+
+
+  
+  
+  
     <li class="md-tabs__item">
-      
-      
       <a href="/apache-spark-internals/." class="md-tabs__link">
         Home
       </a>
@@ -170,9 +175,12 @@
         
   
   
+
+
+  
+  
+  
     <li class="md-tabs__item">
-      
-      
       <a href="/apache-spark-internals/kubernetes/" class="md-tabs__link">
         Kubernetes
       </a>
@@ -183,9 +191,12 @@
         
   
   
+
+
+  
+  
+  
     <li class="md-tabs__item">
-      
-      
       <a href="/apache-spark-internals/spark-standalone/" class="md-tabs__link">
         Spark Standalone
       </a>
@@ -196,9 +207,12 @@
         
   
   
+
+
+  
+  
+  
     <li class="md-tabs__item">
-      
-      
       <a href="/apache-spark-internals/spark-logging/" class="md-tabs__link">
         Monitoring
       </a>
@@ -209,13 +223,17 @@
         
   
   
+
+
+  
+  
+  
     
-    
+
+  
   
   
     <li class="md-tabs__item">
-      
-      
       <a href="/apache-spark-internals/tools/spark-submit/" class="md-tabs__link">
         Tools
       </a>
@@ -228,9 +246,12 @@
         
   
   
+
+
+  
+  
+  
     <li class="md-tabs__item">
-      
-      
       <a href="/apache-spark-internals/rdd/" class="md-tabs__link">
         RDD
       </a>
@@ -241,9 +262,12 @@
         
   
   
+
+
+  
+  
+  
     <li class="md-tabs__item">
-      
-      
       <a href="/apache-spark-internals/metrics/" class="md-tabs__link">
         Metrics
       </a>
@@ -254,9 +278,12 @@
         
   
   
+
+
+  
+  
+  
     <li class="md-tabs__item">
-      
-      
       <a href="/apache-spark-internals/demo/diskblockmanager-and-block-data/" class="md-tabs__link">
         Demos
       </a>
@@ -267,9 +294,12 @@
         
   
   
+
+
+  
+  
+  
     <li class="md-tabs__item">
-      
-      
       <a href="/apache-spark-internals/exercises/spark-exercise-pairrddfunctions-oneliners/" class="md-tabs__link">
         Exercises
       </a>
@@ -280,9 +310,12 @@
         
   
   
+
+
+  
+  
+  
     <li class="md-tabs__item">
-      
-      
       <a href="/apache-spark-internals/webui/" class="md-tabs__link">
         Web UI
       </a>
@@ -299,12 +332,18 @@
         <div class="md-main__inner md-grid">
           
             
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="https://books.japila.pl/apache-spark-internals" title="The Internals of Apache Spark" class="md-nav__button md-logo" aria-label="The Internals of Apache Spark">
       
@@ -335,9 +374,13 @@
       
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" >
+    
     <label class="md-nav__link" for="nav-1">
       Home
       <span class="md-nav__icon md-icon"></span>
@@ -355,6 +398,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/." class="md-nav__link">
       Welcome
@@ -365,6 +409,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -379,6 +424,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/SparkEnv/" class="md-nav__link">
       SparkEnv
@@ -389,6 +435,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -403,9 +450,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-5" type="checkbox" id="nav-1-5" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-5" type="checkbox" id="nav-1-5" >
+    
     <label class="md-nav__link" for="nav-1-5">
       SparkContext
       <span class="md-nav__icon md-icon"></span>
@@ -423,6 +474,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/SparkContext/" class="md-nav__link">
       SparkContext
@@ -433,6 +485,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -447,6 +500,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/spark-sparkcontext-SparkStatusTracker/" class="md-nav__link">
       SparkStatusTracker
@@ -457,6 +511,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -476,6 +531,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/configuration-properties/" class="md-nav__link">
       Configuration Properties
@@ -486,6 +542,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -500,9 +557,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-8" type="checkbox" id="nav-1-8" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-8" type="checkbox" id="nav-1-8" >
+    
     <label class="md-nav__link" for="nav-1-8">
       External Shuffle Service
       <span class="md-nav__icon md-icon"></span>
@@ -520,6 +581,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/external-shuffle-service/" class="md-nav__link">
       External Shuffle Service
@@ -530,6 +592,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -544,6 +607,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/external-shuffle-service/ExternalShuffleService/" class="md-nav__link">
       ExternalShuffleService
@@ -554,6 +618,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -568,6 +633,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/external-shuffle-service/ExternalShuffleBlockResolver/" class="md-nav__link">
       ExternalShuffleBlockResolver
@@ -578,6 +644,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -597,9 +664,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-9" type="checkbox" id="nav-1-9" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-9" type="checkbox" id="nav-1-9" >
+    
     <label class="md-nav__link" for="nav-1-9">
       MapOutputTracker
       <span class="md-nav__icon md-icon"></span>
@@ -617,6 +688,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/MapOutputTracker/" class="md-nav__link">
       MapOutputTracker
@@ -627,6 +699,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -641,6 +714,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/MapOutputTrackerWorker/" class="md-nav__link">
       MapOutputTrackerWorker
@@ -653,6 +727,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/ShuffleStatus/" class="md-nav__link">
       ShuffleStatus
@@ -663,6 +738,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -682,9 +758,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-10" type="checkbox" id="nav-1-10" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-10" type="checkbox" id="nav-1-10" >
+    
     <label class="md-nav__link" for="nav-1-10">
       Shuffle System
       <span class="md-nav__icon md-icon"></span>
@@ -702,6 +782,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/shuffle/" class="md-nav__link">
       Shuffle System
@@ -712,6 +793,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -726,6 +808,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/shuffle/SortShuffleManager/" class="md-nav__link">
       SortShuffleManager
@@ -738,9 +821,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-10-4" type="checkbox" id="nav-1-10-4" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-10-4" type="checkbox" id="nav-1-10-4" >
+    
     <label class="md-nav__link" for="nav-1-10-4">
       Shuffle Handlers
       <span class="md-nav__icon md-icon"></span>
@@ -758,6 +845,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/shuffle/ShuffleHandle/" class="md-nav__link">
       ShuffleHandle
@@ -768,6 +856,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -782,6 +871,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/shuffle/BypassMergeSortShuffleHandle/" class="md-nav__link">
       BypassMergeSortShuffleHandle
@@ -792,6 +882,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -811,9 +902,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-10-5" type="checkbox" id="nav-1-10-5" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-10-5" type="checkbox" id="nav-1-10-5" >
+    
     <label class="md-nav__link" for="nav-1-10-5">
       Shuffle Readers
       <span class="md-nav__icon md-icon"></span>
@@ -831,6 +926,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/shuffle/ShuffleReader/" class="md-nav__link">
       ShuffleReader
@@ -841,6 +937,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -860,9 +957,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-10-6" type="checkbox" id="nav-1-10-6" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-10-6" type="checkbox" id="nav-1-10-6" >
+    
     <label class="md-nav__link" for="nav-1-10-6">
       Shuffle Writers
       <span class="md-nav__icon md-icon"></span>
@@ -880,6 +981,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/shuffle/ShuffleWriter/" class="md-nav__link">
       ShuffleWriter
@@ -890,6 +992,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -904,6 +1007,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/shuffle/SortShuffleWriter/" class="md-nav__link">
       SortShuffleWriter
@@ -914,6 +1018,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -933,6 +1038,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/shuffle/ShuffleExternalSorter/" class="md-nav__link">
       ShuffleExternalSorter
@@ -943,6 +1049,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -957,6 +1064,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/shuffle/ShuffleBlockResolver/" class="md-nav__link">
       ShuffleBlockResolver
@@ -967,6 +1075,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -981,6 +1090,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/shuffle/FetchFailedException/" class="md-nav__link">
       FetchFailedException
@@ -993,9 +1103,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-10-12" type="checkbox" id="nav-1-10-12" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-10-12" type="checkbox" id="nav-1-10-12" >
+    
     <label class="md-nav__link" for="nav-1-10-12">
       Spillable Collections
       <span class="md-nav__icon md-icon"></span>
@@ -1013,6 +1127,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/shuffle/Spillable/" class="md-nav__link">
       Spillable
@@ -1025,6 +1140,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/shuffle/ExternalAppendOnlyMap/" class="md-nav__link">
       ExternalAppendOnlyMap
@@ -1035,6 +1151,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1054,6 +1171,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/shuffle/ShuffleWriteProcessor/" class="md-nav__link">
       ShuffleWriteProcessor
@@ -1064,6 +1182,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1083,9 +1202,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-11" type="checkbox" id="nav-1-11" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-11" type="checkbox" id="nav-1-11" >
+    
     <label class="md-nav__link" for="nav-1-11">
       Dynamic Resource Allocation
       <span class="md-nav__icon md-icon"></span>
@@ -1103,6 +1226,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/dynamic-allocation/" class="md-nav__link">
       Introduction
@@ -1113,6 +1237,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1127,6 +1252,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/dynamic-allocation/ExecutorAllocationManager/" class="md-nav__link">
       ExecutorAllocationManager
@@ -1137,6 +1263,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1151,6 +1278,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/dynamic-allocation/ExecutorAllocationClient/" class="md-nav__link">
       ExecutorAllocationClient
@@ -1163,6 +1291,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/dynamic-allocation/ExecutorAllocationManagerSource/" class="md-nav__link">
       ExecutorAllocationManagerSource
@@ -1173,6 +1302,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1192,9 +1322,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-12" type="checkbox" id="nav-1-12" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-12" type="checkbox" id="nav-1-12" >
+    
     <label class="md-nav__link" for="nav-1-12">
       Network
       <span class="md-nav__icon md-icon"></span>
@@ -1212,6 +1346,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/network/TransportContext/" class="md-nav__link">
       TransportContext
@@ -1222,6 +1357,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1236,6 +1372,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/network/TransportRequestHandler/" class="md-nav__link">
       TransportRequestHandler
@@ -1246,6 +1383,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1260,6 +1398,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/network/SparkTransportConf/" class="md-nav__link">
       SparkTransportConf
@@ -1270,6 +1409,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1284,6 +1424,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/network/TransportServer/" class="md-nav__link">
       TransportServer
@@ -1294,6 +1435,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1308,6 +1450,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/network/StreamManager/" class="md-nav__link">
       StreamManager
@@ -1318,6 +1461,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1332,6 +1476,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/network/ManagedBuffer/" class="md-nav__link">
       ManagedBuffer
@@ -1342,6 +1487,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1361,9 +1507,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-13" type="checkbox" id="nav-1-13" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-13" type="checkbox" id="nav-1-13" >
+    
     <label class="md-nav__link" for="nav-1-13">
       Core
       <span class="md-nav__icon md-icon"></span>
@@ -1381,6 +1531,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/core/BroadcastManager/" class="md-nav__link">
       BroadcastManager
@@ -1391,6 +1542,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1405,6 +1557,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/core/TorrentBroadcastFactory/" class="md-nav__link">
       TorrentBroadcastFactory
@@ -1415,6 +1568,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1429,6 +1583,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/core/ContextCleaner/" class="md-nav__link">
       ContextCleaner
@@ -1439,6 +1594,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1453,6 +1609,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/core/BlockFetchingListener/" class="md-nav__link">
       BlockFetchingListener
@@ -1463,6 +1620,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1477,6 +1635,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/core/BlockFetchStarter/" class="md-nav__link">
       BlockFetchStarter
@@ -1487,6 +1646,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1501,6 +1661,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/core/AppStatusStore/" class="md-nav__link">
       AppStatusStore
@@ -1511,6 +1672,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1525,6 +1687,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/core/ElementTrackingStore/" class="md-nav__link">
       ElementTrackingStore
@@ -1537,6 +1700,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/core/InMemoryStore/" class="md-nav__link">
       InMemoryStore
@@ -1547,6 +1711,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1566,9 +1731,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-14" type="checkbox" id="nav-1-14" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-14" type="checkbox" id="nav-1-14" >
+    
     <label class="md-nav__link" for="nav-1-14">
       Scheduler
       <span class="md-nav__icon md-icon"></span>
@@ -1586,6 +1755,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/" class="md-nav__link">
       Spark Scheduler
@@ -1596,6 +1766,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1610,6 +1781,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/Stage/" class="md-nav__link">
       Stage
@@ -1620,6 +1792,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1634,6 +1807,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/ShuffleMapStage/" class="md-nav__link">
       ShuffleMapStage
@@ -1644,6 +1818,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1658,6 +1833,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/StageInfo/" class="md-nav__link">
       StageInfo
@@ -1668,6 +1844,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1682,6 +1859,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/JobWaiter/" class="md-nav__link">
       JobWaiter
@@ -1692,6 +1870,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1706,6 +1885,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/TaskSchedulerImpl/" class="md-nav__link">
       TaskSchedulerImpl
@@ -1716,6 +1896,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1730,6 +1911,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/CoarseGrainedSchedulerBackend/" class="md-nav__link">
       CoarseGrainedSchedulerBackend
@@ -1740,6 +1922,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1754,6 +1937,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/SchedulerBackendUtils/" class="md-nav__link">
       SchedulerBackendUtils
@@ -1764,6 +1948,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1778,6 +1963,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/ShuffleMapTask/" class="md-nav__link">
       ShuffleMapTask
@@ -1788,6 +1974,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1802,6 +1989,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/TaskSet/" class="md-nav__link">
       TaskSet
@@ -1812,6 +2000,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1826,6 +2015,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/ActiveJob/" class="md-nav__link">
       ActiveJob
@@ -1836,6 +2026,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1850,6 +2041,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/FIFOSchedulableBuilder/" class="md-nav__link">
       FIFOSchedulableBuilder
@@ -1860,6 +2052,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1874,6 +2067,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/Schedulable/" class="md-nav__link">
       Schedulable
@@ -1884,6 +2078,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1898,6 +2093,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/SchedulingMode/" class="md-nav__link">
       SchedulingMode
@@ -1908,6 +2104,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1922,9 +2119,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-14-29" type="checkbox" id="nav-1-14-29" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-14-29" type="checkbox" id="nav-1-14-29" >
+    
     <label class="md-nav__link" for="nav-1-14-29">
       MapStatuses
       <span class="md-nav__icon md-icon"></span>
@@ -1942,6 +2143,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/MapStatus/" class="md-nav__link">
       MapStatus
@@ -1954,6 +2156,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/CompressedMapStatus/" class="md-nav__link">
       CompressedMapStatus
@@ -1964,6 +2167,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -1983,6 +2187,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/TaskDescription/" class="md-nav__link">
       TaskDescription
@@ -1993,6 +2198,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2007,6 +2213,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/TaskContext/" class="md-nav__link">
       TaskContext
@@ -2017,6 +2224,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2031,6 +2239,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/TaskContextImpl/" class="md-nav__link">
       TaskContextImpl
@@ -2041,6 +2250,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2055,6 +2265,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/TaskSetBlacklist/" class="md-nav__link">
       TaskSetBlacklist
@@ -2065,6 +2276,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2079,6 +2291,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/TaskLocation/" class="md-nav__link">
       TaskLocation
@@ -2089,6 +2302,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2103,6 +2317,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/LiveListenerBus/" class="md-nav__link">
       LiveListenerBus
@@ -2113,6 +2328,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2127,6 +2343,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/DAGSchedulerEventProcessLoop/" class="md-nav__link">
       DAGSchedulerEventProcessLoop
@@ -2139,6 +2356,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/scheduler/DAGSchedulerSource/" class="md-nav__link">
       DAGSchedulerSource
@@ -2149,6 +2367,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2168,9 +2387,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-15" type="checkbox" id="nav-1-15" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-15" type="checkbox" id="nav-1-15" >
+    
     <label class="md-nav__link" for="nav-1-15">
       RPC
       <span class="md-nav__icon md-icon"></span>
@@ -2188,6 +2411,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rpc/" class="md-nav__link">
       RPC System
@@ -2198,6 +2422,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2212,6 +2437,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rpc/NettyRpcEnv/" class="md-nav__link">
       NettyRpcEnv
@@ -2222,6 +2448,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2236,6 +2463,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rpc/RpcEnvConfig/" class="md-nav__link">
       RpcEnvConfig
@@ -2246,6 +2474,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2260,6 +2489,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rpc/RpcEndpointRef/" class="md-nav__link">
       RpcEndpointRef
@@ -2270,6 +2500,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2284,6 +2515,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rpc/RpcEndpointAddress/" class="md-nav__link">
       RpcEndpointAddress
@@ -2294,6 +2526,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2308,6 +2541,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rpc/NettyRpcEnvFactory/" class="md-nav__link">
       NettyRpcEnvFactory
@@ -2318,6 +2552,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2332,6 +2567,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rpc/spark-rpc-netty/" class="md-nav__link">
       spark-rpc-netty
@@ -2342,6 +2578,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2361,9 +2598,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-16" type="checkbox" id="nav-1-16" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-16" type="checkbox" id="nav-1-16" >
+    
     <label class="md-nav__link" for="nav-1-16">
       Memory
       <span class="md-nav__icon md-icon"></span>
@@ -2381,6 +2622,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/memory/" class="md-nav__link">
       Memory System
@@ -2391,6 +2633,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2405,6 +2648,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/memory/StaticMemoryManager/" class="md-nav__link">
       StaticMemoryManager
@@ -2415,6 +2659,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2429,6 +2674,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/memory/MemoryPool/" class="md-nav__link">
       MemoryPool
@@ -2439,6 +2685,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2453,6 +2700,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/memory/StorageMemoryPool/" class="md-nav__link">
       StorageMemoryPool
@@ -2463,6 +2711,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2477,6 +2726,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/memory/MemoryConsumer/" class="md-nav__link">
       MemoryConsumer
@@ -2487,6 +2737,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2501,6 +2752,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/memory/UnsafeSorterSpillReader/" class="md-nav__link">
       UnsafeSorterSpillReader
@@ -2511,6 +2763,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2525,6 +2778,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/memory/UnsafeInMemorySorter/" class="md-nav__link">
       UnsafeInMemorySorter
@@ -2535,6 +2789,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2554,9 +2809,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-17" type="checkbox" id="nav-1-17" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-17" type="checkbox" id="nav-1-17" >
+    
     <label class="md-nav__link" for="nav-1-17">
       Storage
       <span class="md-nav__icon md-icon"></span>
@@ -2574,6 +2833,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/storage/BlockManager/" class="md-nav__link">
       BlockManager
@@ -2584,6 +2844,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2598,6 +2859,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/storage/BlockManagerInfo/" class="md-nav__link">
       BlockManagerInfo
@@ -2608,6 +2870,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2622,6 +2885,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/storage/BlockManagerMasterEndpoint/" class="md-nav__link">
       BlockManagerMasterEndpoint
@@ -2632,6 +2896,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2646,6 +2911,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/storage/BlockId/" class="md-nav__link">
       BlockId
@@ -2656,6 +2922,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2670,6 +2937,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/storage/DiskStore/" class="md-nav__link">
       DiskStore
@@ -2680,6 +2948,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2694,6 +2963,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/storage/MemoryStore/" class="md-nav__link">
       MemoryStore
@@ -2704,6 +2974,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2718,6 +2989,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/storage/BlockData/" class="md-nav__link">
       BlockData
@@ -2728,6 +3000,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2742,6 +3015,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/storage/BlockInfo/" class="md-nav__link">
       BlockInfo
@@ -2752,6 +3026,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2766,6 +3041,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/storage/BlockManagerSource/" class="md-nav__link">
       BlockManagerSource
@@ -2776,6 +3052,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2790,6 +3067,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/storage/ShuffleClient/" class="md-nav__link">
       ShuffleClient
@@ -2800,6 +3078,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2814,6 +3093,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/storage/NettyBlockTransferService/" class="md-nav__link">
       NettyBlockTransferService
@@ -2824,6 +3104,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2838,6 +3119,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/storage/ExternalShuffleClient/" class="md-nav__link">
       ExternalShuffleClient
@@ -2848,6 +3130,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2862,6 +3145,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/storage/ShuffleBlockFetcherIterator/" class="md-nav__link">
       ShuffleBlockFetcherIterator
@@ -2872,6 +3156,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2886,6 +3171,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/storage/StorageLevel/" class="md-nav__link">
       StorageLevel
@@ -2896,6 +3182,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2910,9 +3197,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-17-29" type="checkbox" id="nav-1-17-29" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-17-29" type="checkbox" id="nav-1-17-29" >
+    
     <label class="md-nav__link" for="nav-1-17-29">
       BlockStoreClient
       <span class="md-nav__icon md-icon"></span>
@@ -2930,6 +3221,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/storage/BlockStoreClient/" class="md-nav__link">
       BlockStoreClient
@@ -2940,6 +3232,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -2959,6 +3252,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/storage/StorageUtils/" class="md-nav__link">
       StorageUtils
@@ -2971,6 +3265,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/storage/BlockReplicationPolicy/" class="md-nav__link">
       BlockReplicationPolicy
@@ -2981,6 +3276,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3000,9 +3296,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-18" type="checkbox" id="nav-1-18" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-18" type="checkbox" id="nav-1-18" >
+    
     <label class="md-nav__link" for="nav-1-18">
       Serialization
       <span class="md-nav__icon md-icon"></span>
@@ -3020,6 +3320,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/serializer/" class="md-nav__link">
       Serialization System
@@ -3030,6 +3331,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3044,6 +3346,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/serializer/Serializer/" class="md-nav__link">
       Serializer
@@ -3054,6 +3357,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3068,6 +3372,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/serializer/SerializationStream/" class="md-nav__link">
       SerializationStream
@@ -3078,6 +3383,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3097,9 +3403,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-19" type="checkbox" id="nav-1-19" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-19" type="checkbox" id="nav-1-19" >
+    
     <label class="md-nav__link" for="nav-1-19">
       Executor
       <span class="md-nav__icon md-icon"></span>
@@ -3117,6 +3427,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/executor/Executor/" class="md-nav__link">
       Executor
@@ -3127,6 +3438,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3141,6 +3453,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/executor/ExecutorSource/" class="md-nav__link">
       ExecutorSource
@@ -3151,6 +3464,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3165,6 +3479,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/executor/CoarseGrainedExecutorBackend/" class="md-nav__link">
       CoarseGrainedExecutorBackend
@@ -3175,6 +3490,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3189,6 +3505,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/executor/ShuffleWriteMetrics/" class="md-nav__link">
       ShuffleWriteMetrics
@@ -3199,6 +3516,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3213,6 +3531,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/executor/ExecutorLogUrlHandler/" class="md-nav__link">
       ExecutorLogUrlHandler
@@ -3223,6 +3542,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3242,9 +3562,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-20" type="checkbox" id="nav-1-20" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-20" type="checkbox" id="nav-1-20" >
+    
     <label class="md-nav__link" for="nav-1-20">
       Broadcast Variables
       <span class="md-nav__icon md-icon"></span>
@@ -3260,6 +3584,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3279,9 +3604,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-21" type="checkbox" id="nav-1-21" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-21" type="checkbox" id="nav-1-21" >
+    
     <label class="md-nav__link" for="nav-1-21">
       Accumulators
       <span class="md-nav__icon md-icon"></span>
@@ -3299,6 +3628,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/accumulators/" class="md-nav__link">
       Introduction
@@ -3309,6 +3639,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3323,6 +3654,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/accumulators/AccumulatorContext/" class="md-nav__link">
       AccumulatorContext
@@ -3333,6 +3665,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3347,6 +3680,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/accumulators/AccumulatorSource/" class="md-nav__link">
       AccumulatorSource
@@ -3357,6 +3691,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3376,9 +3711,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-22" type="checkbox" id="nav-1-22" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-22" type="checkbox" id="nav-1-22" >
+    
     <label class="md-nav__link" for="nav-1-22">
       Barrier Execution Mode
       <span class="md-nav__icon md-icon"></span>
@@ -3396,6 +3735,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/barrier-execution-mode/" class="md-nav__link">
       barrier-execution-mode
@@ -3406,6 +3746,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3425,6 +3766,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/speculative-execution-of-tasks/" class="md-nav__link">
       Speculative Execution of Tasks
@@ -3437,9 +3779,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-24" type="checkbox" id="nav-1-24" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-24" type="checkbox" id="nav-1-24" >
+    
     <label class="md-nav__link" for="nav-1-24">
       Deployment Architecture
       <span class="md-nav__icon md-icon"></span>
@@ -3457,6 +3803,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/architecture/" class="md-nav__link">
       Architecture
@@ -3467,6 +3814,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3481,6 +3829,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/master/" class="md-nav__link">
       Master
@@ -3491,6 +3840,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3510,9 +3860,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-25" type="checkbox" id="nav-1-25" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-25" type="checkbox" id="nav-1-25" >
+    
     <label class="md-nav__link" for="nav-1-25">
       Internal IO
       <span class="md-nav__icon md-icon"></span>
@@ -3530,6 +3884,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/SparkHadoopWriter/" class="md-nav__link">
       SparkHadoopWriter
@@ -3540,6 +3895,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3554,6 +3910,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/HadoopMapReduceCommitProtocol/" class="md-nav__link">
       HadoopMapReduceCommitProtocol
@@ -3564,6 +3921,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3578,6 +3936,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/HadoopWriteConfigUtil/" class="md-nav__link">
       HadoopWriteConfigUtil
@@ -3590,6 +3949,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/HadoopMapReduceWriteConfigUtil/" class="md-nav__link">
       HadoopMapReduceWriteConfigUtil
@@ -3600,6 +3960,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3619,9 +3980,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-26" type="checkbox" id="nav-1-26" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-26" type="checkbox" id="nav-1-26" >
+    
     <label class="md-nav__link" for="nav-1-26">
       Stage-Level Scheduling
       <span class="md-nav__icon md-icon"></span>
@@ -3639,6 +4004,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/stage-level-scheduling/" class="md-nav__link">
       Introduction
@@ -3651,6 +4017,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/stage-level-scheduling/ResourceProfile/" class="md-nav__link">
       ResourceProfile
@@ -3661,6 +4028,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3680,9 +4048,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-27" type="checkbox" id="nav-1-27" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-27" type="checkbox" id="nav-1-27" >
+    
     <label class="md-nav__link" for="nav-1-27">
       Misc
       <span class="md-nav__icon md-icon"></span>
@@ -3700,6 +4072,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/spark-deployment-environments/" class="md-nav__link">
       Deployment Environments
@@ -3710,6 +4083,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3724,6 +4098,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/KVStoreView/" class="md-nav__link">
       KVStoreView
@@ -3734,6 +4109,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3748,6 +4124,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/spark-deploy-mode/" class="md-nav__link">
       Deploy Mode
@@ -3758,6 +4135,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3772,6 +4150,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/data-locality/" class="md-nav__link">
       Data Locality
@@ -3782,6 +4161,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3796,6 +4176,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/LiveEntityHelpers/" class="md-nav__link">
       LiveEntityHelpers
@@ -3806,6 +4187,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3820,6 +4202,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/LiveStage/" class="md-nav__link">
       LiveStage
@@ -3830,6 +4213,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3849,9 +4233,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-28" type="checkbox" id="nav-1-28" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-28" type="checkbox" id="nav-1-28" >
+    
     <label class="md-nav__link" for="nav-1-28">
       Spark Tips and Tricks
       <span class="md-nav__icon md-icon"></span>
@@ -3869,6 +4257,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/spark-tips-and-tricks/" class="md-nav__link">
       Spark Tips and Tricks
@@ -3879,6 +4268,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3893,6 +4283,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/spark-tips-and-tricks-sparkexception-task-not-serializable/" class="md-nav__link">
       Task not serializable Exception
@@ -3903,6 +4294,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3922,9 +4314,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-29" type="checkbox" id="nav-1-29" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-29" type="checkbox" id="nav-1-29" >
+    
     <label class="md-nav__link" for="nav-1-29">
       Spark Local
       <span class="md-nav__icon md-icon"></span>
@@ -3942,6 +4338,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/local/" class="md-nav__link">
       Spark Local
@@ -3952,6 +4349,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -3966,6 +4364,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/local/LocalEndpoint/" class="md-nav__link">
       LocalEndpoint
@@ -3976,6 +4375,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4000,9 +4400,13 @@
       
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+    
     <label class="md-nav__link" for="nav-2">
       Kubernetes
       <span class="md-nav__icon md-icon"></span>
@@ -4020,6 +4424,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/kubernetes/" class="md-nav__link">
       Kebernetes
@@ -4030,6 +4435,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4044,6 +4450,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/kubernetes/KubernetesClusterManager/" class="md-nav__link">
       KubernetesClusterManager
@@ -4054,6 +4461,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4068,6 +4476,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/kubernetes/KubernetesDriverEndpoint/" class="md-nav__link">
       KubernetesDriverEndpoint
@@ -4078,6 +4487,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4092,6 +4502,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/kubernetes/SparkKubernetesClientFactory/" class="md-nav__link">
       SparkKubernetesClientFactory
@@ -4102,6 +4513,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4116,6 +4528,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/kubernetes/DriverCommandFeatureStep/" class="md-nav__link">
       DriverCommandFeatureStep
@@ -4126,6 +4539,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4140,6 +4554,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/kubernetes/Client/" class="md-nav__link">
       Client
@@ -4150,6 +4565,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4164,6 +4580,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/kubernetes/ExecutorPodsSnapshotsStore/" class="md-nav__link">
       ExecutorPodsSnapshotsStore
@@ -4174,6 +4591,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4188,6 +4606,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/kubernetes/BasicDriverFeatureStep/" class="md-nav__link">
       BasicDriverFeatureStep
@@ -4198,6 +4617,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4212,6 +4632,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/kubernetes/DriverServiceFeatureStep/" class="md-nav__link">
       DriverServiceFeatureStep
@@ -4222,6 +4643,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4236,6 +4658,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/kubernetes/ExecutorPodsWatchSnapshotSource/" class="md-nav__link">
       ExecutorPodsWatchSnapshotSource
@@ -4246,6 +4669,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4260,6 +4684,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/kubernetes/ExecutorPodsSnapshotsStoreImpl/" class="md-nav__link">
       ExecutorPodsSnapshotsStoreImpl
@@ -4270,6 +4695,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4284,6 +4710,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/kubernetes/ExecutorPodsAllocator/" class="md-nav__link">
       ExecutorPodsAllocator
@@ -4294,6 +4721,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4308,6 +4736,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/kubernetes/KubernetesExecutorBuilder/" class="md-nav__link">
       KubernetesExecutorBuilder
@@ -4318,6 +4747,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4332,6 +4762,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/kubernetes/LoggingPodStatusWatcher/" class="md-nav__link">
       LoggingPodStatusWatcher
@@ -4344,6 +4775,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/kubernetes/KubernetesUtils/" class="md-nav__link">
       KubernetesUtils
@@ -4354,6 +4786,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4373,9 +4806,13 @@
       
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    
     <label class="md-nav__link" for="nav-3">
       Spark Standalone
       <span class="md-nav__icon md-icon"></span>
@@ -4393,6 +4830,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/spark-standalone/" class="md-nav__link">
       Spark Standalone
@@ -4403,6 +4841,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4417,6 +4856,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/spark-standalone/Master/" class="md-nav__link">
       Master
@@ -4427,6 +4867,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4441,6 +4882,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/spark-standalone/ExecutorRunner/" class="md-nav__link">
       ExecutorRunner
@@ -4451,6 +4893,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4465,6 +4908,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/spark-standalone/StandaloneAppClient/" class="md-nav__link">
       StandaloneAppClient
@@ -4477,6 +4921,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/spark-standalone/ClientApp/" class="md-nav__link">
       ClientApp
@@ -4487,6 +4932,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4506,9 +4952,13 @@
       
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+    
     <label class="md-nav__link" for="nav-4">
       Monitoring
       <span class="md-nav__icon md-icon"></span>
@@ -4526,6 +4976,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/spark-logging/" class="md-nav__link">
       Logging
@@ -4536,6 +4987,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4550,6 +5002,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/SparkListenerBus/" class="md-nav__link">
       SparkListenerBus
@@ -4560,6 +5013,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4574,6 +5028,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/SparkListener/" class="md-nav__link">
       SparkListener
@@ -4584,6 +5039,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4598,6 +5054,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/SpillListener/" class="md-nav__link">
       SpillListener
@@ -4608,6 +5065,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4622,6 +5080,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/AsyncEventQueue/" class="md-nav__link">
       AsyncEventQueue
@@ -4632,6 +5091,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4646,6 +5106,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/ConsoleProgressBar/" class="md-nav__link">
       ConsoleProgressBar
@@ -4658,9 +5119,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-12" type="checkbox" id="nav-4-12" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-12" type="checkbox" id="nav-4-12" >
+    
     <label class="md-nav__link" for="nav-4-12">
       Spark History Server
       <span class="md-nav__icon md-icon"></span>
@@ -4678,6 +5143,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/history-server/" class="md-nav__link">
       Spark History Server
@@ -4688,6 +5154,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4702,6 +5169,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/history-server/HistoryServer/" class="md-nav__link">
       HistoryServer
@@ -4712,6 +5180,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4726,6 +5195,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/history-server/HistoryServerDiskManager/" class="md-nav__link">
       HistoryServerDiskManager
@@ -4736,6 +5206,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4750,6 +5221,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/history-server/SQLHistoryListener/" class="md-nav__link">
       SQLHistoryListener
@@ -4760,6 +5232,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4774,6 +5247,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/history-server/FsHistoryProvider/" class="md-nav__link">
       FsHistoryProvider
@@ -4784,6 +5258,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4798,6 +5273,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/history-server/ApplicationCacheOperations/" class="md-nav__link">
       ApplicationCacheOperations
@@ -4808,6 +5284,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4822,6 +5299,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/history-server/ReplayListenerBus/" class="md-nav__link">
       ReplayListenerBus
@@ -4834,6 +5312,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/history-server/EventLogFileWriter/" class="md-nav__link">
       EventLogFileWriter
@@ -4844,6 +5323,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4863,9 +5343,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-13" type="checkbox" id="nav-4-13" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-13" type="checkbox" id="nav-4-13" >
+    
     <label class="md-nav__link" for="nav-4-13">
       Status REST API
       <span class="md-nav__icon md-icon"></span>
@@ -4883,6 +5367,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rest/" class="md-nav__link">
       Status REST API
@@ -4893,6 +5378,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4907,6 +5393,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rest/ApplicationListResource/" class="md-nav__link">
       ApplicationListResource
@@ -4917,6 +5404,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4931,6 +5419,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rest/StagesResource/" class="md-nav__link">
       StagesResource
@@ -4941,6 +5430,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4955,6 +5445,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rest/AbstractApplicationResource/" class="md-nav__link">
       AbstractApplicationResource
@@ -4965,6 +5456,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -4979,6 +5471,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rest/ApiRequestContext/" class="md-nav__link">
       ApiRequestContext
@@ -4991,6 +5484,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rest/UIRoot/" class="md-nav__link">
       UIRoot
@@ -5001,6 +5495,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5020,9 +5515,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-14" type="checkbox" id="nav-4-14" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-14" type="checkbox" id="nav-4-14" >
+    
     <label class="md-nav__link" for="nav-4-14">
       Plugin Framework
       <span class="md-nav__icon md-icon"></span>
@@ -5040,6 +5539,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/plugins/" class="md-nav__link">
       Plugin Framework
@@ -5050,6 +5550,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5064,6 +5565,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/plugins/DriverPluginContainer/" class="md-nav__link">
       DriverPluginContainer
@@ -5074,6 +5576,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5088,6 +5591,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/plugins/SparkPlugin/" class="md-nav__link">
       SparkPlugin
@@ -5100,6 +5604,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/plugins/DriverPlugin/" class="md-nav__link">
       DriverPlugin
@@ -5110,6 +5615,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5134,9 +5640,13 @@
       
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+    
     <label class="md-nav__link" for="nav-5">
       Tools
       <span class="md-nav__icon md-icon"></span>
@@ -5154,9 +5664,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1" >
+    
     <label class="md-nav__link" for="nav-5-1">
       spark-submit
       <span class="md-nav__icon md-icon"></span>
@@ -5174,6 +5688,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/tools/spark-submit/" class="md-nav__link">
       spark-submit
@@ -5184,6 +5699,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5198,6 +5714,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/tools/SparkSubmitOperation/" class="md-nav__link">
       SparkSubmitOperation
@@ -5208,6 +5725,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5222,6 +5740,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/tools/SparkApplication/" class="md-nav__link">
       SparkApplication
@@ -5232,6 +5751,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5251,6 +5771,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/tools/spark-shell/" class="md-nav__link">
       spark-shell
@@ -5261,6 +5782,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5275,6 +5797,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/tools/SparkLauncher/" class="md-nav__link">
       SparkLauncher
@@ -5287,9 +5810,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-5" type="checkbox" id="nav-5-5" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-5" type="checkbox" id="nav-5-5" >
+    
     <label class="md-nav__link" for="nav-5-5">
       Internals
       <span class="md-nav__icon md-icon"></span>
@@ -5307,6 +5834,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/tools/SparkSubmitArguments/" class="md-nav__link">
       SparkSubmitArguments
@@ -5317,6 +5845,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5331,6 +5860,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/tools/SparkSubmitOptionParser/" class="md-nav__link">
       SparkSubmitOptionParser
@@ -5343,6 +5873,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/tools/SparkSubmitCommandBuilder/" class="md-nav__link">
       SparkSubmitCommandBuilder
@@ -5353,6 +5884,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5377,9 +5909,13 @@
       
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
+    
     <label class="md-nav__link" for="nav-6">
       RDD
       <span class="md-nav__icon md-icon"></span>
@@ -5397,6 +5933,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rdd/" class="md-nav__link">
       Resilient Distributed Dataset
@@ -5407,6 +5944,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5421,9 +5959,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-3" type="checkbox" id="nav-6-3" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-3" type="checkbox" id="nav-6-3" >
+    
     <label class="md-nav__link" for="nav-6-3">
       Custom RDDs
       <span class="md-nav__icon md-icon"></span>
@@ -5441,6 +5983,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rdd/CoGroupedRDD/" class="md-nav__link">
       CoGroupedRDD
@@ -5451,6 +5994,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5465,6 +6009,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rdd/spark-rdd-MapPartitionsRDD/" class="md-nav__link">
       MapPartitionsRDD
@@ -5475,6 +6020,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5489,6 +6035,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rdd/spark-rdd-ParallelCollectionRDD/" class="md-nav__link">
       ParallelCollectionRDD
@@ -5499,6 +6046,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5513,6 +6061,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rdd/ReliableCheckpointRDD/" class="md-nav__link">
       ReliableCheckpointRDD
@@ -5525,6 +6074,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rdd/ShuffledRDD/" class="md-nav__link">
       ShuffledRDD
@@ -5535,6 +6085,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5554,9 +6105,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-4" type="checkbox" id="nav-6-4" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-4" type="checkbox" id="nav-6-4" >
+    
     <label class="md-nav__link" for="nav-6-4">
       Operators
       <span class="md-nav__icon md-icon"></span>
@@ -5574,6 +6129,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rdd/spark-rdd-operations/" class="md-nav__link">
       Operators
@@ -5584,6 +6140,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5598,6 +6155,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rdd/OrderedRDDFunctions/" class="md-nav__link">
       OrderedRDDFunctions
@@ -5608,6 +6166,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5622,6 +6181,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rdd/AsyncRDDActions/" class="md-nav__link">
       AsyncRDDActions
@@ -5632,6 +6192,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5651,9 +6212,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-5" type="checkbox" id="nav-6-5" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-5" type="checkbox" id="nav-6-5" >
+    
     <label class="md-nav__link" for="nav-6-5">
       Partitioners
       <span class="md-nav__icon md-icon"></span>
@@ -5671,6 +6236,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rdd/Partitioner/" class="md-nav__link">
       Partitioner
@@ -5683,6 +6249,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rdd/HashPartitioner/" class="md-nav__link">
       HashPartitioner
@@ -5693,6 +6260,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5712,6 +6280,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rdd/spark-rdd-lineage/" class="md-nav__link">
       RDD Lineage
@@ -5722,6 +6291,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5736,6 +6306,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rdd/spark-rdd-partitions/" class="md-nav__link">
       Partitions and Partitioning
@@ -5746,6 +6317,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5760,6 +6332,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rdd/checkpointing/" class="md-nav__link">
       RDD Checkpointing
@@ -5770,6 +6343,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5784,6 +6358,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rdd/LocalRDDCheckpointData/" class="md-nav__link">
       LocalRDDCheckpointData
@@ -5794,6 +6369,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5808,6 +6384,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rdd/spark-rdd-shuffle/" class="md-nav__link">
       Shuffling
@@ -5818,6 +6395,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5832,6 +6410,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rdd/NarrowDependency/" class="md-nav__link">
       NarrowDependency
@@ -5844,6 +6423,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/rdd/ShuffleDependency/" class="md-nav__link">
       ShuffleDependency
@@ -5854,6 +6434,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5873,9 +6454,13 @@
       
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" >
+    
     <label class="md-nav__link" for="nav-7">
       Metrics
       <span class="md-nav__icon md-icon"></span>
@@ -5893,6 +6478,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/metrics/" class="md-nav__link">
       Spark Metrics
@@ -5903,6 +6489,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5917,6 +6504,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/metrics/MetricsSystem/" class="md-nav__link">
       MetricsSystem
@@ -5927,6 +6515,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5941,6 +6530,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/metrics/Source/" class="md-nav__link">
       Source
@@ -5951,6 +6541,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -5965,9 +6556,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7-7" type="checkbox" id="nav-7-7" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7-7" type="checkbox" id="nav-7-7" >
+    
     <label class="md-nav__link" for="nav-7-7">
       Sources
       <span class="md-nav__icon md-icon"></span>
@@ -5983,6 +6578,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6002,9 +6598,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7-8" type="checkbox" id="nav-7-8" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7-8" type="checkbox" id="nav-7-8" >
+    
     <label class="md-nav__link" for="nav-7-8">
       Sinks
       <span class="md-nav__icon md-icon"></span>
@@ -6020,6 +6620,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6044,9 +6645,13 @@
       
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" >
+    
     <label class="md-nav__link" for="nav-8">
       Demos
       <span class="md-nav__icon md-icon"></span>
@@ -6064,6 +6669,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/demo/diskblockmanager-and-block-data/" class="md-nav__link">
       DiskBlockManager and Block Data
@@ -6076,6 +6682,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/demo/spark-shell-on-minikube/" class="md-nav__link">
       spark-shell on minikube
@@ -6086,6 +6693,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6105,9 +6713,13 @@
       
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" >
+    
     <label class="md-nav__link" for="nav-9">
       Exercises
       <span class="md-nav__icon md-icon"></span>
@@ -6125,6 +6737,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/exercises/spark-exercise-pairrddfunctions-oneliners/" class="md-nav__link">
       One-liners using PairRDDFunctions
@@ -6135,6 +6748,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6149,6 +6763,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/exercises/spark-exercise-standalone-master-ha/" class="md-nav__link">
       Spark Standalone - Using ZooKeeper for High-Availability of Master
@@ -6159,6 +6774,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6173,6 +6789,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/exercises/spark-examples-wordcount-spark-shell/" class="md-nav__link">
       WordCount using Spark shell
@@ -6183,6 +6800,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6197,6 +6815,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/exercises/spark-sql-hive-orc-example/" class="md-nav__link">
       Using Spark SQL to update data in Hive using ORC files
@@ -6207,6 +6826,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6221,6 +6841,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/exercises/spark-exercise-custom-rdd/" class="md-nav__link">
       Developing Custom RDD
@@ -6233,6 +6854,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/exercises/spark-exercise-dataframe-jdbc-postgresql/" class="md-nav__link">
       Working with Datasets from JDBC Data Sources (and PostgreSQL)
@@ -6243,6 +6865,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6262,9 +6885,13 @@
       
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10" >
+    
     <label class="md-nav__link" for="nav-10">
       Web UI
       <span class="md-nav__icon md-icon"></span>
@@ -6282,6 +6909,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/" class="md-nav__link">
       Web UI
@@ -6292,6 +6920,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6306,6 +6935,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/WebUI/" class="md-nav__link">
       WebUI
@@ -6316,6 +6946,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6330,6 +6961,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/WebUITab/" class="md-nav__link">
       WebUITab
@@ -6340,6 +6972,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6354,6 +6987,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/SparkUITab/" class="md-nav__link">
       SparkUITab
@@ -6366,9 +7000,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10-8" type="checkbox" id="nav-10-8" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10-8" type="checkbox" id="nav-10-8" >
+    
     <label class="md-nav__link" for="nav-10-8">
       Jobs Tab
       <span class="md-nav__icon md-icon"></span>
@@ -6386,6 +7024,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/jobs/" class="md-nav__link">
       Jobs
@@ -6396,6 +7035,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6410,6 +7050,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/spark-webui-AllJobsPage/" class="md-nav__link">
       AllJobsPage
@@ -6420,6 +7061,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6439,9 +7081,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10-9" type="checkbox" id="nav-10-9" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10-9" type="checkbox" id="nav-10-9" >
+    
     <label class="md-nav__link" for="nav-10-9">
       Stages Tab
       <span class="md-nav__icon md-icon"></span>
@@ -6459,6 +7105,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/stages/" class="md-nav__link">
       Stages
@@ -6469,6 +7116,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6483,6 +7131,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/AllStagesPage/" class="md-nav__link">
       AllStagesPage
@@ -6495,6 +7144,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/StagePage/" class="md-nav__link">
       StagePage
@@ -6505,6 +7155,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6524,9 +7175,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10-10" type="checkbox" id="nav-10-10" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10-10" type="checkbox" id="nav-10-10" >
+    
     <label class="md-nav__link" for="nav-10-10">
       Storage Tab
       <span class="md-nav__icon md-icon"></span>
@@ -6544,6 +7199,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/storage/" class="md-nav__link">
       Storage
@@ -6554,6 +7210,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6568,6 +7225,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/StoragePage/" class="md-nav__link">
       StoragePage
@@ -6578,6 +7236,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6597,9 +7256,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10-11" type="checkbox" id="nav-10-11" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10-11" type="checkbox" id="nav-10-11" >
+    
     <label class="md-nav__link" for="nav-10-11">
       Environment Tab
       <span class="md-nav__icon md-icon"></span>
@@ -6617,6 +7280,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/environment/" class="md-nav__link">
       Environment
@@ -6629,6 +7293,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/EnvironmentTab/" class="md-nav__link">
       EnvironmentTab
@@ -6639,6 +7304,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6658,9 +7324,13 @@
           
 
 
+
+  
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10-12" type="checkbox" id="nav-10-12" >
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10-12" type="checkbox" id="nav-10-12" >
+    
     <label class="md-nav__link" for="nav-10-12">
       Executors
       <span class="md-nav__icon md-icon"></span>
@@ -6678,6 +7348,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/executors/" class="md-nav__link">
       Executors
@@ -6688,6 +7359,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6702,6 +7374,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/ExecutorsPage/" class="md-nav__link">
       ExecutorsPage
@@ -6712,6 +7385,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6731,6 +7405,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/BlockStatusListener/" class="md-nav__link">
       BlockStatusListener
@@ -6741,6 +7416,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6755,6 +7431,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/ExecutorsListener/" class="md-nav__link">
       ExecutorsListener
@@ -6765,6 +7442,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6779,6 +7457,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/StorageStatusListener/" class="md-nav__link">
       StorageStatusListener
@@ -6789,6 +7468,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6803,6 +7483,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/RDDOperationGraphListener/" class="md-nav__link">
       RDDOperationGraphListener
@@ -6813,6 +7494,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6827,6 +7509,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/LiveEntity/" class="md-nav__link">
       LiveEntity
@@ -6837,6 +7520,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6851,6 +7535,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="/apache-spark-internals/webui/UIUtils/" class="md-nav__link">
       UIUtils
@@ -6861,6 +7546,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -6953,15 +7639,15 @@
       
     </div>
     
-      <script src="/apache-spark-internals/assets/javascripts/vendor.0ac82a11.min.js"></script>
-      <script src="/apache-spark-internals/assets/javascripts/bundle.f81dfb4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="/apache-spark-internals/assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="/apache-spark-internals/assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
           base: "/apache-spark-internals",
           features: ['navigation.tabs', 'navigation.instant'],
           search: Object.assign({
-            worker: "/apache-spark-internals/assets/javascripts/worker/search.4ac00218.min.js"
+            worker: "/apache-spark-internals/assets/javascripts/worker/search.8c7e0a7e.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
