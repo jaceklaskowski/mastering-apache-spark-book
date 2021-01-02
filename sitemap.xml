@@ -1056,6 +1056,18 @@
      <lastmod>2021-01-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/EnvSecretsFeatureStep/</loc>
+     <lastmod>2021-01-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/MountSecretsFeatureStep/</loc>
+     <lastmod>2021-01-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/MountVolumesFeatureStep/</loc>
+     <lastmod>2021-01-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/kubernetes/ExecutorPodsWatchSnapshotSource/</loc>
      <lastmod>2021-01-02</lastmod>
      <changefreq>daily</changefreq>
