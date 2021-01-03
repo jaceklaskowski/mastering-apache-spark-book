@@ -1108,6 +1108,10 @@
      <lastmod>2021-01-03</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/LoggingPodStatusWatcherImpl/</loc>
+     <lastmod>2021-01-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/kubernetes/KubernetesUtils/</loc>
      <lastmod>2021-01-03</lastmod>
      <changefreq>daily</changefreq>
@@ -1121,10 +1125,6 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/kubernetes/ClientArguments/</loc>
-     <lastmod>2021-01-03</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/LoggingPodStatusWatcherImpl/</loc>
      <lastmod>2021-01-03</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
