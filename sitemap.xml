@@ -904,6 +904,10 @@
      <lastmod>2021-05-26</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/HadoopWriteConfigUtil/</loc>
+     <lastmod>2021-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/FileCommitProtocol/</loc>
      <lastmod>2021-05-26</lastmod>
      <changefreq>daily</changefreq>
@@ -913,10 +917,6 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/HadoopMapRedCommitProtocol/</loc>
-     <lastmod>2021-05-26</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/HadoopWriteConfigUtil/</loc>
      <lastmod>2021-05-26</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
