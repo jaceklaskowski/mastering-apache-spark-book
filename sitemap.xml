@@ -24,15 +24,15 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/spark-HeartbeatReceiver/</loc>
-     <lastmod>2021-06-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/spark-sparkcontext-SparkStatusTracker/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/SparkStatusTracker/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/spark-sparkcontext-local-properties/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/SparkFiles/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -41,6 +41,50 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/spark-properties/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/external-shuffle-service/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/external-shuffle-service/configuration-properties/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/external-shuffle-service/ExternalShuffleService/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/external-shuffle-service/ExternalBlockHandler/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/external-shuffle-service/ExternalShuffleBlockResolver/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/external-shuffle-service/ExecutorShuffleInfo/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/scheduler/MapOutputTracker/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/scheduler/MapOutputTrackerMaster/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/scheduler/ShuffleStatus/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/scheduler/MapOutputTrackerMasterEndpoint/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/scheduler/MapOutputTrackerWorker/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -132,35 +176,71 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/spark-deploy-mode/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/shuffle/ShuffleWriteMetricsReporter/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/rdd-checkpointing/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/shuffle/ShuffleDataIO/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/spark-dynamic-allocation/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/shuffle/LocalDiskShuffleDataIO/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/ExecutorAllocationManager/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/shuffle/ShuffleDriverComponents/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/ExecutorAllocationClient/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/shuffle/ShuffleExecutorComponents/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/ExecutorAllocationManagerSource/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/shuffle/ShuffleMapOutputWriter/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/speculative-execution-of-tasks/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/shuffle/SingleSpillShuffleMapOutputWriter/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/CompressionCodec/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/shuffle/LocalDiskShuffleExecutorComponents/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/shuffle/ShuffleDataIOUtils/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/dynamic-allocation/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/dynamic-allocation/configuration-properties/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/dynamic-allocation/ExecutorAllocationManager/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/dynamic-allocation/ExecutorMonitor/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/dynamic-allocation/Tracker/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/dynamic-allocation/ExecutorAllocationClient/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/dynamic-allocation/ExecutorAllocationManagerSource/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/dynamic-allocation/ExecutorAllocationListener/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -248,7 +328,7 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/core/AppStatusListener/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/AppStatusListener/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -292,27 +372,11 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/scheduler/MapOutputTracker/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/scheduler/BlacklistTracker/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/scheduler/MapOutputTrackerMaster/</loc>
-     <lastmod>2021-06-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/scheduler/ShuffleStatus/</loc>
-     <lastmod>2021-06-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/scheduler/MapOutputTrackerMasterEndpoint/</loc>
-     <lastmod>2021-06-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/scheduler/MapOutputTrackerWorker/</loc>
-     <lastmod>2021-06-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/scheduler/spark-scheduler-StageInfo/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/scheduler/StageInfo/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -340,7 +404,11 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/scheduler/CoarseGrainedSchedulerBackend-DriverEndpoint/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/scheduler/DriverEndpoint/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/scheduler/SchedulerBackendUtils/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -400,6 +468,14 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/scheduler/CompressedMapStatus/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/scheduler/HighlyCompressedMapStatus/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/scheduler/TaskDescription/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
@@ -453,6 +529,10 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/scheduler/DAGSchedulerSource/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/scheduler/ExecutorData/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -680,6 +760,26 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/BlockStoreClient/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/ExternalBlockStoreClient/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/StorageUtils/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/BlockReplicationPolicy/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/storage/RandomBlockReplicationPolicy/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/serializer/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
@@ -701,18 +801,6 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/serializer/DeserializationStream/</loc>
-     <lastmod>2021-06-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/deploy/ExternalShuffleService/</loc>
-     <lastmod>2021-06-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/deploy/ExternalShuffleBlockHandler/</loc>
-     <lastmod>2021-06-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/deploy/ExternalShuffleBlockResolver/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -748,6 +836,14 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/executor/ExecutorLogUrlHandler/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/executor/ExecutorMetricsPoller/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/Broadcast/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
@@ -756,7 +852,23 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/AccumulatorContext/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/accumulators/AccumulatorV2/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/accumulators/AccumulatorContext/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/accumulators/InternalAccumulator/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/accumulators/AccumulatorSource/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/accumulators/AccumulableInfo/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -768,7 +880,7 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/data-locality/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/speculative-execution-of-tasks/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -792,6 +904,10 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/HadoopWriteConfigUtil/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/FileCommitProtocol/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
@@ -804,15 +920,23 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/HadoopWriteConfigUtil/</loc>
-     <lastmod>2021-06-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/HadoopMapReduceWriteConfigUtil/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/HadoopMapRedWriteConfigUtil/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/stage-level-scheduling/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/stage-level-scheduling/ResourceProfile/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/stage-level-scheduling/ResourceProfileBuilder/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -824,15 +948,39 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/AppStatusPlugin/</loc>
-     <lastmod>2021-06-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/KVStoreView/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/InterruptibleIterator/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/spark-deploy-mode/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/HeartbeatReceiver/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/data-locality/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/CompressionCodec/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/LiveEntityHelpers/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/LiveTask/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/LiveStage/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -872,31 +1020,47 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/KubernetesClusterManager/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/spark-standalone/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/KubernetesClusterSchedulerBackend/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/spark-standalone/configuration-properties/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/KubernetesDriverEndpoint/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/spark-standalone/Master/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/ExecutorPodsLifecycleManager/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/spark-standalone/Worker/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/ExecutorPodsSnapshotsStore/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/spark-standalone/ExecutorRunner/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/kubernetes/configuration-properties/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/spark-standalone/StandaloneRestServer/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/spark-standalone/StandaloneAppClient/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/spark-standalone/ClientApp/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/spark-standalone/LocalSparkCluster/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/spark-logging/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/ListenerBus/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -912,7 +1076,7 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/ExecutorAllocationListener/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/SparkListenerInterface/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -948,6 +1112,14 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/history-server/HistoryAppStatusStore/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/history-server/HistoryServerDiskManager/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/history-server/EventLoggingListener/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
@@ -977,6 +1149,10 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/history-server/ReplayListenerBus/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/history-server/EventLogFileWriter/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -1056,11 +1232,31 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/tools/spark-shell/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/tools/spark-submit/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/tools/spark-submit/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/tools/SparkSubmit/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/tools/SparkSubmitOperation/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/tools/SparkSubmitUtils/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/tools/SparkApplication/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/tools/JavaMainApplication/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/tools/spark-shell/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -1076,11 +1272,19 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/tools/DependencyUtils/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/tools/SparkSubmitOptionParser/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/tools/SparkSubmitCommandBuilder/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/tools/Main/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -1112,10 +1316,6 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-OrderedRDDFunctions/</loc>
-     <lastmod>2021-06-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-ParallelCollectionRDD/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
@@ -1144,6 +1344,10 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/rdd/OrderedRDDFunctions/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/PairRDDFunctions/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
@@ -1160,6 +1364,14 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/rdd/HashPartitioner/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/rdd/RangePartitioner/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-lineage/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
@@ -1172,7 +1384,11 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/rdd/spark-rdd-Partition/</loc>
+     <loc>https://books.japila.pl/apache-spark-internals/rdd/Partition/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/rdd/checkpointing/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -1208,14 +1424,6 @@
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/rdd/HashPartitioner/</loc>
-     <lastmod>2021-06-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://books.japila.pl/apache-spark-internals/rdd/RangePartitioner/</loc>
-     <lastmod>2021-06-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/metrics/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
@@ -1245,6 +1453,10 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://books.japila.pl/apache-spark-internals/metrics/MetricsServlet/</loc>
+     <lastmod>2021-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://books.japila.pl/apache-spark-internals/demo/</loc>
      <lastmod>2021-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
