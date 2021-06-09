@@ -1906,16 +1906,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://books.japila.pl/apache-spark-internals/webui/BlockStatusListener/</loc>
-         <lastmod>2021-06-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/apache-spark-internals/webui/EnvironmentListener/</loc>
-         <lastmod>2021-06-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://books.japila.pl/apache-spark-internals/webui/EnvironmentPage/</loc>
          <lastmod>2021-06-09</lastmod>
          <changefreq>daily</changefreq>
@@ -1927,11 +1917,6 @@
     </url>
     <url>
          <loc>https://books.japila.pl/apache-spark-internals/webui/ExecutorThreadDumpPage/</loc>
-         <lastmod>2021-06-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/apache-spark-internals/webui/ExecutorsListener/</loc>
          <lastmod>2021-06-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -1981,11 +1966,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://books.japila.pl/apache-spark-internals/webui/RDDOperationGraphListener/</loc>
-         <lastmod>2021-06-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://books.japila.pl/apache-spark-internals/webui/RDDPage/</loc>
          <lastmod>2021-06-09</lastmod>
          <changefreq>daily</changefreq>
@@ -2016,17 +1996,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://books.japila.pl/apache-spark-internals/webui/StorageListener/</loc>
-         <lastmod>2021-06-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://books.japila.pl/apache-spark-internals/webui/StoragePage/</loc>
-         <lastmod>2021-06-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/apache-spark-internals/webui/StorageStatusListener/</loc>
          <lastmod>2021-06-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -2062,31 +2032,6 @@
     </url>
     <url>
          <loc>https://books.japila.pl/apache-spark-internals/webui/configuration-properties/</loc>
-         <lastmod>2021-06-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/apache-spark-internals/webui/environment/</loc>
-         <lastmod>2021-06-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/apache-spark-internals/webui/executors/</loc>
-         <lastmod>2021-06-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/apache-spark-internals/webui/jobs/</loc>
-         <lastmod>2021-06-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/apache-spark-internals/webui/stages/</loc>
-         <lastmod>2021-06-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/apache-spark-internals/webui/storage/</loc>
          <lastmod>2021-06-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
