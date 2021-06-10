@@ -1616,6 +1616,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://books.japila.pl/apache-spark-internals/status/</loc>
+         <lastmod>2021-06-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://books.japila.pl/apache-spark-internals/status/AppStatusListener/</loc>
          <lastmod>2021-06-10</lastmod>
          <changefreq>daily</changefreq>
@@ -1637,36 +1642,6 @@
     </url>
     <url>
          <loc>https://books.japila.pl/apache-spark-internals/status/LiveEntity/</loc>
-         <lastmod>2021-06-10</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/apache-spark-internals/status/LiveEntityHelpers/</loc>
-         <lastmod>2021-06-10</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/apache-spark-internals/status/LiveRDD/</loc>
-         <lastmod>2021-06-10</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/apache-spark-internals/status/LiveStage/</loc>
-         <lastmod>2021-06-10</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/apache-spark-internals/status/LiveTask/</loc>
-         <lastmod>2021-06-10</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/apache-spark-internals/status/RDDStorageInfo/</loc>
-         <lastmod>2021-06-10</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/apache-spark-internals/status/StreamBlockData/</loc>
          <lastmod>2021-06-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
