@@ -1591,6 +1591,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://books.japila.pl/apache-spark-internals/spark-standalone/ClientEndpoint/</loc>
+         <lastmod>2021-07-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://books.japila.pl/apache-spark-internals/spark-standalone/ExecutorRunner/</loc>
          <lastmod>2021-07-18</lastmod>
          <changefreq>daily</changefreq>
@@ -1607,6 +1612,11 @@
     </url>
     <url>
          <loc>https://books.japila.pl/apache-spark-internals/spark-standalone/StandaloneAppClient/</loc>
+         <lastmod>2021-07-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/apache-spark-internals/spark-standalone/StandaloneAppClientListener/</loc>
          <lastmod>2021-07-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -1711,6 +1721,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://books.japila.pl/apache-spark-internals/storage/BlockManagerDecommissioner/</loc>
+         <lastmod>2021-07-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://books.japila.pl/apache-spark-internals/storage/BlockManagerId/</loc>
          <lastmod>2021-07-18</lastmod>
          <changefreq>daily</changefreq>
@@ -1742,6 +1757,11 @@
     </url>
     <url>
          <loc>https://books.japila.pl/apache-spark-internals/storage/BlockManagerSource/</loc>
+         <lastmod>2021-07-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/apache-spark-internals/storage/BlockManagerStorageEndpoint/</loc>
          <lastmod>2021-07-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -1832,6 +1852,11 @@
     </url>
     <url>
          <loc>https://books.japila.pl/apache-spark-internals/storage/ShuffleMetricsSource/</loc>
+         <lastmod>2021-07-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/apache-spark-internals/storage/ShuffleMigrationRunnable/</loc>
          <lastmod>2021-07-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
